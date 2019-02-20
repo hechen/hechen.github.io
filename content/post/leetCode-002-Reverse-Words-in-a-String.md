@@ -13,6 +13,7 @@ For example, given s = "the sky is blue", return "blue is sky the".
 <!-- more -->
 
 ### 题意：
+
 题意很明确，将字符串中的单词进行翻转，形成新的字符串。但是这其中有几个问题我们需要思考（参考leetCode官方CleanCodeBook）：
 
 Q: What constitutes a word?
@@ -30,6 +31,7 @@ A: Reduce them to a single space in the reversed string.
 #### 解法：
 
 ``` C++
+
 class Solution {
 public:
 	void reverseWords(std::string &s) {		
@@ -45,7 +47,8 @@ public:
 		}
 		s = reversed;
 	}
-};
+}
+
 ```
 
 

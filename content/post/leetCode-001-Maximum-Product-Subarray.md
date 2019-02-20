@@ -6,6 +6,7 @@ tags: ["Array"]
 ---
 
 ### 题目：
+
  Find the contiguous subarray within an array (containing at least one number) which has the largest product.
 		 For example, given the array [2,3,-2,4], the contiguous subarray [2,3] has the largest product = 6.
 
@@ -17,6 +18,7 @@ tags: ["Array"]
 
 C语言实现如下：
 
+``` C
     int maxProduct(int* nums, int numsSize) {
             int nMaxPro = nums[0];
             int max_tmp = nums[0];
@@ -34,6 +36,7 @@ C语言实现如下：
 
             return nMaxPro;
 	}
+```
 
 leetCode Oj系统评判结果如下图所示：
 
@@ -41,6 +44,7 @@ leetCode Oj系统评判结果如下图所示：
 
 C++实现如下：
 
+``` C++
     class Solution {
 		public:
 		    int maxProduct(vector<int>& nums) {
@@ -61,6 +65,7 @@ C++实现如下：
 	            return nMaxPro;
 		    }
 	};
+```
 
 leetCode的OJ系统评判结果如下图所示：
 
@@ -69,6 +74,7 @@ leetCode的OJ系统评判结果如下图所示：
 
 Java实现如下：
 
+``` Java
 	public class Solution {
 		 public int maxProduct(int[] nums) {
             int nMaxPro = nums[0];
@@ -88,6 +94,8 @@ Java实现如下：
             return nMaxPro;
 	    }
 	}
+    
+```
 
 leetCode的OJ系统评判结果如下所示：
 

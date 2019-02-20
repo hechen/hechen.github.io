@@ -6,6 +6,7 @@ tags: ["Algorithm","String"]
 ---
 
 ### 题目：Implement strStr()
+
 Implement strStr().
 
 Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
@@ -50,12 +51,16 @@ extern char *strstr(char *str1, const char *str2);
 			}
 			return -1;
 		}
-	};
+	}
+
 ```
+
 在最坏的情况下，暴力子字符串查找算法在长度为N的文本中查找长度为M的模式字符串需要O(NM)次字符串比较。
 
 我们可以将上面的实现方法进行一定的修改，让大家能看到i指针的回退，如下代码所示，当i指针指向字符和j指向字符发生失配，i便会回退j个位置（此时j是失配前模式串的匹配项个数），同时j指向模式串的第一个位置。该段代码和上面代码其实是等效的。
-```
+
+``` C++
+
 class Solution {
 public:
 	int strStr(string haystack, string needle) {
@@ -81,13 +86,15 @@ private:
 ```
 那我们就可以很明显的看到，当模式串中j指向位置字符不匹配的时候，其实前面通过匹配我们已经获知了一部分文本的情况，因此如果能够利用这一部分已知的情况来加大模式串移动的有效性。KMP算法就是利用字符串匹配失效之前部分匹配的这个有用信息，通过保持文本指针不回退，仅有效移动模式字符串的位置来进行有效查找的。
 
+
 #### KMP算法
+
 [KMP算法](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm)常用于在一个文本串S内查找一个模式串P 的出现位置，这个算法由Donald Knuth、Vaughan Pratt、James H. Morris三人同时独立发现，后取这3人的姓氏命名此算法.
 大家可以参看[july的Blog](http://blog.csdn.net/tukangzheng/article/details/38438481)，讲解的是我目前看到最详细的了。
 
 KMP算法实现：
 
-```
+```C++
  class Solution {
 	public:
 		int strStr(string haystack, string needle) {
@@ -130,6 +137,6 @@ KMP算法实现：
 				}
 			}
 		}
-	};
-```
+	}
 
+```

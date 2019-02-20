@@ -24,6 +24,8 @@ tags: ["Algorithm","String"]
 ### 解法：
 C++版本实现方法：
 		
+``` C++
+
 	/**
 		 * Definition for a binary tree node.
 		 * struct TreeNode {
@@ -75,11 +77,12 @@ C++版本实现方法：
 				ss << nValue;
 				return ss.str();
 			}
-		};
+		}
+```
+
 leetCode Oj系统评判结果如下图所示：
 没有各种语言的柱状图，官方解释由于没有充足的提交导致，不知道是新题还是因为太简单大家直接略过了~
 
 ![leetCode Binary Tree Paths C++](http://7xilk1.com1.z0.glb.clouddn.com/leetCode019C++.png);
 
-相关题目：[Path Sum 2]()
 

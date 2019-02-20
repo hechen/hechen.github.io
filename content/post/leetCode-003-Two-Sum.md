@@ -21,18 +21,19 @@ You may assume that each input would have exactly one solution.
 　　　　Input: numbers={2, 7, 11, 15}, target=9
 　　　　Output: index1=1, index2=2
 
-####题意：
+#### 题意：
 
 题目中要求输入一个整形数组以及一个target，找出该整型数组中这样两个元素，使得这两个元素之和等于指定target的值。 题目中假设该两个元素必然存在，并且是只有一组（所以相对简单），返回的是这两个元素的index值（数组Index从1开始）。
 
-####关键点：
+#### 关键点：
 
 我们经常会使用空间换取时间的方法来获取较小的时间复杂度。因此增加必要的数据结构来减少时间复杂度。这道题目一样，我们增加一个map结构，key为数组元素值，value为其在数组中对应的index。每次遍历到数组元素便去map结构中查找对应的补数，如果存在，那就说明找到了。如果没存在就记录当前元素以及其index，直到结束。
 
 代码实现如下：
 
    
-``` 
+``` C++
+ 
 class Solution{
 		public:
 	     // O(n) runtime, O(n) space
@@ -55,13 +56,17 @@ class Solution{
 	        }
 	        return vecRet;
 	    } // twoSum
-	};
+	}
+
 ```
+
+
 leetCode的OJ系统评判结果如下所示：
 ![leetCode Two Sum 1 C++](http://7xilk1.com1.z0.glb.clouddn.com/leetCode003C++.png)
 
 本地运行结果如下所示：
 ![leetCode Two Sum 1 C++  Run](http://7xilk1.com1.z0.glb.clouddn.com/leetCode003Run1.jpg)
+
 
 ### 题目2：Two Sum 2
 Given an array of integers, find two numbers such that they add up to a specific target number.
@@ -83,6 +88,7 @@ You may assume that each input would have exactly one solution.
 
 实现代码如下：
 
+``` C++
     class Solution{
 		public:
 	        std::vector<int> twoSum(std::vector<int> &numbers, int target){
@@ -109,11 +115,11 @@ You may assume that each input would have exactly one solution.
 	
 	        return vecRet;
 	    } 
-	};
-	
+	}
+
+```
+
+
 由于Two Sum2 题目是收费的，因此木有进行leetCode的OJ评判，直接上本地运行截图吧，sign~
 
 ![leetCode Two Sum 2  Run](http://7xilk1.com1.z0.glb.clouddn.com/leetCode003Run2.jpg)
-	
-
-

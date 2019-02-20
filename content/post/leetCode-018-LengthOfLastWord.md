@@ -21,9 +21,10 @@ tags: ["Algorithm","String"]
 ### 解法：
 C++版本实现方法1：
 		
-	// 从右往左依次遍历即可	
+	
 
 ``` C++
+   // 从右往左依次遍历即可
   class Solution {
 	public:
 		int lengthOfLastWord(string s) {

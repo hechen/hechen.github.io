@@ -40,7 +40,8 @@ singly linked lists begins.
 
 　　代码如下：
 
-```
+``` C++
+
     /**
 		 *	 Definition for singly-linked list.
 		 * struct ListNode {
@@ -99,7 +100,7 @@ singly linked lists begins.
 
 		        return pSlow;
 		    }
-	};
+	}
 
 ```
 
@@ -107,6 +108,7 @@ leetCode的OJ系统评判结果如下：
 ![leetCode C++ Solution1](http://7xilk1.com1.z0.glb.clouddn.com/leetCode002C++1.png)
 
 #### 解法2：
+
 　　《剑指Offer》一书中提到的这个方法，如果两个没有环的链表相交于某个节点，那么在这个节点之后的所有节点都是两个链表所共有的。因此两个链表从交织点之前的部分长度差即为整条链表的长度差，我们只要让两条链表从离交织点相同距离的位置开始前进，经过O（n）步，一定能够找到交织点。
 　　
 　　1. 遍历链表A，记录其长度len1，遍历链表B，记录其长度len2。
@@ -118,6 +120,8 @@ leetCode的OJ系统评判结果如下：
 　　时间复杂度O(n+m)，空间复杂度O(1)
 
 　　代码如下：
+
+``` C++
 
 	   /**
 				 * Definition for singly-linked list.
@@ -176,7 +180,10 @@ leetCode的OJ系统评判结果如下：
 	
 	        return pLongList;
 	    }
-	};
+	}
+
+```
+
 leetCode的OJ系统评判结果如下所示：
 ![leetCode C++ Solution 2](http://7xilk1.com1.z0.glb.clouddn.com/leetCode002C++2.png)
 
@@ -192,6 +199,8 @@ leetCode的OJ系统评判结果如下所示：
 　　该算法的时间复杂度依然为O（m + n）,时间复杂度为O(1)。
 
 实现如下：
+
+``` C++
 
     /**
 		 * Definition for singly-linked list.
@@ -229,7 +238,10 @@ leetCode的OJ系统评判结果如下所示：
 	
 	        return nodeA;
 	    }
-	};
+	}
+	
+```
+
 
 leetCode的OJ系统评判结果：
 ![leetCode C++  Solution3](http://7xilk1.com1.z0.glb.clouddn.com/leetCode002C++3.png)
