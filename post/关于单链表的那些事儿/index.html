@@ -322,10 +322,7 @@
 <ul>
 <li>
 <ul>
-<li>
-<ul>
 <li><a href="#关于有环单链表相关的问题">关于有环单链表相关的问题：</a></li>
-</ul></li>
 <li><a href="#判断一个单链表是否存在环">判断一个单链表是否存在环</a></li>
 <li><a href="#确定该有环单链表的环的入口">确定该有环单链表的环的入口</a></li>
 <li><a href="#求出该有环单链表中环的长度">求出该有环单链表中环的长度</a></li>
@@ -350,7 +347,7 @@
 
 <p><img src="http://7xilk1.com1.z0.glb.clouddn.com/%E6%9C%89%E7%8E%AF%E5%8D%95%E9%93%BE%E8%A1%A8_1.jpg" alt="有环单链表示例" /></p>
 
-<h5 id="关于有环单链表相关的问题">关于有环单链表相关的问题：</h5>
+<h4 id="关于有环单链表相关的问题">关于有环单链表相关的问题：</h4>
 
 <ol>
 <li>该单链表中是否真有环存在？</li>
@@ -369,31 +366,32 @@
 
 <p>　　追赶法主要利用最大公倍数原理，用2个游标，对链表进行访问，例如:pSlow， pFast。 pSlow访问每步向前进1个节点，而pFast则每次向前前进2个节点，如果有环则pSlow和pFast必会相遇，如果pFast最终指向了NULL，则说明该链表不存在环路。因为两个指针步子迈的不一样，因为被称作快慢指针。</p>
 
-<pre><code>// Definition for singly - linked list.
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(nullptr) {}
-};
+<pre><code class="language-C">    // Definition for singly - linked list.
+	struct ListNode {
+	    int val;
+	    ListNode *next;
+	    ListNode(int x) : val(x), next(nullptr) {}
+	};
 
-bool isLoopList(ListNode *pHead){
-    if (nullptr == pHead || nullptr == pHead-&gt;next){
-        return false;
-    }
+	bool isLoopList(ListNode *pHead){
+	    if (nullptr == pHead || nullptr == pHead-&gt;next){
+	        return false;
+	    }
 
-    ListNode *pSlow = pHead;
-    ListNode *pFast = pHead;
-    while (pFast &amp;&amp; pFast-&gt;next){
-        pFast = pFast-&gt;next-&gt;next;
-        pSlow = pSlow-&gt;next;
+	    ListNode *pSlow = pHead;
+	    ListNode *pFast = pHead;
+	    while (pFast &amp;&amp; pFast-&gt;next){
+	        pFast = pFast-&gt;next-&gt;next;
+	        pSlow = pSlow-&gt;next;
+	
+	        if (pFast == pSlow){
+	            break;
+	        }
+	    }
 
-        if (pFast == pSlow){
-            break;
-        }
-    }
+	    return !(nullptr == pFast || nullptr == pFast-&gt;next);
+	}
 
-    return !(nullptr == pFast || nullptr == pFast-&gt;next);
-}
 </code></pre>
 
 <h4 id="确定该有环单链表的环的入口">确定该有环单链表的环的入口</h4>
@@ -422,35 +420,37 @@ bool isLoopList(ListNode *pHead){
 
 <p>　　这样，我们就可以这样，相遇点设置一个指针，链表头部设置一个指针，这两个指针同时按照一步一个节点前进，第一次相遇的时候必定是相遇点指针走y + (n - 1)*R的时候，也就是入口点A的位置。得证，因此获取入口点的实现如下。</p>
 
-<pre><code>ListNode *loopJoint(ListNode *pHead){
-    if (nullptr == pHead || nullptr == pHead-&gt;next){
-        return nullptr;
-    }
-
-    ListNode *pSlow = pHead;
-    ListNode *pFast = pHead;
-    while (pFast &amp;&amp; pFast-&gt;next){
-        pFast = pFast-&gt;next-&gt;next;
-        pSlow = pSlow-&gt;next;
-
-        if (pFast == pSlow){
-            break;
+<pre><code class="language-C++">
+    ListNode *loopJoint(ListNode *pHead){
+        if (nullptr == pHead || nullptr == pHead-&gt;next){
+            return nullptr;
         }
+
+        ListNode *pSlow = pHead;
+        ListNode *pFast = pHead;
+        while (pFast &amp;&amp; pFast-&gt;next){
+            pFast = pFast-&gt;next-&gt;next;
+            pSlow = pSlow-&gt;next;
+
+            if (pFast == pSlow){
+                break;
+            }
+        }
+
+        if (nullptr == pFast || nullptr == pFast-&gt;next){
+            return nullptr;
+        }
+
+        // 此时调整两个指针为普通指针，一次一步，并且其中一个指针从头部开始，第一次相遇点一定是环的入口点
+        pSlow = pHead;
+        while (pFast != pSlow){
+            pFast = pFast-&gt;next;
+            pSlow = pSlow-&gt;next;
+        }
+
+        return pSlow;
     }
 
-    if (nullptr == pFast || nullptr == pFast-&gt;next){
-        return nullptr;
-    }
-
-    // 此时调整两个指针为普通指针，一次一步，并且其中一个指针从头部开始，第一次相遇点一定是环的入口点
-    pSlow = pHead;
-    while (pFast != pSlow){
-        pFast = pFast-&gt;next;
-        pSlow = pSlow-&gt;next;
-    }
-
-    return pSlow;
-}
 </code></pre>
 
 <h4 id="求出该有环单链表中环的长度">求出该有环单链表中环的长度</h4>
@@ -509,7 +509,7 @@ bool isLoopList(ListNode *pHead){
           </a>
         
           <a class="next" href="/post/leetcode-002-reverse-words-in-a-string/">
-            <span class="next-text nav-default">leetCode[002]Reverse Words in a String</span>
+            <span class="next-text nav-default">[002] Reverse Words in a String</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">
