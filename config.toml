@@ -84,22 +84,3 @@ defaultContentLanguage = "zh-cn"  # 默认使用的语言
     b-stack-overflow = "https://stackoverflow.com/users/10229101/chen-he"
     c-twitter = "https://twitter.com/OgreMergO"
     h-weibo = "https://weibo.com/hc2feifei"
-
-
-# 将下面这段配置取消注释可以使 hugo 生成 .md 文件
-# Uncomment these options to make hugo output .md files.
-[mediaTypes]
-  [mediaTypes."text/plain"]
-    suffix = "md"
-
-[outputFormats.MarkDown]
-  mediaType = "text/plain"
-  isPlainText = true
-  isHTML = false
-
-[outputs]
-  home = ["HTML", "RSS"]
-  page = ["HTML", "MarkDown"]
-  section = ["HTML", "RSS"]
-  taxonomy = ["HTML", "RSS"]
-  taxonomyTerm = ["HTML"]
