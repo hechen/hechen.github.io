@@ -34,6 +34,7 @@ tags: ["C++11","Lambda"]
     // 复数的平方
     std::cout << func(std::complex<double>(3, -2)) << std::endl;
 ```
+
 如何让代码复用起来？ 当然是 函数模板（function template）了。 如下：
 
 
@@ -121,6 +122,6 @@ auto func = [](auto input){ return input * input;  };
 
 
 
-参考：
+### 参考：
 [https://solarianprogrammer.com/2014/08/28/cpp-14-lambda-tutorial/](https://solarianprogrammer.com/2014/08/28/cpp-14-lambda-tutorial/)
 

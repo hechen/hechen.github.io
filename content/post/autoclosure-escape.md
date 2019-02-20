@@ -14,7 +14,7 @@ tags: ["iOS","Swift"]
 
 我们用 swift 官方文档的例子来看，如下所示
 
-```
+``` Swift
 var completionHandlers: [() -> Void] = []
 
 func someFunctionWithEscapingClosure(completionHandler: @escaping () -> Void) {
@@ -24,14 +24,14 @@ func someFunctionWithEscapingClosure(completionHandler: @escaping () -> Void) {
 
 `someFunctionWithEscapingClosure(_:)` 的参数是一个闭包，函数内部会把传入的闭包存到之前声明的数组里以便之后进行调用，可以看到，在函数参数的声明部分添加了 `@escaping` 关键字，如果这里不添加的话，就会在编译的时候报错：
 
-```
+``` sh
 error: passing non-escaping parameter 'completionHandler' to function expecting an @escaping closure
     completionHandlers.append(completionHandler)    
 ```
 
 针对标记了 @escaping 关键字含义代表你必须在该闭包内部显式的使用 self 关键字，官方文档中又列举了另外一个例子，如下所示：
 
-```
+``` Swift
 func someFunctionWithNonescapingClosure(closure: () -> Void) {
     closure()
 }
@@ -66,7 +66,7 @@ print(instance.x)
 
 考虑下面这个函数 f，其需传入一个参数，类型是 `()-> Bool` 的闭包。
 
-```
+``` Swift
 func f(predicate: () -> Bool) {
     if predicate() {
         print("It's true")
@@ -76,14 +76,14 @@ func f(predicate: () -> Bool) {
 
 然后通过传入符合此类型的闭包进行调用
 
-```
+``` Swift
 f(predicate: {2 > 1})
 // "It's true"
 ```
 
 但是，如果我们忽略传入闭包的 `{` 和 `}` ，编译就会错误。
 
-```
+``` Swift
 f(predicate: 2 > 1)
 // error: '>' produces 'Bool', not the expected contextual result type '() -> Bool'
 ```
@@ -92,7 +92,7 @@ f(predicate: 2 > 1)
 
 结合上面的例子来看，当你写个表达式类似 2 > 1 传给函数 f 的时候，该表达式会被自动包裹到一个闭包中，会自动处理为 { 2 > 1 } 而传递给函数 f。
 
-```
+``` Swift
 func f(predicate: @autoclosure () -> Bool) {
     if predicate() {
         print("It's true")
@@ -110,7 +110,7 @@ f(predicate: 2 > 1)
 
 swift 提供了 ?? 操作符，如下所示：
 
-```
+``` Swift
 let nickName: String? = nil
 let fullName: String = "John Appleseed"
 let informalGreeting = "Hi \(nickName ?? fullName)
@@ -118,7 +118,7 @@ let informalGreeting = "Hi \(nickName ?? fullName)
 
 如果某 Optional 存在就会返回其值，如果没有就会返回后面的默认值，当我们去看 ?? 的实现的时候能看到如下定义：
 
-```
+``` Swift
 func ??<T>(optional: T?, defaultValue: @autoclosure () -> T?) -> T?
 
 func ??<T>(optional: T?, defaultValue: @autoclosure () -> T) -> T
@@ -128,7 +128,8 @@ func ??<T>(optional: T?, defaultValue: @autoclosure () -> T) -> T
 
 所以可以想到该方法的实现应该如下所示，（当然 fullName 为 String 类型，应该会重载第二个函数实现）
 
-```
+
+``` Swift
 func ??<T>(optional: T?, defaultValue: @autoclosure () -> T) -> T {
     switch optional {
         case .Some(let value):
@@ -137,6 +138,7 @@ func ??<T>(optional: T?, defaultValue: @autoclosure () -> T) -> T {
             return defaultValue()
         }
 }
+
 ```
 
 这里我们还需要注意一点的是，使用 `@autoclosure ` 来修饰的表达式可以实现延迟计算，也就是说直到该闭包被调用之前，闭包里所被包裹的表达式都不会进行取值计算，也就避免了一定的开销，尤其是上面默认值是复杂计算得到的话。
