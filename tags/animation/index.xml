@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Animation on Jane - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/tags/animation/</link>
-    <description>Recent content in Animation on Jane - A super concise theme for Hugo</description>
+    <title>Animation on I make stuff</title>
+    <link>https://hechen.xyz/tags/animation/</link>
+    <description>Recent content in Animation on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 02 Dec 2015 18:53:51 +0000</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/tags/animation/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.xyz/tags/animation/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>如何使用UIBezierPath实现一个弹性视图动画</title>
-      <link>http://localhost:1313/post/elastic-view-animation-using-uibezierpath/</link>
+      <link>https://hechen.xyz/post/elastic-view-animation-using-uibezierpath/</link>
       <pubDate>Wed, 02 Dec 2015 18:53:51 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/elastic-view-animation-using-uibezierpath/</guid>
+      <guid>https://hechen.xyz/post/elastic-view-animation-using-uibezierpath/</guid>
       <description>Hey！ DGElasticPullToRefresh展示如何实现一个弹性效果。效果如下图所示： 开发环境： Xcode 7 Swift 2.0 要求： 开发者至少对UIBez</description>
     </item>
     
     <item>
       <title>我们是如何创建iOS版的Guillotine菜单动画的</title>
-      <link>http://localhost:1313/post/how-we-created-guillotine-menu-animation-for-ios/</link>
+      <link>https://hechen.xyz/post/how-we-created-guillotine-menu-animation-for-ios/</link>
       <pubDate>Tue, 01 Sep 2015 15:52:07 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/how-we-created-guillotine-menu-animation-for-ios/</guid>
+      <guid>https://hechen.xyz/post/how-we-created-guillotine-menu-animation-for-ios/</guid>
       <description>你是否曾经有过这样的疑问？为什么app中几乎是清一色的侧边栏（sidebar），为什么不把它做成topBar或者bottomBar，甚至co</description>
     </item>
     
