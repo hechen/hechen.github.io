@@ -437,15 +437,15 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/ios/</loc>
-    <lastmod>2018-05-24T10:40:39+00:00</lastmod>
+    <loc>https://hechen.xyz/tags/ios/</loc>
+    <lastmod>2018-07-17T17:09:57+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/ios/</loc>
-    <lastmod>2018-07-17T17:09:57+00:00</lastmod>
+    <loc>https://hechen.xyz/categories/ios/</loc>
+    <lastmod>2018-05-24T10:40:39+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -500,15 +500,15 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/mac/</loc>
-    <lastmod>2019-01-28T17:51:35+00:00</lastmod>
+    <loc>https://hechen.xyz/tags/mac/</loc>
+    <lastmod>2018-07-11T12:58:37+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/mac/</loc>
-    <lastmod>2018-07-11T12:58:37+00:00</lastmod>
+    <loc>https://hechen.xyz/categories/mac/</loc>
+    <lastmod>2019-01-28T17:51:35+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -647,14 +647,14 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/swift/</loc>
+    <loc>https://hechen.xyz/tags/swift/</loc>
     <lastmod>2019-01-03T21:19:24+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/swift/</loc>
+    <loc>https://hechen.xyz/categories/swift/</loc>
     <lastmod>2019-01-03T21:19:24+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
