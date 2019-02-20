@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Category on Jane - A super concise theme for Hugo</title>
+    <link>http://localhost:1313/tags/category/</link>
+    <description>Recent content in Category on Jane - A super concise theme for Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 14 Sep 2015 15:36:07 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/category/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Objective-C中Category的一点东西</title>
+      <link>http://localhost:1313/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</link>
+      <pubDate>Mon, 14 Sep 2015 15:36:07 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</guid>
+      <description>Objective-C中的分类（category）是一种编译时的手段，其允许我们通过给某个已知类添加方法来扩充该类的一种方式。当然这其中是有</description>
+    </item>
+    
+  </channel>
+</rss>

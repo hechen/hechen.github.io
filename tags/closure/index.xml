@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Closure on Jane - A super concise theme for Hugo</title>
+    <link>http://localhost:1313/tags/closure/</link>
+    <description>Recent content in Closure on Jane - A super concise theme for Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 12 Nov 2017 20:56:50 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/closure/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Capturing objects in Swift closures</title>
+      <link>http://localhost:1313/post/capturing-objects-in-swift-closures/</link>
+      <pubDate>Sun, 12 Nov 2017 20:56:50 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/capturing-objects-in-swift-closures/</guid>
+      <description>自从 Block 在 iOS4 被引入 Objective-C 的世界之后就成为了 Apple 各平台上最时髦的 API 的重要组成部分了。当 Swift 语言出现的时候，blocks 的概念就摇身一变通过 closure 的形式引入，</description>
+    </item>
+    
+  </channel>
+</rss>

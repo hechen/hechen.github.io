@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>String on Jane - A super concise theme for Hugo</title>
+    <link>http://localhost:1313/tags/string/</link>
+    <description>Recent content in String on Jane - A super concise theme for Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 21 Aug 2015 09:14:17 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/string/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>leetCode[021]Implement Strstr</title>
+      <link>http://localhost:1313/post/leetcode-021-implementstrstr/</link>
+      <pubDate>Fri, 21 Aug 2015 09:14:17 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/leetcode-021-implementstrstr/</guid>
+      <description>题目：Implement strStr() Implement strStr(). Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. 题意： 该题目就是实现strstr()函数，该函数C语言原型如下：返回字</description>
+    </item>
+    
+    <item>
+      <title>leetCode[019]BinaryTreePaths</title>
+      <link>http://localhost:1313/post/leetcode-019-binarytreepaths/</link>
+      <pubDate>Tue, 18 Aug 2015 16:28:26 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/leetcode-019-binarytreepaths/</guid>
+      <description>题目： Given a binary tree, return all root-to-leaf paths. For example, given the following binary tree: 1 / 2 3 5 All root-to-leaf paths are: [&amp;ldquo;1-&amp;gt;2-&amp;gt;5&amp;rdquo;, &amp;ldquo;1-&amp;gt;3&amp;rdquo;] 题意： 难度不大，考察树的遍历 解法： C++版本实现方法： /** * Definition for a binary tree node. * struct TreeNode { * int</description>
+    </item>
+    
+    <item>
+      <title>leetCode[018]Length Of Last Word</title>
+      <link>http://localhost:1313/post/leetcode-018-lengthoflastword/</link>
+      <pubDate>Tue, 18 Aug 2015 16:13:44 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/leetcode-018-lengthoflastword/</guid>
+      <description>题目： Given a string s consists of upper/lower-case alphabets and empty space characters &amp;lsquo; &amp;lsquo;, return the length of last word in the string. If the last word does not exist, return 0. Note: A word is defined as a character sequence consists of non-space characters only. For example, Given s = &amp;ldquo;Hello World&amp;rdquo;, return 5. 题意： 难度不大，考虑所有</description>
+    </item>
+    
+    <item>
+      <title>leetCode[002]Reverse Words in a String</title>
+      <link>http://localhost:1313/post/leetcode-002-reverse-words-in-a-string/</link>
+      <pubDate>Fri, 01 May 2015 09:29:09 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/leetcode-002-reverse-words-in-a-string/</guid>
+      <description>题目：Reverse Words in a String Given an input string s, reverse the string word by word. For example, given s = &amp;ldquo;the sky is blue&amp;rdquo;, return &amp;ldquo;blue is sky the&amp;rdquo;. 题意： 题意很明确，将字符串中的单词进行翻转，形成新的字符串。但</description>
+    </item>
+    
+  </channel>
+</rss>

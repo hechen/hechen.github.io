@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Userdefaults on Jane - A super concise theme for Hugo</title>
+    <link>http://localhost:1313/tags/userdefaults/</link>
+    <description>Recent content in Userdefaults on Jane - A super concise theme for Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 21 Dec 2018 14:30:50 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/userdefaults/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>UserDefaults and Keychain</title>
+      <link>http://localhost:1313/post/userdefaults-and-keychain/</link>
+      <pubDate>Fri, 21 Dec 2018 14:30:50 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/userdefaults-and-keychain/</guid>
+      <description>Apple 提供了几种持久化方案，其中 UserDefaults 和 Keychain 是 App 开发过程中使用频率最高的方案，而且从以往和同事的探讨过程中发现对这两个概念中有一些细节还是理解不太透彻</description>
+    </item>
+    
+  </channel>
+</rss>

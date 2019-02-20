@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ios on Jane - A super concise theme for Hugo</title>
+    <link>http://localhost:1313/categories/ios/</link>
+    <description>Recent content in Ios on Jane - A super concise theme for Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 24 May 2018 10:40:39 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/categories/ios/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>In App Purchase</title>
+      <link>http://localhost:1313/post/in-app-purchase/</link>
+      <pubDate>Thu, 24 May 2018 10:40:39 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/in-app-purchase/</guid>
+      <description>对于在 App Store 中上架的应⽤来说，应⽤内购买(In-App Purchase，简称 IAP) 应该是一个避不开的话题，尤其是去年微信打赏和 Apple 之间的争执更让 IAP 火</description>
+    </item>
+    
+    <item>
+      <title>理解响应者和响应链</title>
+      <link>http://localhost:1313/post/understanding-responders-and-the-responder-chain/</link>
+      <pubDate>Mon, 13 Nov 2017 21:22:44 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/understanding-responders-and-the-responder-chain/</guid>
+      <description>Apps 是通过响应者（responder）对象来接收和处理事件的。一个响应者对象是 UIResponder 类的一个实例，我们常见的 UIView，UIViewContro</description>
+    </item>
+    
+    <item>
+      <title>关于 iOS10 Notification 的那些事儿</title>
+      <link>http://localhost:1313/post/ios-notification/</link>
+      <pubDate>Sat, 20 May 2017 10:10:54 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/ios-notification/</guid>
+      <description>概览 推送通知我们大家都不陌生，可以说几乎每个使用智能手机的人每天都会被不同的通知 打扰 到，正式因为合适的推送是吸引用户注意力的利器，其成为了各</description>
+    </item>
+    
+    <item>
+      <title>Objective-C中Category的一点东西</title>
+      <link>http://localhost:1313/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</link>
+      <pubDate>Mon, 14 Sep 2015 15:36:07 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</guid>
+      <description>Objective-C中的分类（category）是一种编译时的手段，其允许我们通过给某个已知类添加方法来扩充该类的一种方式。当然这其中是有</description>
+    </item>
+    
+    <item>
+      <title>iOS 远端推送部署详解</title>
+      <link>http://localhost:1313/post/ios-push-notification/</link>
+      <pubDate>Thu, 30 Jul 2015 14:30:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/ios-push-notification/</guid>
+      <description>最近几天被iOS的推送部署给搞懵了，现在特地整理下和大家进行分享。 iOS远端推送机制 APNS，全称为Apple Push Notification service，是苹果通知</description>
+    </item>
+    
+  </channel>
+</rss>

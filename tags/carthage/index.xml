@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Carthage on Jane - A super concise theme for Hugo</title>
+    <link>http://localhost:1313/tags/carthage/</link>
+    <description>Recent content in Carthage on Jane - A super concise theme for Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 19 Nov 2017 18:17:15 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/carthage/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>模块化 Xcode 工程</title>
+      <link>http://localhost:1313/post/modular-xcode-projects/</link>
+      <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/modular-xcode-projects/</guid>
+      <description>使用 Xcode 构建模块化的工程就需要对工程结构以及其基础概念有很好的理解才行。我们平时不怎么关注工程结构本身，只有在工程逐渐变大，要添加更多依赖的时</description>
+    </item>
+    
+  </channel>
+</rss>
