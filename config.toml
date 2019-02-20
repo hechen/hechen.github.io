@@ -2,7 +2,7 @@
 # If you want to see the full configuration, please check `full-config.toml` .
 # And see https://gohugo.io/getting-started/configuration/ .
 
-baseURL = "http://hechen.xyz"
+baseURL = "https://hechen.xyz"
 title = "I make stuff"
 enableRobotsTXT = true
 enableEmoji = true
@@ -49,10 +49,10 @@ defaultContentLanguage = "zh-cn"  # 默认使用的语言
   weight = 40
   identifier = "categories"
   url = "/categories/"
-[[menu.main]]
-  name = "external-link"
-  weight = 50
-  url = "https://github.com/hechen/hechen.github.io"
+#[[menu.main]]
+#  name = "external-link"
+#  weight = 50
+#  url = "https://github.com/hechen/hechen.github.io"
 
 
 [params]
