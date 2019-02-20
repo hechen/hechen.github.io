@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>leetCode[021]Implement Strstr - I make stuff</title>
+  <title>[021] Implement Strstr - I make stuff</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -57,14 +57,14 @@
 
 
 
-<meta property="og:title" content="leetCode[021]Implement Strstr" />
+<meta property="og:title" content="[021] Implement Strstr" />
 <meta property="og:description" content="题目：Implement strStr() Implement strStr(). Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. 题意： 该题目就是实现strstr()函数，该函数C语言原型如下：返回字" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hechen.xyz/post/leetcode-021-implementstrstr/" />
 <meta property="article:published_time" content="2015-08-21T09:14:17&#43;00:00"/>
 <meta property="article:modified_time" content="2015-08-21T09:14:17&#43;00:00"/>
 
-<meta itemprop="name" content="leetCode[021]Implement Strstr">
+<meta itemprop="name" content="[021] Implement Strstr">
 <meta itemprop="description" content="题目：Implement strStr() Implement strStr(). Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. 题意： 该题目就是实现strstr()函数，该函数C语言原型如下：返回字">
 
 
@@ -76,7 +76,7 @@
 
 <meta itemprop="keywords" content="Algorithm,String," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="leetCode[021]Implement Strstr"/>
+<meta name="twitter:title" content="[021] Implement Strstr"/>
 <meta name="twitter:description" content="题目：Implement strStr() Implement strStr(). Returns the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. 题意： 该题目就是实现strstr()函数，该函数C语言原型如下：返回字"/>
 
 <!--[if lte IE 9]>
@@ -289,7 +289,7 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">leetCode[021]Implement Strstr</h1>
+      <h1 class="post-title">[021] Implement Strstr</h1>
       
       <div class="post-meta">
         <time datetime="2015-08-21" class="post-time">
@@ -381,14 +381,16 @@
 			}
 			return -1;
 		}
-	};
+	}
+
 </code></pre>
 
 <p>在最坏的情况下，暴力子字符串查找算法在长度为N的文本中查找长度为M的模式字符串需要O(NM)次字符串比较。</p>
 
 <p>我们可以将上面的实现方法进行一定的修改，让大家能看到i指针的回退，如下代码所示，当i指针指向字符和j指向字符发生失配，i便会回退j个位置（此时j是失配前模式串的匹配项个数），同时j指向模式串的第一个位置。该段代码和上面代码其实是等效的。</p>
 
-<pre><code>class Solution {
+<pre><code class="language-C++">
+class Solution {
 public:
 	int strStr(string haystack, string needle) {
 		return bruth(haystack, needle);
@@ -409,7 +411,8 @@ private:
 		if (j == M) return i - M;
 		else return -1;
 	}
-};
+}
+
 </code></pre>
 
 <p>那我们就可以很明显的看到，当模式串中j指向位置字符不匹配的时候，其实前面通过匹配我们已经获知了一部分文本的情况，因此如果能够利用这一部分已知的情况来加大模式串移动的有效性。KMP算法就是利用字符串匹配失效之前部分匹配的这个有用信息，通过保持文本指针不回退，仅有效移动模式字符串的位置来进行有效查找的。</p>
@@ -421,7 +424,7 @@ private:
 
 <p>KMP算法实现：</p>
 
-<pre><code> class Solution {
+<pre><code class="language-C++"> class Solution {
 	public:
 		int strStr(string haystack, string needle) {
 			return kmp(haystack, needle);
@@ -463,7 +466,8 @@ private:
 				}
 			}
 		}
-	};
+	}
+
 </code></pre>
 
     </div>
@@ -515,7 +519,7 @@ private:
           </a>
         
           <a class="next" href="/post/leetcode-019-binarytreepaths/">
-            <span class="next-text nav-default">leetCode[019]BinaryTreePaths</span>
+            <span class="next-text nav-default">[019] BinaryTreePaths</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

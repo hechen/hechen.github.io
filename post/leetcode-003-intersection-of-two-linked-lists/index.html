@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>leetCode[002]Intersection of Two Linked lists - I make stuff</title>
+  <title>[002] Intersection of Two Linked lists - I make stuff</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -57,14 +57,14 @@
 
 
 
-<meta property="og:title" content="leetCode[002]Intersection of Two Linked lists" />
+<meta property="og:title" content="[002] Intersection of Two Linked lists" />
 <meta property="og:description" content="题目：Intersection of Two Linked lists Write a program to find the node at which the intersection of two singly linked lists begins. For example, the following two linked lists: A: a1 → a2 ↘ c1 → c2 → c3 ↗ B: b1 → b2 → b3 begin to intersect at node c1. Notes: 1. If the" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hechen.xyz/post/leetcode-003-intersection-of-two-linked-lists/" />
 <meta property="article:published_time" content="2015-04-29T12:28:00&#43;00:00"/>
 <meta property="article:modified_time" content="2015-04-29T12:28:00&#43;00:00"/>
 
-<meta itemprop="name" content="leetCode[002]Intersection of Two Linked lists">
+<meta itemprop="name" content="[002] Intersection of Two Linked lists">
 <meta itemprop="description" content="题目：Intersection of Two Linked lists Write a program to find the node at which the intersection of two singly linked lists begins. For example, the following two linked lists: A: a1 → a2 ↘ c1 → c2 → c3 ↗ B: b1 → b2 → b3 begin to intersect at node c1. Notes: 1. If the">
 
 
@@ -76,7 +76,7 @@
 
 <meta itemprop="keywords" content="Linkedlist," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="leetCode[002]Intersection of Two Linked lists"/>
+<meta name="twitter:title" content="[002] Intersection of Two Linked lists"/>
 <meta name="twitter:description" content="题目：Intersection of Two Linked lists Write a program to find the node at which the intersection of two singly linked lists begins. For example, the following two linked lists: A: a1 → a2 ↘ c1 → c2 → c3 ↗ B: b1 → b2 → b3 begin to intersect at node c1. Notes: 1. If the"/>
 
 <!--[if lte IE 9]>
@@ -289,7 +289,7 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">leetCode[002]Intersection of Two Linked lists</h1>
+      <h1 class="post-title">[002] Intersection of Two Linked lists</h1>
       
       <div class="post-meta">
         <time datetime="2015-04-29" class="post-time">
@@ -374,7 +374,8 @@ singly linked lists begins.</p>
 
 <p>　　代码如下：</p>
 
-<pre><code>    /**
+<pre><code class="language-C++">
+    /**
 		 *	 Definition for singly-linked list.
 		 * struct ListNode {
 		 *     int val;
@@ -432,7 +433,7 @@ singly linked lists begins.</p>
 
 		        return pSlow;
 		    }
-	};
+	}
 
 </code></pre>
 
@@ -453,64 +454,66 @@ singly linked lists begins.</p>
 
 <p>　　代码如下：</p>
 
-<pre><code>   /**
-             * Definition for singly-linked list.
-             * struct ListNode {
-             *     int val;
-             *     ListNode *next;
-             *     ListNode(int x) : val(x), next(NULL) {}
-             * };
-      */
-class Solution {
-    public:
-        ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-            if (nullptr == headA || nullptr == headB){
-            return nullptr;
-        }
+<pre><code class="language-C++">
+	   /**
+				 * Definition for singly-linked list.
+				 * struct ListNode {
+				 *     int val;
+				 *     ListNode *next;
+				 *     ListNode(int x) : val(x), next(NULL) {}
+				 * };
+		  */
+	class Solution {
+		public:
+		    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+		        if (nullptr == headA || nullptr == headB){
+	            return nullptr;
+	        }
 
-        int nLongLength = 0;
-        int nShortLength = 0;
-        ListNode *pLongList = headA;
-        ListNode *pShortList = headB;
+	        int nLongLength = 0;
+	        int nShortLength = 0;
+	        ListNode *pLongList = headA;
+	        ListNode *pShortList = headB;
 
-        while (pLongList){
-            ++nLongLength;
-            pLongList = pLongList-&gt;next;
-        }
+	        while (pLongList){
+	            ++nLongLength;
+	            pLongList = pLongList-&gt;next;
+	        }
 
-        while (pShortList){
-            ++nShortLength;
-            pShortList = pShortList-&gt;next;
-        }
+	        while (pShortList){
+	            ++nShortLength;
+	            pShortList = pShortList-&gt;next;
+	        }
 
-        if (nShortLength &gt; nLongLength){
-            pLongList = headB;
-            pShortList = headA;
+	        if (nShortLength &gt; nLongLength){
+	            pLongList = headB;
+	            pShortList = headA;
 
-            // 校正
-            nLongLength ^= nShortLength;
-            nShortLength ^= nLongLength;
-            nLongLength ^= nShortLength;
-        }
-        else{
-            pLongList = headA;
-            pShortList = headB;
-        }
+	            // 校正
+	            nLongLength ^= nShortLength;
+	            nShortLength ^= nLongLength;
+	            nLongLength ^= nShortLength;
+	        }
+	        else{
+	            pLongList = headA;
+	            pShortList = headB;
+	        }
+	
+	        int offset = nLongLength - nShortLength;
+	        while (offset&gt; 0){
+	            pLongList = pLongList-&gt;next;
+	            --offset;
+	        }
+	
+	        while (pLongList != pShortList){
+	            pLongList = pLongList-&gt;next;
+	            pShortList = pShortList-&gt;next;
+	        }
+	
+	        return pLongList;
+	    }
+	}
 
-        int offset = nLongLength - nShortLength;
-        while (offset&gt; 0){
-            pLongList = pLongList-&gt;next;
-            --offset;
-        }
-
-        while (pLongList != pShortList){
-            pLongList = pLongList-&gt;next;
-            pShortList = pShortList-&gt;next;
-        }
-
-        return pLongList;
-    }
-};
 </code></pre>
 
 <p>leetCode的OJ系统评判结果如下所示：
@@ -530,43 +533,45 @@ class Solution {
 
 <p>实现如下：</p>
 
-<pre><code>/**
-     * Definition for singly-linked list.
-     * struct ListNode {
-     *     int val;
-     *     ListNode *next;
-     *     ListNode(int x) : val(x), next(NULL) {}
-     * };
- */
-class Solution {
-    public:
-        ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-            if (nullptr == headA || nullptr == headB){
-                return nullptr;
-            }
-
-        ListNode *nodeA = headA;
-        ListNode *nodeB = headB;
-        while (nodeA &amp;&amp; nodeB &amp;&amp; nodeA != nodeB){
-            nodeA = nodeA-&gt;next;
-            nodeB = nodeB-&gt;next;
-
-            if (nodeA == nodeB){
-                break;
-            }
-
-            if (nullptr == nodeA){
-                nodeA = headB;
-            }
-
-            if (nullptr == nodeB){
-                nodeB = headA;
-            }
-        }
-
-        return nodeA;
-    }
-};
+<pre><code class="language-C++">
+    /**
+		 * Definition for singly-linked list.
+		 * struct ListNode {
+		 *     int val;
+		 *     ListNode *next;
+		 *     ListNode(int x) : val(x), next(NULL) {}
+		 * };
+	 */
+	class Solution {
+		public:
+		    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+		        if (nullptr == headA || nullptr == headB){
+		            return nullptr;
+		        }
+	
+	        ListNode *nodeA = headA;
+	        ListNode *nodeB = headB;
+	        while (nodeA &amp;&amp; nodeB &amp;&amp; nodeA != nodeB){
+	            nodeA = nodeA-&gt;next;
+	            nodeB = nodeB-&gt;next;
+	
+	            if (nodeA == nodeB){
+	                break;
+	            }
+	
+	            if (nullptr == nodeA){
+	                nodeA = headB;
+	            }
+	
+	            if (nullptr == nodeB){
+	                nodeB = headA;
+	            }
+	        }
+	
+	        return nodeA;
+	    }
+	}
+	
 </code></pre>
 
 <p>leetCode的OJ系统评判结果：
@@ -615,7 +620,7 @@ class Solution {
 </svg>
 
             </i>
-            <span class="prev-text nav-default">leetCode[003]Two Sum</span>
+            <span class="prev-text nav-default">[003] Two Sum</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         

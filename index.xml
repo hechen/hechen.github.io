@@ -18,18 +18,7 @@
       
       <guid>https://hechen.xyz/about/</guid>
       
-        <description>&lt;p&gt;Hugo is a static site engine written in Go.&lt;/p&gt;
-
-&lt;p&gt;It makes use of a variety of open source projects including:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/spf13/cobra&#34;&gt;Cobra&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/spf13/viper&#34;&gt;Viper&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/spf13/jWalterWeatherman&#34;&gt;J Walter Weatherman&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/spf13/cast&#34;&gt;Cast&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Learn more and contribute on &lt;a href=&#34;https://github.com/gohugoio&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+        <description>&lt;p&gt;一名 iOS 开发，目前在知乎打杂&lt;/p&gt;
 </description>
       
     </item>
@@ -43,7 +32,7 @@
       
         <description>
 
-&lt;h3 id=&#34;2019-01-29-更新&#34;&gt;2019-01-29 更新&lt;/h3&gt;
+&lt;h2 id=&#34;2019-01-29-更新&#34;&gt;2019-01-29 更新&lt;/h2&gt;
 
 &lt;p&gt;早上一到办公室连接上公司网络，网速直接就飚到了 600KB/s，甚至一度有过 M 的趋势，果不其然，还是 com.apple.Safari.SafeBrowsing.Service 这个服务进程。这就尴尬了，看来并不是说你不用 Safari 就不会触发。&lt;/p&gt;
 
@@ -2992,7 +2981,7 @@ dataLoader.loadData(from: url) { data in
 
 &lt;p&gt;我们用 swift 官方文档的例子来看，如下所示&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;var completionHandlers: [() -&amp;gt; Void] = []
+&lt;pre&gt;&lt;code class=&#34;language-Swift&#34;&gt;var completionHandlers: [() -&amp;gt; Void] = []
 
 func someFunctionWithEscapingClosure(completionHandler: @escaping () -&amp;gt; Void) {
     completionHandlers.append(completionHandler)
@@ -3001,13 +2990,13 @@ func someFunctionWithEscapingClosure(completionHandler: @escaping () -&amp;gt; V
 
 &lt;p&gt;&lt;code&gt;someFunctionWithEscapingClosure(_:)&lt;/code&gt; 的参数是一个闭包，函数内部会把传入的闭包存到之前声明的数组里以便之后进行调用，可以看到，在函数参数的声明部分添加了 &lt;code&gt;@escaping&lt;/code&gt; 关键字，如果这里不添加的话，就会在编译的时候报错：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;error: passing non-escaping parameter &#39;completionHandler&#39; to function expecting an @escaping closure
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;error: passing non-escaping parameter &#39;completionHandler&#39; to function expecting an @escaping closure
     completionHandlers.append(completionHandler)    
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;针对标记了 @escaping 关键字含义代表你必须在该闭包内部显式的使用 self 关键字，官方文档中又列举了另外一个例子，如下所示：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;func someFunctionWithNonescapingClosure(closure: () -&amp;gt; Void) {
+&lt;pre&gt;&lt;code class=&#34;language-Swift&#34;&gt;func someFunctionWithNonescapingClosure(closure: () -&amp;gt; Void) {
     closure()
 }
  
@@ -3039,7 +3028,7 @@ print(instance.x)
 
 &lt;p&gt;考虑下面这个函数 f，其需传入一个参数，类型是 &lt;code&gt;()-&amp;gt; Bool&lt;/code&gt; 的闭包。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;func f(predicate: () -&amp;gt; Bool) {
+&lt;pre&gt;&lt;code class=&#34;language-Swift&#34;&gt;func f(predicate: () -&amp;gt; Bool) {
     if predicate() {
         print(&amp;quot;It&#39;s true&amp;quot;)
     }
@@ -3048,13 +3037,13 @@ print(instance.x)
 
 &lt;p&gt;然后通过传入符合此类型的闭包进行调用&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;f(predicate: {2 &amp;gt; 1})
+&lt;pre&gt;&lt;code class=&#34;language-Swift&#34;&gt;f(predicate: {2 &amp;gt; 1})
 // &amp;quot;It&#39;s true&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;但是，如果我们忽略传入闭包的 &lt;code&gt;{&lt;/code&gt; 和 &lt;code&gt;}&lt;/code&gt; ，编译就会错误。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;f(predicate: 2 &amp;gt; 1)
+&lt;pre&gt;&lt;code class=&#34;language-Swift&#34;&gt;f(predicate: 2 &amp;gt; 1)
 // error: &#39;&amp;gt;&#39; produces &#39;Bool&#39;, not the expected contextual result type &#39;() -&amp;gt; Bool&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -3062,7 +3051,7 @@ print(instance.x)
 
 &lt;p&gt;结合上面的例子来看，当你写个表达式类似 2 &amp;gt; 1 传给函数 f 的时候，该表达式会被自动包裹到一个闭包中，会自动处理为 { 2 &amp;gt; 1 } 而传递给函数 f。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;func f(predicate: @autoclosure () -&amp;gt; Bool) {
+&lt;pre&gt;&lt;code class=&#34;language-Swift&#34;&gt;func f(predicate: @autoclosure () -&amp;gt; Bool) {
     if predicate() {
         print(&amp;quot;It&#39;s true&amp;quot;)
     }
@@ -3078,14 +3067,14 @@ f(predicate: 2 &amp;gt; 1)
 
 &lt;p&gt;swift 提供了 ?? 操作符，如下所示：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;let nickName: String? = nil
+&lt;pre&gt;&lt;code class=&#34;language-Swift&#34;&gt;let nickName: String? = nil
 let fullName: String = &amp;quot;John Appleseed&amp;quot;
 let informalGreeting = &amp;quot;Hi \(nickName ?? fullName)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;如果某 Optional 存在就会返回其值，如果没有就会返回后面的默认值，当我们去看 ?? 的实现的时候能看到如下定义：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;func ??&amp;lt;T&amp;gt;(optional: T?, defaultValue: @autoclosure () -&amp;gt; T?) -&amp;gt; T?
+&lt;pre&gt;&lt;code class=&#34;language-Swift&#34;&gt;func ??&amp;lt;T&amp;gt;(optional: T?, defaultValue: @autoclosure () -&amp;gt; T?) -&amp;gt; T?
 
 func ??&amp;lt;T&amp;gt;(optional: T?, defaultValue: @autoclosure () -&amp;gt; T) -&amp;gt; T
 &lt;/code&gt;&lt;/pre&gt;
@@ -3094,7 +3083,7 @@ func ??&amp;lt;T&amp;gt;(optional: T?, defaultValue: @autoclosure () -&amp;gt; T
 
 &lt;p&gt;所以可以想到该方法的实现应该如下所示，（当然 fullName 为 String 类型，应该会重载第二个函数实现）&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;func ??&amp;lt;T&amp;gt;(optional: T?, defaultValue: @autoclosure () -&amp;gt; T) -&amp;gt; T {
+&lt;pre&gt;&lt;code class=&#34;language-Swift&#34;&gt;func ??&amp;lt;T&amp;gt;(optional: T?, defaultValue: @autoclosure () -&amp;gt; T) -&amp;gt; T {
     switch optional {
         case .Some(let value):
             return value
@@ -3102,6 +3091,7 @@ func ??&amp;lt;T&amp;gt;(optional: T?, defaultValue: @autoclosure () -&amp;gt; T
             return defaultValue()
         }
 }
+
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;这里我们还需要注意一点的是，使用 &lt;code&gt;@autoclosure&lt;/code&gt; 来修饰的表达式可以实现延迟计算，也就是说直到该闭包被调用之前，闭包里所被包裹的表达式都不会进行取值计算，也就避免了一定的开销，尤其是上面默认值是复杂计算得到的话。&lt;/p&gt;

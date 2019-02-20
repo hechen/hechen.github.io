@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>leetCode[001]Maximum Product Subarray - I make stuff</title>
+  <title>[001] Maximum Product Subarray - I make stuff</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -57,14 +57,14 @@
 
 
 
-<meta property="og:title" content="leetCode[001]Maximum Product Subarray" />
+<meta property="og:title" content="[001] Maximum Product Subarray" />
 <meta property="og:description" content="题目： Find the contiguous subarray within an array (containing at least one number) which has the largest product. For example, given the array [2,3,-2,4], the contiguous subarray [2,3] has the largest product = 6. 题意： 题目中给出一个（至少包含一个元素）整形数组，求一个子数组（元素" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hechen.xyz/post/leetcode-001-maximum-product-subarray/" />
 <meta property="article:published_time" content="2015-04-29T11:30:00&#43;00:00"/>
 <meta property="article:modified_time" content="2015-04-29T11:30:00&#43;00:00"/>
 
-<meta itemprop="name" content="leetCode[001]Maximum Product Subarray">
+<meta itemprop="name" content="[001] Maximum Product Subarray">
 <meta itemprop="description" content="题目： Find the contiguous subarray within an array (containing at least one number) which has the largest product. For example, given the array [2,3,-2,4], the contiguous subarray [2,3] has the largest product = 6. 题意： 题目中给出一个（至少包含一个元素）整形数组，求一个子数组（元素">
 
 
@@ -76,7 +76,7 @@
 
 <meta itemprop="keywords" content="Array," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="leetCode[001]Maximum Product Subarray"/>
+<meta name="twitter:title" content="[001] Maximum Product Subarray"/>
 <meta name="twitter:description" content="题目： Find the contiguous subarray within an array (containing at least one number) which has the largest product. For example, given the array [2,3,-2,4], the contiguous subarray [2,3] has the largest product = 6. 题意： 题目中给出一个（至少包含一个元素）整形数组，求一个子数组（元素"/>
 
 <!--[if lte IE 9]>
@@ -289,7 +289,7 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">leetCode[001]Maximum Product Subarray</h1>
+      <h1 class="post-title">[001] Maximum Product Subarray</h1>
       
       <div class="post-meta">
         <time datetime="2015-04-29" class="post-time">
@@ -346,39 +346,12 @@
 
 <p>C语言实现如下：</p>
 
-<pre><code>int maxProduct(int* nums, int numsSize) {
-        int nMaxPro = nums[0];
-        int max_tmp = nums[0];
-        int min_tmp = nums[0];
-
-        for(int i = 1; i&lt; numsSize; ++i){
-            int a = nums[i] * max_tmp;
-            int b = nums[i] * min_tmp;
-
-            max_tmp = (( a &gt; b ? a : b ) &gt; nums[i]) ? ( a &gt; b ? a : b ) : nums[i];
-            min_tmp = (( a &lt; b ? a : b ) &lt; nums[i]) ? ( a &lt; b ? a : b ) : nums[i];
-
-            nMaxPro = (nMaxPro &gt; max_tmp) ? nMaxPro : max_tmp;
-        }
-
-        return nMaxPro;
-}
-</code></pre>
-
-<p>leetCode Oj系统评判结果如下图所示：</p>
-
-<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/leetCode001C.png" alt="leetCode C" /></p>
-
-<p>C++实现如下：</p>
-
-<pre><code>class Solution {
-    public:
-        int maxProduct(vector&lt;int&gt;&amp; nums) {
+<pre><code class="language-C">    int maxProduct(int* nums, int numsSize) {
             int nMaxPro = nums[0];
             int max_tmp = nums[0];
             int min_tmp = nums[0];
 
-            for(int i = 1; i&lt; nums.size(); ++i){
+            for(int i = 1; i&lt; numsSize; ++i){
                 int a = nums[i] * max_tmp;
                 int b = nums[i] * min_tmp;
 
@@ -389,8 +362,35 @@
             }
 
             return nMaxPro;
-        }
-};
+	}
+</code></pre>
+
+<p>leetCode Oj系统评判结果如下图所示：</p>
+
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/leetCode001C.png" alt="leetCode C" /></p>
+
+<p>C++实现如下：</p>
+
+<pre><code class="language-C++">    class Solution {
+		public:
+		    int maxProduct(vector&lt;int&gt;&amp; nums) {
+	            int nMaxPro = nums[0];
+	            int max_tmp = nums[0];
+	            int min_tmp = nums[0];
+
+	            for(int i = 1; i&lt; nums.size(); ++i){
+	                int a = nums[i] * max_tmp;
+	                int b = nums[i] * min_tmp;
+
+	                max_tmp = (( a &gt; b ? a : b ) &gt; nums[i]) ? ( a &gt; b ? a : b ) : nums[i];
+	                min_tmp = (( a &lt; b ? a : b ) &lt; nums[i]) ? ( a &lt; b ? a : b ) : nums[i];
+
+	                nMaxPro = (nMaxPro &gt; max_tmp) ? nMaxPro : max_tmp;
+	            }
+
+	            return nMaxPro;
+		    }
+	};
 </code></pre>
 
 <p>leetCode的OJ系统评判结果如下图所示：</p>
@@ -399,25 +399,26 @@
 
 <p>Java实现如下：</p>
 
-<pre><code>public class Solution {
-     public int maxProduct(int[] nums) {
-        int nMaxPro = nums[0];
-        int max_tmp = nums[0];
-        int min_tmp = nums[0];
+<pre><code class="language-Java">	public class Solution {
+		 public int maxProduct(int[] nums) {
+            int nMaxPro = nums[0];
+            int max_tmp = nums[0];
+            int min_tmp = nums[0];
 
-        for(int i = 1; i&lt; nums.length; ++i){
-            int a = nums[i] * max_tmp;
-            int b = nums[i] * min_tmp;
+            for(int i = 1; i&lt; nums.length; ++i){
+                int a = nums[i] * max_tmp;
+                int b = nums[i] * min_tmp;
 
-            max_tmp = (( a &gt; b ? a : b ) &gt; nums[i]) ? ( a &gt; b ? a : b ) : nums[i];
-            min_tmp = (( a &lt; b ? a : b ) &lt; nums[i]) ? ( a &lt; b ? a : b ) : nums[i];
+                max_tmp = (( a &gt; b ? a : b ) &gt; nums[i]) ? ( a &gt; b ? a : b ) : nums[i];
+                min_tmp = (( a &lt; b ? a : b ) &lt; nums[i]) ? ( a &lt; b ? a : b ) : nums[i];
 
-            nMaxPro = (nMaxPro &gt; max_tmp) ? nMaxPro : max_tmp;
-        }
+                nMaxPro = (nMaxPro &gt; max_tmp) ? nMaxPro : max_tmp;
+            }
 
-        return nMaxPro;
-    }
-}
+            return nMaxPro;
+	    }
+	}
+    
 </code></pre>
 
 <p>leetCode的OJ系统评判结果如下所示：</p>
