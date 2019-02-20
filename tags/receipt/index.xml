@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Receipt on Jane - A super concise theme for Hugo</title>
+    <link>http://localhost:1313/tags/receipt/</link>
+    <description>Recent content in Receipt on Jane - A super concise theme for Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 24 May 2018 10:40:39 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/receipt/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>In App Purchase</title>
+      <link>http://localhost:1313/post/in-app-purchase/</link>
+      <pubDate>Thu, 24 May 2018 10:40:39 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/in-app-purchase/</guid>
+      <description>对于在 App Store 中上架的应⽤来说，应⽤内购买(In-App Purchase，简称 IAP) 应该是一个避不开的话题，尤其是去年微信打赏和 Apple 之间的争执更让 IAP 火</description>
+    </item>
+    
+  </channel>
+</rss>

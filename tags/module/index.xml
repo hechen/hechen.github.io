@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Module on Jane - A super concise theme for Hugo</title>
+    <link>http://localhost:1313/tags/module/</link>
+    <description>Recent content in Module on Jane - A super concise theme for Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 03 Jan 2019 21:19:24 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/module/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>在 Swift Framework 中使用 C 文件的过程探索</title>
+      <link>http://localhost:1313/post/swift-and-modules/</link>
+      <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/swift-and-modules/</guid>
+      <description>问题描述 我们在开发线上诊断工具需求的时候，是以单个 Pod 的形式提供支持，并且代码文件中只有纯 Swift 文件，但是其中需要用到系统的 C 库的一些功能，本次就</description>
+    </item>
+    
+  </channel>
+</rss>

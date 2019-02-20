@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xcode on Jane - A super concise theme for Hugo</title>
+    <link>http://localhost:1313/tags/xcode/</link>
+    <description>Recent content in Xcode on Jane - A super concise theme for Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 17 Jul 2018 17:09:57 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/xcode/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>三个简单步骤让你测试使用系统单例的代码</title>
+      <link>http://localhost:1313/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</link>
+      <pubDate>Tue, 17 Jul 2018 17:09:57 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</guid>
+      <description>大部分在 Apple 平台开发的 App 都会依赖基于单例的 API。从 UIScreen 到 UIApplication，再到 NSBundle，而 Foundation，UIKit 以</description>
+    </item>
+    
+    <item>
+      <title>避免在 Swift 中使用单例</title>
+      <link>http://localhost:1313/post/avoiding-singletons-in-swift/</link>
+      <pubDate>Mon, 16 Jul 2018 17:34:36 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/avoiding-singletons-in-swift/</guid>
+      <description>“我知道单例不好，但是&amp;hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的</description>
+    </item>
+    
+    <item>
+      <title>Swift 中几种不同的依赖注入方式</title>
+      <link>http://localhost:1313/post/different-flavors-of-dependency-injection-in-swift/</link>
+      <pubDate>Mon, 16 Jul 2018 13:57:24 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/different-flavors-of-dependency-injection-in-swift/</guid>
+      <description>在之前的几篇博客中，我们已经了解了几种使用依赖注入方式使得某个 swift app 拥有一个更加解耦可测试的架构。比如在 在 Swift 中使用工厂模式进行依赖注入 中和工厂</description>
+    </item>
+    
+    <item>
+      <title>在 Swift 中使用工厂模式进行依赖注入</title>
+      <link>http://localhost:1313/post/dependency-injection-using-factories-in-swift/</link>
+      <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/dependency-injection-using-factories-in-swift/</guid>
+      <description>依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象</description>
+    </item>
+    
+    <item>
+      <title>模块化 Xcode 工程</title>
+      <link>http://localhost:1313/post/modular-xcode-projects/</link>
+      <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/modular-xcode-projects/</guid>
+      <description>使用 Xcode 构建模块化的工程就需要对工程结构以及其基础概念有很好的理解才行。我们平时不怎么关注工程结构本身，只有在工程逐渐变大，要添加更多依赖的时</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Jane - A super concise theme for Hugo</title>
+    <link>http://localhost:1313/tags/</link>
+    <description>Recent content in Tags on Jane - A super concise theme for Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 26 Nov 2018 14:59:50 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>2do</title>
+      <link>http://localhost:1313/tags/2do/</link>
+      <pubDate>Mon, 26 Nov 2018 14:59:50 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/2do/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Algorithm</title>
+      <link>http://localhost:1313/tags/algorithm/</link>
+      <pubDate>Fri, 21 Aug 2015 09:14:17 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/algorithm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Animation</title>
+      <link>http://localhost:1313/tags/animation/</link>
+      <pubDate>Wed, 02 Dec 2015 18:53:51 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/animation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>App</title>
+      <link>http://localhost:1313/tags/app/</link>
+      <pubDate>Wed, 11 Jul 2018 12:58:37 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/app/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Array</title>
+      <link>http://localhost:1313/tags/array/</link>
+      <pubDate>Wed, 29 Apr 2015 13:15:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/array/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bookmark</title>
+      <link>http://localhost:1313/tags/bookmark/</link>
+      <pubDate>Mon, 26 Nov 2018 14:59:50 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/bookmark/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;11</title>
+      <link>http://localhost:1313/tags/c&#43;&#43;11/</link>
+      <pubDate>Wed, 29 Apr 2015 11:57:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/c&#43;&#43;11/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Carthage</title>
+      <link>http://localhost:1313/tags/carthage/</link>
+      <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/carthage/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Category</title>
+      <link>http://localhost:1313/tags/category/</link>
+      <pubDate>Mon, 14 Sep 2015 15:36:07 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/category/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Closure</title>
+      <link>http://localhost:1313/tags/closure/</link>
+      <pubDate>Sun, 12 Nov 2017 20:56:50 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/closure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cocoapods</title>
+      <link>http://localhost:1313/tags/cocoapods/</link>
+      <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/cocoapods/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Compiler</title>
+      <link>http://localhost:1313/tags/compiler/</link>
+      <pubDate>Tue, 10 Jul 2018 12:05:58 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/compiler/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Convenience Initializers</title>
+      <link>http://localhost:1313/tags/convenience-initializers/</link>
+      <pubDate>Wed, 15 Nov 2017 13:09:27 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/convenience-initializers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Designated Initializer</title>
+      <link>http://localhost:1313/tags/designated-initializer/</link>
+      <pubDate>Wed, 15 Nov 2017 13:09:27 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/designated-initializer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Devonthink</title>
+      <link>http://localhost:1313/tags/devonthink/</link>
+      <pubDate>Tue, 16 Oct 2018 17:01:44 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/devonthink/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Garbage Collection</title>
+      <link>http://localhost:1313/tags/garbage-collection/</link>
+      <pubDate>Sun, 12 Feb 2017 16:38:24 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/garbage-collection/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Github</title>
+      <link>http://localhost:1313/tags/github/</link>
+      <pubDate>Sun, 12 Feb 2017 16:36:54 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Iap</title>
+      <link>http://localhost:1313/tags/iap/</link>
+      <pubDate>Thu, 24 May 2018 10:40:39 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/iap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Initializer</title>
+      <link>http://localhost:1313/tags/initializer/</link>
+      <pubDate>Wed, 15 Nov 2017 13:09:27 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/initializer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ios</title>
+      <link>http://localhost:1313/tags/ios/</link>
+      <pubDate>Tue, 17 Jul 2018 17:09:57 +0000</pubDate>
+      
+      <guid>http://localhost:1313/tags/ios/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

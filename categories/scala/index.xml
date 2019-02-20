@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scala on Jane - A super concise theme for Hugo</title>
+    <link>http://localhost:1313/categories/scala/</link>
+    <description>Recent content in Scala on Jane - A super concise theme for Hugo</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Apr 2015 18:43:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/categories/scala/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>scala Day2</title>
+      <link>http://localhost:1313/post/scala%E7%AC%AC%E4%BA%8C%E5%A4%A9/</link>
+      <pubDate>Thu, 16 Apr 2015 18:43:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/post/scala%E7%AC%AC%E4%BA%8C%E5%A4%A9/</guid>
+      <description>因为这几天在学习Coursera公开课Principles of Reactive Programming ，因为之前木有木有注意到需要对至少一门函数式编程语言solid foundat</description>
+    </item>
+    
+  </channel>
+</rss>
