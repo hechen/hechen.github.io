@@ -33,8 +33,6 @@ deploy:
   target_branch: master  # branch contains blog content
   on:
     branch: code  # branch contains Hugo generator code
-
-
-
+    
 notifications:
   slack: chensworkspace:0iUM9QJqC1dzq27bJ9Fw87pn
