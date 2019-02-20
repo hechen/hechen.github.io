@@ -14,5 +14,3 @@ tags: ["Garbage Collection","Python"]
 对于实现篇思维导图里也未有展开，之后等把 Ruby、Javascript 等语言熟悉之后再做深入的阅读吧。。。
 
 ![GC算法](http://7xilk1.com1.z0.glb.clouddn.com/GC算法.png)
-
-

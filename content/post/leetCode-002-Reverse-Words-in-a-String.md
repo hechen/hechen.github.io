@@ -1,5 +1,5 @@
 ---
-title: "leetCode[002]Reverse Words in a String"
+title: "[002] Reverse Words in a String"
 date: 2015-05-01 09:29:09
 categories: ["LeetCode"]
 tags: ["String"]

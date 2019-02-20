@@ -1,5 +1,5 @@
 ---
-title: "leetCode[019]BinaryTreePaths"
+title: "[019] BinaryTreePaths"
 date: 2015-08-18 16:28:26
 categories: ["LeetCode"]
 tags: ["Algorithm","String"]

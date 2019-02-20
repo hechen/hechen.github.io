@@ -1,5 +1,5 @@
 ---
-title: "leetCode[001]Maximum Product Subarray"
+title: "[001] Maximum Product Subarray"
 date: 2015-04-29 11:30:00
 categories: ["LeetCode"]
 tags: ["Array"]

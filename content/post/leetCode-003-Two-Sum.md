@@ -1,5 +1,5 @@
 ---
-title: "leetCode[003]Two Sum"
+title: "[003] Two Sum"
 date: 2015-04-29 13:15:00
 categories: ["LeetCode"]
 tags: ["Array"]

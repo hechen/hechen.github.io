@@ -1,5 +1,5 @@
 ---
-title: "leetCode[021]Implement Strstr"
+title: "[021] Implement Strstr"
 date: 2015-08-21 09:14:17
 categories: ["LeetCode"]
 tags: ["Algorithm","String"]
@@ -82,8 +82,10 @@ private:
 		if (j == M) return i - M;
 		else return -1;
 	}
-};
+}
+
 ```
+
 那我们就可以很明显的看到，当模式串中j指向位置字符不匹配的时候，其实前面通过匹配我们已经获知了一部分文本的情况，因此如果能够利用这一部分已知的情况来加大模式串移动的有效性。KMP算法就是利用字符串匹配失效之前部分匹配的这个有用信息，通过保持文本指针不回退，仅有效移动模式字符串的位置来进行有效查找的。
 
 

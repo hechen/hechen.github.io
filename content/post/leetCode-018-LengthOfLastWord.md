@@ -1,5 +1,5 @@
 ---
-title: "leetCode[018]Length Of Last Word"
+title: "[018] Length Of Last Word"
 date: 2015-08-18 16:13:44
 categories: ["LeetCode"]
 tags: ["Algorithm","String"]
@@ -42,6 +42,7 @@ C++版本实现方法1：
 		}
 	}
 ```
+
 leetCode Oj系统评判结果如下图所示：
 
 ![leetCode C++1](http://7xilk1.com1.z0.glb.clouddn.com/leetCode018C++1.png);
@@ -49,6 +50,7 @@ leetCode Oj系统评判结果如下图所示：
 C++版本实现方法2：
 
 ``` C++
+
 	// 直接利用现有轮子STL 
 class Solution {
 	public:
@@ -58,6 +60,7 @@ class Solution {
 			return distance(left, right);
 		}
 	}
+	
 ```
 
 leetCode Oj系统评判结果如下图所示：

@@ -5,7 +5,7 @@ tags: ["Safari", "Traffic"]
 categories: ["Mac"]
 ---
 
-### 2019-01-29 更新
+## 2019-01-29 更新
 
 早上一到办公室连接上公司网络，网速直接就飚到了 600KB/s，甚至一度有过 M 的趋势，果不其然，还是 com.apple.Safari.SafeBrowsing.Service 这个服务进程。这就尴尬了，看来并不是说你不用 Safari 就不会触发。
 
