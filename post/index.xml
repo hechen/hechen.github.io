@@ -1,193 +1,193 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Jane - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/post/</link>
-    <description>Recent content in Posts on Jane - A super concise theme for Hugo</description>
+    <title>Posts on I make stuff</title>
+    <link>https://hechen.xyz/post/</link>
+    <description>Recent content in Posts on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 28 Jan 2019 17:51:35 +0000</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>关于一次 SS 流量丢失的过程记录</title>
-      <link>http://localhost:1313/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</link>
+      <link>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Mon, 28 Jan 2019 17:51:35 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</guid>
+      <guid>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</guid>
       <description>2019-01-29 更新 早上一到办公室连接上公司网络，网速直接就飚到了 600KB/s，甚至一度有过 M 的趋势，果不其然，还是 com.apple.Safari.SafeBrowsing.Service 这个服务进程。这就尴尬了，看来并不</description>
     </item>
     
     <item>
       <title>在 Swift Framework 中使用 C 文件的过程探索</title>
-      <link>http://localhost:1313/post/swift-and-modules/</link>
+      <link>https://hechen.xyz/post/swift-and-modules/</link>
       <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/swift-and-modules/</guid>
+      <guid>https://hechen.xyz/post/swift-and-modules/</guid>
       <description>问题描述 我们在开发线上诊断工具需求的时候，是以单个 Pod 的形式提供支持，并且代码文件中只有纯 Swift 文件，但是其中需要用到系统的 C 库的一些功能，本次就</description>
     </item>
     
     <item>
       <title>UserDefaults and Keychain</title>
-      <link>http://localhost:1313/post/userdefaults-and-keychain/</link>
+      <link>https://hechen.xyz/post/userdefaults-and-keychain/</link>
       <pubDate>Fri, 21 Dec 2018 14:30:50 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/userdefaults-and-keychain/</guid>
+      <guid>https://hechen.xyz/post/userdefaults-and-keychain/</guid>
       <description>Apple 提供了几种持久化方案，其中 UserDefaults 和 Keychain 是 App 开发过程中使用频率最高的方案，而且从以往和同事的探讨过程中发现对这两个概念中有一些细节还是理解不太透彻</description>
     </item>
     
     <item>
       <title>如何做 Send to 2Do 的书签</title>
-      <link>http://localhost:1313/post/send-to-2do/</link>
+      <link>https://hechen.xyz/post/send-to-2do/</link>
       <pubDate>Mon, 26 Nov 2018 14:59:50 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/send-to-2do/</guid>
+      <guid>https://hechen.xyz/post/send-to-2do/</guid>
       <description>使用鼠标拖拽下面这个链接到你的 Favorites Bar 上， Send to 2Do 然后编辑地址，将其替换为如下： javascript:window.location=&#39;twodo://x-callback-url/add?task=&#39;+encodeURIComponent(document.title)+&#39;&amp;amp;note=&#39;+encodeURIComponent(window.location)+&#39;&amp;amp;action=url:&#39;+encodeURIComponent(window.location) 所以，其实还是在触发调用 URL Scheme，其中 document.title 为标题 window.location 为当前页面</description>
     </item>
     
     <item>
       <title>阅读流程</title>
-      <link>http://localhost:1313/post/reading-process/</link>
+      <link>https://hechen.xyz/post/reading-process/</link>
       <pubDate>Tue, 16 Oct 2018 17:01:44 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/reading-process/</guid>
+      <guid>https://hechen.xyz/post/reading-process/</guid>
       <description>最近统一了一下自己的阅读流程，更新一下，具体用到的工具有 DEVONThink Pro PDFExpert MarginNote 其中 1 是输入和归档源，3 是输出源。 大概就是如下所示： 采集素材 在平时浏览网页的</description>
     </item>
     
     <item>
       <title>三个简单步骤让你测试使用系统单例的代码</title>
-      <link>http://localhost:1313/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</link>
+      <link>https://hechen.xyz/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</link>
       <pubDate>Tue, 17 Jul 2018 17:09:57 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</guid>
+      <guid>https://hechen.xyz/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</guid>
       <description>大部分在 Apple 平台开发的 App 都会依赖基于单例的 API。从 UIScreen 到 UIApplication，再到 NSBundle，而 Foundation，UIKit 以</description>
     </item>
     
     <item>
       <title>避免在 Swift 中使用单例</title>
-      <link>http://localhost:1313/post/avoiding-singletons-in-swift/</link>
+      <link>https://hechen.xyz/post/avoiding-singletons-in-swift/</link>
       <pubDate>Mon, 16 Jul 2018 17:34:36 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/avoiding-singletons-in-swift/</guid>
+      <guid>https://hechen.xyz/post/avoiding-singletons-in-swift/</guid>
       <description>“我知道单例不好，但是&amp;hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的</description>
     </item>
     
     <item>
       <title>Swift 中几种不同的依赖注入方式</title>
-      <link>http://localhost:1313/post/different-flavors-of-dependency-injection-in-swift/</link>
+      <link>https://hechen.xyz/post/different-flavors-of-dependency-injection-in-swift/</link>
       <pubDate>Mon, 16 Jul 2018 13:57:24 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/different-flavors-of-dependency-injection-in-swift/</guid>
+      <guid>https://hechen.xyz/post/different-flavors-of-dependency-injection-in-swift/</guid>
       <description>在之前的几篇博客中，我们已经了解了几种使用依赖注入方式使得某个 swift app 拥有一个更加解耦可测试的架构。比如在 在 Swift 中使用工厂模式进行依赖注入 中和工厂</description>
     </item>
     
     <item>
       <title>那些我恢复 Mac 系统之后要安装的 Apps</title>
-      <link>http://localhost:1313/post/my-favorite-mac-apps/</link>
+      <link>https://hechen.xyz/post/my-favorite-mac-apps/</link>
       <pubDate>Wed, 11 Jul 2018 12:58:37 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/my-favorite-mac-apps/</guid>
+      <guid>https://hechen.xyz/post/my-favorite-mac-apps/</guid>
       <description>记录一下自己常用的 Mac Apps，每次重装之后到了用的时候发现忘记安装了(不是每次都用 TimeMachine 恢复)，而且强烈简易大家如果某个 App 有对应的独立安装版本的</description>
     </item>
     
     <item>
       <title>What is LLVM</title>
-      <link>http://localhost:1313/post/what-is-llvm/</link>
+      <link>https://hechen.xyz/post/what-is-llvm/</link>
       <pubDate>Tue, 10 Jul 2018 12:05:58 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/what-is-llvm/</guid>
+      <guid>https://hechen.xyz/post/what-is-llvm/</guid>
       <description>什么是 LLVM？隐藏在 Swift，Rust，Clang 等语言背后的奥秘 了解编译器是如何生成机器原生代码会使得倒腾新语言或者加强已经存在的编程</description>
     </item>
     
     <item>
       <title>In App Purchase</title>
-      <link>http://localhost:1313/post/in-app-purchase/</link>
+      <link>https://hechen.xyz/post/in-app-purchase/</link>
       <pubDate>Thu, 24 May 2018 10:40:39 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/in-app-purchase/</guid>
+      <guid>https://hechen.xyz/post/in-app-purchase/</guid>
       <description>对于在 App Store 中上架的应⽤来说，应⽤内购买(In-App Purchase，简称 IAP) 应该是一个避不开的话题，尤其是去年微信打赏和 Apple 之间的争执更让 IAP 火</description>
     </item>
     
     <item>
       <title>在 Swift 中使用工厂模式进行依赖注入</title>
-      <link>http://localhost:1313/post/dependency-injection-using-factories-in-swift/</link>
+      <link>https://hechen.xyz/post/dependency-injection-using-factories-in-swift/</link>
       <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/dependency-injection-using-factories-in-swift/</guid>
+      <guid>https://hechen.xyz/post/dependency-injection-using-factories-in-swift/</guid>
       <description>依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象</description>
     </item>
     
     <item>
       <title>模块化 Xcode 工程</title>
-      <link>http://localhost:1313/post/modular-xcode-projects/</link>
+      <link>https://hechen.xyz/post/modular-xcode-projects/</link>
       <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/modular-xcode-projects/</guid>
+      <guid>https://hechen.xyz/post/modular-xcode-projects/</guid>
       <description>使用 Xcode 构建模块化的工程就需要对工程结构以及其基础概念有很好的理解才行。我们平时不怎么关注工程结构本身，只有在工程逐渐变大，要添加更多依赖的时</description>
     </item>
     
     <item>
       <title>Initializer in Swift</title>
-      <link>http://localhost:1313/post/initializer-in-swift/</link>
+      <link>https://hechen.xyz/post/initializer-in-swift/</link>
       <pubDate>Wed, 15 Nov 2017 13:09:27 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/initializer-in-swift/</guid>
+      <guid>https://hechen.xyz/post/initializer-in-swift/</guid>
       <description>我想 [[xxx alloc] init] 应该是自己接触 iOS 开发以来写的最多的语句了吧。一个对象初始化是其得以存在的前提，无论你是使用 new 关键字与否，根本上都会执行到 init 方法。 转</description>
     </item>
     
     <item>
       <title>处理 Swift 中非可选的可选值类型</title>
-      <link>http://localhost:1313/post/handling-non-optional-optionals-in-swift/</link>
+      <link>https://hechen.xyz/post/handling-non-optional-optionals-in-swift/</link>
       <pubDate>Tue, 14 Nov 2017 21:53:52 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/handling-non-optional-optionals-in-swift/</guid>
+      <guid>https://hechen.xyz/post/handling-non-optional-optionals-in-swift/</guid>
       <description>可选值（optionals）无可争议的是 swift 语言中最重要的特性之一，也是和其他语言，例如 Objective-C 的最大区别。通过强制处理那些有可能出现 nil 的地方，我们</description>
     </item>
     
     <item>
       <title>理解响应者和响应链</title>
-      <link>http://localhost:1313/post/understanding-responders-and-the-responder-chain/</link>
+      <link>https://hechen.xyz/post/understanding-responders-and-the-responder-chain/</link>
       <pubDate>Mon, 13 Nov 2017 21:22:44 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/understanding-responders-and-the-responder-chain/</guid>
+      <guid>https://hechen.xyz/post/understanding-responders-and-the-responder-chain/</guid>
       <description>Apps 是通过响应者（responder）对象来接收和处理事件的。一个响应者对象是 UIResponder 类的一个实例，我们常见的 UIView，UIViewContro</description>
     </item>
     
     <item>
       <title>Capturing objects in Swift closures</title>
-      <link>http://localhost:1313/post/capturing-objects-in-swift-closures/</link>
+      <link>https://hechen.xyz/post/capturing-objects-in-swift-closures/</link>
       <pubDate>Sun, 12 Nov 2017 20:56:50 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/capturing-objects-in-swift-closures/</guid>
+      <guid>https://hechen.xyz/post/capturing-objects-in-swift-closures/</guid>
       <description>自从 Block 在 iOS4 被引入 Objective-C 的世界之后就成为了 Apple 各平台上最时髦的 API 的重要组成部分了。当 Swift 语言出现的时候，blocks 的概念就摇身一变通过 closure 的形式引入，</description>
     </item>
     
     <item>
       <title>@autoclosure &amp;&amp; @escape</title>
-      <link>http://localhost:1313/post/autoclosure-escape/</link>
+      <link>https://hechen.xyz/post/autoclosure-escape/</link>
       <pubDate>Sun, 12 Nov 2017 20:01:54 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/autoclosure-escape/</guid>
+      <guid>https://hechen.xyz/post/autoclosure-escape/</guid>
       <description>我们知道在 swift 中，闭包（closure）是一等公民，因此可以被当作参数传递，在学习 swift 的过程中经常会看到某些关键字修饰该闭包，@autoclos</description>
     </item>
     
     <item>
       <title>关于 iOS10 Notification 的那些事儿</title>
-      <link>http://localhost:1313/post/ios-notification/</link>
+      <link>https://hechen.xyz/post/ios-notification/</link>
       <pubDate>Sat, 20 May 2017 10:10:54 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/ios-notification/</guid>
+      <guid>https://hechen.xyz/post/ios-notification/</guid>
       <description>概览 推送通知我们大家都不陌生，可以说几乎每个使用智能手机的人每天都会被不同的通知 打扰 到，正式因为合适的推送是吸引用户注意力的利器，其成为了各</description>
     </item>
     
     <item>
       <title>阅读《垃圾回收的算法与实现》</title>
-      <link>http://localhost:1313/post/reading-garbage-collection/</link>
+      <link>https://hechen.xyz/post/reading-garbage-collection/</link>
       <pubDate>Sun, 12 Feb 2017 16:38:24 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/reading-garbage-collection/</guid>
+      <guid>https://hechen.xyz/post/reading-garbage-collection/</guid>
       <description>前一阵子 《垃圾回收的算法与实现》 这本书比较火，正好本人也对垃圾回收这个概念挺感兴趣的，就耐着性子一点一点啃，到今天只能说磕磕绊绊的看了大部分</description>
     </item>
     

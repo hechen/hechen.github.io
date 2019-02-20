@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Singleton on Jane - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/tags/singleton/</link>
-    <description>Recent content in Singleton on Jane - A super concise theme for Hugo</description>
+    <title>Singleton on I make stuff</title>
+    <link>https://hechen.xyz/tags/singleton/</link>
+    <description>Recent content in Singleton on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 17 Jul 2018 17:09:57 +0000</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/tags/singleton/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.xyz/tags/singleton/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>三个简单步骤让你测试使用系统单例的代码</title>
-      <link>http://localhost:1313/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</link>
+      <link>https://hechen.xyz/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</link>
       <pubDate>Tue, 17 Jul 2018 17:09:57 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</guid>
+      <guid>https://hechen.xyz/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</guid>
       <description>大部分在 Apple 平台开发的 App 都会依赖基于单例的 API。从 UIScreen 到 UIApplication，再到 NSBundle，而 Foundation，UIKit 以</description>
     </item>
     
     <item>
       <title>避免在 Swift 中使用单例</title>
-      <link>http://localhost:1313/post/avoiding-singletons-in-swift/</link>
+      <link>https://hechen.xyz/post/avoiding-singletons-in-swift/</link>
       <pubDate>Mon, 16 Jul 2018 17:34:36 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/avoiding-singletons-in-swift/</guid>
+      <guid>https://hechen.xyz/post/avoiding-singletons-in-swift/</guid>
       <description>“我知道单例不好，但是&amp;hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的</description>
     </item>
     

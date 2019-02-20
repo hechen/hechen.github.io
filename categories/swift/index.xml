@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Swift on Jane - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/categories/swift/</link>
-    <description>Recent content in Swift on Jane - A super concise theme for Hugo</description>
+    <title>Swift on I make stuff</title>
+    <link>https://hechen.xyz/categories/swift/</link>
+    <description>Recent content in Swift on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 03 Jan 2019 21:19:24 +0000</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/categories/swift/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.xyz/categories/swift/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>在 Swift Framework 中使用 C 文件的过程探索</title>
-      <link>http://localhost:1313/post/swift-and-modules/</link>
+      <link>https://hechen.xyz/post/swift-and-modules/</link>
       <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/swift-and-modules/</guid>
+      <guid>https://hechen.xyz/post/swift-and-modules/</guid>
       <description>问题描述 我们在开发线上诊断工具需求的时候，是以单个 Pod 的形式提供支持，并且代码文件中只有纯 Swift 文件，但是其中需要用到系统的 C 库的一些功能，本次就</description>
     </item>
     
     <item>
       <title>Initializer in Swift</title>
-      <link>http://localhost:1313/post/initializer-in-swift/</link>
+      <link>https://hechen.xyz/post/initializer-in-swift/</link>
       <pubDate>Wed, 15 Nov 2017 13:09:27 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/initializer-in-swift/</guid>
+      <guid>https://hechen.xyz/post/initializer-in-swift/</guid>
       <description>我想 [[xxx alloc] init] 应该是自己接触 iOS 开发以来写的最多的语句了吧。一个对象初始化是其得以存在的前提，无论你是使用 new 关键字与否，根本上都会执行到 init 方法。 转</description>
     </item>
     
     <item>
       <title>@autoclosure &amp;&amp; @escape</title>
-      <link>http://localhost:1313/post/autoclosure-escape/</link>
+      <link>https://hechen.xyz/post/autoclosure-escape/</link>
       <pubDate>Sun, 12 Nov 2017 20:01:54 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/autoclosure-escape/</guid>
+      <guid>https://hechen.xyz/post/autoclosure-escape/</guid>
       <description>我们知道在 swift 中，闭包（closure）是一等公民，因此可以被当作参数传递，在学习 swift 的过程中经常会看到某些关键字修饰该闭包，@autoclos</description>
     </item>
     

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Initializer on Jane - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/tags/initializer/</link>
-    <description>Recent content in Initializer on Jane - A super concise theme for Hugo</description>
+    <title>Initializer on I make stuff</title>
+    <link>https://hechen.xyz/tags/initializer/</link>
+    <description>Recent content in Initializer on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 15 Nov 2017 13:09:27 +0000</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/tags/initializer/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.xyz/tags/initializer/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Initializer in Swift</title>
-      <link>http://localhost:1313/post/initializer-in-swift/</link>
+      <link>https://hechen.xyz/post/initializer-in-swift/</link>
       <pubDate>Wed, 15 Nov 2017 13:09:27 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/initializer-in-swift/</guid>
+      <guid>https://hechen.xyz/post/initializer-in-swift/</guid>
       <description>我想 [[xxx alloc] init] 应该是自己接触 iOS 开发以来写的最多的语句了吧。一个对象初始化是其得以存在的前提，无论你是使用 new 关键字与否，根本上都会执行到 init 方法。 转</description>
     </item>
     
