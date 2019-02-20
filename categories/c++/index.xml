@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>C&#43;&#43; on Jane - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/categories/c&#43;&#43;/</link>
-    <description>Recent content in C&#43;&#43; on Jane - A super concise theme for Hugo</description>
+    <title>C&#43;&#43; on I make stuff</title>
+    <link>https://hechen.xyz/categories/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 29 Apr 2015 11:57:00 +0000</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.xyz/categories/c++/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>关于Lambda的一点梳理</title>
-      <link>http://localhost:1313/post/%E5%85%B3%E4%BA%8Elambda%E7%9A%84%E4%B8%80%E7%82%B9%E6%A2%B3%E7%90%86/</link>
+      <link>https://hechen.xyz/post/%E5%85%B3%E4%BA%8Elambda%E7%9A%84%E4%B8%80%E7%82%B9%E6%A2%B3%E7%90%86/</link>
       <pubDate>Wed, 29 Apr 2015 11:57:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E5%85%B3%E4%BA%8Elambda%E7%9A%84%E4%B8%80%E7%82%B9%E6%A2%B3%E7%90%86/</guid>
+      <guid>https://hechen.xyz/post/%E5%85%B3%E4%BA%8Elambda%E7%9A%84%E4%B8%80%E7%82%B9%E6%A2%B3%E7%90%86/</guid>
       <description>关于C++11的新特性，最近接触比较多的就是关于thread的部分，还有就是Lambda表达式，今天主要针对Lambda的用法进行一定的阐述</description>
     </item>
     

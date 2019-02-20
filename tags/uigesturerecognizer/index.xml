@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Uigesturerecognizer on Jane - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/tags/uigesturerecognizer/</link>
-    <description>Recent content in Uigesturerecognizer on Jane - A super concise theme for Hugo</description>
+    <title>Uigesturerecognizer on I make stuff</title>
+    <link>https://hechen.xyz/tags/uigesturerecognizer/</link>
+    <description>Recent content in Uigesturerecognizer on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 13 Nov 2017 21:22:44 +0000</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/tags/uigesturerecognizer/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.xyz/tags/uigesturerecognizer/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>理解响应者和响应链</title>
-      <link>http://localhost:1313/post/understanding-responders-and-the-responder-chain/</link>
+      <link>https://hechen.xyz/post/understanding-responders-and-the-responder-chain/</link>
       <pubDate>Mon, 13 Nov 2017 21:22:44 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/understanding-responders-and-the-responder-chain/</guid>
+      <guid>https://hechen.xyz/post/understanding-responders-and-the-responder-chain/</guid>
       <description>Apps 是通过响应者（responder）对象来接收和处理事件的。一个响应者对象是 UIResponder 类的一个实例，我们常见的 UIView，UIViewContro</description>
     </item>
     

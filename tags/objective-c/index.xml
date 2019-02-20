@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Objective C on Jane - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/tags/objective-c/</link>
-    <description>Recent content in Objective C on Jane - A super concise theme for Hugo</description>
+    <title>Objective C on I make stuff</title>
+    <link>https://hechen.xyz/tags/objective-c/</link>
+    <description>Recent content in Objective C on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 12 Feb 2017 16:36:54 +0000</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/tags/objective-c/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.xyz/tags/objective-c/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>解析 PNChart 第三方库</title>
-      <link>http://localhost:1313/post/read-sourcecode-of-pnchart/</link>
+      <link>https://hechen.xyz/post/read-sourcecode-of-pnchart/</link>
       <pubDate>Sun, 12 Feb 2017 16:36:54 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/read-sourcecode-of-pnchart/</guid>
+      <guid>https://hechen.xyz/post/read-sourcecode-of-pnchart/</guid>
       <description>学习 PNChart 本篇文章写作时，PChart 版本号为 0.8.9. 代码结构 可视化展示类型 首先，目前 PNChart 提供多达六种图的可视化展示。分别是： PNLineChart PNScatterChart PNRadarChart PNPieChart PNBarChart PNCircleChart 类图 首先来看最</description>
     </item>
     
     <item>
       <title>如何使用UIBezierPath实现一个弹性视图动画</title>
-      <link>http://localhost:1313/post/elastic-view-animation-using-uibezierpath/</link>
+      <link>https://hechen.xyz/post/elastic-view-animation-using-uibezierpath/</link>
       <pubDate>Wed, 02 Dec 2015 18:53:51 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/elastic-view-animation-using-uibezierpath/</guid>
+      <guid>https://hechen.xyz/post/elastic-view-animation-using-uibezierpath/</guid>
       <description>Hey！ DGElasticPullToRefresh展示如何实现一个弹性效果。效果如下图所示： 开发环境： Xcode 7 Swift 2.0 要求： 开发者至少对UIBez</description>
     </item>
     
     <item>
       <title>理解Objective-C运行时</title>
-      <link>http://localhost:1313/post/understanding-the-objective-c-runtime/</link>
+      <link>https://hechen.xyz/post/understanding-the-objective-c-runtime/</link>
       <pubDate>Mon, 07 Sep 2015 17:55:33 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/understanding-the-objective-c-runtime/</guid>
+      <guid>https://hechen.xyz/post/understanding-the-objective-c-runtime/</guid>
       <description>Objective-C 运行时对于刚刚踏入 Cocoa/Objective 世界的人是很容易忽 略的 Objective-C 语言的特性之一。原因就是尽管 Objective-C 是一门几个小时之内入门的语言，但是投身 Cocoa 的新手们会花费大量时间在</description>
     </item>
     
     <item>
       <title>我们是如何创建iOS版的Guillotine菜单动画的</title>
-      <link>http://localhost:1313/post/how-we-created-guillotine-menu-animation-for-ios/</link>
+      <link>https://hechen.xyz/post/how-we-created-guillotine-menu-animation-for-ios/</link>
       <pubDate>Tue, 01 Sep 2015 15:52:07 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/how-we-created-guillotine-menu-animation-for-ios/</guid>
+      <guid>https://hechen.xyz/post/how-we-created-guillotine-menu-animation-for-ios/</guid>
       <description>你是否曾经有过这样的疑问？为什么app中几乎是清一色的侧边栏（sidebar），为什么不把它做成topBar或者bottomBar，甚至co</description>
     </item>
     

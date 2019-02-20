@@ -1,716 +1,716 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<?xml-stylesheet type="text/xsl" href="http://localhost:1313/sitemap.xsl"?>
+<?xml-stylesheet type="text/xsl" href="https://hechen.xyz/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://hechen.xyz/about/</loc>
     <lastmod>2017-08-28T21:41:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</loc>
+    <loc>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2019-01-28T17:51:35+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/swift-and-modules/</loc>
+    <loc>https://hechen.xyz/post/swift-and-modules/</loc>
     <lastmod>2019-01-03T21:19:24+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/userdefaults-and-keychain/</loc>
+    <loc>https://hechen.xyz/post/userdefaults-and-keychain/</loc>
     <lastmod>2018-12-21T14:30:50+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/send-to-2do/</loc>
+    <loc>https://hechen.xyz/post/send-to-2do/</loc>
     <lastmod>2018-11-26T14:59:50+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/reading-process/</loc>
+    <loc>https://hechen.xyz/post/reading-process/</loc>
     <lastmod>2018-10-16T17:01:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</loc>
+    <loc>https://hechen.xyz/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</loc>
     <lastmod>2018-07-17T17:09:57+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/avoiding-singletons-in-swift/</loc>
+    <loc>https://hechen.xyz/post/avoiding-singletons-in-swift/</loc>
     <lastmod>2018-07-16T17:34:36+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/different-flavors-of-dependency-injection-in-swift/</loc>
+    <loc>https://hechen.xyz/post/different-flavors-of-dependency-injection-in-swift/</loc>
     <lastmod>2018-07-16T13:57:24+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/my-favorite-mac-apps/</loc>
+    <loc>https://hechen.xyz/post/my-favorite-mac-apps/</loc>
     <lastmod>2018-07-11T12:58:37+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/what-is-llvm/</loc>
+    <loc>https://hechen.xyz/post/what-is-llvm/</loc>
     <lastmod>2018-07-10T12:05:58+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/in-app-purchase/</loc>
+    <loc>https://hechen.xyz/post/in-app-purchase/</loc>
     <lastmod>2018-05-24T10:40:39+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/dependency-injection-using-factories-in-swift/</loc>
+    <loc>https://hechen.xyz/post/dependency-injection-using-factories-in-swift/</loc>
     <lastmod>2017-11-19T18:17:15+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/modular-xcode-projects/</loc>
+    <loc>https://hechen.xyz/post/modular-xcode-projects/</loc>
     <lastmod>2017-11-19T18:17:15+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/initializer-in-swift/</loc>
+    <loc>https://hechen.xyz/post/initializer-in-swift/</loc>
     <lastmod>2017-11-15T13:09:27+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/handling-non-optional-optionals-in-swift/</loc>
+    <loc>https://hechen.xyz/post/handling-non-optional-optionals-in-swift/</loc>
     <lastmod>2017-11-14T21:53:52+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/understanding-responders-and-the-responder-chain/</loc>
+    <loc>https://hechen.xyz/post/understanding-responders-and-the-responder-chain/</loc>
     <lastmod>2017-11-13T21:22:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/capturing-objects-in-swift-closures/</loc>
+    <loc>https://hechen.xyz/post/capturing-objects-in-swift-closures/</loc>
     <lastmod>2017-11-12T20:56:50+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/autoclosure-escape/</loc>
+    <loc>https://hechen.xyz/post/autoclosure-escape/</loc>
     <lastmod>2017-11-12T20:01:54+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/ios-notification/</loc>
+    <loc>https://hechen.xyz/post/ios-notification/</loc>
     <lastmod>2017-05-20T10:10:54+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/reading-garbage-collection/</loc>
+    <loc>https://hechen.xyz/post/reading-garbage-collection/</loc>
     <lastmod>2017-02-12T16:38:24+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/read-sourcecode-of-pnchart/</loc>
+    <loc>https://hechen.xyz/post/read-sourcecode-of-pnchart/</loc>
     <lastmod>2017-02-12T16:36:54+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/elastic-view-animation-using-uibezierpath/</loc>
+    <loc>https://hechen.xyz/post/elastic-view-animation-using-uibezierpath/</loc>
     <lastmod>2015-12-02T18:53:51+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</loc>
+    <loc>https://hechen.xyz/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</loc>
     <lastmod>2015-09-14T15:36:07+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/understanding-the-objective-c-runtime/</loc>
+    <loc>https://hechen.xyz/post/understanding-the-objective-c-runtime/</loc>
     <lastmod>2015-09-07T17:55:33+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/how-we-created-guillotine-menu-animation-for-ios/</loc>
+    <loc>https://hechen.xyz/post/how-we-created-guillotine-menu-animation-for-ios/</loc>
     <lastmod>2015-09-01T15:52:07+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/leetcode-021-implementstrstr/</loc>
+    <loc>https://hechen.xyz/post/leetcode-021-implementstrstr/</loc>
     <lastmod>2015-08-21T09:14:17+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/leetcode-019-binarytreepaths/</loc>
+    <loc>https://hechen.xyz/post/leetcode-019-binarytreepaths/</loc>
     <lastmod>2015-08-18T16:28:26+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/leetcode-018-lengthoflastword/</loc>
+    <loc>https://hechen.xyz/post/leetcode-018-lengthoflastword/</loc>
     <lastmod>2015-08-18T16:13:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/ios-push-notification/</loc>
+    <loc>https://hechen.xyz/post/ios-push-notification/</loc>
     <lastmod>2015-07-30T14:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/%E5%85%B3%E4%BA%8E%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/</loc>
+    <loc>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/</loc>
     <lastmod>2015-05-07T13:59:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/leetcode-002-reverse-words-in-a-string/</loc>
+    <loc>https://hechen.xyz/post/leetcode-002-reverse-words-in-a-string/</loc>
     <lastmod>2015-05-01T09:29:09+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/leetcode-003-two-sum/</loc>
+    <loc>https://hechen.xyz/post/leetcode-003-two-sum/</loc>
     <lastmod>2015-04-29T13:15:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/leetcode-003-intersection-of-two-linked-lists/</loc>
+    <loc>https://hechen.xyz/post/leetcode-003-intersection-of-two-linked-lists/</loc>
     <lastmod>2015-04-29T12:28:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/%E5%85%B3%E4%BA%8Elambda%E7%9A%84%E4%B8%80%E7%82%B9%E6%A2%B3%E7%90%86/</loc>
+    <loc>https://hechen.xyz/post/%E5%85%B3%E4%BA%8Elambda%E7%9A%84%E4%B8%80%E7%82%B9%E6%A2%B3%E7%90%86/</loc>
     <lastmod>2015-04-29T11:57:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/leetcode-001-maximum-product-subarray/</loc>
+    <loc>https://hechen.xyz/post/leetcode-001-maximum-product-subarray/</loc>
     <lastmod>2015-04-29T11:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/scala%E7%AC%AC%E4%BA%8C%E5%A4%A9/</loc>
+    <loc>https://hechen.xyz/post/scala%E7%AC%AC%E4%BA%8C%E5%A4%A9/</loc>
     <lastmod>2015-04-16T18:43:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/myfirstpost/</loc>
+    <loc>https://hechen.xyz/post/myfirstpost/</loc>
     <lastmod>2015-04-15T16:14:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/2do/</loc>
+    <loc>https://hechen.xyz/tags/2do/</loc>
     <lastmod>2018-11-26T14:59:50+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/algorithm/</loc>
+    <loc>https://hechen.xyz/tags/algorithm/</loc>
     <lastmod>2015-08-21T09:14:17+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/animation/</loc>
+    <loc>https://hechen.xyz/tags/animation/</loc>
     <lastmod>2015-12-02T18:53:51+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/app/</loc>
+    <loc>https://hechen.xyz/tags/app/</loc>
     <lastmod>2018-07-11T12:58:37+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/array/</loc>
+    <loc>https://hechen.xyz/tags/array/</loc>
     <lastmod>2015-04-29T13:15:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/categories/book/</loc>
+    <loc>https://hechen.xyz/categories/book/</loc>
     <lastmod>2017-02-12T16:38:24+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/bookmark/</loc>
+    <loc>https://hechen.xyz/tags/bookmark/</loc>
     <lastmod>2018-11-26T14:59:50+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/categories/c&#43;&#43;/</loc>
+    <loc>https://hechen.xyz/categories/c&#43;&#43;/</loc>
     <lastmod>2015-04-29T11:57:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/c&#43;&#43;11/</loc>
+    <loc>https://hechen.xyz/tags/c&#43;&#43;11/</loc>
     <lastmod>2015-04-29T11:57:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/carthage/</loc>
+    <loc>https://hechen.xyz/tags/carthage/</loc>
     <lastmod>2017-11-19T18:17:15+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://hechen.xyz/categories/</loc>
     <lastmod>2017-02-12T16:38:24+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/category/</loc>
+    <loc>https://hechen.xyz/tags/category/</loc>
     <lastmod>2015-09-14T15:36:07+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/closure/</loc>
+    <loc>https://hechen.xyz/tags/closure/</loc>
     <lastmod>2017-11-12T20:56:50+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/cocoapods/</loc>
+    <loc>https://hechen.xyz/tags/cocoapods/</loc>
     <lastmod>2019-01-03T21:19:24+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/compiler/</loc>
+    <loc>https://hechen.xyz/tags/compiler/</loc>
     <lastmod>2018-07-10T12:05:58+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/convenience-initializers/</loc>
+    <loc>https://hechen.xyz/tags/convenience-initializers/</loc>
     <lastmod>2017-11-15T13:09:27+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/categories/data-structure/</loc>
+    <loc>https://hechen.xyz/categories/data-structure/</loc>
     <lastmod>2015-05-07T13:59:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/designated-initializer/</loc>
+    <loc>https://hechen.xyz/tags/designated-initializer/</loc>
     <lastmod>2017-11-15T13:09:27+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/devonthink/</loc>
+    <loc>https://hechen.xyz/tags/devonthink/</loc>
     <lastmod>2018-10-16T17:01:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/garbage-collection/</loc>
+    <loc>https://hechen.xyz/tags/garbage-collection/</loc>
     <lastmod>2017-02-12T16:38:24+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/github/</loc>
+    <loc>https://hechen.xyz/tags/github/</loc>
     <lastmod>2017-02-12T16:36:54+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/iap/</loc>
-    <lastmod>2018-05-24T10:40:39+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/initializer/</loc>
-    <lastmod>2017-11-15T13:09:27+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/ios/</loc>
-    <lastmod>2018-07-17T17:09:57+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/categories/ios/</loc>
-    <lastmod>2018-05-24T10:40:39+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/ir/</loc>
-    <lastmod>2018-07-10T12:05:58+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://hechen.xyz/</loc>
     <lastmod>2017-08-28T21:41:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/keychain/</loc>
-    <lastmod>2018-12-21T14:30:50+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/lambda/</loc>
-    <lastmod>2015-04-29T11:57:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/categories/leetcode/</loc>
-    <lastmod>2015-08-21T09:14:17+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/linked-list/</loc>
-    <lastmod>2015-05-07T13:59:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/linkedlist/</loc>
-    <lastmod>2015-04-29T12:28:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/llvm/</loc>
-    <lastmod>2018-07-10T12:05:58+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/mac/</loc>
-    <lastmod>2018-07-11T12:58:37+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/categories/mac/</loc>
-    <lastmod>2019-01-28T17:51:35+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/marginnote/</loc>
-    <lastmod>2018-10-16T17:01:44+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/module/</loc>
-    <lastmod>2019-01-03T21:19:24+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/notification/</loc>
-    <lastmod>2017-05-20T10:10:54+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/objective-c/</loc>
-    <lastmod>2017-02-12T16:36:54+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/omnifocus/</loc>
-    <lastmod>2018-11-26T14:59:50+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/optional/</loc>
-    <lastmod>2017-11-14T21:53:52+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/pdfexpert/</loc>
-    <lastmod>2018-10-16T17:01:44+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/post/</loc>
-    <lastmod>2019-01-28T17:51:35+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/categories/productivity/</loc>
-    <lastmod>2018-11-26T14:59:50+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/push/</loc>
-    <lastmod>2015-07-30T14:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/python/</loc>
-    <lastmod>2017-02-12T16:38:24+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/receipt/</loc>
+    <loc>https://hechen.xyz/tags/iap/</loc>
     <lastmod>2018-05-24T10:40:39+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/runtime/</loc>
-    <lastmod>2015-09-07T17:55:33+00:00</lastmod>
+    <loc>https://hechen.xyz/tags/initializer/</loc>
+    <lastmod>2017-11-15T13:09:27+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/safari/</loc>
-    <lastmod>2019-01-28T17:51:35+00:00</lastmod>
+    <loc>https://hechen.xyz/categories/ios/</loc>
+    <lastmod>2018-05-24T10:40:39+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/categories/scala/</loc>
-    <lastmod>2015-04-16T18:43:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/singleton/</loc>
+    <loc>https://hechen.xyz/tags/ios/</loc>
     <lastmod>2018-07-17T17:09:57+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/categories/sourcecode/</loc>
-    <lastmod>2017-02-12T16:36:54+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/string/</loc>
-    <lastmod>2015-08-21T09:14:17+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/swfit/</loc>
+    <loc>https://hechen.xyz/tags/ir/</loc>
     <lastmod>2018-07-10T12:05:58+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/swift/</loc>
-    <lastmod>2019-01-03T21:19:24+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/categories/swift/</loc>
-    <lastmod>2019-01-03T21:19:24+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2018-11-26T14:59:50+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/things/</loc>
-    <lastmod>2018-11-26T14:59:50+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/traffic/</loc>
-    <lastmod>2019-01-28T17:51:35+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/categories/translation/</loc>
-    <lastmod>2018-07-17T17:09:57+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/uigesturerecognizer/</loc>
-    <lastmod>2017-11-13T21:22:44+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/uiresponder/</loc>
-    <lastmod>2017-11-13T21:22:44+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/tags/userdefaults/</loc>
+    <loc>https://hechen.xyz/tags/keychain/</loc>
     <lastmod>2018-12-21T14:30:50+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/xcode/</loc>
+    <loc>https://hechen.xyz/tags/lambda/</loc>
+    <lastmod>2015-04-29T11:57:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/categories/leetcode/</loc>
+    <lastmod>2015-08-21T09:14:17+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/linked-list/</loc>
+    <lastmod>2015-05-07T13:59:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/linkedlist/</loc>
+    <lastmod>2015-04-29T12:28:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/llvm/</loc>
+    <lastmod>2018-07-10T12:05:58+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/categories/mac/</loc>
+    <lastmod>2019-01-28T17:51:35+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/mac/</loc>
+    <lastmod>2018-07-11T12:58:37+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/marginnote/</loc>
+    <lastmod>2018-10-16T17:01:44+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/module/</loc>
+    <lastmod>2019-01-03T21:19:24+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/notification/</loc>
+    <lastmod>2017-05-20T10:10:54+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/objective-c/</loc>
+    <lastmod>2017-02-12T16:36:54+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/omnifocus/</loc>
+    <lastmod>2018-11-26T14:59:50+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/optional/</loc>
+    <lastmod>2017-11-14T21:53:52+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/pdfexpert/</loc>
+    <lastmod>2018-10-16T17:01:44+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/post/</loc>
+    <lastmod>2019-01-28T17:51:35+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/categories/productivity/</loc>
+    <lastmod>2018-11-26T14:59:50+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/push/</loc>
+    <lastmod>2015-07-30T14:30:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/python/</loc>
+    <lastmod>2017-02-12T16:38:24+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/receipt/</loc>
+    <lastmod>2018-05-24T10:40:39+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/runtime/</loc>
+    <lastmod>2015-09-07T17:55:33+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/safari/</loc>
+    <lastmod>2019-01-28T17:51:35+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/categories/scala/</loc>
+    <lastmod>2015-04-16T18:43:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/singleton/</loc>
+    <lastmod>2018-07-17T17:09:57+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/categories/sourcecode/</loc>
+    <lastmod>2017-02-12T16:36:54+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/string/</loc>
+    <lastmod>2015-08-21T09:14:17+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/swfit/</loc>
+    <lastmod>2018-07-10T12:05:58+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/categories/swift/</loc>
+    <lastmod>2019-01-03T21:19:24+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/swift/</loc>
+    <lastmod>2019-01-03T21:19:24+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/</loc>
+    <lastmod>2018-11-26T14:59:50+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/things/</loc>
+    <lastmod>2018-11-26T14:59:50+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/traffic/</loc>
+    <lastmod>2019-01-28T17:51:35+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/categories/translation/</loc>
+    <lastmod>2018-07-17T17:09:57+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/uigesturerecognizer/</loc>
+    <lastmod>2017-11-13T21:22:44+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/uiresponder/</loc>
+    <lastmod>2017-11-13T21:22:44+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/userdefaults/</loc>
+    <lastmod>2018-12-21T14:30:50+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/xcode/</loc>
     <lastmod>2018-07-17T17:09:57+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>

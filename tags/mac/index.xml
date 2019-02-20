@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Mac on Jane - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/tags/mac/</link>
-    <description>Recent content in Mac on Jane - A super concise theme for Hugo</description>
+    <title>Mac on I make stuff</title>
+    <link>https://hechen.xyz/tags/mac/</link>
+    <description>Recent content in Mac on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 11 Jul 2018 12:58:37 +0000</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.xyz/tags/mac/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>那些我恢复 Mac 系统之后要安装的 Apps</title>
-      <link>http://localhost:1313/post/my-favorite-mac-apps/</link>
+      <link>https://hechen.xyz/post/my-favorite-mac-apps/</link>
       <pubDate>Wed, 11 Jul 2018 12:58:37 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/my-favorite-mac-apps/</guid>
+      <guid>https://hechen.xyz/post/my-favorite-mac-apps/</guid>
       <description>记录一下自己常用的 Mac Apps，每次重装之后到了用的时候发现忘记安装了(不是每次都用 TimeMachine 恢复)，而且强烈简易大家如果某个 App 有对应的独立安装版本的</description>
     </item>
     

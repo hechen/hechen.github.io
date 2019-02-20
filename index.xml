@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Jane - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content on Jane - A super concise theme for Hugo</description>
+    <title>I make stuff</title>
+    <link>https://hechen.xyz/</link>
+    <description>Recent content on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 20 Aug 2017 21:38:52 +0800</lastBuildDate>
     
-        <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://hechen.xyz/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>http://localhost:1313/about/</link>
+      <link>https://hechen.xyz/about/</link>
       <pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate>
       
-      <guid>http://localhost:1313/about/</guid>
+      <guid>https://hechen.xyz/about/</guid>
       
         <description>&lt;p&gt;Hugo is a static site engine written in Go.&lt;/p&gt;
 
@@ -36,10 +36,10 @@
     
     <item>
       <title>关于一次 SS 流量丢失的过程记录</title>
-      <link>http://localhost:1313/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</link>
+      <link>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Mon, 28 Jan 2019 17:51:35 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</guid>
+      <guid>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</guid>
       
         <description>
 
@@ -125,10 +125,10 @@
     
     <item>
       <title>在 Swift Framework 中使用 C 文件的过程探索</title>
-      <link>http://localhost:1313/post/swift-and-modules/</link>
+      <link>https://hechen.xyz/post/swift-and-modules/</link>
       <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/swift-and-modules/</guid>
+      <guid>https://hechen.xyz/post/swift-and-modules/</guid>
       
         <description>
 
@@ -462,10 +462,10 @@ export *
     
     <item>
       <title>UserDefaults and Keychain</title>
-      <link>http://localhost:1313/post/userdefaults-and-keychain/</link>
+      <link>https://hechen.xyz/post/userdefaults-and-keychain/</link>
       <pubDate>Fri, 21 Dec 2018 14:30:50 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/userdefaults-and-keychain/</guid>
+      <guid>https://hechen.xyz/post/userdefaults-and-keychain/</guid>
       
         <description>
 
@@ -596,10 +596,10 @@ export *
     
     <item>
       <title>如何做 Send to 2Do 的书签</title>
-      <link>http://localhost:1313/post/send-to-2do/</link>
+      <link>https://hechen.xyz/post/send-to-2do/</link>
       <pubDate>Mon, 26 Nov 2018 14:59:50 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/send-to-2do/</guid>
+      <guid>https://hechen.xyz/post/send-to-2do/</guid>
       
         <description>&lt;p&gt;使用鼠标拖拽下面这个链接到你的 Favorites Bar 上，&lt;/p&gt;
 
@@ -644,10 +644,10 @@ export *
     
     <item>
       <title>阅读流程</title>
-      <link>http://localhost:1313/post/reading-process/</link>
+      <link>https://hechen.xyz/post/reading-process/</link>
       <pubDate>Tue, 16 Oct 2018 17:01:44 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/reading-process/</guid>
+      <guid>https://hechen.xyz/post/reading-process/</guid>
       
         <description>
 
@@ -726,10 +726,10 @@ export *
     
     <item>
       <title>三个简单步骤让你测试使用系统单例的代码</title>
-      <link>http://localhost:1313/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</link>
+      <link>https://hechen.xyz/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</link>
       <pubDate>Tue, 17 Jul 2018 17:09:57 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</guid>
+      <guid>https://hechen.xyz/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</guid>
       
         <description>
 
@@ -872,10 +872,10 @@ func testLoadingData() {
     
     <item>
       <title>避免在 Swift 中使用单例</title>
-      <link>http://localhost:1313/post/avoiding-singletons-in-swift/</link>
+      <link>https://hechen.xyz/post/avoiding-singletons-in-swift/</link>
       <pubDate>Mon, 16 Jul 2018 17:34:36 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/avoiding-singletons-in-swift/</guid>
+      <guid>https://hechen.xyz/post/avoiding-singletons-in-swift/</guid>
       
         <description>
 
@@ -1037,10 +1037,10 @@ extension AppDelegate: NavigationService {
     
     <item>
       <title>Swift 中几种不同的依赖注入方式</title>
-      <link>http://localhost:1313/post/different-flavors-of-dependency-injection-in-swift/</link>
+      <link>https://hechen.xyz/post/different-flavors-of-dependency-injection-in-swift/</link>
       <pubDate>Mon, 16 Jul 2018 13:57:24 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/different-flavors-of-dependency-injection-in-swift/</guid>
+      <guid>https://hechen.xyz/post/different-flavors-of-dependency-injection-in-swift/</guid>
       
         <description>
 
@@ -1206,10 +1206,10 @@ class MessageSender {
     
     <item>
       <title>那些我恢复 Mac 系统之后要安装的 Apps</title>
-      <link>http://localhost:1313/post/my-favorite-mac-apps/</link>
+      <link>https://hechen.xyz/post/my-favorite-mac-apps/</link>
       <pubDate>Wed, 11 Jul 2018 12:58:37 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/my-favorite-mac-apps/</guid>
+      <guid>https://hechen.xyz/post/my-favorite-mac-apps/</guid>
       
         <description>
 
@@ -1643,10 +1643,10 @@ class MessageSender {
     
     <item>
       <title>What is LLVM</title>
-      <link>http://localhost:1313/post/what-is-llvm/</link>
+      <link>https://hechen.xyz/post/what-is-llvm/</link>
       <pubDate>Tue, 10 Jul 2018 12:05:58 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/what-is-llvm/</guid>
+      <guid>https://hechen.xyz/post/what-is-llvm/</guid>
       
         <description>
 
@@ -1765,10 +1765,10 @@ class MessageSender {
     
     <item>
       <title>In App Purchase</title>
-      <link>http://localhost:1313/post/in-app-purchase/</link>
+      <link>https://hechen.xyz/post/in-app-purchase/</link>
       <pubDate>Thu, 24 May 2018 10:40:39 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/in-app-purchase/</guid>
+      <guid>https://hechen.xyz/post/in-app-purchase/</guid>
       
         <description>
 
@@ -2106,10 +2106,10 @@ request.start()
     
     <item>
       <title>在 Swift 中使用工厂模式进行依赖注入</title>
-      <link>http://localhost:1313/post/dependency-injection-using-factories-in-swift/</link>
+      <link>https://hechen.xyz/post/dependency-injection-using-factories-in-swift/</link>
       <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/dependency-injection-using-factories-in-swift/</guid>
+      <guid>https://hechen.xyz/post/dependency-injection-using-factories-in-swift/</guid>
       
         <description>
 
@@ -2296,10 +2296,10 @@ window.rootViewController = UINavigationController(
     
     <item>
       <title>模块化 Xcode 工程</title>
-      <link>http://localhost:1313/post/modular-xcode-projects/</link>
+      <link>https://hechen.xyz/post/modular-xcode-projects/</link>
       <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/modular-xcode-projects/</guid>
+      <guid>https://hechen.xyz/post/modular-xcode-projects/</guid>
       
         <description>
 
@@ -2493,10 +2493,10 @@ window.rootViewController = UINavigationController(
     
     <item>
       <title>Initializer in Swift</title>
-      <link>http://localhost:1313/post/initializer-in-swift/</link>
+      <link>https://hechen.xyz/post/initializer-in-swift/</link>
       <pubDate>Wed, 15 Nov 2017 13:09:27 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/initializer-in-swift/</guid>
+      <guid>https://hechen.xyz/post/initializer-in-swift/</guid>
       
         <description>
 
@@ -2523,10 +2523,10 @@ window.rootViewController = UINavigationController(
     
     <item>
       <title>处理 Swift 中非可选的可选值类型</title>
-      <link>http://localhost:1313/post/handling-non-optional-optionals-in-swift/</link>
+      <link>https://hechen.xyz/post/handling-non-optional-optionals-in-swift/</link>
       <pubDate>Tue, 14 Nov 2017 21:53:52 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/handling-non-optional-optionals-in-swift/</guid>
+      <guid>https://hechen.xyz/post/handling-non-optional-optionals-in-swift/</guid>
       
         <description>
 
@@ -2739,10 +2739,10 @@ class CommentManager {
     
     <item>
       <title>理解响应者和响应链</title>
-      <link>http://localhost:1313/post/understanding-responders-and-the-responder-chain/</link>
+      <link>https://hechen.xyz/post/understanding-responders-and-the-responder-chain/</link>
       <pubDate>Mon, 13 Nov 2017 21:22:44 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/understanding-responders-and-the-responder-chain/</guid>
+      <guid>https://hechen.xyz/post/understanding-responders-and-the-responder-chain/</guid>
       
         <description>
 
@@ -2800,10 +2800,10 @@ class CommentManager {
     
     <item>
       <title>Capturing objects in Swift closures</title>
-      <link>http://localhost:1313/post/capturing-objects-in-swift-closures/</link>
+      <link>https://hechen.xyz/post/capturing-objects-in-swift-closures/</link>
       <pubDate>Sun, 12 Nov 2017 20:56:50 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/capturing-objects-in-swift-closures/</guid>
+      <guid>https://hechen.xyz/post/capturing-objects-in-swift-closures/</guid>
       
         <description>
 
@@ -2977,10 +2977,10 @@ dataLoader.loadData(from: url) { data in
     
     <item>
       <title>@autoclosure &amp;&amp; @escape</title>
-      <link>http://localhost:1313/post/autoclosure-escape/</link>
+      <link>https://hechen.xyz/post/autoclosure-escape/</link>
       <pubDate>Sun, 12 Nov 2017 20:01:54 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/autoclosure-escape/</guid>
+      <guid>https://hechen.xyz/post/autoclosure-escape/</guid>
       
         <description>
 
@@ -3111,10 +3111,10 @@ func ??&amp;lt;T&amp;gt;(optional: T?, defaultValue: @autoclosure () -&amp;gt; T
     
     <item>
       <title>关于 iOS10 Notification 的那些事儿</title>
-      <link>http://localhost:1313/post/ios-notification/</link>
+      <link>https://hechen.xyz/post/ios-notification/</link>
       <pubDate>Sat, 20 May 2017 10:10:54 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/ios-notification/</guid>
+      <guid>https://hechen.xyz/post/ios-notification/</guid>
       
         <description>
 

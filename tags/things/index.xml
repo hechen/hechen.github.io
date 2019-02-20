@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Things on Jane - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/tags/things/</link>
-    <description>Recent content in Things on Jane - A super concise theme for Hugo</description>
+    <title>Things on I make stuff</title>
+    <link>https://hechen.xyz/tags/things/</link>
+    <description>Recent content in Things on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 26 Nov 2018 14:59:50 +0000</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/tags/things/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.xyz/tags/things/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>如何做 Send to 2Do 的书签</title>
-      <link>http://localhost:1313/post/send-to-2do/</link>
+      <link>https://hechen.xyz/post/send-to-2do/</link>
       <pubDate>Mon, 26 Nov 2018 14:59:50 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/send-to-2do/</guid>
+      <guid>https://hechen.xyz/post/send-to-2do/</guid>
       <description>使用鼠标拖拽下面这个链接到你的 Favorites Bar 上， Send to 2Do 然后编辑地址，将其替换为如下： javascript:window.location=&#39;twodo://x-callback-url/add?task=&#39;+encodeURIComponent(document.title)+&#39;&amp;amp;note=&#39;+encodeURIComponent(window.location)+&#39;&amp;amp;action=url:&#39;+encodeURIComponent(window.location) 所以，其实还是在触发调用 URL Scheme，其中 document.title 为标题 window.location 为当前页面</description>
     </item>
     

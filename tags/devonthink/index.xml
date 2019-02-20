@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Devonthink on Jane - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/tags/devonthink/</link>
-    <description>Recent content in Devonthink on Jane - A super concise theme for Hugo</description>
+    <title>Devonthink on I make stuff</title>
+    <link>https://hechen.xyz/tags/devonthink/</link>
+    <description>Recent content in Devonthink on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 16 Oct 2018 17:01:44 +0000</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/tags/devonthink/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.xyz/tags/devonthink/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>阅读流程</title>
-      <link>http://localhost:1313/post/reading-process/</link>
+      <link>https://hechen.xyz/post/reading-process/</link>
       <pubDate>Tue, 16 Oct 2018 17:01:44 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/reading-process/</guid>
+      <guid>https://hechen.xyz/post/reading-process/</guid>
       <description>最近统一了一下自己的阅读流程，更新一下，具体用到的工具有 DEVONThink Pro PDFExpert MarginNote 其中 1 是输入和归档源，3 是输出源。 大概就是如下所示： 采集素材 在平时浏览网页的</description>
     </item>
     

@@ -1,112 +1,112 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Jane - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/categories/</link>
-    <description>Recent content in Categories on Jane - A super concise theme for Hugo</description>
+    <title>Categories on I make stuff</title>
+    <link>https://hechen.xyz/categories/</link>
+    <description>Recent content in Categories on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 12 Feb 2017 16:38:24 +0000</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.xyz/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Book</title>
-      <link>http://localhost:1313/categories/book/</link>
+      <link>https://hechen.xyz/categories/book/</link>
       <pubDate>Sun, 12 Feb 2017 16:38:24 +0000</pubDate>
       
-      <guid>http://localhost:1313/categories/book/</guid>
+      <guid>https://hechen.xyz/categories/book/</guid>
       <description></description>
     </item>
     
     <item>
       <title>C&#43;&#43;</title>
-      <link>http://localhost:1313/categories/c&#43;&#43;/</link>
+      <link>https://hechen.xyz/categories/c&#43;&#43;/</link>
       <pubDate>Wed, 29 Apr 2015 11:57:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/categories/c&#43;&#43;/</guid>
+      <guid>https://hechen.xyz/categories/c&#43;&#43;/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Data Structure</title>
-      <link>http://localhost:1313/categories/data-structure/</link>
+      <link>https://hechen.xyz/categories/data-structure/</link>
       <pubDate>Thu, 07 May 2015 13:59:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/categories/data-structure/</guid>
+      <guid>https://hechen.xyz/categories/data-structure/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ios</title>
-      <link>http://localhost:1313/categories/ios/</link>
+      <link>https://hechen.xyz/categories/ios/</link>
       <pubDate>Thu, 24 May 2018 10:40:39 +0000</pubDate>
       
-      <guid>http://localhost:1313/categories/ios/</guid>
+      <guid>https://hechen.xyz/categories/ios/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Leetcode</title>
-      <link>http://localhost:1313/categories/leetcode/</link>
+      <link>https://hechen.xyz/categories/leetcode/</link>
       <pubDate>Fri, 21 Aug 2015 09:14:17 +0000</pubDate>
       
-      <guid>http://localhost:1313/categories/leetcode/</guid>
+      <guid>https://hechen.xyz/categories/leetcode/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mac</title>
-      <link>http://localhost:1313/categories/mac/</link>
+      <link>https://hechen.xyz/categories/mac/</link>
       <pubDate>Mon, 28 Jan 2019 17:51:35 +0000</pubDate>
       
-      <guid>http://localhost:1313/categories/mac/</guid>
+      <guid>https://hechen.xyz/categories/mac/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Productivity</title>
-      <link>http://localhost:1313/categories/productivity/</link>
+      <link>https://hechen.xyz/categories/productivity/</link>
       <pubDate>Mon, 26 Nov 2018 14:59:50 +0000</pubDate>
       
-      <guid>http://localhost:1313/categories/productivity/</guid>
+      <guid>https://hechen.xyz/categories/productivity/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Scala</title>
-      <link>http://localhost:1313/categories/scala/</link>
+      <link>https://hechen.xyz/categories/scala/</link>
       <pubDate>Thu, 16 Apr 2015 18:43:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/categories/scala/</guid>
+      <guid>https://hechen.xyz/categories/scala/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Sourcecode</title>
-      <link>http://localhost:1313/categories/sourcecode/</link>
+      <link>https://hechen.xyz/categories/sourcecode/</link>
       <pubDate>Sun, 12 Feb 2017 16:36:54 +0000</pubDate>
       
-      <guid>http://localhost:1313/categories/sourcecode/</guid>
+      <guid>https://hechen.xyz/categories/sourcecode/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Swift</title>
-      <link>http://localhost:1313/categories/swift/</link>
+      <link>https://hechen.xyz/categories/swift/</link>
       <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
       
-      <guid>http://localhost:1313/categories/swift/</guid>
+      <guid>https://hechen.xyz/categories/swift/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Translation</title>
-      <link>http://localhost:1313/categories/translation/</link>
+      <link>https://hechen.xyz/categories/translation/</link>
       <pubDate>Tue, 17 Jul 2018 17:09:57 +0000</pubDate>
       
-      <guid>http://localhost:1313/categories/translation/</guid>
+      <guid>https://hechen.xyz/categories/translation/</guid>
       <description></description>
     </item>
     

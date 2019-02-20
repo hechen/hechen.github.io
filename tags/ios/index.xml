@@ -1,166 +1,166 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ios on Jane - A super concise theme for Hugo</title>
-    <link>http://localhost:1313/tags/ios/</link>
-    <description>Recent content in Ios on Jane - A super concise theme for Hugo</description>
+    <title>Ios on I make stuff</title>
+    <link>https://hechen.xyz/tags/ios/</link>
+    <description>Recent content in Ios on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 17 Jul 2018 17:09:57 +0000</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.xyz/tags/ios/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>三个简单步骤让你测试使用系统单例的代码</title>
-      <link>http://localhost:1313/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</link>
+      <link>https://hechen.xyz/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</link>
       <pubDate>Tue, 17 Jul 2018 17:09:57 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</guid>
+      <guid>https://hechen.xyz/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</guid>
       <description>大部分在 Apple 平台开发的 App 都会依赖基于单例的 API。从 UIScreen 到 UIApplication，再到 NSBundle，而 Foundation，UIKit 以</description>
     </item>
     
     <item>
       <title>避免在 Swift 中使用单例</title>
-      <link>http://localhost:1313/post/avoiding-singletons-in-swift/</link>
+      <link>https://hechen.xyz/post/avoiding-singletons-in-swift/</link>
       <pubDate>Mon, 16 Jul 2018 17:34:36 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/avoiding-singletons-in-swift/</guid>
+      <guid>https://hechen.xyz/post/avoiding-singletons-in-swift/</guid>
       <description>“我知道单例不好，但是&amp;hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的</description>
     </item>
     
     <item>
       <title>Swift 中几种不同的依赖注入方式</title>
-      <link>http://localhost:1313/post/different-flavors-of-dependency-injection-in-swift/</link>
+      <link>https://hechen.xyz/post/different-flavors-of-dependency-injection-in-swift/</link>
       <pubDate>Mon, 16 Jul 2018 13:57:24 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/different-flavors-of-dependency-injection-in-swift/</guid>
+      <guid>https://hechen.xyz/post/different-flavors-of-dependency-injection-in-swift/</guid>
       <description>在之前的几篇博客中，我们已经了解了几种使用依赖注入方式使得某个 swift app 拥有一个更加解耦可测试的架构。比如在 在 Swift 中使用工厂模式进行依赖注入 中和工厂</description>
     </item>
     
     <item>
       <title>In App Purchase</title>
-      <link>http://localhost:1313/post/in-app-purchase/</link>
+      <link>https://hechen.xyz/post/in-app-purchase/</link>
       <pubDate>Thu, 24 May 2018 10:40:39 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/in-app-purchase/</guid>
+      <guid>https://hechen.xyz/post/in-app-purchase/</guid>
       <description>对于在 App Store 中上架的应⽤来说，应⽤内购买(In-App Purchase，简称 IAP) 应该是一个避不开的话题，尤其是去年微信打赏和 Apple 之间的争执更让 IAP 火</description>
     </item>
     
     <item>
       <title>在 Swift 中使用工厂模式进行依赖注入</title>
-      <link>http://localhost:1313/post/dependency-injection-using-factories-in-swift/</link>
+      <link>https://hechen.xyz/post/dependency-injection-using-factories-in-swift/</link>
       <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/dependency-injection-using-factories-in-swift/</guid>
+      <guid>https://hechen.xyz/post/dependency-injection-using-factories-in-swift/</guid>
       <description>依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象</description>
     </item>
     
     <item>
       <title>模块化 Xcode 工程</title>
-      <link>http://localhost:1313/post/modular-xcode-projects/</link>
+      <link>https://hechen.xyz/post/modular-xcode-projects/</link>
       <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/modular-xcode-projects/</guid>
+      <guid>https://hechen.xyz/post/modular-xcode-projects/</guid>
       <description>使用 Xcode 构建模块化的工程就需要对工程结构以及其基础概念有很好的理解才行。我们平时不怎么关注工程结构本身，只有在工程逐渐变大，要添加更多依赖的时</description>
     </item>
     
     <item>
       <title>Initializer in Swift</title>
-      <link>http://localhost:1313/post/initializer-in-swift/</link>
+      <link>https://hechen.xyz/post/initializer-in-swift/</link>
       <pubDate>Wed, 15 Nov 2017 13:09:27 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/initializer-in-swift/</guid>
+      <guid>https://hechen.xyz/post/initializer-in-swift/</guid>
       <description>我想 [[xxx alloc] init] 应该是自己接触 iOS 开发以来写的最多的语句了吧。一个对象初始化是其得以存在的前提，无论你是使用 new 关键字与否，根本上都会执行到 init 方法。 转</description>
     </item>
     
     <item>
       <title>处理 Swift 中非可选的可选值类型</title>
-      <link>http://localhost:1313/post/handling-non-optional-optionals-in-swift/</link>
+      <link>https://hechen.xyz/post/handling-non-optional-optionals-in-swift/</link>
       <pubDate>Tue, 14 Nov 2017 21:53:52 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/handling-non-optional-optionals-in-swift/</guid>
+      <guid>https://hechen.xyz/post/handling-non-optional-optionals-in-swift/</guid>
       <description>可选值（optionals）无可争议的是 swift 语言中最重要的特性之一，也是和其他语言，例如 Objective-C 的最大区别。通过强制处理那些有可能出现 nil 的地方，我们</description>
     </item>
     
     <item>
       <title>Capturing objects in Swift closures</title>
-      <link>http://localhost:1313/post/capturing-objects-in-swift-closures/</link>
+      <link>https://hechen.xyz/post/capturing-objects-in-swift-closures/</link>
       <pubDate>Sun, 12 Nov 2017 20:56:50 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/capturing-objects-in-swift-closures/</guid>
+      <guid>https://hechen.xyz/post/capturing-objects-in-swift-closures/</guid>
       <description>自从 Block 在 iOS4 被引入 Objective-C 的世界之后就成为了 Apple 各平台上最时髦的 API 的重要组成部分了。当 Swift 语言出现的时候，blocks 的概念就摇身一变通过 closure 的形式引入，</description>
     </item>
     
     <item>
       <title>@autoclosure &amp;&amp; @escape</title>
-      <link>http://localhost:1313/post/autoclosure-escape/</link>
+      <link>https://hechen.xyz/post/autoclosure-escape/</link>
       <pubDate>Sun, 12 Nov 2017 20:01:54 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/autoclosure-escape/</guid>
+      <guid>https://hechen.xyz/post/autoclosure-escape/</guid>
       <description>我们知道在 swift 中，闭包（closure）是一等公民，因此可以被当作参数传递，在学习 swift 的过程中经常会看到某些关键字修饰该闭包，@autoclos</description>
     </item>
     
     <item>
       <title>关于 iOS10 Notification 的那些事儿</title>
-      <link>http://localhost:1313/post/ios-notification/</link>
+      <link>https://hechen.xyz/post/ios-notification/</link>
       <pubDate>Sat, 20 May 2017 10:10:54 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/ios-notification/</guid>
+      <guid>https://hechen.xyz/post/ios-notification/</guid>
       <description>概览 推送通知我们大家都不陌生，可以说几乎每个使用智能手机的人每天都会被不同的通知 打扰 到，正式因为合适的推送是吸引用户注意力的利器，其成为了各</description>
     </item>
     
     <item>
       <title>解析 PNChart 第三方库</title>
-      <link>http://localhost:1313/post/read-sourcecode-of-pnchart/</link>
+      <link>https://hechen.xyz/post/read-sourcecode-of-pnchart/</link>
       <pubDate>Sun, 12 Feb 2017 16:36:54 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/read-sourcecode-of-pnchart/</guid>
+      <guid>https://hechen.xyz/post/read-sourcecode-of-pnchart/</guid>
       <description>学习 PNChart 本篇文章写作时，PChart 版本号为 0.8.9. 代码结构 可视化展示类型 首先，目前 PNChart 提供多达六种图的可视化展示。分别是： PNLineChart PNScatterChart PNRadarChart PNPieChart PNBarChart PNCircleChart 类图 首先来看最</description>
     </item>
     
     <item>
       <title>如何使用UIBezierPath实现一个弹性视图动画</title>
-      <link>http://localhost:1313/post/elastic-view-animation-using-uibezierpath/</link>
+      <link>https://hechen.xyz/post/elastic-view-animation-using-uibezierpath/</link>
       <pubDate>Wed, 02 Dec 2015 18:53:51 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/elastic-view-animation-using-uibezierpath/</guid>
+      <guid>https://hechen.xyz/post/elastic-view-animation-using-uibezierpath/</guid>
       <description>Hey！ DGElasticPullToRefresh展示如何实现一个弹性效果。效果如下图所示： 开发环境： Xcode 7 Swift 2.0 要求： 开发者至少对UIBez</description>
     </item>
     
     <item>
       <title>Objective-C中Category的一点东西</title>
-      <link>http://localhost:1313/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</link>
+      <link>https://hechen.xyz/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</link>
       <pubDate>Mon, 14 Sep 2015 15:36:07 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</guid>
+      <guid>https://hechen.xyz/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</guid>
       <description>Objective-C中的分类（category）是一种编译时的手段，其允许我们通过给某个已知类添加方法来扩充该类的一种方式。当然这其中是有</description>
     </item>
     
     <item>
       <title>理解Objective-C运行时</title>
-      <link>http://localhost:1313/post/understanding-the-objective-c-runtime/</link>
+      <link>https://hechen.xyz/post/understanding-the-objective-c-runtime/</link>
       <pubDate>Mon, 07 Sep 2015 17:55:33 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/understanding-the-objective-c-runtime/</guid>
+      <guid>https://hechen.xyz/post/understanding-the-objective-c-runtime/</guid>
       <description>Objective-C 运行时对于刚刚踏入 Cocoa/Objective 世界的人是很容易忽 略的 Objective-C 语言的特性之一。原因就是尽管 Objective-C 是一门几个小时之内入门的语言，但是投身 Cocoa 的新手们会花费大量时间在</description>
     </item>
     
     <item>
       <title>我们是如何创建iOS版的Guillotine菜单动画的</title>
-      <link>http://localhost:1313/post/how-we-created-guillotine-menu-animation-for-ios/</link>
+      <link>https://hechen.xyz/post/how-we-created-guillotine-menu-animation-for-ios/</link>
       <pubDate>Tue, 01 Sep 2015 15:52:07 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/how-we-created-guillotine-menu-animation-for-ios/</guid>
+      <guid>https://hechen.xyz/post/how-we-created-guillotine-menu-animation-for-ios/</guid>
       <description>你是否曾经有过这样的疑问？为什么app中几乎是清一色的侧边栏（sidebar），为什么不把它做成topBar或者bottomBar，甚至co</description>
     </item>
     
     <item>
       <title>iOS 远端推送部署详解</title>
-      <link>http://localhost:1313/post/ios-push-notification/</link>
+      <link>https://hechen.xyz/post/ios-push-notification/</link>
       <pubDate>Thu, 30 Jul 2015 14:30:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/ios-push-notification/</guid>
+      <guid>https://hechen.xyz/post/ios-push-notification/</guid>
       <description>最近几天被iOS的推送部署给搞懵了，现在特地整理下和大家进行分享。 iOS远端推送机制 APNS，全称为Apple Push Notification service，是苹果通知</description>
     </item>
     
