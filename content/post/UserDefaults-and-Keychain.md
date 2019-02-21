@@ -1,7 +1,7 @@
 ---
 title: UserDefaults and Keychain
 date: 2018-12-21 14:30:50
-category: ["iOS"]
+categories: ["iOS"]
 tags: ["UserDefaults","Keychain"]
 ---
 
