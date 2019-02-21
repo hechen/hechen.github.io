@@ -40,7 +40,7 @@ class DataLoader {
 
 上面这个 **DataLoader** 现在就变得很难测试，因为它内部会自主调用共享的 URL Session 来执行一个网络调用。这就需要我们为测试代码中增加一些等待和超时代码，然后很快这部分代码就会变得糟糕和不稳定。
 
-### 抽象成一个协议
+## 抽象成一个协议
 
 我们第一个任务就是把我们需要的 URLSession 的部分移到一个协议里，这样我们在测试中也能够很容易的进行 mock。在作者的[一次 talk](http://www.ustream.tv/recorded/101118612)中作者建议尽可能的避免 mock，尽管它是一种很好的策略。但是当你和系统的单例打交道的时候，mock 就是一个增加可预测性的重要工具。
 
@@ -67,7 +67,7 @@ extension URLSession: NetworkEngine {
 
 如上所见，我们使得 **URLSessionDataTask** 成了 **URLSession** 的一个实现细节。这样，我们就避免了在测试代码中不得不创建不同的 mock ，而只需要关注 NetworkEngine 就行。
 
-### 协议中把单例作为默认值
+## 协议中把单例作为默认值
 
 现在，让我们更新我们的 **DataLoader** 来使用新的 NetworkEngine 协议，把它作为依赖项注入。我们把 URLSession.shared 作为默认参数传递，以此做到了向后兼容并且和之前一样方便。
 
@@ -100,7 +100,7 @@ class DataLoader {
 
 通过使用默认参数，我们依然可以像之前一样很容易的生成 **DataLoader**，而不需要提供一个 **NetworkEngine**。
 
-### 在你的测试中 Mock 协议
+## 在你的测试中 Mock 协议
 
 最后，让我们写个测试，在这里我们通过 mock **NetworkEngine** 使得我们的测试快速，可预测并且容易维护。
 

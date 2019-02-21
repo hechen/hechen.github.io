@@ -28,7 +28,7 @@ Controls 向其关联的对象发送动作消息本身不是事件，但是依�
 如果一个 view 自身还有附加的手势识别器的话，该手势识别器会延迟针对该 view 的 touch 和 press 事件的传递。`delaysTouchesBegan`, `delaysTouchesEnded` 以及 `UIGestureRecognizer` 的 `cancelsTouchesInView` 属性都是用来决定这些 touches 什么时间以及以什么方式被延迟处理。
 
 
-### 识别包含 Touch 事件的响应者
+## 识别包含 Touch 事件的响应者
 
 UIKit 使用基于视图的碰撞检测（hit-testing）来决定 touch 事件发生的地点。具体而言，UIKit  拿该 touch 的位置和视图层级中所有的视图对象的 bounds 进行比较。UIView 的 `hitTest:withEvent:` 方法会游历整个视图层级，找到该 touch 事件发生所在的视图树最底端的视图，其也就是处理该 touch 事件的第一响应者。
 
@@ -36,7 +36,7 @@ UIKit 使用基于视图的碰撞检测（hit-testing）来决定 touch 事件�
 
 就这样，UIKit 持续不断的把每个 touch 指派给包含该 touch 的视图。当 touch 发生的时候，UIKit 创建一个 `UITouch` 对象，直到 touch 结束该对象才会被释放。当 touch 位置或者其他参数发生变化的时候，UIKit 就更新这个 UITouch 对象的信息。当然，其中有的属性当然是不会变化的，比如该 touch 附属的 view，甚至当 touch 位置已经超出原始 view 的外围的时候，UITouch 对象中的 view 属性依然保持和之前一样。
 
-### 变更响应者链
+## 变更响应者链
 
 你可以通过覆写响应者的 nextResponder 属性来改变响应者链。许多 UIKit 的类已经覆写了该方法并且返回了特定的对象。
 

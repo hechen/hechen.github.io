@@ -14,7 +14,7 @@ categories: ["Mac"]
 直接把 Surge 规则中的 Rule 由 Direct 改成了 Reject。
 
 
-# 问题追踪
+## 问题追踪
 
 在 2018 年 12 月底的时候，一大早打开电脑查询刚买的 SS 服务。
 
