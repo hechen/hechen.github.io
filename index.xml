@@ -584,13 +584,17 @@ export *
     </item>
     
     <item>
-      <title>如何做 Send to 2Do 的书签</title>
+      <title>如何制作 Send to 2Do 的 Safari 书签</title>
       <link>https://hechen.xyz/post/send-to-2do/</link>
       <pubDate>Mon, 26 Nov 2018 14:59:50 +0000</pubDate>
       
       <guid>https://hechen.xyz/post/send-to-2do/</guid>
       
-        <description>&lt;p&gt;使用鼠标拖拽下面这个链接到你的 Favorites Bar 上，&lt;/p&gt;
+        <description>
+
+&lt;p&gt;使用鼠标拖拽下面这个链接到你的 Favorites Bar 上，&lt;/p&gt;
+
+&lt;h1 id=&#34;2do&#34;&gt;2Do&lt;/h1&gt;
 
 &lt;p&gt;&lt;a href=&#34;javascript:window.location=&#34;&gt;Send to 2Do&lt;/a&gt;&lt;/p&gt;
 
@@ -601,12 +605,14 @@ export *
 
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/7M0xN1g.jpg&#34; alt=&#34;Change Value&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;所以，其实还是在触发调用 URL Scheme，其中&lt;/p&gt;
+&lt;p&gt;所以，本质上是执行了一段 JS 代码，结合当前文档的上下文信息，调用 URL Scheme，其中&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;document.title&lt;/code&gt; 为标题&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;window.location&lt;/code&gt; 为当前页面链接&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;h1 id=&#34;things&#34;&gt;Things&lt;/h1&gt;
 
 &lt;p&gt;我们知道 Things 的 URL Scheme 为&lt;/p&gt;
 
@@ -617,7 +623,9 @@ export *
 &lt;pre&gt;&lt;code&gt;javascript:window.location=&#39;things:///add?title=&#39;+encodeURIComponent(document.title)+&#39;&amp;amp;notes=&#39;+encodeURIComponent(window.location)+&#39;&amp;amp;when=today&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;以及 Send To OmniFocus ，如下：&lt;/p&gt;
+&lt;h1 id=&#34;omnifocus&#34;&gt;OmniFocus&lt;/h1&gt;
+
+&lt;p&gt;同理，可以有 Send To OmniFocus ，如下：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;javascript:window.location=&#39;omnifocus:///add?note=&#39;+encodeURIComponent(window.location)+&#39;&amp;amp;name=&#39;+encodeURIComponent(document.title)
 &lt;/code&gt;&lt;/pre&gt;
