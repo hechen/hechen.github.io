@@ -10,6 +10,13 @@
   </url>
   
   <url>
+    <loc>https://hechen.xyz/post/appleevents-usage-description/</loc>
+    <lastmod>2019-02-21T23:25:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2019-01-28T17:51:35+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -437,15 +444,15 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/ios/</loc>
-    <lastmod>2018-07-17T17:09:57+00:00</lastmod>
+    <loc>https://hechen.xyz/categories/ios/</loc>
+    <lastmod>2018-12-21T14:30:50+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/ios/</loc>
-    <lastmod>2018-12-21T14:30:50+00:00</lastmod>
+    <loc>https://hechen.xyz/tags/ios/</loc>
+    <lastmod>2018-07-17T17:09:57+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -500,6 +507,13 @@
   </url>
   
   <url>
+    <loc>https://hechen.xyz/categories/mac/</loc>
+    <lastmod>2019-01-28T17:51:35+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://hechen.xyz/tags/mac/</loc>
     <lastmod>2018-07-11T12:58:37+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -507,8 +521,8 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/mac/</loc>
-    <lastmod>2019-01-28T17:51:35+00:00</lastmod>
+    <loc>https://hechen.xyz/categories/macos/</loc>
+    <lastmod>2019-02-21T23:25:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -564,7 +578,7 @@
   
   <url>
     <loc>https://hechen.xyz/post/</loc>
-    <lastmod>2019-01-28T17:51:35+00:00</lastmod>
+    <lastmod>2019-02-21T23:25:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -612,6 +626,13 @@
   </url>
   
   <url>
+    <loc>https://hechen.xyz/tags/sandbox/</loc>
+    <lastmod>2019-02-21T23:25:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://hechen.xyz/categories/scala/</loc>
     <lastmod>2015-04-16T18:43:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -647,14 +668,14 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/swift/</loc>
+    <loc>https://hechen.xyz/categories/swift/</loc>
     <lastmod>2019-01-03T21:19:24+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/swift/</loc>
+    <loc>https://hechen.xyz/tags/swift/</loc>
     <lastmod>2019-01-03T21:19:24+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
