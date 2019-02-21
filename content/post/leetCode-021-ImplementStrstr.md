@@ -5,7 +5,7 @@ categories: ["LeetCode"]
 tags: ["Algorithm","String"]
 ---
 
-### 题目：Implement strStr()
+# 题目：Implement strStr()
 
 Implement strStr().
 
@@ -13,7 +13,7 @@ Returns the index of the first occurrence of needle in haystack, or -1 if needle
 
 <!-- more -->
 
-### 题意：
+## 题意：
 
 该题目就是实现strstr()函数，该函数C语言原型如下：返回字符串str1在str2中的位置。
 
@@ -22,14 +22,14 @@ extern char *strstr(char *str1, const char *str2);
 ```
 
 
-### 解法：
+## 解法：
 
-#### 暴力求解法
+### 暴力求解法
 
 最直接的实现方式就是暴力求解法，如下代码所示，
 
 ``` C++
-  class Solution {
+class Solution {
 	public:
 		int strStr(string haystack, string needle) {
 			return bruth(haystack, needle);
@@ -51,7 +51,7 @@ extern char *strstr(char *str1, const char *str2);
 			}
 			return -1;
 		}
-	}
+}
 
 ```
 
