@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2018-11-26T14:59:50&#43;00:00" />
 <meta itemprop="dateModified" content="2018-11-26T14:59:50&#43;00:00" />
-<meta itemprop="wordCount" content="214">
+<meta itemprop="wordCount" content="226">
 
 
 
@@ -350,20 +350,22 @@
 
 <h1 id="things">Things</h1>
 
-<p>我们知道 Things 的 URL Scheme 为</p>
+<p>我们知道 Things 的 URL Scheme 的规则如下：</p>
 
-<p><code>things:///add?title=iamtitle&amp;notes=iamnotes&amp;when=tomorrow</code></p>
+<pre><code class="language-C">/// add a todo due when tommorow
+things:///add?title=iamtitle&amp;notes=iamnotes&amp;when=tomorrow
+</code></pre>
 
 <p>比如你可以把链接内容改为支持 Send To Things：</p>
 
-<pre><code>javascript:window.location='things:///add?title='+encodeURIComponent(document.title)+'&amp;notes='+encodeURIComponent(window.location)+'&amp;when=today'
+<pre><code class="language-JavaScript">javascript:window.location='things:///add?title='+encodeURIComponent(document.title)+'&amp;notes='+encodeURIComponent(window.location)+'&amp;when=today'
 </code></pre>
 
 <h1 id="omnifocus">OmniFocus</h1>
 
 <p>同理，可以有 Send To OmniFocus ，如下：</p>
 
-<pre><code>javascript:window.location='omnifocus:///add?note='+encodeURIComponent(window.location)+'&amp;name='+encodeURIComponent(document.title)
+<pre><code class="language-JavaScript">javascript:window.location='omnifocus:///add?note='+encodeURIComponent(window.location)+'&amp;name='+encodeURIComponent(document.title)
 </code></pre>
 
 <p>或者直接去 <a href="http://people.omnigroup.com/kc/OmniFocus/SendToOmniFocusBookmarklet.html">OmniFocus 页面</a> 用相同方式把起已经设置好正确 Value 的链接拖到上方工具条上即可。</p>
