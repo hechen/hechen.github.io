@@ -614,20 +614,22 @@ export *
 
 &lt;h1 id=&#34;things&#34;&gt;Things&lt;/h1&gt;
 
-&lt;p&gt;我们知道 Things 的 URL Scheme 为&lt;/p&gt;
+&lt;p&gt;我们知道 Things 的 URL Scheme 的规则如下：&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;things:///add?title=iamtitle&amp;amp;notes=iamnotes&amp;amp;when=tomorrow&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-C&#34;&gt;/// add a todo due when tommorow
+things:///add?title=iamtitle&amp;amp;notes=iamnotes&amp;amp;when=tomorrow
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;比如你可以把链接内容改为支持 Send To Things：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;javascript:window.location=&#39;things:///add?title=&#39;+encodeURIComponent(document.title)+&#39;&amp;amp;notes=&#39;+encodeURIComponent(window.location)+&#39;&amp;amp;when=today&#39;
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;javascript:window.location=&#39;things:///add?title=&#39;+encodeURIComponent(document.title)+&#39;&amp;amp;notes=&#39;+encodeURIComponent(window.location)+&#39;&amp;amp;when=today&#39;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id=&#34;omnifocus&#34;&gt;OmniFocus&lt;/h1&gt;
 
 &lt;p&gt;同理，可以有 Send To OmniFocus ，如下：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;javascript:window.location=&#39;omnifocus:///add?note=&#39;+encodeURIComponent(window.location)+&#39;&amp;amp;name=&#39;+encodeURIComponent(document.title)
+&lt;pre&gt;&lt;code class=&#34;language-JavaScript&#34;&gt;javascript:window.location=&#39;omnifocus:///add?note=&#39;+encodeURIComponent(window.location)+&#39;&amp;amp;name=&#39;+encodeURIComponent(document.title)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;或者直接去 &lt;a href=&#34;http://people.omnigroup.com/kc/OmniFocus/SendToOmniFocusBookmarklet.html&#34;&gt;OmniFocus 页面&lt;/a&gt; 用相同方式把起已经设置好正确 Value 的链接拖到上方工具条上即可。&lt;/p&gt;
