@@ -316,15 +316,13 @@
   <div class="post-toc-content">
     <nav id="TableOfContents">
 <ul>
-<li>
+<li><a href="#题目-implement-strstr">题目：Implement strStr()</a>
 <ul>
-<li>
-<ul>
-<li><a href="#题目-implement-strstr">题目：Implement strStr()</a></li>
 <li><a href="#题意">题意：</a></li>
 <li><a href="#解法">解法：</a>
 <ul>
-<li><a href="#暴力求解法">暴力求解法</a></li>
+<li><a href="#暴力求解法">暴力求解法</a>
+<ul>
 <li><a href="#kmp算法">KMP算法</a></li>
 </ul></li>
 </ul></li>
@@ -338,7 +336,7 @@
     <div class="post-content">
       
 
-<h3 id="题目-implement-strstr">题目：Implement strStr()</h3>
+<h1 id="题目-implement-strstr">题目：Implement strStr()</h1>
 
 <p>Implement strStr().</p>
 
@@ -346,20 +344,20 @@
 
 <!-- more -->
 
-<h3 id="题意">题意：</h3>
+<h2 id="题意">题意：</h2>
 
 <p>该题目就是实现strstr()函数，该函数C语言原型如下：返回字符串str1在str2中的位置。</p>
 
 <pre><code>extern char *strstr(char *str1, const char *str2);
 </code></pre>
 
-<h3 id="解法">解法：</h3>
+<h2 id="解法">解法：</h2>
 
-<h4 id="暴力求解法">暴力求解法</h4>
+<h3 id="暴力求解法">暴力求解法</h3>
 
 <p>最直接的实现方式就是暴力求解法，如下代码所示，</p>
 
-<pre><code class="language-C++">  class Solution {
+<pre><code class="language-C++">class Solution {
 	public:
 		int strStr(string haystack, string needle) {
 			return bruth(haystack, needle);
@@ -381,7 +379,7 @@
 			}
 			return -1;
 		}
-	}
+}
 
 </code></pre>
 
