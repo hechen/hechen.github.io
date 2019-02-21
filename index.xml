@@ -24,7 +24,7 @@
     </item>
     
     <item>
-      <title>AppleEvents Event Sandboxing</title>
+      <title>Apple Event Sandboxing</title>
       <link>https://hechen.xyz/post/appleevents-usage-description/</link>
       <pubDate>Thu, 21 Feb 2019 23:25:38 +0800</pubDate>
       
@@ -32,11 +32,11 @@
       
         <description>
 
-&lt;h1 id=&#34;问题背景&#34;&gt;问题背景&lt;/h1&gt;
+&lt;h2 id=&#34;问题背景&#34;&gt;问题背景&lt;/h2&gt;
 
 &lt;p&gt;最近在修改某个 &lt;a href=&#34;https://github.com/hechen/vibe&#34;&gt;Mac 应用&lt;/a&gt;，其原理就是通过执行一段 AppleScript 获取 OmniFocus 的信息，然后进行可视化展示，但是总取不到数据。&lt;/p&gt;
 
-&lt;h1 id=&#34;原因&#34;&gt;原因&lt;/h1&gt;
+&lt;h2 id=&#34;原因&#34;&gt;原因&lt;/h2&gt;
 
 &lt;p&gt;关键数据获取阶段执行的 AppleScript 的时候总是取不到数据。&lt;/p&gt;
 
@@ -69,11 +69,11 @@ return theProgressDetail
 
 &lt;p&gt;在 Cocoa 中是通过执行如下代码执行：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-Swift&#34;&gt;        let myAppleScript = &amp;quot;I am a piece of applescript&amp;quot;
-        if let scriptObject = NSAppleScript(source: myAppleScript) {
-            var error: NSDictionary?
-            let output = scriptObject.executeAndReturnError(&amp;amp;error)
-        }
+&lt;pre&gt;&lt;code class=&#34;language-Swift&#34;&gt;let myAppleScript = &amp;quot;I am a piece of applescript&amp;quot;
+if let scriptObject = NSAppleScript(source: myAppleScript) {
+    var error: NSDictionary?
+    let output = scriptObject.executeAndReturnError(&amp;amp;error)
+}
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;进行 Debug 启动 App 或者 Archive 安装包执行可执行文件，均无法正常获取执行结果，直接报错。 具体错误原因：&lt;/p&gt;
@@ -93,8 +93,9 @@ return theProgressDetail
 
 &lt;p&gt;再次启动 App 之后就会有如下弹窗提示：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/wm5GWLO.png&#34; alt=&#34;Capto_Capture 2019-02-21_11-47-42_P&#34; /&gt;
-前面执行 Apple Script 的方法会同步等待授权结果，用户点击允许之后，App 就能正常获取数据了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/wm5GWLO.png&#34; alt=&#34;Capto_Capture 2019-02-21_11-47-42_P&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;前面执行 Apple Script 的方法会同步等待授权结果，用户点击允许之后，App 就能正常获取数据了。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/sfN59K4.png&#34; alt=&#34;Capto_Capture 2019-02-21_11-08-44_P&#34; /&gt;&lt;/p&gt;
 
