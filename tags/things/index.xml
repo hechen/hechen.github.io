@@ -12,12 +12,12 @@
     
     
     <item>
-      <title>如何做 Send to 2Do 的书签</title>
+      <title>如何制作 Send to 2Do 的 Safari 书签</title>
       <link>https://hechen.xyz/post/send-to-2do/</link>
       <pubDate>Mon, 26 Nov 2018 14:59:50 +0000</pubDate>
       
       <guid>https://hechen.xyz/post/send-to-2do/</guid>
-      <description>使用鼠标拖拽下面这个链接到你的 Favorites Bar 上， Send to 2Do 然后编辑地址，将其替换为如下： javascript:window.location=&#39;twodo://x-callback-url/add?task=&#39;+encodeURIComponent(document.title)+&#39;&amp;amp;note=&#39;+encodeURIComponent(window.location)+&#39;&amp;amp;action=url:&#39;+encodeURIComponent(window.location) 所以，其实还是在触发调用 URL Scheme，其中 document.title 为标题 window.location 为当前页面</description>
+      <description>使用鼠标拖拽下面这个链接到你的 Favorites Bar 上， 2Do Send to 2Do 然后编辑地址，将其替换为如下： javascript:window.location=&#39;twodo://x-callback-url/add?task=&#39;+encodeURIComponent(document.title)+&#39;&amp;amp;note=&#39;+encodeURIComponent(window.location)+&#39;&amp;amp;action=url:&#39;+encodeURIComponent(window.location) 所以，本质上是执行了一段 JS 代码，结合当前文档的上下文信息，调用</description>
     </item>
     
   </channel>
