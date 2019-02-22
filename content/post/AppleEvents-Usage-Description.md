@@ -1,6 +1,8 @@
 ---
 title: "Apple Event Sandboxing"
-date: 2019-02-21 23:25:38+08:00
+date: 2019-02-21T23:25:38+08:00
+lastmod: 2018-02-21T24:00:23+08:00
+draft: false
 categories: ["macOS"]
 tags: ["Sandbox"]
 ---
