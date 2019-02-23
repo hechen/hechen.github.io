@@ -21,6 +21,11 @@ pygmentsUseClasses = true       # Use CSS classes to format highlighted code
 pygmentsCodefencesGuessSyntax = true
 pygmentsOptions = "linenos=table"
 
+paginateOriginalStyle = true
+
+moreMeta = true
+showMenuLanguageChooser = true
+
 # language support # en / zh-cn / other... translations present in i18n/
 # 使用中文
 defaultContentLanguage = "zh-cn"  # 默认使用的语言
