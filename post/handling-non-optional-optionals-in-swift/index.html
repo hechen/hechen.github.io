@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2017-11-14T21:53:52&#43;00:00" />
 <meta itemprop="dateModified" content="2017-11-14T21:53:52&#43;00:00" />
-<meta itemprop="wordCount" content="2419">
+<meta itemprop="wordCount" content="2505">
 
 
 
@@ -339,8 +339,24 @@
 <p>可选值（optionals）无可争议的是 <code>swift</code> 语言中最重要的特性之一，也是和其他语言，例如 <code>Objective-C</code> 的最大区别。通过强制处理那些有可能出现 <code>nil</code> 的地方，我们就能写出更有预测性的以及更健壮的代码。</p>
 
 <p>然而，有些时候可选值可能会致你于尴尬的境地，尤其是你作为开发者了解（甚至是有些猜测的成分在），有的特定变量始终是非空（non-nil）的，即使它是一个可选类型。例如，我们在一个视图控制器中处理视图的时候：</p>
-
-<pre><code>class TableViewController: UIViewController {
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">class TableViewController: UIViewController {
     var tableView: UITableView?
 
     override func viewDidLoad() {
@@ -352,9 +368,9 @@
     func viewModelDidUpdate(_ viewModel: ViewModel) {
         tableView?.reloadData()
     }
-}
-</code></pre>
-
+}</pre></td></tr></table>
+</div>
+</div>
 <p>这也是对于很多 Swift 程序员争论比较激烈的地方，程度不亚于讨论 tabs 和 spaces 的用法。有的人会说：</p>
 
 <blockquote>
@@ -384,8 +400,24 @@
 <p>某些属性的值需要在其父类创建之后再生成（比如视图控制器中的那些视图，应该在 <code>loadView()</code>或者 <code>viewDidLoad()</code>方法中被创建），对于这种属性要避免其可选类型的方法就是使用 <code>lazy</code> 属性。一个<code>lazy</code>属性是可以是非可选类型的，同时也不在其父类的初始化方法里被需要，它会在其第一次被获取的时候创建出来。</p>
 
 <p>让我们改一下上面的代码，使用 lazy 来改造 tableView 属性：</p>
-
-<pre><code>class TableViewController: UIViewController {
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">class TableViewController: UIViewController {
     lazy var tableView = UITableView()
 
     override func viewDidLoad() {
@@ -397,16 +429,45 @@
     func viewModelDidUpdate(_ viewModel: ViewModel) {
         tableView.reloadData()
     }
-}
-</code></pre>
-
+}</pre></td></tr></table>
+</div>
+</div>
 <p>这样，没有可选值了，也不会有未知状态咯🎉</p>
 
 <h3 id="适当的依赖管理要比非可选的可选值要好">适当的依赖管理要比非可选的可选值要好</h3>
 
 <p>可选值类型另外一种常用的场景就是用来打破循环依赖（<a href="https://en.wikipedia.org/wiki/Circular_dependency">circular dependencies</a>）。有的时候，你就陷入 A 依赖 B，B 又依赖 A 的情况，如下：</p>
-
-<pre><code>class UserManager {
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">class UserManager {
     private weak var commentManager: CommentManager?
 
     func userDidPostComment(_ comment: Comment) {
@@ -431,14 +492,34 @@ class CommentManager {
     func clearCache() {
         cache.clear()
     }
-}
-</code></pre>
-
+}</pre></td></tr></table>
+</div>
+</div>
 <p>从上面的代码，我们可以看到，<code>UserManager</code> 和 <code>CommentManager</code> 之间有一个循环依赖的问题，它们二者都没法假设自己拥有对方，但是它们都在各自的代码逻辑里依赖彼此。这里就很容易产生 bug。</p>
 
 <p>那要解决上面的问题，我们创建一个 <code>CommentComposer</code> 来做一个协调者，负责通知<code>UserManager</code> 和 <code>CommentManager</code>二人一个评论产生了。</p>
-
-<pre><code>class CommentComposer {
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">class CommentComposer {
     private let commentManager: CommentManager
     private let userManager: UserManager
     private lazy var textView = UITextView()
@@ -454,12 +535,26 @@ class CommentManager {
         commentManager.handle(comment)
         userManager.userDidPostComment(comment)
     }
-}
-</code></pre>
-
+}</pre></td></tr></table>
+</div>
+</div>
 <p>通过这种形式，UserManager 可以强持有 CommentManager 也不产生任何依赖循环。</p>
-
-<pre><code>class UserManager {
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">class UserManager {
     private let commentManager: CommentManager
 
     init(commentManager: CommentManager) {
@@ -469,9 +564,9 @@ class CommentManager {
     func userDidPostComment(_ comment: Comment) {
         user.totalNumberOfComments += 1
     }
-}
-</code></pre>
-
+}</pre></td></tr></table>
+</div>
+</div>
 <p>我们又一次的移除了所有的可选类型，代码也更好预测了🎉。</p>
 
 <h3 id="优雅的崩溃-crashing-gracefully">优雅的崩溃（Crashing gracefully）</h3>
@@ -481,10 +576,14 @@ class CommentManager {
 <p>继续上面这个场景，加载配置文件失败的时候继续执行代码就会使得你的 app 进入一个未知状态，在这种情况下，最好的方式让它崩溃。这样，我们会得到一个崩溃日志，希望这个问题能够在用户感知之前早早的被我们的测试人员以及 QA 处理掉。</p>
 
 <p>所以，我们如何崩溃。。。最简单的方式就是添加 <code>!</code> 操作符，针对这个可选值强制解包，就会在其是 nil 的时候发生崩溃：</p>
-
-<pre><code>let configuration = loadConfiguration()!
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">let configuration = loadConfiguration()!</pre></td></tr></table>
+</div>
+</div>
 <p>虽然这个方法比较简单，但是它有个比较大的问题，就是一旦这段代码崩溃，我们能得到的只有一个错误信息：</p>
 
 <blockquote>
@@ -492,13 +591,20 @@ class CommentManager {
 </blockquote>
 
 <p>这个错误信息并不告诉我们为什么发生这个错误，在哪里发生的，给不了我们什么线索来解决它。这个时候，我们可以使用 guard 关键字，结合 <code>preconditionFailure()</code> 函数，在程序退出的时候给出定制消息。</p>
-
-<pre><code>guard let configuration = loadConfiguration() else {
-    preconditionFailure(&quot;Configuration couldn't be loaded. &quot; +
-                        &quot;Verify that Config.JSON is valid.&quot;)
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">guard let configuration = loadConfiguration() else {
+    preconditionFailure(&#34;Configuration couldn&#39;t be loaded. &#34; +
+                        &#34;Verify that Config.JSON is valid.&#34;)
+}</pre></td></tr></table>
+</div>
+</div>
 <p>上面这段代码发生崩溃的时候，我们就能获得更多更有效的错误信息：</p>
 
 <blockquote>
@@ -512,10 +618,14 @@ class CommentManager {
 <p>使用上面的 guard-let-preconditionFailure 的方案还是有一些冗长，确实让我们呃代码更难驾驭。我们也确实不希望在我们的代码里占很多篇幅去些这种代码，我们想更专注于我们的代码逻辑上。</p>
 
 <p>我的解决方案就是使用 <code>Require</code>。它只是简单的在可选值添加简单的 <code>require()</code> 方法，但能够使得调用的地方更简洁。用这种方法来处理上面加载 <code>JSON</code> 文件的代码就可以这样写：</p>
-
-<pre><code>let configuration = loadConfiguration().require(hint: &quot;Verify that Config.JSON is valid&quot;)
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">let configuration = loadConfiguration().require(hint: &#34;Verify that Config.JSON is valid&#34;)</pre></td></tr></table>
+</div>
+</div>
 <p>当出现异常的时候，会给出下面的错误信息：</p>
 
 <blockquote>

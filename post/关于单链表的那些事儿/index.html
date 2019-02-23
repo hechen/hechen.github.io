@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2015-05-07T13:59:00&#43;00:00" />
 <meta itemprop="dateModified" content="2015-05-07T13:59:00&#43;00:00" />
-<meta itemprop="wordCount" content="1378">
+<meta itemprop="wordCount" content="1432">
 
 
 
@@ -358,35 +358,62 @@
 <p>　　内部标记法和外部标记法其实是一个道理，不过就是辅助变量一个是在链表节点内，一个是借助辅助数组或者hash或者AVL，红黑树等 把已经访问过的节点地址存起来，每次访问下一个节点的时候进行查询看是否已经出现过。这里不再赘述。主要看追赶法，也称快满指针法，而追赶法大家一定都已经烂熟于心了。</p>
 
 <p>　　追赶法主要利用最大公倍数原理，用2个游标，对链表进行访问，例如:pSlow， pFast。 pSlow访问每步向前进1个节点，而pFast则每次向前前进2个节点，如果有环则pSlow和pFast必会相遇，如果pFast最终指向了NULL，则说明该链表不存在环路。因为两个指针步子迈的不一样，因为被称作快慢指针。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C">    <span class="c1">// Definition for singly - linked list.
+</span><span class="c1"></span>	<span class="k">struct</span> <span class="n">ListNode</span> <span class="p">{</span>
+	    <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+	    <span class="n">ListNode</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+	    <span class="n">ListNode</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="o">:</span> <span class="n">val</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">next</span><span class="p">(</span><span class="n">nullptr</span><span class="p">)</span> <span class="p">{}</span>
+	<span class="p">};</span>
 
-<pre><code class="language-C">    // Definition for singly - linked list.
-	struct ListNode {
-	    int val;
-	    ListNode *next;
-	    ListNode(int x) : val(x), next(nullptr) {}
-	};
+	<span class="kt">bool</span> <span class="nf">isLoopList</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">pHead</span><span class="p">){</span>
+	    <span class="k">if</span> <span class="p">(</span><span class="n">nullptr</span> <span class="o">==</span> <span class="n">pHead</span> <span class="o">||</span> <span class="n">nullptr</span> <span class="o">==</span> <span class="n">pHead</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">){</span>
+	        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+	    <span class="p">}</span>
 
-	bool isLoopList(ListNode *pHead){
-	    if (nullptr == pHead || nullptr == pHead-&gt;next){
-	        return false;
-	    }
-
-	    ListNode *pSlow = pHead;
-	    ListNode *pFast = pHead;
-	    while (pFast &amp;&amp; pFast-&gt;next){
-	        pFast = pFast-&gt;next-&gt;next;
-	        pSlow = pSlow-&gt;next;
+	    <span class="n">ListNode</span> <span class="o">*</span><span class="n">pSlow</span> <span class="o">=</span> <span class="n">pHead</span><span class="p">;</span>
+	    <span class="n">ListNode</span> <span class="o">*</span><span class="n">pFast</span> <span class="o">=</span> <span class="n">pHead</span><span class="p">;</span>
+	    <span class="k">while</span> <span class="p">(</span><span class="n">pFast</span> <span class="o">&amp;&amp;</span> <span class="n">pFast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">){</span>
+	        <span class="n">pFast</span> <span class="o">=</span> <span class="n">pFast</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+	        <span class="n">pSlow</span> <span class="o">=</span> <span class="n">pSlow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
 	
-	        if (pFast == pSlow){
-	            break;
-	        }
-	    }
+	        <span class="k">if</span> <span class="p">(</span><span class="n">pFast</span> <span class="o">==</span> <span class="n">pSlow</span><span class="p">){</span>
+	            <span class="k">break</span><span class="p">;</span>
+	        <span class="p">}</span>
+	    <span class="p">}</span>
 
-	    return !(nullptr == pFast || nullptr == pFast-&gt;next);
-	}
-
-</code></pre>
-
+	    <span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="n">nullptr</span> <span class="o">==</span> <span class="n">pFast</span> <span class="o">||</span> <span class="n">nullptr</span> <span class="o">==</span> <span class="n">pFast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">);</span>
+	<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <h2 id="确定该有环单链表的环的入口">确定该有环单链表的环的入口</h2>
 
 <p>　　关于这个问题，首先我们需要证明当pSlow和pFast第一次相遇的时候，pSlow并未走完整个链表或者恰好到达环入口点。</p>
@@ -412,40 +439,71 @@
 <p>　　有 a = (n - 1) * R + (L - a - x);　　有前面我们证明知，L - a - x 为我们所设变量y。 因此a = (n - 1) * R + y; (n &gt;= 1).</p>
 
 <p>　　这样，我们就可以这样，相遇点设置一个指针，链表头部设置一个指针，这两个指针同时按照一步一个节点前进，第一次相遇的时候必定是相遇点指针走y + (n - 1)*R的时候，也就是入口点A的位置。得证，因此获取入口点的实现如下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++">    <span class="n">ListNode</span> <span class="o">*</span><span class="nf">loopJoint</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">pHead</span><span class="p">){</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">nullptr</span> <span class="o">==</span> <span class="n">pHead</span> <span class="o">||</span> <span class="k">nullptr</span> <span class="o">==</span> <span class="n">pHead</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">){</span>
+            <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+        <span class="p">}</span>
 
-<pre><code class="language-C++">
-    ListNode *loopJoint(ListNode *pHead){
-        if (nullptr == pHead || nullptr == pHead-&gt;next){
-            return nullptr;
-        }
+        <span class="n">ListNode</span> <span class="o">*</span><span class="n">pSlow</span> <span class="o">=</span> <span class="n">pHead</span><span class="p">;</span>
+        <span class="n">ListNode</span> <span class="o">*</span><span class="n">pFast</span> <span class="o">=</span> <span class="n">pHead</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">pFast</span> <span class="o">&amp;&amp;</span> <span class="n">pFast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">){</span>
+            <span class="n">pFast</span> <span class="o">=</span> <span class="n">pFast</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+            <span class="n">pSlow</span> <span class="o">=</span> <span class="n">pSlow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
 
-        ListNode *pSlow = pHead;
-        ListNode *pFast = pHead;
-        while (pFast &amp;&amp; pFast-&gt;next){
-            pFast = pFast-&gt;next-&gt;next;
-            pSlow = pSlow-&gt;next;
+            <span class="k">if</span> <span class="p">(</span><span class="n">pFast</span> <span class="o">==</span> <span class="n">pSlow</span><span class="p">){</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
 
-            if (pFast == pSlow){
-                break;
-            }
-        }
+        <span class="k">if</span> <span class="p">(</span><span class="k">nullptr</span> <span class="o">==</span> <span class="n">pFast</span> <span class="o">||</span> <span class="k">nullptr</span> <span class="o">==</span> <span class="n">pFast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">){</span>
+            <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+        <span class="p">}</span>
 
-        if (nullptr == pFast || nullptr == pFast-&gt;next){
-            return nullptr;
-        }
+        <span class="c1">// 此时调整两个指针为普通指针，一次一步，并且其中一个指针从头部开始，第一次相遇点一定是环的入口点
+</span><span class="c1"></span>        <span class="n">pSlow</span> <span class="o">=</span> <span class="n">pHead</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">pFast</span> <span class="o">!=</span> <span class="n">pSlow</span><span class="p">){</span>
+            <span class="n">pFast</span> <span class="o">=</span> <span class="n">pFast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+            <span class="n">pSlow</span> <span class="o">=</span> <span class="n">pSlow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
 
-        // 此时调整两个指针为普通指针，一次一步，并且其中一个指针从头部开始，第一次相遇点一定是环的入口点
-        pSlow = pHead;
-        while (pFast != pSlow){
-            pFast = pFast-&gt;next;
-            pSlow = pSlow-&gt;next;
-        }
-
-        return pSlow;
-    }
-
-</code></pre>
-
+        <span class="k">return</span> <span class="n">pSlow</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <h2 id="求出该有环单链表中环的长度">求出该有环单链表中环的长度</h2>
 
 <p>有了以上的基础，环状的长度就很明显了，入口点已知，沿着环状走一圈即得。</p>

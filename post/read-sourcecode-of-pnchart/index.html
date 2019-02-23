@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2017-02-12T16:36:54&#43;00:00" />
 <meta itemprop="dateModified" content="2017-02-12T16:36:54&#43;00:00" />
-<meta itemprop="wordCount" content="611">
+<meta itemprop="wordCount" content="616">
 
 
 
@@ -393,14 +393,22 @@
 <li>PNColor 类只有一个方法：<code>imageFromColor:</code> ，生成某种颜色的图片，而在其所定义的文件 PNColor.h 中定义了很多常用颜色的宏；</li>
 
 <li><p>PNLineChartColorRange 类型是定义在 PNLineChartData.h 文件中一个类型，主要是指定折线图上，命中指定的数值区域时显示特定的颜色；如下所示代码，当 Y 轴元素是 10 ~ 30 之间，显示红色折线，当 Y 轴元素是 100 ~ 200 之间，显示紫色折线。</p>
-
-<pre><code class="language-Objective-C">
-PNLineChartData *data01 = [PNLineChartData new];
-data01.rangeColors = @[
-[[PNLineChartColorRange alloc] initWithRange:NSMakeRange(10, 30) color:[UIColor redColor]],
-[[PNLineChartColorRange alloc] initWithRange:NSMakeRange(100, 200) color:[UIColor purpleColor]]
-    ];
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="n">PNLineChartData</span> <span class="o">*</span><span class="n">data01</span> <span class="o">=</span> <span class="p">[</span><span class="n">PNLineChartData</span> <span class="n">new</span><span class="p">];</span>
+<span class="n">data01</span><span class="p">.</span><span class="n">rangeColors</span> <span class="o">=</span> <span class="l">@[</span>
+<span class="p">[[</span><span class="n">PNLineChartColorRange</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithRange</span><span class="p">:</span><span class="n">NSMakeRange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span> <span class="nl">color</span><span class="p">:[</span><span class="n">UIColor</span> <span class="n">redColor</span><span class="p">]],</span>
+<span class="p">[[</span><span class="n">PNLineChartColorRange</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithRange</span><span class="p">:</span><span class="n">NSMakeRange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span> <span class="nl">color</span><span class="p">:[</span><span class="n">UIColor</span> <span class="n">purpleColor</span><span class="p">]]</span>
+    <span class="l">]</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div></li>
 
 <li><p>PNChartLabel类定义 UILabel，库中所用到的 Label 均为该类型，主要是做了一些通用的配置罢了。</p></li>
 </ol>

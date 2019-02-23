@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2018-07-16T17:34:36&#43;00:00" />
 <meta itemprop="dateModified" content="2018-07-16T17:34:36&#43;00:00" />
-<meta itemprop="wordCount" content="2078">
+<meta itemprop="wordCount" content="2151">
 
 
 
@@ -350,21 +350,32 @@
 <p>我觉得日常开发 Apple 平台上的 App 时候大量使用单例，最大的原因是苹果自己也在经常的用。作为第三方开发者来讲，我们常常会把 Apple 的做法作为最佳实践来用，任何 Apple 自己常常使用的模式在社区也会发展的很迅速。</p>
 
 <p>这个谜题的第二个原因是单例非常方便。单例因为它可以在任何地方获取到，因而经常会扮演一个获取特定核心值或者对象的快捷方式。可以看下下面这个例子，在这个例子中，我们想在 <strong>ProfileViewController</strong> 中展示当前登录用户的名字，同时当某个按钮按下的时候，退登当前用户。</p>
-
-<pre><code class="language-Swift">
-class ProfileViewController: UIViewController {
-    private lazy var nameLabel = UILabel()
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        nameLabel.text = UserManager.shared.currentUser?.name
-    }
-    private func handleLogOutButtonTap() {
-        UserManager.shared.logOut()
-    }
-}
-
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">ProfileViewController</span><span class="p">:</span> <span class="n">UIViewController</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kr">lazy</span> <span class="kd">var</span> <span class="nv">nameLabel</span> <span class="p">=</span> <span class="n">UILabel</span><span class="p">()</span>
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+        <span class="n">nameLabel</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">UserManager</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">currentUser</span><span class="p">?.</span><span class="n">name</span>
+    <span class="p">}</span>
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">handleLogOutButtonTap</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">UserManager</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">logOut</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>按照上面这样，把一个 UserManager 单例的用户和账户处理的功能封装起来，确实很方便（而且很常见！），那这种模式的使用到底不好在哪里呢？</p>
 
 <h3 id="为什么单例会很糟糕">为什么单例会很糟糕？</h3>
@@ -384,55 +395,91 @@ class ProfileViewController: UIViewController {
 <h3 id="依赖注入">依赖注入</h3>
 
 <p>相对于使用 <strong>ProfileViewController</strong> 通过单例来获取它所需的依赖项，我们要在其初始化方法中将依赖项传入。这里我们是将当前的 User 作为非可选传入的，同样，传入一个 <strong>LogOutService</strong> 来进行登出操作：</p>
-
-<pre><code class="language-Swift">
-class ProfileViewController: UIViewController {
-    private let user: User
-    private let logOutService: LogOutService
-    private lazy var nameLabel = UILabel()
-    init(user: User, logOutService: LogOutService) {
-        self.user = user
-        self.logOutService = logOutService
-        super.init(nibName: nil, bundle: nil)
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        nameLabel.text = user.name
-    }
-    private func handleLogOutButtonTap() {
-        logOutService.logOut()
-    }
-}
-
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">ProfileViewController</span><span class="p">:</span> <span class="n">UIViewController</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">user</span><span class="p">:</span> <span class="n">User</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">logOutService</span><span class="p">:</span> <span class="n">LogOutService</span>
+    <span class="kd">private</span> <span class="kr">lazy</span> <span class="kd">var</span> <span class="nv">nameLabel</span> <span class="p">=</span> <span class="n">UILabel</span><span class="p">()</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">,</span> <span class="n">logOutService</span><span class="p">:</span> <span class="n">LogOutService</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">user</span> <span class="p">=</span> <span class="n">user</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">logOutService</span> <span class="p">=</span> <span class="n">logOutService</span>
+        <span class="kc">super</span><span class="p">.</span><span class="kd">init</span><span class="p">(</span><span class="n">nibName</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">bundle</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+        <span class="n">nameLabel</span><span class="p">.</span><span class="n">text</span> <span class="p">=</span> <span class="n">user</span><span class="p">.</span><span class="n">name</span>
+    <span class="p">}</span>
+    <span class="kd">private</span> <span class="kd">func</span> <span class="nf">handleLogOutButtonTap</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">logOutService</span><span class="p">.</span><span class="n">logOut</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>这样的话，代码就会变得更加清晰，并且容易管理。我们的代码现在安全的依赖其 Model，并且有一个清晰的 API 进行登出的交互。一般情况下，将各种单例以及管理器重构成清晰分离的服务能够使得一个 App 的核心对象之间的关系更加清晰。</p>
 
 <h3 id="services">Services</h3>
 
 <p>举个例子，让我们更近一些来看下 <strong>LogOutService</strong> 这个类是如何实现的。它内部也对其依赖的服务使用了依赖注入，并且提供了一个优雅的，定义清晰的 API 来只做一件事情 ── 登出。</p>
-
-<pre><code class="language-Swift">
-class LogOutService {
-    private let user: User
-    private let networkService: NetworkService
-    private let navigationService: NavigationService
-    init(user: User,
-         networkService: NetworkService,
-         navigationService: NavigationService) {
-        self.user = user
-        self.networkService = networkService
-        self.navigationService = navigationService
-    }
-    func logOut() {
-        networkService.request(.logout(user)) { [weak self] in
-            self?.navigationService.showLoginScreen()
-        }
-    }
-}
-
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">LogOutService</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">user</span><span class="p">:</span> <span class="n">User</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">networkService</span><span class="p">:</span> <span class="n">NetworkService</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">navigationService</span><span class="p">:</span> <span class="n">NavigationService</span>
+    <span class="kd">init</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">,</span>
+         <span class="n">networkService</span><span class="p">:</span> <span class="n">NetworkService</span><span class="p">,</span>
+         <span class="n">navigationService</span><span class="p">:</span> <span class="n">NavigationService</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">user</span> <span class="p">=</span> <span class="n">user</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">networkService</span> <span class="p">=</span> <span class="n">networkService</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">navigationService</span> <span class="p">=</span> <span class="n">navigationService</span>
+    <span class="p">}</span>
+    <span class="kd">func</span> <span class="nf">logOut</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">networkService</span><span class="p">.</span><span class="n">request</span><span class="p">(.</span><span class="n">logout</span><span class="p">(</span><span class="n">user</span><span class="p">))</span> <span class="p">{</span> <span class="p">[</span><span class="kr">weak</span> <span class="kc">self</span><span class="p">]</span> <span class="k">in</span>
+            <span class="kc">self</span><span class="p">?.</span><span class="n">navigationService</span><span class="p">.</span><span class="n">showLoginScreen</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <h3 id="翻新">翻新</h3>
 
 <p>从一个重度使用单例的设置到完全使用服务，依赖注入以及本地状态来改造会非常的困难，会花费大量时间。而且，会很难认为花大量时间在这上面是合理的，而且有些时候可能会需要一次更大规模的重构才行。</p>
@@ -440,48 +487,79 @@ class LogOutService {
 <p>谢天谢地，我们可以使用相近的技术，在<a href="https://www.swiftbysundell.com/posts/testing-swift-code-that-uses-system-singletons-in-3-easy-steps">Testing Swift code that uses system singletons in 3 easy steps</a>这篇文章中也使用到过，其允许我们可以以一种非常容易的方式单例开始。和很多其他解决方案类似 ── 协议来救场！</p>
 
 <p>我们不是一次性重构所有的单例，而是创建 Service 类，我们可以很简单的把我们的 Service 定义成 Protocol，如下所示：</p>
-
-<pre><code class="language-Swift">
-protocol LogOutService {
-    func logOut()
-}
-protocol NetworkService {
-    func request(_ endpoint: Endpoint, completionHandler: @escaping () -&gt; Void)
-}
-protocol NavigationService {
-    func showLoginScreen()
-    func showProfile(for user: User)
-    ...
-}
-
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">protocol</span> <span class="nc">LogOutService</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">logOut</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="kd">protocol</span> <span class="nc">NetworkService</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">request</span><span class="p">(</span><span class="kc">_</span> <span class="n">endpoint</span><span class="p">:</span> <span class="n">Endpoint</span><span class="p">,</span> <span class="n">completionHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="kd">protocol</span> <span class="nc">NavigationService</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">showLoginScreen</span><span class="p">()</span>
+    <span class="kd">func</span> <span class="nf">showProfile</span><span class="p">(</span><span class="k">for</span> <span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">)</span>
+    <span class="p">...</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>然后我们就能通过将单例符合我们新创建的 Service 协议来使其翻新为一堆 Service。在很多情况下，我们甚至不需要改变任何实现，只是简单的传递它们 shared 实例作为一个 Service 即可。</p>
 
 <p>同样的技巧也能够被用作重构我们 app 中其他核心对象，那些对象我们也许也都正在以某种单例形式在使用着，例如使用 AppDelegate 来做导航。</p>
-
-<pre><code class="language-Swift">
-extension UserManager: LoginService, LogOutService {}
-extension AppDelegate: NavigationService {
-    func showLoginScreen() {
-        navigationController.viewControllers = [
-            LoginViewController(
-                loginService: UserManager.shared,
-                navigationService: self
-            )
-        ]
-    }
-    func showProfile(for user: User) {
-        let viewController = ProfileViewController(
-            user: user,
-            logOutService: UserManager.shared
-        )
-        navigationController.pushViewController(viewController, animated: true)
-    }
-}
-
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">extension</span> <span class="nc">UserManager</span><span class="p">:</span> <span class="n">LoginService</span><span class="p">,</span> <span class="n">LogOutService</span> <span class="p">{}</span>
+<span class="kd">extension</span> <span class="nc">AppDelegate</span><span class="p">:</span> <span class="n">NavigationService</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">showLoginScreen</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">navigationController</span><span class="p">.</span><span class="n">viewControllers</span> <span class="p">=</span> <span class="p">[</span>
+            <span class="n">LoginViewController</span><span class="p">(</span>
+                <span class="n">loginService</span><span class="p">:</span> <span class="n">UserManager</span><span class="p">.</span><span class="n">shared</span><span class="p">,</span>
+                <span class="n">navigationService</span><span class="p">:</span> <span class="kc">self</span>
+            <span class="p">)</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+    <span class="kd">func</span> <span class="nf">showProfile</span><span class="p">(</span><span class="k">for</span> <span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">viewController</span> <span class="p">=</span> <span class="n">ProfileViewController</span><span class="p">(</span>
+            <span class="n">user</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
+            <span class="n">logOutService</span><span class="p">:</span> <span class="n">UserManager</span><span class="p">.</span><span class="n">shared</span>
+        <span class="p">)</span>
+        <span class="n">navigationController</span><span class="p">.</span><span class="n">pushViewController</span><span class="p">(</span><span class="n">viewController</span><span class="p">,</span> <span class="n">animated</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>我们现在通过使用依赖注入以及 Service 的方式，开始使得我们工程处在 Singleton free 的状态，而不需要进行特别巨大的工程改造和重写。接下来我们就能够使用 Service 或者其他类型的 API 逐个替换掉单例，比如说使用<a href="https://www.swiftbysundell.com/posts/replacing-legacy-code-using-swift-protocols">这篇博文</a>中的技巧。</p>
 
 <h3 id="结论">结论</h3>

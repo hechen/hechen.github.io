@@ -62,7 +62,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://hechen.xyz/" />
 
-<meta property="og:updated_time" content="2017-11-19T18:17:15&#43;00:00"/>
+<meta property="og:updated_time" content="2017-11-13T21:22:44&#43;00:00"/>
 
 <meta itemprop="name" content="I make stuff">
 <meta itemprop="description" content="Chen&#39;s personal blog.">
@@ -287,12 +287,46 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/dependency-injection-using-factories-in-swift/">在 Swift 中使用工厂模式进行依赖注入</a>
+      <a class="post-link" href="/post/understanding-responders-and-the-responder-chain/">理解响应者和响应链</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="2017-11-19" class="post-time">
-        2017-11-19
+      <time datetime="2017-11-13" class="post-time">
+        2017-11-13
+      </time>
+      <div class="post-category">
+          <a href="https://hechen.xyz/categories/ios/"> iOS </a>
+          
+        </div>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Apps 是通过响应者（responder）对象来接收和处理事件的。一个响应者对象是 UIResponder 类的一个实例，我们常见的 UIView，UIViewContro
+    </div>
+    <div class="read-more">
+      <a href="/post/understanding-responders-and-the-responder-chain/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+    
+      <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/capturing-objects-in-swift-closures/">Capturing objects in Swift closures</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2017-11-12" class="post-time">
+        2017-11-12
       </time>
       <div class="post-category">
           <a href="https://hechen.xyz/categories/translation/"> Translation </a>
@@ -307,10 +341,10 @@
   <div class="post-content">
     
     <div class="post-summary">
-      依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象
+      自从 Block 在 iOS4 被引入 Objective-C 的世界之后就成为了 Apple 各平台上最时髦的 API 的重要组成部分了。当 Swift 语言出现的时候，blocks 的概念就摇身一变通过 closure 的形式引入，
     </div>
     <div class="read-more">
-      <a href="/post/dependency-injection-using-factories-in-swift/" class="read-more-link">阅读全文</a>
+      <a href="/post/capturing-objects-in-swift-closures/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -321,46 +355,12 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/modular-xcode-projects/">模块化 Xcode 工程</a>
+      <a class="post-link" href="/post/autoclosure-escape/">@autoclosure &amp;&amp; @escape</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="2017-11-19" class="post-time">
-        2017-11-19
-      </time>
-      <div class="post-category">
-          <a href="https://hechen.xyz/categories/translation/"> Translation </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      使用 Xcode 构建模块化的工程就需要对工程结构以及其基础概念有很好的理解才行。我们平时不怎么关注工程结构本身，只有在工程逐渐变大，要添加更多依赖的时
-    </div>
-    <div class="read-more">
-      <a href="/post/modular-xcode-projects/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-    
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/initializer-in-swift/">Initializer in Swift</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2017-11-15" class="post-time">
-        2017-11-15
+      <time datetime="2017-11-12" class="post-time">
+        2017-11-12
       </time>
       <div class="post-category">
           <a href="https://hechen.xyz/categories/swift/"> Swift </a>
@@ -375,10 +375,44 @@
   <div class="post-content">
     
     <div class="post-summary">
-      我想 [[xxx alloc] init] 应该是自己接触 iOS 开发以来写的最多的语句了吧。一个对象初始化是其得以存在的前提，无论你是使用 new 关键字与否，根本上都会执行到 init 方法。 转
+      我们知道在 swift 中，闭包（closure）是一等公民，因此可以被当作参数传递，在学习 swift 的过程中经常会看到某些关键字修饰该闭包，@autoclos
     </div>
     <div class="read-more">
-      <a href="/post/initializer-in-swift/" class="read-more-link">阅读全文</a>
+      <a href="/post/autoclosure-escape/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+    
+      <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/ios-notification/">关于 iOS10 Notification 的那些事儿</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2017-05-20" class="post-time">
+        2017-05-20
+      </time>
+      <div class="post-category">
+          <a href="https://hechen.xyz/categories/ios/"> iOS </a>
+          
+        </div>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      概览 推送通知我们大家都不陌生，可以说几乎每个使用智能手机的人每天都会被不同的通知 打扰 到，正式因为合适的推送是吸引用户注意力的利器，其成为了各
+    </div>
+    <div class="read-more">
+      <a href="/post/ios-notification/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -448,18 +482,6 @@
       
       <li >
         <a href="/page/10/">10</a>
-      </li>
-      
-      <li >
-        <a href="/page/11/">11</a>
-      </li>
-      
-      <li >
-        <a href="/page/12/">12</a>
-      </li>
-      
-      <li >
-        <a href="/page/13/">13</a>
       </li>
       
     </ul>

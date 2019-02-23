@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2019-01-03T21:19:24&#43;00:00" />
 <meta itemprop="dateModified" content="2019-01-03T21:19:24&#43;00:00" />
-<meta itemprop="wordCount" content="3881">
+<meta itemprop="wordCount" content="4021">
 
 
 
@@ -349,11 +349,16 @@
 <p><img src="https://i.imgur.com/ADh0sy6.png" alt="Error When Compile" /></p>
 
 <p>具体文字错误信息如下：</p>
-
-<pre><code class="language-txt">/Users/chen/Repos/Work/ZHDiagnosisTool/ZHDiagnosisTool/Classes/Core/Network/ZHDiagnosisTool-Network-Header.h:8:10: 
-    Include of non-modular header inside framework module 'Diagnosis.ZHDiagnosisTool_Network_Header': '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.1.sdk/usr/include/resolv.h'
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-txt" data-lang="txt"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-txt" data-lang="txt">/Users/chen/Repos/Work/ZHDiagnosisTool/ZHDiagnosisTool/Classes/Core/Network/ZHDiagnosisTool-Network-Header.h:8:10: 
+    Include of non-modular header inside framework module &#39;Diagnosis.ZHDiagnosisTool_Network_Header&#39;: &#39;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.1.sdk/usr/include/resolv.h&#39;</code></pre></td></tr></table>
+</div>
+</div>
 <p>大概的意思就是在 Umbrella Header 中加入的 Bridging header 指定了 include 一个 C 文件，而该 C 文件本身并不是  Modular Header， 因此编译无法通过。这就涉及了目前 iOS 生态中普遍使用的 Modules 概念。</p>
 
 <h2 id="几个概念">几个概念</h2>
@@ -369,14 +374,22 @@
 <p>尤其是在 Swift 引入之后，Module 的概念应该已经深入人心。大家可能已经习惯直接使用 @import 来引用某个 Module，或者其中某个功能单元。尤其是使用 CocoaPods 集成开发的时候，其内部实际上也是做了一些 module 的工作，在 Pods 目录中充斥着 <code>.modulemap</code> 的身影，想必大家经常看到。</p>
 
 <p>而 一个 module 的属性是由定义它的 <code>.modulemap</code> 文件来决定的，其简单语法大概如下：</p>
-
-<pre><code class="language-Shell">module module_name [system] {
-    header &quot;header.h&quot;
-    link &quot;linked_library&quot;
-    export *
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Shell" data-lang="Shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Shell" data-lang="Shell">module module_name <span class="o">[</span>system<span class="o">]</span> <span class="o">{</span>
+    header <span class="s2">&#34;header.h&#34;</span>
+    link <span class="s2">&#34;linked_library&#34;</span>
+    <span class="nb">export</span> *
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>如果对其中 <a href="https://clang.llvm.org/docs/Modules.html#module-map-language">Modules 的语法</a>感兴趣，可以到 Clang 的官方文档下通读下，你肯定会对 Modules 这一套有更清楚的认识。</p>
 
 <h3 id="umbrella-header">Umbrella Header</h3>
@@ -384,17 +397,27 @@
 <p>说起来，Umbrella Header 是在 Framework 的概念被引入的，你可以理解为一个模块均存在一个 Umbrella Header 用来将那些你想暴露给模块外界调用的头文件包裹在一起。避免使用者在使用该模块的时候需要手动输入多个 Header 的一种解决方案。 其实 Mac 端很早就有这个概念，iOS 中特指 iOS 8 开始官方加入 Dynamic Framework 以后的概念。</p>
 
 <p>如下所示，没有 Umbrella Header 的情况下你需要将所有需要引入的头文件依次写出。</p>
-
-<pre><code class="language-objc">#import &lt;XYZModule/XYZCustomCell.h&gt;
-#import &lt;XYZModule/XYZCustomView.h&gt;
-#import &lt;XYZModule/XYZCustomViewController.h&gt;
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#import &lt;XYZModule/XYZCustomCell.h&gt;
+</span><span class="cp">#import &lt;XYZModule/XYZCustomView.h&gt;
+</span><span class="cp">#import &lt;XYZModule/XYZCustomViewController.h&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>在使用了 Umbrella Header 之后，你只需要下面一行即可。</p>
-
-<pre><code class="language-objc">#import &lt;XYZModule/XYZModule.h&gt;
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#import &lt;XYZModule/XYZModule.h&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>当然，还存在 umbrella framework，感兴趣大家可以到<a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPFrameworks/Concepts/FrameworkAnatomy.html#//apple_ref/doc/uid/20002253-97623-BAJJHAJC">官方文档</a>下观看。</p>
 
 <h3 id="bridging-header">Bridging-Header</h3>
@@ -412,28 +435,50 @@
 <h3 id="cocoapods">Cocoapods</h3>
 
 <p>我们每次执行 <code>pod install</code> 的时候，如果你使用 <code>—verbose</code> 来看详细安装过程就能看到，针对每一个将要被安装的 Pod 均会执行生成 module map 和 umbrella header 这两个阶段，如下所示部分 Install 指令的代码，代码位于 <code>lib/cocoapods/installer/xcode/pods_project_generator/aggregate_target_installer.rb</code></p>
-
-<pre><code class="language-ruby">def install!
-       UI.message &quot;- Installing target `#{target.name}` #{target.platform}&quot; do
-       native_target = add_target
-       create_support_files_dir
-       create_support_files_group
-       create_xcconfig_file(native_target)
-       if target.host_requires_frameworks?
-          create_info_plist_file(target.info_plist_path, native_target, target.version, target.platform)
-    	    create_module_map(native_target)
-          create_umbrella_header(native_target)
-       elsif target.uses_swift?
-          create_module_map(native_target)
-    			create_umbrella_header(native_target)
-       end
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">install!</span>
+       <span class="no">UI</span><span class="o">.</span><span class="n">message</span> <span class="s2">&#34;- Installing target `</span><span class="si">#{</span><span class="n">target</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">` </span><span class="si">#{</span><span class="n">target</span><span class="o">.</span><span class="n">platform</span><span class="si">}</span><span class="s2">&#34;</span> <span class="k">do</span>
+       <span class="n">native_target</span> <span class="o">=</span> <span class="n">add_target</span>
+       <span class="n">create_support_files_dir</span>
+       <span class="n">create_support_files_group</span>
+       <span class="n">create_xcconfig_file</span><span class="p">(</span><span class="n">native_target</span><span class="p">)</span>
+       <span class="k">if</span> <span class="n">target</span><span class="o">.</span><span class="n">host_requires_frameworks?</span>
+          <span class="n">create_info_plist_file</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">info_plist_path</span><span class="p">,</span> <span class="n">native_target</span><span class="p">,</span> <span class="n">target</span><span class="o">.</span><span class="n">version</span><span class="p">,</span> <span class="n">target</span><span class="o">.</span><span class="n">platform</span><span class="p">)</span>
+    	    <span class="n">create_module_map</span><span class="p">(</span><span class="n">native_target</span><span class="p">)</span>
+          <span class="n">create_umbrella_header</span><span class="p">(</span><span class="n">native_target</span><span class="p">)</span>
+       <span class="k">elsif</span> <span class="n">target</span><span class="o">.</span><span class="n">uses_swift?</span>
+          <span class="n">create_module_map</span><span class="p">(</span><span class="n">native_target</span><span class="p">)</span>
+    			<span class="n">create_umbrella_header</span><span class="p">(</span><span class="n">native_target</span><span class="p">)</span>
+       <span class="k">end</span>
       
-     # Some Code
-     # Some Code
-     # Some Code      
-    end
-</code></pre>
-
+     <span class="c1"># Some Code</span>
+     <span class="c1"># Some Code</span>
+     <span class="c1"># Some Code      </span>
+    <span class="k">end</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>很明确，Cocoapods 在 install 某个 Pod 的时候会执行创建 module map 文件以及 umbrella header 文件的工作。详细的代码大家可以直接到 Cocoapods 源码下  <code>lib/cocoapods/generator</code> 目录下看，分别是 <code>module_map.rb</code> 和 <code>umbrella_header.rb</code> 文件。</p>
 
 <p>其中在各自文件的注释部分也有针对生成文件的说明，比如 <code>module_map.rb</code> 中说明了 module map 的作用，</p>
@@ -477,111 +522,202 @@
 </blockquote>
 
 <p>其中根本问题就是为 <code>CommonCrypto</code> 这个 C 编译单元定义 module，上面也提到了 LLVM 是通过 <code>modulemap</code> 文件来识别的，所以只要通过 <code>.modulemap</code> 来定义即可，</p>
-
-<pre><code>    module CommonCrypto [system] {
-        header &quot;/usr/include/CommonCrypto/CommonCrypto.h&quot;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">    module CommonCrypto [system] {
+        header &#34;/usr/include/CommonCrypto/CommonCrypto.h&#34;
         export *
-    }
-</code></pre>
-
+    }</pre></td></tr></table>
+</div>
+</div>
 <p>定义的 modulemap 自然可以放到任意目录，只要让编译单元在编译的时候能够搜索的到即可，Xcode 选项的 Build Settings 下的 Swift Compiler - Search Paths 。添加 .modulemap 文件所在路径即可。在编译的时候 LLVM 自然会查找到 .modulemap 文件自动生成 Module 信息。你此时就可以在使用  CommonCrypto 的地方使用 modular header 了。</p>
 
 <p>过了几年之后，官方才将该库定义为 module，在 Xcode 自带的 iOS SDK 中 <code>/usr/include/CommonCrypto</code> 下可以看到 <code>module.modulemap</code> 文件：</p>
-
-<pre><code>module CommonCrypto [system] [extern_c] {
-      umbrella header &quot;CommonCrypto.h&quot;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">module CommonCrypto [system] [extern_c] {
+      umbrella header &#34;CommonCrypto.h&#34;
       export *
       module * { export * }
       
       module Error {
-          header &quot;CommonCryptoError.h&quot;
+          header &#34;CommonCryptoError.h&#34;
           export *
       }
       
       module Random {
-          header &quot;CommonRandom.h&quot;
+          header &#34;CommonRandom.h&#34;
           export *
       }
-    }
-
-</code></pre>
-
+    }</pre></td></tr></table>
+</div>
+</div>
 <p>大家也注意到了在 CommonCrypto 的同级目录中实际上还有很多的系统 C 库代码，并且也有一个 module.modulemap 文件，我裁剪一段代码大家看下：</p>
-
-<pre><code>module Compression [system] [extern_c] {
-    header &quot;compression.h&quot;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">module Compression [system] [extern_c] {
+    header &#34;compression.h&#34;
     export *
-    link &quot;compression&quot;
+    link &#34;compression&#34;
 }
     
 module Darwin [system] [extern_c] [no_undeclared_includes] {
     // Headers that are repeatedly included, and therefore should not be
     	// assigned to any given module.
-    	exclude header &quot;_structs.h&quot;
-    	exclude header &quot;sys/_structs.h&quot;
+    	exclude header &#34;_structs.h&#34;
+    	exclude header &#34;sys/_structs.h&#34;
     
     	// C standard library
     	module C {
-    		textual header &quot;assert.h&quot;
+    		textual header &#34;assert.h&#34;
     
     	  module setjmp {
-    			header &quot;setjmp.h&quot;
+    			header &#34;setjmp.h&#34;
     			export *
     		}
     
     		module signal {
-    			header &quot;signal.h&quot;
+    			header &#34;signal.h&#34;
     			export *
     		}
     
     		module stdio {
-    			header &quot;stdio.h&quot;
+    			header &#34;stdio.h&#34;
     			export *
     		}
     }
     
     module zlib [system] [extern_c] {
-    	header &quot;zlib.h&quot;
+    	header &#34;zlib.h&#34;
     	export *
-    	link &quot;z&quot;
+    	link &#34;z&#34;
     }
     
     module SQLite3 [system] [extern_c] {
-    	header &quot;sqlite3.h&quot;
-    	link &quot;sqlite3&quot;
+    	header &#34;sqlite3.h&#34;
+    	link &#34;sqlite3&#34;
     	explicit module Ext {
-    		header &quot;sqlite3ext.h&quot;
+    		header &#34;sqlite3ext.h&#34;
     		export *
     	}
     	export *
-    }
-
-</code></pre>
-
+    }</pre></td></tr></table>
+</div>
+</div>
 <p>这也是为什么我们在 Swift 代码里可以直接使用类似 <code>import Darwin.C.stdio</code> 写法的原因。但是还是存在一些 C 库并没有被定义为 module，而本次用来做 DNS 解析的 <code>resolv.h</code> 就是其中一员。</p>
 
 <p>具体到我们解决思路里来看就是要解决 modulemap 如何定义，如何和我们目前使用的 cocoapods 整合的问题了。既然是在作为 pod 进行开发，自然是需要将 module map 文件加入到 pod 的代码管理中去。比如将其放置于单个 pod 根目录下，然后在 podspec 中配置好路径以便编译的时候 Swift Search Paths 中有它。自然，我们可以建立 resolv.modulemap 如下：</p>
-
-<pre><code class="language-shell">module Resolv [system] {
-    header &quot;/usr/include/resolv.h&quot;
-    export *
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">module Resolv <span class="o">[</span>system<span class="o">]</span> <span class="o">{</span>
+    header <span class="s2">&#34;/usr/include/resolv.h&#34;</span>
+    <span class="nb">export</span> *
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>然后在对应的 podspec 文件中配置 build setting 中的参数，如下所示</p>
-
-<pre><code class="language-ruby">s.subspec 'Core' do |core|
-    core.source_files   = ['ZHDiagnosisTool/Classes/Core/**/*'] 
-    core.preserve_paths = 'ZHDiagnosisTool/Classes/Core/ModuleMap'
-    core.pod_target_xcconfig = {
-        'SWIFT_INCLUDE_PATHS[sdk=macosx*]'           =&gt; '$(PODS_ROOT)/ZHDiagnosisTool/Classes/Core/ModuleMap',
-        'SWIFT_INCLUDE_PATHS[sdk=iphoneos*]'         =&gt; '$(PODS_ROOT)/ZHDiagnosisTool/Classes/Core/ModuleMap',
-        'SWIFT_INCLUDE_PATHS[sdk=iphonesimulator*]'  =&gt; '$(PODS_ROOT)/ZHDiagnosisTool/Classes/Core/ModuleMap',
-      }
-end
-
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">s</span><span class="o">.</span><span class="n">subspec</span> <span class="s1">&#39;Core&#39;</span> <span class="k">do</span> <span class="o">|</span><span class="n">core</span><span class="o">|</span>
+    <span class="n">core</span><span class="o">.</span><span class="n">source_files</span>   <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;ZHDiagnosisTool/Classes/Core/**/*&#39;</span><span class="o">]</span> 
+    <span class="n">core</span><span class="o">.</span><span class="n">preserve_paths</span> <span class="o">=</span> <span class="s1">&#39;ZHDiagnosisTool/Classes/Core/ModuleMap&#39;</span>
+    <span class="n">core</span><span class="o">.</span><span class="n">pod_target_xcconfig</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;SWIFT_INCLUDE_PATHS[sdk=macosx*]&#39;</span>           <span class="o">=&gt;</span> <span class="s1">&#39;$(PODS_ROOT)/ZHDiagnosisTool/Classes/Core/ModuleMap&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;SWIFT_INCLUDE_PATHS[sdk=iphoneos*]&#39;</span>         <span class="o">=&gt;</span> <span class="s1">&#39;$(PODS_ROOT)/ZHDiagnosisTool/Classes/Core/ModuleMap&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;SWIFT_INCLUDE_PATHS[sdk=iphonesimulator*]&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;$(PODS_ROOT)/ZHDiagnosisTool/Classes/Core/ModuleMap&#39;</span><span class="p">,</span>
+      <span class="p">}</span>
+<span class="k">end</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>可是，问题出在 PODS_ROOTS 这个路径上，如果我们进行本地开发，该路径就是 Cocoapods 执行完毕之后生成的临时 Pods 目录，并不是原始 podspec 文件所在的地方，而官方也表明了，不会对这种 Local Pods 特定提供一个环境变量来获取， 如下链接可以看到：</p>
 
 <p><a href="https://github.com/CocoaPods/CocoaPods/issues/809">local pod development on a project that includes libraries · Issue #809 · CocoaPods/CocoaPods</a></p>
@@ -595,55 +731,97 @@ end
 <p>其中作者使用 Pod 的 script phase 来完成 .modulemap 的操作，这样会更加灵活。</p>
 
 <p>这样，针对我们自己本次的需求来看，.podspec 中的 script 如下所写即可：</p>
-
-<pre><code class="language-shell"># Create
-FRAMEWORK_DIR=&quot;${BUILT_PRODUCTS_DIR}/RESOLV.framework&quot;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># Create</span>
+<span class="nv">FRAMEWORK_DIR</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">BUILT_PRODUCTS_DIR</span><span class="si">}</span><span class="s2">/RESOLV.framework&#34;</span>
           
-if [ -d &quot;${FRAMEWORK_DIR}&quot; ]; then
-    echo &quot;${FRAMEWORK_DIR} already exists, so skipping the rest of the script.&quot;
-    exit 0
-fi
+<span class="k">if</span> <span class="o">[</span> -d <span class="s2">&#34;</span><span class="si">${</span><span class="nv">FRAMEWORK_DIR</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">FRAMEWORK_DIR</span><span class="si">}</span><span class="s2"> already exists, so skipping the rest of the script.&#34;</span>
+    <span class="nb">exit</span> <span class="m">0</span>
+<span class="k">fi</span>
           
-mkdir -p &quot;${FRAMEWORK_DIR}/Modules&quot;
+mkdir -p <span class="s2">&#34;</span><span class="si">${</span><span class="nv">FRAMEWORK_DIR</span><span class="si">}</span><span class="s2">/Modules&#34;</span>
           
-echo &quot;module RESOLV [system] {
-    header \&quot;${SDKROOT}/usr/include/resolv.h\&quot;
-    export *
-}&quot; &gt; &quot;${FRAMEWORK_DIR}/Modules/module.modulemap&quot;
+<span class="nb">echo</span> <span class="s2">&#34;module RESOLV [system] {
+</span><span class="s2">    header \&#34;</span><span class="si">${</span><span class="nv">SDKROOT</span><span class="si">}</span><span class="s2">/usr/include/resolv.h\&#34;
+</span><span class="s2">    export *
+</span><span class="s2">}&#34;</span> &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">FRAMEWORK_DIR</span><span class="si">}</span><span class="s2">/Modules/module.modulemap&#34;</span>
                
     
-# Generate fake header...
-[ -d &quot;${FRAMEWORK_DIR}/Headers&quot; ] || mkdir &quot;${FRAMEWORK_DIR}/Headers&quot;
-touch &quot;${FRAMEWORK_DIR}/Headers/resolv.h&quot;
+<span class="c1"># Generate fake header...</span>
+<span class="o">[</span> -d <span class="s2">&#34;</span><span class="si">${</span><span class="nv">FRAMEWORK_DIR</span><span class="si">}</span><span class="s2">/Headers&#34;</span> <span class="o">]</span> <span class="o">||</span> mkdir <span class="s2">&#34;</span><span class="si">${</span><span class="nv">FRAMEWORK_DIR</span><span class="si">}</span><span class="s2">/Headers&#34;</span>
+touch <span class="s2">&#34;</span><span class="si">${</span><span class="nv">FRAMEWORK_DIR</span><span class="si">}</span><span class="s2">/Headers/resolv.h&#34;</span>
     
-# Soft link C header to local framework Headers
-ln -sf &quot;${SDKROOT}/usr/include/resolv.h&quot; &quot;${FRAMEWORK_DIR}/Headers/resolv.h&quot;
-</code></pre>
-
+<span class="c1"># Soft link C header to local framework Headers</span>
+ln -sf <span class="s2">&#34;</span><span class="si">${</span><span class="nv">SDKROOT</span><span class="si">}</span><span class="s2">/usr/include/resolv.h&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">FRAMEWORK_DIR</span><span class="si">}</span><span class="s2">/Headers/resolv.h&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>每次在编译运行前，我们会自行创建一个 <code>Resolv.framework</code>，其中 Header 目录中我们放一个空白文件并且软链接到真正想要链接的头文件上，然后在该 framework 中创建 modulemap 文件。</p>
 
 <p>之后，我们在 .podspec 中指定 script phase 为编译前即可，如下所示，</p>
-
-<pre><code class="language-ruby">s.script_phase = {
-    :name =&gt; 'Resolv',
-    :script =&gt; script_above,
-    :execution_position =&gt; :before_compile
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">s</span><span class="o">.</span><span class="n">script_phase</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s1">&#39;Resolv&#39;</span><span class="p">,</span>
+    <span class="ss">:script</span> <span class="o">=&gt;</span> <span class="n">script_above</span><span class="p">,</span>
+    <span class="ss">:execution_position</span> <span class="o">=&gt;</span> <span class="ss">:before_compile</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>这样，通过 <code>Resolv.framework</code> 的桥接，Swift 代码中就可以直接通过 <code>import RESOLV</code> 来使用了。当然，链接这一环你可以通过以下两种形式达到：</p>
 
 <ol>
 <li>直接在 podspec 文件中指定依赖，如 <code>core.library = &quot;resolv&quot;</code></li>
 
 <li><p>在 <code>.modulemap</code> 文件中显式的 link，如下所示：</p>
-
-<pre><code class="language-shell">module Resolv [system] {
-header &quot;/usr/include/resolv.h&quot;
-link &quot;resolv&quot;
-export *
-}
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">module Resolv <span class="o">[</span>system<span class="o">]</span> <span class="o">{</span>
+header <span class="s2">&#34;/usr/include/resolv.h&#34;</span>
+link <span class="s2">&#34;resolv&#34;</span>
+<span class="nb">export</span> *
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 
 <p>而且通过将 module map 文件放置于 product 产出目录这里也解决了路径指定的问题，因为 product folder 是默认在编译的搜索路径下的。</p>
