@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2019-02-21T23:25:38&#43;08:00" />
 <meta itemprop="dateModified" content="2019-02-21T23:25:38&#43;08:00" />
-<meta itemprop="wordCount" content="702">
+<meta itemprop="wordCount" content="733">
 
 
 
@@ -338,48 +338,88 @@
 <h2 id="原因">原因</h2>
 
 <p>关键数据获取阶段执行的 AppleScript 的时候总是取不到数据。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-AppleScript" data-lang="AppleScript"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-AppleScript" data-lang="AppleScript"><span class="k">set</span> <span class="nv">theProgressDetail</span> <span class="k">to</span> <span class="s2">&#34;&#34;</span>
 
-<pre><code class="language-AppleScript">set theProgressDetail to &quot;&quot;
+<span class="k">tell</span> <span class="nb">application</span> <span class="s2">&#34;OmniFocus&#34;</span>
+    <span class="k">tell</span> <span class="nb">front</span> <span class="na">document</span>
+        <span class="k">set</span> <span class="nv">theModifiedProjects</span> <span class="k">to</span> <span class="nb">every</span> <span class="nv">flattened</span> <span class="nv">project</span>
+            <span class="k">repeat</span> <span class="nv">with</span> <span class="nv">a</span> <span class="k">from</span> <span class="mi">1</span> <span class="k">to</span> <span class="nv">length</span> <span class="k">of</span> <span class="nv">theModifiedProjects</span>
+                <span class="k">set</span> <span class="nv">theCompletedTasks</span> <span class="k">to</span> <span class="p">(</span><span class="nb">every</span> <span class="nv">flattened</span> <span class="nv">task</span> <span class="k">of</span> <span class="p">(</span><span class="nb">item</span> <span class="nv">a</span> <span class="k">of</span> <span class="nv">theModifiedProjects</span><span class="p">)</span> <span class="nb">where</span> <span class="k">its</span> <span class="nv">number</span> <span class="k">of</span> <span class="nv">tasks</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nv">theCompletedTasks</span> <span class="ow">is not</span> <span class="ow">equal to</span> <span class="p">{}</span> <span class="k">then</span>
+                    <span class="k">repeat</span> <span class="nv">with</span> <span class="nv">b</span> <span class="k">from</span> <span class="mi">1</span> <span class="k">to</span> <span class="nv">length</span> <span class="k">of</span> <span class="nv">theCompletedTasks</span>
+                        <span class="k">set</span> <span class="nv">theProgressDetail</span> <span class="k">to</span> <span class="nv">theProgressDetail</span> <span class="o">&amp;</span> <span class="nv">completion</span> <span class="nv">date</span> <span class="k">of</span> <span class="p">(</span><span class="nb">item</span> <span class="nv">b</span> <span class="k">of</span> <span class="nv">theCompletedTasks</span><span class="p">)</span> <span class="o">&amp;</span> <span class="no">return</span>
+                    <span class="k">end</span> <span class="k">repeat</span>
+                <span class="k">end</span> <span class="k">if</span>
+            <span class="k">end</span> <span class="k">repeat</span>
 
-tell application &quot;OmniFocus&quot;
-    tell front document
-        set theModifiedProjects to every flattened project
-            repeat with a from 1 to length of theModifiedProjects
-                set theCompletedTasks to (every flattened task of (item a of theModifiedProjects) where its number of tasks = 0)
-                if theCompletedTasks is not equal to {} then
-                    repeat with b from 1 to length of theCompletedTasks
-                        set theProgressDetail to theProgressDetail &amp; completion date of (item b of theCompletedTasks) &amp; return
-                    end repeat
-                end if
-            end repeat
-
-        set theInboxCompletedTasks to (every inbox task where its number of tasks = 0)
+        <span class="k">set</span> <span class="nv">theInboxCompletedTasks</span> <span class="k">to</span> <span class="p">(</span><span class="nb">every</span> <span class="nv">inbox</span> <span class="nv">task</span> <span class="nb">where</span> <span class="k">its</span> <span class="nv">number</span> <span class="k">of</span> <span class="nv">tasks</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
     
-        repeat with d from 1 to length of theInboxCompletedTasks    
-            set theProgressDetail to theProgressDetail &amp; completion date of (item d of theInboxCompletedTasks) &amp; return
-        end repeat
-    end tell
-end tell
+        <span class="k">repeat</span> <span class="nv">with</span> <span class="nv">d</span> <span class="k">from</span> <span class="mi">1</span> <span class="k">to</span> <span class="nv">length</span> <span class="k">of</span> <span class="nv">theInboxCompletedTasks</span>    
+            <span class="k">set</span> <span class="nv">theProgressDetail</span> <span class="k">to</span> <span class="nv">theProgressDetail</span> <span class="o">&amp;</span> <span class="nv">completion</span> <span class="nv">date</span> <span class="k">of</span> <span class="p">(</span><span class="nb">item</span> <span class="nv">d</span> <span class="k">of</span> <span class="nv">theInboxCompletedTasks</span><span class="p">)</span> <span class="o">&amp;</span> <span class="no">return</span>
+        <span class="k">end</span> <span class="k">repeat</span>
+    <span class="k">end</span> <span class="k">tell</span>
+<span class="k">end</span> <span class="k">tell</span>
 
-display dialog theProgressDetail
+<span class="nb">display dialog</span> <span class="nv">theProgressDetail</span>
 
-return theProgressDetail
-</code></pre>
-
+<span class="no">return</span> <span class="nv">theProgressDetail</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>在 Cocoa 中是通过执行如下代码执行：</p>
-
-<pre><code class="language-Swift">let myAppleScript = &quot;I am a piece of applescript&quot;
-if let scriptObject = NSAppleScript(source: myAppleScript) {
-    var error: NSDictionary?
-    let output = scriptObject.executeAndReturnError(&amp;error)
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">myAppleScript</span> <span class="p">=</span> <span class="s">&#34;I am a piece of applescript&#34;</span>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">scriptObject</span> <span class="p">=</span> <span class="n">NSAppleScript</span><span class="p">(</span><span class="n">source</span><span class="p">:</span> <span class="n">myAppleScript</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">error</span><span class="p">:</span> <span class="n">NSDictionary</span><span class="p">?</span>
+    <span class="kd">let</span> <span class="nv">output</span> <span class="p">=</span> <span class="n">scriptObject</span><span class="p">.</span><span class="n">executeAndReturnError</span><span class="p">(&amp;</span><span class="n">error</span><span class="p">)</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>进行 Debug 启动 App 或者 Archive 安装包执行可执行文件，均无法正常获取执行结果，直接报错。 具体错误原因：</p>
-
-<pre><code>&quot;NSAppleScriptErrorMessage&quot; : &quot;Not authorized to send Apple events to OmniFocus.&quot;
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">&#34;NSAppleScriptErrorMessage&#34; : &#34;Not authorized to send Apple events to OmniFocus.&#34;</pre></td></tr></table>
+</div>
+</div>
 <p>很显然，没有权限执行该脚本来发送 Apple Event 给 OmniFocus 从而执行对应操作。</p>
 
 <p>针对 Apple Event 的权限控制， 是 macOS Mojave 系统带入 macOS 的，Apple 把权限控制进一步收缩，并且要求开发者显示告知用户你的 App 要干什么。当然 iOS 开发同学肯定很清楚，我们无论是拿摄像头，读取相册，甚至是 FaceID 等都是要明确的在 App 中声明的，也就是要在 Info.plist 文件中声名的。</p>

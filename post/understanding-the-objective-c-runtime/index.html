@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2015-09-07T17:55:33&#43;00:00" />
 <meta itemprop="dateModified" content="2015-09-07T17:55:33&#43;00:00" />
-<meta itemprop="wordCount" content="8862">
+<meta itemprop="wordCount" content="9160">
 
 
 
@@ -369,57 +369,105 @@
 </blockquote>
 
 <p>我们将这些特征和C语言进行对比来看，在C中，你从<code>main()</code>函数开始，然后按顺序从上往下写你的代码逻辑或者执行函数方法。C结构体是无法将请求转发到其他目标对象来执行方法的。你很可能写了如下类似的代码：</p>
-
-<pre><code class="language-objc">#include &lt; stdio.h &gt;
- 
-int main(int argc, const char **argv[]) {
-    printf(&quot;Hello World!&quot;);
-    return 0;
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#include</span> <span class="cpf">&lt; stdio.h &gt;</span><span class="cp">
+</span><span class="cp"></span> 
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Hello World!&#34;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>编译器解析、优化然后将优化后的代码转换成如下的汇编语言：</p>
-
-<pre><code class="language-objc">.text
- .align 4,0x90
- .globl _main
-_main:
-Leh_func_begin1:
- pushq %rbp
-Llabel1:
- movq %rsp, %rbp
-Llabel2:
- subq $16, %rsp
-Llabel3:
- movq %rsi, %rax
- movl %edi, %ecx
- movl %ecx, -8(%rbp)
- movq %rax, -16(%rbp)
- xorb %al, %al
- leaq LC(%rip), %rcx
- movq %rcx, %rdi
- call _printf
- movl $0, -4(%rbp)
- movl -4(%rbp), %eax
- addq $16, %rsp
- popq %rbp
- ret
-Leh_func_end1:
- .cstring
-LC:
- .asciz &quot;Hello World!&quot;
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">.</span><span class="n">text</span>
+ <span class="p">.</span><span class="n">align</span> <span class="mi">4</span><span class="p">,</span><span class="mh">0x90</span>
+ <span class="p">.</span><span class="n">globl</span> <span class="n">_main</span>
+<span class="nl">_main</span><span class="p">:</span>
+<span class="nl">Leh_func_begin1</span><span class="p">:</span>
+ <span class="n">pushq</span> <span class="o">%</span><span class="n">rbp</span>
+<span class="nl">Llabel1</span><span class="p">:</span>
+ <span class="n">movq</span> <span class="o">%</span><span class="n">rsp</span><span class="p">,</span> <span class="o">%</span><span class="n">rbp</span>
+<span class="nl">Llabel2</span><span class="p">:</span>
+ <span class="n">subq</span> <span class="err">$</span><span class="mi">16</span><span class="p">,</span> <span class="o">%</span><span class="n">rsp</span>
+<span class="nl">Llabel3</span><span class="p">:</span>
+ <span class="n">movq</span> <span class="o">%</span><span class="n">rsi</span><span class="p">,</span> <span class="o">%</span><span class="n">rax</span>
+ <span class="n">movl</span> <span class="o">%</span><span class="n">edi</span><span class="p">,</span> <span class="o">%</span><span class="n">ecx</span>
+ <span class="n">movl</span> <span class="o">%</span><span class="n">ecx</span><span class="p">,</span> <span class="o">-</span><span class="mi">8</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">)</span>
+ <span class="n">movq</span> <span class="o">%</span><span class="n">rax</span><span class="p">,</span> <span class="o">-</span><span class="mi">16</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">)</span>
+ <span class="n">xorb</span> <span class="o">%</span><span class="n">al</span><span class="p">,</span> <span class="o">%</span><span class="n">al</span>
+ <span class="n">leaq</span> <span class="n">LC</span><span class="p">(</span><span class="o">%</span><span class="n">rip</span><span class="p">),</span> <span class="o">%</span><span class="n">rcx</span>
+ <span class="n">movq</span> <span class="o">%</span><span class="n">rcx</span><span class="p">,</span> <span class="o">%</span><span class="n">rdi</span>
+ <span class="n">call</span> <span class="n">_printf</span>
+ <span class="n">movl</span> <span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">)</span>
+ <span class="n">movl</span> <span class="o">-</span><span class="mi">4</span><span class="p">(</span><span class="o">%</span><span class="n">rbp</span><span class="p">),</span> <span class="o">%</span><span class="n">eax</span>
+ <span class="n">addq</span> <span class="err">$</span><span class="mi">16</span><span class="p">,</span> <span class="o">%</span><span class="n">rsp</span>
+ <span class="n">popq</span> <span class="o">%</span><span class="n">rbp</span>
+ <span class="n">ret</span>
+<span class="nl">Leh_func_end1</span><span class="p">:</span>
+ <span class="p">.</span><span class="n">cstring</span>
+<span class="nl">LC</span><span class="p">:</span>
+ <span class="p">.</span><span class="n">asciz</span> <span class="s">&#34;Hello World!&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>然后将其和C库链接生成可执行文件。相比之下，Objective-C语言整个过程和上面类似，不过代码的产生依赖Objective-C运行时的具体表现（译者注：运行时按照不同情况，生成不同的代码吧）。当我们刚接触Objective-C语言的时候，我们可能被告知像如下代码</p>
-
-<pre><code class="language-objc">[self doSomethingWithVar:var1];
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">[</span><span class="nb">self</span> <span class="nl">doSomethingWithVar</span><span class="p">:</span><span class="n">var1</span><span class="p">];</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>会被转换成</p>
-
-<pre><code class="language-objc">objc_msgSend(self,@selector(doSomethingWithVar:),var1);
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="n">objc_msgSend</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span><span class="k">@selector</span><span class="p">(</span><span class="nl">doSomethingWithVar</span><span class="p">:),</span><span class="n">var1</span><span class="p">);</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>而除了这些，我们似乎就不清楚运行时还干了什么。</p>
 
 <h4 id="什么是-objective-c-运行时">什么是 Objective-C 运行时？</h4>
@@ -429,39 +477,64 @@ LC:
 <h4 id="objective-c-运行时术语">Objective-C 运行时术语</h4>
 
 <p>在我们进一步了解整个运行时之前，需要先了解一些接下来出现的术语。截至目前Mac和iPhone的开发者关心的有两个运行时：Modern Runtime &amp; Legacy Runtime 。前者覆盖所有64位Mac OS X 的app和所有的iOS app，后者覆盖其余的（全部的Mac OS X 32位 App）。关于方法，这里有两种基本类型的方法，一种是实例方法（&rsquo;-&lsquo;开头， 例如<code>-(void)doFoo</code>，作用于对象实例），另一种是类方法（&rsquo;+&lsquo;开头，例如<code>+(id)alloc</code>）。方法就像C语言中的函数类似，一段代码完成一个小的任务，如下：</p>
-
-<pre><code class="language-objc">- (NSString *)movieTitle {
-    return @&quot;Futurama: Into the Wild Green Yonder&quot;;
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">movieTitle</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s">@&#34;Futurama: Into the Wild Green Yonder&#34;</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p><strong>Selector</strong><br />
 Objective-C中的Selector（选择子）是一个重要的C数据结构，用以标识你要一个对象执行的Objective-C方法。在运行时中，Selector的定义应该和下面这样类似：</p>
-
-<pre><code class="language-objc">typedef struct objc_selector  *SEL; 
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">objc_selector</span>  <span class="o">*</span><span class="kt">SEL</span><span class="p">;</span> </code></pre></td></tr></table>
+</div>
+</div>
 <p>用法就像下面这样：</p>
-
-<pre><code class="language-objc">SEL aSel = @selector(movieTitle); 
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="kt">SEL</span> <span class="n">aSel</span> <span class="o">=</span> <span class="k">@selector</span><span class="p">(</span><span class="n">movieTitle</span><span class="p">);</span> </code></pre></td></tr></table>
+</div>
+</div>
 <p><strong>Message</strong></p>
-
-<pre><code class="language-objc">[target getMovieTitleForObject:obj];
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">[</span><span class="n">target</span> <span class="nl">getMovieTitleForObject</span><span class="p">:</span><span class="n">obj</span><span class="p">];</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>Objective-C中的方法由两个方括号[]组成，括号中间是你将要将消息发往的目标对象和你将要该对象执行的方法以及所需要发送的参数列表。Objective-C中的消息和C函数类似，但是又不同。你向一个对象发送消息并不意味着该对象就一定会执行它。这个对象会检查该消息的发送者，然后基于该发送者要么执行一个不同的方法或者将该消息转发给另外的不同的对象。</p>
 
 <p><strong>Class</strong>
 如果你看过Runtime中关于类的定义信息，你可能会遇到这样的定义：</p>
-
-<pre><code class="language-objc">typedef struct objc_class *Class;
-typedef struct objc_object {
-    Class isa;
-} *id; 
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">objc_class</span> <span class="o">*</span><span class="kt">Class</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">objc_object</span> <span class="p">{</span>
+    <span class="kt">Class</span> <span class="n">isa</span><span class="p">;</span>
+<span class="p">}</span> <span class="o">*</span><span class="kt">id</span><span class="p">;</span> </code></pre></td></tr></table>
+</div>
+</div>
 <p>这其中有一些事情要注意。
 每一个Objective-C类拥有一个结构体，每一个对象也有一个结构体。所有的对象都包含一个isa指针。所有的Objective-C运行时需要这个isa指针，用以检查一个对象具体的类型是什么，然后判别其是否能够响应你所派发过来的消息。
 最后我们还注意到了id指针，这个id指针仅仅告诉我们其指向的是Objective-C对象，仅此而已。当你拥有一个id指针，你可以查询该对象的类型，然后查看该类型是否可以响应某个方法等等。还有就是当你知道了当前所指向的具体对象的具体类别，你就可以做出更具体的动作。</p>
@@ -469,60 +542,105 @@ typedef struct objc_object {
 <p><strong>Blocks</strong></p>
 
 <p>你也可以在LLVM/Clang文档中对Blocks 的定义中发现和上面类似的东西。</p>
-
-<pre><code class="language-objc">struct Block_literal_1 {
-    void *isa; // initialized to &amp;_NSConcreteStackBlock or &amp;_NSConcreteGlobalBlock
-    int flags;
-    int reserved; 
-    void (*invoke)(void *, ...);
-    struct Block_descriptor_1 {
-         unsigned long int reserved; // NULL
-         unsigned long int size;  // sizeof(struct Block_literal_1)
-         // optional helper functions
-         void (*copy_helper)(void *dst, void *src);
-         void (*dispose_helper)(void *src); 
-    } *descriptor;
-    // imported variables
-}; 
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="k">struct</span> <span class="n">Block_literal_1</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="o">*</span><span class="n">isa</span><span class="p">;</span> <span class="c1">// initialized to &amp;_NSConcreteStackBlock or &amp;_NSConcreteGlobalBlock
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">flags</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">reserved</span><span class="p">;</span> 
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">invoke</span><span class="p">)(</span><span class="kt">void</span> <span class="o">*</span><span class="p">,</span> <span class="p">...);</span>
+    <span class="k">struct</span> <span class="n">Block_descriptor_1</span> <span class="p">{</span>
+         <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">reserved</span><span class="p">;</span> <span class="c1">// NULL
+</span><span class="c1"></span>         <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>  <span class="c1">// sizeof(struct Block_literal_1)
+</span><span class="c1"></span>         <span class="c1">// optional helper functions
+</span><span class="c1"></span>         <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">copy_helper</span><span class="p">)(</span><span class="kt">void</span> <span class="o">*</span><span class="n">dst</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">src</span><span class="p">);</span>
+         <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">dispose_helper</span><span class="p">)(</span><span class="kt">void</span> <span class="o">*</span><span class="n">src</span><span class="p">);</span> 
+    <span class="p">}</span> <span class="o">*</span><span class="n">descriptor</span><span class="p">;</span>
+    <span class="c1">// imported variables
+</span><span class="c1"></span><span class="p">};</span> </code></pre></td></tr></table>
+</div>
+</div>
 <p>Blocks被设计成能够与Objective-C运行时兼容，因此它们可以被当做对象处理，并可以响应消息（像<code>-retain</code>, <code>-release</code>, <code>-copy</code>等）。</p>
 
 <p><strong>IMP</strong>（Method Implementations）</p>
-
-<pre><code class="language-objc">typedef id (*IMP)(id self,SEL _cmd,...); 
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="k">typedef</span> <span class="nf">id</span> <span class="p">(</span><span class="o">*</span><span class="kt">IMP</span><span class="p">)(</span><span class="kt">id</span> <span class="nb">self</span><span class="p">,</span><span class="kt">SEL</span> <span class="n">_cmd</span><span class="p">,...);</span> </code></pre></td></tr></table>
+</div>
+</div>
 <p>IMP是编译器生成的函数指针，指向方法执行处。如果你刚接触Objective-C语言，你不需要直接和这些东西打交道，但是慢慢深入之后接触的就多了。后面我们会看到这也是Objective-C运行时唤醒方法的方式。</p>
 
 <p><strong>Objective-C Classes</strong></p>
 
 <p>Objective-C 的类内部有些什么东西呢？一个Objective-C的类的样子大体如下：</p>
-
-<pre><code class="language-objc">@interface MyClass : NSObject {
-    // vars
-    NSInteger counter;
-}
-// methods
--(void)doFoo;
-@end
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="k">@interface</span> <span class="nc">MyClass</span> : <span class="nc">NSObject</span> <span class="p">{</span>
+    <span class="c1">// vars
+</span><span class="c1"></span>    <span class="n">NSInteger</span> <span class="n">counter</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// methods
+</span><span class="c1"></span><span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">doFoo</span><span class="p">;</span>
+<span class="k">@end</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>但是运行时还会追加更多的内容以便跟踪（类每一时刻的状态）。</p>
-
-<pre><code class="language-objc">#if !__OBJC2__
-    Class super_class                                        OBJC2_UNAVAILABLE;
-    const char *name                                         OBJC2_UNAVAILABLE;
-    long version                                             OBJC2_UNAVAILABLE;
-    long info                                                OBJC2_UNAVAILABLE;
-    long instance_size                                       OBJC2_UNAVAILABLE;
-    struct objc_ivar_list *ivars                             OBJC2_UNAVAILABLE;
-    struct objc_method_list **methodLists                    OBJC2_UNAVAILABLE;
-    struct objc_cache *cache                                 OBJC2_UNAVAILABLE;
-    struct objc_protocol_list *protocols                     OBJC2_UNAVAILABLE;
-#endif 
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#if !__OBJC2__
+</span><span class="cp"></span>    <span class="kt">Class</span> <span class="n">super_class</span>                                        <span class="n">OBJC2_UNAVAILABLE</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">name</span>                                         <span class="n">OBJC2_UNAVAILABLE</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="n">version</span>                                             <span class="n">OBJC2_UNAVAILABLE</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="n">info</span>                                                <span class="n">OBJC2_UNAVAILABLE</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="n">instance_size</span>                                       <span class="n">OBJC2_UNAVAILABLE</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">objc_ivar_list</span> <span class="o">*</span><span class="n">ivars</span>                             <span class="n">OBJC2_UNAVAILABLE</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">objc_method_list</span> <span class="o">**</span><span class="n">methodLists</span>                    <span class="n">OBJC2_UNAVAILABLE</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">objc_cache</span> <span class="o">*</span><span class="n">cache</span>                                 <span class="n">OBJC2_UNAVAILABLE</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">objc_protocol_list</span> <span class="o">*</span><span class="n">protocols</span>                     <span class="n">OBJC2_UNAVAILABLE</span><span class="p">;</span>
+<span class="cp">#endif </span></code></pre></td></tr></table>
+</div>
+</div>
 <p>我们可以看到一个类中包含一个指向其父类的引用，该类的名字、实例变量、方法集合、缓存以及该类遵循的协议列表。运行时需要这些信息以便响应那些分发到该类或者类实例对象上得方法。</p>
 
 <h4 id="因此类定义了对象而不是对象本身-那这又是如何实现的">因此类定义了对象而不是对象本身，那这又是如何实现的？</h4>
@@ -537,136 +655,233 @@ typedef struct objc_object {
 <h4 id="为什么我们都要继承自apple的类呢">为什么我们都要继承自Apple的类呢？</h4>
 
 <p>当你刚踏入Cocoa开发的时候，很多代码例子都告诉你这样做：先继承NSObject类然后再进行其他编码。你也乐在其中，确实享受到了很多继承自Apple类所提供的便利。但是你甚至可能都没有发现实际上你的类在和Objective-C运行时打交道。当你为我们的类实例化的时候，像这样：</p>
-
-<pre><code class="language-objc">MyObject *object = [[MyObject alloc] init];
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="n">MyObject</span> <span class="o">*</span><span class="n">object</span> <span class="o">=</span> <span class="p">[[</span><span class="n">MyObject</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>第一个你要执行的消息就是<code>+alloc</code>。如果你[查看文档][6]，里面会讲到“一个新生实例的isa实例会被初始化为一个描述该类信息的数据结构，其余的实例变量的内存均被设置为空。”所以通过继承自Apple的类，我们不仅继承了一些很棒的属性，同时也继承了这些在内存上分配空间（大小是我们类的大小），创建对象的能力（就是创建运行时所期望的带有isa指针的数据结构）。</p>
 
 <h4 id="类缓存-objc-cache-cache-是什么">类缓存（objc_cache* cache）是什么？</h4>
 
 <p>当Objective-C运行时通过一个对象的isa指针检查对象的时候，它会找到能够执行很多方法的类。然后你只需要调用其中很小一部分，所以每次运行时在进行一次查询动作时需要查找类分发表中所有的selectors这个动作是毫无意义的。这就是为什么类会由cache这个东西，当你查询一个类体系中的派发表的时候，一旦找到对应的selector时，就将该selector放到cache中。当<code>objc_msgSend()</code>方法在一个类中查询selector时，会先在cache中查找，这个理论的基础就是如果你曾经调用过一个类的消息，你有很大可能在之后还调用同样的方法。（译者注：CACHE的局部性原理）。所以按照这样考虑，如果我们先在有一个NSObject的子类MyObject如下：</p>
-
-<pre><code class="language-objc">MyObject *obj = [[MyObject alloc] init];
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="n">MyObject</span> <span class="o">*</span><span class="n">obj</span> <span class="o">=</span> <span class="p">[[</span><span class="n">MyObject</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
  
-@implementation MyObject
--(id)init {
-    if(self = [super init]) {
-        [self setVarA:@”blah”];
-    }
-    return self;
-}
-@end
-</code></pre>
-
+<span class="k">@implementation</span> <span class="nc">MyObject</span>
+<span class="p">-(</span><span class="kt">id</span><span class="p">)</span><span class="nf">init</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">self</span> <span class="o">=</span> <span class="p">[</span><span class="nb">super</span> <span class="n">init</span><span class="p">])</span> <span class="p">{</span>
+        <span class="p">[</span><span class="nb">self</span> <span class="nl">setVarA</span><span class="p">:@</span><span class="err">”</span><span class="n">blah</span><span class="err">”</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">@end</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>具体发生了以下几点：
 1. <code>[MyObject alloc]</code>首先被执行，MyObject类没有实现该方法，因此在该类中没有找到<code>+alloc</code>方法，接着顺着superclass指针找到其父类<code>NSObject</code>；
 2. 我们询问<code>NSObject</code>类是否能够响应<code>+alloc</code>方法，而它能够响应。<code>+alloc</code>方法检查接受者类（也就是<code>MyObject</code>），分配该类大小的一块内存空间，然后初始化其isa指针指向<code>MyObject</code>类，此时我们拥有一个实例了，同时稍早我们将<code>+alloc</code>方法放置于<code>NSObject</code>的类缓存（cache）中；
 3. 到目前为止，我们都是在发送类方法，此刻我们需要向一个实例对象发送消息，这里简单的调用<code>-init</code>方法或者指定初始化方法（designated initializer），当然我们的类实现了该方法，因此我们将<code>-(id)init</code>方法放置于cache中；
 4. 接下来<code>self = [super init]</code>被调用，<code>super</code>是一个神奇的关键字（<strong>magic keyword</strong>），其指向类的父类，也即<code>NSObject</code>，我们调用<code>NSObject</code>的<code>init</code>方法。这样做的目的是为了确保面向对象编程的集成体系能够正确运行，在你正确初始化自身变量之前需要先初始化该类的所有父类的变量，如果你需要，你还可以覆写父类的方法。在该例中，对于NSObject类来说并没有多少特别重要的操作要进行，不过这并不是常态。有时候初始化中会做非常重要的事情，考虑以下代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#import &lt; Foundation/Foundation.h&gt;
+</span><span class="cp"></span> 
+<span class="k">@interface</span> <span class="nc">MyObject</span> : <span class="nc">NSObject</span> <span class="p">{</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">aString</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="k">@property</span><span class="p">(</span><span class="k">retain</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">aString</span><span class="p">;</span>
+ 
+<span class="k">@end</span>
+ 
+<span class="k">@implementation</span> <span class="nc">MyObject</span>
+ 
+<span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">init</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">self</span> <span class="o">=</span> <span class="p">[</span><span class="nb">super</span> <span class="n">init</span><span class="p">])</span> <span class="p">{</span>
+      <span class="p">[</span><span class="nb">self</span> <span class="nl">setAString</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="k">@synthesize</span> <span class="n">aString</span><span class="p">;</span>
+ 
+<span class="k">@end</span>
 
-<pre><code class="language-objc">#import &lt; Foundation/Foundation.h&gt;
  
-@interface MyObject : NSObject {
-    NSString *aString;
-}
+<span class="kt">int</span> <span class="n">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="n">NSAutoreleasePool</span> <span class="o">*</span> <span class="n">pool</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSAutoreleasePool</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
  
-@property(retain) NSString *aString;
+    <span class="kt">id</span> <span class="n">obj1</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSMutableArray</span> <span class="n">alloc</span><span class="p">];</span>
+    <span class="kt">id</span> <span class="n">obj2</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSMutableArray</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
  
-@end
- 
-@implementation MyObject
- 
-- (id)init {
-    if (self = [super init]) {
-      [self setAString:nil];
-    }
-    return self;
-}
- 
-@synthesize aString;
- 
-@end
-
- 
-int main (int argc, const char * argv[]) {
-    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
- 
-    id obj1 = [NSMutableArray alloc];
-    id obj2 = [[NSMutableArray alloc] init];
- 
-    id obj3 = [NSArray alloc];
-    id obj4 = [[NSArray alloc] initWithObjects:@&quot;Hello&quot;,nil];
+    <span class="kt">id</span> <span class="n">obj3</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSArray</span> <span class="n">alloc</span><span class="p">];</span>
+    <span class="kt">id</span> <span class="n">obj4</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSArray</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithObjects</span><span class="p">:</span><span class="s">@&#34;Hello&#34;</span><span class="p">,</span><span class="nb">nil</span><span class="p">];</span>
       
-    NSLog(@&quot;obj1 class is %@&quot;,NSStringFromClass([obj1 class]));
-    NSLog(@&quot;obj2 class is %@&quot;,NSStringFromClass([obj2 class]));
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;obj1 class is %@&#34;</span><span class="p">,</span><span class="n">NSStringFromClass</span><span class="p">([</span><span class="n">obj1</span> <span class="k">class</span><span class="p">]));</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;obj2 class is %@&#34;</span><span class="p">,</span><span class="n">NSStringFromClass</span><span class="p">([</span><span class="n">obj2</span> <span class="k">class</span><span class="p">]));</span>
   
-    NSLog(@&quot;obj3 class is %@&quot;,NSStringFromClass([obj3 class]));
-    NSLog(@&quot;obj4 class is %@&quot;,NSStringFromClass([obj4 class]));
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;obj3 class is %@&#34;</span><span class="p">,</span><span class="n">NSStringFromClass</span><span class="p">([</span><span class="n">obj3</span> <span class="k">class</span><span class="p">]));</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;obj4 class is %@&#34;</span><span class="p">,</span><span class="n">NSStringFromClass</span><span class="p">([</span><span class="n">obj4</span> <span class="k">class</span><span class="p">]));</span>
   
-    id obj5 = [MyObject alloc];
-    id obj6 = [[MyObject alloc] init];
+    <span class="kt">id</span> <span class="n">obj5</span> <span class="o">=</span> <span class="p">[</span><span class="n">MyObject</span> <span class="n">alloc</span><span class="p">];</span>
+    <span class="kt">id</span> <span class="n">obj6</span> <span class="o">=</span> <span class="p">[[</span><span class="n">MyObject</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
   
-    NSLog(@&quot;obj5 class is %@&quot;,NSStringFromClass([obj5 class]));
-    NSLog(@&quot;obj6 class is %@&quot;,NSStringFromClass([obj6 class]));
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;obj5 class is %@&#34;</span><span class="p">,</span><span class="n">NSStringFromClass</span><span class="p">([</span><span class="n">obj5</span> <span class="k">class</span><span class="p">]));</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;obj6 class is %@&#34;</span><span class="p">,</span><span class="n">NSStringFromClass</span><span class="p">([</span><span class="n">obj6</span> <span class="k">class</span><span class="p">]));</span>
           
-    [pool drain];
-    return 0;
-}
-</code></pre>
-
+    <span class="p">[</span><span class="n">pool</span> <span class="n">drain</span><span class="p">];</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>如果你是刚刚接触Cocoa，我让你猜以上代码打印结果是什么，你很可能会给出这样的结果：</p>
-
-<pre><code class="language-objc">
-NSMutableArray
-NSMutableArray 
-NSArray
-NSArray
-MyObject
-MyObject
-
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="n">NSMutableArray</span>
+<span class="n">NSMutableArray</span> 
+<span class="n">NSArray</span>
+<span class="n">NSArray</span>
+<span class="n">MyObject</span>
+<span class="n">MyObject</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>但实际上是如下结果：</p>
-
-<pre><code class="language-objc">
-obj1 class is __NSPlaceholderArray
-obj2 class is NSCFArray
-obj3 class is __NSPlaceholderArray
-obj4 class is NSCFArray
-obj5 class is MyObject
-obj6 class is MyObject
-
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="n">obj1</span> <span class="k">class</span> <span class="n">is</span> <span class="n">__NSPlaceholderArray</span>
+<span class="n">obj2</span> <span class="k">class</span> <span class="n">is</span> <span class="n">NSCFArray</span>
+<span class="n">obj3</span> <span class="k">class</span> <span class="n">is</span> <span class="n">__NSPlaceholderArray</span>
+<span class="n">obj4</span> <span class="k">class</span> <span class="n">is</span> <span class="n">NSCFArray</span>
+<span class="n">obj5</span> <span class="k">class</span> <span class="n">is</span> <span class="n">MyObject</span>
+<span class="n">obj6</span> <span class="k">class</span> <span class="n">is</span> <span class="n">MyObject</span></code></pre></td></tr></table>
+</div>
+</div>
 <blockquote>
 <p>译者注：（本机XCode 7 beta6 运行结果如下：）</p>
 </blockquote>
-
-<pre><code class="language-objc">2015-09-07 13:43:06.922 ObjMessage[5185:1441448] obj1 class is __NSPlaceholderArray
-2015-09-07 13:43:11.201 ObjMessage[5185:1441448] obj2 class is __NSArrayM
-2015-09-07 13:43:17.987 ObjMessage[5185:1441448] obj3 class is __NSPlaceholderArray
-2015-09-07 13:43:18.503 ObjMessage[5185:1441448] obj4 class is __NSArrayI
-2015-09-07 13:43:32.228 ObjMessage[5185:1441448] obj5 class is MyObject
-2015-09-07 13:43:33.478 ObjMessage[5185:1441448] obj6 class is MyObject
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="mi">2015</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mo">07</span> <span class="mi">13</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mf">06.922</span> <span class="n">ObjMessage</span><span class="p">[</span><span class="mi">5185</span><span class="o">:</span><span class="mi">1441448</span><span class="p">]</span> <span class="n">obj1</span> <span class="k">class</span> <span class="n">is</span> <span class="n">__NSPlaceholderArray</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mo">07</span> <span class="mi">13</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mf">11.201</span> <span class="n">ObjMessage</span><span class="p">[</span><span class="mi">5185</span><span class="o">:</span><span class="mi">1441448</span><span class="p">]</span> <span class="n">obj2</span> <span class="k">class</span> <span class="n">is</span> <span class="n">__NSArrayM</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mo">07</span> <span class="mi">13</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mf">17.987</span> <span class="n">ObjMessage</span><span class="p">[</span><span class="mi">5185</span><span class="o">:</span><span class="mi">1441448</span><span class="p">]</span> <span class="n">obj3</span> <span class="k">class</span> <span class="n">is</span> <span class="n">__NSPlaceholderArray</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mo">07</span> <span class="mi">13</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mf">18.503</span> <span class="n">ObjMessage</span><span class="p">[</span><span class="mi">5185</span><span class="o">:</span><span class="mi">1441448</span><span class="p">]</span> <span class="n">obj4</span> <span class="k">class</span> <span class="n">is</span> <span class="n">__NSArrayI</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mo">07</span> <span class="mi">13</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mf">32.228</span> <span class="n">ObjMessage</span><span class="p">[</span><span class="mi">5185</span><span class="o">:</span><span class="mi">1441448</span><span class="p">]</span> <span class="n">obj5</span> <span class="k">class</span> <span class="n">is</span> <span class="n">MyObject</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mo">07</span> <span class="mi">13</span><span class="o">:</span><span class="mi">43</span><span class="o">:</span><span class="mf">33.478</span> <span class="n">ObjMessage</span><span class="p">[</span><span class="mi">5185</span><span class="o">:</span><span class="mi">1441448</span><span class="p">]</span> <span class="n">obj6</span> <span class="k">class</span> <span class="n">is</span> <span class="n">MyObject</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>原因就是Objective-C语言这里使用<code>+alloc</code>方法返回某个类的对象，但随后<code>-init</code>方法又可能返回另一个类的对象。</p>
 
 <h4 id="那-objc-msgsend-方法都发生了什么呢">那 objc_msgSend 方法都发生了什么呢？</h4>
 
 <p>实际上<code>objc_msgSend()</code>方法内部发生了许多事情。如下我们有这样的代码：</p>
-
-<pre><code class="language-objc">[self printMessageWithString:@&quot;Hello World!&quot;];
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">[</span><span class="nb">self</span> <span class="nl">printMessageWithString</span><span class="p">:</span><span class="s">@&#34;Hello World!&#34;</span><span class="p">];</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>编译器会把其翻译成如下所示代码：</p>
-
-<pre><code class="language-objc">
-objc_msgSend(self, @selector(printMessageWithString:), @&quot;Hello World!&quot;);
-
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="n">objc_msgSend</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="k">@selector</span><span class="p">(</span><span class="nl">printMessageWithString</span><span class="p">:),</span> <span class="s">@&#34;Hello World!&#34;</span><span class="p">);</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>我们通过目标对象的isa指针来查询该类或者其继承体系中的父类是否能够响应 <code>@selector(printMessageWithString:)</code>。假设我们在类的派发表或者它的cache中找到了该selector，然后我们通过该函数指针来执行该方法。因此我们可以了解<code>objc_msgSend()</code>方法永远不会返回，它从执行开始，通过指针查找到你的方法执行，然后是你的方法执行之后返回，因此看起来好像<code>objc_msgSend()</code>方法返回似的。Bill Bumgarner对此过程有更多的细节探索（<a href="http://www.friday.com/bbum/2009/12/18/objc_msgsend-part-1-the-road-map">Part 1</a>, <a href="http://www.friday.com/bbum/2009/12/18/objc_msgsend-tour-part-3-the-fast-path">Part 2</a> &amp; <a href="http://www.friday.com/bbum/2009/12/18/objc_msgsend-tour-part-2-setting-the-stage">Part 3</a>）。</p>
 
 <p>我这里总结下他所讲的，也就是你会在运行时代码中看到的：
@@ -680,29 +895,50 @@ objc_msgSend(self, @selector(printMessageWithString:), @&quot;Hello World!&quot;
 <li><p>如果缓存中没有找到该IMP，我们便紧接着查找类的派发表（dispatch table），如果找到同样跳转到函数执行处；</p></li>
 
 <li><p>如果类的派发表中也未找到我们就需要触发消息分发机制了，这意味着最终你得代码会被编译器转换成了C函数。因此一个如下方法：</p>
-
-<pre><code class="language-objc">-(int)doComputeWithNum:(int)aNum 
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-(</span><span class="kt">int</span><span class="p">)</span><span class="nf">doComputeWithNum:</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nv">aNum</span> </code></pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 
 <p>会被转换成如下：</p>
-
-<pre><code class="language-objc">int aClass_doComputeWithNum(aClass *self,SEL _cmd,int aNum) 
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="kt">int</span> <span class="n">aClass_doComputeWithNum</span><span class="p">(</span><span class="n">aClass</span> <span class="o">*</span><span class="nb">self</span><span class="p">,</span><span class="kt">SEL</span> <span class="n">_cmd</span><span class="p">,</span><span class="kt">int</span> <span class="n">aNum</span><span class="p">)</span> </code></pre></td></tr></table>
+</div>
+</div>
 <p>Objective-C运行时通过触发指向这些方法的函数指针来调用你的方法。告诉你，你没法直接调用这些转换之后的方法，尽管Cocoa框架确实提供了能够获取这些指针的方法。</p>
-
-<pre><code class="language-objc">//declare C function pointer
-int (computeNum *)(id,SEL,int);
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="c1">//declare C function pointer
+</span><span class="c1"></span><span class="kt">int</span> <span class="p">(</span><span class="n">computeNum</span> <span class="o">*</span><span class="p">)(</span><span class="kt">id</span><span class="p">,</span><span class="kt">SEL</span><span class="p">,</span><span class="kt">int</span><span class="p">);</span>
  
-//methodForSelector is COCOA &amp; not ObjC Runtime
-//gets the same function pointer objc_msgSend gets
-computeNum = (int (*)(id,SEL,int))[target methodForSelector:@selector(doComputeWithNum:)];
+<span class="c1">//methodForSelector is COCOA &amp; not ObjC Runtime
+</span><span class="c1">//gets the same function pointer objc_msgSend gets
+</span><span class="c1"></span><span class="n">computeNum</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">id</span><span class="p">,</span><span class="kt">SEL</span><span class="p">,</span><span class="kt">int</span><span class="p">))[</span><span class="n">target</span> <span class="nl">methodForSelector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nl">doComputeWithNum</span><span class="p">:)];</span>
  
-//execute the C function pointer returned by the runtime
-computeNum(obj,@selector(doComputeWithNum:),aNum); 
-</code></pre>
-
+<span class="c1">//execute the C function pointer returned by the runtime
+</span><span class="c1"></span><span class="n">computeNum</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="k">@selector</span><span class="p">(</span><span class="nl">doComputeWithNum</span><span class="p">:),</span><span class="n">aNum</span><span class="p">);</span> </code></pre></td></tr></table>
+</div>
+</div>
 <p>通过这个方法，你可以获取到在运行时直接获取该方法并调用它。甚至在你确认一个指定的方法需要被执行的时候可以绕过运行时机制。这也是Objective-C运行时如何调用你的方法的，但还是使用<code>objc_msgSend()</code>方法为好。</p>
 
 <h4 id="objective-c-消息转发">Objective-C 消息转发</h4>
@@ -716,53 +952,93 @@ computeNum(obj,@selector(doComputeWithNum:),aNum);
 </ol>
 
 <p>如下示例，你定义了一个函数：</p>
-
-<pre><code class="language-objc">void fooMethod(id obj, SEL _cmd) {
-    NSLog(@&quot;Doing Foo&quot;);
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="kt">void</span> <span class="nf">fooMethod</span><span class="p">(</span><span class="kt">id</span> <span class="n">obj</span><span class="p">,</span> <span class="kt">SEL</span> <span class="n">_cmd</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;Doing Foo&#34;</span><span class="p">);</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>你可以使用<code>class_addMethod()</code>方法类解决它：</p>
-
-<pre><code class="language-objc">+(BOOL)resolveInstanceMethod:(SEL)aSEL {
-    if(aSEL == @selector(doFoo:)) {
-        class_addMethod([self class],aSEL,(IMP)fooMethod,&quot;v@:&quot;);
-        return YES;
-    }
-    return [super resolveInstanceMethod];
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">+(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">resolveInstanceMethod:</span><span class="p">(</span><span class="kt">SEL</span><span class="p">)</span><span class="nv">aSEL</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">aSEL</span> <span class="o">==</span> <span class="k">@selector</span><span class="p">(</span><span class="nl">doFoo</span><span class="p">:))</span> <span class="p">{</span>
+        <span class="n">class_addMethod</span><span class="p">([</span><span class="nb">self</span> <span class="k">class</span><span class="p">],</span><span class="n">aSEL</span><span class="p">,(</span><span class="kt">IMP</span><span class="p">)</span><span class="n">fooMethod</span><span class="p">,</span><span class="s">&#34;v@:&#34;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nb">YES</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">[</span><span class="nb">super</span> <span class="n">resolveInstanceMethod</span><span class="p">];</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>其中方法<code>class_addMethod()</code>中的<code>v@:</code>标明了方法的返回类型以及其参数类型。你可以在运行时文档中[Type Encodings][10]分查看到详细的说明。</p>
 
 <ol>
 <li><p>如果2中<code>+(BOOL)resolveInstanceMethod:(SEL)aSEL</code>返回NO表示无法解析该方法的话，运行时接着调用<code>- (id)forwardingTargetForSelector:(SEL) aSelector</code>来给你再一次机会是否能够将该消息转发给其他接收者来处理。这要比之后运行完整的消息转发<code>- (void)forwardInvocation:(NSInvocation *)anInvocation</code>要好。你可以这样执行：</p>
-
-<pre><code class="language-objc">- (id)forwardingTargetForSelector:(SEL)aSelector {
-if(aSelector == @selector(mysteriousMethod:)) {
-    return alternateObject;
-}
-return [super forwardingTargetForSelector:aSelector];
-}
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">forwardingTargetForSelector:</span><span class="p">(</span><span class="kt">SEL</span><span class="p">)</span><span class="nv">aSelector</span> <span class="p">{</span>
+<span class="k">if</span><span class="p">(</span><span class="n">aSelector</span> <span class="o">==</span> <span class="k">@selector</span><span class="p">(</span><span class="nl">mysteriousMethod</span><span class="p">:))</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">alternateObject</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">return</span> <span class="p">[</span><span class="nb">super</span> <span class="nl">forwardingTargetForSelector</span><span class="p">:</span><span class="n">aSelector</span><span class="p">];</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 
 <p>很明显，你肯定不想返回 self，否则会引起死循环。</p>
 
 <ol>
 <li><p>如果上一步没有找到合适的目标对象来执行上面的消息，接着运行时会尝试最后一步 <code>- (void)forwardInvocation:(NSInvocation *)anInvocation</code>。你可能没见过NSInvocation，它实际上是Objective-C语言中的消息类型。一旦你有一个NSInvocation，你基本上能够改变这个消息的任何东西，包括其目标、选择子以及参数。所以你可以这样做：</p>
-
-<pre><code class="language-objc">- (void)forwardInvocation:(NSInvocation *)invocation {
-SEL invSEL = invocation.selector;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">forwardInvocation:</span><span class="p">(</span><span class="n">NSInvocation</span> <span class="o">*</span><span class="p">)</span><span class="nv">invocation</span> <span class="p">{</span>
+<span class="kt">SEL</span> <span class="n">invSEL</span> <span class="o">=</span> <span class="n">invocation</span><span class="p">.</span><span class="n">selector</span><span class="p">;</span>
  
-if([altObject respondsToSelector:invSEL]) {
-    [invocation invokeWithTarget:altObject];
-} 
-else {
-    [self doesNotRecognizeSelector:invSEL];
-}
-}
-</code></pre></li>
+<span class="k">if</span><span class="p">([</span><span class="n">altObject</span> <span class="nl">respondsToSelector</span><span class="p">:</span><span class="n">invSEL</span><span class="p">])</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">invocation</span> <span class="nl">invokeWithTarget</span><span class="p">:</span><span class="n">altObject</span><span class="p">];</span>
+<span class="p">}</span> 
+<span class="k">else</span> <span class="p">{</span>
+    <span class="p">[</span><span class="nb">self</span> <span class="nl">doesNotRecognizeSelector</span><span class="p">:</span><span class="n">invSEL</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 
 <p>默认情况下，如果你继承自NSObject类，它所实现的<code>- (void)forwardInvocation:(NSInvocation *)anInvocation</code>内部仅仅简单的调用了<code>-doesNotRecognizeSelector:</code>方法，如果你想给自己最后一次机会做一些事情的话，你可以重载该方法。</p>
@@ -786,129 +1062,243 @@ else {
 <h4 id="objective-c-关联对象">Objective-C 关联对象</h4>
 
 <p>最近引入Mac OS X 10.6系统有一个特性称作“关联引用”。Objective-C不像其他语言，其原生不支持向对象动态添加变量。所以到目前为止，你都必须要费很大的劲，编译整个体系结构来假装自己向类中添加一个变量。不过在Mac OS X 10.6系统中，Objective-C 运行时原生支持（动态添加变量）。如果我们想向每一个已经存在的类中添加一个变量，例如向NSView类中添加，如下所示：</p>
-
-<pre><code class="language-objc">#import &lt; Cocoa/Cocoa.h&gt; //Cocoa
-#include &lt; objc/runtime.h&gt; //objc runtime api’s
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#import &lt; Cocoa/Cocoa.h&gt; </span><span class="c1">//Cocoa
+</span><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt; objc/runtime.h&gt; //objc runtime api’s</span><span class="cp">
+</span><span class="cp"></span> 
+<span class="k">@interface</span> <span class="nc">NSView</span> <span class="nl">(CustomAdditions)</span>
+<span class="k">@property</span><span class="p">(</span><span class="k">retain</span><span class="p">)</span> <span class="n">NSImage</span> <span class="o">*</span><span class="n">customImage</span><span class="p">;</span>
+<span class="k">@end</span>
  
-@interface NSView (CustomAdditions)
-@property(retain) NSImage *customImage;
-@end
+<span class="k">@implementation</span> <span class="nc">NSView</span> <span class="nl">(CustomAdditions)</span>
  
-@implementation NSView (CustomAdditions)
+<span class="k">static</span> <span class="kt">char</span> <span class="n">img_key</span><span class="p">;</span> <span class="c1">//has a unique address (identifier)
+</span><span class="c1"></span> 
+<span class="p">-(</span><span class="n">NSImage</span> <span class="o">*</span><span class="p">)</span><span class="nf">customImage</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">objc_getAssociatedObject</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span><span class="o">&amp;</span><span class="n">img_key</span><span class="p">);</span>
+<span class="p">}</span>
  
-static char img_key; //has a unique address (identifier)
+<span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setCustomImage:</span><span class="p">(</span><span class="n">NSImage</span> <span class="o">*</span><span class="p">)</span><span class="nv">image</span> <span class="p">{</span>
+    <span class="n">objc_setAssociatedObject</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span><span class="o">&amp;</span><span class="n">img_key</span><span class="p">,</span><span class="n">image</span><span class="p">,</span>
+                             <span class="n">OBJC_ASSOCIATION_RETAIN</span><span class="p">);</span>
+<span class="p">}</span>
  
--(NSImage *)customImage {
-    return objc_getAssociatedObject(self,&amp;img_key);
-}
- 
--(void)setCustomImage:(NSImage *)image {
-    objc_setAssociatedObject(self,&amp;img_key,image,
-                             OBJC_ASSOCIATION_RETAIN);
-}
- 
-@end
-</code></pre>
-
+<span class="k">@end</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>你可以在[runtime.h][11]，（译者注：最新版 [runtime.h][12]）文件中看到向<code>objc_setAssociatedObject()</code>传递的几个选项：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cm">/* Associative References */</span>
 
-<pre><code class="language-objc">/* Associative References */
-
-/**
- * Policies related to associative references.
- * These are options to objc_setAssociatedObject()
- */
-enum {
-    OBJC_ASSOCIATION_ASSIGN = 0,           /**&lt; Specifies a weak reference to the associated object. */
-    OBJC_ASSOCIATION_RETAIN_NONATOMIC = 1, /**&lt; Specifies a strong reference to the associated object. 
-                                            *   The association is not made atomically. */
-    OBJC_ASSOCIATION_COPY_NONATOMIC = 3,   /**&lt; Specifies that the associated object is copied. 
-                                            *   The association is not made atomically. */
-    OBJC_ASSOCIATION_RETAIN = 01401,       /**&lt; Specifies a strong reference to the associated object.
-                                            *   The association is made atomically. */
-    OBJC_ASSOCIATION_COPY = 01403          /**&lt; Specifies that the associated object is copied.
-                                            *   The association is made atomically. */
-};
-
-</code></pre>
-
+<span class="cm">/**
+</span><span class="cm"> * Policies related to associative references.
+</span><span class="cm"> * These are options to objc_setAssociatedObject()
+</span><span class="cm"> */</span>
+<span class="k">enum</span> <span class="p">{</span>
+    <span class="n">OBJC_ASSOCIATION_ASSIGN</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>           <span class="cm">/**&lt; Specifies a weak reference to the associated object. */</span>
+    <span class="n">OBJC_ASSOCIATION_RETAIN_NONATOMIC</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="cm">/**&lt; Specifies a strong reference to the associated object. 
+</span><span class="cm">                                            *   The association is not made atomically. */</span>
+    <span class="n">OBJC_ASSOCIATION_COPY_NONATOMIC</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>   <span class="cm">/**&lt; Specifies that the associated object is copied. 
+</span><span class="cm">                                            *   The association is not made atomically. */</span>
+    <span class="n">OBJC_ASSOCIATION_RETAIN</span> <span class="o">=</span> <span class="mo">01401</span><span class="p">,</span>       <span class="cm">/**&lt; Specifies a strong reference to the associated object.
+</span><span class="cm">                                            *   The association is made atomically. */</span>
+    <span class="n">OBJC_ASSOCIATION_COPY</span> <span class="o">=</span> <span class="mo">01403</span>          <span class="cm">/**&lt; Specifies that the associated object is copied.
+</span><span class="cm">                                            *   The association is made atomically. */</span>
+<span class="p">};</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>这些和你通过<code>@property</code>方式传递的选项相吻合。</p>
 
 <h4 id="混合的虚表派生">混合的虚表派生</h4>
 
 <p>如果你查看Modern runtime 代码，你会在[objc-runtime-new.m]()（译者注： 最新版objc runtime源码为[objc-runtime-new.mm][14] 已经去掉了这个特性，译者发现从[objc4-551.1][15]版本开始就不支持了，不过读者还是可以借鉴下之前版本的实现方式。）中发现这个：</p>
-
-<pre><code class="language-objc">/***********************************************************************
-* vtable dispatch
-* 
-* Every class gets a vtable pointer. The vtable is an array of IMPs.
-* The selectors represented in the vtable are the same for all classes
-*   (i.e. no class has a bigger or smaller vtable).
-* Each vtable index has an associated trampoline which dispatches to 
-*   the IMP at that index for the receiver class's vtable (after 
-*   checking for NULL). Dispatch fixup uses these trampolines instead 
-*   of objc_msgSend.
-* Fragility: The vtable size and list of selectors is chosen at launch 
-*   time. No compiler-generated code depends on any particular vtable 
-*   configuration, or even the use of vtable dispatch at all.
-* Memory size: If a class's vtable is identical to its superclass's 
-*   (i.e. the class overrides none of the vtable selectors), then 
-*   the class points directly to its superclass's vtable. This means 
-*   selectors to be included in the vtable should be chosen so they are 
-*   (1) frequently called, but (2) not too frequently overridden. In 
-*   particular, -dealloc is a bad choice.
-* Forwarding: If a class doesn't implement some vtable selector, that 
-*   selector's IMP is set to objc_msgSend in that class's vtable.
-* +initialize: Each class keeps the default vtable (which always 
-*   redirects to objc_msgSend) until its +initialize is completed.
-*   Otherwise, the first message to a class could be a vtable dispatch, 
-*   and the vtable trampoline doesn't include +initialize checking.
-* Changes: Categories, addMethod, and setImplementation all force vtable 
-*   reconstruction for the class and all of its subclasses, if the 
-*   vtable selectors are affected.
-**********************************************************************/
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cm">/***********************************************************************
+</span><span class="cm">* vtable dispatch
+</span><span class="cm">* 
+</span><span class="cm">* Every class gets a vtable pointer. The vtable is an array of IMPs.
+</span><span class="cm">* The selectors represented in the vtable are the same for all classes
+</span><span class="cm">*   (i.e. no class has a bigger or smaller vtable).
+</span><span class="cm">* Each vtable index has an associated trampoline which dispatches to 
+</span><span class="cm">*   the IMP at that index for the receiver class&#39;s vtable (after 
+</span><span class="cm">*   checking for NULL). Dispatch fixup uses these trampolines instead 
+</span><span class="cm">*   of objc_msgSend.
+</span><span class="cm">* Fragility: The vtable size and list of selectors is chosen at launch 
+</span><span class="cm">*   time. No compiler-generated code depends on any particular vtable 
+</span><span class="cm">*   configuration, or even the use of vtable dispatch at all.
+</span><span class="cm">* Memory size: If a class&#39;s vtable is identical to its superclass&#39;s 
+</span><span class="cm">*   (i.e. the class overrides none of the vtable selectors), then 
+</span><span class="cm">*   the class points directly to its superclass&#39;s vtable. This means 
+</span><span class="cm">*   selectors to be included in the vtable should be chosen so they are 
+</span><span class="cm">*   (1) frequently called, but (2) not too frequently overridden. In 
+</span><span class="cm">*   particular, -dealloc is a bad choice.
+</span><span class="cm">* Forwarding: If a class doesn&#39;t implement some vtable selector, that 
+</span><span class="cm">*   selector&#39;s IMP is set to objc_msgSend in that class&#39;s vtable.
+</span><span class="cm">* +initialize: Each class keeps the default vtable (which always 
+</span><span class="cm">*   redirects to objc_msgSend) until its +initialize is completed.
+</span><span class="cm">*   Otherwise, the first message to a class could be a vtable dispatch, 
+</span><span class="cm">*   and the vtable trampoline doesn&#39;t include +initialize checking.
+</span><span class="cm">* Changes: Categories, addMethod, and setImplementation all force vtable 
+</span><span class="cm">*   reconstruction for the class and all of its subclasses, if the 
+</span><span class="cm">*   vtable selectors are affected.
+</span><span class="cm">**********************************************************************/</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>这背后的原理就是，运行时试图去存储你最近调用过的选择子（selector）以便能够为你的App加速，因为其比<code>objc_msgSend</code>方法使用更少的指令。这个<code>vTable</code>存储你最近全局调用的16个选择子，实际上，在代码文件往下接着看你就会看到垃圾回收和非垃圾回收类型的App的默认选择子（selectors）。</p>
-
-<pre><code class="language-objc">static const char * const defaultVtable[] = {
-    &quot;allocWithZone:&quot;, 
-    &quot;alloc&quot;, 
-    &quot;class&quot;, 
-    &quot;self&quot;, 
-    &quot;isKindOfClass:&quot;, 
-    &quot;respondsToSelector:&quot;, 
-    &quot;isFlipped&quot;, 
-    &quot;length&quot;, 
-    &quot;objectForKey:&quot;, 
-    &quot;count&quot;, 
-    &quot;objectAtIndex:&quot;, 
-    &quot;isEqualToString:&quot;, 
-    &quot;isEqual:&quot;, 
-    &quot;retain&quot;, 
-    &quot;release&quot;, 
-    &quot;autorelease&quot;, 
-};
-static const char * const defaultVtableGC[] = {
-    &quot;allocWithZone:&quot;, 
-    &quot;alloc&quot;, 
-    &quot;class&quot;, 
-    &quot;self&quot;, 
-    &quot;isKindOfClass:&quot;, 
-    &quot;respondsToSelector:&quot;, 
-    &quot;isFlipped&quot;, 
-    &quot;length&quot;, 
-    &quot;objectForKey:&quot;, 
-    &quot;count&quot;, 
-    &quot;objectAtIndex:&quot;, 
-    &quot;isEqualToString:&quot;, 
-    &quot;isEqual:&quot;, 
-    &quot;hash&quot;, 
-    &quot;addObject:&quot;, 
-    &quot;countByEnumeratingWithState:objects:count:&quot;, 
-};
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="k">const</span> <span class="n">defaultVtable</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#34;allocWithZone:&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;alloc&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;class&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;self&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;isKindOfClass:&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;respondsToSelector:&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;isFlipped&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;length&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;objectForKey:&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;count&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;objectAtIndex:&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;isEqualToString:&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;isEqual:&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;retain&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;release&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;autorelease&#34;</span><span class="p">,</span> 
+<span class="p">};</span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="k">const</span> <span class="n">defaultVtableGC</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#34;allocWithZone:&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;alloc&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;class&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;self&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;isKindOfClass:&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;respondsToSelector:&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;isFlipped&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;length&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;objectForKey:&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;count&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;objectAtIndex:&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;isEqualToString:&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;isEqual:&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;hash&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;addObject:&#34;</span><span class="p">,</span> 
+    <span class="s">&#34;countByEnumeratingWithState:objects:count:&#34;</span><span class="p">,</span> 
+<span class="p">};</span></code></pre></td></tr></table>
+</div>
+</div>
 <h4 id="因此你如何能知道你正在和它打交道呢">因此你如何能知道你正在和它打交道呢？</h4>
 
 <p>当你进行调试的时候，你会在你的调试栈中看到稍后讲解到的某些方法的身影。你就把这些方法按照<code>objc_msgSend()</code>方法来对待就行，不过这些方法都是为了调试，具体有如下几个方法。

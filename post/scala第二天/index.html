@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2015-04-16T18:43:00&#43;00:00" />
 <meta itemprop="dateModified" content="2015-04-16T18:43:00&#43;00:00" />
-<meta itemprop="wordCount" content="2047">
+<meta itemprop="wordCount" content="2188">
 
 
 
@@ -360,34 +360,60 @@
 <h3 id="关于如何使用scala文件的讨论">关于如何使用Scala文件的讨论</h3>
 
 <p>既然Scala可以使用Java中任意的对象（Objects），因此可以使用Java中针对文件的操作，例如java.io.File就是其中之一，示例如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">java.io._</span>
 
-<pre><code class="language-scala">import java.io._
-
-object Test {
-    def main(args: Array[String]) {
-        val writer = new PrintWriter(new File(&quot;test.txt&quot;))
-        writer.write(&quot;Hello Scala&quot;)
-        writer.close()
-    }
-}
-</code></pre>
-
+<span class="k">object</span> <span class="nc">Test</span> <span class="o">{</span>
+    <span class="k">def</span> <span class="n">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="o">{</span>
+        <span class="k">val</span> <span class="n">writer</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">PrintWriter</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">&#34;test.txt&#34;</span><span class="o">))</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="o">(</span><span class="s">&#34;Hello Scala&#34;</span><span class="o">)</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">close</span><span class="o">()</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>从本地读取文件，scala库自带文件读取，如下所示代码为一段示例，可以读取本地文件中得内容
 读取文件内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">scala.io.Source</span>
 
-<pre><code class="language-scala">import scala.io.Source
+<span class="k">object</span> <span class="nc">Test</span> <span class="o">{</span>
+   <span class="k">def</span> <span class="n">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="o">{</span>
+      <span class="n">println</span><span class="o">(</span><span class="s">&#34;Following is the content read:&#34;</span> <span class="o">)</span>
 
-object Test {
-   def main(args: Array[String]) {
-      println(&quot;Following is the content read:&quot; )
-
-      Source.fromFile(&quot;test.txt&quot; ).foreach{ 
-         print 
-      }
-   }
-}
-</code></pre>
-
+      <span class="nc">Source</span><span class="o">.</span><span class="n">fromFile</span><span class="o">(</span><span class="s">&#34;test.txt&#34;</span> <span class="o">).</span><span class="n">foreach</span><span class="o">{</span> 
+         <span class="n">print</span> 
+      <span class="o">}</span>
+   <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <h3 id="闭包-closure-和代码块有何不同">闭包(closure)和代码块有何不同</h3>
 
 <p>关于闭包的概念，只能从网路上查找资料加上自己理解写</p>
@@ -401,14 +427,22 @@ object Test {
 <h5 id="代码块-block">代码块（Block）</h5>
 
 <p>而代码块是语法上由一些逻辑性语句组成的一个一个单元：</p>
-
-<pre><code class="language-c">if (Condition) {
-    // one Block
-} else {
-    // another Block
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">if</span> <span class="p">(</span><span class="n">Condition</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// one Block
+</span><span class="c1"></span><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// another Block
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <h2 id="做">做</h2>
 
 <h3 id="使用foldleft方法计算一个列表中所有字符串的长度">使用foldLeft方法计算一个列表中所有字符串的长度</h3>
@@ -418,173 +452,322 @@ object Test {
 <h5 id="foldleft">foldLeft</h5>
 
 <p>Scala中foldLeft方法定义在<a href="https://github.com/scala/scala/blob/v2.11.6/src/library/scala/collection/GenTraversableOnce.scala#L1">GenTraversableOnce.scala</a>文件中</p>
-
-<pre><code class="language-scala">/** Applies a binary operator to a start value and all elements of this $coll,
- *  going left to right.
- *
- *  $willNotTerminateInf
- *  $orderDependentFold
- *
- *  @param   z    the start value.
- *  @param   op   the binary operator.
- *  @tparam  B    the result type of the binary operator.
- *  @return  the result of inserting `op` between consecutive elements of this $coll,
- *           going left to right with the start value `z` on the left:
- *           {{{
- *             op(...op(z, x_1), x_2, ..., x_n)
- *           }}}
- *           where `x,,1,,, ..., x,,n,,` are the elements of this $coll.
-*/
- def foldLeft[B](z: B)(op: (B, A) =&gt; B): B
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="cm">/** Applies a binary operator to a start value and all elements of this $coll,
+</span><span class="cm"> *  going left to right.
+</span><span class="cm"> *
+</span><span class="cm"> *  $willNotTerminateInf
+</span><span class="cm"> *  $orderDependentFold
+</span><span class="cm"> *
+</span><span class="cm"> *  @param   z    the start value.
+</span><span class="cm"> *  @param   op   the binary operator.
+</span><span class="cm"> *  @tparam  B    the result type of the binary operator.
+</span><span class="cm"> *  @return  the result of inserting `op` between consecutive elements of this $coll,
+</span><span class="cm"> *           going left to right with the start value `z` on the left:
+</span><span class="cm"> *           {{{
+</span><span class="cm"> *             op(...op(z, x_1), x_2, ..., x_n)
+</span><span class="cm"> *           }}}
+</span><span class="cm"> *           where `x,,1,,, ..., x,,n,,` are the elements of this $coll.
+</span><span class="cm">*/</span>
+ <span class="k">def</span> <span class="n">foldLeft</span><span class="o">[</span><span class="kt">B</span><span class="o">](</span><span class="n">z</span><span class="k">:</span> <span class="kt">B</span><span class="o">)(</span><span class="n">op</span><span class="k">:</span> <span class="o">(</span><span class="kt">B</span><span class="o">,</span> <span class="kt">A</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">B</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>实现在<a href="https://github.com/scala/scala/blob/v2.11.6/src/library/scala/collection/TraversableOnce.scala#L1">TraversableOnce.scala</a>里：</p>
-
-<pre><code class="language-scala">  def foldLeft[B](z: B)(op: (B, A) =&gt; B): B = {
-    var result = z
-    this foreach (x =&gt; result = op(result, x))
-    result
-  }
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala">  <span class="k">def</span> <span class="n">foldLeft</span><span class="o">[</span><span class="kt">B</span><span class="o">](</span><span class="n">z</span><span class="k">:</span> <span class="kt">B</span><span class="o">)(</span><span class="n">op</span><span class="k">:</span> <span class="o">(</span><span class="kt">B</span><span class="o">,</span> <span class="kt">A</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">B</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="k">var</span> <span class="n">result</span> <span class="k">=</span> <span class="n">z</span>
+    <span class="k">this</span> <span class="n">foreach</span> <span class="o">(</span><span class="n">x</span> <span class="k">=&gt;</span> <span class="n">result</span> <span class="k">=</span> <span class="n">op</span><span class="o">(</span><span class="n">result</span><span class="o">,</span> <span class="n">x</span><span class="o">))</span>
+    <span class="n">result</span>
+  <span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>方法接受两个参数，z 和 op， 其中z是B类型，op是一个返回类型为B类型的方法。其实该方法还有一个版本需要用到:/操作符，如下所示：</p>
-
-<pre><code class="language-scala"> def /:[B](z: B)(op: (B, A) =&gt; B): B = foldLeft(z)(op)
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"> <span class="k">def</span> <span class="o">/:[</span><span class="kt">B</span><span class="o">](</span><span class="n">z</span><span class="k">:</span> <span class="kt">B</span><span class="o">)(</span><span class="n">op</span><span class="k">:</span> <span class="o">(</span><span class="kt">B</span><span class="o">,</span> <span class="kt">A</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">B</span> <span class="o">=</span> <span class="n">foldLeft</span><span class="o">(</span><span class="n">z</span><span class="o">)(</span><span class="n">op</span><span class="o">)</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>该方法实际上是调用了foldLeft方法。举个例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"> <span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">list</span><span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+ <span class="n">list</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
 
-<pre><code class="language-scala"> scala&gt; val list= List(1, 2, 3)
- list: List[Int] = List(1, 2, 3)
-
- scala&gt; list.foldLeft(0)((sum, value) =&gt; sum + value)
- res6: Int = 6
-</code></pre>
-
+ <span class="n">scala</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">.</span><span class="n">foldLeft</span><span class="o">(</span><span class="mi">0</span><span class="o">)((</span><span class="n">sum</span><span class="o">,</span> <span class="n">value</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">value</span><span class="o">)</span>
+ <span class="n">res6</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">6</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>foldLeft方法被传入一个初始值和一个代码块，这个代码块有两个参数sum 和 value，foldLeft将sum初始化为0，而value通过list遍历将list中每个元素累加到sum上，因此该行代码实现了对list中元素的累加。</p>
 
 <h5 id="foldright">foldRight</h5>
 
 <p>foldRight的实现如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala">   <span class="k">def</span> <span class="k">:</span><span class="kt">\</span><span class="o">[</span><span class="kt">B</span><span class="o">](</span><span class="n">z</span><span class="k">:</span> <span class="kt">B</span><span class="o">)(</span><span class="n">op</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">,</span> <span class="kt">B</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">B</span> <span class="o">=</span> <span class="n">foldRight</span><span class="o">(</span><span class="n">z</span><span class="o">)(</span><span class="n">op</span><span class="o">)</span>
 
-<pre><code class="language-scala">   def :\[B](z: B)(op: (A, B) =&gt; B): B = foldRight(z)(op)
-
-   def foldRight[B](z: B)(op: (A, B) =&gt; B): B =
-   reversed.foldLeft(z)((x, y) =&gt; op(y, x))
-</code></pre>
-
+   <span class="k">def</span> <span class="n">foldRight</span><span class="o">[</span><span class="kt">B</span><span class="o">](</span><span class="n">z</span><span class="k">:</span> <span class="kt">B</span><span class="o">)(</span><span class="n">op</span><span class="k">:</span> <span class="o">(</span><span class="kt">A</span><span class="o">,</span> <span class="kt">B</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">B</span><span class="o">)</span><span class="k">:</span> <span class="kt">B</span> <span class="o">=</span>
+   <span class="n">reversed</span><span class="o">.</span><span class="n">foldLeft</span><span class="o">(</span><span class="n">z</span><span class="o">)((</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">op</span><span class="o">(</span><span class="n">y</span><span class="o">,</span> <span class="n">x</span><span class="o">))</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>我们看到foleRight内部还是调用的foldLeft方法，不过多了一个reversed，它其实是该trait定义的内部方法，实现如下：</p>
-
-<pre><code class="language-scala">  // @tparam A    the element type of the collection
-  ...
-  // for internal use
-  protected[this] def reversed = {
-    var elems: List[A] = Nil
-    self foreach (elems ::= _)
-    elems
-  }
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala">  <span class="c1">// @tparam A    the element type of the collection
+</span><span class="c1"></span>  <span class="o">...</span>
+  <span class="c1">// for internal use
+</span><span class="c1"></span>  <span class="k">protected</span><span class="o">[</span><span class="kt">this</span><span class="o">]</span> <span class="k">def</span> <span class="n">reversed</span> <span class="k">=</span> <span class="o">{</span>
+    <span class="k">var</span> <span class="n">elems</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">A</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Nil</span>
+    <span class="n">self</span> <span class="n">foreach</span> <span class="o">(</span><span class="n">elems</span> <span class="k">:</span><span class="kt">:=</span> <span class="k">_</span><span class="o">)</span>
+    <span class="n">elems</span>
+  <span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>看来foldRight使用list的逆序集合然后再进行foldLeft，需要注意的是foldRight方法中需要传入的block<strong>参数顺序</strong>发生了变化，前者是列表参数（自己理解，不知所以）。这样的话，foldRight相对foldLeft来讲效率肯定就差一点了。下面是一个例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">list</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">)</span>
+<span class="n">list</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">)</span>
 
-<pre><code class="language-scala">scala&gt; val list = List(1, 2, 3, 4, 5)
-list: List[Int] = List(1, 2, 3, 4, 5)
-
-scala&gt; list.foldRight(100)((elem, sum) =&gt; sum - elem)
-res10: Int = 85
-</code></pre>
-
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">.</span><span class="n">foldRight</span><span class="o">(</span><span class="mi">100</span><span class="o">)((</span><span class="n">elem</span><span class="o">,</span> <span class="n">sum</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">sum</span> <span class="o">-</span> <span class="n">elem</span><span class="o">)</span>
+<span class="n">res10</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">85</span></code></pre></td></tr></table>
+</div>
+</div>
 <p><strong>回归正题</strong>
   题目中要求计算一个列表中字符串的长度之和也就迎刃而解，关键是明白foldLeft方法的使用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"> <span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">numbers</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="s">&#34;one&#34;</span><span class="o">,</span><span class="s">&#34;two&#34;</span><span class="o">,</span><span class="s">&#34;three&#34;</span><span class="o">)</span>
+ <span class="n">numbers</span><span class="k">:</span> <span class="kt">List</span><span class="o">[</span><span class="kt">String</span><span class="o">]</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="n">one</span><span class="o">,</span> <span class="n">two</span><span class="o">,</span> <span class="n">three</span><span class="o">)</span>
 
-<pre><code class="language-scala"> scala&gt; val numbers = List(&quot;one&quot;,&quot;two&quot;,&quot;three&quot;)
- numbers: List[String] = List(one, two, three)
+ <span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">length</span> <span class="k">=</span> <span class="o">(</span><span class="mi">0</span> <span class="o">/:</span> <span class="n">numbers</span><span class="o">){(</span><span class="n">sum</span><span class="o">,</span> <span class="n">elem</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">elem</span><span class="o">.</span><span class="n">length</span><span class="o">}</span>
+ <span class="n">length</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">11</span>
 
- scala&gt; val length = (0 /: numbers){(sum, elem) =&gt; sum + elem.length}
- length: Int = 11
-
- scala&gt; val length2 = numbers.foldLeft(0)((sum, value)=&gt; sum + value.length)
- length2: Int = 11
-</code></pre>
-
+ <span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">length2</span> <span class="k">=</span> <span class="n">numbers</span><span class="o">.</span><span class="n">foldLeft</span><span class="o">(</span><span class="mi">0</span><span class="o">)((</span><span class="n">sum</span><span class="o">,</span> <span class="n">value</span><span class="o">)</span><span class="k">=&gt;</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">value</span><span class="o">.</span><span class="n">length</span><span class="o">)</span>
+ <span class="n">length2</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">11</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>运算符 /: 和foldLeft方法均能实现需求（本质上一样一样的）</p>
 
 <p>###编写一个Censor trait，包含一个可将Pucky和Beans替换为Shoot和Darn的方法。使用映射存储脏话和他们的替代品</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">scala.collection.mutable.Map</span>
 
-<pre><code class="language-scala">import scala.collection.mutable.Map
+<span class="k">trait</span> <span class="nc">Censor</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="n">curseWords</span> <span class="k">=</span> <span class="nc">Map</span><span class="o">(</span><span class="s">&#34;Pucky&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;Shoot&#34;</span><span class="o">,</span> <span class="s">&#34;Beans&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;Darn&#34;</span><span class="o">)</span>
+ 
+  <span class="k">def</span> <span class="n">censor</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">=</span> <span class="n">curseWords</span><span class="o">.</span><span class="n">foldLeft</span><span class="o">(</span><span class="n">s</span><span class="o">)((</span><span class="n">prev</span><span class="o">,</span> <span class="n">curr</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">prev</span><span class="o">.</span><span class="n">replaceAll</span><span class="o">(</span><span class="n">curr</span><span class="o">.</span><span class="n">_1</span><span class="o">,</span> <span class="n">curr</span><span class="o">.</span><span class="n">_2</span><span class="o">))</span>
+<span class="o">}</span>
+ 
+<span class="k">class</span> <span class="nc">Text</span><span class="o">(</span><span class="n">words</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="k">extends</span> <span class="nc">Censor</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">origin</span> <span class="k">=</span> <span class="n">words</span>
+ 
+  <span class="k">def</span> <span class="n">transform</span> <span class="k">=</span> <span class="n">censor</span><span class="o">(</span><span class="n">words</span><span class="o">)</span>
+<span class="o">}</span>
+ 
+<span class="k">val</span> <span class="n">text</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">Text</span><span class="o">(</span><span class="s">&#34;Pucky &amp;&amp; Beans&#34;</span><span class="o">)</span>
+<span class="n">println</span><span class="o">(</span><span class="s">&#34;Original String: &#34;</span> <span class="o">+</span> <span class="n">text</span><span class="o">.</span><span class="n">origin</span><span class="o">)</span>
+<span class="n">println</span><span class="o">(</span><span class="s">&#34;Replaced String: &#34;</span> <span class="o">+</span> <span class="n">text</span><span class="o">.</span><span class="n">transform</span><span class="o">)</span>
 
-trait Censor {
-  val curseWords = Map(&quot;Pucky&quot; -&gt; &quot;Shoot&quot;, &quot;Beans&quot; -&gt; &quot;Darn&quot;)
- 
-  def censor(s: String) = curseWords.foldLeft(s)((prev, curr) =&gt; prev.replaceAll(curr._1, curr._2))
-}
- 
-class Text(words: String) extends Censor {
-  def origin = words
- 
-  def transform = censor(words)
-}
- 
-val text = new Text(&quot;Pucky &amp;&amp; Beans&quot;)
-println(&quot;Original String: &quot; + text.origin)
-println(&quot;Replaced String: &quot; + text.transform)
-
-输出结果：
-$ scala Censor.trait 
-Original String: Pucky &amp;&amp; Beans
-Replaced String: Shoot &amp;&amp; Darn
-</code></pre>
-
+<span class="n">输出结果</span><span class="err">：</span>
+<span class="n">$</span> <span class="n">scala</span> <span class="nc">Censor</span><span class="o">.</span><span class="k">trait</span> 
+<span class="nc">Original</span> <span class="nc">String</span><span class="k">:</span> <span class="kt">Pucky</span> <span class="kt">&amp;&amp;</span> <span class="kt">Beans</span>
+<span class="nc">Replaced</span> <span class="nc">String</span><span class="k">:</span> <span class="kt">Shoot</span> <span class="kt">&amp;&amp;</span> <span class="kt">Darn</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>###从一个文件中加载脏话或者它们的替代品
 通过针对scala对文件读写的讨论，就可以很轻松的写出这道题的答案，主要是需要将map中存储的映射关系存储下来进行读取。首先读取代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">scala.collection.mutable.Map</span>
 
-<pre><code class="language-scala">import scala.collection.mutable.Map
+<span class="k">trait</span> <span class="nc">fileRead</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="n">curseWords</span> <span class="k">=</span> <span class="nc">Map</span><span class="o">[</span><span class="kt">String</span>, <span class="kt">String</span><span class="o">]()</span>
 
-trait fileRead {
-  val curseWords = Map[String, String]()
+  <span class="n">io</span><span class="o">.</span><span class="nc">Source</span><span class="o">.</span><span class="n">fromFile</span><span class="o">(</span><span class="s">&#34;./files/censor.txt&#34;</span><span class="o">).</span><span class="n">getLines</span><span class="o">().</span><span class="n">foreach</span> <span class="o">{</span>
+    <span class="o">(</span><span class="n">line</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="k">val</span> <span class="n">subWords</span> <span class="k">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">&#34;:&#34;</span><span class="o">)</span>
+    <span class="n">curseWords</span> <span class="o">+=</span> <span class="o">(</span><span class="n">subWords</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">subWords</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+  <span class="o">}</span>
 
-  io.Source.fromFile(&quot;./files/censor.txt&quot;).getLines().foreach {
-    (line) =&gt; val subWords = line.split(&quot;:&quot;)
-    curseWords += (subWords(0) -&gt; subWords(1))
-  }
+  <span class="n">println</span><span class="o">(</span><span class="s">&#34;After Read, curseWords are&#34;</span><span class="o">)</span>
+  <span class="n">curseWords</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span><span class="n">p</span> <span class="k">=&gt;</span> <span class="n">println</span><span class="o">(</span><span class="s">&#34;&gt;&gt;&gt; key=&#34;</span> <span class="o">+</span> <span class="n">p</span><span class="o">.</span><span class="n">_1</span> <span class="o">+</span> <span class="s">&#34;, value=&#34;</span> <span class="o">+</span> <span class="n">p</span><span class="o">.</span><span class="n">_2</span> <span class="o">+</span> <span class="s">&#34; &lt;&lt;&lt;&#34;</span><span class="o">))</span>
+<span class="o">}</span>
 
-  println(&quot;After Read, curseWords are&quot;)
-  curseWords.foreach(p =&gt; println(&quot;&gt;&gt;&gt; key=&quot; + p._1 + &quot;, value=&quot; + p._2 + &quot; &lt;&lt;&lt;&quot;))
-}
+<span class="k">class</span> <span class="nc">tryFile</span> <span class="k">extends</span> <span class="n">fileRead</span>
 
-class tryFile extends fileRead
-
-val fileObj = new tryFile
-</code></pre>
-
+<span class="k">val</span> <span class="n">fileObj</span> <span class="k">=</span> <span class="k">new</span> <span class="n">tryFile</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>写入文件代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">scala.collection.mutable.Map</span>
+<span class="k">import</span> <span class="nn">java.io._</span>
 
-<pre><code class="language-scala">import scala.collection.mutable.Map
-import java.io._
+<span class="k">trait</span> <span class="nc">fileWrite</span> <span class="o">{</span>
+  <span class="k">val</span> <span class="n">curseWords</span> <span class="k">=</span> <span class="nc">Map</span><span class="o">(</span><span class="s">&#34;Pucky&#34;</span><span class="o">-&gt;</span><span class="s">&#34;Shoot&#34;</span><span class="o">,</span> <span class="s">&#34;Beans&#34;</span><span class="o">-&gt;</span><span class="s">&#34;Darn&#34;</span><span class="o">)</span>
 
-trait fileWrite {
-  val curseWords = Map(&quot;Pucky&quot;-&gt;&quot;Shoot&quot;, &quot;Beans&quot;-&gt;&quot;Darn&quot;)
+  <span class="k">def</span> <span class="n">writeMapToFile</span> <span class="o">{</span>
+    <span class="n">println</span><span class="o">(</span><span class="s">&#34;Start to write map to file&#34;</span><span class="o">)</span>
 
-  def writeMapToFile {
-    println(&quot;Start to write map to file&quot;)
+    <span class="k">val</span> <span class="n">writer</span> <span class="k">=</span> <span class="k">new</span> <span class="nc">PrintWriter</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">&#34;./files/curseToWrite.txt&#34;</span><span class="o">))</span>
+    <span class="n">curseWords</span><span class="o">.</span><span class="n">foreach</span><span class="o">{</span>
+      <span class="o">(</span><span class="n">elem</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="o">(</span><span class="n">elem</span><span class="o">.</span><span class="n">_1</span> <span class="o">+</span> <span class="s">&#34;:&#34;</span> <span class="o">+</span> <span class="n">elem</span><span class="o">.</span><span class="n">_2</span><span class="o">)</span>
+      <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="o">(</span><span class="s">&#34;\n&#34;</span><span class="o">)</span>
+    <span class="o">}</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">close</span><span class="o">()</span>
 
-    val writer = new PrintWriter(new File(&quot;./files/curseToWrite.txt&quot;))
-    curseWords.foreach{
-      (elem) =&gt; writer.write(elem._1 + &quot;:&quot; + elem._2)
-      writer.write(&quot;\n&quot;)
-    }
-    writer.close()
+      <span class="n">println</span><span class="o">(</span><span class="s">&#34;end to write map to file&#34;</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span>
 
-      println(&quot;end to write map to file&quot;)
-  }
-}
+<span class="k">class</span> <span class="nc">tryFile</span> <span class="k">extends</span> <span class="n">fileWrite</span>
 
-class tryFile extends fileWrite
-
-val fileObj = new tryFile
-fileObj.writeMapToFile
-</code></pre>
-
+<span class="k">val</span> <span class="n">fileObj</span> <span class="k">=</span> <span class="k">new</span> <span class="n">tryFile</span>
+<span class="n">fileObj</span><span class="o">.</span><span class="n">writeMapToFile</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>That&rsquo;s all! 关于闭包的示例晚上回家补上~~~ 工作鸟</p>
 
 <p>参考链接：

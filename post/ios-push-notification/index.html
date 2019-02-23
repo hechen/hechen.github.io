@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2015-07-30T14:30:00&#43;00:00" />
 <meta itemprop="dateModified" content="2015-07-30T14:30:00&#43;00:00" />
-<meta itemprop="wordCount" content="4573">
+<meta itemprop="wordCount" content="4734">
 
 
 
@@ -461,88 +461,164 @@
 <h4 id="远端推送通知的代码实现">远端推送通知的代码实现</h4>
 
 <p>首先我们需要注册推送通知服务并获取DeviceToken；</p>
-
-<pre><code class="language-Objc">- (void)initPushNotificationWithApp: (UIApplication*)application {
-    // 注册通知服务
-    if([UIDevice currentDevice].systemVersion.floatValue &lt; 8.0) {
-        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge
-                                                       | UIRemoteNotificationTypeSound
-                                                       | UIRemoteNotificationTypeAlert)];
-    } else {
-        // IOS8.0以上版本的注册推送方式和以往不同
-        UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:(UIRemoteNotificationTypeBadge
-                                                                                           | UIRemoteNotificationTypeSound
-                                                                                           | UIRemoteNotificationTypeAlert)
-                                                                                 categories:nil];
-        [application registerUserNotificationSettings:settings];
-        [application registerForRemoteNotifications];
-    }
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Objc" data-lang="Objc"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Objc" data-lang="Objc"><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">initPushNotificationWithApp:</span> <span class="p">(</span><span class="n">UIApplication</span><span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="p">{</span>
+    <span class="c1">// 注册通知服务
+</span><span class="c1"></span>    <span class="k">if</span><span class="p">([</span><span class="n">UIDevice</span> <span class="n">currentDevice</span><span class="p">].</span><span class="n">systemVersion</span><span class="p">.</span><span class="n">floatValue</span> <span class="o">&lt;</span> <span class="mf">8.0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">[</span><span class="n">application</span> <span class="nl">registerForRemoteNotificationTypes</span><span class="p">:(</span><span class="n">UIRemoteNotificationTypeBadge</span>
+                                                       <span class="o">|</span> <span class="n">UIRemoteNotificationTypeSound</span>
+                                                       <span class="o">|</span> <span class="n">UIRemoteNotificationTypeAlert</span><span class="p">)];</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// IOS8.0以上版本的注册推送方式和以往不同
+</span><span class="c1"></span>        <span class="n">UIUserNotificationSettings</span><span class="o">*</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIUserNotificationSettings</span> <span class="nl">settingsForTypes</span><span class="p">:(</span><span class="n">UIRemoteNotificationTypeBadge</span>
+                                                                                           <span class="o">|</span> <span class="n">UIRemoteNotificationTypeSound</span>
+                                                                                           <span class="o">|</span> <span class="n">UIRemoteNotificationTypeAlert</span><span class="p">)</span>
+                                                                                 <span class="nl">categories</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+        <span class="p">[</span><span class="n">application</span> <span class="nl">registerUserNotificationSettings</span><span class="p">:</span><span class="n">settings</span><span class="p">];</span>
+        <span class="p">[</span><span class="n">application</span> <span class="n">registerForRemoteNotifications</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>如果注册成功，APNs会返回给你设备的token，iOS系统会把它传递给app delegate代理：</p>
-
-<pre><code class="language-Objective-C">// 如果注册成功，则会收到DeviceToken，我们需要将该Token发给服务器保存
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    PRINT_FUNC
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="c1">// 如果注册成功，则会收到DeviceToken，我们需要将该Token发给服务器保存
+</span><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didRegisterForRemoteNotificationsWithDeviceToken:</span><span class="p">(</span><span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">deviceToken</span> <span class="p">{</span>
+    <span class="n">PRINT_FUNC</span>
     
-    NSString* tokenStr = [NSString stringWithFormat:@&quot;%@&quot;, deviceToken];
-    NSLog(@&quot;deviceToken: %@&quot;, tokenStr);
-    if(tokenStr.length == 0)
-    {
-        NSLog(@&quot;Device Token Invalid!&quot;);
-    }
+    <span class="n">NSString</span><span class="o">*</span> <span class="n">tokenStr</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@&#34;%@&#34;</span><span class="p">,</span> <span class="n">deviceToken</span><span class="p">];</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;deviceToken: %@&#34;</span><span class="p">,</span> <span class="n">tokenStr</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">tokenStr</span><span class="p">.</span><span class="n">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;Device Token Invalid!&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
 	
-	// 然后我们需要将该DeviceToken发给我们自己的服务器进行保存；
-    [self sendDeviceToken:deviceToken]; 
-}
+	<span class="c1">// 然后我们需要将该DeviceToken发给我们自己的服务器进行保存；
+</span><span class="c1"></span>    <span class="p">[</span><span class="nb">self</span> <span class="nl">sendDeviceToken</span><span class="p">:</span><span class="n">deviceToken</span><span class="p">];</span> 
+<span class="p">}</span>
 
-// 如果注册失败，会收到错误信息，包含错误原因
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    PRINT_FUNC
+<span class="c1">// 如果注册失败，会收到错误信息，包含错误原因
+</span><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didFailToRegisterForRemoteNotificationsWithError:</span><span class="p">(</span><span class="n">NSError</span> <span class="o">*</span><span class="p">)</span><span class="nv">error</span> <span class="p">{</span>
+    <span class="n">PRINT_FUNC</span>
     
-    NSLog(@&quot;***************************************\n&quot;);
-    NSLog(@&quot;Failed to Register The Notification!!!!\n&quot;);
-    NSLog(@&quot;error = %@&quot;, error);
-    NSLog(@&quot;***************************************\n&quot;);
-}
-</code></pre>
-
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;***************************************</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;Failed to Register The Notification!!!!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;error = %@&#34;</span><span class="p">,</span> <span class="n">error</span><span class="p">);</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;***************************************</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>之后我们就可以在AppDelegate中添加处理代码，当用户点击通知栏的通知或者处于运行状态时，App代码会执行- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo代理方法，如下所示：</p>
-
-<pre><code class="language-Objective-C">- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    PRINT_FUNC
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didReceiveRemoteNotification:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">userInfo</span> <span class="p">{</span>
+    <span class="n">PRINT_FUNC</span>
     
-    NSLog(@&quot;收到推送通知: %@&quot;, userInfo);
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;收到推送通知: %@&#34;</span><span class="p">,</span> <span class="n">userInfo</span><span class="p">);</span>
     
-    // userInfo是一个字典数据类型，具体Key Value由客户端和服务器进行协商确定
-    NSString* orderId = [userInfo objectForKey:@&quot;carryOrderId&quot;];
-    NSLog(@&quot;收到订单消息通知，订单号：%@&quot;,orderId);
+    <span class="c1">// userInfo是一个字典数据类型，具体Key Value由客户端和服务器进行协商确定
+</span><span class="c1"></span>    <span class="n">NSString</span><span class="o">*</span> <span class="n">orderId</span> <span class="o">=</span> <span class="p">[</span><span class="n">userInfo</span> <span class="nl">objectForKey</span><span class="p">:</span><span class="s">@&#34;carryOrderId&#34;</span><span class="p">];</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;收到订单消息通知，订单号：%@&#34;</span><span class="p">,</span><span class="n">orderId</span><span class="p">);</span>
 	
-	// .... 其余逻辑，拿到具体关键信息之后进行下一步处理
-}
-</code></pre>
-
+	<span class="c1">// .... 其余逻辑，拿到具体关键信息之后进行下一步处理
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>还有一个方法</p>
-
-<pre><code class="language-Objective-C">/*! This delegate method offers an opportunity for applications with the &quot;remote-notification&quot; background mode to fetch appropriate new data in response to an incoming remote notification. You should call the fetchCompletionHandler as soon as you're finished performing that operation, so the system can accurately estimate its power and data cost.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="cm">/*! This delegate method offers an opportunity for applications with the &#34;remote-notification&#34; background mode to fetch appropriate new data in response to an incoming remote notification. You should call the fetchCompletionHandler as soon as you&#39;re finished performing that operation, so the system can accurately estimate its power and data cost.
+</span><span class="cm"> 
+</span><span class="cm"> This method will be invoked even if the application was launched or resumed because of the remote notification. The respective delegate methods will be invoked first. Note that this behavior is in contrast to application:didReceiveRemoteNotification:, which is not called in those cases, and which will not be invoked if this method is implemented. !*/</span>
  
- This method will be invoked even if the application was launched or resumed because of the remote notification. The respective delegate methods will be invoked first. Note that this behavior is in contrast to application:didReceiveRemoteNotification:, which is not called in those cases, and which will not be invoked if this method is implemented. !*/
- 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler; 
-</code></pre>
-
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didReceiveRemoteNotification:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">userInfo</span> <span class="nf">fetchCompletionHandler:</span><span class="p">(</span><span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="p">)(</span><span class="n">UIBackgroundFetchResult</span> <span class="n">result</span><span class="p">))</span><span class="nv">completionHandler</span><span class="p">;</span> </code></pre></td></tr></table>
+</div>
+</div>
 <p>我发现这两个方法在APP处于后台或者前台展示，也就是App存活期会同样调用，但当APP并未启动或者被后台销毁之后，用户点击通知象虽然都会调起App，但是前者这个方法就不会被触发，而后者依然会被触发。注释中也说明了该方法即使在其中或者休眠状态下都会由于远端通知而被调用而且会优先于上一个方法。而且后者可以让你和服务器进行一定的数据交互，比如订单状态变化了，我们在该方法中向服务器请求最新的订单信息等等。</p>
 
 <p>官方文档是这样描述这两个方法的，一目了然：</p>
-
-<pre><code>// Tells the delegate that the running app received a remote notification.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">// Tells the delegate that the running app received a remote notification.
 	- application:didReceiveRemoteNotification:
 
 // Tells the app that a remote notification arrived that indicates there is data to be fetched.
-	- application:didReceiveRemoteNotification:fetchCompletionHandler:
-</code></pre>
-
+	- application:didReceiveRemoteNotification:fetchCompletionHandler:</pre></td></tr></table>
+</div>
+</div>
 <hr />
 
 <p>####服务器端代码实现</p>
@@ -556,131 +632,246 @@
 
 <p>服务器端代码也可以自己使用原生的Socket写，这里我使用Javapns这个开源代码实现，比较简单，Payload数据格式也已经被封装，你只需要add，add，add。代码如下：
 其中就需要用到我们之前生成的Push.p12</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Java" data-lang="Java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Java" data-lang="Java"><span class="kn">package</span> <span class="nn">testApplePush</span><span class="o">;</span>
 
-<pre><code class="language-Java">package testApplePush;
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javapns.Push</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javapns.notification.PushNotificationPayload</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javapns.notification.PushedNotifications</span><span class="o">;</span>
 
-import java.util.List;
-import javapns.Push;
-import javapns.notification.PushNotificationPayload;
-import javapns.notification.PushedNotifications;
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">testApplePush</span> 
+<span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+    <span class="o">{</span>
+       <span class="k">try</span> 
+       <span class="o">{</span>
+          <span class="n">PushNotificationPayload</span> <span class="n">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PushNotificationPayload</span><span class="o">();</span>
 
-public class testApplePush 
-{
-    public static void main(String[] args)
-    {
-       try 
-       {
-          PushNotificationPayload payload = new PushNotificationPayload();
-
-          payload.addAlert(&quot;这是一条推送通知!&quot;); // 通知主体内容
-          payload.addBadge(1); // 角标数字
-          payload.addSound(&quot;default&quot;); // 通知铃音
-          
-          // 加入自定义信息
-          payload.addCustomDictionary(&quot;carryOrderId&quot;, &quot;121212121212121212121212&quot;);
+          <span class="n">payload</span><span class="o">.</span><span class="na">addAlert</span><span class="o">(</span><span class="s">&#34;这是一条推送通知!&#34;</span><span class="o">);</span> <span class="c1">// 通知主体内容
+</span><span class="c1"></span>          <span class="n">payload</span><span class="o">.</span><span class="na">addBadge</span><span class="o">(</span><span class="n">1</span><span class="o">);</span> <span class="c1">// 角标数字
+</span><span class="c1"></span>          <span class="n">payload</span><span class="o">.</span><span class="na">addSound</span><span class="o">(</span><span class="s">&#34;default&#34;</span><span class="o">);</span> <span class="c1">// 通知铃音
+</span><span class="c1"></span>          
+          <span class="c1">// 加入自定义信息
+</span><span class="c1"></span>          <span class="n">payload</span><span class="o">.</span><span class="na">addCustomDictionary</span><span class="o">(</span><span class="s">&#34;carryOrderId&#34;</span><span class="o">,</span> <span class="s">&#34;121212121212121212121212&#34;</span><span class="o">);</span>
  
-		    // 服务器端记录的DeviceToken
-          String deviceToken = &quot;************************************************&quot;;
-          PushedNotifications notifications = Push.payload(payload, 	// 自定义payload
-												          &quot;Push.p12&quot;,	// 前面生成的证书
-												          &quot;111111111&quot;, 	// 证书导出时的密码
-												          false,		// 是否发送到发布地址
-												          deviceToken); // 客户端DeviceToken
+		    <span class="c1">// 服务器端记录的DeviceToken
+</span><span class="c1"></span>          <span class="n">String</span> <span class="n">deviceToken</span> <span class="o">=</span> <span class="s">&#34;************************************************&#34;</span><span class="o">;</span>
+          <span class="n">PushedNotifications</span> <span class="n">notifications</span> <span class="o">=</span> <span class="n">Push</span><span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="n">payload</span><span class="o">,</span> 	<span class="c1">// 自定义payload
+</span><span class="c1"></span>												          <span class="s">&#34;Push.p12&#34;</span><span class="o">,</span>	<span class="c1">// 前面生成的证书
+</span><span class="c1"></span>												          <span class="s">&#34;111111111&#34;</span><span class="o">,</span> 	<span class="c1">// 证书导出时的密码
+</span><span class="c1"></span>												          <span class="kc">false</span><span class="o">,</span>		<span class="c1">// 是否发送到发布地址
+</span><span class="c1"></span>												          <span class="n">deviceToken</span><span class="o">);</span> <span class="c1">// 客户端DeviceToken
+</span><span class="c1"></span>
+            <span class="kt">int</span> <span class="n">numOfFailedNotifications</span> <span class="o">=</span> <span class="n">notifications</span><span class="o">.</span><span class="na">getFailedNotifications</span><span class="o">()</span>
+                    <span class="o">.</span><span class="na">size</span><span class="o">();</span>
+            <span class="kt">int</span> <span class="n">numOfSuccessfulNotificatios</span> <span class="o">=</span> <span class="n">notifications</span>
+                    <span class="o">.</span><span class="na">getSuccessfulNotifications</span><span class="o">().</span><span class="na">size</span><span class="o">();</span>
 
-            int numOfFailedNotifications = notifications.getFailedNotifications()
-                    .size();
-            int numOfSuccessfulNotificatios = notifications
-                    .getSuccessfulNotifications().size();
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span>
+                    <span class="s">&#34;Successful Send: %d, Failed Send: %d&#34;</span><span class="o">,</span>
+                    <span class="n">numOfSuccessfulNotificatios</span><span class="o">,</span> <span class="n">numOfFailedNotifications</span><span class="o">));</span>
 
-            System.out.println(String.format(
-                    &quot;Successful Send: %d, Failed Send: %d&quot;,
-                    numOfSuccessfulNotificatios, numOfFailedNotifications));
-
-        } 
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-}
-</code></pre>
-
+        <span class="o">}</span> 
+        <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span>
+        <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>当前这里只是发送一条，如果需要批量发送，貌似Javapns支持的不是太好。这里使用的证书就是上面我们导出的.p12格式证书（<strong>Windows平台使用没问题。有些教程说是Win系统不识别是不正确的</strong>），接下来还有一份PHP写的代码，供大家查阅。但是这其中需要将我们的p12格式证书转换成pem格式证书。具体教程如下：
 -  将我们之前生成的推送证书aps_developement.cer文件以及Push.p12文件放在同一文件夹下；
 -  在Terminal中切换到该目录下，然后执行命令将aps_developement.cer文件转换成pem格式文件，之后会在本目录下生成PushCert.pem文件</p>
-
-<pre><code>openssl x509 -in aps_development.cer -inform der -out PushCert.pem
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">openssl x509 -in aps_development.cer -inform der -out PushCert.pem</pre></td></tr></table>
+</div>
+</div>
 <ul>
 <li><p>紧接着执行命令将Push.p12文件转换成pem格式文件，之后在本目录下生成PushKey.pem文件，其中会提示你先输入之前生成Push.p12文件的时候的密码，然后需要为新生成的证书文件添加密码，这个密码是要提供给服务端使用的；</p>
-
-<pre><code>openssl pkcs12 -nocerts -out Pushkey.pem -in Push.p12 
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">openssl pkcs12 -nocerts -out Pushkey.pem -in Push.p12 </pre></td></tr></table>
+</div>
+</div></li>
 
 <li><p>然后将这两个pem文件合成成一个pem文件，Push.pem</p>
-
-<pre><code>cat PushCert.pem PushKey.pem &gt; Push.pem
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">cat PushCert.pem PushKey.pem &gt; Push.pem</pre></td></tr></table>
+</div>
+</div>
 <p>整个过程如下图所示：
 <img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode9.png" alt="pem文件生成过程" /></p></li>
 </ul>
 
 <p>证书生成完毕之后，我们就可以在代码中使用了。
 如下为PHP写的推送通知服务。代码很简单，主要是注意其中证书为上一步生成的Push.pem，密码就是生成时输入的密码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-PHP" data-lang="PHP"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-PHP" data-lang="PHP"><span class="cp">&lt;?php</span>
+<span class="c1">// DeviceToken 不包含空格
+</span><span class="c1"></span><span class="nv">$deviceToken</span> <span class="o">=</span> <span class="s1">&#39;********************************************************&#39;</span><span class="p">;</span>
+<span class="c1">// 证书密码
+</span><span class="c1"></span><span class="nv">$passphrase</span> <span class="o">=</span> <span class="s1">&#39;1111111111&#39;</span><span class="p">;</span>
+<span class="c1">// 通知主体内容
+</span><span class="c1"></span><span class="nv">$alert</span> <span class="o">=</span> <span class="s1">&#39;这是一条推送通知!&#39;</span><span class="p">;</span>
 
-<pre><code class="language-PHP">&lt;?php
-// DeviceToken 不包含空格
-$deviceToken = '********************************************************';
-// 证书密码
-$passphrase = '1111111111';
-// 通知主体内容
-$alert = '这是一条推送通知!';
+<span class="c1">////////////////////////////////////////////////////////////////////////////////
+</span><span class="c1"></span><span class="nv">$ctx</span> <span class="o">=</span> <span class="nx">stream_context_create</span><span class="p">();</span>
+<span class="nx">stream_context_set_option</span><span class="p">(</span><span class="nv">$ctx</span><span class="p">,</span> <span class="s1">&#39;ssl&#39;</span><span class="p">,</span> <span class="s1">&#39;local_cert&#39;</span><span class="p">,</span> <span class="s1">&#39;Push.pem&#39;</span><span class="p">);</span>		<span class="c1">// ck.pem证书上有提及
+</span><span class="c1"></span><span class="nx">stream_context_set_option</span><span class="p">(</span><span class="nv">$ctx</span><span class="p">,</span> <span class="s1">&#39;ssl&#39;</span><span class="p">,</span> <span class="s1">&#39;passphrase&#39;</span><span class="p">,</span> <span class="nv">$passphrase</span><span class="p">);</span>
 
-////////////////////////////////////////////////////////////////////////////////
-$ctx = stream_context_create();
-stream_context_set_option($ctx, 'ssl', 'local_cert', 'Push.pem');		// ck.pem证书上有提及
-stream_context_set_option($ctx, 'ssl', 'passphrase', $passphrase);
+<span class="c1">// Open a connection to the APNS server
+</span><span class="c1"></span><span class="nv">$fp</span> <span class="o">=</span> <span class="nx">stream_socket_client</span><span class="p">(</span>
+		<span class="s1">&#39;ssl://gateway.sandbox.push.apple.com:2195&#39;</span><span class="p">,</span> 			<span class="c1">// 远端测试地址
+</span><span class="c1"></span>		<span class="nv">$err</span><span class="p">,</span>													
+		<span class="nv">$errstr</span><span class="p">,</span> 
+		<span class="mi">60</span><span class="p">,</span> 													<span class="c1">// 超时时间
+</span><span class="c1"></span>		<span class="nx">STREAM_CLIENT_CONNECT</span><span class="o">|</span><span class="nx">STREAM_CLIENT_PERSISTENT</span><span class="p">,</span>
+		<span class="nv">$ctx</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$fp</span><span class="p">)</span>
+	<span class="k">exit</span><span class="p">(</span><span class="s2">&#34;Failed to connect: </span><span class="si">$err</span><span class="s2"> </span><span class="si">$errstr</span><span class="s2">&#34;</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">);</span>
 
-// Open a connection to the APNS server
-$fp = stream_socket_client(
-		'ssl://gateway.sandbox.push.apple.com:2195', 			// 远端测试地址
-		$err,													
-		$errstr, 
-		60, 													// 超时时间
-		STREAM_CLIENT_CONNECT|STREAM_CLIENT_PERSISTENT,
-		$ctx);
-if (!$fp)
-	exit(&quot;Failed to connect: $err $errstr&quot; . PHP_EOL);
+<span class="k">echo</span> <span class="s1">&#39;Connected to APNS&#39;</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
 
-echo 'Connected to APNS' . PHP_EOL;
+<span class="c1">// 建立字典数据
+</span><span class="c1"></span><span class="nv">$body</span><span class="p">[</span><span class="s1">&#39;aps&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+	<span class="s1">&#39;alert&#39;</span> <span class="o">=&gt;</span> <span class="nv">$alert</span><span class="p">,</span>
+	<span class="s1">&#39;sound&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span>
+	<span class="s1">&#39;badge&#39;</span> <span class="o">=&gt;</span> <span class="mi">66</span>
+	<span class="p">);</span>
 
-// 建立字典数据
-$body['aps'] = array(
-	'alert' =&gt; $alert,
-	'sound' =&gt; 'default',
-	'badge' =&gt; 66
-	);
+<span class="c1">// 将字典数据转换成JSON
+</span><span class="c1"></span><span class="nv">$payload</span> <span class="o">=</span> <span class="nx">json_encode</span><span class="p">(</span><span class="nv">$body</span><span class="p">);</span>
 
-// 将字典数据转换成JSON
-$payload = json_encode($body);
+<span class="c1">// 组织二进制数据格式，具体格式参照apple官方文档，本文中也有提及。
+</span><span class="c1">// Command + Token length + deviceToken + Payload length + payload
+</span><span class="c1"></span><span class="nv">$msg</span> <span class="o">=</span> <span class="nx">chr</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">.</span> <span class="nx">pack</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span> <span class="o">.</span> <span class="nx">pack</span><span class="p">(</span><span class="s1">&#39;H*&#39;</span><span class="p">,</span> <span class="nv">$deviceToken</span><span class="p">)</span> <span class="o">.</span> <span class="nx">pack</span><span class="p">(</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="nx">strlen</span><span class="p">(</span><span class="nv">$payload</span><span class="p">))</span> <span class="o">.</span> <span class="nv">$payload</span><span class="p">;</span>
 
-// 组织二进制数据格式，具体格式参照apple官方文档，本文中也有提及。
-// Command + Token length + deviceToken + Payload length + payload
-$msg = chr(0) . pack('n', 32) . pack('H*', $deviceToken) . pack('n', strlen($payload)) . $payload;
+<span class="c1">// 发送组成的数据给APNs
+</span><span class="c1"></span><span class="nv">$result</span> <span class="o">=</span> <span class="nx">fwrite</span><span class="p">(</span><span class="nv">$fp</span><span class="p">,</span> <span class="nv">$msg</span><span class="p">,</span> <span class="nx">strlen</span><span class="p">(</span><span class="nv">$msg</span><span class="p">));</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$result</span><span class="p">)</span>
+	<span class="k">echo</span> <span class="s1">&#39;Fail to delivery Notification&#39;</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
+<span class="k">else</span>
+	<span class="k">echo</span> <span class="s1">&#39;Delivery Notification successfully&#39;</span> <span class="o">.</span> <span class="nx">PHP_EOL</span><span class="p">;</span>
 
-// 发送组成的数据给APNs
-$result = fwrite($fp, $msg, strlen($msg));
-if (!$result)
-	echo 'Fail to delivery Notification' . PHP_EOL;
-else
-	echo 'Delivery Notification successfully' . PHP_EOL;
-
-fclose($fp);
-?&gt;
-</code></pre>
-
+<span class="nx">fclose</span><span class="p">(</span><span class="nv">$fp</span><span class="p">);</span>
+<span class="cp">?&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>运行下下测试：
 <img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushResult.png" alt="最终测试效果" /></p>
 

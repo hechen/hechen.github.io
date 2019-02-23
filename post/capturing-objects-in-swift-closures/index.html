@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2017-11-12T20:56:50&#43;00:00" />
 <meta itemprop="dateModified" content="2017-11-12T20:56:50&#43;00:00" />
-<meta itemprop="wordCount" content="2172">
+<meta itemprop="wordCount" content="2249">
 
 
 
@@ -346,28 +346,59 @@
 </blockquote>
 
 <p>一个显而易见的例子就是当你在一个集合类型上使用函数式操作的时候，例如 <code>forEach</code>：</p>
-
-<pre><code>[1, 2, 3].forEach { number in
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">[1, 2, 3].forEach { number in
     ...
-}
-</code></pre>
-
+}</pre></td></tr></table>
+</div>
+</div>
 <p>如上代码所示，closure 都直接作用于集合的每一个元素上，也就无需把该闭包变为 escaping 的。</p>
 
 <p>而 escaping 的 closures 最常见的就是在那些异步 API 中，例如 <code>DispatchQueue</code>。例如，当你异步执行某 closure 的时候，这个 closure 就会 escape。</p>
-
-<pre><code>DispatchQueue.main.async {
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">DispatchQueue.main.async {
     ...
-}
-</code></pre>
-
+}</pre></td></tr></table>
+</div>
+</div>
 <p>所以，这两种的区别在哪里呢？ 由于 escaping 的 closure 会被以某种形式存储下来，因此，这些 closure 会同时存储当前其所处的上下文，同时就会把上下文中用到的值或者对象都捕获（capture）到，以至于当该 closure 被执行的时候，所需用到的内容没有丢失。实践中最常见的就是在 closure 中使用 self 的 API，此时，我们就需要某种办法显式的捕获 self。</p>
 
 <h2 id="捕获-引用循环">捕获 &amp; 引用循环</h2>
 
 <p>因为 escaping 的 closures 会自助捕获在其内部使用的任何值和对象，因此很容易发生引用循环。举个例子，下面描述的是一个 view controller 被其存储的 viewModel 的 closure 捕获的情况：</p>
-
-<pre><code>class ListViewController: UITableViewController {
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">class ListViewController: UITableViewController {
     private let viewModel: ListViewModel
 
     init(viewModel: ListViewModel) {
@@ -382,16 +413,22 @@
             self.tableView.reloadData()
         }
     }
-}
-</code></pre>
-
+}</pre></td></tr></table>
+</div>
+</div>
 <p>最常见的方式，也就是你们大部分人也都会用的解决方式，通过弱引用的方式打破这个循环引用。</p>
-
-<pre><code>viewModel.observeNumberOfItemsChanged { [weak self] in
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">viewModel.observeNumberOfItemsChanged { [weak self] in
     self?.tableView.reloadData()
-}
-</code></pre>
-
+}</pre></td></tr></table>
+</div>
+</div>
 <h2 id="捕获-context-而不是捕获-self">捕获 context 而不是捕获 self</h2>
 
 <p>上面提到的 [weak self] 的解决方案已经是你希望避免引用循环的最常用，也常常是最有效的解决方案了。但是这种方式也有一些问题：</p>
@@ -400,8 +437,20 @@
 <li>很容易忘掉写，尤其是编译器又没检查出来潜在的引用循环的时候；</li>
 
 <li><p>当你希望从 weak self 中强持有 self 的时候还需要写一堆代码（weak strong dance），例如下面这段代码所示：</p>
-
-<pre><code>dataLoader.loadData(from: url) { [weak self] data in
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">dataLoader.loadData(from: url) { [weak self] data in
 guard let strongSelf = self else {
     return
 }
@@ -409,13 +458,31 @@ guard let strongSelf = self else {
 let model = try strongSelf.parser.parse(data, using: strongSelf.schema)
 strongSelf.titleLabel.text = model.title
 strongSelf.textLabel.text = model.text
-}
-</code></pre></li>
+}</pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 
 <p>这里其实有一个可选的解决方案，也就是不要捕获 self，而去捕获那些闭包中所需要的对象即可。例如上面例子中的 labels 和 schema 等，我们可以直接捕获它们而不至于引发引用循环（因为其也并不持有 closure 本身），下面是个解决方案，通过使用 context 的 tuple 来解决。</p>
-
-<pre><code>// We define a context tuple that contains all of our closure's dependencies
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">// We define a context tuple that contains all of our closure&#39;s dependencies
 let context = (
     parser: parser,
     schema: schema,
@@ -424,59 +491,106 @@ let context = (
 )
 
 dataLoader.loadData(from: url) { data in
-    // We can now use the context instead of having to capture 'self'
+    // We can now use the context instead of having to capture &#39;self&#39;
     let model = try context.parser.parse(data, using: context.schema)
     context.titleLabel.text = model.title
     context.textLabel.text = model.text
-}
-</code></pre>
-
+}</pre></td></tr></table>
+</div>
+</div>
 <h2 id="通过显式传递参数而不是隐式的捕获">通过显式传递参数而不是隐式的捕获</h2>
 
 <p>这里，还有另外一种捕获对象的方式，就是显式的把这些对象通过参数传入。这种手法我在设计我的 [Image Engine]() 项目中的 Event API 的时候用到了，这个 API 就是当使用 closure 来监听 event 的时候，需要你传递一个 observer 给它。如下所示，你把 self 传入进来的同时也使得其被传递到了 event 的 closure 中了，这也使得 self 被隐式的带入，你也无需手动的捕获它了。</p>
-
-<pre><code>actor.events.moved.addObserver(self) { scene in
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">actor.events.moved.addObserver(self) { scene in
     ...
-}
-</code></pre>
-
+}</pre></td></tr></table>
+</div>
+</div>
 <p>我们回到之前的 ListViewController 的例子中，看一看当我们要监听其 viewModel 的时候，我们是如何通过上面这种手法来实现同样的 API 的。这种方式正好使得我们可以将要 reload 的 tableView 作为观测者传递，实现一个很优雅的调用：</p>
-
-<pre><code>viewModel.numberOfItemsChanged.addObserver(tableView) { tableView in
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">viewModel.numberOfItemsChanged.addObserver(tableView) { tableView in
     tableView.reloadData()
-}
-</code></pre>
-
+}</pre></td></tr></table>
+</div>
+</div>
 <p>当然，需要实现上面这段代码，我们还需要做一些事情，就像 Image Engine 的事件系统如何工作类似。我们首先定义一个简单的 Event 类型，其可以记录那些观测闭包。</p>
-
-<pre><code>class Event {
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">class Event {
     private var observers = [() -&gt; Void]()
-}
-</code></pre>
-
+}</pre></td></tr></table>
+</div>
+</div>
 <p>然后，我们添加一个方法，该方法会传两个参数进来，一个是引用类型的观测者，另外一个是一个闭包，当观察动作一旦触发，该闭包就会被调用。核心就在这里，我们会封装该闭包，并且在内部闭包中弱捕获该观测者：</p>
-
-<pre><code>func addObserver&lt;T: AnyObject&gt;(_ observer: T, using closure: @escaping (T) -&gt; Void) {
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">func addObserver&lt;T: AnyObject&gt;(_ observer: T, using closure: @escaping (T) -&gt; Void) {
     observers.append { [weak observer] in
         observer.map(closure)
     }
-}
-</code></pre>
-
+}</pre></td></tr></table>
+</div>
+</div>
 <p>这样就使得我们只需要做这么一次 weak/string 的操作，也不影响其调用的地方。</p>
 
 <p>最后，我们添加一个 trigger 方法来使得我们能够触发事件本身。</p>
-
-<pre><code>func trigger() {
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">func trigger() {
     for observer in observers {
         observer()
     }
-}
-</code></pre>
-
+}</pre></td></tr></table>
+</div>
+</div>
 <p>然后回到 <code>ListViewModel</code>，为 <code>numberOfItemsChanged</code> 方法添加事件，当某个条件满足的时候，就会触发该事件。</p>
-
-<pre><code>class ListViewModel {
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">class ListViewModel {
     let numberOfItemsChanged = Event()
     var items: [Item] { didSet { itemsDidChange(from: oldValue) } }
 
@@ -485,9 +599,9 @@ dataLoader.loadData(from: url) { data in
             numberOfItemsChanged.trigger()
         }
     }
-}
-</code></pre>
-
+}</pre></td></tr></table>
+</div>
+</div>
 <p>如上面所看到的，基于 event 的 API 的最大优势就是最大程度上避免了引用循环的发生。我们也可以在我们的代码中为任意类型的观察事件重用相同的执行代码。当然，上面的 demo 中 Event 实现非常简单，缺乏一些高级特性，比如针对观察者的移除等等，但是对于简单使用已经足够了。</p>
 
 <p>我们会在之后的博文中详细的讲述事件驱动的编程范式，你也可以详细看下在 Image Engine 项目中的 <a href="https://github.com/JohnSundell/ImagineEngine/blob/master/Sources/Core/API/Event.swift">Event 类型的完整实现</a>。</p>

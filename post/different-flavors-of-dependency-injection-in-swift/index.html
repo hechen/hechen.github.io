@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2018-07-16T13:57:24&#43;00:00" />
 <meta itemprop="dateModified" content="2018-07-16T13:57:24&#43;00:00" />
-<meta itemprop="wordCount" content="2315">
+<meta itemprop="wordCount" content="2396">
 
 
 
@@ -344,21 +344,32 @@
 <p>让我们快速回顾一下用的最为广泛的依赖注入方式 ── initializer-based。这个想法是在某个类被初始化的时候传入其所需的依赖的方式。这种形式最大的好处就是，它保证了能够立即满足该类完成其功能所需要的所有东西。</p>
 
 <p>让我们建一个类 ── FileLoader 来从磁盘加载文件。为了实现该 Loader 的功能，需要两个依赖项，系统所提供的实例对象 ── <strong>FileManager</strong> 和 <strong>Cache</strong>。使用基于初始化的依赖注入的执行代码如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">FileLoader</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">fileManager</span><span class="p">:</span> <span class="n">FileManager</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">cache</span><span class="p">:</span> <span class="n">Cache</span>
 
-<pre><code class="language-Swift">
-class FileLoader {
-    private let fileManager: FileManager
-    private let cache: Cache
-
-    init(fileManager: FileManager = .default,
-         cache: Cache = .init()) {
-        self.fileManager = fileManager
-        self.cache = cache
-    }
-}
-
-</code></pre>
-
+    <span class="kd">init</span><span class="p">(</span><span class="n">fileManager</span><span class="p">:</span> <span class="n">FileManager</span> <span class="p">=</span> <span class="p">.</span><span class="k">default</span><span class="p">,</span>
+         <span class="n">cache</span><span class="p">:</span> <span class="n">Cache</span> <span class="p">=</span> <span class="p">.</span><span class="kd">init</span><span class="p">())</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">fileManager</span> <span class="p">=</span> <span class="n">fileManager</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">cache</span> <span class="p">=</span> <span class="n">cache</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>可以关注下初始化方法里默认参数的设置，其可以避免每次都需要自行创建的问题。这样能够简化我们在生产环境下使用 <strong>FileLoader</strong> 类创建文件加载器的工作，而且也能够能够传入 mock 数据或者我们的测试代码中的创建的实例进行测试。</p>
 
 <h3 id="基于属性">基于属性</h3>
@@ -368,42 +379,67 @@ class FileLoader {
 <p>对于这些情况，基于属性的依赖注入方式是一个更好的选择。相对于初始化的时候进行对象的依赖项注入，基于属性的形式可以在之后通过简单的赋值来做到，其能够让你减少模板代码的书写，尤其是在你确实没有必要进行注入的时候能够有更好的默认实现。</p>
 
 <p>让我们再来看一个例子，在这个例子中，我们在构建一个 <strong>PhotoEditorViewController</strong> ，这个视图控制器使得用户编辑它们照片库中的图片。为了达到这个功能，该视图控制器需要用到系统提供的 PHPhotoLibrary 类型的一个实例（该类本身是一个单例）以及我们自己实现的类 <strong>PhotoEditorEngine</strong> 的一个实例。那为了不通过自定义初始化方法进行依赖注入的话，我们可以创建一些具有默认值的可变属性，例如下面这样：</p>
-
-<pre><code class="language-Swift">
-class PhotoEditorViewController: UIViewController {
-    var library: PhotoLibrary = PHPhotoLibrary.shared()
-    var engine = PhotoEditorEngine()
-}
-
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">PhotoEditorViewController</span><span class="p">:</span> <span class="n">UIViewController</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">library</span><span class="p">:</span> <span class="n">PhotoLibrary</span> <span class="p">=</span> <span class="n">PHPhotoLibrary</span><span class="p">.</span><span class="n">shared</span><span class="p">()</span>
+    <span class="kd">var</span> <span class="nv">engine</span> <span class="p">=</span> <span class="n">PhotoEditorEngine</span><span class="p">()</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>使用 <a href="https://www.swiftbysundell.com/posts/testing-swift-code-that-uses-system-singletons-in-3-easy-steps">Testing Swift code that uses system singletons in 3 easy steps</a> 这篇文章中的手法，通过使用一个协议提供一个更为抽象的 <strong>PhotoLibrary</strong> 接口来获取系统的图片库。这样会使得测试和 Mock 数据特别的容易。</p>
 
 <p>上面这些工作比较好的是我们依然能够通过简单的给视图控制器来赋值，从而在我们的测试中简单的注入 Mock 代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">PhotoEditorViewControllerTests</span><span class="p">:</span> <span class="n">XCTestCase</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">testApplyingBlackAndWhiteFilter</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">viewController</span> <span class="p">=</span> <span class="n">PhotoEditorViewController</span><span class="p">()</span>
 
-<pre><code class="language-Swift">
-class PhotoEditorViewControllerTests: XCTestCase {
-    func testApplyingBlackAndWhiteFilter() {
-        let viewController = PhotoEditorViewController()
+        <span class="c1">// Assign a mock photo library to gain complete control over</span>
+        <span class="c1">// what photos are stored in it</span>
+        <span class="kd">let</span> <span class="nv">library</span> <span class="p">=</span> <span class="n">PhotoLibraryMock</span><span class="p">()</span>
+        <span class="n">library</span><span class="p">.</span><span class="n">photos</span> <span class="p">=</span> <span class="p">[</span><span class="n">TestPhotoFactory</span><span class="p">.</span><span class="n">photoWithColor</span><span class="p">(.</span><span class="n">red</span><span class="p">)]</span>
+        <span class="n">viewController</span><span class="p">.</span><span class="n">library</span> <span class="p">=</span> <span class="n">library</span>
 
-        // Assign a mock photo library to gain complete control over
-        // what photos are stored in it
-        let library = PhotoLibraryMock()
-        library.photos = [TestPhotoFactory.photoWithColor(.red)]
-        viewController.library = library
+        <span class="c1">// Run our testing commands</span>
+        <span class="n">viewController</span><span class="p">.</span><span class="n">selectPhoto</span><span class="p">(</span><span class="n">atIndex</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">viewController</span><span class="p">.</span><span class="n">apply</span><span class="p">(</span><span class="bp">filter</span><span class="p">:</span> <span class="p">.</span><span class="n">blackAndWhite</span><span class="p">)</span>
+        <span class="n">viewController</span><span class="p">.</span><span class="n">savePhoto</span><span class="p">()</span>
 
-        // Run our testing commands
-        viewController.selectPhoto(atIndex: 0)
-        viewController.apply(filter: .blackAndWhite)
-        viewController.savePhoto()
-
-        // Assert that the outcome is correct
-        XCTAssertTrue(photoIsBlackAndWhite(library.photos[0]))
-    }   
-}
-
-</code></pre>
-
+        <span class="c1">// Assert that the outcome is correct</span>
+        <span class="n">XCTAssertTrue</span><span class="p">(</span><span class="n">photoIsBlackAndWhite</span><span class="p">(</span><span class="n">library</span><span class="p">.</span><span class="n">photos</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="p">}</span>   
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <h3 id="基于参数">基于参数</h3>
 
 <p>最后一种，让我们来看下基于参数的依赖注入形式。这种方式尤其在你想让旧有代码更加可测试，而不需要对现存的结构进行更多改动的时候尤其有效。</p>
@@ -411,81 +447,133 @@ class PhotoEditorViewControllerTests: XCTestCase {
 <p>许多时候，我们仅需要某个特定的依赖项一次，或者我们仅仅需要在某些特定条件下进行 mock。不需要改变某个对象的初始化方法或者暴露可变属性（通常都不是一个好主意），我们可以开发出一个接受一个依赖项作为参数的特定 API。</p>
 
 <p>让我们看一个 <strong>NoteManager</strong> 类，该类是某个笔记类应用的一部分。它的工作就是管理所有用户已经书写的笔记，提供一个 API 让用户能够查询笔记。考虑到这个操作可能耗时（如果用户有许多笔记，通常情况下是这样），我们把该动作正常放置于一个后台线程执行，如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">NoteManager</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">loadNotes</span><span class="p">(</span><span class="n">matching</span> <span class="n">query</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+                   <span class="n">completionHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">([</span><span class="n">Note</span><span class="p">])</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">DispatchQueue</span><span class="p">.</span><span class="n">global</span><span class="p">(</span><span class="n">qos</span><span class="p">:</span> <span class="p">.</span><span class="n">userInitiated</span><span class="p">).</span><span class="n">async</span> <span class="p">{</span>
+            <span class="kd">let</span> <span class="nv">database</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">loadDatabase</span><span class="p">()</span>
+            <span class="kd">let</span> <span class="nv">notes</span> <span class="p">=</span> <span class="n">database</span><span class="p">.</span><span class="bp">filter</span> <span class="p">{</span> <span class="n">note</span> <span class="k">in</span>
+                <span class="k">return</span> <span class="n">note</span><span class="p">.</span><span class="n">matches</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="n">query</span><span class="p">)</span>
+            <span class="p">}</span>
 
-<pre><code class="language-Swift">
-class NoteManager {
-    func loadNotes(matching query: String,
-                   completionHandler: @escaping ([Note]) -&gt; Void) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            let database = self.loadDatabase()
-            let notes = database.filter { note in
-                return note.matches(query: query)
-            }
-
-            completionHandler(notes)
-        }
-    }
-}
-
-</code></pre>
-
+            <span class="n">completionHandler</span><span class="p">(</span><span class="n">notes</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>尽管上面的代码在我们的生产环境里也算是一个很好的解决方案，但在测试中我们正常情况下是想避免一些异步代码的，尽可能的平行化以避免 <a href="https://www.swiftbysundell.com/posts/reducing-flakiness-in-swift-tests">flakiness</a>. 如果要类似于基于初始化或者基于属性的依赖注入能够指定一个显式的队列提供给 NoteManager 来用的方式，需要对该类进行很多改变，这是我们在当下无法做或者不愿意做的。</p>
 
 <p>这时候，基于参数的依赖注入方式的实现就能够达到。相对于不得不对整个类进行重构，我们通过插入队列相关代码使得 <code>loadNotes</code> 方法在该队列上执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">NoteManager</span> <span class="p">{</span>
+    <span class="kd">func</span> <span class="nf">loadNotes</span><span class="p">(</span><span class="n">matching</span> <span class="n">query</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+                   <span class="n">on</span> <span class="n">queue</span><span class="p">:</span> <span class="n">DispatchQueue</span> <span class="p">=</span> <span class="p">.</span><span class="n">global</span><span class="p">(</span><span class="n">qos</span><span class="p">:</span> <span class="p">.</span><span class="n">userInitiated</span><span class="p">),</span>
+                   <span class="n">completionHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">([</span><span class="n">Note</span><span class="p">])</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">queue</span><span class="p">.</span><span class="n">async</span> <span class="p">{</span>
+            <span class="kd">let</span> <span class="nv">database</span> <span class="p">=</span> <span class="kc">self</span><span class="p">.</span><span class="n">loadDatabase</span><span class="p">()</span>
+            <span class="kd">let</span> <span class="nv">notes</span> <span class="p">=</span> <span class="n">database</span><span class="p">.</span><span class="bp">filter</span> <span class="p">{</span> <span class="n">note</span> <span class="k">in</span>
+                <span class="k">return</span> <span class="n">note</span><span class="p">.</span><span class="n">matches</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="n">query</span><span class="p">)</span>
+            <span class="p">}</span>
 
-<pre><code class="language-Swift">
-class NoteManager {
-    func loadNotes(matching query: String,
-                   on queue: DispatchQueue = .global(qos: .userInitiated),
-                   completionHandler: @escaping ([Note]) -&gt; Void) {
-        queue.async {
-            let database = self.loadDatabase()
-            let notes = database.filter { note in
-                return note.matches(query: query)
-            }
-
-            completionHandler(notes)
-        }
-    }
-}
-
-</code></pre>
-
+            <span class="n">completionHandler</span><span class="p">(</span><span class="n">notes</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>这样就使得我们能够很容易的在测试代码中使用某个定制的我们可等待的队列。这样也几乎使得我们把上面的接口转变成了一个同步接口，使得一切变得更加容易和可预测。</p>
 
 <p>另外一个基于参数的依赖注入的使用案例是当你想测试某个静态的 API 的时候。因为静态的 API 我们是不存在初始化方法的，同时我们理想情况下也是不应该维护任何静态的状态的，那基于参数的依赖注入方式就是一个很好的选择。让我们看一个静态的类 <strong>MessageSender</strong>， 该类当前依赖某个单例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">MessageSender</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">send</span><span class="p">(</span><span class="kc">_</span> <span class="n">message</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span> <span class="n">to</span> <span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
+        <span class="n">Database</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="bp">insert</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-<pre><code class="language-Swift">
-class MessageSender {
-    static func send(_ message: Message, to user: User) throws {
-        Database.shared.insert(message)
-
-        let data: Data = try wrap(message)
-        let endpoint = Endpoint.sendMessage(to: user)
-        NetworkManager.shared.post(data, to: endpoint.url)
-    }
-}
-
-</code></pre>
-
+        <span class="kd">let</span> <span class="nv">data</span><span class="p">:</span> <span class="n">Data</span> <span class="p">=</span> <span class="k">try</span> <span class="n">wrap</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">endpoint</span> <span class="p">=</span> <span class="n">Endpoint</span><span class="p">.</span><span class="n">sendMessage</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">user</span><span class="p">)</span>
+        <span class="n">NetworkManager</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">endpoint</span><span class="p">.</span><span class="n">url</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>当然，一个长远的解决方案更可能是重构 <strong>MessageSender</strong> 这个类，让它变成一个非静态的，能够在其所有被使用的地方被正确的注入依赖。但是基于我们能够更容易的测试它（比如，重现或者验证某个 Bug），我们能简单的使用参数作为依赖项进行注入，而不是基于某个单例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">MessageSender</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="kd">func</span> <span class="nf">send</span><span class="p">(</span><span class="kc">_</span> <span class="n">message</span><span class="p">:</span> <span class="n">Message</span><span class="p">,</span>
+                     <span class="n">to</span> <span class="n">user</span><span class="p">:</span> <span class="n">User</span><span class="p">,</span>
+                     <span class="n">database</span><span class="p">:</span> <span class="n">Database</span> <span class="p">=</span> <span class="p">.</span><span class="n">shared</span><span class="p">,</span>
+                     <span class="n">networkManager</span><span class="p">:</span> <span class="n">NetworkManager</span> <span class="p">=</span> <span class="p">.</span><span class="n">shared</span><span class="p">)</span> <span class="kr">throws</span> <span class="p">{</span>
+        <span class="n">database</span><span class="p">.</span><span class="bp">insert</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-<pre><code class="language-Swift">
-class MessageSender {
-    static func send(_ message: Message,
-                     to user: User,
-                     database: Database = .shared,
-                     networkManager: NetworkManager = .shared) throws {
-        database.insert(message)
-
-        let data: Data = try wrap(message)
-        let endpoint = Endpoint.sendMessage(to: user)
-        networkManager.post(data, to: endpoint.url)
-    }
-}
-
-</code></pre>
-
+        <span class="kd">let</span> <span class="nv">data</span><span class="p">:</span> <span class="n">Data</span> <span class="p">=</span> <span class="k">try</span> <span class="n">wrap</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">endpoint</span> <span class="p">=</span> <span class="n">Endpoint</span><span class="p">.</span><span class="n">sendMessage</span><span class="p">(</span><span class="n">to</span><span class="p">:</span> <span class="n">user</span><span class="p">)</span>
+        <span class="n">networkManager</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">endpoint</span><span class="p">.</span><span class="n">url</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>我们又再次使用了缺省的参数，不仅仅更加方便而已，更重要的是，能够在 100% 向后兼容的情况下为我们的代码增加测试支持。</p>
 
 <h2 id="结论">结论</h2>

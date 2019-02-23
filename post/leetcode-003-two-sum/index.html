@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2015-04-29T13:15:00&#43;00:00" />
 <meta itemprop="dateModified" content="2015-04-29T13:15:00&#43;00:00" />
-<meta itemprop="wordCount" content="1112">
+<meta itemprop="wordCount" content="1161">
 
 
 
@@ -366,34 +366,61 @@ where index1 must be less than index2. Please note that your returned answers (b
 <p>我们经常会使用空间换取时间的方法来获取较小的时间复杂度。因此增加必要的数据结构来减少时间复杂度。这道题目一样，我们增加一个map结构，key为数组元素值，value为其在数组中对应的index。每次遍历到数组元素便去map结构中查找对应的补数，如果存在，那就说明找到了。如果没存在就记录当前元素以及其index，直到结束。</p>
 
 <p>代码实现如下：</p>
-
-<pre><code class="language-C++"> 
-class Solution{
-		public:
-	     // O(n) runtime, O(n) space
-	     // We could reduce the runtime complexity of looking up a value to O(1) using a hash map that maps a value to its index.
-	    std::vector&lt;int&gt; twoSum(std::vector&lt;int&gt;&amp; numbers, int target){
-	        std::vector&lt;int&gt; vecRet;
-	        std::map&lt;int, int&gt; mapIndex;
-	        for (size_t i = 0; i &lt; numbers.size(); ++i){
-	            if (0 != mapIndex.count(target - numbers[i])){
-	                int nIndex = mapIndex[target - numbers[i]];
-	                // 当前存储的Index肯定比i要小，注意要排除i
-	                if (nIndex &lt; i){
-	                    vecRet.push_back(nIndex + 1);
-	                    vecRet.push_back(i + 1);
-	                    return vecRet;
-	                }
-	            } else {
-	                mapIndex[numbers[i]] = i;
-	            }
-	        }
-	        return vecRet;
-	    } // twoSum
-	}
-
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"> 
+<span class="k">class</span><span class="err"> </span><span class="nc">Solution</span><span class="p">{</span>
+		<span class="k">public</span><span class="o">:</span>
+	     <span class="c1">// O(n) runtime, O(n) space
+</span><span class="c1"></span>	     <span class="c1">// We could reduce the runtime complexity of looking up a value to O(1) using a hash map that maps a value to its index.
+</span><span class="c1"></span>	    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">twoSum</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">numbers</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">){</span>
+	        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vecRet</span><span class="p">;</span>
+	        <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">mapIndex</span><span class="p">;</span>
+	        <span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numbers</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+	            <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">!=</span> <span class="n">mapIndex</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="n">target</span> <span class="o">-</span> <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">])){</span>
+	                <span class="kt">int</span> <span class="n">nIndex</span> <span class="o">=</span> <span class="n">mapIndex</span><span class="p">[</span><span class="n">target</span> <span class="o">-</span> <span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]];</span>
+	                <span class="c1">// 当前存储的Index肯定比i要小，注意要排除i
+</span><span class="c1"></span>	                <span class="k">if</span> <span class="p">(</span><span class="n">nIndex</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">){</span>
+	                    <span class="n">vecRet</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">nIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+	                    <span class="n">vecRet</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+	                    <span class="k">return</span> <span class="n">vecRet</span><span class="p">;</span>
+	                <span class="p">}</span>
+	            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+	                <span class="n">mapIndex</span><span class="p">[</span><span class="n">numbers</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+	            <span class="p">}</span>
+	        <span class="p">}</span>
+	        <span class="k">return</span> <span class="n">vecRet</span><span class="p">;</span>
+	    <span class="p">}</span> <span class="c1">// twoSum
+</span><span class="c1"></span>	<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>leetCode的OJ系统评判结果如下所示：
 <img src="http://7xilk1.com1.z0.glb.clouddn.com/leetCode003C++.png" alt="leetCode Two Sum 1 C++" /></p>
 
@@ -423,37 +450,67 @@ class Solution{
 </ol>
 
 <p>实现代码如下：</p>
-
-<pre><code class="language-C++">    class Solution{
-		public:
-	        std::vector&lt;int&gt; twoSum(std::vector&lt;int&gt; &amp;numbers, int target){
-	        std::vector&lt;int&gt; vecRet;
-	        int nLeft = 0;
-	        int nRight = numbers.size() - 1;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++">    <span class="k">class</span><span class="err"> </span><span class="nc">Solution</span><span class="p">{</span>
+		<span class="k">public</span><span class="o">:</span>
+	        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">twoSum</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">numbers</span><span class="p">,</span> <span class="kt">int</span> <span class="n">target</span><span class="p">){</span>
+	        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vecRet</span><span class="p">;</span>
+	        <span class="kt">int</span> <span class="n">nLeft</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	        <span class="kt">int</span> <span class="n">nRight</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
 	
-	        while (nLeft &lt; nRight){
-	            // 小心两个int之和溢出，使用long long类型
-	            long long int nAdd = numbers[nLeft] + numbers[nRight];
-	            if (nAdd == target){
-	                vecRet.push_back(nLeft + 1);
-	                vecRet.push_back(nRight + 1);
+	        <span class="k">while</span> <span class="p">(</span><span class="n">nLeft</span> <span class="o">&lt;</span> <span class="n">nRight</span><span class="p">){</span>
+	            <span class="c1">// 小心两个int之和溢出，使用long long类型
+</span><span class="c1"></span>	            <span class="kt">long</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">nAdd</span> <span class="o">=</span> <span class="n">numbers</span><span class="p">[</span><span class="n">nLeft</span><span class="p">]</span> <span class="o">+</span> <span class="n">numbers</span><span class="p">[</span><span class="n">nRight</span><span class="p">];</span>
+	            <span class="k">if</span> <span class="p">(</span><span class="n">nAdd</span> <span class="o">==</span> <span class="n">target</span><span class="p">){</span>
+	                <span class="n">vecRet</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">nLeft</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+	                <span class="n">vecRet</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">nRight</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
 	
-	                return vecRet;
-	            }
-	            else if (nAdd &gt; target){
-	                nRight--;
-	            }
-	            else if (nAdd &lt; target){
-	                nLeft++;
-	            }
-	        }
+	                <span class="k">return</span> <span class="n">vecRet</span><span class="p">;</span>
+	            <span class="p">}</span>
+	            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">nAdd</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">){</span>
+	                <span class="n">nRight</span><span class="o">--</span><span class="p">;</span>
+	            <span class="p">}</span>
+	            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">nAdd</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">){</span>
+	                <span class="n">nLeft</span><span class="o">++</span><span class="p">;</span>
+	            <span class="p">}</span>
+	        <span class="p">}</span>
 	
-	        return vecRet;
-	    } 
-	}
-
-</code></pre>
-
+	        <span class="k">return</span> <span class="n">vecRet</span><span class="p">;</span>
+	    <span class="p">}</span> 
+	<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>由于Two Sum2 题目是收费的，因此木有进行leetCode的OJ评判，直接上本地运行截图吧，sign~</p>
 
 <p><img src="http://7xilk1.com1.z0.glb.clouddn.com/leetCode003Run2.jpg" alt="leetCode Two Sum 2  Run" /></p>

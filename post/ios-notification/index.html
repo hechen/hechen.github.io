@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2017-05-20T10:10:54&#43;00:00" />
 <meta itemprop="dateModified" content="2017-05-20T10:10:54&#43;00:00" />
-<meta itemprop="wordCount" content="2740">
+<meta itemprop="wordCount" content="2933">
 
 
 
@@ -406,105 +406,192 @@
 </ol>
 
 <h4 id="权限申请">权限申请</h4>
-
-<pre><code class="language-Swift">UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
-    granted, error in
-    if granted {
-        // 用户允许进行通知
-    }
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">UNUserNotificationCenter</span><span class="p">.</span><span class="n">current</span><span class="p">().</span><span class="n">requestAuthorization</span><span class="p">(</span><span class="n">options</span><span class="p">:</span> <span class="p">[.</span><span class="n">alert</span><span class="p">,</span> <span class="p">.</span><span class="n">sound</span><span class="p">,</span> <span class="p">.</span><span class="n">badge</span><span class="p">])</span> <span class="p">{</span>
+    <span class="n">granted</span><span class="p">,</span> <span class="n">error</span> <span class="k">in</span>
+    <span class="k">if</span> <span class="n">granted</span> <span class="p">{</span>
+        <span class="c1">// 用户允许进行通知</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <h4 id="远程推送">远程推送</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// 向 APNs 请求 token：</span>
 
-<pre><code class="language-Swift">// 向 APNs 请求 token：
+<span class="c1">// iOS 10 support</span>
+<span class="k">if</span> <span class="cp">#available</span><span class="p">(</span><span class="cp">iOS</span> <span class="mi">10</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="cp">UNUserNotificationCenter</span><span class="p">.</span><span class="cp">current</span><span class="p">().</span><span class="cp">requestAuthorization</span><span class="p">(</span><span class="cp">options</span><span class="p">:[.</span><span class="cp">badge</span><span class="p">,</span> <span class="p">.</span><span class="cp">alert</span><span class="p">,</span> <span class="p">.</span><span class="cp">sound</span><span class="p">]){</span> <span class="p">(</span><span class="cp">granted</span><span class="p">,</span> <span class="cp">error</span><span class="p">)</span> <span class="k">in</span> <span class="p">}</span>
+    <span class="n">application</span><span class="p">.</span><span class="n">registerForRemoteNotifications</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="c1">// iOS 9 support</span>
+<span class="k">else</span> <span class="k">if</span> <span class="cp">#available</span><span class="p">(</span><span class="cp">iOS</span> <span class="mi">9</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span> <span class="p">{</span>  
 
-// iOS 10 support
-if #available(iOS 10, *) {  
-    UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]){ (granted, error) in }
-    application.registerForRemoteNotifications()
-}
-// iOS 9 support
-else if #available(iOS 9, *) {  
-
-UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
-    UIApplication.shared.registerForRemoteNotifications()
-}
-
-</code></pre>
-
+<span class="cp">UIApplication</span><span class="p">.</span><span class="cp">shared</span><span class="p">.</span><span class="cp">registerUserNotificationSettings</span><span class="p">(</span><span class="cp">UIUserNotificationSettings</span><span class="p">(</span><span class="cp">types</span><span class="p">:</span> <span class="p">[.</span><span class="cp">badge</span><span class="p">,</span> <span class="p">.</span><span class="cp">sound</span><span class="p">,</span> <span class="p">.</span><span class="cp">alert</span><span class="p">],</span> <span class="cp">categories</span><span class="p">:</span> <span class="kc">nil</span><span class="p">))</span>
+    <span class="n">UIApplication</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">registerForRemoteNotifications</span><span class="p">()</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>关于注册远程通知的回调方法一致，</p>
-
-<pre><code class="language-Swift">
-// AppDelegate.swift
- func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-    let tokenString = deviceToken.hexString
-    print(&quot;Get Push token: \(tokenString)&quot;)
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// AppDelegate.swift</span>
+ <span class="kd">func</span> <span class="nf">application</span><span class="p">(</span><span class="kc">_</span> <span class="n">application</span><span class="p">:</span> <span class="n">UIApplication</span><span class="p">,</span> <span class="n">didRegisterForRemoteNotificationsWithDeviceToken</span> <span class="n">deviceToken</span><span class="p">:</span> <span class="n">Data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">tokenString</span> <span class="p">=</span> <span class="n">deviceToken</span><span class="p">.</span><span class="n">hexString</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Get Push token: </span><span class="si">\(</span><span class="n">tokenString</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <h4 id="payloads">Payloads</h4>
 
 <p>&lt;  iOS 10</p>
-
-<pre><code class="language-JSON"> {
-   &quot;aps&quot;:{
-     &quot;alert&quot;:&quot;Test&quot;,
-     &quot;sound&quot;:&quot;default&quot;,
-     &quot;badge&quot;:1
-   }
- }
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-JSON" data-lang="JSON"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-JSON" data-lang="JSON"> <span class="p">{</span>
+   <span class="nt">&#34;aps&#34;</span><span class="p">:{</span>
+     <span class="nt">&#34;alert&#34;</span><span class="p">:</span><span class="s2">&#34;Test&#34;</span><span class="p">,</span>
+     <span class="nt">&#34;sound&#34;</span><span class="p">:</span><span class="s2">&#34;default&#34;</span><span class="p">,</span>
+     <span class="nt">&#34;badge&#34;</span><span class="p">:</span><span class="mi">1</span>
+   <span class="p">}</span>
+ <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>iOS 10 系统提供了更为丰富的结构，比如可以指定 Title，Subtitle 等</p>
-
-<pre><code class="language-JSON">{
-   &quot;aps&quot;:{
-     &quot;alert&quot;:{
-       &quot;title&quot;:&quot;This is a title&quot;,
-       &quot;subtitle&quot;:&quot;This is a subtitle&quot;,
-       &quot;body&quot;:&quot;This is body&quot;
-     },
-     &quot;sound&quot;:&quot;default&quot;,
-     &quot;badge&quot;:1
-   }
- }
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-JSON" data-lang="JSON"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-JSON" data-lang="JSON"><span class="p">{</span>
+   <span class="nt">&#34;aps&#34;</span><span class="p">:{</span>
+     <span class="nt">&#34;alert&#34;</span><span class="p">:{</span>
+       <span class="nt">&#34;title&#34;</span><span class="p">:</span><span class="s2">&#34;This is a title&#34;</span><span class="p">,</span>
+       <span class="nt">&#34;subtitle&#34;</span><span class="p">:</span><span class="s2">&#34;This is a subtitle&#34;</span><span class="p">,</span>
+       <span class="nt">&#34;body&#34;</span><span class="p">:</span><span class="s2">&#34;This is body&#34;</span>
+     <span class="p">},</span>
+     <span class="nt">&#34;sound&#34;</span><span class="p">:</span><span class="s2">&#34;default&#34;</span><span class="p">,</span>
+     <span class="nt">&#34;badge&#34;</span><span class="p">:</span><span class="mi">1</span>
+   <span class="p">}</span>
+ <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>甚至，现在可以支持多媒体的展示了，在 payload 上也有相应的体现，例如下面几例：</p>
 
 <ol>
 <li><p>支持图片</p>
-
-<pre><code class="language-JSON">{
-    &quot;aps&quot;:{
-        &quot;alert&quot;: {
-            &quot;title&quot;: &quot;Title: Notification Demo&quot;, 
-            &quot;subtitle&quot;: &quot;Subtitle: show iOS 10 support!&quot;,
-            &quot;body&quot;: &quot;The Main Body For Notification!&quot;
-            },
-            &quot;mutable-content&quot;: 1
-        },
-    &quot;image&quot; : &quot;https://pic1.zhimg.com/v2-0314056e4f13141b6ca2277078ec067c.jpg&quot;,
-}
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-JSON" data-lang="JSON"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-JSON" data-lang="JSON"><span class="p">{</span>
+    <span class="nt">&#34;aps&#34;</span><span class="p">:{</span>
+        <span class="nt">&#34;alert&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Title: Notification Demo&#34;</span><span class="p">,</span> 
+            <span class="nt">&#34;subtitle&#34;</span><span class="p">:</span> <span class="s2">&#34;Subtitle: show iOS 10 support!&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;body&#34;</span><span class="p">:</span> <span class="s2">&#34;The Main Body For Notification!&#34;</span>
+            <span class="p">},</span>
+            <span class="nt">&#34;mutable-content&#34;</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="p">},</span>
+    <span class="nt">&#34;image&#34;</span> <span class="p">:</span> <span class="s2">&#34;https://pic1.zhimg.com/v2-0314056e4f13141b6ca2277078ec067c.jpg&#34;</span><span class="p">,</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div></li>
 
 <li><p>支持音频</p>
-
-<pre><code class="language-JSON">    
-{
-    &quot;aps&quot;:{
-        &quot;alert&quot;: {
-        &quot;title&quot;: &quot;Title: Notification Demo&quot;, 
-        &quot;subtitle&quot;: &quot;Subtitle: show iOS 10 support!&quot;, 
-        &quot;body&quot;: &quot;The Main Body For Notification!&quot;
-        },
-        &quot;mutable-content&quot;: 1,
-    },
-    &quot;audio&quot; : &quot;http://hao.1015600.com/upload/ring/000/982/d9924a7f4e4ab06e52a11dfdd32ffae1.mp3&quot;,
-}
-    
-</code></pre></li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-JSON" data-lang="JSON"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-JSON" data-lang="JSON">    
+<span class="p">{</span>
+    <span class="nt">&#34;aps&#34;</span><span class="p">:{</span>
+        <span class="nt">&#34;alert&#34;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&#34;title&#34;</span><span class="p">:</span> <span class="s2">&#34;Title: Notification Demo&#34;</span><span class="p">,</span> 
+        <span class="nt">&#34;subtitle&#34;</span><span class="p">:</span> <span class="s2">&#34;Subtitle: show iOS 10 support!&#34;</span><span class="p">,</span> 
+        <span class="nt">&#34;body&#34;</span><span class="p">:</span> <span class="s2">&#34;The Main Body For Notification!&#34;</span>
+        <span class="p">},</span>
+        <span class="nt">&#34;mutable-content&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;audio&#34;</span> <span class="p">:</span> <span class="s2">&#34;http://hao.1015600.com/upload/ring/000/982/d9924a7f4e4ab06e52a11dfdd32ffae1.mp3&#34;</span><span class="p">,</span>
+<span class="p">}</span>
+    </code></pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 
 <p>具体所有的 Key 可以参考官方文档 <a href="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/PayloadKeyReference.html">Payload Key Reference</a></p>
@@ -519,111 +606,218 @@ UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings
 
 <ol>
 <li><p>删除未展示的通知</p>
-
-<pre><code class="language-Swift">        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
-        let identifier = Constants.pendingRemoveNotificationIdentifier
-        let request = UNNotificationRequest(identifier: identifier, content: title1Content, trigger: trigger)
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift">        <span class="kd">let</span> <span class="nv">trigger</span> <span class="p">=</span> <span class="n">UNTimeIntervalNotificationTrigger</span><span class="p">(</span><span class="n">timeInterval</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">identifier</span> <span class="p">=</span> <span class="n">Constants</span><span class="p">.</span><span class="n">pendingRemoveNotificationIdentifier</span>
+        <span class="kd">let</span> <span class="nv">request</span> <span class="p">=</span> <span class="n">UNNotificationRequest</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">title1Content</span><span class="p">,</span> <span class="n">trigger</span><span class="p">:</span> <span class="n">trigger</span><span class="p">)</span>
             
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                print(&quot;remove pending notification error: \(error)&quot;)
-            } else {
-                print(&quot;Notification request added: \(identifier)&quot;)
-            }
-        }
+        <span class="n">UNUserNotificationCenter</span><span class="p">.</span><span class="n">current</span><span class="p">().</span><span class="n">add</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="kd">let</span> <span class="nv">error</span> <span class="p">=</span> <span class="n">error</span> <span class="p">{</span>
+                <span class="bp">print</span><span class="p">(</span><span class="s">&#34;remove pending notification error: </span><span class="si">\(</span><span class="n">error</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Notification request added: </span><span class="si">\(</span><span class="n">identifier</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
             
-        delay(2) {
-            print(&quot;Notification request removed: \(identifier)&quot;)
-            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
-        }
-</code></pre></li>
+        <span class="n">delay</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Notification request removed: </span><span class="si">\(</span><span class="n">identifier</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+            <span class="n">UNUserNotificationCenter</span><span class="p">.</span><span class="n">current</span><span class="p">().</span><span class="n">removePendingNotificationRequests</span><span class="p">(</span><span class="n">withIdentifiers</span><span class="p">:</span> <span class="p">[</span><span class="n">identifier</span><span class="p">])</span>
+        <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div></li>
 
 <li><p>更新未展示的通知</p>
-
-<pre><code class="language-Swift">        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
-        let identifier = Constants.pendingUpdateNotificationIdentifier
-        let request = UNNotificationRequest(identifier: identifier, content: title1Content, trigger: trigger)
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift">        <span class="kd">let</span> <span class="nv">trigger</span> <span class="p">=</span> <span class="n">UNTimeIntervalNotificationTrigger</span><span class="p">(</span><span class="n">timeInterval</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">identifier</span> <span class="p">=</span> <span class="n">Constants</span><span class="p">.</span><span class="n">pendingUpdateNotificationIdentifier</span>
+        <span class="kd">let</span> <span class="nv">request</span> <span class="p">=</span> <span class="n">UNNotificationRequest</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">title1Content</span><span class="p">,</span> <span class="n">trigger</span><span class="p">:</span> <span class="n">trigger</span><span class="p">)</span>
             
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                print(&quot;update pending notification error: \(error)&quot;)
-            } else {
-                print(&quot;Notification request added: \(identifier) with title1&quot;)
-            }
-        }
+        <span class="n">UNUserNotificationCenter</span><span class="p">.</span><span class="n">current</span><span class="p">().</span><span class="n">add</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="kd">let</span> <span class="nv">error</span> <span class="p">=</span> <span class="n">error</span> <span class="p">{</span>
+                <span class="bp">print</span><span class="p">(</span><span class="s">&#34;update pending notification error: </span><span class="si">\(</span><span class="n">error</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Notification request added: </span><span class="si">\(</span><span class="n">identifier</span><span class="si">)</span><span class="s"> with title1&#34;</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
             
-        delay(2) {
-            let newTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        <span class="n">delay</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">let</span> <span class="nv">newTrigger</span> <span class="p">=</span> <span class="n">UNTimeIntervalNotificationTrigger</span><span class="p">(</span><span class="n">timeInterval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
                 
-            // Add new request with the same identifier to update a notification.
-            let newRequest = UNNotificationRequest(identifier: identifier, content: self.title2Content, trigger: newTrigger)
-            UNUserNotificationCenter.current().add(newRequest) { error in
-                if let error = error {
-                    print(&quot;update delivered notification error: \(error)&quot;)
-                } else {
-                    print(&quot;Notification request updated: \(identifier) with title2&quot;)
-                }
-            }
-        }
-</code></pre></li>
+            <span class="c1">// Add new request with the same identifier to update a notification.</span>
+            <span class="kd">let</span> <span class="nv">newRequest</span> <span class="p">=</span> <span class="n">UNNotificationRequest</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">title2Content</span><span class="p">,</span> <span class="n">trigger</span><span class="p">:</span> <span class="n">newTrigger</span><span class="p">)</span>
+            <span class="n">UNUserNotificationCenter</span><span class="p">.</span><span class="n">current</span><span class="p">().</span><span class="n">add</span><span class="p">(</span><span class="n">newRequest</span><span class="p">)</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
+                <span class="k">if</span> <span class="kd">let</span> <span class="nv">error</span> <span class="p">=</span> <span class="n">error</span> <span class="p">{</span>
+                    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;update delivered notification error: </span><span class="si">\(</span><span class="n">error</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Notification request updated: </span><span class="si">\(</span><span class="n">identifier</span><span class="si">)</span><span class="s"> with title2&#34;</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div></li>
 
 <li><p>删除已经展示的通知</p>
-
-<pre><code class="language-Swift">        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
-        let identifier = Constants.pendingUpdateNotificationIdentifier
-        let request = UNNotificationRequest(identifier: identifier, content: title1Content, trigger: trigger)
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift">        <span class="kd">let</span> <span class="nv">trigger</span> <span class="p">=</span> <span class="n">UNTimeIntervalNotificationTrigger</span><span class="p">(</span><span class="n">timeInterval</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">identifier</span> <span class="p">=</span> <span class="n">Constants</span><span class="p">.</span><span class="n">pendingUpdateNotificationIdentifier</span>
+        <span class="kd">let</span> <span class="nv">request</span> <span class="p">=</span> <span class="n">UNNotificationRequest</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">title1Content</span><span class="p">,</span> <span class="n">trigger</span><span class="p">:</span> <span class="n">trigger</span><span class="p">)</span>
             
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                print(&quot;update pending notification error: \(error)&quot;)
-            } else {
-                print(&quot;Notification request added: \(identifier) with title1&quot;)
-            }
-        }
+        <span class="n">UNUserNotificationCenter</span><span class="p">.</span><span class="n">current</span><span class="p">().</span><span class="n">add</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="kd">let</span> <span class="nv">error</span> <span class="p">=</span> <span class="n">error</span> <span class="p">{</span>
+                <span class="bp">print</span><span class="p">(</span><span class="s">&#34;update pending notification error: </span><span class="si">\(</span><span class="n">error</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Notification request added: </span><span class="si">\(</span><span class="n">identifier</span><span class="si">)</span><span class="s"> with title1&#34;</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
             
-        delay(2) {
-            let newTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        <span class="n">delay</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">let</span> <span class="nv">newTrigger</span> <span class="p">=</span> <span class="n">UNTimeIntervalNotificationTrigger</span><span class="p">(</span><span class="n">timeInterval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
                 
-            // Add new request with the same identifier to update a notification.
-            let newRequest = UNNotificationRequest(identifier: identifier, content: self.title2Content, trigger: newTrigger)
-            UNUserNotificationCenter.current().add(newRequest) { error in
-                if let error = error {
-                    print(&quot;update delivered notification error: \(error)&quot;)
-                } else {
-                    print(&quot;Notification request updated: \(identifier) with title2&quot;)
-                }
-            }
-        }
-</code></pre></li>
+            <span class="c1">// Add new request with the same identifier to update a notification.</span>
+            <span class="kd">let</span> <span class="nv">newRequest</span> <span class="p">=</span> <span class="n">UNNotificationRequest</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">title2Content</span><span class="p">,</span> <span class="n">trigger</span><span class="p">:</span> <span class="n">newTrigger</span><span class="p">)</span>
+            <span class="n">UNUserNotificationCenter</span><span class="p">.</span><span class="n">current</span><span class="p">().</span><span class="n">add</span><span class="p">(</span><span class="n">newRequest</span><span class="p">)</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
+                <span class="k">if</span> <span class="kd">let</span> <span class="nv">error</span> <span class="p">=</span> <span class="n">error</span> <span class="p">{</span>
+                    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;update delivered notification error: </span><span class="si">\(</span><span class="n">error</span><span class="si">)</span><span class="s">&#34;</span><span class="p">)</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Notification request updated: </span><span class="si">\(</span><span class="n">identifier</span><span class="si">)</span><span class="s"> with title2&#34;</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div></li>
 
 <li><p>更新已经展示的通知</p>
-
-<pre><code class="language-Swift">    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
-        let identifier = Constants.deliveredUpdateNotificationIdentifier
-        let request = UNNotificationRequest(identifier: identifier, content: title1Content, trigger: trigger)
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift">    <span class="kd">let</span> <span class="nv">trigger</span> <span class="p">=</span> <span class="n">UNTimeIntervalNotificationTrigger</span><span class="p">(</span><span class="n">timeInterval</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
+        <span class="kd">let</span> <span class="nv">identifier</span> <span class="p">=</span> <span class="n">Constants</span><span class="p">.</span><span class="n">deliveredUpdateNotificationIdentifier</span>
+        <span class="kd">let</span> <span class="nv">request</span> <span class="p">=</span> <span class="n">UNNotificationRequest</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">title1Content</span><span class="p">,</span> <span class="n">trigger</span><span class="p">:</span> <span class="n">trigger</span><span class="p">)</span>
             
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
+        <span class="n">UNUserNotificationCenter</span><span class="p">.</span><span class="n">current</span><span class="p">().</span><span class="n">add</span><span class="p">(</span><span class="n">request</span><span class="p">)</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
+            <span class="k">if</span> <span class="kd">let</span> <span class="nv">error</span> <span class="p">=</span> <span class="n">error</span> <span class="p">{</span>
                     
-            } else {
-                print(&quot;Notification request added: \(identifier) with title1&quot;)
-            }
-        }
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Notification request added: </span><span class="si">\(</span><span class="n">identifier</span><span class="si">)</span><span class="s"> with title1&#34;</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
             
-        delay(4) {
-            let newTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        <span class="n">delay</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">let</span> <span class="nv">newTrigger</span> <span class="p">=</span> <span class="n">UNTimeIntervalNotificationTrigger</span><span class="p">(</span><span class="n">timeInterval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">repeats</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
                 
-            // Add new request with the same identifier to update a notification.
-            let newRequest = UNNotificationRequest(identifier: identifier, content: self.title2Content, trigger: newTrigger)
-            UNUserNotificationCenter.current().add(newRequest) { error in
-                if let error = error {
+            <span class="c1">// Add new request with the same identifier to update a notification.</span>
+            <span class="kd">let</span> <span class="nv">newRequest</span> <span class="p">=</span> <span class="n">UNNotificationRequest</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="n">identifier</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="kc">self</span><span class="p">.</span><span class="n">title2Content</span><span class="p">,</span> <span class="n">trigger</span><span class="p">:</span> <span class="n">newTrigger</span><span class="p">)</span>
+            <span class="n">UNUserNotificationCenter</span><span class="p">.</span><span class="n">current</span><span class="p">().</span><span class="n">add</span><span class="p">(</span><span class="n">newRequest</span><span class="p">)</span> <span class="p">{</span> <span class="n">error</span> <span class="k">in</span>
+                <span class="k">if</span> <span class="kd">let</span> <span class="nv">error</span> <span class="p">=</span> <span class="n">error</span> <span class="p">{</span>
                         
-                } else {
-                    print(&quot;Notification request updated: \(identifier) with title2&quot;)
-                }
-            }
-        }
-</code></pre></li>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Notification request updated: </span><span class="si">\(</span><span class="n">identifier</span><span class="si">)</span><span class="s"> with title2&#34;</span><span class="p">)</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 
 <p>当然，上述均是针对本地通知的操作，关于远程推送通知，目前只支持更新通知，远程推送可以进行通知的更新，在使用 Provider API 向 APNs 提交请求时，在 HTTP/2 的 header 中 apns-collapse-id key 的内容将被作为该推送的标识符进行使用。多次推送同一标识符的通知即可进行更新。</p>
@@ -645,33 +839,60 @@ UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings
 </blockquote>
 
 <p>生成 Extension 之后，系统已经为我们提供了模板，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">NotificationService</span><span class="p">:</span> <span class="n">UNNotificationServiceExtension</span> <span class="p">{</span>
 
-<pre><code class="language-Swift">class NotificationService: UNNotificationServiceExtension {
-
-    var contentHandler: ((UNNotificationContent) -&gt; Void)?
-    var bestAttemptContent: UNMutableNotificationContent?
+    <span class="kd">var</span> <span class="nv">contentHandler</span><span class="p">:</span> <span class="p">((</span><span class="n">UNNotificationContent</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)?</span>
+    <span class="kd">var</span> <span class="nv">bestAttemptContent</span><span class="p">:</span> <span class="n">UNMutableNotificationContent</span><span class="p">?</span>
     
-    // 1
-    override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -&gt; Void) {
-        self.contentHandler = contentHandler
-        bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
+    <span class="c1">// 1</span>
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">didReceive</span><span class="p">(</span><span class="kc">_</span> <span class="n">request</span><span class="p">:</span> <span class="n">UNNotificationRequest</span><span class="p">,</span> <span class="n">withContentHandler</span> <span class="n">contentHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">(</span><span class="n">UNNotificationContent</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">contentHandler</span> <span class="p">=</span> <span class="n">contentHandler</span>
+        <span class="n">bestAttemptContent</span> <span class="p">=</span> <span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">content</span><span class="p">.</span><span class="n">mutableCopy</span><span class="p">()</span> <span class="k">as</span><span class="p">?</span> <span class="n">UNMutableNotificationContent</span><span class="p">)</span>
         
-        if let bestAttemptContent = bestAttemptContent {
-            contentHandler(bestAttemptContent)
-        }
-    }
+        <span class="k">if</span> <span class="kd">let</span> <span class="nv">bestAttemptContent</span> <span class="p">=</span> <span class="n">bestAttemptContent</span> <span class="p">{</span>
+            <span class="n">contentHandler</span><span class="p">(</span><span class="n">bestAttemptContent</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
     
-    // 2
-    override func serviceExtensionTimeWillExpire() {
-        // Called just before the extension will be terminated by the system.
-        // Use this as an opportunity to deliver your &quot;best attempt&quot; at modified content, otherwise the original push payload will be used.
-        if let contentHandler = contentHandler, let bestAttemptContent =  bestAttemptContent {
-            contentHandler(bestAttemptContent)
-        }
-    }
-}
-</code></pre>
-
+    <span class="c1">// 2</span>
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">serviceExtensionTimeWillExpire</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Called just before the extension will be terminated by the system.</span>
+        <span class="c1">// Use this as an opportunity to deliver your &#34;best attempt&#34; at modified content, otherwise the original push payload will be used.</span>
+        <span class="k">if</span> <span class="kd">let</span> <span class="nv">contentHandler</span> <span class="p">=</span> <span class="n">contentHandler</span><span class="p">,</span> <span class="kd">let</span> <span class="nv">bestAttemptContent</span> <span class="p">=</span>  <span class="n">bestAttemptContent</span> <span class="p">{</span>
+            <span class="n">contentHandler</span><span class="p">(</span><span class="n">bestAttemptContent</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <ol>
 <li>Content Extension
 iOS 10 SDK 新加的另一个 Content Extension 可以用来自定义通知的详细页面的视图。 下图中就是几款市面上目前已经实现过自定义 Content Extension 的 App 截图。需要注意的是：</li>
@@ -690,34 +911,59 @@ iOS 10 SDK 新加的另一个 Content Extension 可以用来自定义通知的�
 <ol>
 <li><p>本地推送支持
 本地通知添加多媒体比较简单一些，只需要通过本地磁盘上的文件 URL 创建一个 UNNotificationAttachment 对象，然后将这个对象放到数组中赋值给 content 的 attachments 属性就行了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">content</span> <span class="p">=</span> <span class="n">UNMutableNotificationContent</span><span class="p">()</span>
+<span class="n">content</span><span class="p">.</span><span class="n">title</span> <span class="p">=</span> <span class="s">&#34;Image Notification&#34;</span>
+<span class="n">content</span><span class="p">.</span><span class="n">body</span> <span class="p">=</span> <span class="s">&#34;Show me an image!&#34;</span>
 
-<pre><code class="language-Swift">let content = UNMutableNotificationContent()
-content.title = &quot;Image Notification&quot;
-content.body = &quot;Show me an image!&quot;
-
-if let imageURL = Bundle.main.url(forResource: &quot;image&quot;, withExtension: &quot;jpg&quot;),
-let attachment = try? UNNotificationAttachment(identifier: &quot;imageAttachment&quot;, url: imageURL, options: nil) {
-content.attachments = [attachment]
-}
-</code></pre></li>
+<span class="k">if</span> <span class="kd">let</span> <span class="nv">imageURL</span> <span class="p">=</span> <span class="n">Bundle</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">url</span><span class="p">(</span><span class="n">forResource</span><span class="p">:</span> <span class="s">&#34;image&#34;</span><span class="p">,</span> <span class="n">withExtension</span><span class="p">:</span> <span class="s">&#34;jpg&#34;</span><span class="p">),</span>
+<span class="kd">let</span> <span class="nv">attachment</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">UNNotificationAttachment</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;imageAttachment&#34;</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="n">imageURL</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">content</span><span class="p">.</span><span class="n">attachments</span> <span class="p">=</span> <span class="p">[</span><span class="n">attachment</span><span class="p">]</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div></li>
 
 <li><p>远程推送支持</p></li>
 </ol>
 
 <p>首先需要在 payloads 结构中添加对富媒体的支持，aps 字典中添加字段<code>mutable-content</code>并置为 1 来标识该远程通知是需要支持。 然后可以在 payloads 中添加资源地址，可以是本地的资源，也可以是需要 App 下载的。</p>
-
-<pre><code class="language-JSON">{
-  &quot;aps&quot;:{
-    &quot;alert&quot;:{
-      &quot;title&quot;:&quot;Image Notification&quot;,
-      &quot;body&quot;:&quot;Show me an image from web!&quot;
-    },
-    &quot;mutable-content&quot;:1
-  },
-  &quot;zh_image&quot;: &quot;https://pic1.zhimg.com/v2-0314056e4f13141b6ca2277078ec067c.jpg&quot;
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-JSON" data-lang="JSON"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-JSON" data-lang="JSON"><span class="p">{</span>
+  <span class="nt">&#34;aps&#34;</span><span class="p">:{</span>
+    <span class="nt">&#34;alert&#34;</span><span class="p">:{</span>
+      <span class="nt">&#34;title&#34;</span><span class="p">:</span><span class="s2">&#34;Image Notification&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;body&#34;</span><span class="p">:</span><span class="s2">&#34;Show me an image from web!&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;mutable-content&#34;</span><span class="p">:</span><span class="mi">1</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;zh_image&#34;</span><span class="p">:</span> <span class="s2">&#34;https://pic1.zhimg.com/v2-0314056e4f13141b6ca2277078ec067c.jpg&#34;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>具体支持多媒体文件的富媒体类型以及每一种类型所支持的大小详官方文档  <a href="https://developer.apple.com/reference/usernotifications/unnotificationattachment">UNNotificationAttachment</a></p>
 
 <p>一旦远程推送在 aps 中添加 mutable-content 的key 并设置为 1 之后，iOS 系统接收到该推送之后就会唤起我们配套的 Service Extension 来做进一步处理，我们可以在其中下载对应 zh_image 链接的图片，然后生成 Attachment 再丢给系统处理即可。 详细做法就是在上一节讲 Service Extension 中的 <code>didReceive</code> 中写相应逻辑即可，具体代码如下所示：</p>

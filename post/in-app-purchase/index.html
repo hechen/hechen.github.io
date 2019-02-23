@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2018-05-24T10:40:39&#43;00:00" />
 <meta itemprop="dateModified" content="2018-05-24T10:40:39&#43;00:00" />
-<meta itemprop="wordCount" content="3178">
+<meta itemprop="wordCount" content="3225">
 
 
 
@@ -480,35 +480,58 @@
 <p><img src="http://7xilk1.com1.z0.glb.clouddn.com/2018-09-03-15359854946888.png" alt="Product ID" /></p>
 
 <p>In-App Identifier 为每个可销售的商品提供一个唯一标识。在客户端上，我们可以直接写死代码:</p>
-
-<pre><code class="language-Swift">let identifiers = [&quot;com.myCompany.myApp.product1&quot;, &quot;com.myCompany.myApp.product2&quot; ]
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">identifiers</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#34;com.myCompany.myApp.product1&#34;</span><span class="p">,</span> <span class="s">&#34;com.myCompany.myApp.product2&#34;</span> <span class="p">]</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>或者从 Server 端获取。</p>
 
 <h3 id="获取商品信息">获取商品信息</h3>
 
 <p>然后通过上一步取得的 Product ID 来获取具体某个 Product 的详细信息，包括价格，描述等等。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// 获取一批商品的信息</span>
 
-<pre><code class="language-Swift">// 获取一批商品的信息
+<span class="kd">let</span> <span class="nv">request</span> <span class="p">=</span> <span class="n">SKProductsRequest</span><span class="p">(</span><span class="n">productIdentifiers</span><span class="p">:</span> <span class="n">identifierSet</span><span class="p">)</span> 
 
-let request = SKProductsRequest(productIdentifiers: identifierSet) 
+<span class="n">request</span><span class="p">.</span><span class="n">delegate</span> <span class="p">=</span> <span class="kc">self</span>
 
-request.delegate = self
-
-request.start()
-</code></pre>
-
+<span class="n">request</span><span class="p">.</span><span class="n">start</span><span class="p">()</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>在代理回调中处理获取的结果，进行展示或者 Cache。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">productRequest</span><span class="p">(</span><span class="kc">_</span> <span class="n">request</span><span class="p">:</span> <span class="n">SKProductsRequest</span><span class="p">,</span> <span class="n">didReceive</span> <span class="n">response</span><span class="p">:</span> <span class="n">SKProductsResponse</span><span class="p">)</span> <span class="p">{</span>
 
-<pre><code class="language-Swift">func productRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-
-    for product in response.products {
+    <span class="k">for</span> <span class="n">product</span> <span class="k">in</span> <span class="n">response</span><span class="p">.</span><span class="n">products</span> <span class="p">{</span>
     
-    } 
-} 
-</code></pre>
-
+    <span class="p">}</span> 
+<span class="p">}</span> </code></pre></td></tr></table>
+</div>
+</div>
 <p>官方建议是不要进行缓存，因为 Product 的信息有可能会更新，比如用户切换 AppStore 的区域，价格信息也会因为相应的汇率发生变化。不过！在国内，被牺牲最大的用户体验不是这种边界情况，而是获取 Product 信息是需要和 Apple Server 打交道的，这就有个问题 —— 慢！</p>
 
 <p>我们会在开机的时候提前预取所有 Product 信息，并且缓存起来。下次弹出充值面板的时候就直接列出商品信息即可。</p>
@@ -520,42 +543,72 @@ request.start()
 <h2 id="发出购买请求">发出购买请求</h2>
 
 <p>这⼀步也很简单， 两⾏行代码就可以搞定。只需要把之前拿到的商品对象传到 <code>SKPayment</code> 的初始化方法中，构造一个 <code>SKPayment</code> 实例，再把这个实例加⼊到购买队列中即可:</p>
-
-<pre><code class="language-Swift">let payment = SKPayment(product: product) SKPaymentQueue.default().add(payment)
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">payment</span> <span class="p">=</span> <span class="n">SKPayment</span><span class="p">(</span><span class="n">product</span><span class="p">:</span> <span class="n">product</span><span class="p">)</span> <span class="n">SKPaymentQueue</span><span class="p">.</span><span class="k">default</span><span class="p">().</span><span class="n">add</span><span class="p">(</span><span class="n">payment</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>之后就交给 Apple 了，此时应用内会弹出苹果设计的购买窗口，用户只要使⽤指纹或者输入密码即可同意付款。</p>
 
 <h2 id="处理购买结果">处理购买结果</h2>
 
 <p>当⽤户的购买请求经过 <code>StoreKit</code> 和苹果服务器的验证后，开发者可以在回调函数中接收到。Apple 具体的回调会通过 <code>SKPaymentQueue</code> 来进行，如下，我们需要在支付之前就向 <code>SKPaymentQueue</code> 中加入代理监听。</p>
-
-<pre><code class="language-Swift">SKPaymentQueue.default().add(self)
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">SKPaymentQueue</span><span class="p">.</span><span class="k">default</span><span class="p">().</span><span class="n">add</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>你可以把具体的监听放在一个独立的类中完成。在该 Observer 中，实现代理方法：</p>
-
-<pre><code class="language-Swift">// 处理理 SKPaymentQueueObserver 事件
-// MARK: - SKPaymentTransactionObserver
-func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions:[SK PaymentTransaction]) {
-    for transaction in transactions {
-        switch transaction.transactionState { 
-            case .purchased:
-            // Validate the purchase
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">// 处理理 SKPaymentQueueObserver 事件</span>
+<span class="c1">// </span><span class="cs">MARK:</span><span class="c1"> - SKPaymentTransactionObserver</span>
+<span class="kd">func</span> <span class="nf">paymentQueue</span><span class="p">(</span><span class="kc">_</span> <span class="n">queue</span><span class="p">:</span> <span class="n">SKPaymentQueue</span><span class="p">,</span> <span class="n">updatedTransactions</span> <span class="n">transactions</span><span class="p">:[</span><span class="n">SK</span> <span class="n">PaymentTransaction</span><span class="p">])</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="n">transaction</span> <span class="k">in</span> <span class="n">transactions</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="n">transaction</span><span class="p">.</span><span class="n">transactionState</span> <span class="p">{</span> 
+            <span class="k">case</span> <span class="p">.</span><span class="n">purchased</span><span class="p">:</span>
+            <span class="c1">// Validate the purchase</span>
             
-            // Locate the file
-            guard let url = Bundle.main.appStoreReceiptURL else {
-                // Handle failure
-                return    
-            }
+            <span class="c1">// Locate the file</span>
+            <span class="k">guard</span> <span class="kd">let</span> <span class="nv">url</span> <span class="p">=</span> <span class="n">Bundle</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">appStoreReceiptURL</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="c1">// Handle failure</span>
+                <span class="k">return</span>    
+            <span class="p">}</span>
 
-            // Read the contents
-            let receipt = Data(contentsOf: url)
-        } 
-    }
-} 
-</code></pre>
-
+            <span class="c1">// Read the contents</span>
+            <span class="kd">let</span> <span class="nv">receipt</span> <span class="p">=</span> <span class="n">Data</span><span class="p">(</span><span class="n">contentsOf</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+        <span class="p">}</span> 
+    <span class="p">}</span>
+<span class="p">}</span> </code></pre></td></tr></table>
+</div>
+</div>
 <p>对于每一个你提交的 Payment，就一定会有一个相应的 Transaction 生成以便其后续处理。通过检查 transaction 的状态，我们可以指定每种状态下的处理逻辑。如果状态显示已购买， 我们还是应该和⾃己的服务器器进行一次校验，确保交易真实有效⽽而不是通过越狱后的某些插件完成的。被检验的，是一种被苹果称之为收据(receipt)的凭证，就像我们在超市购物或者饭店就餐后拿到的收据一样，每⼀个购买的商品都有⾃己的收据。这个收据由苹果签发，保存在客户端本地。</p>
 
 <p>目前 Apple 官方提供两种方式，一种是本机校验，一种是 Server 端校验。</p>
@@ -588,10 +641,14 @@ func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions:[SK 
 <p>在最后一步中，如果是正常的交易，那么简单的结束它们就⾏了。但对于其他异常的交易易，⽐比如出现了一些 error，也要妥善的结束它们。如果是⾃动续期的订阅，也会经过这一步。如果 交易没有被正确的结束，它们会一直停留留在上文提到的队列中，每次回调函数被调用时，队列 中都会有这些没有被结束的交易。也就是为什么需要提前监听的原因了。</p>
 
 <p>结束交易的代码⾮常简单，只有一行:</p>
-
-<pre><code class="language-Swift">SKPaymentQueue.default().finishTransaction(transaction)
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">SKPaymentQueue</span><span class="p">.</span><span class="k">default</span><span class="p">().</span><span class="n">finishTransaction</span><span class="p">(</span><span class="n">transaction</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
 <h3 id="关于-transaction-和-receipt-的区别和联系">关于 Transaction 和 Receipt 的区别和联系</h3>
 
 <p>很多同学在进行 IAP 开发的时候常常有一个很大的困惑就是 Transaction 和 Receipt 傻傻分不清楚，这里重新梳理了一下。</p>
@@ -649,26 +706,43 @@ func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions:[SK 
 <h4 id="关于-receipt">关于 Receipt</h4>
 
 <p>Receipt 是 App Store 签发的，是你的 App 上和该 App 上发生的支付行为记录。它存储在设备上的某个固定地址，StoreKit 并不会生成它，它是从 App Store 拉取下来的一个文件。如图所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="k">guard</span> <span class="kd">let</span> <span class="nv">url</span> <span class="p">=</span> <span class="n">Bundle</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">appStoreReceiptURL</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// handle failure</span>
+    <span class="k">return</span>
+<span class="p">}</span>
 
-<pre><code class="language-Swift">
-guard let url = Bundle.main.appStoreReceiptURL else {
-    // handle failure
-    return
-}
-
-// read the contents
-let receipt = Data(contentsOf: url)
-</code></pre>
-
+<span class="c1">// read the contents</span>
+<span class="kd">let</span> <span class="nv">receipt</span> <span class="p">=</span> <span class="n">Data</span><span class="p">(</span><span class="n">contentsOf</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>如果本地该地址里没有，我们还可以进行刷新，实质上就是从 App Store 请求 Receipt 数据。请求如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">request</span> <span class="p">=</span> <span class="n">SKReceiptRefreshRequest</span><span class="p">()</span>
 
-<pre><code class="language-Swift">let request = SKReceiptRefreshRequest()
+<span class="n">request</span><span class="p">.</span><span class="n">delegate</span> <span class="p">=</span> <span class="kc">self</span>
 
-request.delegate = self
-
-request.start()
-</code></pre>
-
+<span class="n">request</span><span class="p">.</span><span class="n">start</span><span class="p">()</span></code></pre></td></tr></table>
+</div>
+</div>
 <h2 id="这里有几个需要注意的点">这里有几个需要注意的点：</h2>
 
 <h3 id="恢复已经购买的商品">恢复已经购买的商品</h3>

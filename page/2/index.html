@@ -62,7 +62,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://hechen.xyz/" />
 
-<meta property="og:updated_time" content="2018-12-21T14:30:50&#43;00:00"/>
+<meta property="og:updated_time" content="2018-11-26T14:59:50&#43;00:00"/>
 
 <meta itemprop="name" content="I make stuff">
 <meta itemprop="description" content="Chen&#39;s personal blog.">
@@ -287,40 +287,6 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/userdefaults-and-keychain/">UserDefaults and Keychain</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2018-12-21" class="post-time">
-        2018-12-21
-      </time>
-      <div class="post-category">
-          <a href="https://hechen.xyz/categories/ios/"> iOS </a>
-          
-        </div>
-      
-      
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Apple 提供了几种持久化方案，其中 UserDefaults 和 Keychain 是 App 开发过程中使用频率最高的方案，而且从以往和同事的探讨过程中发现对这两个概念中有一些细节还是理解不太透彻
-    </div>
-    <div class="read-more">
-      <a href="/post/userdefaults-and-keychain/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-    
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
       <a class="post-link" href="/post/send-to-2do/">如何制作 Send to 2Do 的 Safari 书签</a>
     </h1>
     
@@ -341,7 +307,7 @@
   <div class="post-content">
     
     <div class="post-summary">
-      使用鼠标拖拽下面这个链接到你的 Favorites Bar 上， 2Do Send to 2Do 然后编辑地址，将其替换为如下： javascript:window.location='twodo://x-callback-url/add?task='+encodeURIComponent(document.title)+'&amp;note='+encodeURIComponent(window.location)+'&amp;action=url:'+encodeURIComponent(window.location) 所以，本质上是执行了一段 JS 代码，结合当前文档的上下文信息，调用
+      使用鼠标拖拽下面这个链接到你的 Favorites Bar 上， 2Do Send to 2Do 然后编辑地址，将其替换为如下： 1 javascript:window.location=&#39;twodo://x-callback-url/add?task=&#39;+encodeURIComponent(document.title)+&#39;&amp;note=&#39;+encodeURIComponent(window.location)+&#39;&amp;action=url:&#39;+encodeURIComponent(window.location) 所以，本质上是执行了一段 JS 代码，结合当前文档的上下文信息，调
     </div>
     <div class="read-more">
       <a href="/post/send-to-2do/" class="read-more-link">阅读全文</a>
@@ -376,6 +342,74 @@
     </div>
     <div class="read-more">
       <a href="/post/reading-process/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+    
+      <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/">三个简单步骤让你测试使用系统单例的代码</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2018-07-17" class="post-time">
+        2018-07-17
+      </time>
+      <div class="post-category">
+          <a href="https://hechen.xyz/categories/translation/"> Translation </a>
+          
+        </div>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      大部分在 Apple 平台开发的 App 都会依赖基于单例的 API。从 UIScreen 到 UIApplication，再到 NSBundle，而 Foundation，UIKit 以
+    </div>
+    <div class="read-more">
+      <a href="/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+    
+      <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/avoiding-singletons-in-swift/">避免在 Swift 中使用单例</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2018-07-16" class="post-time">
+        2018-07-16
+      </time>
+      <div class="post-category">
+          <a href="https://hechen.xyz/categories/translation/"> Translation </a>
+          
+        </div>
+      
+      
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      “我知道单例不好，但是&hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的
+    </div>
+    <div class="read-more">
+      <a href="/post/avoiding-singletons-in-swift/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -445,18 +479,6 @@
       
       <li >
         <a href="/page/10/">10</a>
-      </li>
-      
-      <li >
-        <a href="/page/11/">11</a>
-      </li>
-      
-      <li >
-        <a href="/page/12/">12</a>
-      </li>
-      
-      <li >
-        <a href="/page/13/">13</a>
       </li>
       
     </ul>
