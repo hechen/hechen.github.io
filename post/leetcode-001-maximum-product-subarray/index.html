@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2015-04-29T11:30:00&#43;00:00" />
 <meta itemprop="dateModified" content="2015-04-29T11:30:00&#43;00:00" />
-<meta itemprop="wordCount" content="558">
+<meta itemprop="wordCount" content="614">
 
 
 
@@ -345,82 +345,149 @@
 <p>题目中给出一个（至少包含一个元素）整形数组，求一个子数组（元素连续），使得其元素之积最大。最直接了当的方法，当然是暴力穷举，但是其O(n^2)是无法通过LeetCode的OJ的，而且从自己平时接触到得面试题而言，直截了当的暴力解法往往不是真正的解决思路。</p>
 
 <p>C语言实现如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C">    <span class="kt">int</span> <span class="nf">maxProduct</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">nums</span><span class="p">,</span> <span class="kt">int</span> <span class="n">numsSize</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">nMaxPro</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+            <span class="kt">int</span> <span class="n">max_tmp</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+            <span class="kt">int</span> <span class="n">min_tmp</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 
-<pre><code class="language-C">    int maxProduct(int* nums, int numsSize) {
-            int nMaxPro = nums[0];
-            int max_tmp = nums[0];
-            int min_tmp = nums[0];
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">numsSize</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+                <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">max_tmp</span><span class="p">;</span>
+                <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">min_tmp</span><span class="p">;</span>
 
-            for(int i = 1; i&lt; numsSize; ++i){
-                int a = nums[i] * max_tmp;
-                int b = nums[i] * min_tmp;
+                <span class="n">max_tmp</span> <span class="o">=</span> <span class="p">((</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">b</span> <span class="p">)</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">?</span> <span class="p">(</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">b</span> <span class="p">)</span> <span class="o">:</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+                <span class="n">min_tmp</span> <span class="o">=</span> <span class="p">((</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">b</span> <span class="p">)</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">?</span> <span class="p">(</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">b</span> <span class="p">)</span> <span class="o">:</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 
-                max_tmp = (( a &gt; b ? a : b ) &gt; nums[i]) ? ( a &gt; b ? a : b ) : nums[i];
-                min_tmp = (( a &lt; b ? a : b ) &lt; nums[i]) ? ( a &lt; b ? a : b ) : nums[i];
+                <span class="n">nMaxPro</span> <span class="o">=</span> <span class="p">(</span><span class="n">nMaxPro</span> <span class="o">&gt;</span> <span class="n">max_tmp</span><span class="p">)</span> <span class="o">?</span> <span class="nl">nMaxPro</span> <span class="p">:</span> <span class="n">max_tmp</span><span class="p">;</span>
+            <span class="p">}</span>
 
-                nMaxPro = (nMaxPro &gt; max_tmp) ? nMaxPro : max_tmp;
-            }
-
-            return nMaxPro;
-	}
-</code></pre>
-
+            <span class="k">return</span> <span class="n">nMaxPro</span><span class="p">;</span>
+	<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>leetCode Oj系统评判结果如下图所示：</p>
 
 <p><img src="http://7xilk1.com1.z0.glb.clouddn.com/leetCode001C.png" alt="leetCode C" /></p>
 
 <p>C++实现如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++">    <span class="k">class</span><span class="err"> </span><span class="nc">Solution</span> <span class="p">{</span>
+		<span class="k">public</span><span class="o">:</span>
+		    <span class="kt">int</span> <span class="n">maxProduct</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="p">)</span> <span class="p">{</span>
+	            <span class="kt">int</span> <span class="n">nMaxPro</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+	            <span class="kt">int</span> <span class="n">max_tmp</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+	            <span class="kt">int</span> <span class="n">min_tmp</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 
-<pre><code class="language-C++">    class Solution {
-		public:
-		    int maxProduct(vector&lt;int&gt;&amp; nums) {
-	            int nMaxPro = nums[0];
-	            int max_tmp = nums[0];
-	            int min_tmp = nums[0];
+	            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+	                <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">max_tmp</span><span class="p">;</span>
+	                <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">min_tmp</span><span class="p">;</span>
 
-	            for(int i = 1; i&lt; nums.size(); ++i){
-	                int a = nums[i] * max_tmp;
-	                int b = nums[i] * min_tmp;
+	                <span class="n">max_tmp</span> <span class="o">=</span> <span class="p">((</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">b</span> <span class="p">)</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">?</span> <span class="p">(</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">b</span> <span class="p">)</span> <span class="o">:</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	                <span class="n">min_tmp</span> <span class="o">=</span> <span class="p">((</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">b</span> <span class="p">)</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">?</span> <span class="p">(</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">b</span> <span class="p">)</span> <span class="o">:</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 
-	                max_tmp = (( a &gt; b ? a : b ) &gt; nums[i]) ? ( a &gt; b ? a : b ) : nums[i];
-	                min_tmp = (( a &lt; b ? a : b ) &lt; nums[i]) ? ( a &lt; b ? a : b ) : nums[i];
+	                <span class="n">nMaxPro</span> <span class="o">=</span> <span class="p">(</span><span class="n">nMaxPro</span> <span class="o">&gt;</span> <span class="n">max_tmp</span><span class="p">)</span> <span class="o">?</span> <span class="nl">nMaxPro</span> <span class="p">:</span> <span class="n">max_tmp</span><span class="p">;</span>
+	            <span class="p">}</span>
 
-	                nMaxPro = (nMaxPro &gt; max_tmp) ? nMaxPro : max_tmp;
-	            }
-
-	            return nMaxPro;
-		    }
-	};
-</code></pre>
-
+	            <span class="k">return</span> <span class="n">nMaxPro</span><span class="p">;</span>
+		    <span class="p">}</span>
+	<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>leetCode的OJ系统评判结果如下图所示：</p>
 
 <p><img src="http://7xilk1.com1.z0.glb.clouddn.com/leetCode001C++.png" alt="leetCode C++" /></p>
 
 <p>Java实现如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Java" data-lang="Java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Java" data-lang="Java">	<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+		 <span class="kd">public</span> <span class="kt">int</span> <span class="nf">maxProduct</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">nMaxPro</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+            <span class="kt">int</span> <span class="n">max_tmp</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+            <span class="kt">int</span> <span class="n">min_tmp</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
 
-<pre><code class="language-Java">	public class Solution {
-		 public int maxProduct(int[] nums) {
-            int nMaxPro = nums[0];
-            int max_tmp = nums[0];
-            int min_tmp = nums[0];
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">){</span>
+                <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">*</span> <span class="n">max_tmp</span><span class="o">;</span>
+                <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">*</span> <span class="n">min_tmp</span><span class="o">;</span>
 
-            for(int i = 1; i&lt; nums.length; ++i){
-                int a = nums[i] * max_tmp;
-                int b = nums[i] * min_tmp;
+                <span class="n">max_tmp</span> <span class="o">=</span> <span class="o">((</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span> <span class="o">)</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">?</span> <span class="o">(</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span> <span class="o">)</span> <span class="o">:</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+                <span class="n">min_tmp</span> <span class="o">=</span> <span class="o">((</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span> <span class="o">)</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">?</span> <span class="o">(</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span> <span class="o">)</span> <span class="o">:</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
 
-                max_tmp = (( a &gt; b ? a : b ) &gt; nums[i]) ? ( a &gt; b ? a : b ) : nums[i];
-                min_tmp = (( a &lt; b ? a : b ) &lt; nums[i]) ? ( a &lt; b ? a : b ) : nums[i];
+                <span class="n">nMaxPro</span> <span class="o">=</span> <span class="o">(</span><span class="n">nMaxPro</span> <span class="o">&gt;</span> <span class="n">max_tmp</span><span class="o">)</span> <span class="o">?</span> <span class="n">nMaxPro</span> <span class="o">:</span> <span class="n">max_tmp</span><span class="o">;</span>
+            <span class="o">}</span>
 
-                nMaxPro = (nMaxPro &gt; max_tmp) ? nMaxPro : max_tmp;
-            }
-
-            return nMaxPro;
-	    }
-	}
-    
-</code></pre>
-
+            <span class="k">return</span> <span class="n">nMaxPro</span><span class="o">;</span>
+	    <span class="o">}</span>
+	<span class="o">}</span>
+    </code></pre></td></tr></table>
+</div>
+</div>
 <p>leetCode的OJ系统评判结果如下所示：</p>
 
 <p><img src="http://7xilk1.com1.z0.glb.clouddn.com/leetCode001Java.png" alt="leetCode Java" /></p>

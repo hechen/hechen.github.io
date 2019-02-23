@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2015-09-01T15:52:07&#43;00:00" />
 <meta itemprop="dateModified" content="2015-09-01T15:52:07&#43;00:00" />
-<meta itemprop="wordCount" content="4092">
+<meta itemprop="wordCount" content="4109">
 
 
 
@@ -389,16 +389,26 @@
 <p>在该类重载的init方法中，我们检查目标视图控制器（destination view controller）是否遵守<code>GuillotineAnimationProtocol</code> 协议（该协议我们后面会讲到）。在重载的perform方法中我们将self设置成一个过渡动画的代理。</p>
 
 <p>在代理方法 <code>animationControllerForPresentedController</code> 中我们使用关联对象将<code>GuillotineMenuSegue</code>的实例对象（<strong>self</strong>）关联到具体的将要呈现的视图控制器中，这样当menu view controller呈现在屏幕上的时候，segue实例不会被销毁。（译者注：代码如下）</p>
-
-<pre><code class="language-objc">- (id &lt;UIViewControllerAnimatedTransitioning&gt;)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
-{
-	// 将segue示例self关联到将要呈现的试图控制器presented中，这样确保presented生命周期内segue实例不会被释放
-    objc_setAssociatedObject(presented, &amp;key, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="kt">id</span> <span class="o">&lt;</span><span class="n">UIViewControllerAnimatedTransitioning</span><span class="o">&gt;</span><span class="p">)</span><span class="nf">animationControllerForPresentedController:</span><span class="p">(</span><span class="n">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">presented</span> <span class="nf">presentingController:</span><span class="p">(</span><span class="n">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">presenting</span> <span class="nf">sourceController:</span><span class="p">(</span><span class="n">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">source</span>
+<span class="p">{</span>
+	<span class="c1">// 将segue示例self关联到将要呈现的试图控制器presented中，这样确保presented生命周期内segue实例不会被释放
+</span><span class="c1"></span>    <span class="n">objc_setAssociatedObject</span><span class="p">(</span><span class="n">presented</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">key</span><span class="p">,</span> <span class="nb">self</span><span class="p">,</span> <span class="n">OBJC_ASSOCIATION_RETAIN_NONATOMIC</span><span class="p">);</span>
     
-    return [[GuillotineTransitionAnimation alloc] initWithMode:AnimationModePresentation];
-}
-</code></pre>
-
+    <span class="k">return</span> <span class="p">[[</span><span class="n">GuillotineTransitionAnimation</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithMode</span><span class="p">:</span><span class="n">AnimationModePresentation</span><span class="p">];</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <h4 id="guillotinemenutransitionanimation">GuillotineMenuTransitionAnimation</h4>
 
 <p>所有的动画处理逻辑都在这个类中实现。</p>
@@ -419,23 +429,39 @@
 
 <p>我们需要了解动画中每一刻的精确位置。<code>GuillotineMenuTransitionAnimation</code>类需要<code>GuillotineMenuViewController</code>提供menu button中心的坐标来做为旋转动画的锚点（anchorPoint）。另外还需要<code>GuillotineMenuViewController</code>提供一些其他属性，因此我们创建一个协议<code>GuillotineMenuViewController</code>，视图控制器通过遵守该协议返回我们所需要的几个属性。
 代码如下：</p>
-
-<pre><code class="language-Swift"> @objc protocol GuillotineAnimationProtocol: NSObjectProtocol {
-      func navigationBarHeight() -&gt;CGFloat
-      func anchorPoint() -&gt;CGPoint
-      func hostTitle() -&gt;NSString
- }
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"> <span class="kr">@objc</span> <span class="kd">protocol</span> <span class="nc">GuillotineAnimationProtocol</span><span class="p">:</span> <span class="nb">NSObjectProtocol</span> <span class="p">{</span>
+      <span class="kd">func</span> <span class="nf">navigationBarHeight</span><span class="p">()</span> <span class="p">-&gt;</span><span class="n">CGFloat</span>
+      <span class="kd">func</span> <span class="nf">anchorPoint</span><span class="p">()</span> <span class="p">-&gt;</span><span class="n">CGPoint</span>
+      <span class="kd">func</span> <span class="nf">hostTitle</span><span class="p">()</span> <span class="p">-&gt;</span><span class="n">NSString</span>
+ <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>译者注：Objective-C版本代码如下：</p>
-
-<pre><code class="language-objc">@protocol GuillotineAnimationProtocol &lt;NSObject&gt;
-	- (CGFloat) navigationBarHeight;
-	- (CGPoint) anchorPoint;
-	- (NSString*) hostTitle;
-@end
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="k">@protocol</span> <span class="nc">GuillotineAnimationProtocol</span> <span class="o">&lt;</span><span class="n">NSObject</span><span class="o">&gt;</span>
+	<span class="o">-</span> <span class="p">(</span><span class="n">CGFloat</span><span class="p">)</span> <span class="n">navigationBarHeight</span><span class="p">;</span>
+	<span class="p">-</span> <span class="p">(</span><span class="n">CGPoint</span><span class="p">)</span> <span class="nf">anchorPoint</span><span class="p">;</span>
+	<span class="p">-</span> <span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nf">hostTitle</span><span class="p">;</span>
+<span class="k">@end</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>这三个方法的意义如下：
 - <strong>navigationBarHeight</strong>  <code>GuillotineMenuViewController</code>开始显示动画的时候需要旋转90度，同时覆盖导航条（navigation bar）。我们需要将<code>GuillotineMenuViewController</code>中的视图位置设置成<code>CGPoint(0，navigationBarHeight)</code>；</p>
 

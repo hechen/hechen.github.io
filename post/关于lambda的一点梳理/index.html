@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2015-04-29T11:57:00&#43;00:00" />
 <meta itemprop="dateModified" content="2015-04-29T11:57:00&#43;00:00" />
-<meta itemprop="wordCount" content="1222">
+<meta itemprop="wordCount" content="1283">
 
 
 
@@ -337,98 +337,191 @@
 <!-- more -->
 
 <p>基本的Lambda表达式如下所示，该表达式计算一个整型数据的平方值并返回，并且该表达式能够直接使用，是不是特别方便？不再需要将类本身和函数定义分割开来。</p>
-
-<pre><code class="language-C++">    int result = [](int input){ return input * input; }(10);
-    std::cout &lt;&lt; result &lt;&lt; std::endl;
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++">    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">input</span><span class="p">){</span> <span class="k">return</span> <span class="n">input</span> <span class="o">*</span> <span class="n">input</span><span class="p">;</span> <span class="p">}(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>如果你需要重用该段代码片段，可以将该函数保存为本地变量，如下所示：</p>
-
-<pre><code class="language-C++">    auto func = [](int input){ return input * input; };
-    std::cout &lt;&lt; func(10) &lt;&lt; std::endl;
-    std::cout &lt;&lt; func(20) &lt;&lt; std::endl;
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++">    <span class="k">auto</span> <span class="n">func</span> <span class="o">=</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">input</span><span class="p">){</span> <span class="k">return</span> <span class="n">input</span> <span class="o">*</span> <span class="n">input</span><span class="p">;</span> <span class="p">};</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">func</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">func</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>好了，现在我们需要写一个能够计算浮点类型的Lambda表达式怎么办？ 或者我们需要能够计算复数（complex number）怎么办？ 我们需要的就像下面这样：</p>
-
-<pre><code class="language-C++">    // int 的平方
-    std::cout &lt;&lt; func(10) &lt;&lt; std::endl;
-    // double的平方
-    std::cout &lt;&lt; func(3.1415) &lt;&lt; std::endl;
-    // 复数的平方
-    std::cout &lt;&lt; func(std::complex&lt;double&gt;(3, -2)) &lt;&lt; std::endl;
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++">    <span class="c1">// int 的平方
+</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">func</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// double的平方
+</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">func</span><span class="p">(</span><span class="mf">3.1415</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// 复数的平方
+</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">func</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>如何让代码复用起来？ 当然是 函数模板（function template）了。 如下：</p>
-
-<pre><code class="language-C++">    template &lt;typename T&gt;
-    T func(T param) {
-         return param * param;
-    }
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++">    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="n">T</span> <span class="n">func</span><span class="p">(</span><span class="n">T</span> <span class="n">param</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">return</span> <span class="n">param</span> <span class="o">*</span> <span class="n">param</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>但是函数模板并不是那篇文章所追求的，以上的这段代码被称作是 a named global function. 而在最新的通过的C++14标准中引入了 generalized lambda的概念。我们允许lambda表达式的传参类型为auto类型（看来C++是要强化类型自动推导啊，auto关键字能够使用的地方越来越多了。），如下我们能够使用更短，更优雅的代码实现以上需求。</p>
-
-<pre><code class="language-C++">auto func = [](auto input){ return input * input;  };
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">auto</span> <span class="n">func</span> <span class="o">=</span> <span class="p">[](</span><span class="k">auto</span> <span class="n">input</span><span class="p">){</span> <span class="k">return</span> <span class="n">input</span> <span class="o">*</span> <span class="n">input</span><span class="p">;</span>  <span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>完整代码如下：</p>
-
-<pre><code class="language-C++">     #include&lt;iostream&gt;
-     #include&lt;complex&gt;
-     int main() {
-        // Store a generalized lambda, that squares a number, in a variable
-        auto func = [](auto input) { return input * input; };
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++">     <span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span>     <span class="cp">#include</span><span class="cpf">&lt;complex&gt;</span><span class="cp">
+</span><span class="cp"></span>     <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Store a generalized lambda, that squares a number, in a variable
+</span><span class="c1"></span>        <span class="k">auto</span> <span class="n">func</span> <span class="o">=</span> <span class="p">[](</span><span class="k">auto</span> <span class="n">input</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">input</span> <span class="o">*</span> <span class="n">input</span><span class="p">;</span> <span class="p">};</span>
   
-        // Usage examples:
-        // square of an int
-        std::cout &lt;&lt; func(10) &lt;&lt; std::endl;
+        <span class="c1">// Usage examples:
+</span><span class="c1"></span>        <span class="c1">// square of an int
+</span><span class="c1"></span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">func</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
  
-        // square of a double
-        std::cout &lt;&lt; func(2.345) &lt;&lt; std::endl;
+        <span class="c1">// square of a double
+</span><span class="c1"></span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">func</span><span class="p">(</span><span class="mf">2.345</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
  
-        // square of a complex number
-        std::cout &lt;&lt; func(std::complex&lt;double&gt;(3, -2)) &lt;&lt; std::endl;
+        <span class="c1">// square of a complex number
+</span><span class="c1"></span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">func</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
  
-        return 0;
-     }
-</code></pre>
-
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+     <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>其实lambda表达式和STL在一起使用能够发挥很大的作用，假设你要排序一个vector让其降序，使用generic lambda，我们可以这样写：</p>
-
-<pre><code class="language-C++">  std::sort(V.begin(), V.end(), [](auto i, auto j) { return (i &gt; j); });
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++">  <span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">V</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">V</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[](</span><span class="k">auto</span> <span class="n">i</span><span class="p">,</span> <span class="k">auto</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">j</span><span class="p">);</span> <span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>完整的代码如下，对一个包含10个整型数据的vector进行排序，使之降序。结合STL和Generic Lambda：</p>
-
-<pre><code class="language-C++">     #include&lt;iostream&gt;
-     #include&lt;vector&gt;
-     #include&lt;numeric&gt;
-     #include&lt;algorithm&gt;
-	    
-	 int main() {
-        std::vector&lt;int&gt; V(10);
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++">     <span class="cp">#include</span><span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="cp"></span>     <span class="cp">#include</span><span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="cp"></span>     <span class="cp">#include</span><span class="cpf">&lt;numeric&gt;</span><span class="cp">
+</span><span class="cp"></span>     <span class="cp">#include</span><span class="cpf">&lt;algorithm&gt;</span><span class="cp">
+</span><span class="cp"></span>	    
+	 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">V</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
       
-        // Use std::iota to create a sequence of integers 0, 1, ...
-        std::iota(V.begin(), V.end(), 1);
+        <span class="c1">// Use std::iota to create a sequence of integers 0, 1, ...
+</span><span class="c1"></span>        <span class="n">std</span><span class="o">::</span><span class="n">iota</span><span class="p">(</span><span class="n">V</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">V</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">1</span><span class="p">);</span>
      
-        // Print the unsorted data using std::for_each and a lambda
-        std::cout &lt;&lt; &quot;Original data&quot; &lt;&lt; std::endl;
-        std::for_each(V.begin(), V.end(), [](auto i) { std::cout &lt;&lt; i &lt;&lt; &quot; &quot;; });
-        std::cout &lt;&lt; std::endl;
+        <span class="c1">// Print the unsorted data using std::for_each and a lambda
+</span><span class="c1"></span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Original data&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">V</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">V</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[](</span><span class="k">auto</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span> <span class="p">});</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
  
-        // Sort the data using std::sort and a lambda
-        std::sort(V.begin(), V.end(), [](auto i, auto j) { return (i &gt; j); });
+        <span class="c1">// Sort the data using std::sort and a lambda
+</span><span class="c1"></span>        <span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">V</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">V</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[](</span><span class="k">auto</span> <span class="n">i</span><span class="p">,</span> <span class="k">auto</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">j</span><span class="p">);</span> <span class="p">});</span>
      
-        // Print the sorted data using std::for_each and a lambda
-        std::cout &lt;&lt; &quot;Sorted data&quot; &lt;&lt; std::endl;
-        std::for_each(V.begin(), V.end(), [](auto i) { std::cout &lt;&lt; i &lt;&lt; &quot; &quot;; });
-        std::cout &lt;&lt; std::endl;
+        <span class="c1">// Print the sorted data using std::for_each and a lambda
+</span><span class="c1"></span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Sorted data&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">V</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">V</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[](</span><span class="k">auto</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span> <span class="p">});</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
  
-        return 0；
-    }
-</code></pre>
-
+        <span class="k">return</span> <span class="mi">0</span><span class="err">；</span>
+    <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>其中关于lambda表达式前面的[], 作者只字未提，[]是捕获列表（capture list），我们可以将lambda表达式外围定义的变量捕获使得我们能够在lambda表达式内部使用。不通俗的说capture list指定了在可见域范围内lambda表达式的代码内可见的外部变量的列表，具体有以下几点：
 1. [a, &amp;b] a变量传值捕获，b引用捕获，这和普通函数传参相类似；
 2. [this] 以值的方式捕获this指针

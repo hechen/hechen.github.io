@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2015-04-29T12:28:00&#43;00:00" />
 <meta itemprop="dateModified" content="2015-04-29T12:28:00&#43;00:00" />
-<meta itemprop="wordCount" content="1358">
+<meta itemprop="wordCount" content="1510">
 
 
 
@@ -373,70 +373,131 @@ singly linked lists begins.</p>
 　　3. 恢复链表B的结构；</p>
 
 <p>　　代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++">    <span class="cm">/**
+</span><span class="cm">		 *	 Definition for singly-linked list.
+</span><span class="cm">		 * struct ListNode {
+</span><span class="cm">		 *     int val;
+</span><span class="cm">		 *     ListNode *next;
+</span><span class="cm">		 *     ListNode(int x) : val(x), next(NULL) {}
+</span><span class="cm">		 * };
+</span><span class="cm">		 */</span>
+		<span class="k">class</span><span class="err"> </span><span class="nc">Solution</span> <span class="p">{</span>
+			<span class="k">public</span><span class="o">:</span>
+			    <span class="n">ListNode</span> <span class="o">*</span><span class="n">getIntersectionNode</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">headA</span><span class="p">,</span> <span class="n">ListNode</span> <span class="o">*</span><span class="n">headB</span><span class="p">)</span> <span class="p">{</span>
+				        <span class="k">if</span> <span class="p">(</span><span class="k">nullptr</span> <span class="o">==</span> <span class="n">headA</span> <span class="o">||</span> <span class="k">nullptr</span> <span class="o">==</span> <span class="n">headB</span><span class="p">){</span>
+					            <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+				        <span class="p">}</span>
 
-<pre><code class="language-C++">
-    /**
-		 *	 Definition for singly-linked list.
-		 * struct ListNode {
-		 *     int val;
-		 *     ListNode *next;
-		 *     ListNode(int x) : val(x), next(NULL) {}
-		 * };
-		 */
-		class Solution {
-			public:
-			    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-				        if (nullptr == headA || nullptr == headB){
-					            return nullptr;
-				        }
-
-				        ListNode *pNode = headB;
-				        while (pNode-&gt;next){
-				            pNode = pNode-&gt;next;
-				        }
+				        <span class="n">ListNode</span> <span class="o">*</span><span class="n">pNode</span> <span class="o">=</span> <span class="n">headB</span><span class="p">;</span>
+				        <span class="k">while</span> <span class="p">(</span><span class="n">pNode</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">){</span>
+				            <span class="n">pNode</span> <span class="o">=</span> <span class="n">pNode</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+				        <span class="p">}</span>
 		        
-				        ListNode *pRear = pNode;
-				        pNode-&gt;next = headB;
+				        <span class="n">ListNode</span> <span class="o">*</span><span class="n">pRear</span> <span class="o">=</span> <span class="n">pNode</span><span class="p">;</span>
+				        <span class="n">pNode</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">headB</span><span class="p">;</span>
 
-				        ListNode *pJoint = loopJoint(headA);
-				        pRear-&gt;next = nullptr;   // 恢复
-
-				        return pJoint;
-			    }
+				        <span class="n">ListNode</span> <span class="o">*</span><span class="n">pJoint</span> <span class="o">=</span> <span class="n">loopJoint</span><span class="p">(</span><span class="n">headA</span><span class="p">);</span>
+				        <span class="n">pRear</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>   <span class="c1">// 恢复
+</span><span class="c1"></span>
+				        <span class="k">return</span> <span class="n">pJoint</span><span class="p">;</span>
+			    <span class="p">}</span>
 	    
-		private:    
-			    ListNode *loopJoint(ListNode *pHead){
-		        if (nullptr == pHead || nullptr == pHead-&gt;next){
-		            return nullptr;
-		        }
+		<span class="k">private</span><span class="o">:</span>    
+			    <span class="n">ListNode</span> <span class="o">*</span><span class="n">loopJoint</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">pHead</span><span class="p">){</span>
+		        <span class="k">if</span> <span class="p">(</span><span class="k">nullptr</span> <span class="o">==</span> <span class="n">pHead</span> <span class="o">||</span> <span class="k">nullptr</span> <span class="o">==</span> <span class="n">pHead</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">){</span>
+		            <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+		        <span class="p">}</span>
 
-		        ListNode *pSlow = pHead;
-		        ListNode *pFast = pHead;
-		        while (pFast &amp;&amp; pFast-&gt;next){
-		            pFast = pFast-&gt;next-&gt;next;
-		            pSlow = pSlow-&gt;next;
+		        <span class="n">ListNode</span> <span class="o">*</span><span class="n">pSlow</span> <span class="o">=</span> <span class="n">pHead</span><span class="p">;</span>
+		        <span class="n">ListNode</span> <span class="o">*</span><span class="n">pFast</span> <span class="o">=</span> <span class="n">pHead</span><span class="p">;</span>
+		        <span class="k">while</span> <span class="p">(</span><span class="n">pFast</span> <span class="o">&amp;&amp;</span> <span class="n">pFast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">){</span>
+		            <span class="n">pFast</span> <span class="o">=</span> <span class="n">pFast</span><span class="o">-&gt;</span><span class="n">next</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+		            <span class="n">pSlow</span> <span class="o">=</span> <span class="n">pSlow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
 
-		            if (pFast == pSlow){
-		                break;
-		            }
-		        }
+		            <span class="k">if</span> <span class="p">(</span><span class="n">pFast</span> <span class="o">==</span> <span class="n">pSlow</span><span class="p">){</span>
+		                <span class="k">break</span><span class="p">;</span>
+		            <span class="p">}</span>
+		        <span class="p">}</span>
 
-		        if (nullptr == pFast || nullptr == pFast-&gt;next){
-		            return nullptr;
-		        }
+		        <span class="k">if</span> <span class="p">(</span><span class="k">nullptr</span> <span class="o">==</span> <span class="n">pFast</span> <span class="o">||</span> <span class="k">nullptr</span> <span class="o">==</span> <span class="n">pFast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">){</span>
+		            <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+		        <span class="p">}</span>
 
-		        pSlow = pHead;
-			    while (pFast != pSlow){
-		            pFast = pFast-&gt;next;
-		            pSlow = pSlow-&gt;next;
-		        }
+		        <span class="n">pSlow</span> <span class="o">=</span> <span class="n">pHead</span><span class="p">;</span>
+			    <span class="k">while</span> <span class="p">(</span><span class="n">pFast</span> <span class="o">!=</span> <span class="n">pSlow</span><span class="p">){</span>
+		            <span class="n">pFast</span> <span class="o">=</span> <span class="n">pFast</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+		            <span class="n">pSlow</span> <span class="o">=</span> <span class="n">pSlow</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+		        <span class="p">}</span>
 
-		        return pSlow;
-		    }
-	}
-
-</code></pre>
-
+		        <span class="k">return</span> <span class="n">pSlow</span><span class="p">;</span>
+		    <span class="p">}</span>
+	<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>leetCode的OJ系统评判结果如下：
 <img src="http://7xilk1.com1.z0.glb.clouddn.com/leetCode002C++1.png" alt="leetCode C++ Solution1" /></p>
 
@@ -453,69 +514,129 @@ singly linked lists begins.</p>
 <p>　　时间复杂度O(n+m)，空间复杂度O(1)</p>
 
 <p>　　代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++">	   <span class="cm">/**
+</span><span class="cm">				 * Definition for singly-linked list.
+</span><span class="cm">				 * struct ListNode {
+</span><span class="cm">				 *     int val;
+</span><span class="cm">				 *     ListNode *next;
+</span><span class="cm">				 *     ListNode(int x) : val(x), next(NULL) {}
+</span><span class="cm">				 * };
+</span><span class="cm">		  */</span>
+	<span class="k">class</span><span class="err"> </span><span class="nc">Solution</span> <span class="p">{</span>
+		<span class="k">public</span><span class="o">:</span>
+		    <span class="n">ListNode</span> <span class="o">*</span><span class="n">getIntersectionNode</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">headA</span><span class="p">,</span> <span class="n">ListNode</span> <span class="o">*</span><span class="n">headB</span><span class="p">)</span> <span class="p">{</span>
+		        <span class="k">if</span> <span class="p">(</span><span class="k">nullptr</span> <span class="o">==</span> <span class="n">headA</span> <span class="o">||</span> <span class="k">nullptr</span> <span class="o">==</span> <span class="n">headB</span><span class="p">){</span>
+	            <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+	        <span class="p">}</span>
 
-<pre><code class="language-C++">
-	   /**
-				 * Definition for singly-linked list.
-				 * struct ListNode {
-				 *     int val;
-				 *     ListNode *next;
-				 *     ListNode(int x) : val(x), next(NULL) {}
-				 * };
-		  */
-	class Solution {
-		public:
-		    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-		        if (nullptr == headA || nullptr == headB){
-	            return nullptr;
-	        }
+	        <span class="kt">int</span> <span class="n">nLongLength</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	        <span class="kt">int</span> <span class="n">nShortLength</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	        <span class="n">ListNode</span> <span class="o">*</span><span class="n">pLongList</span> <span class="o">=</span> <span class="n">headA</span><span class="p">;</span>
+	        <span class="n">ListNode</span> <span class="o">*</span><span class="n">pShortList</span> <span class="o">=</span> <span class="n">headB</span><span class="p">;</span>
 
-	        int nLongLength = 0;
-	        int nShortLength = 0;
-	        ListNode *pLongList = headA;
-	        ListNode *pShortList = headB;
+	        <span class="k">while</span> <span class="p">(</span><span class="n">pLongList</span><span class="p">){</span>
+	            <span class="o">++</span><span class="n">nLongLength</span><span class="p">;</span>
+	            <span class="n">pLongList</span> <span class="o">=</span> <span class="n">pLongList</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+	        <span class="p">}</span>
 
-	        while (pLongList){
-	            ++nLongLength;
-	            pLongList = pLongList-&gt;next;
-	        }
+	        <span class="k">while</span> <span class="p">(</span><span class="n">pShortList</span><span class="p">){</span>
+	            <span class="o">++</span><span class="n">nShortLength</span><span class="p">;</span>
+	            <span class="n">pShortList</span> <span class="o">=</span> <span class="n">pShortList</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+	        <span class="p">}</span>
 
-	        while (pShortList){
-	            ++nShortLength;
-	            pShortList = pShortList-&gt;next;
-	        }
+	        <span class="k">if</span> <span class="p">(</span><span class="n">nShortLength</span> <span class="o">&gt;</span> <span class="n">nLongLength</span><span class="p">){</span>
+	            <span class="n">pLongList</span> <span class="o">=</span> <span class="n">headB</span><span class="p">;</span>
+	            <span class="n">pShortList</span> <span class="o">=</span> <span class="n">headA</span><span class="p">;</span>
 
-	        if (nShortLength &gt; nLongLength){
-	            pLongList = headB;
-	            pShortList = headA;
-
-	            // 校正
-	            nLongLength ^= nShortLength;
-	            nShortLength ^= nLongLength;
-	            nLongLength ^= nShortLength;
-	        }
-	        else{
-	            pLongList = headA;
-	            pShortList = headB;
-	        }
+	            <span class="c1">// 校正
+</span><span class="c1"></span>	            <span class="n">nLongLength</span> <span class="o">^=</span> <span class="n">nShortLength</span><span class="p">;</span>
+	            <span class="n">nShortLength</span> <span class="o">^=</span> <span class="n">nLongLength</span><span class="p">;</span>
+	            <span class="n">nLongLength</span> <span class="o">^=</span> <span class="n">nShortLength</span><span class="p">;</span>
+	        <span class="p">}</span>
+	        <span class="k">else</span><span class="p">{</span>
+	            <span class="n">pLongList</span> <span class="o">=</span> <span class="n">headA</span><span class="p">;</span>
+	            <span class="n">pShortList</span> <span class="o">=</span> <span class="n">headB</span><span class="p">;</span>
+	        <span class="p">}</span>
 	
-	        int offset = nLongLength - nShortLength;
-	        while (offset&gt; 0){
-	            pLongList = pLongList-&gt;next;
-	            --offset;
-	        }
+	        <span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="n">nLongLength</span> <span class="o">-</span> <span class="n">nShortLength</span><span class="p">;</span>
+	        <span class="k">while</span> <span class="p">(</span><span class="n">offset</span><span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+	            <span class="n">pLongList</span> <span class="o">=</span> <span class="n">pLongList</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+	            <span class="o">--</span><span class="n">offset</span><span class="p">;</span>
+	        <span class="p">}</span>
 	
-	        while (pLongList != pShortList){
-	            pLongList = pLongList-&gt;next;
-	            pShortList = pShortList-&gt;next;
-	        }
+	        <span class="k">while</span> <span class="p">(</span><span class="n">pLongList</span> <span class="o">!=</span> <span class="n">pShortList</span><span class="p">){</span>
+	            <span class="n">pLongList</span> <span class="o">=</span> <span class="n">pLongList</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+	            <span class="n">pShortList</span> <span class="o">=</span> <span class="n">pShortList</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+	        <span class="p">}</span>
 	
-	        return pLongList;
-	    }
-	}
-
-</code></pre>
-
+	        <span class="k">return</span> <span class="n">pLongList</span><span class="p">;</span>
+	    <span class="p">}</span>
+	<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>leetCode的OJ系统评判结果如下所示：
 <img src="http://7xilk1.com1.z0.glb.clouddn.com/leetCode002C++2.png" alt="leetCode C++ Solution 2" /></p>
 
@@ -532,48 +653,89 @@ singly linked lists begins.</p>
 <p>　　该算法的时间复杂度依然为O（m + n）,时间复杂度为O(1)。</p>
 
 <p>实现如下：</p>
-
-<pre><code class="language-C++">
-    /**
-		 * Definition for singly-linked list.
-		 * struct ListNode {
-		 *     int val;
-		 *     ListNode *next;
-		 *     ListNode(int x) : val(x), next(NULL) {}
-		 * };
-	 */
-	class Solution {
-		public:
-		    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-		        if (nullptr == headA || nullptr == headB){
-		            return nullptr;
-		        }
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++">    <span class="cm">/**
+</span><span class="cm">		 * Definition for singly-linked list.
+</span><span class="cm">		 * struct ListNode {
+</span><span class="cm">		 *     int val;
+</span><span class="cm">		 *     ListNode *next;
+</span><span class="cm">		 *     ListNode(int x) : val(x), next(NULL) {}
+</span><span class="cm">		 * };
+</span><span class="cm">	 */</span>
+	<span class="k">class</span><span class="err"> </span><span class="nc">Solution</span> <span class="p">{</span>
+		<span class="k">public</span><span class="o">:</span>
+		    <span class="n">ListNode</span> <span class="o">*</span><span class="n">getIntersectionNode</span><span class="p">(</span><span class="n">ListNode</span> <span class="o">*</span><span class="n">headA</span><span class="p">,</span> <span class="n">ListNode</span> <span class="o">*</span><span class="n">headB</span><span class="p">)</span> <span class="p">{</span>
+		        <span class="k">if</span> <span class="p">(</span><span class="k">nullptr</span> <span class="o">==</span> <span class="n">headA</span> <span class="o">||</span> <span class="k">nullptr</span> <span class="o">==</span> <span class="n">headB</span><span class="p">){</span>
+		            <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+		        <span class="p">}</span>
 	
-	        ListNode *nodeA = headA;
-	        ListNode *nodeB = headB;
-	        while (nodeA &amp;&amp; nodeB &amp;&amp; nodeA != nodeB){
-	            nodeA = nodeA-&gt;next;
-	            nodeB = nodeB-&gt;next;
+	        <span class="n">ListNode</span> <span class="o">*</span><span class="n">nodeA</span> <span class="o">=</span> <span class="n">headA</span><span class="p">;</span>
+	        <span class="n">ListNode</span> <span class="o">*</span><span class="n">nodeB</span> <span class="o">=</span> <span class="n">headB</span><span class="p">;</span>
+	        <span class="k">while</span> <span class="p">(</span><span class="n">nodeA</span> <span class="o">&amp;&amp;</span> <span class="n">nodeB</span> <span class="o">&amp;&amp;</span> <span class="n">nodeA</span> <span class="o">!=</span> <span class="n">nodeB</span><span class="p">){</span>
+	            <span class="n">nodeA</span> <span class="o">=</span> <span class="n">nodeA</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+	            <span class="n">nodeB</span> <span class="o">=</span> <span class="n">nodeB</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
 	
-	            if (nodeA == nodeB){
-	                break;
-	            }
+	            <span class="k">if</span> <span class="p">(</span><span class="n">nodeA</span> <span class="o">==</span> <span class="n">nodeB</span><span class="p">){</span>
+	                <span class="k">break</span><span class="p">;</span>
+	            <span class="p">}</span>
 	
-	            if (nullptr == nodeA){
-	                nodeA = headB;
-	            }
+	            <span class="k">if</span> <span class="p">(</span><span class="k">nullptr</span> <span class="o">==</span> <span class="n">nodeA</span><span class="p">){</span>
+	                <span class="n">nodeA</span> <span class="o">=</span> <span class="n">headB</span><span class="p">;</span>
+	            <span class="p">}</span>
 	
-	            if (nullptr == nodeB){
-	                nodeB = headA;
-	            }
-	        }
+	            <span class="k">if</span> <span class="p">(</span><span class="k">nullptr</span> <span class="o">==</span> <span class="n">nodeB</span><span class="p">){</span>
+	                <span class="n">nodeB</span> <span class="o">=</span> <span class="n">headA</span><span class="p">;</span>
+	            <span class="p">}</span>
+	        <span class="p">}</span>
 	
-	        return nodeA;
-	    }
-	}
+	        <span class="k">return</span> <span class="n">nodeA</span><span class="p">;</span>
+	    <span class="p">}</span>
+	<span class="p">}</span>
 	
-</code></pre>
-
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>leetCode的OJ系统评判结果：
 <img src="http://7xilk1.com1.z0.glb.clouddn.com/leetCode002C++3.png" alt="leetCode C++  Solution3" /></p>
 

@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2015-09-14T15:36:07&#43;00:00" />
 <meta itemprop="dateModified" content="2015-09-14T15:36:07&#43;00:00" />
-<meta itemprop="wordCount" content="2186">
+<meta itemprop="wordCount" content="2466">
 
 
 
@@ -342,60 +342,114 @@
 <p>如下代码展示：</p>
 
 <p>类<code>MyClass</code>为一个简单的类，其中有实例方法 <code>-print</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#import &lt;Foundation/Foundation.h&gt;
+</span><span class="cp"></span><span class="k">@interface</span> <span class="nc">MyClass</span> : <span class="nc">NSObject</span>
 
-<pre><code class="language-objc">#import &lt;Foundation/Foundation.h&gt;
-@interface MyClass : NSObject
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">print</span><span class="p">;</span>
 
-- (void)print;
+<span class="k">@end</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-MyClass.m" data-lang="MyClass.m"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-MyClass.m" data-lang="MyClass.m"><span class="cp">#import &#34;MyClass.h&#34;
+</span><span class="cp"></span><span class="k">@implementation</span> <span class="nc">MyClass</span>
 
-@end
-</code></pre>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">print</span>
+<span class="p">{</span>
+	<span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;MyClass...&#34;</span><span class="p">);</span>
+<span class="p">}</span>
 
-<pre><code class="language-MyClass.m">#import &quot;MyClass.h&quot;
-@implementation MyClass
-
-- (void)print
-{
-	NSLog(@&quot;MyClass...&quot;);
-}
-
-@end
-</code></pre>
-
+<span class="k">@end</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>我们向为MyClass再添加一个方法Hello，那我们就可以用分类的方法实现，我们为其添加分类MyAddition1和MyAddition2，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#import &#34;MyClass.h&#34;
+</span><span class="cp"></span><span class="k">@interface</span> <span class="nc">MyClass</span> <span class="nl">(MyAddition1)</span>
 
-<pre><code class="language-objc">#import &quot;MyClass.h&quot;
-@interface MyClass (MyAddition1)
+<span class="k">@property</span> <span class="p">(</span><span class="k">nonatomic</span><span class="p">,</span> <span class="k">copy</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">name</span><span class="p">;</span>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">hello</span><span class="p">;</span>
+<span class="k">@end</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#import &#34;MyClass+MyAddition1.h&#34;
+</span><span class="cp"></span>
+<span class="k">@implementation</span> <span class="nc">MyClass</span> <span class="nl">(MyAddition1)</span>
 
-@property (nonatomic, copy) NSString *name;
-- (void)hello;
-@end
-</code></pre>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">hello</span>
+<span class="p">{</span>
+	<span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;hello!!!&#34;</span><span class="p">);</span>
+<span class="p">}</span>
 
-<pre><code class="language-objc">#import &quot;MyClass+MyAddition1.h&quot;
-
-@implementation MyClass (MyAddition1)
-
-- (void)hello
-{
-	NSLog(@&quot;hello!!!&quot;);
-}
-
-@end
-</code></pre>
-
+<span class="k">@end</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>其中MyAddition为分类的名称，而文件名字约定俗成用“类名+扩展名”的形式。这样，我们就能够为MyClass类添加hello方法了，如下调用：</p>
-
-<pre><code class="language-objc">#import &quot;MyClass+MyAddition1.h&quot;
-
-int main() {
-	//...
-	MyClass my = [MyClass new];
-	[my hello];
-	//...
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#import &#34;MyClass+MyAddition1.h&#34;
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="c1">//...
+</span><span class="c1"></span>	<span class="n">MyClass</span> <span class="n">my</span> <span class="o">=</span> <span class="p">[</span><span class="n">MyClass</span> <span class="n">new</span><span class="p">];</span>
+	<span class="p">[</span><span class="n">my</span> <span class="n">hello</span><span class="p">];</span>
+	<span class="c1">//...
+</span><span class="c1"></span><span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>Category 的使用场景主要有以下几种：
 1. 需求变更，需要为已知类添加方法；
 2. 将类的不同模块实现划分: a)具体可以将类的实现分开到不同的文件里面； b)将不同功能的分类文件交由不同的开发者实现；
@@ -410,172 +464,333 @@ int main() {
 <h3 id="为分类添加实例变量">为分类添加实例变量</h3>
 
 <p>为分类添加实例变量主要通过关联对象的方法。如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#import &#34;MyClass.h&#34;
+</span><span class="cp"></span><span class="k">@interface</span> <span class="nc">MyClass</span> <span class="nl">(MyAddition1)</span>
 
-<pre><code class="language-objc">#import &quot;MyClass.h&quot;
-@interface MyClass (MyAddition1)
+<span class="k">@property</span> <span class="p">(</span><span class="k">nonatomic</span><span class="p">,</span> <span class="k">copy</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">name</span><span class="p">;</span>
 
-@property (nonatomic, copy) NSString *name;
+<span class="k">@end</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#import &#34;MyClass+MyAddition1.h&#34;
+</span><span class="cp">#import &lt;objc/objc-runtime.h&gt;
+</span><span class="cp"></span>
+<span class="k">@implementation</span> <span class="nc">MyClass</span> <span class="nl">(MyAddition1)</span>
 
-@end
-</code></pre>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">setName:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">name</span> <span class="p">{</span>
+    <span class="n">objc_setAssociatedObject</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="s">&#34;key&#34;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">OBJC_ASSOCIATION_COPY</span><span class="p">);</span>
+<span class="p">}</span>
 
-<pre><code class="language-objc">#import &quot;MyClass+MyAddition1.h&quot;
-#import &lt;objc/objc-runtime.h&gt;
+<span class="p">-</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">name</span> <span class="p">{</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">name</span> <span class="o">=</span> <span class="n">objc_getAssociatedObject</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="s">&#34;key&#34;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">name</span><span class="p">;</span>
+<span class="p">}</span>
 
-@implementation MyClass (MyAddition1)
-
-- (void)setName:(NSString *)name {
-    objc_setAssociatedObject(self, &quot;key&quot;, name, OBJC_ASSOCIATION_COPY);
-}
-
-- (NSString *)name {
-    NSString *name = objc_getAssociatedObject(self, &quot;key&quot;);
-    return name;
-}
-
-@end
-</code></pre>
-
+<span class="k">@end</span></code></pre></td></tr></table>
+</div>
+</div>
 <h4 id="如果调用被分类覆盖掉的原方法">如果调用被分类覆盖掉的原方法</h4>
 
 <p>实际上，通过查看Objc runtime源码可以获知，分类方法并不是绝对意义上的覆盖原有类的方法，只是在调用的时候调用顺序导致而已，这涉及到Objc runtime的一些内容。</p>
 
 <p>在下载到的运行时源码中objc-runtime-new.mm文件中有attachCategoryMethods方法，其就是将类的分类方法添加到类的方法列表中去的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="c1">// objc-runtime-new.mm
+</span><span class="c1"></span><span class="k">static</span> <span class="kt">void</span> 
+<span class="nf">attachCategoryMethods</span><span class="p">(</span><span class="kt">Class</span> <span class="n">cls</span><span class="p">,</span> <span class="n">category_list</span> <span class="o">*</span><span class="n">cats</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">flushCaches</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">cats</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">PrintReplacedMethods</span><span class="p">)</span> <span class="n">printReplacements</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">cats</span><span class="p">);</span>
 
-<pre><code class="language-objc">// objc-runtime-new.mm
-static void 
-attachCategoryMethods(Class cls, category_list *cats, bool flushCaches) {
-    if (!cats) return;
-    if (PrintReplacedMethods) printReplacements(cls, cats);
+    <span class="kt">bool</span> <span class="n">isMeta</span> <span class="o">=</span> <span class="n">cls</span><span class="o">-&gt;</span><span class="n">isMetaClass</span><span class="p">();</span>
+    <span class="n">method_list_t</span> <span class="o">**</span><span class="n">mlists</span> <span class="o">=</span> <span class="p">(</span><span class="n">method_list_t</span> <span class="o">**</span><span class="p">)</span>
+        <span class="n">_malloc_internal</span><span class="p">(</span><span class="n">cats</span><span class="o">-&gt;</span><span class="n">count</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="n">mlists</span><span class="p">));</span>
 
-    bool isMeta = cls-&gt;isMetaClass();
-    method_list_t **mlists = (method_list_t **)
-        _malloc_internal(cats-&gt;count * sizeof(*mlists));
+    <span class="c1">// Count backwards through cats to get newest categories first
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">mcount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">cats</span><span class="o">-&gt;</span><span class="n">count</span><span class="p">;</span>
+    <span class="kt">BOOL</span> <span class="n">fromBundle</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">method_list_t</span> <span class="o">*</span><span class="n">mlist</span> <span class="o">=</span> <span class="n">cat_method_list</span><span class="p">(</span><span class="n">cats</span><span class="o">-&gt;</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">cat</span><span class="p">,</span> <span class="n">isMeta</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">mlist</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">mlists</span><span class="p">[</span><span class="n">mcount</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">mlist</span><span class="p">;</span>
+            <span class="n">fromBundle</span> <span class="o">|=</span> <span class="n">cats</span><span class="o">-&gt;</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">fromBundle</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    // Count backwards through cats to get newest categories first
-    int mcount = 0;
-    int i = cats-&gt;count;
-    BOOL fromBundle = NO;
-    while (i--) {
-        method_list_t *mlist = cat_method_list(cats-&gt;list[i].cat, isMeta);
-        if (mlist) {
-            mlists[mcount++] = mlist;
-            fromBundle |= cats-&gt;list[i].fromBundle;
-        }
-    }
+    <span class="n">attachMethodLists</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">mlists</span><span class="p">,</span> <span class="n">mcount</span><span class="p">,</span> <span class="nb">NO</span><span class="p">,</span> <span class="n">fromBundle</span><span class="p">,</span> <span class="n">flushCaches</span><span class="p">);</span>
 
-    attachMethodLists(cls, mlists, mcount, NO, fromBundle, flushCaches);
-
-    _free_internal(mlists);
-}
-</code></pre>
-
+    <span class="n">_free_internal</span><span class="p">(</span><span class="n">mlists</span><span class="p">);</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>那<code>attachCategoryMethods</code>的工作就是将所有分类的实例方法列表进行拼接，形成更大的<code>mlists</code>表，然后转交给<code>attachMethodLists</code>方法来执行。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="k">static</span> <span class="kt">void</span> 
+<span class="nf">attachMethodLists</span><span class="p">(</span><span class="kt">Class</span> <span class="n">cls</span><span class="p">,</span> <span class="n">method_list_t</span> <span class="o">**</span><span class="n">addedLists</span><span class="p">,</span> <span class="kt">int</span> <span class="n">addedCount</span><span class="p">,</span> 
+                  <span class="kt">bool</span> <span class="n">baseMethods</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">methodsFromBundle</span><span class="p">,</span> 
+                  <span class="kt">bool</span> <span class="n">flushCaches</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">rwlock_assert_writing</span><span class="p">(</span><span class="o">&amp;</span><span class="n">runtimeLock</span><span class="p">);</span>
 
-<pre><code class="language-objc">static void 
-attachMethodLists(Class cls, method_list_t **addedLists, int addedCount, 
-                  bool baseMethods, bool methodsFromBundle, 
-                  bool flushCaches) {
-    rwlock_assert_writing(&amp;runtimeLock);
+    <span class="c1">// Don&#39;t scan redundantly
+</span><span class="c1"></span>    <span class="kt">bool</span> <span class="n">scanForCustomRR</span> <span class="o">=</span> <span class="o">!</span><span class="n">UseGC</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">cls</span><span class="o">-&gt;</span><span class="n">hasCustomRR</span><span class="p">();</span>
+    <span class="kt">bool</span> <span class="n">scanForCustomAWZ</span> <span class="o">=</span> <span class="o">!</span><span class="n">UseGC</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">cls</span><span class="o">-&gt;</span><span class="n">hasCustomAWZ</span><span class="p">();</span>
 
-    // Don't scan redundantly
-    bool scanForCustomRR = !UseGC &amp;&amp; !cls-&gt;hasCustomRR();
-    bool scanForCustomAWZ = !UseGC &amp;&amp; !cls-&gt;hasCustomAWZ();
+    <span class="c1">// There exist RR/AWZ special cases for some class&#39;s base methods. 
+</span><span class="c1"></span>    <span class="c1">// But this code should never need to scan base methods for RR/AWZ: 
+</span><span class="c1"></span>    <span class="c1">// default RR/AWZ cannot be set before setInitialized().
+</span><span class="c1"></span>    <span class="c1">// Therefore we need not handle any special cases here.
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">baseMethods</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">assert</span><span class="p">(</span><span class="o">!</span><span class="n">scanForCustomRR</span>  <span class="o">&amp;&amp;</span>  <span class="o">!</span><span class="n">scanForCustomAWZ</span><span class="p">);</span>
+    <span class="p">}</span>
 
-    // There exist RR/AWZ special cases for some class's base methods. 
-    // But this code should never need to scan base methods for RR/AWZ: 
-    // default RR/AWZ cannot be set before setInitialized().
-    // Therefore we need not handle any special cases here.
-    if (baseMethods) {
-        assert(!scanForCustomRR  &amp;&amp;  !scanForCustomAWZ);
-    }
-
-    // Method list array is nil-terminated.
-    // Some elements of lists are nil; we must filter them out.
-
-    method_list_t *oldBuf[2];
-    method_list_t **oldLists;
-    int oldCount = 0;
-    if (cls-&gt;data()-&gt;flags &amp; RW_METHOD_ARRAY) {
-        oldLists = cls-&gt;data()-&gt;method_lists;
-    } else {
-        oldBuf[0] = cls-&gt;data()-&gt;method_list;
-        oldBuf[1] = nil;
-        oldLists = oldBuf;
-    }
-    if (oldLists) {
-        while (oldLists[oldCount]) oldCount++;
-    }
+    <span class="c1">// Method list array is nil-terminated.
+</span><span class="c1"></span>    <span class="c1">// Some elements of lists are nil; we must filter them out.
+</span><span class="c1"></span>
+    <span class="n">method_list_t</span> <span class="o">*</span><span class="n">oldBuf</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    <span class="n">method_list_t</span> <span class="o">**</span><span class="n">oldLists</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">oldCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">cls</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">flags</span> <span class="o">&amp;</span> <span class="n">RW_METHOD_ARRAY</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">oldLists</span> <span class="o">=</span> <span class="n">cls</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">method_lists</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">oldBuf</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">cls</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">method_list</span><span class="p">;</span>
+        <span class="n">oldBuf</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+        <span class="n">oldLists</span> <span class="o">=</span> <span class="n">oldBuf</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">oldLists</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">oldLists</span><span class="p">[</span><span class="n">oldCount</span><span class="p">])</span> <span class="n">oldCount</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
         
-    int newCount = oldCount;
-    for (int i = 0; i &lt; addedCount; i++) {
-        if (addedLists[i]) newCount++;  // only non-nil entries get added
-    }
+    <span class="kt">int</span> <span class="n">newCount</span> <span class="o">=</span> <span class="n">oldCount</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">addedCount</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">addedLists</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">newCount</span><span class="o">++</span><span class="p">;</span>  <span class="c1">// only non-nil entries get added
+</span><span class="c1"></span>    <span class="p">}</span>
 
-    method_list_t *newBuf[2];
-    method_list_t **newLists;
-    if (newCount &gt; 1) {
-        newLists = (method_list_t **)
-            _malloc_internal((1 + newCount) * sizeof(*newLists));
-    } else {
-        newLists = newBuf;
-    }
+    <span class="n">method_list_t</span> <span class="o">*</span><span class="n">newBuf</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    <span class="n">method_list_t</span> <span class="o">**</span><span class="n">newLists</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">newCount</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">newLists</span> <span class="o">=</span> <span class="p">(</span><span class="n">method_list_t</span> <span class="o">**</span><span class="p">)</span>
+            <span class="n">_malloc_internal</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">newCount</span><span class="p">)</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="n">newLists</span><span class="p">));</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">newLists</span> <span class="o">=</span> <span class="n">newBuf</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    // Add method lists to array.
-    // Reallocate un-fixed method lists.
-    // The new methods are PREPENDED to the method list array.
+    <span class="c1">// Add method lists to array.
+</span><span class="c1"></span>    <span class="c1">// Reallocate un-fixed method lists.
+</span><span class="c1"></span>    <span class="c1">// The new methods are PREPENDED to the method list array.
+</span><span class="c1"></span>
+    <span class="n">newCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">addedCount</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">method_list_t</span> <span class="o">*</span><span class="n">mlist</span> <span class="o">=</span> <span class="n">addedLists</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">mlist</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
 
-    newCount = 0;
-    int i;
-    for (i = 0; i &lt; addedCount; i++) {
-        method_list_t *mlist = addedLists[i];
-        if (!mlist) continue;
+        <span class="c1">// Fixup selectors if necessary
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isMethodListFixedUp</span><span class="p">(</span><span class="n">mlist</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">mlist</span> <span class="o">=</span> <span class="n">fixupMethodList</span><span class="p">(</span><span class="n">mlist</span><span class="p">,</span> <span class="n">methodsFromBundle</span><span class="p">,</span> <span class="nb">true</span><span class="cm">/*sort*/</span><span class="p">);</span>
+        <span class="p">}</span>
 
-        // Fixup selectors if necessary
-        if (!isMethodListFixedUp(mlist)) {
-            mlist = fixupMethodList(mlist, methodsFromBundle, true/*sort*/);
-        }
+        <span class="c1">// Scan for method implementations tracked by the class&#39;s flags
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">scanForCustomRR</span>  <span class="o">&amp;&amp;</span>  <span class="n">methodListImplementsRR</span><span class="p">(</span><span class="n">mlist</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">cls</span><span class="o">-&gt;</span><span class="n">setHasCustomRR</span><span class="p">();</span>
+            <span class="n">scanForCustomRR</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">scanForCustomAWZ</span>  <span class="o">&amp;&amp;</span>  <span class="n">methodListImplementsAWZ</span><span class="p">(</span><span class="n">mlist</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">cls</span><span class="o">-&gt;</span><span class="n">setHasCustomAWZ</span><span class="p">();</span>
+            <span class="n">scanForCustomAWZ</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="p">}</span>
 
-        // Scan for method implementations tracked by the class's flags
-        if (scanForCustomRR  &amp;&amp;  methodListImplementsRR(mlist)) {
-            cls-&gt;setHasCustomRR();
-            scanForCustomRR = false;
-        }
-        if (scanForCustomAWZ  &amp;&amp;  methodListImplementsAWZ(mlist)) {
-            cls-&gt;setHasCustomAWZ();
-            scanForCustomAWZ = false;
-        }
-
-        // Update method caches
-        if (flushCaches) {
-            cache_eraseMethods(cls, mlist);
-        }
+        <span class="c1">// Update method caches
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">flushCaches</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">cache_eraseMethods</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">mlist</span><span class="p">);</span>
+        <span class="p">}</span>
         
-        // Fill method list array
-        newLists[newCount++] = mlist;
-    }
+        <span class="c1">// Fill method list array
+</span><span class="c1"></span>        <span class="n">newLists</span><span class="p">[</span><span class="n">newCount</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">mlist</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    // Copy old methods to the method list array
-    for (i = 0; i &lt; oldCount; i++) {
-        newLists[newCount++] = oldLists[i];
-    }
-    if (oldLists  &amp;&amp;  oldLists != oldBuf) free(oldLists);
+    <span class="c1">// Copy old methods to the method list array
+</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">oldCount</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">newLists</span><span class="p">[</span><span class="n">newCount</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">oldLists</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">oldLists</span>  <span class="o">&amp;&amp;</span>  <span class="n">oldLists</span> <span class="o">!=</span> <span class="n">oldBuf</span><span class="p">)</span> <span class="n">free</span><span class="p">(</span><span class="n">oldLists</span><span class="p">);</span>
 
-    // nil-terminate
-    newLists[newCount] = nil;
+    <span class="c1">// nil-terminate
+</span><span class="c1"></span>    <span class="n">newLists</span><span class="p">[</span><span class="n">newCount</span><span class="p">]</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
 
-    if (newCount &gt; 1) {
-        assert(newLists != newBuf);
-        cls-&gt;data()-&gt;method_lists = newLists;
-        cls-&gt;setInfo(RW_METHOD_ARRAY);
-    } else {
-        assert(newLists == newBuf);
-        cls-&gt;data()-&gt;method_list = newLists[0];
-        assert(!(cls-&gt;data()-&gt;flags &amp; RW_METHOD_ARRAY));
-    }
-}
-</code></pre>
-
+    <span class="k">if</span> <span class="p">(</span><span class="n">newCount</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">assert</span><span class="p">(</span><span class="n">newLists</span> <span class="o">!=</span> <span class="n">newBuf</span><span class="p">);</span>
+        <span class="n">cls</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">method_lists</span> <span class="o">=</span> <span class="n">newLists</span><span class="p">;</span>
+        <span class="n">cls</span><span class="o">-&gt;</span><span class="n">setInfo</span><span class="p">(</span><span class="n">RW_METHOD_ARRAY</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">assert</span><span class="p">(</span><span class="n">newLists</span> <span class="o">==</span> <span class="n">newBuf</span><span class="p">);</span>
+        <span class="n">cls</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">method_list</span> <span class="o">=</span> <span class="n">newLists</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="n">assert</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">cls</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">flags</span> <span class="o">&amp;</span> <span class="n">RW_METHOD_ARRAY</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>注意上面代码中注释copy old methods to the method list array，可以获知该类原有的方法被追加到了新方法列表的后面，因此可以了解如果category和原来的都由methodA方法，那newLists中肯定存在两个methodA方法。而运行时在查找类方法的时候是在方法列表中按序查找的，一旦发现对应签名的方法则就返回，因此被后置的原有方法自然而然就被方法列表前面的同签名方法所覆盖了。</p>
 
 <p>当然，如果还有一个分类也覆盖了同样的方法，顺序又是什么样子呢？根据文件的编译顺序，有兴趣的童鞋可以尝试一下，关于编译顺序。。。</p>
@@ -583,125 +798,241 @@ attachMethodLists(Class cls, method_list_t **addedLists, int addedCount,
 <p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosXCode编译顺序调整.png" alt="XCode文件编译顺序调整" /></p>
 
 <p>明白了这种情况，如果我们需要调用类的被覆盖的方法，则通过查找类的实例方法列表中对应签名的方法，在方法列表前面的自然就是分类所对应的方法，而最后一个则是MyClass的原有方法了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#import &lt;Foundation/Foundation.h&gt;
+</span><span class="cp"></span><span class="k">@interface</span> <span class="nc">MyClass</span> : <span class="nc">NSObject</span>
 
-<pre><code class="language-objc">#import &lt;Foundation/Foundation.h&gt;
-@interface MyClass : NSObject
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">print</span><span class="p">;</span>
 
-- (void)print;
+<span class="k">@end</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#import &#34;MyClass.h&#34;
+</span><span class="cp"></span>
+<span class="k">@implementation</span> <span class="nc">MyClass</span>
 
-@end
-</code></pre>
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">print</span> <span class="p">{</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;MyClass&#34;</span><span class="p">);</span>
+<span class="p">}</span>
 
-<pre><code class="language-objc">#import &quot;MyClass.h&quot;
-
-@implementation MyClass
-
-- (void)print {
-    NSLog(@&quot;MyClass&quot;);
-}
-
-@end
-</code></pre>
-
+<span class="k">@end</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>为MyClass添加分类MyAddition1，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#import &#34;MyClass.h&#34;
+</span><span class="cp"></span>
+<span class="k">@interface</span> <span class="nc">MyClass</span> <span class="nl">(MyAddition1)</span>
 
-<pre><code class="language-objc">#import &quot;MyClass.h&quot;
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">print</span><span class="p">;</span>
 
-@interface MyClass (MyAddition1)
+<span class="k">@end</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#import &#34;MyClass+MyAddition1.h&#34;
+</span><span class="cp"></span>
+<span class="k">@implementation</span> <span class="nc">MyClass</span> <span class="nl">(MyAddition1)</span>
 
-- (void) print;
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">print</span> <span class="p">{</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;MyAddition1&#34;</span><span class="p">);</span>
+<span class="p">}</span>
 
-@end
-</code></pre>
-
-<pre><code class="language-objc">#import &quot;MyClass+MyAddition1.h&quot;
-
-@implementation MyClass (MyAddition1)
-
-- (void)print {
-    NSLog(@&quot;MyAddition1&quot;);
-}
-
-@end
-</code></pre>
-
+<span class="k">@end</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>然后再添加<code>MyAddition2</code>分类，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#import &#34;MyClass.h&#34;
+</span><span class="cp"></span>
+<span class="k">@interface</span> <span class="nc">MyClass</span> <span class="nl">(MyAddition2)</span>
 
-<pre><code class="language-objc">#import &quot;MyClass.h&quot;
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">print</span><span class="p">;</span>
 
-@interface MyClass (MyAddition2)
+<span class="k">@end</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#import &#34;MyClass+MyAddition2.h&#34;
+</span><span class="cp"></span>
+<span class="k">@implementation</span> <span class="nc">MyClass</span> <span class="nl">(MyAddition2)</span>
 
-- (void) print;
+<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">print</span> <span class="p">{</span>
+    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;MyAddition2&#34;</span><span class="p">);</span>
+<span class="p">}</span>
 
-@end
-</code></pre>
-
-<pre><code class="language-objc">#import &quot;MyClass+MyAddition2.h&quot;
-
-@implementation MyClass (MyAddition2)
-
-- (void)print {
-    NSLog(@&quot;MyAddition2&quot;);
-}
-
-@end
-</code></pre>
-
+<span class="k">@end</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>当我们将整个文件编译之后我们就可以获得MyClass所有的方法了，如下代码所示：</p>
-
-<pre><code class="language-objc">#import &quot;MyClass.h&quot;
-#import &lt;objc/objc-runtime.h&gt;
-
-int main(int argc, const char * argv[]) {
-    @autoreleasepool {
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cp">#import &#34;MyClass.h&#34;
+</span><span class="cp">#import &lt;objc/objc-runtime.h&gt;
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="k">@autoreleasepool</span> <span class="p">{</span>
         
-        Class cls = [MyClass class];
-        MyClass *my = [MyClass new];
+        <span class="kt">Class</span> <span class="n">cls</span> <span class="o">=</span> <span class="p">[</span><span class="n">MyClass</span> <span class="k">class</span><span class="p">];</span>
+        <span class="n">MyClass</span> <span class="o">*</span><span class="n">my</span> <span class="o">=</span> <span class="p">[</span><span class="n">MyClass</span> <span class="n">new</span><span class="p">];</span>
         
-        [my print];
+        <span class="p">[</span><span class="n">my</span> <span class="n">print</span><span class="p">];</span>
         
-        if(cls) {
-            unsigned int methodCount;
-            Method *methodList = class_copyMethodList(cls, &amp;methodCount);
+        <span class="k">if</span><span class="p">(</span><span class="n">cls</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">methodCount</span><span class="p">;</span>
+            <span class="n">Method</span> <span class="o">*</span><span class="n">methodList</span> <span class="o">=</span> <span class="n">class_copyMethodList</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">methodCount</span><span class="p">);</span>
             
-            IMP lastImp = NULL;
-            SEL lastSel = NULL;
-            for (NSInteger i = 0; i &lt; methodCount; i++) {
-                Method method = methodList[i];
-                NSString *methodName = [NSString stringWithCString:sel_getName(method_getName(method)) encoding:NSUTF8StringEncoding];
-				NSLog(@&quot;methodName: %@&quot;, methodName);
+            <span class="kt">IMP</span> <span class="n">lastImp</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+            <span class="kt">SEL</span> <span class="n">lastSel</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">NSInteger</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">methodCount</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">Method</span> <span class="n">method</span> <span class="o">=</span> <span class="n">methodList</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+                <span class="n">NSString</span> <span class="o">*</span><span class="n">methodName</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSString</span> <span class="nl">stringWithCString</span><span class="p">:</span><span class="n">sel_getName</span><span class="p">(</span><span class="n">method_getName</span><span class="p">(</span><span class="n">method</span><span class="p">))</span> <span class="nl">encoding</span><span class="p">:</span><span class="n">NSUTF8StringEncoding</span><span class="p">];</span>
+				<span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;methodName: %@&#34;</span><span class="p">,</span> <span class="n">methodName</span><span class="p">);</span>
 
-                if([methodName isEqualToString:@&quot;print&quot;]) {
-                    lastImp = method_getImplementation(method);
-                    lastSel = method_getName(method);
-                }
-            }
+                <span class="k">if</span><span class="p">([</span><span class="n">methodName</span> <span class="nl">isEqualToString</span><span class="p">:</span><span class="s">@&#34;print&#34;</span><span class="p">])</span> <span class="p">{</span>
+                    <span class="n">lastImp</span> <span class="o">=</span> <span class="n">method_getImplementation</span><span class="p">(</span><span class="n">method</span><span class="p">);</span>
+                    <span class="n">lastSel</span> <span class="o">=</span> <span class="n">method_getName</span><span class="p">(</span><span class="n">method</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
         
-            typedef void(*fn)(id, SEL);
+            <span class="k">typedef</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="n">fn</span><span class="p">)(</span><span class="kt">id</span><span class="p">,</span> <span class="kt">SEL</span><span class="p">);</span>
             
-            if(lastImp != NULL) {
-                fn f = (fn)(lastImp);
-                f(my, lastSel);
-            }
+            <span class="k">if</span><span class="p">(</span><span class="n">lastImp</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">fn</span> <span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="n">fn</span><span class="p">)(</span><span class="n">lastImp</span><span class="p">);</span>
+                <span class="n">f</span><span class="p">(</span><span class="n">my</span><span class="p">,</span> <span class="n">lastSel</span><span class="p">);</span>
+            <span class="p">}</span>
             
-            free(methodList);
-        }
-    }
-    return 0;
-}
-</code></pre>
-
+            <span class="n">free</span><span class="p">(</span><span class="n">methodList</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>代码内容就是将类所对应的方法列表取出，找到最后一个对应名称的方法，取得函数指针，然后传入参数执行。</p>
 
 <p>输出结果如下：</p>
-
-<pre><code class="language-objc">2015-09-14 15:26:59.793 ObjMessage[88888:10428876] MyAddition2
-2015-09-14 15:26:59.794 ObjMessage[88888:10428876] methodName: print
-2015-09-14 15:26:59.795 ObjMessage[88888:10428876] methodName: print
-2015-09-14 15:26:59.795 ObjMessage[88888:10428876] methodName: print
-2015-09-14 15:30:38.941 ObjMessage[88888:10428876] MyClass
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="mi">2015</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">14</span> <span class="mi">15</span><span class="o">:</span><span class="mi">26</span><span class="o">:</span><span class="mf">59.793</span> <span class="n">ObjMessage</span><span class="p">[</span><span class="mi">88888</span><span class="o">:</span><span class="mi">10428876</span><span class="p">]</span> <span class="n">MyAddition2</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">14</span> <span class="mi">15</span><span class="o">:</span><span class="mi">26</span><span class="o">:</span><span class="mf">59.794</span> <span class="n">ObjMessage</span><span class="p">[</span><span class="mi">88888</span><span class="o">:</span><span class="mi">10428876</span><span class="p">]</span> <span class="nl">methodName</span><span class="p">:</span> <span class="n">print</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">14</span> <span class="mi">15</span><span class="o">:</span><span class="mi">26</span><span class="o">:</span><span class="mf">59.795</span> <span class="n">ObjMessage</span><span class="p">[</span><span class="mi">88888</span><span class="o">:</span><span class="mi">10428876</span><span class="p">]</span> <span class="nl">methodName</span><span class="p">:</span> <span class="n">print</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">14</span> <span class="mi">15</span><span class="o">:</span><span class="mi">26</span><span class="o">:</span><span class="mf">59.795</span> <span class="n">ObjMessage</span><span class="p">[</span><span class="mi">88888</span><span class="o">:</span><span class="mi">10428876</span><span class="p">]</span> <span class="nl">methodName</span><span class="p">:</span> <span class="n">print</span>
+<span class="mi">2015</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">14</span> <span class="mi">15</span><span class="o">:</span><span class="mi">30</span><span class="o">:</span><span class="mf">38.941</span> <span class="n">ObjMessage</span><span class="p">[</span><span class="mi">88888</span><span class="o">:</span><span class="mi">10428876</span><span class="p">]</span> <span class="n">MyClass</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>当我们使用print方法时，打印为MyAddition2中的实现，并且MyClass类方法列表中有三个方法，并且均为print，取出列表中最后一个print并调用打印结果为MyClass类原有类中的实现。此时就达到了我们的目的。
 当然，你也可以调整下MyClass+MyAddition1.m文件和MyClass+MyAddition2.m文件的顺序验证下，结果MyClass默认输出为MyAddition1.</p>
 

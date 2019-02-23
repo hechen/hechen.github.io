@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2015-05-01T09:29:09&#43;00:00" />
 <meta itemprop="dateModified" content="2015-05-01T09:29:09&#43;00:00" />
-<meta itemprop="wordCount" content="278">
+<meta itemprop="wordCount" content="293">
 
 
 
@@ -360,27 +360,45 @@ A: Yes. However, your reversed string should not contain leading or trailing spa
 A: Reduce them to a single space in the reversed string.</p>
 
 <h4 id="解法">解法：</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C++" data-lang="C++"><span class="k">class</span><span class="err"> </span><span class="nc">Solution</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+	<span class="kt">void</span> <span class="n">reverseWords</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">)</span> <span class="p">{</span>		
+	    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">reversed</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">);</span>
+		<span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
 
-<pre><code class="language-C++">
-class Solution {
-public:
-	void reverseWords(std::string &amp;s) {		
-	    std::string reversed(&quot;&quot;);
-		int j = s.length();
-
-		for (int i = s.length() - 1; i &gt;= 0; --i) {
-			if(s.at(i) == ' ') j = i;
-			else if (i == 0 || s.at(i - 1) == ' '){
-				if (reversed.length() != 0) reversed += ' ';
-				reversed += s.substr(i, j - i);
-			}
-		}
-		s = reversed;
-	}
-}
-
-</code></pre>
-
+		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="p">)</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+			<span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">s</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="p">){</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">reversed</span><span class="p">.</span><span class="n">length</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">reversed</span> <span class="o">+=</span> <span class="sc">&#39; &#39;</span><span class="p">;</span>
+				<span class="n">reversed</span> <span class="o">+=</span> <span class="n">s</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="n">i</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+		<span class="n">s</span> <span class="o">=</span> <span class="n">reversed</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>
 <p>leetCode的OJ系统评判结果：
 <img src="http://7xilk1.com1.z0.glb.clouddn.com/leetCode_ReverseWordsInAString_C++.png" alt="leetCode C++  Solution3" /></p>
 

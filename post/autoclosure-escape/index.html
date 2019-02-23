@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2017-11-12T20:01:54&#43;00:00" />
 <meta itemprop="dateModified" content="2017-11-12T20:01:54&#43;00:00" />
-<meta itemprop="wordCount" content="1266">
+<meta itemprop="wordCount" content="1323">
 
 
 
@@ -344,44 +344,80 @@
 <p>当一个闭包被当作参数传递给一个函数，但是当该函数内容执行完毕返回之后，该闭包才会被执行，我们就称该闭包要 escape 某个函数，那 <code>@escape</code> 关键字就是用来表示该闭包是允许在函数返回之后被调用的。</p>
 
 <p>我们用 swift 官方文档的例子来看，如下所示</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">var</span> <span class="nv">completionHandlers</span><span class="p">:</span> <span class="p">[()</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">]</span> <span class="p">=</span> <span class="p">[]</span>
 
-<pre><code class="language-Swift">var completionHandlers: [() -&gt; Void] = []
-
-func someFunctionWithEscapingClosure(completionHandler: @escaping () -&gt; Void) {
-    completionHandlers.append(completionHandler)
-}
-</code></pre>
-
+<span class="kd">func</span> <span class="nf">someFunctionWithEscapingClosure</span><span class="p">(</span><span class="n">completionHandler</span><span class="p">:</span> <span class="p">@</span><span class="n">escaping</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">completionHandlers</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">completionHandler</span><span class="p">)</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p><code>someFunctionWithEscapingClosure(_:)</code> 的参数是一个闭包，函数内部会把传入的闭包存到之前声明的数组里以便之后进行调用，可以看到，在函数参数的声明部分添加了 <code>@escaping</code> 关键字，如果这里不添加的话，就会在编译的时候报错：</p>
-
-<pre><code class="language-sh">error: passing non-escaping parameter 'completionHandler' to function expecting an @escaping closure
-    completionHandlers.append(completionHandler)    
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">error: passing non-escaping parameter <span class="s1">&#39;completionHandler&#39;</span> to <span class="k">function</span> expecting an @escaping closure
+    completionHandlers.append<span class="o">(</span>completionHandler<span class="o">)</span>    </code></pre></td></tr></table>
+</div>
+</div>
 <p>针对标记了 @escaping 关键字含义代表你必须在该闭包内部显式的使用 self 关键字，官方文档中又列举了另外一个例子，如下所示：</p>
-
-<pre><code class="language-Swift">func someFunctionWithNonescapingClosure(closure: () -&gt; Void) {
-    closure()
-}
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">someFunctionWithNonescapingClosure</span><span class="p">(</span><span class="n">closure</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">closure</span><span class="p">()</span>
+<span class="p">}</span>
  
-class SomeClass {
-    var x = 10
-    func doSomething() {
-        someFunctionWithEscapingClosure { self.x = 100 }
-        someFunctionWithNonescapingClosure { x = 200 }
-    }
-}
+<span class="kd">class</span> <span class="nc">SomeClass</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">x</span> <span class="p">=</span> <span class="mi">10</span>
+    <span class="kd">func</span> <span class="nf">doSomething</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">someFunctionWithEscapingClosure</span> <span class="p">{</span> <span class="kc">self</span><span class="p">.</span><span class="n">x</span> <span class="p">=</span> <span class="mi">100</span> <span class="p">}</span>
+        <span class="n">someFunctionWithNonescapingClosure</span> <span class="p">{</span> <span class="n">x</span> <span class="p">=</span> <span class="mi">200</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
  
-let instance = SomeClass()
-instance.doSomething()
-print(instance.x)
-// Prints &quot;200&quot;
+<span class="kd">let</span> <span class="nv">instance</span> <span class="p">=</span> <span class="n">SomeClass</span><span class="p">()</span>
+<span class="n">instance</span><span class="p">.</span><span class="n">doSomething</span><span class="p">()</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">instance</span><span class="p">.</span><span class="n">x</span><span class="p">)</span>
+<span class="c1">// Prints &#34;200&#34;</span>
  
-completionHandlers.first?()
-print(instance.x)
-// Prints &quot;100”
-</code></pre>
-
+<span class="n">completionHandlers</span><span class="p">.</span><span class="bp">first</span><span class="p">?()</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">instance</span><span class="p">.</span><span class="n">x</span><span class="p">)</span>
+<span class="c1">// Prints &#34;100”</span></code></pre></td></tr></table>
+</div>
+</div>
 <p><code>someFunctionWithEscapingClosure(_:)</code> 是一个可逃逸的闭包，意味着你需要显示的调用 self 关键字， 而 <code>someFunctionWithNonescapingClosure(_:)</code> 是非逃逸的闭包，意味着你可以隐式的调用 self。</p>
 
 <h3 id="autoclosure">@autoclosure</h3>
@@ -391,73 +427,124 @@ print(instance.x)
 <p>通过一个🌰来说明 <code>@autoclosure</code> 关键字到底起到什么作用。</p>
 
 <p>考虑下面这个函数 f，其需传入一个参数，类型是 <code>()-&gt; Bool</code> 的闭包。</p>
-
-<pre><code class="language-Swift">func f(predicate: () -&gt; Bool) {
-    if predicate() {
-        print(&quot;It's true&quot;)
-    }
-}
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">f</span><span class="p">(</span><span class="n">predicate</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Bool</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">predicate</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;It&#39;s true&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>然后通过传入符合此类型的闭包进行调用</p>
-
-<pre><code class="language-Swift">f(predicate: {2 &gt; 1})
-// &quot;It's true&quot;
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">f</span><span class="p">(</span><span class="n">predicate</span><span class="p">:</span> <span class="p">{</span><span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">})</span>
+<span class="c1">// &#34;It&#39;s true&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>但是，如果我们忽略传入闭包的 <code>{</code> 和 <code>}</code> ，编译就会错误。</p>
-
-<pre><code class="language-Swift">f(predicate: 2 &gt; 1)
-// error: '&gt;' produces 'Bool', not the expected contextual result type '() -&gt; Bool'
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="n">f</span><span class="p">(</span><span class="n">predicate</span><span class="p">:</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1">// error: &#39;&gt;&#39; produces &#39;Bool&#39;, not the expected contextual result type &#39;() -&gt; Bool&#39;</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>如文档中所说，一个 autoclosure (自主闭包？)是这样一种闭包: 当某个表达式被当做参数传递给一个函数的时候会被 wrap 成一个闭包，该闭包没有任何参数，其被调用的时候，返回的是其 wrap 的表达式的值。swift 提供这种语法糖就能够让你省略 {} 而直接写一个表达式。</p>
 
 <p>结合上面的例子来看，当你写个表达式类似 2 &gt; 1 传给函数 f 的时候，该表达式会被自动包裹到一个闭包中，会自动处理为 { 2 &gt; 1 } 而传递给函数 f。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">f</span><span class="p">(</span><span class="n">predicate</span><span class="p">:</span> <span class="kr">@autoclosure</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">Bool</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="n">predicate</span><span class="p">()</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="s">&#34;It&#39;s true&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-<pre><code class="language-Swift">func f(predicate: @autoclosure () -&gt; Bool) {
-    if predicate() {
-        print(&quot;It's true&quot;)
-    }
-}
-
-f(predicate: 2 &gt; 1)
-// It's true
-</code></pre>
-
+<span class="n">f</span><span class="p">(</span><span class="n">predicate</span><span class="p">:</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1">// It&#39;s true</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>⚠️ @autoclosure 并不支持带有输入参数的写法，也就是说只有形如 () -&gt; T 的参数才能简化</p>
 
 <h4 id="delay-evaluation">Delay Evaluation</h4>
 
 <p>swift 提供了 ?? 操作符，如下所示：</p>
-
-<pre><code class="language-Swift">let nickName: String? = nil
-let fullName: String = &quot;John Appleseed&quot;
-let informalGreeting = &quot;Hi \(nickName ?? fullName)
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">nickName</span><span class="p">:</span> <span class="nb">String</span><span class="p">?</span> <span class="p">=</span> <span class="kc">nil</span>
+<span class="kd">let</span> <span class="nv">fullName</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&#34;John Appleseed&#34;</span>
+<span class="kd">let</span> <span class="nv">informalGreeting</span> <span class="p">=</span> <span class="s">&#34;Hi </span><span class="si">\(</span><span class="n">nickName</span> <span class="p">??</span> <span class="n">fullName</span><span class="si">)</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>如果某 Optional 存在就会返回其值，如果没有就会返回后面的默认值，当我们去看 ?? 的实现的时候能看到如下定义：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="kr">@autoclosure</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">?</span>
 
-<pre><code class="language-Swift">func ??&lt;T&gt;(optional: T?, defaultValue: @autoclosure () -&gt; T?) -&gt; T?
-
-func ??&lt;T&gt;(optional: T?, defaultValue: @autoclosure () -&gt; T) -&gt; T
-</code></pre>
-
+<span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="kr">@autoclosure</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>看得出来 <code>??</code> 是一个二元操作符，optional 指代 ?? 前面的输入，defaultValue 指代 <code>??</code> 后面的参数，那我们就会想，我们上面的例子中 <code>fullName</code> 只是一个 <code>String</code>，怎么变成 <code>() -&gt; T</code> 类型的呢？ 这个就看前面的 <code>@autoclosure</code> 的威力了，前面讲过了，该关键字把表达式的值封装成闭包并且返回该表达式的值了。 其实传入该方法的第二个参数是 <code>{ fullName }</code>。</p>
 
 <p>所以可以想到该方法的实现应该如下所示，（当然 fullName 为 String 类型，应该会重载第二个函数实现）</p>
-
-<pre><code class="language-Swift">func ??&lt;T&gt;(optional: T?, defaultValue: @autoclosure () -&gt; T) -&gt; T {
-    switch optional {
-        case .Some(let value):
-            return value
-        case .None:
-            return defaultValue()
-        }
-}
-
-</code></pre>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="kr">@autoclosure</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span>
+    <span class="k">switch</span> <span class="kr">optional</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="p">.</span><span class="n">Some</span><span class="p">(</span><span class="kd">let</span> <span class="nv">value</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">value</span>
+        <span class="k">case</span> <span class="p">.</span><span class="n">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">defaultValue</span><span class="p">()</span>
+        <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
 <p>这里我们还需要注意一点的是，使用 <code>@autoclosure</code> 来修饰的表达式可以实现延迟计算，也就是说直到该闭包被调用之前，闭包里所被包裹的表达式都不会进行取值计算，也就避免了一定的开销，尤其是上面默认值是复杂计算得到的话。</p>
 
     </div>
