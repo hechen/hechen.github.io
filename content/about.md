@@ -10,5 +10,8 @@ comment: false
 mathjax: false
 ---
 
-一名 iOS 开发，目前在知乎打杂
+iOS 开发，偶尔做个 mac 开发
+希望兼职前端开发
+偶尔写点 Python，Ruby 耍耍
 
+打杂中
