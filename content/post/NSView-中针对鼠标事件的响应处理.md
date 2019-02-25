@@ -2,8 +2,8 @@
 title: NSView 中针对鼠标事件的响应处理
 date: 2019-01-23 15:33:13
 draft: true
-tags: ["MacOS", "NSView", "MouseEvent"]
-categories: ["MacOS"]
+tags: ["macOS", "NSView", "MouseEvent"]
+categories: ["macOS"]
 ---
 
 Mac 开发中针对 NSView 的事件响应和 iOS 下的 UIView 有一些差别，有一些需要注意的地方，这里记录一下。
