@@ -343,6 +343,8 @@
 
 <p>依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象能够正常运转所必须的一切内容（其他对象）通过外界传入，这样做的好处在于，一方面能清晰的看得到某个对象的所有依赖项，另一方便也使得测试工作变得更为简单（因为我们可以模拟这些依赖项来捕获、验证状态以及值。）</p>
 
+<!-- more -->
+
 <p>然而，尽管依赖注入确实很有用，但是当在工程中广泛使用的时候还是会有一些痛点。随着某个对象的依赖项越来越多，初始化该对象就变得越来越蹩脚。虽然使得代码可测没毛病，但是如果像下面这种每次需要这样来写初始化方法，也太不爽了。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -737,33 +739,7 @@ window.rootViewController = UINavigationController(
       <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
     </div>
 
-  <div class="disqus-comment">
-  <div class="disqus-button" id="load_disqus" onclick="load_disqus()">
-    显示 Disqus 评论
-  </div>
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-    var disqus_config = function () {
-      this.page.url = "https://hechen.xyz/post/dependency-injection-using-factories-in-swift/";
-    };
-    function load_disqus() {
-      
-      
-      if (window.location.hostname === 'localhost') return;
-
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      var disqus_shortname = 'stoneman';
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-
-      $('#load_disqus').remove();
-    };
-  </script>
-  <noscript>Please enable JavaScript to view the
-    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
   
-  </div>
   
     
 
@@ -917,7 +893,7 @@ window.rootViewController = UINavigationController(
 
 
 
-  <script id="dsq-count-scr" src="//stoneman.disqus.com/count.js" async></script>
+  <script id="dsq-count-scr" src="//.disqus.com/count.js" async></script>
 
 
 

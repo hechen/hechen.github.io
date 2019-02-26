@@ -35,7 +35,7 @@
       <pubDate>Mon, 16 Jul 2018 13:57:24 +0000</pubDate>
       
       <guid>https://hechen.xyz/post/different-flavors-of-dependency-injection-in-swift/</guid>
-      <description>在之前的几篇博客中，我们已经了解了几种使用依赖注入方式使得某个 swift app 拥有一个更加解耦可测试的架构。比如在 在 Swift 中使用工厂模式进行依赖注入 中和工厂</description>
+      <description>原文：Modular Xcode projects 原作者 &amp;amp; Copyright @pepibumur 翻译：@OgreMergO 在之前的几篇博客中，我们已经了解了几种使用依赖注入方式使得某个 swift app 拥有一个更加</description>
     </item>
     
     <item>
@@ -62,7 +62,7 @@
       <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
       
       <guid>https://hechen.xyz/post/modular-xcode-projects/</guid>
-      <description>使用 Xcode 构建模块化的工程就需要对工程结构以及其基础概念有很好的理解才行。我们平时不怎么关注工程结构本身，只有在工程逐渐变大，要添加更多依赖的时</description>
+      <description>原文：Modular Xcode projects 原作者 &amp;amp; Copyright @pepibumur 翻译：@OgreMergO 使用 Xcode 构建模块化的工程就需要对工程结构以及其基础概念有很好的理解才行。我们平时</description>
     </item>
     
     <item>
@@ -89,7 +89,7 @@
       <pubDate>Sun, 12 Nov 2017 20:56:50 +0000</pubDate>
       
       <guid>https://hechen.xyz/post/capturing-objects-in-swift-closures/</guid>
-      <description>自从 Block 在 iOS4 被引入 Objective-C 的世界之后就成为了 Apple 各平台上最时髦的 API 的重要组成部分了。当 Swift 语言出现的时候，blocks 的概念就摇身一变通过 closure 的形式引入，</description>
+      <description>原文：Capturing objects in Swift closures 原作者 @johnsundell 翻译：@OgreMergO 自从 Block 在 iOS4 被引入 Objective-C 的世界之后就成为了 Apple 各平台上最时髦的 API 的重要组成部分了。</description>
     </item>
     
     <item>

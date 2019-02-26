@@ -343,9 +343,11 @@
 <p>可选值（optionals）无可争议的是 <code>swift</code> 语言中最重要的特性之一，也是和其他语言，例如 <code>Objective-C</code> 的最大区别。通过强制处理那些有可能出现 <code>nil</code> 的地方，我们就能写出更有预测性的以及更健壮的代码。</p>
 
 <p>然而，有些时候可选值可能会致你于尴尬的境地，尤其是你作为开发者了解（甚至是有些猜测的成分在），有的特定变量始终是非空（non-nil）的，即使它是一个可选类型。例如，我们在一个视图控制器中处理视图的时候：</p>
+
+<!-- more -->
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -358,21 +360,21 @@
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">class TableViewController: UIViewController {
-    var tableView: UITableView?
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">TableViewController</span><span class="p">:</span> <span class="n">UIViewController</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nv">tableView</span><span class="p">:</span> <span class="n">UITableView</span><span class="p">?</span>
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView = UITableView(frame: view.bounds)
-        view.addSubview(tableView!)
-    }
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+        <span class="n">tableView</span> <span class="p">=</span> <span class="n">UITableView</span><span class="p">(</span><span class="n">frame</span><span class="p">:</span> <span class="n">view</span><span class="p">.</span><span class="n">bounds</span><span class="p">)</span>
+        <span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">tableView</span><span class="o">!</span><span class="p">)</span>
+    <span class="p">}</span>
 
-    func viewModelDidUpdate(_ viewModel: ViewModel) {
-        tableView?.reloadData()
-    }
-}</pre></td></tr></table>
+    <span class="kd">func</span> <span class="nf">viewModelDidUpdate</span><span class="p">(</span><span class="kc">_</span> <span class="n">viewModel</span><span class="p">:</span> <span class="n">ViewModel</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">tableView</span><span class="p">?.</span><span class="n">reloadData</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>这也是对于很多 Swift 程序员争论比较激烈的地方，程度不亚于讨论 tabs 和 spaces 的用法。有的人会说：</p>
@@ -406,7 +408,7 @@
 <p>让我们改一下上面的代码，使用 lazy 来改造 tableView 属性：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -419,21 +421,21 @@
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">class TableViewController: UIViewController {
-    lazy var tableView = UITableView()
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">TableViewController</span><span class="p">:</span> <span class="n">UIViewController</span> <span class="p">{</span>
+    <span class="kr">lazy</span> <span class="kd">var</span> <span class="nv">tableView</span> <span class="p">=</span> <span class="n">UITableView</span><span class="p">()</span>
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.frame = view.bounds
-        view.addSubview(tableView)
-    }
+    <span class="kr">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kc">super</span><span class="p">.</span><span class="n">viewDidLoad</span><span class="p">()</span>
+        <span class="n">tableView</span><span class="p">.</span><span class="n">frame</span> <span class="p">=</span> <span class="n">view</span><span class="p">.</span><span class="n">bounds</span>
+        <span class="n">view</span><span class="p">.</span><span class="n">addSubview</span><span class="p">(</span><span class="n">tableView</span><span class="p">)</span>
+    <span class="p">}</span>
 
-    func viewModelDidUpdate(_ viewModel: ViewModel) {
-        tableView.reloadData()
-    }
-}</pre></td></tr></table>
+    <span class="kd">func</span> <span class="nf">viewModelDidUpdate</span><span class="p">(</span><span class="kc">_</span> <span class="n">viewModel</span><span class="p">:</span> <span class="n">ViewModel</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">tableView</span><span class="p">.</span><span class="n">reloadData</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>这样，没有可选值了，也不会有未知状态咯🎉</p>
@@ -443,7 +445,7 @@
 <p>可选值类型另外一种常用的场景就是用来打破循环依赖（<a href="https://en.wikipedia.org/wiki/Circular_dependency">circular dependencies</a>）。有的时候，你就陷入 A 依赖 B，B 又依赖 A 的情况，如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -469,34 +471,34 @@
 </span><span class="lnt">24
 </span><span class="lnt">25
 </span><span class="lnt">26
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">class UserManager {
-    private weak var commentManager: CommentManager?
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">UserManager</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kr">weak</span> <span class="kd">var</span> <span class="nv">commentManager</span><span class="p">:</span> <span class="n">CommentManager</span><span class="p">?</span>
 
-    func userDidPostComment(_ comment: Comment) {
-        user.totalNumberOfComments += 1
-    }
+    <span class="kd">func</span> <span class="nf">userDidPostComment</span><span class="p">(</span><span class="kc">_</span> <span class="n">comment</span><span class="p">:</span> <span class="n">Comment</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">user</span><span class="p">.</span><span class="n">totalNumberOfComments</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="p">}</span>
 
-    func logOutCurrentUser() {
-        user.logOut()
-        commentManager?.clearCache()
-    }
-}
+    <span class="kd">func</span> <span class="nf">logOutCurrentUser</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">user</span><span class="p">.</span><span class="n">logOut</span><span class="p">()</span>
+        <span class="n">commentManager</span><span class="p">?.</span><span class="n">clearCache</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-class CommentManager {
-    private weak var userManager: UserManager?
+<span class="kd">class</span> <span class="nc">CommentManager</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kr">weak</span> <span class="kd">var</span> <span class="nv">userManager</span><span class="p">:</span> <span class="n">UserManager</span><span class="p">?</span>
 
-    func composer(_ composer: CommentComposer
-                  didPostComment comment: Comment) {
-        userManager?.userDidPostComment(comment)
-        handle(comment)
-    }
+    <span class="kd">func</span> <span class="nf">composer</span><span class="p">(</span><span class="kc">_</span> <span class="n">composer</span><span class="p">:</span> <span class="n">CommentComposer</span>
+                  <span class="n">didPostComment</span> <span class="n">comment</span><span class="p">:</span> <span class="n">Comment</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">userManager</span><span class="p">?.</span><span class="n">userDidPostComment</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+        <span class="n">handle</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+    <span class="p">}</span>
 
-    func clearCache() {
-        cache.clear()
-    }
-}</pre></td></tr></table>
+    <span class="kd">func</span> <span class="nf">clearCache</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">cache</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>从上面的代码，我们可以看到，<code>UserManager</code> 和 <code>CommentManager</code> 之间有一个循环依赖的问题，它们二者都没法假设自己拥有对方，但是它们都在各自的代码逻辑里依赖彼此。这里就很容易产生 bug。</p>
@@ -504,7 +506,7 @@ class CommentManager {
 <p>那要解决上面的问题，我们创建一个 <code>CommentComposer</code> 来做一个协调者，负责通知<code>UserManager</code> 和 <code>CommentManager</code>二人一个评论产生了。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -521,31 +523,31 @@ class CommentManager {
 </span><span class="lnt">15
 </span><span class="lnt">16
 </span><span class="lnt">17
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">class CommentComposer {
-    private let commentManager: CommentManager
-    private let userManager: UserManager
-    private lazy var textView = UITextView()
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">CommentComposer</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">commentManager</span><span class="p">:</span> <span class="n">CommentManager</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">userManager</span><span class="p">:</span> <span class="n">UserManager</span>
+    <span class="kd">private</span> <span class="kr">lazy</span> <span class="kd">var</span> <span class="nv">textView</span> <span class="p">=</span> <span class="n">UITextView</span><span class="p">()</span>
 
-    init(commentManager: CommentManager,
-         userManager: UserManager) {
-        self.commentManager = commentManager
-        self.userManager = userManager
-    }
+    <span class="kd">init</span><span class="p">(</span><span class="n">commentManager</span><span class="p">:</span> <span class="n">CommentManager</span><span class="p">,</span>
+         <span class="n">userManager</span><span class="p">:</span> <span class="n">UserManager</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">commentManager</span> <span class="p">=</span> <span class="n">commentManager</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">userManager</span> <span class="p">=</span> <span class="n">userManager</span>
+    <span class="p">}</span>
 
-    func postComment() {
-        let comment = Comment(text: textView.text)
-        commentManager.handle(comment)
-        userManager.userDidPostComment(comment)
-    }
-}</pre></td></tr></table>
+    <span class="kd">func</span> <span class="nf">postComment</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nv">comment</span> <span class="p">=</span> <span class="n">Comment</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="n">textView</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">commentManager</span><span class="p">.</span><span class="n">handle</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+        <span class="n">userManager</span><span class="p">.</span><span class="n">userDidPostComment</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>通过这种形式，UserManager 可以强持有 CommentManager 也不产生任何依赖循环。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -556,19 +558,19 @@ class CommentManager {
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">class UserManager {
-    private let commentManager: CommentManager
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">class</span> <span class="nc">UserManager</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kd">let</span> <span class="nv">commentManager</span><span class="p">:</span> <span class="n">CommentManager</span>
 
-    init(commentManager: CommentManager) {
-        self.commentManager = commentManager
-    }
+    <span class="kd">init</span><span class="p">(</span><span class="n">commentManager</span><span class="p">:</span> <span class="n">CommentManager</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kc">self</span><span class="p">.</span><span class="n">commentManager</span> <span class="p">=</span> <span class="n">commentManager</span>
+    <span class="p">}</span>
 
-    func userDidPostComment(_ comment: Comment) {
-        user.totalNumberOfComments += 1
-    }
-}</pre></td></tr></table>
+    <span class="kd">func</span> <span class="nf">userDidPostComment</span><span class="p">(</span><span class="kc">_</span> <span class="n">comment</span><span class="p">:</span> <span class="n">Comment</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">user</span><span class="p">.</span><span class="n">totalNumberOfComments</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>我们又一次的移除了所有的可选类型，代码也更好预测了🎉。</p>
@@ -582,10 +584,10 @@ class CommentManager {
 <p>所以，我们如何崩溃。。。最简单的方式就是添加 <code>!</code> 操作符，针对这个可选值强制解包，就会在其是 nil 的时候发生崩溃：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">let configuration = loadConfiguration()!</pre></td></tr></table>
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">configuration</span> <span class="p">=</span> <span class="n">loadConfiguration</span><span class="p">()</span><span class="o">!</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>虽然这个方法比较简单，但是它有个比较大的问题，就是一旦这段代码崩溃，我们能得到的只有一个错误信息：</p>
@@ -597,16 +599,16 @@ class CommentManager {
 <p>这个错误信息并不告诉我们为什么发生这个错误，在哪里发生的，给不了我们什么线索来解决它。这个时候，我们可以使用 guard 关键字，结合 <code>preconditionFailure()</code> 函数，在程序退出的时候给出定制消息。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">guard let configuration = loadConfiguration() else {
-    preconditionFailure(&#34;Configuration couldn&#39;t be loaded. &#34; +
-                        &#34;Verify that Config.JSON is valid.&#34;)
-}</pre></td></tr></table>
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="k">guard</span> <span class="kd">let</span> <span class="nv">configuration</span> <span class="p">=</span> <span class="n">loadConfiguration</span><span class="p">()</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="bp">preconditionFailure</span><span class="p">(</span><span class="s">&#34;Configuration couldn&#39;t be loaded. &#34;</span> <span class="o">+</span>
+                        <span class="s">&#34;Verify that Config.JSON is valid.&#34;</span><span class="p">)</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>上面这段代码发生崩溃的时候，我们就能获得更多更有效的错误信息：</p>
@@ -624,10 +626,10 @@ class CommentManager {
 <p>我的解决方案就是使用 <code>Require</code>。它只是简单的在可选值添加简单的 <code>require()</code> 方法，但能够使得调用的地方更简洁。用这种方法来处理上面加载 <code>JSON</code> 文件的代码就可以这样写：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">let configuration = loadConfiguration().require(hint: &#34;Verify that Config.JSON is valid&#34;)</pre></td></tr></table>
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">configuration</span> <span class="p">=</span> <span class="n">loadConfiguration</span><span class="p">().</span><span class="n">require</span><span class="p">(</span><span class="n">hint</span><span class="p">:</span> <span class="s">&#34;Verify that Config.JSON is valid&#34;</span><span class="p">)</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>当出现异常的时候，会给出下面的错误信息：</p>
@@ -753,33 +755,7 @@ class CommentManager {
       <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
     </div>
 
-  <div class="disqus-comment">
-  <div class="disqus-button" id="load_disqus" onclick="load_disqus()">
-    显示 Disqus 评论
-  </div>
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-    var disqus_config = function () {
-      this.page.url = "https://hechen.xyz/post/handling-non-optional-optionals-in-swift/";
-    };
-    function load_disqus() {
-      
-      
-      if (window.location.hostname === 'localhost') return;
-
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      var disqus_shortname = 'stoneman';
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-
-      $('#load_disqus').remove();
-    };
-  </script>
-  <noscript>Please enable JavaScript to view the
-    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
   
-  </div>
   
     
 
@@ -933,7 +909,7 @@ class CommentManager {
 
 
 
-  <script id="dsq-count-scr" src="//stoneman.disqus.com/count.js" async></script>
+  <script id="dsq-count-scr" src="//.disqus.com/count.js" async></script>
 
 
 

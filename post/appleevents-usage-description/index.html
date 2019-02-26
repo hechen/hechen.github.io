@@ -339,6 +339,8 @@
 
 <p>最近在修改某个 <a href="https://github.com/hechen/vibe">Mac 应用</a>，其原理就是通过执行一段 AppleScript 获取 OmniFocus 的信息，然后进行可视化展示，但是总取不到数据。</p>
 
+<!-- more -->
+
 <h2 id="原因">原因</h2>
 
 <p>关键数据获取阶段执行的 AppleScript 的时候总是取不到数据。</p>
@@ -543,33 +545,7 @@
       <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
     </div>
 
-  <div class="disqus-comment">
-  <div class="disqus-button" id="load_disqus" onclick="load_disqus()">
-    显示 Disqus 评论
-  </div>
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-    var disqus_config = function () {
-      this.page.url = "https://hechen.xyz/post/appleevents-usage-description/";
-    };
-    function load_disqus() {
-      
-      
-      if (window.location.hostname === 'localhost') return;
-
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      var disqus_shortname = 'stoneman';
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-
-      $('#load_disqus').remove();
-    };
-  </script>
-  <noscript>Please enable JavaScript to view the
-    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
   
-  </div>
   
     
 
@@ -723,7 +699,7 @@
 
 
 
-  <script id="dsq-count-scr" src="//stoneman.disqus.com/count.js" async></script>
+  <script id="dsq-count-scr" src="//.disqus.com/count.js" async></script>
 
 
 
