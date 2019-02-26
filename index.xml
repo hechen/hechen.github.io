@@ -59,7 +59,7 @@
 
 &lt;h2 id=&#34;behaviorsubject&#34;&gt;BehaviorSubject&lt;/h2&gt;
 
-&lt;p&gt;BehaviorSubject 会在订阅者订阅之后发送最新的一个信号元素，自然需要你在初始化该对象的时候给其设定初始化值。如果初始化的时候无法提供默认值，那可能你就需要用到上面的 PublishSubject 了。&lt;/p&gt;
+&lt;p&gt;BehaviorSubject 会在订阅者订阅之后发送最新的一个信号元素，自然需要你在初始化该对象的时候给其设定初始化值。如果初始化的时候无法提供默认值，那可能你就需要用到上面的 PublishSubject 了。其中常用的 Variable 和 BehaviorRelay 都是对其的封装。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/ei6pCwT.png&#34; alt=&#34;CleanShot 2019-02-26 at 09.41.41@2x&#34; /&gt;&lt;/p&gt;
 
@@ -127,7 +127,7 @@
 &lt;/div&gt;
 &lt;p&gt;首先 Variable 是 RxSwift 为 Apple 生态加入的一个名词，并不是 Rx 生态共有的概念，而且名字上也显得和其他概念格格不入，因此严格意义算起来并不是 Rx 生态的一部分了；&lt;/p&gt;
 
-&lt;p&gt;另外，它功能上几乎和 BehaviorRelay 一样，只是多了一些状态保存。&lt;/p&gt;
+&lt;p&gt;另外，它功能上几乎和 BehaviorRelay 一样，使用 BehaviorRelay 也能实现同样的功能。&lt;/p&gt;
 
 &lt;p&gt;最后一点，其内存管理语义和 Rx 其他概念也不一样，其他的信号终结是严格按照 completion 和 error 信号，但是 Variable 直到对象被释放掉才默认触发 completion 信号。&lt;/p&gt;
 
