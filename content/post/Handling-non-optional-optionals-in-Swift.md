@@ -10,7 +10,10 @@ tags: ["iOS","Swift","Optional"]
 
 然而，有些时候可选值可能会致你于尴尬的境地，尤其是你作为开发者了解（甚至是有些猜测的成分在），有的特定变量始终是非空（non-nil）的，即使它是一个可选类型。例如，我们在一个视图控制器中处理视图的时候：
 
-```
+<!-- more -->
+
+
+``` Swift
 class TableViewController: UIViewController {
     var tableView: UITableView?
 
@@ -25,6 +28,7 @@ class TableViewController: UIViewController {
     }
 }
 ```
+
 
 这也是对于很多 Swift 程序员争论比较激烈的地方，程度不亚于讨论 tabs 和 spaces 的用法。有的人会说：
 
@@ -53,7 +57,8 @@ class TableViewController: UIViewController {
 
 让我们改一下上面的代码，使用 lazy 来改造 tableView 属性：
 
-```
+
+``` Swift
 class TableViewController: UIViewController {
     lazy var tableView = UITableView()
 
@@ -76,7 +81,8 @@ class TableViewController: UIViewController {
 
 可选值类型另外一种常用的场景就是用来打破循环依赖（[circular dependencies](https://en.wikipedia.org/wiki/Circular_dependency)）。有的时候，你就陷入 A 依赖 B，B 又依赖 A 的情况，如下：
 
-```
+
+``` Swift
 class UserManager {
     private weak var commentManager: CommentManager?
 
@@ -109,7 +115,8 @@ class CommentManager {
 
 那要解决上面的问题，我们创建一个 `CommentComposer` 来做一个协调者，负责通知`UserManager` 和 `CommentManager`二人一个评论产生了。
 
-```
+
+``` Swift
 class CommentComposer {
     private let commentManager: CommentManager
     private let userManager: UserManager
@@ -129,9 +136,11 @@ class CommentComposer {
 }
 ```
 
+
 通过这种形式，UserManager 可以强持有 CommentManager 也不产生任何依赖循环。
 
-```
+
+``` Swift
 class UserManager {
     private let commentManager: CommentManager
 
@@ -156,7 +165,7 @@ class UserManager {
 
 所以，我们如何崩溃。。。最简单的方式就是添加 `!` 操作符，针对这个可选值强制解包，就会在其是 nil 的时候发生崩溃：
 
-```
+``` Swift
 let configuration = loadConfiguration()!
 ```
 
@@ -167,7 +176,7 @@ let configuration = loadConfiguration()!
 
 这个错误信息并不告诉我们为什么发生这个错误，在哪里发生的，给不了我们什么线索来解决它。这个时候，我们可以使用 guard 关键字，结合 `preconditionFailure()` 函数，在程序退出的时候给出定制消息。
 
-```
+``` Swift
 guard let configuration = loadConfiguration() else {
     preconditionFailure("Configuration couldn't be loaded. " +
                         "Verify that Config.JSON is valid.")
@@ -187,7 +196,7 @@ guard let configuration = loadConfiguration() else {
 
 我的解决方案就是使用 `Require`。它只是简单的在可选值添加简单的 `require()` 方法，但能够使得调用的地方更简洁。用这种方法来处理上面加载 `JSON` 文件的代码就可以这样写：
 
-```
+``` Swift
 let configuration = loadConfiguration().require(hint: "Verify that Config.JSON is valid")
 ```
 

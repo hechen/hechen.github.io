@@ -11,6 +11,8 @@ tags: ["Sandbox"]
 
 最近在修改某个 [Mac 应用](https://github.com/hechen/vibe)，其原理就是通过执行一段 AppleScript 获取 OmniFocus 的信息，然后进行可视化展示，但是总取不到数据。
 
+<!-- more -->
+
 
 ## 原因
 

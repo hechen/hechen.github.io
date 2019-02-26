@@ -6,6 +6,10 @@ tags: ["iOS","Swift","Closure"]
 ---
 
 
+> 原文：[Capturing objects in Swift closures](https://www.swiftbysundell.com/posts/capturing-objects-in-swift-closures)
+> 原作者 [@johnsundell](https://twitter.com/johnsundell)
+> 翻译：[@OgreMergO](https://twitter.com/OgreMergO)
+
 自从 Block 在 iOS4 被引入 Objective-C 的世界之后就成为了 Apple 各平台上最时髦的 API 的重要组成部分了。当 Swift 语言出现的时候，blocks 的概念就摇身一变通过 closure 的形式引入，成为了目前我们可能每一天都在用的语言特性之一了。
 
 Closure 目前已经被我们广泛的使用了，即使如此，我们在使用它的时候还是需要有很多需要注意的点，并且需要做很多额外的操作。这篇文章，我们来近距离的了解 closure，主要是了解其捕获变量的机制以及那些能够更好的让我们来处理变量捕获的技术。

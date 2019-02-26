@@ -9,7 +9,7 @@ tags: ["iOS","Animation","Objective-C","Swift"]
 Hey！
 [DGElasticPullToRefresh](https://github.com/gontovnik/DGElasticPullToRefresh)展示如何实现一个弹性效果。效果如下图所示：
 
-![DGElasticPullToRefresh.gif](http://7xilk1.com1.z0.glb.clouddn.com/DGElasticPullToRefreshDGElasticPullToRefresh1.gif)
+![DGElasticPullToRefresh.gif](https://i.imgur.com/NzdoFS9.gif)
 
 <!-- more -->
 

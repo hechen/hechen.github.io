@@ -6,6 +6,13 @@ tags: ["iOS","XCode","CocoaPods","Carthage"]
 ---
 
 
+
+> 原文：[Modular Xcode projects](https://ppinera.es/2017/09/29/modular-xcode-projects.html)
+> 原作者 & Copyright [@pepibumur](http://twitter.com/pepibumur)
+> 翻译：[@OgreMergO](https://twitter.com/OgreMergO)
+
+
+
 使用 Xcode 构建模块化的工程就需要对工程结构以及其基础概念有很好的理解才行。<!-- more --> 我们平时不怎么关注工程结构本身，只有在工程逐渐变大，要添加更多依赖的时候才会注意的到。而即使到了这个时候，我们大多数的工程都会使用  [CocoaPods](https://cocoapods.org/) 来设置那些依赖项，或者 [Carthage](https://github.com/carthage), 后者虽然没有帮我们做依赖性的设置，但是使得我们会更容易的，通过在工程的 build phase 选项中添加一些内容，达到同样的目的。当配置项越来越复杂，我们就很容易产生困惑，这是因为我们并没有完全掌握 Xcode 工程中所涉及的所有元素。我经常被问到的问题如下：
 
 * 我能不能在工程里同时使用 Carthage，Cocoapods 以及自己个人的依赖设置？
