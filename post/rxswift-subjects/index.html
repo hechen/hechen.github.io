@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>标签 - I make stuff</title>
+  <title>RxSwift 中的几种 Subject - I make stuff</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="chen" />
-  <meta name="description" content="Chen&#39;s personal blog." />
+  <meta name="description" content="Subject 在 Rx 的世界里是这么一种存在，其既可以作为观测者，也可以作为被观测者。自然而然想到的是 Subject 本身就可以作为一种过渡桥接信号的手段，它订阅某个信号" />
+
   <meta name="keywords" content="Chen, iOS, Swift, Productivity" />
 
 
@@ -34,8 +35,7 @@
 <meta name="generator" content="Hugo 0.55.0-DEV" />
 
 
-<link rel="canonical" href="https://hechen.xyz/tags/" />
-<link href="https://hechen.xyz/tags/index.xml" rel="alternate" type="application/rss+xml" title="I make stuff" />
+<link rel="canonical" href="https://hechen.xyz/post/rxswift-subjects/" />
 
 
 
@@ -57,19 +57,27 @@
 
 
 
-<meta property="og:title" content="Tags" />
-<meta property="og:description" content="Chen&#39;s personal blog." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://hechen.xyz/tags/" />
+<meta property="og:title" content="RxSwift 中的几种 Subject" />
+<meta property="og:description" content="Subject 在 Rx 的世界里是这么一种存在，其既可以作为观测者，也可以作为被观测者。自然而然想到的是 Subject 本身就可以作为一种过渡桥接信号的手段，它订阅某个信号" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hechen.xyz/post/rxswift-subjects/" />
+<meta property="article:published_time" content="2019-02-26T10:24:38&#43;08:00"/>
+<meta property="article:modified_time" content="2019-02-26T10:24:38&#43;08:00"/>
 
-<meta property="og:updated_time" content="2018-11-26T14:59:50&#43;00:00"/>
+<meta itemprop="name" content="RxSwift 中的几种 Subject">
+<meta itemprop="description" content="Subject 在 Rx 的世界里是这么一种存在，其既可以作为观测者，也可以作为被观测者。自然而然想到的是 Subject 本身就可以作为一种过渡桥接信号的手段，它订阅某个信号">
 
-<meta itemprop="name" content="Tags">
-<meta itemprop="description" content="Chen&#39;s personal blog.">
 
+<meta itemprop="datePublished" content="2019-02-26T10:24:38&#43;08:00" />
+<meta itemprop="dateModified" content="2019-02-26T10:24:38&#43;08:00" />
+<meta itemprop="wordCount" content="905">
+
+
+
+<meta itemprop="keywords" content="Subject,Variable," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Tags"/>
-<meta name="twitter:description" content="Chen&#39;s personal blog."/>
+<meta name="twitter:title" content="RxSwift 中的几种 Subject"/>
+<meta name="twitter:description" content="Subject 在 Rx 的世界里是这么一种存在，其既可以作为观测者，也可以作为被观测者。自然而然想到的是 Subject 本身就可以作为一种过渡桥接信号的手段，它订阅某个信号"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -235,7 +243,7 @@
 
       </li>
     
-        <li class="menu-item active">
+        <li class="menu-item">
         
           
           
@@ -278,605 +286,238 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">RxSwift 中的几种 Subject</h1>
+      
+      <div class="post-meta">
+        <time datetime="2019-02-26" class="post-time">
+          2019-02-26
+        </time>
+        <div class="post-category">
+            <a href="https://hechen.xyz/categories/rxswift/"> RxSwift </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#publishsubject">PublishSubject</a></li>
+<li><a href="#behaviorsubject">BehaviorSubject</a></li>
+<li><a href="#replaysubject">ReplaySubject</a></li>
+<li><a href="#variable">Variable</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<p>Subject 在 Rx 的世界里是这么一种存在，其既可以作为观测者，也可以作为被观测者。自然而然想到的是 Subject 本身就可以作为一种过渡桥接信号的手段，它订阅某个信号，一旦信号收到序列，转头它就又把信号散发给自己的观测者了。</p>
+
+<p>在 RxSwift 的世界里涉及几种 Subject，这里先行做个记录：</p>
+
+<ol>
+<li>PublishSubject</li>
+<li>BehaviorSubject</li>
+<li>ReplaySubject</li>
+<li>Variable （预计在 5.0 废弃）</li>
+</ol>
+
+<h2 id="publishsubject">PublishSubject</h2>
+
+<p>PublishSubject 只给订阅者发送新元素，也就是订阅者只能接受到订阅之后发出的信号。</p>
+
+<p><img src="media/15511431275815/publishSubject.png" alt="publishSubject" /></p>
+
+<h2 id="behaviorsubject">BehaviorSubject</h2>
+
+<p><img src="media/15511431275815/CleanShot%202019-02-26%20at%2009.41.41@2x.png" alt="CleanShot 2019-02-26 at 09.41.41@2x" /></p>
+
+<h2 id="replaysubject">ReplaySubject</h2>
+
+<p>顾名思义，ReplaySubject 会重新发射在订阅者订阅之间发出的信号，具体发多少是由调用者决定的，其指定 Cache 多少信号，如下图中所示，Buffer Size 为 2，因此当第二个订阅者订阅 Subject 之后，其会受到最新的 1 和 2 两个信号。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="c1">/// 指定发射多少最新信号</span>
+<span class="kd">let</span> <span class="nv">subject</span> <span class="p">=</span> <span class="n">ReplaySubject</span><span class="p">&lt;</span><span class="nb">String</span><span class="o">&gt;</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">bufferSize</span><span class="p">:</span> <span class="mi">2</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><img src="media/15511431275815/replaySubject.png" alt="replaySubject" /></p>
+
+<blockquote>
+<p>需要注意一点：所有被 Cache 的信号本身都是在内存中的，因此需要考虑到缓存信号的最大个数以及每个信号的负载，比如你的每个信号本身是 Image 数据，然后又 Cache 了比较多的数目，这时候内存压力就会很大，所以使用这个 ReplaySubject 的时候需要注意内存问题。</p>
+</blockquote>
+
+<h2 id="variable">Variable</h2>
+
+<p>Variable 自身实质上是 BehaviorSubject 的封装，所以它具备 Behavior 每次订阅就会接收到最新信号元素的属性，但是和 BehaviorSubject 不同在于其不会因为收到 Error 事件导致整个序列停止（也就是说只有 completion 信号才会让该信号终结），而它的信号完成是在其 deinit 方法中。</p>
+
+<p>我们在日常使用中喜欢 Variable 的一个最大原因可能就是直接获取它的值，而不需要像常规信号一般需要订阅之后获取它的值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">var</span> <span class="nv">variable</span> <span class="p">=</span> <span class="n">Variable</span><span class="p">(</span><span class="s">&#34;Initial value&#34;</span><span class="p">)</span>
+<span class="n">variable</span><span class="p">.</span><span class="n">value</span> <span class="p">=</span> <span class="s">&#34;New initial value&#34;</span>
+<span class="bp">print</span><span class="p">(</span><span class="n">variable</span><span class="p">.</span><span class="n">value</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>目前在 RxSwift 中 Variable 已经被标记为废弃，如果你使用了 Variable 类型，编译器会在 Console 中打印出以下内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">`Variable` is planned for future deprecation. Please consider `BehaviorRelay` as a replacement. Read more at: https://git.io/vNqvx</pre></td></tr></table>
+</div>
+</div>
+<p>目前官方给出的推荐使用时 BehaviorRelay，详细解释如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Comments" data-lang="Comments"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Comments" data-lang="Comments">/// Current recommended replacement for this API is `RxCocoa.BehaviorRelay` because:
+/// * `Variable` isn&#39;t a standard cross platform concept, hence it&#39;s out of place in RxSwift target.
+/// * It doesn&#39;t have a counterpart for handling events (`PublishRelay`). It models state only.
+/// * It doesn&#39;t have a consistent naming with *Relay or other Rx concepts.
+/// * It has an inconsistent memory management model compared to other parts of RxSwift (completes on `deinit`).</code></pre></td></tr></table>
+</div>
+</div>
+<p>首先 Variable 是 RxSwift 为 Apple 生态加入的一个名词，并不是 Rx 生态共有的概念，而且名字上也显得和其他概念格格不入，因此严格意义算起来并不是 Rx 生态的一部分了；</p>
+
+<p>另外，它功能上几乎和 BehaviorRelay 一样，只是多了一些状态保存。</p>
+
+<p>最后一点，其内存管理语义和 Rx 其他概念也不一样，其他的信号终结是严格按照 completion 和 error 信号，但是 Variable 直到对象被释放掉才默认触发 completion 信号。</p>
+
+<p>详细官方讨论在<a href="https://github.com/ReactiveX/RxSwift/issues/1501">这里</a></p>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">chen</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-02-26</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://hechen.xyz/tags/subject/">Subject</a>
+          <a href="https://hechen.xyz/tags/variable/">Variable</a>
           
-  
-  
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/appleevents-usage-description/">
+            <span class="next-text nav-default">Apple Event Sandboxing</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
   
   
 
   
   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="tag-cloud" style="padding: 5px 15px">
-      <div class="tag-cloud-title">
-        共计 52 个标签
-      </div>
-      <div class="tag-cloud-tags">
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/2do/"
-          style="font-size:1rem">2do</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/algorithm/"
-          style="font-size:1.5701406500739012rem">algorithm</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/animation/"
-          style="font-size:1.359718699852197rem">animation</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/app/"
-          style="font-size:1rem">app</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/array/"
-          style="font-size:1.359718699852197rem">array</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/bookmark/"
-          style="font-size:1rem">bookmark</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/c&#43;&#43;11/"
-          style="font-size:1rem">c&#43;&#43;11</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/carthage/"
-          style="font-size:1rem">carthage</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/category/"
-          style="font-size:1rem">category</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/closure/"
-          style="font-size:1rem">closure</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/cocoapods/"
-          style="font-size:1.359718699852197rem">cocoapods</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/compiler/"
-          style="font-size:1rem">compiler</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/convenience-initializers/"
-          style="font-size:1rem">convenience-initializers</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/designated-initializer/"
-          style="font-size:1rem">designated-initializer</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/devonthink/"
-          style="font-size:1rem">devonthink</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/garbage-collection/"
-          style="font-size:1rem">garbage-collection</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/github/"
-          style="font-size:1rem">github</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/iap/"
-          style="font-size:1rem">iap</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/initializer/"
-          style="font-size:1rem">initializer</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/ios/"
-          style="font-size:2.47033681894874rem">ios</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/ir/"
-          style="font-size:1rem">ir</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/keychain/"
-          style="font-size:1rem">keychain</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/lambda/"
-          style="font-size:1rem">lambda</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/linked-list/"
-          style="font-size:1rem">linked-list</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/linkedlist/"
-          style="font-size:1rem">linkedlist</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/llvm/"
-          style="font-size:1rem">llvm</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/mac/"
-          style="font-size:1rem">mac</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/marginnote/"
-          style="font-size:1rem">marginnote</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/module/"
-          style="font-size:1rem">module</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/notification/"
-          style="font-size:1.359718699852197rem">notification</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/objective-c/"
-          style="font-size:1.7194373997043944rem">objective-c</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/omnifocus/"
-          style="font-size:1rem">omnifocus</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/optional/"
-          style="font-size:1rem">optional</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/pdfexpert/"
-          style="font-size:1rem">pdfexpert</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/push/"
-          style="font-size:1rem">push</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/python/"
-          style="font-size:1rem">python</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/receipt/"
-          style="font-size:1rem">receipt</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/runtime/"
-          style="font-size:1rem">runtime</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/safari/"
-          style="font-size:1.359718699852197rem">safari</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/sandbox/"
-          style="font-size:1rem">sandbox</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/singleton/"
-          style="font-size:1.359718699852197rem">singleton</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/string/"
-          style="font-size:1.7194373997043944rem">string</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/subject/"
-          style="font-size:1rem">subject</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/swfit/"
-          style="font-size:1rem">swfit</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/swift/"
-          style="font-size:2.2444222440837907rem">swift</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/things/"
-          style="font-size:1rem">things</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/traffic/"
-          style="font-size:1rem">traffic</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/uigesturerecognizer/"
-          style="font-size:1rem">uigesturerecognizer</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/uiresponder/"
-          style="font-size:1rem">uiresponder</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/userdefaults/"
-          style="font-size:1rem">userdefaults</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/variable/"
-          style="font-size:1rem">variable</a>
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        <a href="https://hechen.xyz/tags/xcode/"
-          style="font-size:1.835240955443171rem">xcode</a>
-        
-      
-      </div>
-    </div>
+
   
   
+
+  
+
+  
+
+  <div class="disqus-comment">
+  <div class="disqus-button" id="load_disqus" onclick="load_disqus()">
+    显示 Disqus 评论
+  </div>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = "https://hechen.xyz/post/rxswift-subjects/";
+    };
+    function load_disqus() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'stoneman';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+      $('#load_disqus').remove();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  </div>
+  
+    
+
 
 
         </div>
