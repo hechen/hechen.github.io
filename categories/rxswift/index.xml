@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rxswift on I make stuff</title>
+    <link>https://hechen.xyz/categories/rxswift/</link>
+    <description>Recent content in Rxswift on I make stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 26 Feb 2019 10:24:38 +0800</lastBuildDate>
+    
+	<atom:link href="https://hechen.xyz/categories/rxswift/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>RxSwift 中的几种 Subject</title>
+      <link>https://hechen.xyz/post/rxswift-subjects/</link>
+      <pubDate>Tue, 26 Feb 2019 10:24:38 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/rxswift-subjects/</guid>
+      <description>Subject 在 Rx 的世界里是这么一种存在，其既可以作为观测者，也可以作为被观测者。自然而然想到的是 Subject 本身就可以作为一种过渡桥接信号的手段，它订阅某个信号</description>
+    </item>
+    
+  </channel>
+</rss>
