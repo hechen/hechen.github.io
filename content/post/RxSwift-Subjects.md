@@ -1,17 +1,13 @@
 ---
 title: "RxSwift 中的几种 Subject"
 date: 2019-02-26T10:24:38+08:00
-draft: false
+lastmod: 2019-02-26T13:20:38+08:00
 categories: ["RxSwift"]
 tags: ["Subject","Variable"]
 ---
 
 
-
-# Rxswift 中的几种 Subject
-
 > 文中所用插图均出自书籍 《RxSwift - Reactive Programming with Swift》 
-
 
 Subject 在 Rx 的世界里是这么一种存在，其既可以作为观测者，也可以作为被观测者。自然而然想到的是 Subject 本身就可以作为一种过渡桥接信号的手段，它订阅某个信号，一旦信号收到序列，转头它就又把信号散发给自己的观测者了。
 
@@ -24,16 +20,19 @@ Subject 在 Rx 的世界里是这么一种存在，其既可以作为观测者�
 
 ## PublishSubject
 
-PublishSubject 只给订阅者发送新元素，也就是订阅者只能接受到订阅之后发出的信号。
+PublishSubject 只给订阅者发送新元素，也就是订阅者只能接受到订阅之后发出的信号。一图胜千言，看👇 
 
 ![publishSubject](https://i.imgur.com/Cw4FjCT.png)
 
+其中第一排是某个作为 Observable 角色的 Subject，自左至右为严格时间线， 2 和 3 排均为订阅了该 Subject 的观测者，向上的虚线表明订阅的时机，可以看到观测者只能接收到订阅之后由 Subject 新发射出的信号。
 
 ## BehaviorSubject
 
-BehaviorSubject 会在订阅者订阅之后发送最新的一个信号元素，自然需要你在初始化该对象的时候给其设定初始化值。如果初始化的时候无法提供默认值，那可能你就需要用到上面的 PublishSubject 了。
+BehaviorSubject 会在订阅者订阅之后发送最新的一个信号元素，自然需要你在初始化该对象的时候给其设定初始化值（否则对于第一次订阅的观测者来说，哪来的最新发射的元素呢？）。如果初始化的时候无法提供默认值，那可能你就需要用到上面的 PublishSubject 了。其中常用的 Variable 和 BehaviorRelay 都是对其的封装。
 
 ![CleanShot 2019-02-26 at 09.41.41@2x](https://i.imgur.com/ei6pCwT.png)
+
+从图中可以看到和上方 Publish 区别的是其在观测者订阅之后会收到最新的最后一个信号。
 
 ## ReplaySubject
 
@@ -79,7 +78,7 @@ print(variable.value)
 
 首先 Variable 是 RxSwift 为 Apple 生态加入的一个名词，并不是 Rx 生态共有的概念，而且名字上也显得和其他概念格格不入，因此严格意义算起来并不是 Rx 生态的一部分了；
 
-另外，它功能上几乎和 BehaviorRelay 一样，只是多了一些状态保存。
+另外，它功能上几乎和 BehaviorRelay 一样，使用 BehaviorRelay 也能实现同样的功能。
 
 最后一点，其内存管理语义和 Rx 其他概念也不一样，其他的信号终结是严格按照 completion 和 error 信号，但是 Variable 直到对象被释放掉才默认触发 completion 信号。
 
