@@ -107,3 +107,8 @@ defaultContentLanguage = "zh-cn"  # 默认使用的语言
   mediaType = "application/json"
   baseName = "feed"
   isPlainText = true
+
+[params.counter.busuanzi]  # a Chinese visitor counter  # 不蒜子计数器
+  enable = true
+[params.commentCount.disqus] # show counts of comments for Disqus 
+  enable = true
