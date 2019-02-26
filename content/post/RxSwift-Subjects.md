@@ -52,7 +52,7 @@ let subject = ReplaySubject<String>.create(bufferSize: 2)
 
 Variable 自身实质上是 BehaviorSubject 的封装，所以它具备 Behavior 每次订阅就会接收到最新信号元素的属性，但是和 BehaviorSubject 不同在于其不会因为收到 Error 事件导致整个序列停止（也就是说只有 completion 信号才会让该信号终结），而它的信号完成是在其 deinit 方法中。
 
-我们在日常使用中喜欢 Variable 的一个最大原因可能就是直接获取它的值，而不需要像常规信号一般需要进行订阅才能取得它的值。
+我们在日常使用中喜欢 Variable 的一个最大原因可能就是直接获取它的值，而不需要像常规信号一般需要进行订阅才能取得它的值，而且不需要进行订阅，想用即取，而且其生命周期完全和 ARC 结合，无需主动取消订阅。
 
 ``` Swift
 var variable = Variable("Initial value")
