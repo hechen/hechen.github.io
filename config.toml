@@ -9,7 +9,7 @@ enableEmoji = true
 theme = "jane"
 
 hasCJKLanguage = true     # has chinese/japanese/korean ? # 自动检测是否包含 中文\日文\韩文
-paginate = 4              # Number of articles displayed on the homepage  # 首页每页显示的文章数
+paginate = 3              # Number of articles displayed on the homepage  # 首页每页显示的文章数
 rssLimit = 20             # Limit Entry Count to Rss file # 限制 Rss 文章输出数量
 disqusShortname = "stoneman"      # disqus_shortname
 googleAnalytics = ""      # UA-XXXXXXXX-X
@@ -112,3 +112,10 @@ defaultContentLanguage = "zh-cn"  # 默认使用的语言
   enable = true
 [params.commentCount.disqus] # show counts of comments for Disqus 
   enable = true
+
+
+[params.gitment]          # Gitment is a comment system based on GitHub issues. see https://github.com/imsun/gitment
+  owner = "chen"              # Your GitHub ID
+  repo = "Comments"               # The repo to store comments
+  clientId = "25b4420bf07ad69fea67"           # Your client ID
+  clientSecret = "276ac5e9673d35211f0c235b18f0b45689130f87"       # Your client secret
