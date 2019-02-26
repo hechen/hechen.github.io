@@ -715,7 +715,27 @@ window.rootViewController = UINavigationController(
 
   
 
-  
+  <div class="post bg-white">
+      <div id="comments-gitment"></div>
+      <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+        <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+      <script type="text/javascript">
+      const gitment = new Gitment({
+        id: 'Dependency-injection-using-factories-in-Swift.md',
+        title: '在 Swift 中使用工厂模式进行依赖注入',
+        link: decodeURI(location.href),
+        desc: '依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象',
+        owner: 'chen',
+        repo: 'Comments',
+        oauth: {
+          client_id: '25b4420bf07ad69fea67',
+          client_secret: '276ac5e9673d35211f0c235b18f0b45689130f87'
+        }
+      })
+      gitment.render('comments-gitment')
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+    </div>
 
   <div class="disqus-comment">
   <div class="disqus-button" id="load_disqus" onclick="load_disqus()">

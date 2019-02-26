@@ -851,7 +851,27 @@
 
   
 
-  
+  <div class="post bg-white">
+      <div id="comments-gitment"></div>
+      <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+        <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+      <script type="text/javascript">
+      const gitment = new Gitment({
+        id: 'scala第二天.md',
+        title: 'scala Day2',
+        link: decodeURI(location.href),
+        desc: '因为这几天在学习Coursera公开课Principles of Reactive Programming ，因为之前木有木有注意到需要对至少一门函数式编程语言solid foundat',
+        owner: 'chen',
+        repo: 'Comments',
+        oauth: {
+          client_id: '25b4420bf07ad69fea67',
+          client_secret: '276ac5e9673d35211f0c235b18f0b45689130f87'
+        }
+      })
+      gitment.render('comments-gitment')
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+    </div>
 
   <div class="disqus-comment">
   <div class="disqus-button" id="load_disqus" onclick="load_disqus()">

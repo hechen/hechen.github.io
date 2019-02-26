@@ -508,7 +508,27 @@
 
   
 
-  
+  <div class="post bg-white">
+      <div id="comments-gitment"></div>
+      <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+        <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+      <script type="text/javascript">
+      const gitment = new Gitment({
+        id: 'leetCode-018-LengthOfLastWord.md',
+        title: '[018] Length Of Last Word',
+        link: decodeURI(location.href),
+        desc: '题目： Given a string s consists of upper\/lower-case alphabets and empty space characters \x26lsquo; \x26lsquo;, return the length of last word in the string. If the last word does not exist, return 0. Note: A word is defined as a character sequence consists of non-space characters only. For example, Given s = \x26ldquo;Hello World\x26rdquo;, return 5. 题意： 难度不大，考虑所有',
+        owner: 'chen',
+        repo: 'Comments',
+        oauth: {
+          client_id: '25b4420bf07ad69fea67',
+          client_secret: '276ac5e9673d35211f0c235b18f0b45689130f87'
+        }
+      })
+      gitment.render('comments-gitment')
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+    </div>
 
   <div class="disqus-comment">
   <div class="disqus-button" id="load_disqus" onclick="load_disqus()">

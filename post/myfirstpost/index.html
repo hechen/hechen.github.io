@@ -386,7 +386,27 @@
 
   
 
-  
+  <div class="post bg-white">
+      <div id="comments-gitment"></div>
+      <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+        <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+      <script type="text/javascript">
+      const gitment = new Gitment({
+        id: 'MyFirstPost.md',
+        title: '博客之旅',
+        link: decodeURI(location.href),
+        desc: '如果你不给自己烦恼，别人也永远不可能给你烦恼，因为你自己的内心，你放不下 其实写博客一直在我的ToDoList上，不过放的时间有点久。我就是这',
+        owner: 'chen',
+        repo: 'Comments',
+        oauth: {
+          client_id: '25b4420bf07ad69fea67',
+          client_secret: '276ac5e9673d35211f0c235b18f0b45689130f87'
+        }
+      })
+      gitment.render('comments-gitment')
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+    </div>
 
   <div class="disqus-comment">
   <div class="disqus-button" id="load_disqus" onclick="load_disqus()">

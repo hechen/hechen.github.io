@@ -1033,7 +1033,27 @@ updateShapeLayer()
 
   
 
-  
+  <div class="post bg-white">
+      <div id="comments-gitment"></div>
+      <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+        <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+      <script type="text/javascript">
+      const gitment = new Gitment({
+        id: 'Elastic-view-animation-using-UIBezierPath.md',
+        title: '如何使用UIBezierPath实现一个弹性视图动画',
+        link: decodeURI(location.href),
+        desc: 'Hey！ DGElasticPullToRefresh展示如何实现一个弹性效果。效果如下图所示： 开发环境： Xcode 7 Swift 2.0 要求： 开发者至少对UIBez',
+        owner: 'chen',
+        repo: 'Comments',
+        oauth: {
+          client_id: '25b4420bf07ad69fea67',
+          client_secret: '276ac5e9673d35211f0c235b18f0b45689130f87'
+        }
+      })
+      gitment.render('comments-gitment')
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+    </div>
 
   <div class="disqus-comment">
   <div class="disqus-button" id="load_disqus" onclick="load_disqus()">
