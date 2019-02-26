@@ -6,6 +6,13 @@ categories: ["RxSwift"]
 tags: ["Subject","Variable"]
 ---
 
+
+
+# Rxswift 中的几种 Subject
+
+> 文中所用插图均出自书籍 《RxSwift - Reactive Programming with Swift》 
+
+
 Subject 在 Rx 的世界里是这么一种存在，其既可以作为观测者，也可以作为被观测者。自然而然想到的是 Subject 本身就可以作为一种过渡桥接信号的手段，它订阅某个信号，一旦信号收到序列，转头它就又把信号散发给自己的观测者了。
 
 在 RxSwift 的世界里涉及几种 Subject，这里先行做个记录：
@@ -19,23 +26,25 @@ Subject 在 Rx 的世界里是这么一种存在，其既可以作为观测者�
 
 PublishSubject 只给订阅者发送新元素，也就是订阅者只能接受到订阅之后发出的信号。
 
-![publishSubject](media/15511431275815/publishSubject.png)
+![publishSubject](https://i.imgur.com/Cw4FjCT.png)
 
 
 ## BehaviorSubject
 
-![CleanShot 2019-02-26 at 09.41.41@2x](media/15511431275815/CleanShot%202019-02-26%20at%2009.41.41@2x.png)
+BehaviorSubject 会在订阅者订阅之后发送最新的一个信号元素，自然需要你在初始化该对象的时候给其设定初始化值。如果初始化的时候无法提供默认值，那可能你就需要用到上面的 PublishSubject 了。
+
+![CleanShot 2019-02-26 at 09.41.41@2x](https://i.imgur.com/ei6pCwT.png)
 
 ## ReplaySubject
 
-顾名思义，ReplaySubject 会重新发射在订阅者订阅之间发出的信号，具体发多少是由调用者决定的，其指定 Cache 多少信号，如下图中所示，Buffer Size 为 2，因此当第二个订阅者订阅 Subject 之后，其会受到最新的 1 和 2 两个信号。
+顾名思义，ReplaySubject 会重新发射在订阅者订阅之间发出的信号，具体发多少是由 bufferSize 决定的，其指定需要 cache 多少个信号，如下图中所示，Buffer Size 为 2，因此当第二个订阅者订阅 Subject 之后，其会收到最新的 1 和 2 两个信号。
 
 ``` Swift
 /// 指定发射多少最新信号
 let subject = ReplaySubject<String>.create(bufferSize: 2)
 ```
 
-![replaySubject](media/15511431275815/replaySubject.png)
+![replaySubject](https://i.imgur.com/uuHAQ9c.png)
 
 > 需要注意一点：所有被 Cache 的信号本身都是在内存中的，因此需要考虑到缓存信号的最大个数以及每个信号的负载，比如你的每个信号本身是 Image 数据，然后又 Cache 了比较多的数目，这时候内存压力就会很大，所以使用这个 ReplaySubject 的时候需要注意内存问题。
 
@@ -44,7 +53,7 @@ let subject = ReplaySubject<String>.create(bufferSize: 2)
 
 Variable 自身实质上是 BehaviorSubject 的封装，所以它具备 Behavior 每次订阅就会接收到最新信号元素的属性，但是和 BehaviorSubject 不同在于其不会因为收到 Error 事件导致整个序列停止（也就是说只有 completion 信号才会让该信号终结），而它的信号完成是在其 deinit 方法中。
 
-我们在日常使用中喜欢 Variable 的一个最大原因可能就是直接获取它的值，而不需要像常规信号一般需要订阅之后获取它的值。
+我们在日常使用中喜欢 Variable 的一个最大原因可能就是直接获取它的值，而不需要像常规信号一般需要进行订阅才能取得它的值。
 
 ``` Swift
 var variable = Variable("Initial value")
