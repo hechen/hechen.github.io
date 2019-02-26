@@ -17,7 +17,7 @@
       <pubDate>Tue, 26 Feb 2019 10:24:38 +0800</pubDate>
       
       <guid>https://hechen.xyz/post/rxswift-subjects/</guid>
-      <description>Subject 在 Rx 的世界里是这么一种存在，其既可以作为观测者，也可以作为被观测者。自然而然想到的是 Subject 本身就可以作为一种过渡桥接信号的手段，它订阅某个信号</description>
+      <description>Rxswift 中的几种 Subject 文中所用插图均出自书籍 《RxSwift - Reactive Programming with Swift》 Subject 在 Rx 的世界里是这么一种存在，其既可以作为观测者，也可以作为被观测者。</description>
     </item>
     
     <item>
