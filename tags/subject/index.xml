@@ -17,7 +17,7 @@
       <pubDate>Tue, 26 Feb 2019 10:24:38 +0800</pubDate>
       
       <guid>https://hechen.xyz/post/rxswift-subjects/</guid>
-      <description>Rxswift 中的几种 Subject 文中所用插图均出自书籍 《RxSwift - Reactive Programming with Swift》 Subject 在 Rx 的世界里是这么一种存在，其既可以作为观测者，也可以作为被观测者。</description>
+      <description>文中所用插图均出自书籍 《RxSwift - Reactive Programming with Swift》 Subject 在 Rx 的世界里是这么一种存在，其既可以作为观测者，也可以作为被观测者。自然而然想到</description>
     </item>
     
   </channel>
