@@ -10,7 +10,8 @@ comment: false
 mathjax: false
 ---
 
-iOS 开发，偶尔做个 mac 开发
+曾经的 C++ 开发
+目前做 iOS 开发，偶尔做个 mac 开发
 希望兼职前端开发
 偶尔写点 Python，Ruby 耍耍
 
