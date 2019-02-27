@@ -96,7 +96,17 @@ defaultContentLanguage = "zh-cn"  # 默认使用的语言
     c-twitter = "https://twitter.com/OgreMergO"
     h-weibo = "https://weibo.com/hc2feifei"
 
+  [params.counter.busuanzi]  # a Chinese visitor counter  # 不蒜子计数器
+    enable = true
 
+  [params.commentCount.disqus] # show counts of comments for Disqus 
+    enable = true
+
+  [params.gitment]          # Gitment is a comment system based on GitHub issues. see https://github.com/imsun/gitment
+    owner = "hechen"              # Your GitHub ID
+    repo = "Comments"               # The repo to store comments
+    clientId = "25b4420bf07ad69fea67"           # Your client ID
+    clientSecret = "276ac5e9673d35211f0c235b18f0b45689130f87"       # Your client secret
 
 [outputs]
   home = ["html", "jsonfeed","rss"]
@@ -108,14 +118,3 @@ defaultContentLanguage = "zh-cn"  # 默认使用的语言
   baseName = "feed"
   isPlainText = true
 
-[params.counter.busuanzi]  # a Chinese visitor counter  # 不蒜子计数器
-  enable = true
-[params.commentCount.disqus] # show counts of comments for Disqus 
-  enable = true
-
-
-[params.gitment]          # Gitment is a comment system based on GitHub issues. see https://github.com/imsun/gitment
-  owner = "hechen"              # Your GitHub ID
-  repo = "Comments"               # The repo to store comments
-  clientId = "25b4420bf07ad69fea67"           # Your client ID
-  clientSecret = "276ac5e9673d35211f0c235b18f0b45689130f87"       # Your client secret
