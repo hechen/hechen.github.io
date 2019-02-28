@@ -1,6 +1,7 @@
 ---
 title: Initializer in Swift
 date: 2017-11-15 13:09:27
+draft: true
 categories: ["Swift"]
 tags: ["iOS","Swift","Initializer","Designated Initializer","Convenience Initializers"]
 ---
