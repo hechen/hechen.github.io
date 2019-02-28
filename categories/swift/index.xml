@@ -21,15 +21,6 @@
     </item>
     
     <item>
-      <title>Initializer in Swift</title>
-      <link>https://hechen.xyz/post/initializer-in-swift/</link>
-      <pubDate>Wed, 15 Nov 2017 13:09:27 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/initializer-in-swift/</guid>
-      <description>我想 [[xxx alloc] init] 应该是自己接触 iOS 开发以来写的最多的语句了吧。一个对象初始化是其得以存在的前提，无论你是使用 new 关键字与否，根本上都会执行到 init 方法。 转</description>
-    </item>
-    
-    <item>
       <title>@autoclosure &amp;&amp; @escape</title>
       <link>https://hechen.xyz/post/autoclosure-escape/</link>
       <pubDate>Sun, 12 Nov 2017 20:01:54 +0000</pubDate>
