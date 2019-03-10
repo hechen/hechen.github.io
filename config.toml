@@ -97,7 +97,12 @@ defaultContentLanguage = "zh-cn"  # 默认使用的语言
     h-weibo = "https://weibo.com/hc2feifei"
 
   [params.counter.busuanzi]  # a Chinese visitor counter  # 不蒜子计数器
+    enable = false
+
+  [params.counter.leancloud]  # Chinese leancloud visitor counter  # leancloud 计数器
     enable = true
+    appId = "wgbxcKzgAuMNE8wvfGp38xwG-gzGzoHsz"
+    appKey = "JPVrQwSXVrxiVVsK3WoViro4"
 
   [params.commentCount.disqus] # show counts of comments for Disqus 
     enable = true
