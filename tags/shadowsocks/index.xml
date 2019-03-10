@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Safari on I make stuff</title>
-    <link>https://hechen.xyz/tags/safari/</link>
-    <description>Recent content in Safari on I make stuff</description>
+    <title>Shadowsocks on I make stuff</title>
+    <link>https://hechen.xyz/tags/shadowsocks/</link>
+    <description>Recent content in Shadowsocks on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 28 Jan 2019 17:51:35 +0000</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/safari/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.xyz/tags/shadowsocks/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</guid>
       <description>2019-01-29 更新 早上一到办公室连接上公司网络，网速直接就飚到了 600KB/s，果不其然，还是 com.apple.Safari.SafeBrowsing.Service 这个服务进程。这就尴尬了，看来并不是说你不用 Safari 就不会触发</description>
-    </item>
-    
-    <item>
-      <title>如何制作 Send to 2Do 的 Safari 书签</title>
-      <link>https://hechen.xyz/post/send-to-2do/</link>
-      <pubDate>Mon, 26 Nov 2018 14:59:50 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/send-to-2do/</guid>
-      <description>使用鼠标拖拽下面这个链接到你的 Favorites Bar 上， 2Do Send to 2Do 然后编辑地址，将其替换为如下： 1 javascript:window.location=&amp;#39;twodo://x-callback-url/add?task=&amp;#39;+encodeURIComponent(document.title)+&amp;#39;&amp;amp;note=&amp;#39;+encodeURIComponent(window.location)+&amp;#39;&amp;amp;action=url:&amp;#39;+encodeURIComponent(window.location) 所以，本质上是执行了一段 JS 代码，结合当前文档的上下文信息，调</description>
     </item>
     
   </channel>

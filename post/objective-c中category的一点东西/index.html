@@ -376,15 +376,15 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-MyClass.m" data-lang="MyClass.m"><span class="cp">#import &#34;MyClass.h&#34;
-</span><span class="cp"></span><span class="k">@implementation</span> <span class="nc">MyClass</span>
+<pre class="chroma"><code class="language-MyClass.m" data-lang="MyClass.m">#<span class="n">import</span> &#34;<span class="n">MyClass</span><span class="p">.</span><span class="n">h</span>&#34;
+<span class="p">@</span><span class="n">implementation</span> <span class="n">MyClass</span>
 
-<span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">print</span>
+<span class="o">-</span> <span class="p">(</span><span class="n">void</span><span class="p">)</span><span class="n">print</span>
 <span class="p">{</span>
-	<span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;MyClass...&#34;</span><span class="p">);</span>
+	<span class="n">NSLog</span><span class="p">(@</span>&#34;<span class="n">MyClass</span><span class="c">...&#34;);</span>
 <span class="p">}</span>
 
-<span class="k">@end</span></code></pre></td></tr></table>
+<span class="p">@</span><span class="k">end</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>我们向为MyClass再添加一个方法Hello，那我们就可以用分类的方法实现，我们为其添加分类MyAddition1和MyAddition2，如下所示：</p>
@@ -1116,27 +1116,7 @@
 
   
 
-  <div class="post bg-white">
-      <div id="comments-gitment"></div>
-      <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
-        <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
-      <script type="text/javascript">
-      const gitment = new Gitment({
-        id: 'Objective-C中Category的一点东西.md',
-        title: 'Objective-C中Category的一点东西',
-        link: decodeURI(location.href),
-        desc: 'Objective-C中的分类（category）是一种编译时的手段，其允许我们通过给某个已知类添加方法来扩充该类的一种方式。当然这其中是有',
-        owner: 'hechen',
-        repo: 'Comments',
-        oauth: {
-          client_id: '25b4420bf07ad69fea67',
-          client_secret: '276ac5e9673d35211f0c235b18f0b45689130f87'
-        }
-      })
-      gitment.render('comments-gitment')
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
-    </div>
+  
 
   <div class="disqus-comment">
   <div class="disqus-button" id="load_disqus" onclick="load_disqus()">
