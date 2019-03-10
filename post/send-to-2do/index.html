@@ -476,27 +476,7 @@
 
   
 
-  <div class="post bg-white">
-      <div id="comments-gitment"></div>
-      <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
-        <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
-      <script type="text/javascript">
-      const gitment = new Gitment({
-        id: 'Send-to-2Do.md',
-        title: '如何制作 Send to 2Do 的 Safari 书签',
-        link: decodeURI(location.href),
-        desc: '使用鼠标拖拽下面这个链接到你的 Favorites Bar 上， 2Do Send to 2Do 然后编辑地址，将其替换为如下： 1 javascript:window.location=\x26#39;twodo:\/\/x-callback-url\/add?task=\x26#39;\x2bencodeURIComponent(document.title)\x2b\x26#39;\x26amp;note=\x26#39;\x2bencodeURIComponent(window.location)\x2b\x26#39;\x26amp;action=url:\x26#39;\x2bencodeURIComponent(window.location) 所以，本质上是执行了一段 JS 代码，结合当前文档的上下文信息，调',
-        owner: 'hechen',
-        repo: 'Comments',
-        oauth: {
-          client_id: '25b4420bf07ad69fea67',
-          client_secret: '276ac5e9673d35211f0c235b18f0b45689130f87'
-        }
-      })
-      gitment.render('comments-gitment')
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
-    </div>
+  
 
   <div class="disqus-comment">
   <div class="disqus-button" id="load_disqus" onclick="load_disqus()">
