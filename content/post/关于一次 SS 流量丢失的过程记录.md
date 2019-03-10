@@ -1,13 +1,13 @@
 ---
 title: 关于一次 SS 流量丢失的过程记录
 date: 2019-01-28 17:51:35
-tags: ["Safari", "Traffic"]
+tags: ["Safari", "Traffic","Shadowsocks"]
 categories: ["Mac"]
 ---
 
 ## 2019-01-29 更新
 
-早上一到办公室连接上公司网络，网速直接就飚到了 600KB/s，甚至一度有过 M 的趋势，果不其然，还是 com.apple.Safari.SafeBrowsing.Service 这个服务进程。这就尴尬了，看来并不是说你不用 Safari 就不会触发。
+早上一到办公室连接上公司网络，网速直接就飚到了 600KB/s，果不其然，还是 `com.apple.Safari.SafeBrowsing.Service` 这个服务进程。这就尴尬了，看来并不是说你不用 Safari 就不会触发。
 
 ![Surge Dashboard](https://i.imgur.com/yifgIEZ.png)
 
@@ -16,9 +16,7 @@ categories: ["Mac"]
 
 ## 问题追踪
 
-在 2018 年 12 月底的时候，一大早打开电脑查询刚买的 SS 服务。
-
-刚刚在前几天购买的 SS 流量，每个月 150GB 的限额在短短的 4 天之内就耗了将近 95GB，就在 1 月 1 日元旦当天就耗了接近 75GB，要知道，我并不只有 AgentNEO 一家的流量服务，相对来说在 ping test 上其还不如 Shadowsocks 家的好，所以理论上规则命中也应该是后者的，而且就算我用 A 服务看小电影也不至于这么多流量消耗。
+在 2018 年 12 月底的时候，偶然间登录 AgentNEO 查看刚买的流量使用情况。但是发现，刚在前几天购买的 SS 流量在短短的 4 天之内就耗了将近 95GB，就在 1 月 1 日元旦当天就耗了接近 75GB，要知道，我平时的月均流量也就维持在 10 GB 不到，毕竟平时在公司办公，业余时间 Youtube 也看的相对少。
 
 ![AgentNEO 流量面板](https://i.imgur.com/9tRs9vh.png)
 
@@ -77,6 +75,9 @@ categories: ["Mac"]
 目前暂时不清楚是官方 Bug 还是我电脑安装了什么插件或者软件导致。暂时先停掉使用 Safari 了，用 Chrome 用上一段时间之后再用 Snitch 看下情况吧。
 
 另一方面，因为不放心，在 Surge 的自定义规则中加了一条：
+
+``` Conf
 	NAME,com.apple.Safari.SafeBrowsing.Service,DIRECT
+```
 	
 针对该进程的所有流量都直连，不用代理了。 后续有任何进展会更新到 Blog 中。
