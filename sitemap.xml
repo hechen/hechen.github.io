@@ -10,6 +10,13 @@
   </url>
   
   <url>
+    <loc>https://hechen.xyz/post/nsview&#43;backgroundcolor/</loc>
+    <lastmod>2019-03-11T15:19:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://hechen.xyz/post/rxswift-subjects/</loc>
     <lastmod>2019-02-26T13:20:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -311,6 +318,13 @@
   </url>
   
   <url>
+    <loc>https://hechen.xyz/tags/backgroundcolor/</loc>
+    <lastmod>2019-03-11T15:19:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://hechen.xyz/categories/book/</loc>
     <lastmod>2017-02-12T16:38:24+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -501,7 +515,7 @@
   
   <url>
     <loc>https://hechen.xyz/categories/macos/</loc>
-    <lastmod>2019-02-21T23:25:38+08:00</lastmod>
+    <lastmod>2019-03-11T15:19:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -523,6 +537,13 @@
   <url>
     <loc>https://hechen.xyz/tags/notification/</loc>
     <lastmod>2017-05-20T10:10:54+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/nsview/</loc>
+    <lastmod>2019-03-11T15:19:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -557,7 +578,7 @@
   
   <url>
     <loc>https://hechen.xyz/post/</loc>
-    <lastmod>2019-02-26T13:20:38+08:00</lastmod>
+    <lastmod>2019-03-11T15:19:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

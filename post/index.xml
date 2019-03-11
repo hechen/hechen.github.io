@@ -6,10 +6,19 @@
     <description>Recent content in Posts on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 26 Feb 2019 10:24:38 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 11 Mar 2019 15:19:49 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>为 NSView 增加 backgroundColor</title>
+      <link>https://hechen.xyz/post/nsview&#43;backgroundcolor/</link>
+      <pubDate>Mon, 11 Mar 2019 15:19:49 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/nsview&#43;backgroundcolor/</guid>
+      <description>NSView 作为 Cocoa 中最基本的构成元素，是构成整个 Mac App 视图体系的基础，和 UIView 在 iOS 世界中的位置一样重要，可是在 UIView 里司空见惯的背景色设置，在 NSView 中却不见身影。 在</description>
+    </item>
     
     <item>
       <title>RxSwift 中的几种 Subject</title>
@@ -180,15 +189,6 @@
       
       <guid>https://hechen.xyz/post/autoclosure-escape/</guid>
       <description>我们知道在 swift 中，闭包（closure）是一等公民，因此可以被当作参数传递，在学习 swift 的过程中经常会看到某些关键字修饰该闭包，@autoclos</description>
-    </item>
-    
-    <item>
-      <title>关于 iOS10 Notification 的那些事儿</title>
-      <link>https://hechen.xyz/post/ios-notification/</link>
-      <pubDate>Sat, 20 May 2017 10:10:54 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/ios-notification/</guid>
-      <description>概览 推送通知我们大家都不陌生，可以说几乎每个使用智能手机的人每天都会被不同的通知 打扰 到，正式因为合适的推送是吸引用户注意力的利器，其成为了各</description>
     </item>
     
   </channel>
