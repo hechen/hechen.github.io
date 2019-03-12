@@ -6,10 +6,19 @@
     <description>Recent content in Posts on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 11 Mar 2019 15:19:49 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 13 Mar 2019 00:30:49 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>如何在英文语言系统的 Safari 中使用印象笔记？</title>
+      <link>https://hechen.xyz/post/using&#43;yinxiangbiji&#43;system&#43;english/</link>
+      <pubDate>Wed, 13 Mar 2019 00:30:49 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/using&#43;yinxiangbiji&#43;system&#43;english/</guid>
+      <description>因为 Evernote 在国内使用了不同的账户体系，去年团队也彻底独立出来，但是 Safari 的剪藏插件是同一个，下载地址，但是当你系统是英文系统的时候，使用 Safari 剪藏有点尴</description>
+    </item>
     
     <item>
       <title>为 NSView 增加 backgroundColor</title>
@@ -180,15 +189,6 @@
       
       <guid>https://hechen.xyz/post/capturing-objects-in-swift-closures/</guid>
       <description>原文：Capturing objects in Swift closures 原作者 @johnsundell 翻译：@OgreMergO 自从 Block 在 iOS4 被引入 Objective-C 的世界之后就成为了 Apple 各平台上最时髦的 API 的重要组成部分了。</description>
-    </item>
-    
-    <item>
-      <title>@autoclosure &amp;&amp; @escape</title>
-      <link>https://hechen.xyz/post/autoclosure-escape/</link>
-      <pubDate>Sun, 12 Nov 2017 20:01:54 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/autoclosure-escape/</guid>
-      <description>我们知道在 swift 中，闭包（closure）是一等公民，因此可以被当作参数传递，在学习 swift 的过程中经常会看到某些关键字修饰该闭包，@autoclos</description>
     </item>
     
   </channel>

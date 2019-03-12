@@ -10,6 +10,13 @@
   </url>
   
   <url>
+    <loc>https://hechen.xyz/post/using&#43;yinxiangbiji&#43;system&#43;english/</loc>
+    <lastmod>2019-03-13T00:30:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://hechen.xyz/post/nsview&#43;backgroundcolor/</loc>
     <lastmod>2019-03-11T15:19:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -409,6 +416,13 @@
   </url>
   
   <url>
+    <loc>https://hechen.xyz/tags/evernote/</loc>
+    <lastmod>2019-03-13T00:30:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://hechen.xyz/tags/garbage-collection/</loc>
     <lastmod>2017-02-12T16:38:24+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -507,6 +521,13 @@
   </url>
   
   <url>
+    <loc>https://hechen.xyz/tags/macos/</loc>
+    <lastmod>2019-03-13T00:30:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://hechen.xyz/categories/macos/</loc>
     <lastmod>2019-03-11T15:19:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -571,14 +592,14 @@
   
   <url>
     <loc>https://hechen.xyz/post/</loc>
-    <lastmod>2019-03-11T15:19:49+08:00</lastmod>
+    <lastmod>2019-03-13T00:30:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/categories/productivity/</loc>
-    <lastmod>2018-11-26T14:59:50+00:00</lastmod>
+    <lastmod>2019-03-13T00:30:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -754,6 +775,13 @@
   <url>
     <loc>https://hechen.xyz/tags/xcode/</loc>
     <lastmod>2018-07-17T17:09:57+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/%E5%8D%B0%E8%B1%A1%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2019-03-13T00:30:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
