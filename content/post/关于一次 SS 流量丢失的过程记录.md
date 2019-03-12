@@ -2,7 +2,7 @@
 title: 关于一次 SS 流量丢失的过程记录
 date: 2019-01-28 17:51:35
 tags: ["Safari", "Traffic","Shadowsocks"]
-categories: ["Mac"]
+categories: ["macOS"]
 ---
 
 ## 2019-01-29 更新
