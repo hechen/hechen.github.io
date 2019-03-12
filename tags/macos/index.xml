@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Macos on I make stuff</title>
+    <link>https://hechen.xyz/tags/macos/</link>
+    <description>Recent content in Macos on I make stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 13 Mar 2019 00:30:49 +0800</lastBuildDate>
+    
+	<atom:link href="https://hechen.xyz/tags/macos/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>如何在英文语言系统的 Safari 中使用印象笔记？</title>
+      <link>https://hechen.xyz/post/using&#43;yinxiangbiji&#43;system&#43;english/</link>
+      <pubDate>Wed, 13 Mar 2019 00:30:49 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/using&#43;yinxiangbiji&#43;system&#43;english/</guid>
+      <description>因为 Evernote 在国内使用了不同的账户体系，去年团队也彻底独立出来，但是 Safari 的剪藏插件是同一个，下载地址，但是当你系统是英文系统的时候，使用 Safari 剪藏有点尴</description>
+    </item>
+    
+  </channel>
+</rss>
