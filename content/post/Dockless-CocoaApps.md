@@ -1,7 +1,6 @@
 ---
 title: "Mac 平台上那些 Dockless 的 App 都是如何实现的？"
 date: 2019-03-13T17:29:54+08:00
-draft: false
 categories: ["macOS"]
 tags: ["Dock","Cocoa", "Dockless", "Menu"]
 ---
@@ -26,8 +25,6 @@ tags: ["Dock","Cocoa", "Dockless", "Menu"]
 这也是常见的 Cocoa 应用的模式支持，很多常见的 App 都支持，比如 DayOne，Dash 等。
 
 ![Dash](https://i.imgur.com/im1ziVo.png)
-
-
 
 其实核心功能就是 1. 可以显示或者隐藏 Dock 图标； 2. 可以显示或者隐藏 Menu 菜单这两者的组合。
 
