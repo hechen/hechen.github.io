@@ -30,6 +30,219 @@
     </item>
     
     <item>
+      <title>Mac 平台上那些 Dockless 的 App 都是如何实现的？</title>
+      <link>https://hechen.xyz/post/dockless-cocoaapps/</link>
+      <pubDate>Wed, 13 Mar 2019 17:29:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/dockless-cocoaapps/</guid>
+      
+        <description>
+
+&lt;p&gt;在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。&lt;/p&gt;
+
+&lt;h1 id=&#34;介绍&#34;&gt;介绍&lt;/h1&gt;
+
+&lt;p&gt;以 &lt;a href=&#34;https://www.shimovpn.com/&#34;&gt;Shimo&lt;/a&gt; 这个 App 举例，&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;media/Screenshot%202019-03-13%2019.56.27.png&#34; alt=&#34;Screenshot 2019-03-13 19.56.27&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在其设置选项卡中能看到 Show Shimo in 的选项菜单，其中有三项：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Menubar only&lt;/li&gt;
+&lt;li&gt;Dock only&lt;/li&gt;
+&lt;li&gt;Menubar &amp;amp; Dock&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&#34;media/Screenshot%202019-03-13%2019.56.27-2-.png&#34; alt=&#34;Screenshot 2019-03-13 19.56.27-2-&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这也是常见的 Cocoa 应用的模式支持，很多常见的 App 都支持，比如 DayOne，Dash 等。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;media/Dash%202019-03-13%20at%2020.31.50@2x.png&#34; alt=&#34;Dash 2019-03-13 at 20.31.50@2x&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;其实核心功能就是 1. 可以显示或者隐藏 Dock 图标； 2. 可以显示或者隐藏 Menu 菜单这两者的组合。&lt;/p&gt;
+
+&lt;h1 id=&#34;核心步骤&#34;&gt;核心步骤&lt;/h1&gt;
+
+&lt;p&gt;普通的 Cocoa Application 创建之后，默认都是 Dock 上展示的，如果想隐藏 Dock 图标，首先它需要有这个能力，这个能力是通过 info.plist 文件中的 Key 来指定的，这个 Key 就是 &lt;code&gt;LSUIElement&lt;/code&gt;，我们将其值设置为 true&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;	&amp;lt;key&amp;gt;LSUIElement&amp;lt;/key&amp;gt;
+	&amp;lt;true/&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;在可视化展示 plist 的时候能看到针对该 Key 的描述是标识 Application is agent(UIElement)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;media/CleanShot%202019-03-13%20at%2020.25.30@2x.png&#34; alt=&#34;CleanShot 2019-03-13 at 20.25.30@2x&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;之后，再次打开 App，会发现 Dock 上已经看不到该应用的图标了，这就是 UIElement 的作用，其实际上就是声明我们的 Cocoa App 是 UIElement（也即 agent） application，Dock 不显示，允许有一定的用户界面。在方法 &lt;code&gt;TransformProcessType&lt;/code&gt; 的头文件中能看到如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/*
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *  TransformProcessType()
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *  
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *  Summary:
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    Changes the &amp;#39;type&amp;#39; of the process specified in the psn parameter.
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *     The type is specified in the transformState parameter.
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *  
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *  Discussion:
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    Given a psn for an application, this call transforms that
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    application into the given type.  Foreground applications have a
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    menu bar and appear in the Dock.  Background applications do not
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    appear in the Dock, do not have a menu bar ( and should not have
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    windows or other user interface ).  UIElement applications do not
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    have a menu bar, do not appear in the dock, but may in limited
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    circumstances present windows and user interface. If a foreground
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    application is frontmost when transformed into a background
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    application, it is first hidden and another application is made
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    frontmost.  A UIElement or background-only application which is
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    transformed into a foreground application is not brought to the
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    front (use SetFrontProcess() after the transform if this is
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    required) nor will it be shown if it is hidden ( even if hidden
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    automatically by being transformed into a background-only
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    application ), so the caller should use ShowHideProcess() to show
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    the application after it is transformed into a foreground
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    application. Applications can only transform themselves; this
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; *    call cannot change the type of another application.
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;extern OSStatus 
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;TransformProcessType(
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;  const ProcessSerialNumber *        psn,
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;  ProcessApplicationTransformState   transformState)          AVAILABLE_MAC_OS_X_VERSION_10_3_AND_LATER;  &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;上方的注释写的非常清晰，这个方法就是切换当前指定的 Application 以哪种姿态展示。&lt;/p&gt;
+
+&lt;p&gt;也就说明我们日常的 Cocoa Application 主要包含几种类型：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Foreground applications， 拥有一个 menu bar，并且会在 Dock 上出现；&lt;/li&gt;
+&lt;li&gt;Background applications，Dock 上不存在并且没有 menu bar，并且不应该存在任何 UI 交互界面（建议）&lt;/li&gt;
+&lt;li&gt;UIElement applications 有和 Background applications 相同的情况，但是允许在某些情况下展示用户界面。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;那上方这个方法也就是通过使用 TransformProcessType 来进行模式切换的。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;toggleDock&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;show&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Bool&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Bool&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+
+    &lt;span class=&#34;c1&#34;&gt;// ProcessApplicationTransformState&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;transformState&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;show&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;?&lt;/span&gt; 
+    &lt;span class=&#34;c1&#34;&gt;// show to foreground application &lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;// or not show to background application&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;ProcessApplicationTransformState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;kProcessTransformToForegroundApplication&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; 
+    &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ProcessApplicationTransformState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;kProcessTransformToUIElementApplication&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+    &lt;span class=&#34;c1&#34;&gt;// transform current application type.&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;psn&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ProcessSerialNumber&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;highLongOfPSN&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;lowLongOfPSN&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;UInt32&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;kCurrentProcess&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;TransformProcessType&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;psn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;transformState&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这里实际上还有一种方案是通过指定 App 的&lt;code&gt;ActivationPolicy&lt;/code&gt;来实现的，核心的 API 是下面这两者:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;    &lt;span class=&#34;cm&#34;&gt;/* Returns the activation policy of the application.
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;     */&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;available&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;OSX&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;10.6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;activationPolicy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;NSApplication&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ActivationPolicy&lt;/span&gt;
+
+    
+    &lt;span class=&#34;cm&#34;&gt;/* Attempts to modify the application&amp;#39;s activation policy.  In OS X 10.9, any policy may be set; prior to 10.9, the activation policy may be changed to NSApplicationActivationPolicyProhibited or NSApplicationActivationPolicyRegular, but may not be changed to NSApplicationActivationPolicyAccessory.  This returns YES if setting the activation policy is successful, and NO if not.
+&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;     */&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;available&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;OSX&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;10.6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;setActivationPolicy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;_&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;activationPolicy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;NSApplication&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ActivationPolicy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Bool&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;显示或者隐藏 Dock 的功能就可以通过切换当前的激活策略（activation policy来实现，如下代码所示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;toggleDock2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;show&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Bool&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Bool&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;show&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;?&lt;/span&gt;
+               &lt;span class=&#34;n&#34;&gt;NSApp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;setActivationPolicy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;regular&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+             &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;NSApp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;setActivationPolicy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;accessory&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;参考文献&#34;&gt;参考文献&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://medium.com/@jackymelb/show-hide-dock-icon-on-macos-app-3a59f7df282d&#34;&gt;Show/Hide dock icon on macOS App&lt;/a&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
       <title>如何在英文语言系统的 Safari 中使用印象笔记？</title>
       <link>https://hechen.xyz/post/using-yinxiangbiji-system-english/</link>
       <pubDate>Wed, 13 Mar 2019 00:30:49 +0800</pubDate>
@@ -3840,67 +4053,6 @@ window.rootViewController = UINavigationController(
 &lt;p&gt;如果有任何问题、建议或者反馈，都欢迎随时在 &lt;a href=&#34;https://twitter.com/johnsundell&#34;&gt;Twitter&lt;/a&gt; 上联系我，我非常乐意听到你们希望我在接下来的文章里谈论哪些主题哦。&lt;/p&gt;
 
 &lt;p&gt;谢谢阅读。&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>理解响应者和响应链</title>
-      <link>https://hechen.xyz/post/understanding-responders-and-the-responder-chain/</link>
-      <pubDate>Mon, 13 Nov 2017 21:22:44 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/understanding-responders-and-the-responder-chain/</guid>
-      
-        <description>
-
-&lt;p&gt;Apps 是通过响应者（responder）对象来接收和处理事件的。一个响应者对象是 UIResponder 类的一个实例，我们常见的 UIView，UIViewController 以及 UIApplication 都是 UIResponder 的子类。 UIKit 自动帮你管理着这些 responder 相关的行为，包括事件是如何从一个 responder 传递给另一个 responder 的等等。当然，你也可以修改你的 app 中事件传递的默认行为。&lt;/p&gt;
-
-&lt;p&gt;UIKit 会把大部分的事件都传递给最适合的 responder 对象来处理。如果该 responder 无法处理该事件，UIKit 就会继续把该事件沿着当前的响应者链传递到下一个 responder。响应者链就是你的 App 中所有响应者的动态配置，也因为其是动态的，你的 App 中不可能只存在单一的响应者链。由于事件总是从特定的响应者那里流转到更通用的响应者那里，因此很容易确定某响应者链中下一个响应者是谁。举个例子，一个 view 的下一个响应者是其 superview 或者负责管理它的 view controller。事件就是这样在响应者链中传递直到其被处理掉。&lt;/p&gt;
-
-&lt;p&gt;下图1 表明一个界面中包含了 一个 Label，一个 text field，一个 button 以及两个 background view 的 App 中响应链是什么样子的。如果 text field 不处理某个事件，UIKit 就会把该事件发送给 text field 的父级 UIView 对象，同样的，如果该对象依然处理不了，就会传递给该 view 对象的 window。如果 window 对象也依然无法处理该事件，UIKit 最终会把该事件传递给 UIApplication 对象，一般上该 UIApplication 对象是 App 的 delegate 对象并且是 UIResponder 实例，当然这个时候已经脱离了响应者链了。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://ws4.sinaimg.cn/large/006tKfTcly1flgs9djns2j30zp0lyac6.jpg&#34; alt=&#34;图1 - 一个响应者链的例子&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;针对每一个事件，UIKit 都会指定一个第一响应者（first responder），然后把该事件首先发送给对象处理。这个第一响应者基于事件类型而不同。&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Touch events.&lt;/strong&gt; 第一响应者是 Touch 发生所在的 view。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Press events.&lt;/strong&gt; 第一响应者是当前焦点所在的响应者。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Motion event.&lt;/strong&gt; 第一响应者是你显式指定用以处理事件的对象。 Core Motion 处理所有的和加速器、气压仪以及磁力计相关的事件。Motion events 不随响应者链流动。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Shake-motion events.&lt;/strong&gt; 第一响应者是你或者 UIKit 框架指定的对象。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Remote-control events.&lt;/strong&gt; 第一响应者是你或者 UIKit 框架指定的对象。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Editing-menu messages.&lt;/strong&gt; 第一响应者是你或者 UIKit 框架指定的对象。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Controls 向其关联的对象发送动作消息本身不是事件，但是依然能够享受到响应者链的好处。当一个 Control 的 target object 是 nil 的时候，UIKit 就会在该 target object 的响应者链上寻找合适的对象用以妥善处理动作消息。例如，UIKit 编辑按钮使用这种行为来寻找响应者对象来执行&lt;code&gt;cut:&lt;/code&gt;, &lt;code&gt;copy:&lt;/code&gt; 或者 &lt;code&gt;paste:&lt;/code&gt; 等方法。&lt;/p&gt;
-
-&lt;p&gt;如果一个 view 自身还有附加的手势识别器的话，该手势识别器会延迟针对该 view 的 touch 和 press 事件的传递。&lt;code&gt;delaysTouchesBegan&lt;/code&gt;, &lt;code&gt;delaysTouchesEnded&lt;/code&gt; 以及 &lt;code&gt;UIGestureRecognizer&lt;/code&gt; 的 &lt;code&gt;cancelsTouchesInView&lt;/code&gt; 属性都是用来决定这些 touches 什么时间以及以什么方式被延迟处理。&lt;/p&gt;
-
-&lt;h2 id=&#34;识别包含-touch-事件的响应者&#34;&gt;识别包含 Touch 事件的响应者&lt;/h2&gt;
-
-&lt;p&gt;UIKit 使用基于视图的碰撞检测（hit-testing）来决定 touch 事件发生的地点。具体而言，UIKit  拿该 touch 的位置和视图层级中所有的视图对象的 bounds 进行比较。UIView 的 &lt;code&gt;hitTest:withEvent:&lt;/code&gt; 方法会游历整个视图层级，找到该 touch 事件发生所在的视图树最底端的视图，其也就是处理该 touch 事件的第一响应者。&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;如果一个 touch 的位置发生在某个视图的外围，&lt;code&gt;hitTest:withEvent:&lt;/code&gt;方法就会忽略该视图和其所有子视图。所以，如果你将 view 的&lt;code&gt;clipsToBounds&lt;/code&gt;属性设置为 NO 的化，即使其子视图将该 touch 包含在自己领域也是无效的。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;就这样，UIKit 持续不断的把每个 touch 指派给包含该 touch 的视图。当 touch 发生的时候，UIKit 创建一个 &lt;code&gt;UITouch&lt;/code&gt; 对象，直到 touch 结束该对象才会被释放。当 touch 位置或者其他参数发生变化的时候，UIKit 就更新这个 UITouch 对象的信息。当然，其中有的属性当然是不会变化的，比如该 touch 附属的 view，甚至当 touch 位置已经超出原始 view 的外围的时候，UITouch 对象中的 view 属性依然保持和之前一样。&lt;/p&gt;
-
-&lt;h2 id=&#34;变更响应者链&#34;&gt;变更响应者链&lt;/h2&gt;
-
-&lt;p&gt;你可以通过覆写响应者的 nextResponder 属性来改变响应者链。许多 UIKit 的类已经覆写了该方法并且返回了特定的对象。&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;如果你覆写了任意类的 &lt;code&gt;nextResponder&lt;/code&gt; 属性，那该对象的下一个响应者就是你返回的那个；&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;UIView&lt;/code&gt;
-2.1 如果该视图是某个视图控制器的根视图（root view），其下一个响应者就是该视图控制器；
-2.2 如果该视图不是某个视图控制器的根视图，其下一个响应者就是该视图的父视图；&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;UIViewController&lt;/code&gt;
-3.1 如果该视图控制器的视图是某个 window 的根视图（root view），其下一个响应者就是 window；
-3.2 如果该视图控制器是由另一个视图控制器展示出来的，其下一个响应者就是那个视图控制器（presenting view controller）；&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;UIWindow&lt;/code&gt;  window 的下一个响应者就是 &lt;code&gt;UIApplication&lt;/code&gt; 对象&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;UIApplication&lt;/code&gt;  UIApplication 对象的下一个响应者是 App delegate，而且要求该 delegate 必须是 &lt;code&gt;UIRepsponder&lt;/code&gt; 的实例并且不能是一个视图、视图控制器或者 &lt;code&gt;UIApplication&lt;/code&gt; 对象自己。&lt;/li&gt;
-&lt;/ol&gt;
 </description>
       
     </item>
