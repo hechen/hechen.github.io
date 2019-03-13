@@ -1,0 +1,144 @@
+---
+title: "Mac 平台上那些 Dockless 的 App 都是如何实现的？"
+date: 2019-03-13T17:29:54+08:00
+draft: false
+categories: ["macOS"]
+tags: ["Dock","Cocoa", "Dockless", "Menu"]
+---
+
+
+在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。
+
+# 介绍
+
+以 [Shimo](https://www.shimovpn.com/) 这个 App 举例，
+
+![Shimo](https://i.imgur.com/AzRwufu.png)
+
+在其设置选项卡中能看到 Show Shimo in 的选项菜单，其中有三项： 
+
+1. Menubar only
+2. Dock only
+3. Menubar & Dock
+
+![Shimo Menu](https://i.imgur.com/zFqW0XP.png)
+
+这也是常见的 Cocoa 应用的模式支持，很多常见的 App 都支持，比如 DayOne，Dash 等。
+
+![Dash](https://i.imgur.com/im1ziVo.png)
+
+
+
+其实核心功能就是 1. 可以显示或者隐藏 Dock 图标； 2. 可以显示或者隐藏 Menu 菜单这两者的组合。
+
+
+# 核心步骤
+
+普通的 Cocoa Application 创建之后，默认都是 Dock 上展示的，如果想隐藏 Dock 图标，首先它需要有这个能力，这个能力是通过 info.plist 文件中的 Key 来指定的，这个 Key 就是 `LSUIElement`，我们将其值设置为 true
+
+``` 
+	<key>LSUIElement</key>
+	<true/>
+```
+
+在可视化展示 plist 的时候能看到针对该 Key 的描述是标识 Application is agent(UIElement)
+
+![plist](https://i.imgur.com/ef3w8TR.png)
+
+
+之后，再次打开 App，会发现 Dock 上已经看不到该应用的图标了，这就是 UIElement 的作用，其实际上就是声明我们的 Cocoa App 是 UIElement（也即 agent） application，Dock 不显示，允许有一定的用户界面。在方法 `TransformProcessType` 的头文件中能看到如下：
+
+``` Swift
+/*
+ *  TransformProcessType()
+ *  
+ *  Summary:
+ *    Changes the 'type' of the process specified in the psn parameter.
+ *     The type is specified in the transformState parameter.
+ *  
+ *  Discussion:
+ *    Given a psn for an application, this call transforms that
+ *    application into the given type.  Foreground applications have a
+ *    menu bar and appear in the Dock.  Background applications do not
+ *    appear in the Dock, do not have a menu bar ( and should not have
+ *    windows or other user interface ).  UIElement applications do not
+ *    have a menu bar, do not appear in the dock, but may in limited
+ *    circumstances present windows and user interface. If a foreground
+ *    application is frontmost when transformed into a background
+ *    application, it is first hidden and another application is made
+ *    frontmost.  A UIElement or background-only application which is
+ *    transformed into a foreground application is not brought to the
+ *    front (use SetFrontProcess() after the transform if this is
+ *    required) nor will it be shown if it is hidden ( even if hidden
+ *    automatically by being transformed into a background-only
+ *    application ), so the caller should use ShowHideProcess() to show
+ *    the application after it is transformed into a foreground
+ *    application. Applications can only transform themselves; this
+ *    call cannot change the type of another application.
+
+extern OSStatus 
+TransformProcessType(
+  const ProcessSerialNumber *        psn,
+  ProcessApplicationTransformState   transformState)          AVAILABLE_MAC_OS_X_VERSION_10_3_AND_LATER;  
+```
+
+上方的注释写的非常清晰，这个方法就是切换当前指定的 Application 以哪种姿态展示。
+
+也就说明我们日常的 Cocoa Application 主要包含几种类型：
+
+1. Foreground applications， 拥有一个 menu bar，并且会在 Dock 上出现；
+2. Background applications，Dock 上不存在并且没有 menu bar，并且不应该存在任何 UI 交互界面（建议）
+3. UIElement applications 有和 Background applications 相同的情况，但是允许在某些情况下展示用户界面。
+
+那上方这个方法也就是通过使用 TransformProcessType 来进行模式切换的。
+
+
+
+``` Swift
+func toggleDock(show: Bool) -> Bool {
+
+    // ProcessApplicationTransformState
+    let transformState = show ? 
+    // show to foreground application 
+    // or not show to background application
+        ProcessApplicationTransformState(kProcessTransformToForegroundApplication) 
+    : ProcessApplicationTransformState(kProcessTransformToUIElementApplication)
+
+    // transform current application type.
+    var psn = ProcessSerialNumber(highLongOfPSN: 0, lowLongOfPSN: UInt32(kCurrentProcess))
+    return TransformProcessType(&psn, transformState) == 0
+}
+```
+
+
+这里实际上还有一种方案是通过指定 App 的`ActivationPolicy`来实现的，核心的 API 是下面这两者:
+
+``` Swift
+    /* Returns the activation policy of the application.
+     */
+    @available(OSX 10.6, *)
+    open func activationPolicy() -> NSApplication.ActivationPolicy
+
+    
+    /* Attempts to modify the application's activation policy.  In OS X 10.9, any policy may be set; prior to 10.9, the activation policy may be changed to NSApplicationActivationPolicyProhibited or NSApplicationActivationPolicyRegular, but may not be changed to NSApplicationActivationPolicyAccessory.  This returns YES if setting the activation policy is successful, and NO if not.
+     */
+    @available(OSX 10.6, *)
+    open func setActivationPolicy(_ activationPolicy: NSApplication.ActivationPolicy) -> Bool
+
+```
+
+显示或者隐藏 Dock 的功能就可以通过切换当前的激活策略（activation policy来实现，如下代码所示：
+
+
+``` Swift
+func toggleDock2(show: Bool) -> Bool {
+        return show ?
+               NSApp.setActivationPolicy(.regular)
+             : NSApp.setActivationPolicy(.accessory)
+    }
+```
+
+
+# 参考文献
+
+[Show/Hide dock icon on macOS App](https://medium.com/@jackymelb/show-hide-dock-icon-on-macos-app-3a59f7df282d)
