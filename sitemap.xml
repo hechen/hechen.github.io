@@ -10,6 +10,13 @@
   </url>
   
   <url>
+    <loc>https://hechen.xyz/post/dockless-cocoaapps/</loc>
+    <lastmod>2019-03-13T17:29:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://hechen.xyz/post/using-yinxiangbiji-system-english/</loc>
     <lastmod>2019-03-13T00:30:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -388,6 +395,13 @@
   </url>
   
   <url>
+    <loc>https://hechen.xyz/tags/cocoa/</loc>
+    <lastmod>2019-03-13T17:29:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://hechen.xyz/tags/cocoapods/</loc>
     <lastmod>2019-01-03T21:19:24+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -411,6 +425,20 @@
   <url>
     <loc>https://hechen.xyz/tags/devonthink/</loc>
     <lastmod>2018-10-16T17:01:44+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/dock/</loc>
+    <lastmod>2019-03-13T17:29:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/dockless/</loc>
+    <lastmod>2019-03-13T17:29:54+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -529,7 +557,7 @@
   
   <url>
     <loc>https://hechen.xyz/categories/macos/</loc>
-    <lastmod>2019-03-11T15:19:49+08:00</lastmod>
+    <lastmod>2019-03-13T17:29:54+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -537,6 +565,13 @@
   <url>
     <loc>https://hechen.xyz/tags/marginnote/</loc>
     <lastmod>2018-10-16T17:01:44+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/menu/</loc>
+    <lastmod>2019-03-13T17:29:54+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -592,7 +627,7 @@
   
   <url>
     <loc>https://hechen.xyz/post/</loc>
-    <lastmod>2019-03-13T00:30:49+08:00</lastmod>
+    <lastmod>2019-03-13T17:29:54+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

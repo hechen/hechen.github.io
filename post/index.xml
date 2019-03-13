@@ -6,10 +6,19 @@
     <description>Recent content in Posts on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 13 Mar 2019 00:30:49 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 13 Mar 2019 17:29:54 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mac 平台上那些 Dockless 的 App 都是如何实现的？</title>
+      <link>https://hechen.xyz/post/dockless-cocoaapps/</link>
+      <pubDate>Wed, 13 Mar 2019 17:29:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/dockless-cocoaapps/</guid>
+      <description>在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。 介绍 以 Shimo 这个 App 举例，</description>
+    </item>
     
     <item>
       <title>如何在英文语言系统的 Safari 中使用印象笔记？</title>
@@ -180,15 +189,6 @@
       
       <guid>https://hechen.xyz/post/understanding-responders-and-the-responder-chain/</guid>
       <description>Apps 是通过响应者（responder）对象来接收和处理事件的。一个响应者对象是 UIResponder 类的一个实例，我们常见的 UIView，UIViewContro</description>
-    </item>
-    
-    <item>
-      <title>Capturing objects in Swift closures</title>
-      <link>https://hechen.xyz/post/capturing-objects-in-swift-closures/</link>
-      <pubDate>Sun, 12 Nov 2017 20:56:50 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/capturing-objects-in-swift-closures/</guid>
-      <description>原文：Capturing objects in Swift closures 原作者 @johnsundell 翻译：@OgreMergO 自从 Block 在 iOS4 被引入 Objective-C 的世界之后就成为了 Apple 各平台上最时髦的 API 的重要组成部分了。</description>
     </item>
     
   </channel>
