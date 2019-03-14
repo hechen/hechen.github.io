@@ -43,7 +43,7 @@ tags: ["Dock","Cocoa", "Dockless", "Menu"]
 ![plist](https://i.imgur.com/ef3w8TR.png)
 
 
-之后，再次打开 App，会发现 Dock 上已经看不到该应用的图标了，这就是 UIElement 的作用，其实际上就是声明我们的 Cocoa App 是 UIElement（也即 agent） application，Dock 不显示，允许有一定的用户界面。在方法 `TransformProcessType` 的头文件中能看到如下：
+之后，再次打开 App，会发现 Dock 上已经看不到该应用的图标了，这就是 UIElement 的作用，其实际上就是声明我们的 Cocoa App 是 UIElement（也即 agent） application，Dock 不显示，允许有一定的用户界面。在方法 `TransformProcessType` 的头文件中能看到 Cocoa Application 的几种常见类型：
 
 ``` Swift
 /*
@@ -79,16 +79,13 @@ TransformProcessType(
   ProcessApplicationTransformState   transformState)          AVAILABLE_MAC_OS_X_VERSION_10_3_AND_LATER;  
 ```
 
-上方的注释写的非常清晰，这个方法就是切换当前指定的 Application 以哪种姿态展示。
-
-也就说明我们日常的 Cocoa Application 主要包含几种类型：
+上方的注释写的非常清楚，我们日常的 Cocoa Application 主要包含三种类型：
 
 1. Foreground applications， 拥有一个 menu bar，并且会在 Dock 上出现；
 2. Background applications，Dock 上不存在并且没有 menu bar，并且不应该存在任何 UI 交互界面（建议）
 3. UIElement applications 有和 Background applications 相同的情况，但是允许在某些情况下展示用户界面。
 
-那上方这个方法也就是通过使用 TransformProcessType 来进行模式切换的。
-
+那上方这个方法 `TransformProcessType` 就是进行这几种模式切换的。
 
 
 ``` Swift
@@ -107,8 +104,7 @@ func toggleDock(show: Bool) -> Bool {
 }
 ```
 
-
-这里实际上还有一种方案是通过指定 App 的`ActivationPolicy`来实现的，核心的 API 是下面这两者:
+这里实际上还有一种方案也是很多开发者选用的方案，通过指定 App 的`ActivationPolicy`来实现的，核心的 API 是下面这两者:
 
 ``` Swift
     /* Returns the activation policy of the application.
@@ -134,6 +130,9 @@ func toggleDock2(show: Bool) -> Bool {
              : NSApp.setActivationPolicy(.accessory)
     }
 ```
+
+
+
 
 
 # 参考文献
