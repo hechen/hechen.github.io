@@ -1,8 +1,9 @@
 ---
 title: 如何在英文语言系统的 Safari 中使用印象笔记？
 date: 2019-03-13T00:30:49+08:00
+lastmod: 2019-03-15T11:01:23+08:00
 categories: ["Productivity"]
-tags: ["Evernote","Yinxiangbiji","macOS"]
+tags: ["Evernote","印象笔记","macOS"]
 ---
 
 
