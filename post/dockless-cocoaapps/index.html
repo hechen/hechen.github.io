@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="chen" />
-  <meta name="description" content="在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。 介绍 以 Shimo 这个 App 举例，" />
+  <meta name="description" content="在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。尤其是针对一些需要便" />
 
   <meta name="keywords" content="Chen, iOS, Swift, Productivity" />
 
@@ -58,26 +58,26 @@
 
 
 <meta property="og:title" content="Mac 平台上那些 Dockless 的 App 都是如何实现的？" />
-<meta property="og:description" content="在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。 介绍 以 Shimo 这个 App 举例，" />
+<meta property="og:description" content="在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。尤其是针对一些需要便" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hechen.xyz/post/dockless-cocoaapps/" />
 <meta property="article:published_time" content="2019-03-13T17:29:54&#43;08:00"/>
 <meta property="article:modified_time" content="2019-03-15T11:01:23&#43;08:00"/>
 
 <meta itemprop="name" content="Mac 平台上那些 Dockless 的 App 都是如何实现的？">
-<meta itemprop="description" content="在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。 介绍 以 Shimo 这个 App 举例，">
+<meta itemprop="description" content="在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。尤其是针对一些需要便">
 
 
 <meta itemprop="datePublished" content="2019-03-13T17:29:54&#43;08:00" />
 <meta itemprop="dateModified" content="2019-03-15T11:01:23&#43;08:00" />
-<meta itemprop="wordCount" content="1330">
+<meta itemprop="wordCount" content="1648">
 
 
 
 <meta itemprop="keywords" content="Dock,Cocoa,Dockless,Menu,Agent," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Mac 平台上那些 Dockless 的 App 都是如何实现的？"/>
-<meta name="twitter:description" content="在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。 介绍 以 Shimo 这个 App 举例，"/>
+<meta name="twitter:description" content="在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。尤其是针对一些需要便"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -325,7 +325,7 @@
 <li><a href="#核心步骤">核心步骤</a>
 <ul>
 <li><a href="#dock">Dock</a></li>
-<li><a href="#menu-bar">menu bar</a></li>
+<li><a href="#menu-bar">Menu bar</a></li>
 </ul></li>
 <li><a href="#参考文献">参考文献</a></li>
 </ul>
@@ -337,7 +337,7 @@
     <div class="post-content">
       
 
-<p>在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。</p>
+<p>在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。尤其是针对一些需要便捷性要求比较高的 Application， menu bar 的功能必不可少。本文主要简单介绍关键的几个操作，做个记录。</p>
 
 <!-- more -->
 
@@ -345,7 +345,7 @@
 
 <p>以 <a href="https://www.shimovpn.com/">Shimo</a> 这个 App 举例，</p>
 
-<p><img src="https://i.imgur.com/AzRwufu.png" alt="Shimo" /></p>
+<p><img src="https://i.imgur.com/vT7EEVK.png" alt="Shimo" /></p>
 
 <p>在其设置选项卡中能看到 Show Shimo in 的选项菜单，其中有三项：</p>
 
@@ -355,13 +355,16 @@
 <li>Menubar &amp; Dock</li>
 </ol>
 
-<p><img src="https://i.imgur.com/zFqW0XP.png" alt="Shimo Menu" /></p>
+<p><img src="https://i.imgur.com/WywIVkV.png" alt="Shimo Menu" /></p>
 
 <p>这也是常见的 Cocoa 应用的模式支持，很多常见的 App 都支持，比如 DayOne，Dash，Todoist 等。</p>
 
-<p><img src="https://i.imgur.com/im1ziVo.png" alt="Dash" /></p>
+<p><img src="https://i.imgur.com/ioUvpNw.png" alt="Dash" />
+<img src="https://i.imgur.com/ORYAEcZ.png" alt="Todoist" /></p>
 
-<p>其实核心功能就是 1. 可以显示或者隐藏 Dock 图标； 2. 可以显示或者隐藏 Menu 菜单这两者的组合。</p>
+<p>其实核心功能有两点：
+1. 可以显示或者隐藏 Dock 图标；
+2. 可以显示或者隐藏 Menu 菜单这两者的组合。</p>
 
 <h1 id="核心步骤">核心步骤</h1>
 
@@ -370,12 +373,12 @@
 <p>普通的 Cocoa Application 创建之后，默认都是 Dock 上展示的，如果想隐藏 Dock 图标，首先它需要有这个能力，这个能力是通过 info.plist 文件中的 Key 来指定的，这个 Key 就是 <code>LSUIElement</code>，我们将其值设置为 true</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
+<pre class="chroma"><code class="language-plist" data-lang="plist"><span class="lnt">1
 </span><span class="lnt">2
-</span></pre></td>
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma">	&lt;key&gt;LSUIElement&lt;/key&gt;
-	&lt;true/&gt;</pre></td></tr></table>
+<pre class="chroma"><code class="language-plist" data-lang="plist">	&lt;key&gt;LSUIElement&lt;/key&gt;
+	&lt;true/&gt;</code></pre></td></tr></table>
 </div>
 </div>
 <p>在可视化展示 plist 的时候能看到针对该 Key 的描述是标识 Application is agent(UIElement)</p>
@@ -507,7 +510,7 @@
     <span class="n">open</span> <span class="kd">func</span> <span class="nf">setActivationPolicy</span><span class="p">(</span><span class="kc">_</span> <span class="n">activationPolicy</span><span class="p">:</span> <span class="n">NSApplication</span><span class="p">.</span><span class="n">ActivationPolicy</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span></code></pre></td></tr></table>
 </div>
 </div>
-<p>而针对 ActivationPolicy 的详细解释也可以在其头文件注释中看到，</p>
+<p>而针对 ActivationPolicy 的详细解释也可以在其头文件注释中看到不同的 activation policy 意味着什么。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
@@ -536,7 +539,7 @@
     <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
-<p>可以看到，实际上不同的 activation policy 和 Info.plist 文件中写入不同元素的效果是对等的。</p>
+<p>实际上不同的 activation policy 和 Info.plist 文件中写入不同元素的效果是对等的。regular policy 的应用就是常规引用的形式，会出现在 Dock 上，accessory policy 的应用就是指定当前应用为 agent，不再 Dock 出现。</p>
 
 <p>显示或者隐藏 Dock 的功能就可以通过切换当前的激活策略（activation policy来实现，如下代码所示：</p>
 <div class="highlight"><div class="chroma">
@@ -555,14 +558,40 @@
     <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
-<h2 id="menu-bar">menu bar</h2>
+<h2 id="menu-bar">Menu bar</h2>
+
+<p>一旦我们可以通过以上形式隐藏 Dock 图标之后，我们还需要为应用加上菜单栏按钮，具体做法是通过 <code>NSStatusItem</code> 这个类，其代表一个系统菜单栏上的条目。具体操作如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">statusItem</span> <span class="p">=</span> <span class="n">NSStatusBar</span><span class="p">.</span><span class="n">system</span><span class="p">.</span><span class="n">statusItem</span><span class="p">(</span><span class="n">withLength</span><span class="p">:</span><span class="n">NSStatusItem</span><span class="p">.</span><span class="n">squareLength</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>之后系统会在 Menu bar 上创建一个选项按钮，不过我们还需要设置该菜单选项的 UI，如下设置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="k">if</span> <span class="kd">let</span> <span class="nv">button</span> <span class="p">=</span> <span class="n">statusItem</span><span class="p">.</span><span class="n">button</span> <span class="p">{</span>
+            <span class="n">button</span><span class="p">.</span><span class="n">image</span> <span class="p">=</span> <span class="n">NSImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span><span class="n">NSImage</span><span class="p">.</span><span class="n">Name</span><span class="p">(</span><span class="s">&#34;ic_dock&#34;</span><span class="p">))</span>
+            <span class="n">button</span><span class="p">.</span><span class="n">action</span> <span class="p">=</span> <span class="k">#selector</span><span class="p">(</span><span class="n">doWhatYouWantToDo</span><span class="p">(</span><span class="kc">_</span><span class="p">:))</span>
+        <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>此时应用启动之后菜单栏就会有图标展示了，详细可以参考 Raywenderlich 家的教程，不再赘述。 [<a href="https://www.raywenderlich.com/450-menus-and-popovers-in-menu-bar-apps-for-macos">Menus and Popovers in Menu Bar Apps for macOS</a>]</p>
 
 <h1 id="参考文献">参考文献</h1>
 
 <ol>
 <li><a href="https://medium.com/@jackymelb/show-hide-dock-icon-on-macos-app-3a59f7df282d">Show/Hide dock icon on macOS App</a></li>
 <li><a href="https://developer.apple.com/documentation/appkit/nsstatusitem">NSStatusItem</a></li>
-<li></li>
+<li><a href="https://www.raywenderlich.com/450-menus-and-popovers-in-menu-bar-apps-for-macos">Menus and Popovers in Menu Bar Apps for macOS</a></li>
 </ol>
 
     </div>

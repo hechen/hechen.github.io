@@ -38,7 +38,7 @@
       
         <description>
 
-&lt;p&gt;在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。&lt;/p&gt;
+&lt;p&gt;在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。尤其是针对一些需要便捷性要求比较高的 Application， menu bar 的功能必不可少。本文主要简单介绍关键的几个操作，做个记录。&lt;/p&gt;
 
 &lt;!-- more --&gt;
 
@@ -46,7 +46,7 @@
 
 &lt;p&gt;以 &lt;a href=&#34;https://www.shimovpn.com/&#34;&gt;Shimo&lt;/a&gt; 这个 App 举例，&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/AzRwufu.png&#34; alt=&#34;Shimo&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/vT7EEVK.png&#34; alt=&#34;Shimo&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;在其设置选项卡中能看到 Show Shimo in 的选项菜单，其中有三项：&lt;/p&gt;
 
@@ -56,13 +56,16 @@
 &lt;li&gt;Menubar &amp;amp; Dock&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/zFqW0XP.png&#34; alt=&#34;Shimo Menu&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/WywIVkV.png&#34; alt=&#34;Shimo Menu&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;这也是常见的 Cocoa 应用的模式支持，很多常见的 App 都支持，比如 DayOne，Dash，Todoist 等。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/im1ziVo.png&#34; alt=&#34;Dash&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/ioUvpNw.png&#34; alt=&#34;Dash&#34; /&gt;
+&lt;img src=&#34;https://i.imgur.com/ORYAEcZ.png&#34; alt=&#34;Todoist&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;其实核心功能就是 1. 可以显示或者隐藏 Dock 图标； 2. 可以显示或者隐藏 Menu 菜单这两者的组合。&lt;/p&gt;
+&lt;p&gt;其实核心功能有两点：
+1. 可以显示或者隐藏 Dock 图标；
+2. 可以显示或者隐藏 Menu 菜单这两者的组合。&lt;/p&gt;
 
 &lt;h1 id=&#34;核心步骤&#34;&gt;核心步骤&lt;/h1&gt;
 
@@ -71,12 +74,12 @@
 &lt;p&gt;普通的 Cocoa Application 创建之后，默认都是 Dock 上展示的，如果想隐藏 Dock 图标，首先它需要有这个能力，这个能力是通过 info.plist 文件中的 Key 来指定的，这个 Key 就是 &lt;code&gt;LSUIElement&lt;/code&gt;，我们将其值设置为 true&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-plist&#34; data-lang=&#34;plist&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;	&amp;lt;key&amp;gt;LSUIElement&amp;lt;/key&amp;gt;
-	&amp;lt;true/&amp;gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-plist&#34; data-lang=&#34;plist&#34;&gt;	&amp;lt;key&amp;gt;LSUIElement&amp;lt;/key&amp;gt;
+	&amp;lt;true/&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;p&gt;在可视化展示 plist 的时候能看到针对该 Key 的描述是标识 Application is agent(UIElement)&lt;/p&gt;
@@ -208,7 +211,7 @@
     &lt;span class=&#34;n&#34;&gt;open&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;setActivationPolicy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;_&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;activationPolicy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;NSApplication&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ActivationPolicy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Bool&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;而针对 ActivationPolicy 的详细解释也可以在其头文件注释中看到，&lt;/p&gt;
+&lt;p&gt;而针对 ActivationPolicy 的详细解释也可以在其头文件注释中看到不同的 activation policy 意味着什么。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -237,7 +240,7 @@
     &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;可以看到，实际上不同的 activation policy 和 Info.plist 文件中写入不同元素的效果是对等的。&lt;/p&gt;
+&lt;p&gt;实际上不同的 activation policy 和 Info.plist 文件中写入不同元素的效果是对等的。regular policy 的应用就是常规引用的形式，会出现在 Dock 上，accessory policy 的应用就是指定当前应用为 agent，不再 Dock 出现。&lt;/p&gt;
 
 &lt;p&gt;显示或者隐藏 Dock 的功能就可以通过切换当前的激活策略（activation policy来实现，如下代码所示：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -256,14 +259,40 @@
     &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h2 id=&#34;menu-bar&#34;&gt;menu bar&lt;/h2&gt;
+&lt;h2 id=&#34;menu-bar&#34;&gt;Menu bar&lt;/h2&gt;
+
+&lt;p&gt;一旦我们可以通过以上形式隐藏 Dock 图标之后，我们还需要为应用加上菜单栏按钮，具体做法是通过 &lt;code&gt;NSStatusItem&lt;/code&gt; 这个类，其代表一个系统菜单栏上的条目。具体操作如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;statusItem&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;NSStatusBar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;system&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;statusItem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;withLength&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;NSStatusItem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;squareLength&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;之后系统会在 Menu bar 上创建一个选项按钮，不过我们还需要设置该菜单选项的 UI，如下设置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;button&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;statusItem&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;button&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;image&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;NSImage&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;named&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;NSImage&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;ic_dock&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;button&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;action&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;#selector&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;doWhatYouWantToDo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;_&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:))&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;此时应用启动之后菜单栏就会有图标展示了，详细可以参考 Raywenderlich 家的教程，不再赘述。 [&lt;a href=&#34;https://www.raywenderlich.com/450-menus-and-popovers-in-menu-bar-apps-for-macos&#34;&gt;Menus and Popovers in Menu Bar Apps for macOS&lt;/a&gt;]&lt;/p&gt;
 
 &lt;h1 id=&#34;参考文献&#34;&gt;参考文献&lt;/h1&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;https://medium.com/@jackymelb/show-hide-dock-icon-on-macos-app-3a59f7df282d&#34;&gt;Show/Hide dock icon on macOS App&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://developer.apple.com/documentation/appkit/nsstatusitem&#34;&gt;NSStatusItem&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.raywenderlich.com/450-menus-and-popovers-in-menu-bar-apps-for-macos&#34;&gt;Menus and Popovers in Menu Bar Apps for macOS&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
       
