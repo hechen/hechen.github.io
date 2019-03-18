@@ -7,7 +7,7 @@ tags: ["Dock","Cocoa", "Dockless", "Menu", "Agent"]
 ---
 
 
-在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。
+在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。尤其是针对一些需要便捷性要求比较高的 Application， menu bar 的功能必不可少。本文主要简单介绍关键的几个操作，做个记录。
 
 <!-- more -->
 
@@ -15,7 +15,7 @@ tags: ["Dock","Cocoa", "Dockless", "Menu", "Agent"]
 
 以 [Shimo](https://www.shimovpn.com/) 这个 App 举例，
 
-![Shimo](https://i.imgur.com/AzRwufu.png)
+![Shimo](https://i.imgur.com/vT7EEVK.png)
 
 在其设置选项卡中能看到 Show Shimo in 的选项菜单，其中有三项： 
 
@@ -23,16 +23,16 @@ tags: ["Dock","Cocoa", "Dockless", "Menu", "Agent"]
 2. Dock only
 3. Menubar & Dock
 
-![Shimo Menu](https://i.imgur.com/zFqW0XP.png)
+![Shimo Menu](https://i.imgur.com/WywIVkV.png)
 
 这也是常见的 Cocoa 应用的模式支持，很多常见的 App 都支持，比如 DayOne，Dash，Todoist 等。
 
-![Dash](https://i.imgur.com/im1ziVo.png)
+![Dash](https://i.imgur.com/ioUvpNw.png)
+![Todoist](https://i.imgur.com/ORYAEcZ.png)
 
-
-
-其实核心功能就是 1. 可以显示或者隐藏 Dock 图标； 2. 可以显示或者隐藏 Menu 菜单这两者的组合。
-
+其实核心功能有两点：
+1. 可以显示或者隐藏 Dock 图标； 
+2. 可以显示或者隐藏 Menu 菜单这两者的组合。
 
 # 核心步骤
 
@@ -40,7 +40,7 @@ tags: ["Dock","Cocoa", "Dockless", "Menu", "Agent"]
 
 普通的 Cocoa Application 创建之后，默认都是 Dock 上展示的，如果想隐藏 Dock 图标，首先它需要有这个能力，这个能力是通过 info.plist 文件中的 Key 来指定的，这个 Key 就是 `LSUIElement`，我们将其值设置为 true
 
-``` 
+``` plist
 	<key>LSUIElement</key>
 	<true/>
 ```
@@ -48,7 +48,6 @@ tags: ["Dock","Cocoa", "Dockless", "Menu", "Agent"]
 在可视化展示 plist 的时候能看到针对该 Key 的描述是标识 Application is agent(UIElement)
 
 ![plist](https://i.imgur.com/ef3w8TR.png)
-
 
 之后，再次打开 App，会发现 Dock 上已经看不到该应用的图标了，这就是 UIElement 的作用，其实际上就是声明我们的 Cocoa App 是 UIElement（也即 agent） application，Dock 不显示，允许有一定的用户界面。在方法 `TransformProcessType` 的头文件中能看到 Cocoa Application 的几种常见类型：
 
@@ -121,9 +120,7 @@ func toggleDock(show: Bool) -> Bool {
 
 ```
 
-而针对 ActivationPolicy 的详细解释也可以在其头文件注释中看到，
-
-
+而针对 ActivationPolicy 的详细解释也可以在其头文件注释中看到不同的 activation policy 意味着什么。
 
 ``` Swift
    /* The following activation policies control whether and how an application may be activated.  They are determined by the Info.plist. */
@@ -139,13 +136,9 @@ func toggleDock(show: Bool) -> Bool {
     }
 ```
 
-可以看到，实际上不同的 activation policy 和 Info.plist 文件中写入不同元素的效果是对等的。
-
-
-
+实际上不同的 activation policy 和 Info.plist 文件中写入不同元素的效果是对等的。regular policy 的应用就是常规引用的形式，会出现在 Dock 上，accessory policy 的应用就是指定当前应用为 agent，不再 Dock 出现。
 
 显示或者隐藏 Dock 的功能就可以通过切换当前的激活策略（activation policy来实现，如下代码所示：
-
 
 ``` Swift
 func toggleDock2(show: Bool) -> Bool {
@@ -155,12 +148,30 @@ func toggleDock2(show: Bool) -> Bool {
     }
 ```
 
+## Menu bar
 
-## menu bar
+一旦我们可以通过以上形式隐藏 Dock 图标之后，我们还需要为应用加上菜单栏按钮，具体做法是通过 `NSStatusItem` 这个类，其代表一个系统菜单栏上的条目。具体操作如下：
+
+
+
+``` Swift
+let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
+```
+
+之后系统会在 Menu bar 上创建一个选项按钮，不过我们还需要设置该菜单选项的 UI，如下设置：
+
+``` Swift
+if let button = statusItem.button {
+            button.image = NSImage(named:NSImage.Name("ic_dock"))
+            button.action = #selector(doWhatYouWantToDo(_:))
+        }
+```
+
+此时应用启动之后菜单栏就会有图标展示了，详细可以参考 Raywenderlich 家的教程，不再赘述。 [[Menus and Popovers in Menu Bar Apps for macOS](https://www.raywenderlich.com/450-menus-and-popovers-in-menu-bar-apps-for-macos)]
 
 
 # 参考文献
 
 1. [Show/Hide dock icon on macOS App](https://medium.com/@jackymelb/show-hide-dock-icon-on-macos-app-3a59f7df282d)
 2. [NSStatusItem](https://developer.apple.com/documentation/appkit/nsstatusitem)
-3. 
+3. [Menus and Popovers in Menu Bar Apps for macOS](https://www.raywenderlich.com/450-menus-and-popovers-in-menu-bar-apps-for-macos)
