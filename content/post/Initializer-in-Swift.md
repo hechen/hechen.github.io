@@ -15,7 +15,6 @@ tags: ["iOS","Swift","Initializer","Designated Initializer","Convenience Initial
 
 ### 初始化方法
 
-
 顺序很重要！
 
 与 `Objective-C` 中不同，Swift 语言会保证某个类的所有属性均被初始化才行。因此初始化方法会非常严格，那第一点需要保障的就是**顺序**。

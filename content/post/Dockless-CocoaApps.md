@@ -152,8 +152,6 @@ func toggleDock2(show: Bool) -> Bool {
 
 一旦我们可以通过以上形式隐藏 Dock 图标之后，我们还需要为应用加上菜单栏按钮，具体做法是通过 `NSStatusItem` 这个类，其代表一个系统菜单栏上的条目。具体操作如下：
 
-
-
 ``` Swift
 let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
 ```
@@ -169,9 +167,11 @@ if let button = statusItem.button {
 
 此时应用启动之后菜单栏就会有图标展示了，详细可以参考 Raywenderlich 家的教程，不再赘述。 [[Menus and Popovers in Menu Bar Apps for macOS](https://www.raywenderlich.com/450-menus-and-popovers-in-menu-bar-apps-for-macos)]
 
+有个关于菜单栏按钮的库 [CCNStatusItem](https://github.com/phranck/CCNStatusItem) 提供了比较完整的需求，包括支持 menu 按钮定制，点击弹窗以及 Dragging and Drop 等支持。 不过该库已经很久没有维护了，仅做参考吧。
 
 # 参考文献
 
 1. [Show/Hide dock icon on macOS App](https://medium.com/@jackymelb/show-hide-dock-icon-on-macos-app-3a59f7df282d)
 2. [NSStatusItem](https://developer.apple.com/documentation/appkit/nsstatusitem)
 3. [Menus and Popovers in Menu Bar Apps for macOS](https://www.raywenderlich.com/450-menus-and-popovers-in-menu-bar-apps-for-macos)
+4. [CCNStatusItem](https://github.com/phranck/CCNStatusItem)

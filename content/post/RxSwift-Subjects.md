@@ -30,7 +30,7 @@ PublishSubject 只给订阅者发送新元素，也就是订阅者只能接受�
 
 BehaviorSubject 会在订阅者订阅之后发送最新的一个信号元素，自然需要你在初始化该对象的时候给其设定初始化值（否则对于第一次订阅的观测者来说，哪来的最新发射的元素呢？）。如果初始化的时候无法提供默认值，那可能你就需要用到上面的 PublishSubject 了。其中常用的 Variable 和 BehaviorRelay 都是对其的封装。
 
-![CleanShot 2019-02-26 at 09.41.41@2x](https://i.imgur.com/ei6pCwT.png)
+![BehaviorSubject](https://i.imgur.com/ei6pCwT.png)
 
 从图中可以看到和上方 Publish 区别的是其在观测者订阅之后会收到最新的最后一个信号。
 
@@ -66,7 +66,7 @@ print(variable.value)
 `Variable` is planned for future deprecation. Please consider `BehaviorRelay` as a replacement. Read more at: https://git.io/vNqvx
 ```
 
-目前官方给出的推荐使用时 BehaviorRelay，详细解释如下：
+目前官方给出的推荐是使用 BehaviorRelay，详细解释如下：
 
 ``` Comments
 /// Current recommended replacement for this API is `RxCocoa.BehaviorRelay` because:
