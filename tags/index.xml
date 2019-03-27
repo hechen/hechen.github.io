@@ -6,19 +6,10 @@
     <description>Recent content in Tags on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 26 Nov 2018 14:59:50 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 13 Mar 2019 17:29:54 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>2do</title>
-      <link>https://hechen.xyz/tags/2do/</link>
-      <pubDate>Mon, 26 Nov 2018 14:59:50 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/2do/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>Agent</title>
@@ -30,128 +21,11 @@
     </item>
     
     <item>
-      <title>Algorithm</title>
-      <link>https://hechen.xyz/tags/algorithm/</link>
-      <pubDate>Fri, 21 Aug 2015 09:14:17 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/algorithm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Animation</title>
-      <link>https://hechen.xyz/tags/animation/</link>
-      <pubDate>Wed, 02 Dec 2015 18:53:51 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/animation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>App</title>
-      <link>https://hechen.xyz/tags/app/</link>
-      <pubDate>Wed, 11 Jul 2018 12:58:37 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/app/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Array</title>
-      <link>https://hechen.xyz/tags/array/</link>
-      <pubDate>Wed, 29 Apr 2015 13:15:00 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/array/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Backgroundcolor</title>
-      <link>https://hechen.xyz/tags/backgroundcolor/</link>
-      <pubDate>Mon, 11 Mar 2019 15:19:49 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/backgroundcolor/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Bookmark</title>
-      <link>https://hechen.xyz/tags/bookmark/</link>
-      <pubDate>Mon, 26 Nov 2018 14:59:50 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/bookmark/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43;11</title>
-      <link>https://hechen.xyz/tags/c&#43;&#43;11/</link>
-      <pubDate>Wed, 29 Apr 2015 11:57:00 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/c&#43;&#43;11/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Carthage</title>
-      <link>https://hechen.xyz/tags/carthage/</link>
-      <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/carthage/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Category</title>
-      <link>https://hechen.xyz/tags/category/</link>
-      <pubDate>Mon, 14 Sep 2015 15:36:07 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/category/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Closure</title>
-      <link>https://hechen.xyz/tags/closure/</link>
-      <pubDate>Sun, 12 Nov 2017 20:56:50 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/closure/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Cocoa</title>
       <link>https://hechen.xyz/tags/cocoa/</link>
       <pubDate>Wed, 13 Mar 2019 17:29:54 +0800</pubDate>
       
       <guid>https://hechen.xyz/tags/cocoa/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Cocoapods</title>
-      <link>https://hechen.xyz/tags/cocoapods/</link>
-      <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/cocoapods/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Compiler</title>
-      <link>https://hechen.xyz/tags/compiler/</link>
-      <pubDate>Tue, 10 Jul 2018 12:05:58 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/compiler/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Devonthink</title>
-      <link>https://hechen.xyz/tags/devonthink/</link>
-      <pubDate>Tue, 16 Oct 2018 17:01:44 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/devonthink/</guid>
       <description></description>
     </item>
     
@@ -174,6 +48,15 @@
     </item>
     
     <item>
+      <title>Menu</title>
+      <link>https://hechen.xyz/tags/menu/</link>
+      <pubDate>Wed, 13 Mar 2019 17:29:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/menu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Evernote</title>
       <link>https://hechen.xyz/tags/evernote/</link>
       <pubDate>Wed, 13 Mar 2019 00:30:49 +0800</pubDate>
@@ -183,11 +66,128 @@
     </item>
     
     <item>
-      <title>Garbage Collection</title>
-      <link>https://hechen.xyz/tags/garbage-collection/</link>
-      <pubDate>Sun, 12 Feb 2017 16:38:24 +0000</pubDate>
+      <title>macOS</title>
+      <link>https://hechen.xyz/tags/macos/</link>
+      <pubDate>Wed, 13 Mar 2019 00:30:49 +0800</pubDate>
       
-      <guid>https://hechen.xyz/tags/garbage-collection/</guid>
+      <guid>https://hechen.xyz/tags/macos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>印象笔记</title>
+      <link>https://hechen.xyz/tags/%E5%8D%B0%E8%B1%A1%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 13 Mar 2019 00:30:49 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/%E5%8D%B0%E8%B1%A1%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NSView</title>
+      <link>https://hechen.xyz/tags/nsview/</link>
+      <pubDate>Mon, 11 Mar 2019 15:19:49 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/nsview/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>backgroundColor</title>
+      <link>https://hechen.xyz/tags/backgroundcolor/</link>
+      <pubDate>Mon, 11 Mar 2019 15:19:49 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/backgroundcolor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Subject</title>
+      <link>https://hechen.xyz/tags/subject/</link>
+      <pubDate>Tue, 26 Feb 2019 10:24:38 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/subject/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Variable</title>
+      <link>https://hechen.xyz/tags/variable/</link>
+      <pubDate>Tue, 26 Feb 2019 10:24:38 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/variable/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sandbox</title>
+      <link>https://hechen.xyz/tags/sandbox/</link>
+      <pubDate>Thu, 21 Feb 2019 23:25:38 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/sandbox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Safari</title>
+      <link>https://hechen.xyz/tags/safari/</link>
+      <pubDate>Mon, 28 Jan 2019 17:51:35 +0000</pubDate>
+      
+      <guid>https://hechen.xyz/tags/safari/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shadowsocks</title>
+      <link>https://hechen.xyz/tags/shadowsocks/</link>
+      <pubDate>Mon, 28 Jan 2019 17:51:35 +0000</pubDate>
+      
+      <guid>https://hechen.xyz/tags/shadowsocks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Traffic</title>
+      <link>https://hechen.xyz/tags/traffic/</link>
+      <pubDate>Mon, 28 Jan 2019 17:51:35 +0000</pubDate>
+      
+      <guid>https://hechen.xyz/tags/traffic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CocoaPods</title>
+      <link>https://hechen.xyz/tags/cocoapods/</link>
+      <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
+      
+      <guid>https://hechen.xyz/tags/cocoapods/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Module</title>
+      <link>https://hechen.xyz/tags/module/</link>
+      <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
+      
+      <guid>https://hechen.xyz/tags/module/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Swift</title>
+      <link>https://hechen.xyz/tags/swift/</link>
+      <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
+      
+      <guid>https://hechen.xyz/tags/swift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Keychain</title>
+      <link>https://hechen.xyz/tags/keychain/</link>
+      <pubDate>Fri, 21 Dec 2018 14:30:50 +0000</pubDate>
+      
+      <guid>https://hechen.xyz/tags/keychain/</guid>
       <description></description>
     </item>
     

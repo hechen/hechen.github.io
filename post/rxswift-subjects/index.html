@@ -133,13 +133,6 @@
             <a class="menu-item-link" href="https://hechen.xyz/categories/">Categories</a>
           
         
-      </li><li class="mobile-menu-item">
-        
-          
-          
-            <a class="menu-item-link" href="https://hechen.xyz/about/">About</a>
-          
-        
       </li>
     
   </ul>
@@ -265,17 +258,6 @@
 
       </li>
     
-        <li class="menu-item">
-        
-          
-          
-            <a class="menu-item-link" href="https://hechen.xyz/about/">About</a>
-          
-
-        
-
-      </li>
-    
     
   </ul>
 </nav>
@@ -364,7 +346,7 @@
 
 <p>BehaviorSubject 会在订阅者订阅之后发送最新的一个信号元素，自然需要你在初始化该对象的时候给其设定初始化值（否则对于第一次订阅的观测者来说，哪来的最新发射的元素呢？）。如果初始化的时候无法提供默认值，那可能你就需要用到上面的 PublishSubject 了。其中常用的 Variable 和 BehaviorRelay 都是对其的封装。</p>
 
-<p><img src="https://i.imgur.com/ei6pCwT.png" alt="CleanShot 2019-02-26 at 09.41.41@2x" /></p>
+<p><img src="https://i.imgur.com/ei6pCwT.png" alt="BehaviorSubject" /></p>
 
 <p>从图中可以看到和上方 Publish 区别的是其在观测者订阅之后会收到最新的最后一个信号。</p>
 
@@ -413,7 +395,7 @@
 <pre class="chroma">`Variable` is planned for future deprecation. Please consider `BehaviorRelay` as a replacement. Read more at: https://git.io/vNqvx</pre></td></tr></table>
 </div>
 </div>
-<p>目前官方给出的推荐使用时 BehaviorRelay，详细解释如下：</p>
+<p>目前官方给出的推荐是使用 BehaviorRelay，详细解释如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-Comments" data-lang="Comments"><span class="lnt">1
