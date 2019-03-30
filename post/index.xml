@@ -6,10 +6,19 @@
     <description>Recent content in Posts on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 13 Mar 2019 17:29:54 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Mar 2019 11:29:54 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>写个小工具 Swwwitch</title>
+      <link>https://hechen.xyz/post/swwwitch/</link>
+      <pubDate>Sat, 30 Mar 2019 11:29:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/swwwitch/</guid>
+      <description>最近追热点 😂 ，做了个小工具。一键切换功能开发，现在只包含了两个开关：切换系统主题和隐藏桌面 icon 的功能。其实，从我个人而言，有 Alfred 以及 LaunchBar 这些工具在</description>
+    </item>
     
     <item>
       <title>Mac 平台上那些 Dockless 的 App 都是如何实现的？</title>
@@ -180,15 +189,6 @@
       
       <guid>https://hechen.xyz/post/handling-non-optional-optionals-in-swift/</guid>
       <description>可选值（optionals）无可争议的是 swift 语言中最重要的特性之一，也是和其他语言，例如 Objective-C 的最大区别。通过强制处理那些有可能出现 nil 的地方，我们</description>
-    </item>
-    
-    <item>
-      <title>理解响应者和响应链</title>
-      <link>https://hechen.xyz/post/understanding-responders-and-the-responder-chain/</link>
-      <pubDate>Mon, 13 Nov 2017 21:22:44 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/understanding-responders-and-the-responder-chain/</guid>
-      <description>Apps 是通过响应者（responder）对象来接收和处理事件的。一个响应者对象是 UIResponder 类的一个实例，我们常见的 UIView，UIViewContro</description>
     </item>
     
   </channel>

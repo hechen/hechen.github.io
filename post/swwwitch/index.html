@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Mac 平台上那些 Dockless 的 App 都是如何实现的？ - I make stuff</title>
+  <title>写个小工具 Swwwitch - I make stuff</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="chen" />
-  <meta name="description" content="在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。尤其是针对一些需要便" />
+  <meta name="description" content="最近追热点 😂 ，做了个小工具。一键切换功能开发，现在只包含了两个开关：切换系统主题和隐藏桌面 icon 的功能。其实，从我个人而言，有 Alfred 以及 LaunchBar 这些工具在" />
 
   <meta name="keywords" content="Chen, iOS, Swift, Productivity" />
 
@@ -35,7 +35,7 @@
 <meta name="generator" content="Hugo 0.55.0-DEV" />
 
 
-<link rel="canonical" href="https://hechen.xyz/post/dockless-cocoaapps/" />
+<link rel="canonical" href="https://hechen.xyz/post/swwwitch/" />
 
 
 
@@ -57,27 +57,27 @@
 
 
 
-<meta property="og:title" content="Mac 平台上那些 Dockless 的 App 都是如何实现的？" />
-<meta property="og:description" content="在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。尤其是针对一些需要便" />
+<meta property="og:title" content="写个小工具 Swwwitch" />
+<meta property="og:description" content="最近追热点 😂 ，做了个小工具。一键切换功能开发，现在只包含了两个开关：切换系统主题和隐藏桌面 icon 的功能。其实，从我个人而言，有 Alfred 以及 LaunchBar 这些工具在" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://hechen.xyz/post/dockless-cocoaapps/" />
-<meta property="article:published_time" content="2019-03-13T17:29:54&#43;08:00"/>
-<meta property="article:modified_time" content="2019-03-15T11:01:23&#43;08:00"/>
+<meta property="og:url" content="https://hechen.xyz/post/swwwitch/" />
+<meta property="article:published_time" content="2019-03-30T11:29:54&#43;08:00"/>
+<meta property="article:modified_time" content="2019-03-30T11:29:54&#43;08:00"/>
 
-<meta itemprop="name" content="Mac 平台上那些 Dockless 的 App 都是如何实现的？">
-<meta itemprop="description" content="在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。尤其是针对一些需要便">
-
-
-<meta itemprop="datePublished" content="2019-03-13T17:29:54&#43;08:00" />
-<meta itemprop="dateModified" content="2019-03-15T11:01:23&#43;08:00" />
-<meta itemprop="wordCount" content="1715">
+<meta itemprop="name" content="写个小工具 Swwwitch">
+<meta itemprop="description" content="最近追热点 😂 ，做了个小工具。一键切换功能开发，现在只包含了两个开关：切换系统主题和隐藏桌面 icon 的功能。其实，从我个人而言，有 Alfred 以及 LaunchBar 这些工具在">
 
 
+<meta itemprop="datePublished" content="2019-03-30T11:29:54&#43;08:00" />
+<meta itemprop="dateModified" content="2019-03-30T11:29:54&#43;08:00" />
+<meta itemprop="wordCount" content="390">
 
-<meta itemprop="keywords" content="Dock,Cocoa,Dockless,Menu,Agent," />
+
+
+<meta itemprop="keywords" content="Menu,AppleScript,NSTask,Process," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Mac 平台上那些 Dockless 的 App 都是如何实现的？"/>
-<meta name="twitter:description" content="在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。尤其是针对一些需要便"/>
+<meta name="twitter:title" content="写个小工具 Swwwitch"/>
+<meta name="twitter:description" content="最近追热点 😂 ，做了个小工具。一键切换功能开发，现在只包含了两个开关：切换系统主题和隐藏桌面 icon 的功能。其实，从我个人而言，有 Alfred 以及 LaunchBar 这些工具在"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -271,11 +271,11 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">Mac 平台上那些 Dockless 的 App 都是如何实现的？</h1>
+      <h1 class="post-title">写个小工具 Swwwitch</h1>
       
       <div class="post-meta">
-        <time datetime="2019-03-13" class="post-time">
-          2019-03-13
+        <time datetime="2019-03-30" class="post-time">
+          2019-03-30
         </time>
         <div class="post-category">
             <a href="https://hechen.xyz/categories/macos/"> macOS </a>
@@ -288,7 +288,7 @@
 
         
         
-          <span id="/post/dockless-cocoaapps/" class="leancloud_visitors" data-flag-title="Mac 平台上那些 Dockless 的 App 都是如何实现的？">
+          <span id="/post/swwwitch/" class="leancloud_visitors" data-flag-title="写个小工具 Swwwitch">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -303,13 +303,16 @@
   <div class="post-toc-content">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#介绍">介绍</a></li>
-<li><a href="#核心步骤">核心步骤</a>
+<li>
 <ul>
-<li><a href="#dock">Dock</a></li>
-<li><a href="#menu-bar">Menu bar</a></li>
+<li><a href="#功能点">功能点</a>
+<ul>
+<li><a href="#系统主题切换">系统主题切换</a></li>
+<li><a href="#显式-隐藏桌面图标">显式/隐藏桌面图标</a></li>
 </ul></li>
-<li><a href="#参考文献">参考文献</a></li>
+<li><a href="#todo">TODO</a></li>
+<li><a href="#links">Links</a></li>
+</ul></li>
 </ul>
 </nav>
   </div>
@@ -319,265 +322,74 @@
     <div class="post-content">
       
 
-<p>在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。尤其是针对一些需要便捷性要求比较高的 Application， menu bar 的功能必不可少。本文主要简单介绍关键的几个操作，做个记录。</p>
+<p>最近追热点 😂 ，做了个小工具。一键切换功能开发，现在只包含了两个开关：切换系统主题和隐藏桌面 icon 的功能。其实，从我个人而言，有 Alfred 以及 LaunchBar 这些工具在手，这种工具存在意义并不大，而且只有支持了全局快捷键设置我才觉得对小小白用户才有意义。这次权当练手。</p>
 
 <!-- more -->
 
-<h1 id="介绍">介绍</h1>
+<p><img src="https://i.imgur.com/MONjw0M.png" alt="Swwwitch-c500" /></p>
 
-<p>以 <a href="https://www.shimovpn.com/">Shimo</a> 这个 App 举例，</p>
-
-<p><img src="https://i.imgur.com/vT7EEVK.png" alt="Shimo" /></p>
-
-<p>在其设置选项卡中能看到 Show Shimo in 的选项菜单，其中有三项：</p>
+<h2 id="功能点">功能点</h2>
 
 <ol>
-<li>Menubar only</li>
-<li>Dock only</li>
-<li>Menubar &amp; Dock</li>
+<li>切换系统主题</li>
+<li>显式或者印象桌面图标</li>
+<li>完全的 Menu Only 应用</li>
 </ol>
 
-<p><img src="https://i.imgur.com/WywIVkV.png" alt="Shimo Menu" /></p>
+<p>关于第三点的实现在<a href="https://hechen.xyz/post/dockless-cocoaapps/">另外一篇文章</a>有写过。</p>
 
-<p>这也是常见的 Cocoa 应用的模式支持，很多常见的 App 都支持，比如 DayOne，Dash，Todoist 等。</p>
+<h3 id="系统主题切换">系统主题切换</h3>
 
-<p><img src="https://i.imgur.com/ioUvpNw.png" alt="Dash" />
-<img src="https://i.imgur.com/ORYAEcZ.png" alt="Todoist" /></p>
-
-<p>其实核心功能有两点：
-1. 可以显示或者隐藏 Dock 图标；
-2. 可以显示或者隐藏 Menu 菜单这两者的组合。</p>
-
-<h1 id="核心步骤">核心步骤</h1>
-
-<h2 id="dock">Dock</h2>
-
-<p>普通的 Cocoa Application 创建之后，默认都是 Dock 上展示的，如果想隐藏 Dock 图标，首先它需要有这个能力，这个能力是通过 info.plist 文件中的 Key 来指定的，这个 Key 就是 <code>LSUIElement</code>，我们将其值设置为 true</p>
+<p>关于系统主题切换主要是基于 AppleScript 所写，</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-plist" data-lang="plist"><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-plist" data-lang="plist">	&lt;key&gt;LSUIElement&lt;/key&gt;
-	&lt;true/&gt;</code></pre></td></tr></table>
-</div>
-</div>
-<p>在可视化展示 plist 的时候能看到针对该 Key 的描述是标识 Application is agent(UIElement)</p>
-
-<p><img src="https://i.imgur.com/ef3w8TR.png" alt="plist" /></p>
-
-<p>之后，再次打开 App，会发现 Dock 上已经看不到该应用的图标了，这就是 UIElement 的作用，其实际上就是声明我们的 Cocoa App 是 UIElement（也即 agent） application，Dock 不显示，允许有一定的用户界面。在方法 <code>TransformProcessType</code> 的头文件中能看到 Cocoa Application 的几种常见类型：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="cm">/*
-</span><span class="cm"> *  TransformProcessType()
-</span><span class="cm"> *  
-</span><span class="cm"> *  Summary:
-</span><span class="cm"> *    Changes the &#39;type&#39; of the process specified in the psn parameter.
-</span><span class="cm"> *     The type is specified in the transformState parameter.
-</span><span class="cm"> *  
-</span><span class="cm"> *  Discussion:
-</span><span class="cm"> *    Given a psn for an application, this call transforms that
-</span><span class="cm"> *    application into the given type.  Foreground applications have a
-</span><span class="cm"> *    menu bar and appear in the Dock.  Background applications do not
-</span><span class="cm"> *    appear in the Dock, do not have a menu bar ( and should not have
-</span><span class="cm"> *    windows or other user interface ).  UIElement applications do not
-</span><span class="cm"> *    have a menu bar, do not appear in the dock, but may in limited
-</span><span class="cm"> *    circumstances present windows and user interface. If a foreground
-</span><span class="cm"> *    application is frontmost when transformed into a background
-</span><span class="cm"> *    application, it is first hidden and another application is made
-</span><span class="cm"> *    frontmost.  A UIElement or background-only application which is
-</span><span class="cm"> *    transformed into a foreground application is not brought to the
-</span><span class="cm"> *    front (use SetFrontProcess() after the transform if this is
-</span><span class="cm"> *    required) nor will it be shown if it is hidden ( even if hidden
-</span><span class="cm"> *    automatically by being transformed into a background-only
-</span><span class="cm"> *    application ), so the caller should use ShowHideProcess() to show
-</span><span class="cm"> *    the application after it is transformed into a foreground
-</span><span class="cm"> *    application. Applications can only transform themselves; this
-</span><span class="cm"> *    call cannot change the type of another application.
-</span><span class="cm">
-</span><span class="cm">extern OSStatus 
-</span><span class="cm">TransformProcessType(
-</span><span class="cm">  const ProcessSerialNumber *        psn,
-</span><span class="cm">  ProcessApplicationTransformState   transformState)          AVAILABLE_MAC_OS_X_VERSION_10_3_AND_LATER;  </span></code></pre></td></tr></table>
-</div>
-</div>
-<p>上方的注释写的非常清楚，我们日常的 Cocoa Application 主要包含三种类型：</p>
-
-<ol>
-<li>Foreground applications， 拥有一个 menu bar，并且会在 Dock 上出现；</li>
-<li>Background applications，Dock 上不存在并且没有 menu bar，并且不应该存在任何 UI 交互界面（建议）</li>
-<li>UIElement applications 有和 Background applications 相同的情况，但是允许在某些情况下展示用户界面。</li>
-</ol>
-
-<p>那上方这个方法 <code>TransformProcessType</code> 就是进行这几种模式切换的。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">toggleDock</span><span class="p">(</span><span class="n">show</span><span class="p">:</span> <span class="nb">Bool</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
-
-    <span class="c1">// ProcessApplicationTransformState</span>
-    <span class="kd">let</span> <span class="nv">transformState</span> <span class="p">=</span> <span class="n">show</span> <span class="p">?</span> 
-    <span class="c1">// show to foreground application </span>
-    <span class="c1">// or not show to background application</span>
-        <span class="n">ProcessApplicationTransformState</span><span class="p">(</span><span class="n">kProcessTransformToForegroundApplication</span><span class="p">)</span> 
-    <span class="p">:</span> <span class="n">ProcessApplicationTransformState</span><span class="p">(</span><span class="n">kProcessTransformToUIElementApplication</span><span class="p">)</span>
-
-    <span class="c1">// transform current application type.</span>
-    <span class="kd">var</span> <span class="nv">psn</span> <span class="p">=</span> <span class="n">ProcessSerialNumber</span><span class="p">(</span><span class="n">highLongOfPSN</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">lowLongOfPSN</span><span class="p">:</span> <span class="nb">UInt32</span><span class="p">(</span><span class="n">kCurrentProcess</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">TransformProcessType</span><span class="p">(&amp;</span><span class="n">psn</span><span class="p">,</span> <span class="n">transformState</span><span class="p">)</span> <span class="p">==</span> <span class="mi">0</span>
-<span class="p">}</span></code></pre></td></tr></table>
-</div>
-</div>
-<p>这里实际上还有一种方案也是很多开发者选用的方案，通过指定 App 的<code>ActivationPolicy</code>来实现的，核心的 API 是 <code>setActivationPolicy</code>:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift">    <span class="cm">/* Attempts to modify the application&#39;s activation policy.  In OS X 10.9, any policy may be set; prior to 10.9, the activation policy may be changed to NSApplicationActivationPolicyProhibited or NSApplicationActivationPolicyRegular, but may not be changed to NSApplicationActivationPolicyAccessory.  This returns YES if setting the activation policy is successful, and NO if not.
-</span><span class="cm">     */</span>
-    <span class="p">@</span><span class="n">available</span><span class="p">(</span><span class="n">OSX</span> <span class="mf">10.6</span><span class="p">,</span> <span class="o">*</span><span class="p">)</span>
-    <span class="n">open</span> <span class="kd">func</span> <span class="nf">setActivationPolicy</span><span class="p">(</span><span class="kc">_</span> <span class="n">activationPolicy</span><span class="p">:</span> <span class="n">NSApplication</span><span class="p">.</span><span class="n">ActivationPolicy</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span></code></pre></td></tr></table>
-</div>
-</div>
-<p>而针对 ActivationPolicy 的详细解释也可以在其头文件注释中看到不同的 activation policy 意味着什么。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift">   <span class="cm">/* The following activation policies control whether and how an application may be activated.  They are determined by the Info.plist. */</span>
-    <span class="kd">public</span> <span class="kd">enum</span> <span class="nc">ActivationPolicy</span> <span class="p">:</span> <span class="nb">Int</span> <span class="p">{</span>
-        <span class="cm">/* The application is an ordinary app that appears in the Dock and may have a user interface.  This is the default for bundled apps, unless overridden in the Info.plist. */</span>
-        <span class="k">case</span> <span class="n">regular</span>
-
-        <span class="cm">/* The application does not appear in the Dock and does not have a menu bar, but it may be activated programmatically or by clicking on one of its windows.  This corresponds to LSUIElement=1 in the Info.plist. */</span>
-        <span class="k">case</span> <span class="n">accessory</span>
-        
-        <span class="cm">/* The application does not appear in the Dock and may not create windows or be activated.  This corresponds to LSBackgroundOnly=1 in the Info.plist.  This is also the default for unbundled executables that do not have Info.plists. */</span>
-        <span class="k">case</span> <span class="n">prohibited</span>
-    <span class="p">}</span></code></pre></td></tr></table>
-</div>
-</div>
-<p>实际上不同的 activation policy 和 Info.plist 文件中写入不同元素的效果是对等的。regular policy 的应用就是常规引用的形式，会出现在 Dock 上，accessory policy 的应用就是指定当前应用为 agent，不再 Dock 出现。</p>
-
-<p>显示或者隐藏 Dock 的功能就可以通过切换当前的激活策略（activation policy来实现，如下代码所示：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+<pre class="chroma"><code class="language-AppleScript" data-lang="AppleScript"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">toggleDock2</span><span class="p">(</span><span class="n">show</span><span class="p">:</span> <span class="nb">Bool</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="nb">Bool</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">show</span> <span class="p">?</span>
-               <span class="n">NSApp</span><span class="p">.</span><span class="n">setActivationPolicy</span><span class="p">(.</span><span class="n">regular</span><span class="p">)</span>
-             <span class="p">:</span> <span class="n">NSApp</span><span class="p">.</span><span class="n">setActivationPolicy</span><span class="p">(.</span><span class="n">accessory</span><span class="p">)</span>
-    <span class="p">}</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-AppleScript" data-lang="AppleScript"><span class="k">tell</span> <span class="nb">application</span> <span class="s2">&#34;System Events&#34;</span>
+	<span class="k">tell</span> <span class="nv">appearance</span> <span class="nv">preferences</span>
+		<span class="k">set</span> <span class="nv">dark</span> <span class="nv">mode</span> <span class="k">to</span> <span class="ow">not</span> <span class="nv">dark</span> <span class="nv">mode</span>
+	<span class="k">end</span> <span class="k">tell</span>
+<span class="k">end</span> <span class="k">tell</span></code></pre></td></tr></table>
 </div>
 </div>
-<h2 id="menu-bar">Menu bar</h2>
+<p>你完全可以自行执行这段 Apple Script 来切换主题，你可以点击下面链接尝试。</p>
 
-<p>一旦我们可以通过以上形式隐藏 Dock 图标之后，我们还需要为应用加上菜单栏按钮，具体做法是通过 <code>NSStatusItem</code> 这个类，其代表一个系统菜单栏上的条目。具体操作如下：</p>
+<p><a href="applescript://com.apple.scripteditor?action=new&amp;name=Change%20Theme&amp;script=tell%20application%20%22System%20Events%22%0D%09tell%20appearance%20preferences%0D%09%09set%20dark%20mode%20to%20not%20dark%20mode%0D%09end%20tell%0Dend%20tell">Click Here to run</a></p>
+
+<h3 id="显式-隐藏桌面图标">显式/隐藏桌面图标</h3>
+
+<p>关于隐藏桌面图标，实际上是执行系统的 Command 来实现的，Cocoa 应用可以显式使用 Process（也就是 NSTask）来执行任务，我们也是通过 NSTask 执行了一段如下的命令行达到的目的：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">statusItem</span> <span class="p">=</span> <span class="n">NSStatusBar</span><span class="p">.</span><span class="n">system</span><span class="p">.</span><span class="n">statusItem</span><span class="p">(</span><span class="n">withLength</span><span class="p">:</span><span class="n">NSStatusItem</span><span class="p">.</span><span class="n">squareLength</span><span class="p">)</span></code></pre></td></tr></table>
-</div>
-</div>
-<p>之后系统会在 Menu bar 上创建一个选项按钮，不过我们还需要设置该菜单选项的 UI，如下设置：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+<pre class="chroma"><code class="language-Shell" data-lang="Shell"><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="k">if</span> <span class="kd">let</span> <span class="nv">button</span> <span class="p">=</span> <span class="n">statusItem</span><span class="p">.</span><span class="n">button</span> <span class="p">{</span>
-            <span class="n">button</span><span class="p">.</span><span class="n">image</span> <span class="p">=</span> <span class="n">NSImage</span><span class="p">(</span><span class="n">named</span><span class="p">:</span><span class="n">NSImage</span><span class="p">.</span><span class="n">Name</span><span class="p">(</span><span class="s">&#34;ic_dock&#34;</span><span class="p">))</span>
-            <span class="n">button</span><span class="p">.</span><span class="n">action</span> <span class="p">=</span> <span class="k">#selector</span><span class="p">(</span><span class="n">doWhatYouWantToDo</span><span class="p">(</span><span class="kc">_</span><span class="p">:))</span>
-        <span class="p">}</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-Shell" data-lang="Shell">defaults write com.apple.finder CreateDesktop <span class="nb">false</span>
+killall Finder</code></pre></td></tr></table>
 </div>
 </div>
-<p>此时应用启动之后菜单栏就会有图标展示了，详细可以参考 Raywenderlich 家的教程，不再赘述。 [<a href="https://www.raywenderlich.com/450-menus-and-popovers-in-menu-bar-apps-for-macos">Menus and Popovers in Menu Bar Apps for macOS</a>]</p>
+<p>你可以自行点击以下链接尝试。</p>
 
-<p>有个关于菜单栏按钮的库 <a href="https://github.com/phranck/CCNStatusItem">CCNStatusItem</a> 提供了比较完整的需求，包括支持 menu 按钮定制，点击弹窗以及 Dragging and Drop 等支持。 不过该库已经很久没有维护了，仅做参考吧。</p>
+<p><a href="applescript://com.apple.scripteditor?action=new&amp;name=Hide%20Desktop%20Icons&amp;script=tell%20application%20%22Terminal%22%0D%20%20%20%20do%20script%20%22defaults%20write%20com.apple.finder%20CreateDesktop%20false%3b%20killall%20Finder%22%0Dend%20tell">Click here to hide Desktop Icons</a></p>
 
-<h1 id="参考文献">参考文献</h1>
+<p><a href="applescript://com.apple.scripteditor?action=new&amp;name=Hide%20Desktop%20Icons&amp;script=tell%20application%20%22Terminal%22%0D%20%20%20%20do%20script%20%22defaults%20write%20com.apple.finder%20CreateDesktop%20true%3b%20killall%20Finder%22%0Dend%20tell">Click here to show Desktop Icons</a></p>
+
+<h2 id="todo">TODO</h2>
 
 <ol>
-<li><a href="https://medium.com/@jackymelb/show-hide-dock-icon-on-macos-app-3a59f7df282d">Show/Hide dock icon on macOS App</a></li>
-<li><a href="https://developer.apple.com/documentation/appkit/nsstatusitem">NSStatusItem</a></li>
-<li><a href="https://www.raywenderlich.com/450-menus-and-popovers-in-menu-bar-apps-for-macos">Menus and Popovers in Menu Bar Apps for macOS</a></li>
-<li><a href="https://github.com/phranck/CCNStatusItem">CCNStatusItem</a></li>
+<li>Add more switch</li>
+<li>Add User-Customized switch setting</li>
 </ol>
+
+<h2 id="links">Links</h2>
+
+<p><a href="https://ss64.com/osx/">Checkout all command lines macOS Support</a></p>
 
     </div>
 
@@ -590,7 +402,7 @@
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2019-03-15</span>
+    <span class="item-content">2019-03-30</span>
   </p>
   
   <p class="copyright-item">
@@ -605,33 +417,19 @@
 
     <footer class="post-footer">
       <div class="post-tags">
-          <a href="https://hechen.xyz/tags/dock/">Dock</a>
-          <a href="https://hechen.xyz/tags/cocoa/">Cocoa</a>
-          <a href="https://hechen.xyz/tags/dockless/">Dockless</a>
           <a href="https://hechen.xyz/tags/menu/">Menu</a>
-          <a href="https://hechen.xyz/tags/agent/">Agent</a>
+          <a href="https://hechen.xyz/tags/applescript/">AppleScript</a>
+          <a href="https://hechen.xyz/tags/nstask/">NSTask</a>
+          <a href="https://hechen.xyz/tags/process/">Process</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/swwwitch/">
-            
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="18" height="18">
-  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
-</svg>
-
-            </i>
-            <span class="prev-text nav-default">写个小工具 Swwwitch</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
         
-          <a class="next" href="/post/using-yinxiangbiji-system-english/">
-            <span class="next-text nav-default">如何在英文语言系统的 Safari 中使用印象笔记？</span>
+          <a class="next" href="/post/dockless-cocoaapps/">
+            <span class="next-text nav-default">Mac 平台上那些 Dockless 的 App 都是如何实现的？</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">
@@ -676,7 +474,7 @@
   <div id="disqus_thread"></div>
   <script type="text/javascript">
     var disqus_config = function () {
-      this.page.url = "https://hechen.xyz/post/dockless-cocoaapps/";
+      this.page.url = "https://hechen.xyz/post/swwwitch/";
     };
     function load_disqus() {
       
