@@ -9,6 +9,9 @@ tags: ["Evernote","印象笔记","macOS"]
 
 > 因为 Evernote 在国内使用了不同的账户体系，去年团队也彻底独立出来，但是 Safari 的剪藏插件是同一个，[下载地址](https://safari-extensions.apple.com/details/?id=com.evernote.safari.clipper-Q79WDW8YH9)，但是当你系统是英文系统的时候，使用 Safari 剪藏有点尴尬，就是根本找不到印象笔记的登录入口，该文做个记录。
 
+
+<!-- more -->
+
 首先 Safari 默认是没有 Develop 菜单的，因此先开启 Develop 模式，进入 Safari 的选项设置面板中，最后 Advanced 选项卡最下方如图勾选。
 
 ![Capto_Capture 2019-03-13_12-39-08_A](https://i.imgur.com/J5HvXn1.png)
