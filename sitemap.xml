@@ -9,13 +9,68 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/agent/</loc>
-    <lastmod>2019-03-15T11:01:23+08:00</lastmod>
+    <loc>https://hechen.xyz/tags/applescript/</loc>
+    <lastmod>2019-03-30T11:29:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/categories/</loc>
+    <lastmod>2019-03-30T11:29:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/</loc>
+    <lastmod>2019-03-30T11:29:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/menu/</loc>
+    <lastmod>2019-03-30T11:29:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/nstask/</loc>
+    <lastmod>2019-03-30T11:29:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/post/</loc>
+    <lastmod>2019-03-30T11:29:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/process/</loc>
+    <lastmod>2019-03-30T11:29:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/</loc>
+    <lastmod>2019-03-30T11:29:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/categories/macos/</loc>
+    <lastmod>2019-03-30T11:29:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/post/swwwitch/</loc>
+    <lastmod>2019-03-30T11:29:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/agent/</loc>
     <lastmod>2019-03-15T11:01:23+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -39,40 +94,10 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/</loc>
-    <lastmod>2019-03-15T11:01:23+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://hechen.xyz/post/dockless-cocoaapps/</loc>
     <lastmod>2019-03-15T11:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/menu/</loc>
-    <lastmod>2019-03-15T11:01:23+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/post/</loc>
-    <lastmod>2019-03-15T11:01:23+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/</loc>
-    <lastmod>2019-03-15T11:01:23+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/categories/macos/</loc>
-    <lastmod>2019-03-15T11:01:23+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -201,13 +226,13 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/swift/</loc>
+    <loc>https://hechen.xyz/categories/swift/</loc>
     <lastmod>2019-01-03T21:19:24+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/swift/</loc>
+    <loc>https://hechen.xyz/tags/swift/</loc>
     <lastmod>2019-01-03T21:19:24+00:00</lastmod>
     <priority>0</priority>
   </url>

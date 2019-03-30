@@ -6,10 +6,46 @@
     <description>Recent content in Tags on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 13 Mar 2019 17:29:54 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Mar 2019 11:29:54 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AppleScript</title>
+      <link>https://hechen.xyz/tags/applescript/</link>
+      <pubDate>Sat, 30 Mar 2019 11:29:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/applescript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Menu</title>
+      <link>https://hechen.xyz/tags/menu/</link>
+      <pubDate>Sat, 30 Mar 2019 11:29:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/menu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NSTask</title>
+      <link>https://hechen.xyz/tags/nstask/</link>
+      <pubDate>Sat, 30 Mar 2019 11:29:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/nstask/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Process</title>
+      <link>https://hechen.xyz/tags/process/</link>
+      <pubDate>Sat, 30 Mar 2019 11:29:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/process/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Agent</title>
@@ -44,15 +80,6 @@
       <pubDate>Wed, 13 Mar 2019 17:29:54 +0800</pubDate>
       
       <guid>https://hechen.xyz/tags/dockless/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Menu</title>
-      <link>https://hechen.xyz/tags/menu/</link>
-      <pubDate>Wed, 13 Mar 2019 17:29:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/menu/</guid>
       <description></description>
     </item>
     
@@ -161,33 +188,6 @@
       <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
       
       <guid>https://hechen.xyz/tags/cocoapods/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Module</title>
-      <link>https://hechen.xyz/tags/module/</link>
-      <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/module/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Swift</title>
-      <link>https://hechen.xyz/tags/swift/</link>
-      <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/swift/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Keychain</title>
-      <link>https://hechen.xyz/tags/keychain/</link>
-      <pubDate>Fri, 21 Dec 2018 14:30:50 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/keychain/</guid>
       <description></description>
     </item>
     

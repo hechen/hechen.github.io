@@ -5,7 +5,7 @@
     <description>Recent content on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 13 Mar 2019 17:29:54 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Mar 2019 11:29:54 +0800</lastBuildDate>
     
         <atom:link href="https://hechen.xyz/index.xml" rel="self" type="application/rss+xml" />
     
@@ -24,6 +24,87 @@
 &lt;p&gt;偶尔写点 Python，Ruby&lt;/p&gt;
 
 &lt;p&gt;打杂中&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>写个小工具 Swwwitch</title>
+      <link>https://hechen.xyz/post/swwwitch/</link>
+      <pubDate>Sat, 30 Mar 2019 11:29:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/swwwitch/</guid>
+      
+        <description>
+
+&lt;p&gt;最近追热点 😂 ，做了个小工具。一键切换功能开发，现在只包含了两个开关：切换系统主题和隐藏桌面 icon 的功能。其实，从我个人而言，有 Alfred 以及 LaunchBar 这些工具在手，这种工具存在意义并不大，而且只有支持了全局快捷键设置我才觉得对小小白用户才有意义。这次权当练手。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/MONjw0M.png&#34; alt=&#34;Swwwitch-c500&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;功能点&#34;&gt;功能点&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;切换系统主题&lt;/li&gt;
+&lt;li&gt;显式或者印象桌面图标&lt;/li&gt;
+&lt;li&gt;完全的 Menu Only 应用&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;关于第三点的实现在&lt;a href=&#34;https://hechen.xyz/post/dockless-cocoaapps/&#34;&gt;另外一篇文章&lt;/a&gt;有写过。&lt;/p&gt;
+
+&lt;h3 id=&#34;系统主题切换&#34;&gt;系统主题切换&lt;/h3&gt;
+
+&lt;p&gt;关于系统主题切换主要是基于 AppleScript 所写，&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-AppleScript&#34; data-lang=&#34;AppleScript&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-AppleScript&#34; data-lang=&#34;AppleScript&#34;&gt;&lt;span class=&#34;k&#34;&gt;tell&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;application&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;System Events&amp;#34;&lt;/span&gt;
+	&lt;span class=&#34;k&#34;&gt;tell&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;appearance&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;preferences&lt;/span&gt;
+		&lt;span class=&#34;k&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;dark&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;mode&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;to&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;dark&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;mode&lt;/span&gt;
+	&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;tell&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;end&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;tell&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;你完全可以自行执行这段 Apple Script 来切换主题，你可以点击下面链接尝试。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;applescript://com.apple.scripteditor?action=new&amp;amp;name=Change%20Theme&amp;amp;script=tell%20application%20%22System%20Events%22%0D%09tell%20appearance%20preferences%0D%09%09set%20dark%20mode%20to%20not%20dark%20mode%0D%09end%20tell%0Dend%20tell&#34;&gt;Click Here to run&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;显式-隐藏桌面图标&#34;&gt;显式/隐藏桌面图标&lt;/h3&gt;
+
+&lt;p&gt;关于隐藏桌面图标，实际上是执行系统的 Command 来实现的，Cocoa 应用可以显式使用 Process（也就是 NSTask）来执行任务，我们也是通过 NSTask 执行了一段如下的命令行达到的目的：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;defaults write com.apple.finder CreateDesktop &lt;span class=&#34;nb&#34;&gt;false&lt;/span&gt;
+killall Finder&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;你可以自行点击以下链接尝试。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;applescript://com.apple.scripteditor?action=new&amp;amp;name=Hide%20Desktop%20Icons&amp;amp;script=tell%20application%20%22Terminal%22%0D%20%20%20%20do%20script%20%22defaults%20write%20com.apple.finder%20CreateDesktop%20false%3b%20killall%20Finder%22%0Dend%20tell&#34;&gt;Click here to hide Desktop Icons&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;applescript://com.apple.scripteditor?action=new&amp;amp;name=Hide%20Desktop%20Icons&amp;amp;script=tell%20application%20%22Terminal%22%0D%20%20%20%20do%20script%20%22defaults%20write%20com.apple.finder%20CreateDesktop%20true%3b%20killall%20Finder%22%0Dend%20tell&#34;&gt;Click here to show Desktop Icons&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;todo&#34;&gt;TODO&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Add more switch&lt;/li&gt;
+&lt;li&gt;Add User-Customized switch setting&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;links&#34;&gt;Links&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://ss64.com/osx/&#34;&gt;Checkout all command lines macOS Support&lt;/a&gt;&lt;/p&gt;
 </description>
       
     </item>
@@ -310,6 +391,8 @@
         <description>&lt;blockquote&gt;
 &lt;p&gt;因为 Evernote 在国内使用了不同的账户体系，去年团队也彻底独立出来，但是 Safari 的剪藏插件是同一个，&lt;a href=&#34;https://safari-extensions.apple.com/details/?id=com.evernote.safari.clipper-Q79WDW8YH9&#34;&gt;下载地址&lt;/a&gt;，但是当你系统是英文系统的时候，使用 Safari 剪藏有点尴尬，就是根本找不到印象笔记的登录入口，该文做个记录。&lt;/p&gt;
 &lt;/blockquote&gt;
+
+&lt;!-- more --&gt;
 
 &lt;p&gt;首先 Safari 默认是没有 Develop 菜单的，因此先开启 Develop 模式，进入 Safari 的选项设置面板中，最后 Advanced 选项卡最下方如图勾选。&lt;/p&gt;
 
