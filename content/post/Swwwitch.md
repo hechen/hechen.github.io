@@ -55,6 +55,11 @@ killall Finder
 [Click here to show Desktop Icons](applescript://com.apple.scripteditor?action=new&name=Hide%20Desktop%20Icons&script=tell%20application%20%22Terminal%22%0D%20%20%20%20do%20script%20%22defaults%20write%20com.apple.finder%20CreateDesktop%20true%3b%20killall%20Finder%22%0Dend%20tell)
 
 
+感兴趣可以去看下代码，领会意思即可。
+[Releases](https://github.com/hechen/Swwwitch/releases)
+
+
+
 ## TODO
 1. Add more switch
 2. Add User-Customized switch setting
