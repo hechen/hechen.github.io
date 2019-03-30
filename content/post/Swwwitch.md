@@ -7,12 +7,11 @@ categories: ["macOS"]
 tags: ["Menu","AppleScript","NSTask","Process"]
 ---
 
-
-最近追热点 😂 ，做了个小工具。一键切换功能开发，现在只包含了两个开关：切换系统主题和隐藏桌面 icon 的功能。其实，从我个人而言，有 Alfred 以及 LaunchBar 这些工具在手，这种工具存在意义并不大，而且只有支持了全局快捷键设置我才觉得对小小白用户才有意义。这次权当练手。
+最近追热点 😂 ，做了个小工具，仅做练手。一键切换功能开发，现在只包含了两个开关：切换系统主题和隐藏桌面 icon 的功能。其实，从我个人而言，有 Alfred 以及 LaunchBar 这些工具在手，这种工具存在意义并不大。
 
 <!-- more -->
 
-![Swwwitch-c500](https://i.imgur.com/MONjw0M.png)
+![Swwwitch-c500](https://i.imgur.com/U9RTmVU.png)
 
 ## 功能点
 
