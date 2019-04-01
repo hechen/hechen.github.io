@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>关于 Mac 应用的自启动是如何做到的</title>
+      <link>https://hechen.xyz/post/autostartwhenlogin/</link>
+      <pubDate>Mon, 18 Mar 2019 17:29:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/autostartwhenlogin/</guid>
+      <description>开机自启动是 Cocoa 应用最常见的一种功能，尤其是针对需要常驻 Menu 的服务来说更是如此，今天我们对开机启动项的功能加入做个梳理。 在 Daemons and Services Programming Guide 中我们能找到</description>
+    </item>
+    
+    <item>
       <title>Mac 平台上那些 Dockless 的 App 都是如何实现的？</title>
       <link>https://hechen.xyz/post/dockless-cocoaapps/</link>
       <pubDate>Wed, 13 Mar 2019 17:29:54 +0800</pubDate>
@@ -180,15 +189,6 @@
       
       <guid>https://hechen.xyz/post/modular-xcode-projects/</guid>
       <description>原文：Modular Xcode projects 原作者 &amp;amp; Copyright @pepibumur 翻译：@OgreMergO 使用 Xcode 构建模块化的工程就需要对工程结构以及其基础概念有很好的理解才行。我们平时</description>
-    </item>
-    
-    <item>
-      <title>处理 Swift 中非可选的可选值类型</title>
-      <link>https://hechen.xyz/post/handling-non-optional-optionals-in-swift/</link>
-      <pubDate>Tue, 14 Nov 2017 21:53:52 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/handling-non-optional-optionals-in-swift/</guid>
-      <description>可选值（optionals）无可争议的是 swift 语言中最重要的特性之一，也是和其他语言，例如 Objective-C 的最大区别。通过强制处理那些有可能出现 nil 的地方，我们</description>
     </item>
     
   </channel>

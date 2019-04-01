@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>关于 Mac 应用的自启动是如何做到的 - I make stuff</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="chen" />
+  <meta name="description" content="开机自启动是 Cocoa 应用最常见的一种功能，尤其是针对需要常驻 Menu 的服务来说更是如此，今天我们对开机启动项的功能加入做个梳理。 在 Daemons and Services Programming Guide 中我们能找到" />
+
+  <meta name="keywords" content="Chen, iOS, Swift, Productivity" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.55.0-DEV" />
+
+
+<link rel="canonical" href="https://hechen.xyz/post/autostartwhenlogin/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.ec807d8b802a40889537c26e014f733206312ea440d42e1f0dabed80918de1ac.css" integrity="sha256-7IB9i4AqQIiVN8JuAU9zMgYxLqRA1C4fDavtgJGN4aw=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="关于 Mac 应用的自启动是如何做到的" />
+<meta property="og:description" content="开机自启动是 Cocoa 应用最常见的一种功能，尤其是针对需要常驻 Menu 的服务来说更是如此，今天我们对开机启动项的功能加入做个梳理。 在 Daemons and Services Programming Guide 中我们能找到" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hechen.xyz/post/autostartwhenlogin/" />
+<meta property="article:published_time" content="2019-03-18T17:29:54&#43;08:00"/>
+<meta property="article:modified_time" content="2019-04-01T10:20:38&#43;08:00"/>
+
+<meta itemprop="name" content="关于 Mac 应用的自启动是如何做到的">
+<meta itemprop="description" content="开机自启动是 Cocoa 应用最常见的一种功能，尤其是针对需要常驻 Menu 的服务来说更是如此，今天我们对开机启动项的功能加入做个梳理。 在 Daemons and Services Programming Guide 中我们能找到">
+
+
+<meta itemprop="datePublished" content="2019-03-18T17:29:54&#43;08:00" />
+<meta itemprop="dateModified" content="2019-04-01T10:20:38&#43;08:00" />
+<meta itemprop="wordCount" content="2287">
+
+
+
+<meta itemprop="keywords" content="Dock,Cocoa,Menu,Agent,Login," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="关于 Mac 应用的自启动是如何做到的"/>
+<meta name="twitter:description" content="开机自启动是 Cocoa 应用最常见的一种功能，尤其是针对需要常驻 Menu 的服务来说更是如此，今天我们对开机启动项的功能加入做个梳理。 在 Daemons and Services Programming Guide 中我们能找到"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Chen</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/categories/">Categories</a>
+          
+        
+      </li>
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      Chen
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">关于 Mac 应用的自启动是如何做到的</h1>
+      
+      <div class="post-meta">
+        <time datetime="2019-03-18" class="post-time">
+          2019-03-18
+        </time>
+        <div class="post-category">
+            <a href="https://hechen.xyz/categories/macos/"> macOS </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
+          <span id="/post/autostartwhenlogin/" class="leancloud_visitors" data-flag-title="关于 Mac 应用的自启动是如何做到的">
+            <span class="post-meta-item-text"> | 阅读 </span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#沙盒应用">沙盒应用</a></li>
+<li><a href="#启动项支持">启动项支持</a>
+<ul>
+<li><a href="#加入启动项">加入启动项</a>
+<ul>
+<li><a href="#主应用">主应用</a></li>
+<li><a href="#辅助应用">辅助应用</a></li>
+<li><a href="#切换自启动状态">切换自启动状态</a>
+<ul>
+<li><a href="#smcopyalljobdictionaries">SMCopyAllJobDictionaries</a></li>
+<li><a href="#smloginitemsetenabled">SMLoginItemSetEnabled</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#测试">测试</a></li>
+</ul></li>
+<li><a href="#工具推荐">工具推荐</a></li>
+<li><a href="#参考链接">参考链接</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<p>开机自启动是 Cocoa 应用最常见的一种功能，尤其是针对需要常驻 Menu 的服务来说更是如此，今天我们对开机启动项的功能加入做个梳理。</p>
+
+<!-- more -->
+
+<p>在 <a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingLoginItems.html#//apple_ref/doc/uid/10000172i-SW5-SW1">Daemons and Services Programming Guide</a> 中我们能找到关于自启动项的开发说明：</p>
+
+<blockquote>
+<p>Applications can contain a helper application as a full application bundle, stored inside the main application bundle in the Contents/Library/LoginItems directory. Set either the LSUIElement or LSBackgroundOnly key in the Info.plist file of the helper application’s bundle.</p>
+</blockquote>
+
+<p>Use the SMLoginItemSetEnabled function (available in OS X v10.6.6 and later) to enable a helper application. It takes two arguments, a CFStringRef containing the bundle identifier of the helper application, and a Boolean specifying the desired state. Pass true to start the helper application immediately and indicate that it should be started every time the user logs in. Pass false to terminate the helper application and indicate that it should no longer be launched when the user logs in. This function returns true if the requested change has taken effect; otherwise, it returns false. This function can be used to manage any number of helper applications.</p>
+
+<p>If multiple applications (for example, several applications from the same company) contain a helper application with the same bundle identifier, only the one with the greatest bundle version number is launched. Any of the applications that contain a copy of the helper application can enable and disable it.</p>
+
+<p>如文档中描述的那样，你可以在主应用中包含一个辅助应用，并且路径固定为 <code>Contents/Library/LoginItems</code>，</p>
+
+<p>另外一种方式就是使用 <code>Shared File List</code>，其相关 API 在 <a href="https://developer.apple.com/documentation/coreservices/launch_services">Launch Services Reference</a> 能找到，其实具体的 API 就在 <code>LSSharedFileList.h</code> 中。</p>
+
+<h2 id="沙盒应用">沙盒应用</h2>
+
+<p>在官方文档 <a href="http://developer.apple.com/library/mac/documentation/Security/Conceptual/AppSandboxDesignGuide/DesigningYourSandbox/DesigningYourSandbox.html#//apple_ref/doc/uid/TP40011183-CH4-SW3">App Sandbox Design Guide</a> 中有如下针对开机自启动的描述：</p>
+
+<blockquote>
+<p>To create a login item for your sandboxed app, use the SMLoginItemSetEnabled function (declared in ServiceManagement/SMLoginItem.h) as described in Adding Login Items Using the Service Management Framework.</p>
+
+<p>(With App Sandbox, you cannot create a login item using functions in the LSSharedFileList.h header file. For example, you cannot use the function LSSharedFileListInsertItemURL. Nor can you manipulate the state of Launch Services, such as by using the function LSRegisterURL.)</p>
+</blockquote>
+
+<p>其实上面提及的方式也就是在第一小节中提到的两种方式中的第一种，而且第二种共享文件列表的 API 是无法针对沙盒应用使用的，而且 <code>LSSharedFileList.h</code> 已经在 10.10 系统版本之后标记为废弃了。</p>
+
+<p>综合上面的说明，目前在 macOS 上加入自启动项的方式也只有且仅有一种方式，也就是加入辅助应用来引导主应用启动。整个思路应该是如下：</p>
+
+<ol>
+<li>将辅助应用加入系统启动项中；</li>
+<li>系统启动，进而自启动辅助应用；</li>
+<li>辅助应用引导主应用启动；</li>
+<li>主应用启动完成，干掉辅助应用</li>
+</ol>
+
+<p>是的，就是这么绕，具体要怎么做呢？ 主要分为如下几个步骤：</p>
+
+<ol>
+<li>创建辅助应用，其作为主应用的 Target 新建出来</li>
+<li>将辅助应用的 Info.plist 文件中指定属性 <code>LSBackgroundOnly</code> 为 <code>YES</code>；</li>
+<li>在辅助应用 Target 的 build setting 中设置 <code>Skip Install</code> 为 <code>YES</code>；</li>
+<li>在主应用的 build phase 中加入 <code>Copy Files</code> 阶段，
+
+<ul>
+<li>指定 destination 为 Wrapper</li>
+<li>指定 subpath 为 <code>Contents/Library/LoginItems</code></li>
+<li>加入辅助应用的 Product</li>
+</ul></li>
+</ol>
+
+<p>大家第一眼看到这些步骤的时候是不是头都大了，没错，这仅仅是写代码之前的参数配置工作。</p>
+
+<h2 id="启动项支持">启动项支持</h2>
+
+<p><img src="https://i.imgur.com/fJUpG26.png" alt="CleanShot 2019-04-01 at 13.06.26" /></p>
+
+<p>指定 CocoaApp</p>
+
+<p><img src="https://i.imgur.com/tXJDr1Y.png" alt="Xcode 2019-04-01 at 13.07.45" /></p>
+
+<p>指定 Product ID 为 <code>StartAtLoginLauncher</code>,该 Target 的 BundleID 为 <code>app.chen.osx.demo.StartAtLoginLauncher</code>。</p>
+
+<p><img src="https://i.imgur.com/uj2yhht.png" alt="Xcode 2019-04-01 at 13.08.09" /></p>
+
+<p>然后，修改 StartAtLoginLauncher 的 Info.plist 文件，指定 <code>LSBackgroundOnly</code> 为 YES
+<img src="https://i.imgur.com/BqNsFm7.png" alt="CleanShot 2019-04-01 at 13.13.20" /></p>
+
+<p>修改 StartAtLoginLauncher Target 的 Build Setting 中 <code>Skip Install</code> 为 <code>YES</code></p>
+
+<p><img src="https://i.imgur.com/qKZzECK.png" alt="CleanShot 2019-04-01 at 13.20.46" /></p>
+
+<p>紧接着是设置主应用 StartAtLogin Target，为其加入 Copy Files Build Phase，如下设置，路径是固定的 <code>Contents/Library/LoginItems</code>，Copy 对象为 <code>StartAtLoginLauncher</code></p>
+
+<p><img src="https://i.imgur.com/wfaxgmZ.png" alt="CleanShot 2019-04-01 at 13.19.08" /></p>
+
+<p>至此，所有设置均已完成，你可以 Command+B 产出一个 Product 看看，在主应用里是否已经将启动项目包含进去了。</p>
+
+<p><img src="https://i.imgur.com/XfyYMG1.png" alt="CleanShot 2019-04-01 at 13.25.44" /></p>
+
+<p><img src="https://i.imgur.com/OGXYmxw.png" alt="Finder 2019-04-01 at 13.24.59" /></p>
+
+<p>还没有结束，因为 StartAtLoginLauncher 应用是指在后台运行，我们不希望辅助应用启动的时候弹出 UI，因此还需要删除相关的 UI 代码，在 Main.storyboard 中，删除 Window 以及 ViewController，只保留 Application Scene 即可</p>
+
+<p><img src="https://i.imgur.com/poclDG1.png" alt="Xcode 2019-04-01 at 13.32.18" /></p>
+
+<p>至此，所有写代码之前的工作已经完成，我们已经为主应用生成了对应的辅助应用，帮助其启动。</p>
+
+<h3 id="加入启动项">加入启动项</h3>
+
+<p>代码核心逻辑包含两部分：
+1. 主应用启动之后杀掉辅助应用，因为其已经完成了使命；
+2. 助应用启动之后将主应用唤醒</p>
+
+<h4 id="主应用">主应用</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">extension</span> <span class="nc">Notification</span><span class="p">.</span><span class="n">Name</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="kd">let</span> <span class="nv">killLauncher</span> <span class="p">=</span> <span class="n">Notification</span><span class="p">.</span><span class="n">Name</span><span class="p">(</span><span class="s">&#34;killLauncher&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">applicationDidFinishLaunching</span><span class="p">(</span><span class="kc">_</span> <span class="n">aNotification</span><span class="p">:</span> <span class="n">Notification</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Insert code here to initialize your application</span>
+    <span class="kd">let</span> <span class="nv">launcherAppId</span> <span class="p">=</span> <span class="s">&#34;app.chen.osx.demo.StartAtLoginLauncher&#34;</span>
+    <span class="kd">let</span> <span class="nv">runningApps</span> <span class="p">=</span> <span class="n">NSWorkspace</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">runningApplications</span>
+    <span class="kd">let</span> <span class="nv">isRunning</span> <span class="p">=</span> <span class="o">!</span><span class="n">runningApps</span><span class="p">.</span><span class="bp">filter</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="n">bundleIdentifier</span> <span class="p">==</span> <span class="n">launcherAppId</span> <span class="p">}.</span><span class="bp">isEmpty</span>
+    <span class="k">if</span> <span class="n">isRunning</span> <span class="p">{</span>
+    <span class="n">DistributedNotificationCenter</span><span class="p">.</span><span class="k">default</span><span class="p">().</span><span class="n">post</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="p">.</span><span class="n">killLauncher</span><span class="p">,</span>
+                                                         <span class="n">object</span><span class="p">:</span> <span class="n">Bundle</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">bundleIdentifier</span><span class="o">!</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>主应用在完成启动之后，检查当前正在执行的 Application 列表中是否包含了我们的辅助应用，如果包含，发送通知，让其 Terminate</p>
+
+<h4 id="辅助应用">辅助应用</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">applicationDidFinishLaunching</span><span class="p">(</span><span class="kc">_</span> <span class="n">aNotification</span><span class="p">:</span> <span class="n">Notification</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">mainAppIdentifier</span> <span class="p">=</span> <span class="s">&#34;app.chen.osx.demo.StartAtLogin&#34;</span>
+    <span class="kd">let</span> <span class="nv">runningApps</span> <span class="p">=</span> <span class="n">NSWorkspace</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">runningApplications</span>
+    <span class="kd">let</span> <span class="nv">isRunning</span> <span class="p">=</span> <span class="o">!</span><span class="n">runningApps</span><span class="p">.</span><span class="bp">filter</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="n">bundleIdentifier</span> <span class="p">==</span> <span class="n">mainAppIdentifier</span> <span class="p">}.</span><span class="bp">isEmpty</span>
+        
+    <span class="k">if</span> <span class="o">!</span><span class="n">isRunning</span> <span class="p">{</span>
+        <span class="n">DistributedNotificationCenter</span><span class="p">.</span><span class="k">default</span><span class="p">().</span><span class="n">addObserver</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span>
+                                                                <span class="n">selector</span><span class="p">:</span> <span class="k">#selector</span><span class="p">(</span><span class="kc">self</span><span class="p">.</span><span class="n">terminate</span><span class="p">),</span>
+                                                                <span class="n">name</span><span class="p">:</span> <span class="p">.</span><span class="n">killLauncher</span><span class="p">,</span>
+                                                                <span class="n">object</span><span class="p">:</span> <span class="n">mainAppIdentifier</span><span class="p">)</span>
+            
+        <span class="kd">let</span> <span class="nv">path</span> <span class="p">=</span> <span class="n">Bundle</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">bundlePath</span> <span class="k">as</span> <span class="n">NSString</span>
+        <span class="kd">var</span> <span class="nv">components</span> <span class="p">=</span> <span class="n">path</span><span class="p">.</span><span class="n">pathComponents</span>
+        <span class="n">components</span><span class="p">.</span><span class="bp">removeLast</span><span class="p">()</span>
+        <span class="n">components</span><span class="p">.</span><span class="bp">removeLast</span><span class="p">()</span>
+        <span class="n">components</span><span class="p">.</span><span class="bp">removeLast</span><span class="p">()</span>
+        <span class="n">components</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#34;MacOS&#34;</span><span class="p">)</span>
+        <span class="n">components</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#34;StartAtLogin&#34;</span><span class="p">)</span> <span class="c1">//main app name</span>
+            
+        <span class="kd">let</span> <span class="nv">newPath</span> <span class="p">=</span> <span class="n">NSString</span><span class="p">.</span><span class="n">path</span><span class="p">(</span><span class="n">withComponents</span><span class="p">:</span> <span class="n">components</span><span class="p">)</span>            
+            <span class="n">NSWorkspace</span><span class="p">.</span><span class="n">shared</span><span class="p">.</span><span class="n">launchApplication</span><span class="p">(</span><span class="n">newPath</span><span class="p">)</span> 
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="kc">self</span><span class="p">.</span><span class="n">terminate</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>辅助应用启动之后，查询主应用是否已经运行，如果已经运行，就自觉干掉自己。如果没有运行，我们唤醒主 App，在此之前设置监听，等到主应用启动之后会发给自己通知，然后再自杀 😂</p>
+
+<h4 id="切换自启动状态">切换自启动状态</h4>
+
+<p>关于自启动状态的设置包含两个主要的 API：</p>
+
+<ol>
+<li>SMCopyAllJobDictionaries</li>
+<li>SMLoginItemSetEnabled</li>
+</ol>
+
+<h5 id="smcopyalljobdictionaries">SMCopyAllJobDictionaries</h5>
+
+<p>获取当前我们的启动项设置情况是通过 <code>SMCopyAllJobDictionaries</code> 方法，如下定义。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="cm">/*!
+</span><span class="cm"> * @function SMCopyAllJobDictionaries
+</span><span class="cm"> * @abstract
+</span><span class="cm"> * Copy the job description dictionaries for all jobs in the given domain.
+</span><span class="cm"> *
+</span><span class="cm"> * @param domain
+</span><span class="cm"> * The job&#39;s domain (e.g. {@link kSMDomainSystemLaunchd} or
+</span><span class="cm"> * {@link kSMDomainUserLaunchd}).
+</span><span class="cm"> *
+</span><span class="cm"> * @result
+</span><span class="cm"> * A new array containing all job dictionaries, or NULL if an error occurred. 
+</span><span class="cm"> * Must be released by the caller.
+</span><span class="cm"> *
+</span><span class="cm"> * @discussion
+</span><span class="cm"> * SMCopyAllJobDictionaries returns an array of the job description dictionaries
+</span><span class="cm"> * for all jobs in the given domain, or NULL if an error occurred. This routine
+</span><span class="cm"> * is deprecated and will be removed in a future release. There will be no
+</span><span class="cm"> * provided replacement.
+</span><span class="cm"> *
+</span><span class="cm"> * For the specific use of testing the state of a login item that may have been
+</span><span class="cm"> * enabled with SMLoginItemSetEnabled() in order to show that state to the
+</span><span class="cm"> * user, this function remains the recommended API. A replacement API for this
+</span><span class="cm"> * specific use will be provided before this function is removed.
+</span><span class="cm"> */</span>
+<span class="n">__OSX_AVAILABLE_BUT_DEPRECATED</span><span class="p">(</span><span class="n">__MAC_10_6</span><span class="p">,</span> <span class="n">__MAC_10_10</span><span class="p">,</span> <span class="n">__IPHONE_3_0</span><span class="p">,</span> <span class="n">__IPHONE_8_0</span><span class="p">)</span>
+<span class="n">XPC_EXPORT</span>
+<span class="n">CFArrayRef</span>
+<span class="n">SMCopyAllJobDictionaries</span><span class="p">(</span><span class="n">CFStringRef</span> <span class="n">domain</span><span class="p">);</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>该方法虽然标记 10.10 系统开始废弃，但是到目前的 10.14 版本还未提供替换的 API，所以还是可以继续使用的（文档所说）。</p>
+
+<p>传入的参数可以理解就是指定获取任务类型的，我们使用 kSMDomainUserLaunchd 来获取所有加入到用户启动项列表中的任务，其中每一个 Job 都是一个字典结构，内容大概类似：</p>
+
+<p><img src="https://i.imgur.com/KDLqn9a.png" alt="Launch Job-c500" /></p>
+
+<p>我们可以通过 Label 来查找我们需要的 Job，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">launchHelperIdentifier</span> <span class="p">=</span> <span class="s">&#34;app.chen.osx.demo.StartAtLoginLauncher&#34;</span>
+<span class="kd">let</span> <span class="nv">jobs</span> <span class="p">=</span> <span class="n">SMCopyAllJobDictionaries</span><span class="p">(</span><span class="n">kSMDomainUserLaunchd</span><span class="p">).</span><span class="n">takeRetainedValue</span><span class="p">()</span> <span class="k">as</span><span class="p">?</span> <span class="p">[[</span><span class="nb">String</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">]]</span>
+<span class="kd">var</span> <span class="nv">autoLaunchRegistered</span> <span class="p">=</span> <span class="n">jobs</span><span class="p">?.</span><span class="bp">contains</span><span class="p">(</span><span class="k">where</span><span class="p">:</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">[</span><span class="s">&#34;Label&#34;</span><span class="p">]</span> <span class="k">as</span><span class="o">!</span> <span class="nb">String</span> <span class="p">==</span> <span class="n">launchHelperIdentifier</span> <span class="p">})</span> <span class="p">??</span> <span class="kc">false</span></code></pre></td></tr></table>
+</div>
+</div>
+<h5 id="smloginitemsetenabled">SMLoginItemSetEnabled</h5>
+
+<p>设置启动项是通过 <code>SMLoginItemSetEnabled</code> 方法，参数为要自启动的应用的 BundleID 以及自启动状态。</p>
+
+<p>要记住，这里我们进行更改的是针对 Launch Helper 的设置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">var</span> <span class="nv">startAtLogin</span> <span class="p">=</span> <span class="kc">true</span>
+
+<span class="c1">// ....</span>
+
+<span class="kd">let</span> <span class="nv">launchHelperIdentifier</span> <span class="p">=</span> <span class="s">&#34;app.chen.osx.demo.StartAtLoginLauncher&#34;</span>
+<span class="n">SMLoginItemSetEnabled</span><span class="p">(</span><span class="n">launchHelperIdentifier</span> <span class="k">as</span> <span class="n">CFString</span><span class="p">,</span> <span class="n">startAtLogin</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<h3 id="测试">测试</h3>
+
+<p>至此，关于自启动项的工作已经完成，想要测试，可以先 Archive 出一个安装包，然后将 Demo App 拖到 /Applications 目录，启动之后，设置 Start At Login 选项 checked 状态。</p>
+
+<p><img src="https://i.imgur.com/szvqHoG.png" alt="StartAtLogin" /></p>
+
+<p>如果不放心，退出登录之前，Quit 掉测试应用，并且取消 Reopen 选项。</p>
+
+<p><img src="https://i.imgur.com/5KrpAuU.png" alt="Not Reopen" /></p>
+
+<p>然后，Log Out 当前用户，之后再次登录进来，看 Demo 应用是否被启动了。在我的电脑上测试再次启动之后 Demo 应用就会被顺利启动了。</p>
+
+<p><img src="https://i.imgur.com/XJsUmVS.png" alt="Desktop" /></p>
+
+<p>其中还有一点是关于 Target 的 Sandbox 属性，作为目前唯一可行的自启动官方方案，其同时适用于沙盒应用和非沙盒应用的。</p>
+
+<h2 id="工具推荐">工具推荐</h2>
+
+<p>推荐下 Github 上 <a href="https://github.com/sindresorhus">sindresorhus</a>
+写的小工具 <a href="https://github.com/sindresorhus/LaunchAtLogin">LaunchAtLogin</a>，简化了上述的步骤。</p>
+
+<h2 id="参考链接">参考链接</h2>
+
+<ol>
+<li><a href="https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html#//apple_ref/doc/uid/TP40011183-CH1-SW1">App Sandbox Design Guide</a></li>
+<li><a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/Introduction.html#//apple_ref/doc/uid/10000172i-SW1-SW1">Daemons and Services Programming Guide</a></li>
+<li><a href="https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/LaunchServicesConcepts/LSCIntro/LSCIntro.html#//apple_ref/doc/uid/TP30000999">Launch Services Programming Guide</a></li>
+</ol>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">chen</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-04-01</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://hechen.xyz/tags/dock/">Dock</a>
+          <a href="https://hechen.xyz/tags/cocoa/">Cocoa</a>
+          <a href="https://hechen.xyz/tags/menu/">Menu</a>
+          <a href="https://hechen.xyz/tags/agent/">Agent</a>
+          <a href="https://hechen.xyz/tags/login/">Login</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/swwwitch/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">写个小工具 Swwwitch</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/dockless-cocoaapps/">
+            <span class="next-text nav-default">Mac 平台上那些 Dockless 的 App 都是如何实现的？</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "hechen/Comments"
+            issue-term="pathname"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
+
+  
+
+  
+
+  <div class="disqus-comment">
+  <div class="disqus-button" id="load_disqus" onclick="load_disqus()">
+    显示 Disqus 评论
+  </div>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = "https://hechen.xyz/post/autostartwhenlogin/";
+    };
+    function load_disqus() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'stoneman';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+      $('#load_disqus').remove();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  </div>
+  
+    
+
+
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:hechen.dream@gmail.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://stackoverflow.com/users/10229101/chen-he" rel="me noopener" class="iconfont"
+      title="stack-overflow"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M809.714286 932.571429l-638.857143 0 0-274.285714-91.428571 0 0 365.714286 821.714286 0 0-365.714286-91.428571 0 0 274.285714zm-538.285714-299.428571l18.857143-89.714286 447.428571 94.285714-18.857143 89.142857zm58.857143-213.714286l38.285714-83.428571 414.285714 193.714286-38.285714 82.857143zm114.857143-203.428571l58.285714-70.285714 350.857143 293.142857-58.285714 70.285714zm226.857143-216l272.571429 366.285714-73.142857 54.857143-272.571429-366.285714zm-410.285714 840.571429l0-90.857143 457.142857 0 0 90.857143-457.142857 0z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://twitter.com/OgreMergO" rel="me noopener" class="iconfont"
+      title="twitter"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1264 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M1229.8616 18.043658c0 0-117.852626 63.135335-164.151872 67.344358-105.225559-164.151872-505.082682-92.598492-437.738325 223.078185C278.622548 312.675223 89.216542 47.506814 89.216542 47.506814s-117.852626 189.406006 75.762402 345.139833C127.097743 396.85567 55.544363 371.601535 55.544363 371.601535S26.081207 535.753407 253.368414 615.724832c-21.045112 29.463156-113.643603 8.418045-113.643603 8.418045s25.254134 143.10676 231.496229 180.987961c-143.10676 130.479693-387.230056 92.598492-370.393967 105.225559 206.242095 189.406006 1119.599946 231.496229 1128.01799-643.98042C1179.353331 249.539887 1263.533778 123.269217 1263.533778 123.269217s-130.479693 37.881201-138.897738 33.672179C1225.652577 98.015083 1229.8616 18.043658 1229.8616 18.043658"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://weibo.com/hc2feifei" rel="me noopener" class="iconfont"
+      title="weibo"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M385.714286 733.714286q12-19.428571 6.285714-39.428571t-25.714286-28.571429q-19.428571-8-41.714286-0.571429t-34.285714 26.285714q-12.571429 19.428571-7.428571 39.142857t24.571429 28.857143 42.571429 1.428571 35.714286-27.142857zm53.714286-69.142857q4.571429-7.428571 2-15.142857t-10-10.571429q-8-2.857143-16.285714 2.857143t-12.285714 10.571429q-9.714286 17.714286 7.428571 25.714286 8 2.857143 16.571429 2.857143t12.571429-10.571429zm99.428571 61.142857q-25.714286 58.285714-90.285714 85.714286t-128 6.857143q-61.142857-19.428571-84.285714-72.285714t3.714286-107.142857q26.857143-53.142857 86.571429-79.428571t120.285714-10.857143q63.428571 16.571429 90.571429 68.285714t1.428571 108.857143zm178.285714-91.428571q-5.142857-54.857143-50.857143-97.142857t-119.142857-62.285714-156.857143-12q-127.428571 13.142857-211.142857 80.857143t-75.714286 151.142857q5.142857 54.857143 50.857143 97.142857t119.142857 62.285714 156.857143 12q127.428571-13.142857 211.142857-80.857143t75.714286-151.142857zm176 2.285714q0 38.857143-21.142857 79.714286t-62.285714 78.285714-96.285714 67.142857-129.142857 47.428571-154.571429 17.714286-157.142857-19.142857-137.428571-53.142857-98-86.285714-37.142857-114q0-65.714286 39.714286-140t112.857143-147.428571q96.571429-96.571429 195.142857-134.857143t140.857143 4q37.142857 36.571429 11.428571 119.428571-2.285714 8-0.571429 11.428571t5.714286 4 8.285714 2.857143 7.714286-2l3.428571-1.142857q79.428571-33.714286 140.571429-33.714286t87.428571 34.857143q25.714286 36 0 101.714286-1.142857 7.428571-2.571429 11.428571t2.571429 7.142857 6.857143 4.285714 9.714286 3.428571q32.571429 10.285714 58.857143 26.857143t45.714286 46.571429 19.428571 66.571429zm-42.285714-356.571429q24 26.857143 31.142857 62t-3.714286 67.142857q-4.571429 13.142857-16.857143 19.428571t-25.428571 2.285714q-13.142857-4.571429-19.428571-16.857143t-2.285714-25.428571q11.428571-36-13.714286-63.428571t-61.142857-20q-13.714286 2.857143-25.714286-4.571429t-14.285714-21.142857q-2.857143-13.714286 4.571429-25.428571t21.142857-14.571429q34.285714-7.428571 68 3.142857t57.714286 37.428571zm103.428571-93.142857q49.714286 54.857143 64.285714 127.142857t-7.714286 138q-5.142857 15.428571-19.428571 22.857143t-29.714286 2.285714-22.857143-19.428571-2.857143-29.714286q16-46.857143 5.714286-98.285714t-45.714286-90.285714q-35.428571-39.428571-84.571429-54.571429t-98.857143-4.857143q-16 3.428571-29.714286-5.428571t-17.142857-24.857143 5.428571-29.428571 24.857143-16.857143q70.285714-14.857143 139.428571 6.571429t118.857143 76.857143z"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://hechen.xyz/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2015 -
+    2019
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        chen
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script type="text/javascript">
+    AV.initialize("wgbxcKzgAuMNE8wvfGp38xwG-gzGzoHsz", "JPVrQwSXVrxiVVsK3WoViro4");
+  </script>
+
+  <script>
+    function showHitCount(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push($(this).attr("id").trim());
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var hits = item.get('hits');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(hits);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function (results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("hits");
+            counter.save(null, {
+              success: function (counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('hits'));
+              },
+              error: function (counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+             
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+             
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("hits", 1);
+            newcounter.save(null, {
+              success: function (newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('hits'));
+              },
+              error: function (newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function (error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function () {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        
+        addCount(Counter);
+      } else if ($('.post-link').length > 1) {
+        
+        showHitCount(Counter);
+      }
+    });
+  </script>
+
+
+
+  <script id="dsq-count-scr" src="//stoneman.disqus.com/count.js" async></script>
+
+
+
+
+
+</body>
+</html>
