@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Dock on I make stuff</title>
-    <link>https://hechen.xyz/tags/dock/</link>
-    <description>Recent content in Dock on I make stuff</description>
+    <title>Login on I make stuff</title>
+    <link>https://hechen.xyz/tags/login/</link>
+    <description>Recent content in Login on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 18 Mar 2019 17:29:54 +0800</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/dock/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.xyz/tags/login/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,15 +18,6 @@
       
       <guid>https://hechen.xyz/post/autostartwhenlogin/</guid>
       <description>开机自启动是 Cocoa 应用最常见的一种功能，尤其是针对需要常驻 Menu 的服务来说更是如此，今天我们对开机启动项的功能加入做个梳理。 在 Daemons and Services Programming Guide 中我们能找到</description>
-    </item>
-    
-    <item>
-      <title>Mac 平台上那些 Dockless 的 App 都是如何实现的？</title>
-      <link>https://hechen.xyz/post/dockless-cocoaapps/</link>
-      <pubDate>Wed, 13 Mar 2019 17:29:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/post/dockless-cocoaapps/</guid>
-      <description>在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。尤其是针对一些需要便</description>
     </item>
     
   </channel>
