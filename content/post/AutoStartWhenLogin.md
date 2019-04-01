@@ -14,9 +14,9 @@ tags: ["Dock","Cocoa", "Menu", "Agent","Login"]
 
 > Applications can contain a helper application as a full application bundle, stored inside the main application bundle in the Contents/Library/LoginItems directory. Set either the LSUIElement or LSBackgroundOnly key in the Info.plist file of the helper application’s bundle.
 
-Use the SMLoginItemSetEnabled function (available in OS X v10.6.6 and later) to enable a helper application. It takes two arguments, a CFStringRef containing the bundle identifier of the helper application, and a Boolean specifying the desired state. Pass true to start the helper application immediately and indicate that it should be started every time the user logs in. Pass false to terminate the helper application and indicate that it should no longer be launched when the user logs in. This function returns true if the requested change has taken effect; otherwise, it returns false. This function can be used to manage any number of helper applications.
+> Use the SMLoginItemSetEnabled function (available in OS X v10.6.6 and later) to enable a helper application. It takes two arguments, a CFStringRef containing the bundle identifier of the helper application, and a Boolean specifying the desired state. Pass true to start the helper application immediately and indicate that it should be started every time the user logs in. Pass false to terminate the helper application and indicate that it should no longer be launched when the user logs in. This function returns true if the requested change has taken effect; otherwise, it returns false. This function can be used to manage any number of helper applications.
 
-If multiple applications (for example, several applications from the same company) contain a helper application with the same bundle identifier, only the one with the greatest bundle version number is launched. Any of the applications that contain a copy of the helper application can enable and disable it.
+> If multiple applications (for example, several applications from the same company) contain a helper application with the same bundle identifier, only the one with the greatest bundle version number is launched. Any of the applications that contain a copy of the helper application can enable and disable it.
 
 如文档中描述的那样，你可以在主应用中包含一个辅助应用，并且路径固定为 `Contents/Library/LoginItems`，
 
@@ -34,8 +34,7 @@ If multiple applications (for example, several applications from the same compan
 
 其实上面提及的方式也就是在第一小节中提到的两种方式中的第一种，而且第二种共享文件列表的 API 是无法针对沙盒应用使用的，而且 `LSSharedFileList.h` 已经在 10.10 系统版本之后标记为废弃了。
 
-
-综合上面的说明，目前在 macOS 上加入自启动项的方式也只有且仅有一种方式，也就是加入辅助应用来引导主应用启动。整个思路应该是如下：
+综合上面的说明，目前在 macOS 上加入自启动项的方式也有且仅有一种方式，也就是加入辅助应用来引导主应用启动。整个思路应该是如下：
 
 
 1. 将辅助应用加入系统启动项中；
