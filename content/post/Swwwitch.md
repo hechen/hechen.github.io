@@ -7,7 +7,7 @@ categories: ["macOS"]
 tags: ["Menu","AppleScript","NSTask","Process"]
 ---
 
-最近追热点 😂 ，做了个小工具，仅做练手。一键切换功能开发，现在只包含了两个开关：切换系统主题和隐藏桌面 icon 的功能。其实，从我个人而言，有 Alfred 以及 LaunchBar 这些工具在手，这种工具存在意义并不大。
+最近看到开发圈某热点，做了个小工具，总结下最近的几个 CocoaApp 上的功能，仅做练手。现在只包含了两个开关：切换系统主题和隐藏桌面 icon 的功能。从我个人而言，如果你有 Alfred 以及 LaunchBar 这些工具在手，类似这种工具对你来说没有必要。
 
 <!-- more -->
 
@@ -18,8 +18,9 @@ tags: ["Menu","AppleScript","NSTask","Process"]
 1. 切换系统主题
 2. 显式或者印象桌面图标
 3. 完全的 Menu Only 应用
+4. 开机自启动
 
-关于第三点的实现在[另外一篇文章](https://hechen.xyz/post/dockless-cocoaapps/)有写过。
+关于第三点的实现在[另外一篇文章](https://hechen.xyz/post/dockless-cocoaapps/)有讲过，第四点的实现在 [这一篇](https://hechen.xyz/post/autostartwhenlogin/) 中有讲。
 
 ### 系统主题切换
 
