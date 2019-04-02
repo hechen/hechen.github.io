@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2019-03-18T17:29:54&#43;08:00" />
 <meta itemprop="dateModified" content="2019-04-01T10:20:38&#43;08:00" />
-<meta itemprop="wordCount" content="2286">
+<meta itemprop="wordCount" content="2468">
 
 
 
@@ -390,36 +390,36 @@
 
 <h2 id="启动项支持">启动项支持</h2>
 
-<p><img src="https://i.imgur.com/fJUpG26.png" alt="CleanShot 2019-04-01 at 13.06.26" /></p>
+<p><img src="https://i.imgur.com/fJUpG26.png" alt="Add New Target" /></p>
 
 <p>指定 CocoaApp</p>
 
-<p><img src="https://i.imgur.com/tXJDr1Y.png" alt="Xcode 2019-04-01 at 13.07.45" /></p>
+<p><img src="https://i.imgur.com/tXJDr1Y.png" alt="Specify Cocoa App" /></p>
 
 <p>指定 Product ID 为 <code>StartAtLoginLauncher</code>,该 Target 的 BundleID 为 <code>app.chen.osx.demo.StartAtLoginLauncher</code>。</p>
 
-<p><img src="https://i.imgur.com/uj2yhht.png" alt="Xcode 2019-04-01 at 13.08.09" /></p>
+<p><img src="https://i.imgur.com/uj2yhht.png" alt="Modify BundleID" /></p>
 
 <p>然后，修改 StartAtLoginLauncher 的 Info.plist 文件，指定 <code>LSBackgroundOnly</code> 为 YES
-<img src="https://i.imgur.com/BqNsFm7.png" alt="CleanShot 2019-04-01 at 13.13.20" /></p>
+<img src="https://i.imgur.com/BqNsFm7.png" alt="BackgroundOnly" /></p>
 
 <p>修改 StartAtLoginLauncher Target 的 Build Setting 中 <code>Skip Install</code> 为 <code>YES</code></p>
 
-<p><img src="https://i.imgur.com/qKZzECK.png" alt="CleanShot 2019-04-01 at 13.20.46" /></p>
+<p><img src="https://i.imgur.com/qKZzECK.png" alt="Skill Install" /></p>
 
 <p>紧接着是设置主应用 StartAtLogin Target，为其加入 Copy Files Build Phase，如下设置，路径是固定的 <code>Contents/Library/LoginItems</code>，Copy 对象为 <code>StartAtLoginLauncher</code></p>
 
-<p><img src="https://i.imgur.com/wfaxgmZ.png" alt="CleanShot 2019-04-01 at 13.19.08" /></p>
+<p><img src="https://i.imgur.com/wfaxgmZ.png" alt="Copy files Build Phase" /></p>
 
 <p>至此，所有设置均已完成，你可以 Command+B 产出一个 Product 看看，在主应用里是否已经将启动项目包含进去了。</p>
 
-<p><img src="https://i.imgur.com/XfyYMG1.png" alt="CleanShot 2019-04-01 at 13.25.44" /></p>
+<p><img src="https://i.imgur.com/XfyYMG1.png" alt="Build Product" /></p>
 
-<p><img src="https://i.imgur.com/OGXYmxw.png" alt="Finder 2019-04-01 at 13.24.59" /></p>
+<p><img src="https://i.imgur.com/OGXYmxw.png" alt="Reveal Package Content" /></p>
 
 <p>还没有结束，因为 StartAtLoginLauncher 应用是指在后台运行，我们不希望辅助应用启动的时候弹出 UI，因此还需要删除相关的 UI 代码，在 Main.storyboard 中，删除 Window 以及 ViewController，只保留 Application Scene 即可</p>
 
-<p><img src="https://i.imgur.com/poclDG1.png" alt="Xcode 2019-04-01 at 13.32.18" /></p>
+<p><img src="https://i.imgur.com/poclDG1.png" alt="Demo Start When Login" /></p>
 
 <p>至此，所有写代码之前的工作已经完成，我们已经为主应用生成了对应的辅助应用，帮助其启动。</p>
 
@@ -524,6 +524,31 @@
 </div>
 </div>
 <p>辅助应用启动之后，查询主应用是否已经运行，如果已经运行，就自觉干掉自己。如果没有运行，我们唤醒主 App，在此之前设置监听，等到主应用启动之后会发给自己通知，然后再自杀 😂</p>
+
+<p>这其中我们使用了 DistributedNotificationCenter，和平时我们使用的 NotificationCenter 不同，其发出的通知是跨任务的，也就是其他进程如果注册了同样的通知，也是能够收到监听通知的。 系统的日夜间通知就是这种类型，其会在所有 Task 之间进行广播，该通知的 NotificationName 是 <code>AppleInterfaceThemeChangedNotification</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">reigsterThemeChangedNotification</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">DistributedNotificationCenter</span><span class="p">.</span><span class="k">default</span><span class="p">().</span><span class="n">addObserver</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">selector</span><span class="p">:</span> <span class="k">#selector</span><span class="p">(</span><span class="n">selectorHandler</span><span class="p">),</span> <span class="n">name</span><span class="p">:</span> <span class="n">notificationName</span><span class="p">,</span> <span class="n">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kr">@objc</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">selectorHandler</span><span class="p">()</span> <span class="p">{</span>
+    <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Theme Changed!&#34;</span><span class="p">)</span>		
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>因此 Demo 中的通知名字只是示例，尽可能的确保通知的唯一性。</p>
 
 <h4 id="切换自启动状态">切换自启动状态</h4>
 
