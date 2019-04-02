@@ -157,6 +157,8 @@ func applicationDidFinishLaunching(_ aNotification: Notification) {
 
 ``` Swift
 
+private static let notificationName = NSNotification.Name("AppleInterfaceThemeChangedNotification")
+
 func reigsterThemeChangedNotification() {
     DistributedNotificationCenter.default().addObserver(self, selector: #selector(selectorHandler), name: notificationName, object: nil)
 }
