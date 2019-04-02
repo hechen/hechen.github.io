@@ -56,41 +56,40 @@ tags: ["Dock","Cocoa", "Menu", "Agent","Login"]
 
 ## 启动项支持
 
-![CleanShot 2019-04-01 at 13.06.26](https://i.imgur.com/fJUpG26.png)
+![Add New Target](https://i.imgur.com/fJUpG26.png)
 
 指定 CocoaApp
 
-![Xcode 2019-04-01 at 13.07.45](https://i.imgur.com/tXJDr1Y.png)
+![Specify Cocoa App](https://i.imgur.com/tXJDr1Y.png)
 
 
 指定 Product ID 为 `StartAtLoginLauncher`,该 Target 的 BundleID 为 `app.chen.osx.demo.StartAtLoginLauncher`。
 
-![Xcode 2019-04-01 at 13.08.09](https://i.imgur.com/uj2yhht.png)
+![Modify BundleID](https://i.imgur.com/uj2yhht.png)
 
 
 然后，修改 StartAtLoginLauncher 的 Info.plist 文件，指定 `LSBackgroundOnly` 为 YES
-![CleanShot 2019-04-01 at 13.13.20](https://i.imgur.com/BqNsFm7.png)
+![BackgroundOnly](https://i.imgur.com/BqNsFm7.png)
 
 修改 StartAtLoginLauncher Target 的 Build Setting 中 `Skip Install` 为 `YES`
 
-![CleanShot 2019-04-01 at 13.20.46](https://i.imgur.com/qKZzECK.png)
+![Skill Install](https://i.imgur.com/qKZzECK.png)
 
 
 紧接着是设置主应用 StartAtLogin Target，为其加入 Copy Files Build Phase，如下设置，路径是固定的 `Contents/Library/LoginItems`，Copy 对象为 `StartAtLoginLauncher`
 
-![CleanShot 2019-04-01 at 13.19.08](https://i.imgur.com/wfaxgmZ.png)
+![Copy files Build Phase](https://i.imgur.com/wfaxgmZ.png)
 
 
 至此，所有设置均已完成，你可以 Command+B 产出一个 Product 看看，在主应用里是否已经将启动项目包含进去了。
 
-![CleanShot 2019-04-01 at 13.25.44](https://i.imgur.com/XfyYMG1.png)
+![Build Product](https://i.imgur.com/XfyYMG1.png)
 
-![Finder 2019-04-01 at 13.24.59](https://i.imgur.com/OGXYmxw.png)
+![Reveal Package Content](https://i.imgur.com/OGXYmxw.png)
 
 还没有结束，因为 StartAtLoginLauncher 应用是指在后台运行，我们不希望辅助应用启动的时候弹出 UI，因此还需要删除相关的 UI 代码，在 Main.storyboard 中，删除 Window 以及 ViewController，只保留 Application Scene 即可
 
-![Xcode 2019-04-01 at 13.32.18](https://i.imgur.com/poclDG1.png)
-
+![Demo Start When Login](https://i.imgur.com/poclDG1.png)
 
 至此，所有写代码之前的工作已经完成，我们已经为主应用生成了对应的辅助应用，帮助其启动。
 
@@ -154,6 +153,20 @@ func applicationDidFinishLaunching(_ aNotification: Notification) {
 
 辅助应用启动之后，查询主应用是否已经运行，如果已经运行，就自觉干掉自己。如果没有运行，我们唤醒主 App，在此之前设置监听，等到主应用启动之后会发给自己通知，然后再自杀 😂
 
+这其中我们使用了 DistributedNotificationCenter，和平时我们使用的 NotificationCenter 不同，其发出的通知是跨任务的，也就是其他进程如果注册了同样的通知，也是能够收到监听通知的。 系统的日夜间通知就是这种类型，其会在所有 Task 之间进行广播，该通知的 NotificationName 是 `AppleInterfaceThemeChangedNotification`.
+
+``` Swift
+
+func reigsterThemeChangedNotification() {
+    DistributedNotificationCenter.default().addObserver(self, selector: #selector(selectorHandler), name: notificationName, object: nil)
+}
+
+@objc
+private static func selectorHandler() {
+    print("Theme Changed!")		
+}
+```
+因此 Demo 中的通知名字只是示例，尽可能的确保通知的唯一性。
 
 #### 切换自启动状态
 
