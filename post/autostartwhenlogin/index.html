@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2019-03-18T17:29:54&#43;08:00" />
 <meta itemprop="dateModified" content="2019-04-01T10:20:38&#43;08:00" />
-<meta itemprop="wordCount" content="2468">
+<meta itemprop="wordCount" content="2476">
 
 
 
@@ -528,17 +528,21 @@
 <p>这其中我们使用了 DistributedNotificationCenter，和平时我们使用的 NotificationCenter 不同，其发出的通知是跨任务的，也就是其他进程如果注册了同样的通知，也是能够收到监听通知的。 系统的日夜间通知就是这种类型，其会在所有 Task 之间进行广播，该通知的 NotificationName 是 <code>AppleInterfaceThemeChangedNotification</code>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="nf">reigsterThemeChangedNotification</span><span class="p">()</span> <span class="p">{</span>
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">let</span> <span class="nv">notificationName</span> <span class="p">=</span> <span class="n">NSNotification</span><span class="p">.</span><span class="n">Name</span><span class="p">(</span><span class="s">&#34;AppleInterfaceThemeChangedNotification&#34;</span><span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">reigsterThemeChangedNotification</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">DistributedNotificationCenter</span><span class="p">.</span><span class="k">default</span><span class="p">().</span><span class="n">addObserver</span><span class="p">(</span><span class="kc">self</span><span class="p">,</span> <span class="n">selector</span><span class="p">:</span> <span class="k">#selector</span><span class="p">(</span><span class="n">selectorHandler</span><span class="p">),</span> <span class="n">name</span><span class="p">:</span> <span class="n">notificationName</span><span class="p">,</span> <span class="n">object</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
 <span class="p">}</span>
 
