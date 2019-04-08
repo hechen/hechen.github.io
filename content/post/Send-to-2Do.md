@@ -7,7 +7,7 @@ tags: ["Bookmark","2Do","Things","OmniFocus","Safari"]
 
 使用鼠标拖拽下面这个链接到你的 Favorites Bar 上，
 
-# 2Do
+## 2Do
 
 [Send to 2Do](javascript:window.location='')
 
@@ -26,7 +26,7 @@ javascript:window.location='twodo://x-callback-url/add?task='+encodeURIComponent
 2. `window.location` 为当前页面链接
 
 
-# Things
+## Things
 
 我们知道 Things 的 URL Scheme 的规则如下：
 
@@ -41,7 +41,7 @@ things:///add?title=iamtitle&notes=iamnotes&when=tomorrow
 javascript:window.location='things:///add?title='+encodeURIComponent(document.title)+'&notes='+encodeURIComponent(window.location)+'&when=today'
 ```
 
-# OmniFocus
+## OmniFocus
 
 同理，可以有 Send To OmniFocus ，如下：
 
