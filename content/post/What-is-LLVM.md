@@ -1,9 +1,9 @@
 ---
 title: What is LLVM
 date: 2018-07-10 12:05:58
-top_img: https://i.imgur.com/ShTaH8L.jpg
+lastmod: 2019-04-13T22:30:23+08:00
 categories: ["Translation"]
-tags: ["LLVM","Compiler","Swfit","IR"]
+tags: ["LLVM","Compiler","Swift","IR"]
 ---
 
 
@@ -87,16 +87,13 @@ LLVM 已经被用以为许多跨领域通用计算机语言产生编译器，但
 
 - [llvmcpy](https://github.com/revng/llvmcpy) 旨在更新 Python 为 C 库提供的绑定，使得它们能够以自动化的形式保持更新，并且 Python 的原生语法使得它们能够很方便的使用。llvmcpy 依然处于初级阶段，但是已经做了很多和 LLVM API 打交道的基础工作。
 
-If you’re curious about how to use LLVM libraries to build a language, LLVM’s own creators have a tutorial, using either C++ or OCAML, that steps you through creating a simple language called Kaleidoscope. It’s since been ported to other languages:
-
-如果你很好奇如何使用 LLVM 库构建一门语言的话，LLVM 的原创者们提供了[教程](https://llvm.org/docs/tutorial/index.html)，该教程使用 C++ 或者 OCAML ，指导你从头到尾创造一门简单的语言 **Kaleidoscope**，而这个示例已经被移植到其他语言上了：
+如果你很好奇如何使用 LLVM 库构建一门语言的话，LLVM 的创造者们提供了教程，该教程使用 C++ 或者 OCAML ，指导你从从 0 到 1 创造一门简单的语言 Kaleidoscope，而且这个示例已经被移植到其他语言上了：
 
 - [Haskell](http://www.stephendiehl.com/llvm/): 和原始教程最接近的移植；
 
 - Python：[一个版本](https://github.com/eliben/pykaleidoscope)和该教程非常接近，[另外一个版本](https://github.com/frederickjeanguerin/pykaleidoscope) 更激进一些，重写了一个交互命令行。两者都使用了 llvmlite 作为和 LLVM 的绑定；
 
 - [Rust](https://github.com/jauhien/iron-kaleidoscope) 和 [Swift](https://harlanhaskins.com/2017/01/08/building-a-compiler-with-swift-in-llvm-part-1-introduction-and-the-lexer.html)：似乎不可避免，我们会得到这两个语言版本的移植版本教程，因为 LLVM 本身更就是因为这二者才得以创造的。
-
 
 最后，这个教程也有其他人类语言的版本。它已经被翻译成中文了，有使用 [C++](https://github.com/liancheng/llvm-tutorial-cn) 的，也有 [Python](https://github.com/moevis/Kaleidoscope-LLVM-tutorial-zh-cn)。
 
