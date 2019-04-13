@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.0-DEV" />
+<meta name="generator" content="Hugo 0.56.0-DEV" />
 
 
 <link rel="canonical" href="https://hechen.xyz/post/understanding-responders-and-the-responder-chain/" />
@@ -62,15 +62,15 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hechen.xyz/post/understanding-responders-and-the-responder-chain/" />
 <meta property="article:published_time" content="2017-11-13T21:22:44&#43;00:00"/>
-<meta property="article:modified_time" content="2017-11-13T21:22:44&#43;00:00"/>
+<meta property="article:modified_time" content="2019-04-13T21:45:23&#43;08:00"/>
 
 <meta itemprop="name" content="理解响应者和响应链">
 <meta itemprop="description" content="Apps 是通过响应者（responder）对象来接收和处理事件的。一个响应者对象是 UIResponder 类的一个实例，我们常见的 UIView，UIViewContro">
 
 
 <meta itemprop="datePublished" content="2017-11-13T21:22:44&#43;00:00" />
-<meta itemprop="dateModified" content="2017-11-13T21:22:44&#43;00:00" />
-<meta itemprop="wordCount" content="1807">
+<meta itemprop="dateModified" content="2019-04-13T21:45:23&#43;08:00" />
+<meta itemprop="wordCount" content="1809">
 
 
 
@@ -131,6 +131,13 @@
           
           
             <a class="menu-item-link" href="https://hechen.xyz/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/about/">About</a>
           
         
       </li>
@@ -258,6 +265,17 @@
 
       </li>
     
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/about/">About</a>
+          
+
+        
+
+      </li>
+    
     
   </ul>
 </nav>
@@ -321,9 +339,9 @@
 
 <p>UIKit 会把大部分的事件都传递给最适合的 responder 对象来处理。如果该 responder 无法处理该事件，UIKit 就会继续把该事件沿着当前的响应者链传递到下一个 responder。响应者链就是你的 App 中所有响应者的动态配置，也因为其是动态的，你的 App 中不可能只存在单一的响应者链。由于事件总是从特定的响应者那里流转到更通用的响应者那里，因此很容易确定某响应者链中下一个响应者是谁。举个例子，一个 view 的下一个响应者是其 superview 或者负责管理它的 view controller。事件就是这样在响应者链中传递直到其被处理掉。</p>
 
-<p>下图1 表明一个界面中包含了 一个 Label，一个 text field，一个 button 以及两个 background view 的 App 中响应链是什么样子的。如果 text field 不处理某个事件，UIKit 就会把该事件发送给 text field 的父级 UIView 对象，同样的，如果该对象依然处理不了，就会传递给该 view 对象的 window。如果 window 对象也依然无法处理该事件，UIKit 最终会把该事件传递给 UIApplication 对象，一般上该 UIApplication 对象是 App 的 delegate 对象并且是 UIResponder 实例，当然这个时候已经脱离了响应者链了。</p>
+<p>下图展示了一个界面中包含了 一个 Label，一个 TextField，一个 Button 以及两个容器 view 的 App 中响应链是什么样子的。如果 TextField 不处理某个事件，UIKit 就会把该事件发送给 TextField 的父级 UIView 对象，同样的，如果该对象依然处理不了，就会传递给该 view 对象的 window。如果 window 对象也依然无法处理该事件，UIKit 最终会把该事件传递给 UIApplication 对象，一般上该 UIApplication 对象是 App 的 delegate 对象并且是 UIResponder 实例，当然这个时候已经脱离了响应者链了。</p>
 
-<p><img src="https://ws4.sinaimg.cn/large/006tKfTcly1flgs9djns2j30zp0lyac6.jpg" alt="图1 - 一个响应者链的例子" /></p>
+<p><img src="https://i.imgur.com/qvT1XMO.png" alt="图1 - 一个响应者链的例子" /></p>
 
 <p>针对每一个事件，UIKit 都会指定一个第一响应者（first responder），然后把该事件首先发送给对象处理。这个第一响应者基于事件类型而不同。</p>
 
@@ -363,7 +381,7 @@
 3.1 如果该视图控制器的视图是某个 window 的根视图（root view），其下一个响应者就是 window；
 3.2 如果该视图控制器是由另一个视图控制器展示出来的，其下一个响应者就是那个视图控制器（presenting view controller）；</li>
 <li><code>UIWindow</code>  window 的下一个响应者就是 <code>UIApplication</code> 对象</li>
-<li><code>UIApplication</code>  UIApplication 对象的下一个响应者是 App delegate，而且要求该 delegate 必须是 <code>UIRepsponder</code> 的实例并且不能是一个视图、视图控制器或者 <code>UIApplication</code> 对象自己。</li>
+<li><code>UIApplication</code>  UIApplication 对象的下一个响应者是 App delegate，而且要求该 delegate 必须是 <code>UIRespponder</code> 的实例并且不能是一个视图、视图控制器或者 <code>UIApplication</code> 对象自己。</li>
 </ol>
 
     </div>
@@ -377,7 +395,7 @@
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2017-11-13</span>
+    <span class="item-content">2019-04-13</span>
   </p>
   
   <p class="copyright-item">
