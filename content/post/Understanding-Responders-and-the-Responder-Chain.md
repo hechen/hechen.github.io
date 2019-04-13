@@ -1,6 +1,7 @@
 ---
 title: 理解响应者和响应链
 date: 2017-11-13 21:22:44
+lastmod: 2019-04-13T21:45:23+08:00
 categories: ["iOS"]
 tags: ["UIResponder","UIGestureRecognizer"]
 ---
@@ -9,9 +10,9 @@ Apps 是通过响应者（responder）对象来接收和处理事件的。一个
 
 UIKit 会把大部分的事件都传递给最适合的 responder 对象来处理。如果该 responder 无法处理该事件，UIKit 就会继续把该事件沿着当前的响应者链传递到下一个 responder。响应者链就是你的 App 中所有响应者的动态配置，也因为其是动态的，你的 App 中不可能只存在单一的响应者链。由于事件总是从特定的响应者那里流转到更通用的响应者那里，因此很容易确定某响应者链中下一个响应者是谁。举个例子，一个 view 的下一个响应者是其 superview 或者负责管理它的 view controller。事件就是这样在响应者链中传递直到其被处理掉。
 
-下图1 表明一个界面中包含了 一个 Label，一个 text field，一个 button 以及两个 background view 的 App 中响应链是什么样子的。如果 text field 不处理某个事件，UIKit 就会把该事件发送给 text field 的父级 UIView 对象，同样的，如果该对象依然处理不了，就会传递给该 view 对象的 window。如果 window 对象也依然无法处理该事件，UIKit 最终会把该事件传递给 UIApplication 对象，一般上该 UIApplication 对象是 App 的 delegate 对象并且是 UIResponder 实例，当然这个时候已经脱离了响应者链了。
+下图展示了一个界面中包含了 一个 Label，一个 TextField，一个 Button 以及两个容器 view 的 App 中响应链是什么样子的。如果 TextField 不处理某个事件，UIKit 就会把该事件发送给 TextField 的父级 UIView 对象，同样的，如果该对象依然处理不了，就会传递给该 view 对象的 window。如果 window 对象也依然无法处理该事件，UIKit 最终会把该事件传递给 UIApplication 对象，一般上该 UIApplication 对象是 App 的 delegate 对象并且是 UIResponder 实例，当然这个时候已经脱离了响应者链了。
 
-![图1 - 一个响应者链的例子](https://ws4.sinaimg.cn/large/006tKfTcly1flgs9djns2j30zp0lyac6.jpg)
+![图1 - 一个响应者链的例子](https://i.imgur.com/qvT1XMO.png)
 
 针对每一个事件，UIKit 都会指定一个第一响应者（first responder），然后把该事件首先发送给对象处理。这个第一响应者基于事件类型而不同。
 
@@ -48,12 +49,4 @@ UIKit 使用基于视图的碰撞检测（hit-testing）来决定 touch 事件�
 	3.1 如果该视图控制器的视图是某个 window 的根视图（root view），其下一个响应者就是 window；
 	3.2 如果该视图控制器是由另一个视图控制器展示出来的，其下一个响应者就是那个视图控制器（presenting view controller）；
 4. `UIWindow`  window 的下一个响应者就是 `UIApplication` 对象
-5. `UIApplication`  UIApplication 对象的下一个响应者是 App delegate，而且要求该 delegate 必须是 `UIRepsponder` 的实例并且不能是一个视图、视图控制器或者 `UIApplication` 对象自己。
-
-
-
-
-
-
-[image-1]:	http://7xilk1.com1.z0.glb.clouddn.com/responder_chain_overview_2x.png
-
+5. `UIApplication`  UIApplication 对象的下一个响应者是 App delegate，而且要求该 delegate 必须是 `UIRespponder` 的实例并且不能是一个视图、视图控制器或者 `UIApplication` 对象自己。
