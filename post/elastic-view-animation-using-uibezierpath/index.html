@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.0-DEV" />
+<meta name="generator" content="Hugo 0.56.0-DEV" />
 
 
 <link rel="canonical" href="https://hechen.xyz/post/elastic-view-animation-using-uibezierpath/" />
@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2015-12-02T18:53:51&#43;00:00" />
 <meta itemprop="dateModified" content="2015-12-02T18:53:51&#43;00:00" />
-<meta itemprop="wordCount" content="3806">
+<meta itemprop="wordCount" content="3805">
 
 
 
@@ -131,6 +131,13 @@
           
           
             <a class="menu-item-link" href="https://hechen.xyz/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/about/">About</a>
           
         
       </li>
@@ -252,6 +259,17 @@
           
           
             <a class="menu-item-link" href="https://hechen.xyz/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/about/">About</a>
           
 
         
@@ -463,7 +481,8 @@ override func preferredStatusBarStyle() -&gt; UIStatusBarStyle {
 </div>
 </div></li>
 
-<li><p>为我们的控制点视图声明变量；</p>
+<li><p>为我们的控制点视图声明变量；</p></li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -483,9 +502,10 @@ private let r1ControlPointView = UIView()
 private let r2ControlPointView = UIView()  
 private let r3ControlPointView = UIView()  </pre></td></tr></table>
 </div>
-</div></li>
-
-<li><p>将上面定义的控制点视图设置为3*3的size，然后背景色设置为红色（这里我们只是暂时希望能够更方便演示，最终完成的时候会让它们不可见的），然后将这些控制点添加到View子视图中。将下面这些代码拷贝到loadView方法的尾部；</p>
+</div>
+<ul>
+<li>将上面定义的控制点视图设置为3*3的size，然后背景色设置为红色（这里我们只是暂时希望能够更方便演示，最终完成的时候会让它们不可见的），然后将这些控制点添加到View子视图中。将下面这些代码拷贝到loadView方法的尾部；</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt"> 1
@@ -537,9 +557,10 @@ view.addSubview(r1ControlPointView)
 view.addSubview(r2ControlPointView)  
 view.addSubview(r3ControlPointView)  </pre></td></tr></table>
 </div>
-</div></li>
-
-<li><p>创建一个UIView的扩展，将其放到ViewController的声明上方；</p>
+</div>
+<ul>
+<li>创建一个UIView的扩展，将其放到ViewController的声明上方；</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -553,20 +574,21 @@ view.addSubview(r3ControlPointView)  </pre></td></tr></table>
 </span></pre></td>
 <td class="lntd">
 <pre class="chroma">extension UIView {  
-func dg_center(usePresentationLayerIfPossible: Bool) -&gt; CGPoint {
-    if usePresentationLayerIfPossible, let presentationLayer = layer.presentationLayer() as? CALayer {
-        return presentationLayer.position
+    func dg_center(usePresentationLayerIfPossible: Bool) -&gt; CGPoint {
+        if usePresentationLayerIfPossible, let presentationLayer = layer.presentationLayer() as? CALayer {
+            return presentationLayer.position
+        }
+        return center
     }
-    return center
-}
 }</pre></td></tr></table>
 </div>
-</div></li>
-
+</div>
+<ul>
 <li><p>当UIView从一帧到另外一帧进行动画的时候，你会试图去取得UIView.frame，而UIView.center会提供给你动画最终的值而不是每一帧的过渡值。因此我们需要定义一个扩展方法提供给我们UIView.layer.presentationLayer的实时位置；
 &gt;  presentationLayer的详细信息可以在<a href="https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CALayer_class/#//apple_ref/occ/instm/CALayer/presentationLayer">官方文档</a> 中查看</p></li>
 
-<li><p>声明一个currentPath()方法；</p>
+<li><p>声明一个currentPath()方法；</p></li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt"> 1
@@ -588,29 +610,28 @@ func dg_center(usePresentationLayerIfPossible: Bool) -&gt; CGPoint {
 </span></pre></td>
 <td class="lntd">
 <pre class="chroma">private func currentPath() -&gt; CGPath {  
-let width = view.bounds.width
+    let width = view.bounds.width
 
-let bezierPath = UIBezierPath()
+    let bezierPath = UIBezierPath()
 
-bezierPath.moveToPoint(CGPoint(x: 0.0, y: 0.0))
-bezierPath.addLineToPoint(CGPoint(x: 0.0, y: l3ControlPointView.dg_center(false).y))
-bezierPath.addCurveToPoint(l1ControlPointView.dg_center(false), controlPoint1: l3ControlPointView.dg_center(false), controlPoint2: l2ControlPointView.dg_center(false))
-bezierPath.addCurveToPoint(r1ControlPointView.dg_center(false), controlPoint1: cControlPointView.dg_center(false), controlPoint2: r1ControlPointView.dg_center(false))
-bezierPath.addCurveToPoint(r3ControlPointView.dg_center(false), controlPoint1: r1ControlPointView.dg_center(false), controlPoint2: r2ControlPointView.dg_center(false))
-bezierPath.addLineToPoint(CGPoint(x: width, y: 0.0))
+    bezierPath.moveToPoint(CGPoint(x: 0.0, y: 0.0))
+    bezierPath.addLineToPoint(CGPoint(x: 0.0, y: l3ControlPointView.dg_center(false).y))
+    bezierPath.addCurveToPoint(l1ControlPointView.dg_center(false), controlPoint1: l3ControlPointView.dg_center(false), controlPoint2: l2ControlPointView.dg_center(false))
+    bezierPath.addCurveToPoint(r1ControlPointView.dg_center(false), controlPoint1: cControlPointView.dg_center(false), controlPoint2: r1ControlPointView.dg_center(false))
+    bezierPath.addCurveToPoint(r3ControlPointView.dg_center(false), controlPoint1: r1ControlPointView.dg_center(false), controlPoint2: r2ControlPointView.dg_center(false))
+    bezierPath.addLineToPoint(CGPoint(x: width, y: 0.0))
 
-bezierPath.closePath()
+    bezierPath.closePath()
 
-return bezierPath.CGPath
+    return bezierPath.CGPath
 }</pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
+</div>
 <p>这个方法返回shapeLayer当前的CGPath。它用到了我们前面所定义和讨论的控制点。</p>
 
 <ul>
-<li><p>声明updateShapeLayer方法；</p>
+<li>声明updateShapeLayer方法；</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -619,12 +640,10 @@ return bezierPath.CGPath
 </span></pre></td>
 <td class="lntd">
 <pre class="chroma">func updateShapeLayer() {  
-shapeLayer.path = currentPath()
+    shapeLayer.path = currentPath()
 }</pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
+</div>
 <p>This function will be called when we need shapeLayer to be updated. It is not a private func because we are going to use Selector() for CADisplayLink.</p>
 
 <p>这个方法会在shapeLayer需要更新的时候调用。
@@ -686,7 +705,8 @@ shapeLayer.path = currentPath()
 的效果时，我就将这些值替换到程序中即可。</p>
 
 <ul>
-<li><p>更新我们的panGestureDidMove方法，这样当我们手指移动的时候所有的控制点也能移动。用以下的代码替换panGestureDidMove方法中的内容；</p>
+<li>更新我们的panGestureDidMove方法，这样当我们手指移动的时候所有的控制点也能移动。用以下的代码替换panGestureDidMove方法中的内容；</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt"> 1
@@ -707,30 +727,29 @@ shapeLayer.path = currentPath()
 </span></pre></td>
 <td class="lntd">
 <pre class="chroma">func panGestureDidMove(gesture: UIPanGestureRecognizer) {  
-if gesture.state == .Ended || gesture.state == .Failed || gesture.state == .Cancelled {
+    if gesture.state == .Ended || gesture.state == .Failed || gesture.state == .Cancelled {
 
-} else {
-    let additionalHeight = max(gesture.translationInView(view).y, 0)
+    } else {
+        let additionalHeight = max(gesture.translationInView(view).y, 0)
 
-    let waveHeight = min(additionalHeight * 0.6, maxWaveHeight)
-    let baseHeight = minimalHeight + additionalHeight - waveHeight
+        let waveHeight = min(additionalHeight * 0.6, maxWaveHeight)
+        let baseHeight = minimalHeight + additionalHeight - waveHeight
 
-    let locationX = gesture.locationInView(gesture.view).x
+        let locationX = gesture.locationInView(gesture.view).x
 
-    layoutControlPoints(baseHeight: baseHeight, waveHeight: waveHeight, locationX: locationX)
-    updateShapeLayer()
-}
+        layoutControlPoints(baseHeight: baseHeight, waveHeight: waveHeight, locationX: locationX)
+        updateShapeLayer()
+    }
 }</pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
+</div>
 <p>我们所做的就是计算wave高度，基础高度以及手指的位置，然后调用layoutControlPoints去布局各个控制点，然后调用updateShapeLayer来更新我们的shapeLayer的path。</p>
 
 <p>What we do is calculate wave height, base height, location of the finger and call our function: layoutControlPoints to layout control points and updateShapeLayer to update our shape layer path.</p>
 
 <ul>
-<li><p>在loadView方法尾部添加两行代码，使得我们在打开app的时候正确的显示；</p>
+<li>在loadView方法尾部添加两行代码，使得我们在打开app的时候正确的显示；</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -740,18 +759,14 @@ if gesture.state == .Ended || gesture.state == .Failed || gesture.state == .Canc
 <pre class="chroma">layoutControlPoints(baseHeight: minimalHeight, waveHeight: 0.0, locationX: view.bounds.width / 2.0)  
 updateShapeLayer()  </pre></td></tr></table>
 </div>
-</div></li>
-
-<li><p>修改</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">shapeLayer.backgroundColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0).CGColor  </pre></td></tr></table>
 </div>
-</div>
-<p>为</p>
+<ul>
+<li>修改
+<code>
+shapeLayer.backgroundColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0).CGColor  
+</code>
+为</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -759,9 +774,7 @@ updateShapeLayer()  </pre></td></tr></table>
 <td class="lntd">
 <pre class="chroma">shapeLayer.fillColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0).CGColor  </pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
+</div>
 <p>到这里，效果应该如下所示：</p>
 
 <p><img src="http://7xilk1.com1.z0.glb.clouddn.com/DGElasticPullToRefreshBuilds3.gif" alt="Build3" /></p>
@@ -770,7 +783,8 @@ updateShapeLayer()  </pre></td></tr></table>
 还是让我们一步一步来吧：</p>
 
 <ul>
-<li><p>定义displayLink变量；</p>
+<li>定义displayLink变量；</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -778,9 +792,7 @@ updateShapeLayer()  </pre></td></tr></table>
 <td class="lntd">
 <pre class="chroma">private var displayLink: CADisplayLink!</pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
+</div>
 <p>在loadView方法的末尾进行初始化：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -797,7 +809,8 @@ updateShapeLayer()  </pre></td></tr></table>
 <p>前面我们也提到过，我们的CADisplayLink对象会在每一帧都调用指定的方法（这里就是指定的updateShapeLayer），因此我们就可以在UIView的动画期间实时的更新shapeLayer的path了。</p>
 
 <ul>
-<li><p>定义animating变量；</p>
+<li>定义animating变量；</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -809,15 +822,13 @@ updateShapeLayer()  </pre></td></tr></table>
 </span></pre></td>
 <td class="lntd">
 <pre class="chroma">private var animating = false {  
-didSet {
-    view.userInteractionEnabled = !animating
-    displayLink.paused = !animating
-}
+    didSet {
+        view.userInteractionEnabled = !animating
+        displayLink.paused = !animating
+    }
 }</pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
+</div>
 <p>这个可以控制用户交互是否开启以及displayLink的停止和播放（动画播放期间你肯定不希望用户的交互直接就把动画效果给破坏了。）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -860,7 +871,8 @@ didSet {
 <p>更新currentPath方法，将dg_center方法参数换为animating参数仅当动画需要的时候才提供layer的准确过渡值。</p>
 
 <ul>
-<li><p>最后一步就是需要更新panGestureDidMove方法中的if判断语句；</p>
+<li>最后一步就是需要更新panGestureDidMove方法中的if判断语句；</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt"> 1
@@ -892,35 +904,33 @@ didSet {
 </span></pre></td>
 <td class="lntd">
 <pre class="chroma">if gesture.state == .Ended || gesture.state == .Failed || gesture.state == .Cancelled {  
-let centerY = minimalHeight
+    let centerY = minimalHeight
 
-animating = true
-UIView.animateWithDuration(0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [], animations: { () -&gt; Void in
-    self.l3ControlPointView.center.y = centerY
-    self.l2ControlPointView.center.y = centerY
-    self.l1ControlPointView.center.y = centerY
-    self.cControlPointView.center.y = centerY
-    self.r1ControlPointView.center.y = centerY
-    self.r2ControlPointView.center.y = centerY
-    self.r3ControlPointView.center.y = centerY
-    }, completion: { _ in
-        self.animating = false
-})
+    animating = true
+    UIView.animateWithDuration(0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [], animations: { () -&gt; Void in
+        self.l3ControlPointView.center.y = centerY
+        self.l2ControlPointView.center.y = centerY
+        self.l1ControlPointView.center.y = centerY
+        self.cControlPointView.center.y = centerY
+        self.r1ControlPointView.center.y = centerY
+        self.r2ControlPointView.center.y = centerY
+        self.r3ControlPointView.center.y = centerY
+        }, completion: { _ in
+            self.animating = false
+    })
 } else {
-let additionalHeight = max(gesture.translationInView(view).y, 0)
+    let additionalHeight = max(gesture.translationInView(view).y, 0)
 
-let waveHeight = min(additionalHeight * 0.6, maxWaveHeight)
-let baseHeight = minimalHeight + additionalHeight - waveHeight
+    let waveHeight = min(additionalHeight * 0.6, maxWaveHeight)
+    let baseHeight = minimalHeight + additionalHeight - waveHeight
 
-let locationX = gesture.locationInView(gesture.view).x
+    let locationX = gesture.locationInView(gesture.view).x
 
-layoutControlPoints(baseHeight: baseHeight, waveHeight: waveHeight, locationX: locationX)
-updateShapeLayer()
+    layoutControlPoints(baseHeight: baseHeight, waveHeight: waveHeight, locationX: locationX)
+    updateShapeLayer()
 }</pre></td></tr></table>
 </div>
-</div></li>
-</ul>
-
+</div>
 <p>我们已经为UIView添加了Sprint动画，让我们的控制点能够通过很优雅的回弹效果回到它们的位置。你可以修改以上的变量值来使你的动画看起来更优美，更好看。</p>
 
 <p>让我们在设备上运行下看看能够让你震惊的效果：
