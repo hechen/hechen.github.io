@@ -1,19 +1,21 @@
-# https://docs.travis-ci.com/user/deployment/pages/
-# https://docs.travis-ci.com/user/reference/xenial/
-# https://docs.travis-ci.com/user/languages/go/
-# https://docs.travis-ci.com/user/customizing-the-build/
-
-dist: xenial
+os: osx
 language: go
-go:
-    - master
 
-# before_install
-# install - install any dependencies required
+go:
+- 1.12
+
+before_install:
+    - mkdir $HOME/src
+    
+
 install:
-    - go get github.com/gohugoio/hugo    # consume time 70.85s
+    - cd $HOME/src
+    - git clone https://github.com/gohugoio/hugo.git
+    - cd hugo
+    - go install
 
 before_script:
+    - cd $TRAVIS_BUILD_DIR
     - rm -rf public 2> /dev/null
 
 # script - run the build script
