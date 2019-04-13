@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.0-DEV" />
+<meta name="generator" content="Hugo 0.56.0-DEV" />
 
 
 <link rel="canonical" href="https://hechen.xyz/post/ios-push-notification/" />
@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2015-07-30T14:30:00&#43;00:00" />
 <meta itemprop="dateModified" content="2015-07-30T14:30:00&#43;00:00" />
-<meta itemprop="wordCount" content="4734">
+<meta itemprop="wordCount" content="4733">
 
 
 
@@ -131,6 +131,13 @@
           
           
             <a class="menu-item-link" href="https://hechen.xyz/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/about/">About</a>
           
         
       </li>
@@ -252,6 +259,17 @@
           
           
             <a class="menu-item-link" href="https://hechen.xyz/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/about/">About</a>
           
 
         
@@ -729,7 +747,8 @@
 </div>
 </div>
 <ul>
-<li><p>紧接着执行命令将Push.p12文件转换成pem格式文件，之后在本目录下生成PushKey.pem文件，其中会提示你先输入之前生成Push.p12文件的时候的密码，然后需要为新生成的证书文件添加密码，这个密码是要提供给服务端使用的；</p>
+<li>紧接着执行命令将Push.p12文件转换成pem格式文件，之后在本目录下生成PushKey.pem文件，其中会提示你先输入之前生成Push.p12文件的时候的密码，然后需要为新生成的证书文件添加密码，这个密码是要提供给服务端使用的；</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -737,19 +756,14 @@
 <td class="lntd">
 <pre class="chroma">openssl pkcs12 -nocerts -out Pushkey.pem -in Push.p12 </pre></td></tr></table>
 </div>
-</div></li>
-
-<li><p>然后将这两个pem文件合成成一个pem文件，Push.pem</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt">1
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">cat PushCert.pem PushKey.pem &gt; Push.pem</pre></td></tr></table>
 </div>
-</div>
-<p>整个过程如下图所示：
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode9.png" alt="pem文件生成过程" /></p></li>
+<ul>
+<li>然后将这两个pem文件合成成一个pem文件，Push.pem
+<code>
+cat PushCert.pem PushKey.pem &gt; Push.pem
+</code>
+整个过程如下图所示：
+<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode9.png" alt="pem文件生成过程" /></li>
 </ul>
 
 <p>证书生成完毕之后，我们就可以在代码中使用了。

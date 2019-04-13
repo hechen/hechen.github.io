@@ -48,6 +48,15 @@
     </item>
     
     <item>
+      <title>What is LLVM</title>
+      <link>https://hechen.xyz/post/what-is-llvm/</link>
+      <pubDate>Tue, 10 Jul 2018 12:05:58 +0000</pubDate>
+      
+      <guid>https://hechen.xyz/post/what-is-llvm/</guid>
+      <description>什么是 LLVM？隐藏在 Swift，Rust，Clang 等语言背后的奥秘 了解编译器是如何生成机器原生代码会使得倒腾新语言或者加强已经存在的编程</description>
+    </item>
+    
+    <item>
       <title>在 Swift 中使用工厂模式进行依赖注入</title>
       <link>https://hechen.xyz/post/dependency-injection-using-factories-in-swift/</link>
       <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
