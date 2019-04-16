@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2015-07-30T14:30:00&#43;00:00" />
 <meta itemprop="dateModified" content="2015-07-30T14:30:00&#43;00:00" />
-<meta itemprop="wordCount" content="4733">
+<meta itemprop="wordCount" content="4721">
 
 
 
@@ -321,22 +321,16 @@
   <div class="post-toc-content">
     <nav id="TableOfContents">
 <ul>
-<li>
+<li><a href="#ios远端推送机制">iOS远端推送机制</a>
 <ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#ios远端推送机制">iOS远端推送机制</a></li>
-<li><a href="#本地推送证书配置">本地推送证书配置</a>
-<ul>
+<li><a href="#本地推送证书配置">本地推送证书配置</a></li>
 <li><a href="#app-id">APP ID</a></li>
 <li><a href="#certificates">Certificates</a></li>
 <li><a href="#provisioning-profiles">Provisioning Profiles</a></li>
-</ul></li>
 <li><a href="#开发环境配置">开发环境配置</a></li>
-<li><a href="#远端推送通知的代码实现">远端推送通知的代码实现</a></li>
-</ul></li>
+<li><a href="#远端推送通知的代码实现">远端推送通知的代码实现</a>
+<ul>
+<li><a href="#参考文献">参考文献</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -350,103 +344,130 @@
 
 <p>最近几天被iOS的推送部署给搞懵了，现在特地整理下和大家进行分享。</p>
 
-<h4 id="ios远端推送机制">iOS远端推送机制</h4>
+<h1 id="ios远端推送机制">iOS远端推送机制</h1>
 
 <p>APNS，全称为Apple Push Notification service，是苹果通知推送服务中最重要的一环。它是苹果通知推送服务器，为所有iOS设备以及OS X设备提供强大并且可靠的推送通知服务。每个注册通知服务的设备都会和该服务器进行长连接，从而实时获取推送通知。即使当前APP不在运行状态，当通知到达的时候也会有提示发生，最常见的就是短信服务。</p>
 
 <!-- more -->
 
-<p>每一个App必须向APNs注册通知服务，APNs会返回给设备一个DeviceToken，该Token为APNs上针对该设备的唯一标示符。App需要将该DeviceToken返给自身的Server端保存后续使用，如下所示。
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushshare%20the%20device%20Token.png" alt="DeviceToken的操作流程" /></p>
+<p>每一个App必须向APNs注册通知服务，APNs会返回给设备一个DeviceToken，该Token为APNs上针对该设备的唯一标示符。App需要将该DeviceToken返给自身的Server端保存后续使用，如下所示。</p>
 
-<p>当App开发者的server需要向特定设备推送通知时，就使用DeviceToken和固定格式数据（Push payload）发给APNs，然后APNs就会向DeviceToken指定的设备推送通知了，具体流程如下所示，单一推送
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushPushing%20a%20remote%20notification%20from%20a%20provider%20to%20a%20client%20app.png" alt="通知方推送一条远端通知给客户端代码的整个流程" />
-或者多方通知，APNs都能一一对应，靠的就是之前我们提供给它的DeviceToken。
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushPushing%20remote%20notifications%20from%20multiple%20providers%20to%20multiple%20devices.png" alt="多个通知方向向不同的客户端推送通知的流程示意" /></p>
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushshare%20the%20device%20Token.png" alt="DeviceToken的操作流程" /></p>
 
-<hr />
+<p>当App开发者的server需要向特定设备推送通知时，就使用DeviceToken和固定格式数据（Push payload）发给APNs，然后APNs就会向DeviceToken指定的设备推送通知了，具体流程如下所示，单一推送</p>
 
-<h4 id="本地推送证书配置">本地推送证书配置</h4>
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushPushing%20a%20remote%20notification%20from%20a%20provider%20to%20a%20client%20app.png" alt="通知方推送一条远端通知给客户端代码的整个流程" /></p>
 
-<p>打开你mac的钥匙串访问，然后点击钥匙串访问
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush钥匙串.png" alt="打开钥匙串" />
-随后它会弹出一个窗口 用户电子邮件信息
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书1.png" alt="生成CSR文件" />
-就填写你苹果开发者账号的名称即可（应该是一个邮件名称），点击保存到磁盘的选项，点击继续，点击存储，文件名为：CertificateSigningRequest.certSigningRequest。
+<p>或者多方通知，APNs都能一一对应，靠的就是之前我们提供给它的DeviceToken。</p>
+
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushPushing%20remote%20notifications%20from%20multiple%20providers%20to%20multiple%20devices.png" alt="多个通知方向向不同的客户端推送通知的流程示意" /></p>
+
+<h2 id="本地推送证书配置">本地推送证书配置</h2>
+
+<p>打开你mac的钥匙串访问，然后点击钥匙串访问</p>
+
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush钥匙串.png" alt="打开钥匙串" /></p>
+
+<p>随后它会弹出一个窗口 用户电子邮件信息
+<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书1.png" alt="生成CSR文件" /></p>
+
+<p>就填写你苹果开发者账号的名称即可（应该是一个邮件名称），点击保存到磁盘的选项，点击继续，点击存储，文件名为：CertificateSigningRequest.certSigningRequest。
 <img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书2.png" alt="保存生成的CSR文件" /></p>
 
-<p>然后我们打开<a href="developer.apple.com">苹果开发者中心</a>  进入Member Center
+<p>然后我们打开<a href="developer.apple.com">苹果开发者中心</a>  进入 Member Center
 <img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书3.png" alt="苹果开发者中心" />
-然后点击左侧列表中任意一项进入详情页面，
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书4.png" alt="开发者个人首页选项" />
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书5.png" alt="选择IOS Apps中列表项" /></p>
+然后点击左侧列表中任意一项进入详情页面，</p>
 
-<h5 id="app-id">APP ID</h5>
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书4.png" alt="开发者个人首页选项" /></p>
 
-<p>首先我们需要为我们要开发的APP建立身份信息，就是AppID，如图所示，点击左侧
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushAPPID1.png" alt="添加AppID" />
-点击添加按钮进入注册页面，我们需要输入App Id的名字以及BundleID，其中BundleID不能有通配符，否则无法具备推送功能，然后在下面的APP Service中勾选Push Notification一项
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushAPPID2.png" alt="填写BundleID以及App ID Description" />
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushAPPID3.png" alt="选择App Service" />
-点击下一步，然后确认提交即可，大家注意到Push Notification一项为Configurable，这是因为我们还没有为该AppID生成推送证书，等推送证书生成完毕之后可以再回来查看该AppID 的状态。
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书13.jpg" alt="确认提交App ID" /></p>
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书5.png" alt="选择IOS Apps中列表项" /></p>
 
-<h5 id="certificates">Certificates</h5>
+<h2 id="app-id">APP ID</h2>
 
-<p>其次，我们需要生成开发者证书和推送证书，如下图所示，点击左侧Cerifications列表，选择添加进入下一页面，
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书11.png" alt="添加证书" /></p>
+<p>首先我们需要为我们要开发的APP建立身份信息，就是AppID，如图所示，点击左侧</p>
 
-<p>如果您的页面如图所示为灰色不可选，说明您已经拥有了开发者证书。就不需要再次生成了，如果可选就选择该选项，
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书7.png" alt="选择证书类型" /></p>
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushAPPID1.png" alt="添加AppID" /></p>
 
-<p>接下来进入以下界面，选择你之前添加的AppID，之后点击Continue即可，
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书8.png" alt="选择需要绑定证书的App ID" /></p>
+<p>点击添加按钮进入注册页面，我们需要输入App Id的名字以及BundleID，其中BundleID不能有通配符，否则无法具备推送功能，然后在下面的APP Service中勾选Push Notification一项</p>
 
-<p>然后选择之前我们保存在本地的CSR文件CertificateSigningRequest.certSigningRequest，点击Generate就生成了开发者的证书。
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书9.png" alt="上传本机CSR文件" /></p>
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushAPPID2.png" alt="填写BundleID以及App ID Description" />
+<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushAPPID3.png" alt="选择App Service" /></p>
 
-<p>同理我们需要生成推送测试证书，生成流程和开发者证书类似，只是在证书类型页面，选择的证书类型换成了Apple Push Notification service SSL。
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书10.png" alt="选择生成证书类型" /></p>
+<p>点击下一步，然后确认提交即可，大家注意到Push Notification一项为Configurable，这是因为我们还没有为该AppID生成推送证书，等推送证书生成完毕之后可以再回来查看该AppID 的状态。</p>
 
-<p>当我们生成好推送证书之后再回头看我们之前创建的AppId，能够看Push Notifications一项已经为Enabled了。当然发布推送证书配置完毕之后，Distribution一项也显示为Enable。
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书12.jpg" alt="再次查看APPID 状态" /></p>
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书13.jpg" alt="确认提交App ID" /></p>
 
-<h5 id="provisioning-profiles">Provisioning Profiles</h5>
+<h2 id="certificates">Certificates</h2>
 
-<p>第三步，需要生成Provisioning Profiles，该文件其实就是以上的证书、AppId以及设备信息的打包集合，我们只要在不同的场景下生成不同类型Provisioning Profiles即可，它会在后续打包ipa文件的时候被嵌入安装包内。
-首先我们选择左侧列表中的Provisioning Profiles中的All选项，选择添加
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushProvision1.png" alt="添加Provisioning Profiles文件" /></p>
+<p>其次，我们需要生成开发者证书和推送证书，如下图所示，点击左侧Cerifications列表，选择添加进入下一页面，</p>
 
-<p>之后选择生成类型，我们这里以开发类型为例，下面还有发布的两种类型，
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushProvision2.png" alt="选择生成PP文件类型" /></p>
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书11.png" alt="添加证书" /></p>
 
-<p>之后点击Continue，进入下一页面，同样选择我们之前创建的具有Push服务的AppId，
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushProvision3.png" alt="选择绑定的App ID" /></p>
+<p>如果您的页面如图所示为灰色不可选，说明您已经拥有了开发者证书。就不需要再次生成了，如果可选就选择该选项，</p>
 
-<p>接下来，选择上面生成的开发证书（一一对应的，如果你选择生成的是发布Provisioning Profiles，则会出现发布证书），
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushProvision4.png" alt="选择之前生成的对应证书" /></p>
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书7.png" alt="选择证书类型" /></p>
 
-<p>紧接着，我们选择授权设备，即你需要进行开发的设备，该设备可以在左侧Devices列表中添加，需要提供设备的UUID，这里我们选择所有设备，点击Continue，
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushProvision5.png" alt="选择授权设备" /></p>
+<p>接下来进入以下界面，选择你之前添加的AppID，之后点击Continue即可，</p>
 
-<p>最后一步，我们给Provisioning Profiles添加名称，
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushProvision6.png" alt="添加Provisioning Profiles名称" />
-点击Generate即生成我们所需要的Provisioning Profile。</p>
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书8.png" alt="选择需要绑定证书的App ID" /></p>
 
-<p>其实同理，我们可以生成发布版的开发者证书，推送证书以及对应的Provisioning Profiles。最后的文件我们都放到同一个文件夹里，如图所示，其中我把发布的两种（Ad Hoc 和 Distribution）都一起搞出来。
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书200.png" alt="生成的各个证书以及Provisioning Profile文件" /></p>
+<p>然后选择之前我们保存在本地的CSR文件CertificateSigningRequest.certSigningRequest，点击Generate就生成了开发者的证书。</p>
+
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书9.png" alt="上传本机CSR文件" /></p>
+
+<p>同理我们需要生成推送测试证书，生成流程和开发者证书类似，只是在证书类型页面，选择的证书类型换成了Apple Push Notification service SSL。</p>
+
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书10.png" alt="选择生成证书类型" /></p>
+
+<p>当我们生成好推送证书之后再回头看我们之前创建的AppId，能够看Push Notifications一项已经为Enabled了。当然发布推送证书配置完毕之后，Distribution一项也显示为Enable。</p>
+
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书12.jpg" alt="再次查看APPID 状态" /></p>
+
+<h2 id="provisioning-profiles">Provisioning Profiles</h2>
+
+<p>第三步，需要生成Provisioning Profiles，该文件其实就是以上的证书、AppId以及设备信息的打包集合，我们只要在不同的场景下生成不同类型Provisioning Profiles即可，它会在后续打包ipa文件的时候被嵌入安装包内。</p>
+
+<p>首先我们选择左侧列表中的Provisioning Profiles中的All选项，选择添加</p>
+
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushProvision1.png" alt="添加Provisioning Profiles文件" /></p>
+
+<p>之后选择生成类型，我们这里以开发类型为例，下面还有发布的两种类型，</p>
+
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushProvision2.png" alt="选择生成PP文件类型" /></p>
+
+<p>之后点击Continue，进入下一页面，同样选择我们之前创建的具有Push服务的AppId，</p>
+
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushProvision3.png" alt="选择绑定的App ID" /></p>
+
+<p>接下来，选择上面生成的开发证书（一一对应的，如果你选择生成的是发布Provisioning Profiles，则会出现发布证书），</p>
+
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushProvision4.png" alt="选择之前生成的对应证书" /></p>
+
+<p>紧接着，我们选择授权设备，即你需要进行开发的设备，该设备可以在左侧Devices列表中添加，需要提供设备的UUID，这里我们选择所有设备，点击Continue，</p>
+
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushProvision5.png" alt="选择授权设备" /></p>
+
+<p>最后一步，我们给Provisioning Profiles添加名称，</p>
+
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushProvision6.png" alt="添加Provisioning Profiles名称" /></p>
+
+<p>点击Generate即生成我们所需要的Provisioning Profile。</p>
+
+<p>其实同理，我们可以生成发布版的开发者证书，推送证书以及对应的Provisioning Profiles。最后的文件我们都放到同一个文件夹里，如图所示，其中我把发布的两种（Ad Hoc 和 Distribution）都一起搞出来。</p>
+
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书200.png" alt="生成的各个证书以及Provisioning Profile文件" /></p>
 
 <p>其中Push.p12文件后续会提及~</p>
 
-<hr />
+<h2 id="开发环境配置">开发环境配置</h2>
 
-<h4 id="开发环境配置">开发环境配置</h4>
+<p>我们将上一步生成的开发者证书<code>ios_development.cer</code>以及推送证书<code>aps_development.cer</code>在最初生成CSR文件的MAC机上安装，双击即可安装，同时会打开钥匙串页面，安装之后我们找到之前生成CSR文件时生成的专用密钥，名称就是我们之前生成CSR文件时填写的，选择该专用密钥，同时选中刚刚安装成功的推送证书，<strong>必须注意，同时选择，我们需要将专用密钥以及安装成功的推送证书同时导出成一个文件</strong>）右键菜单导出，
+<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode6.png" alt="导出专用密钥和本地安装的推送证书" /></p>
 
-<p>我们将上一步生成的开发者证书<code>ios_development.cer</code>以及推送证书<code>aps_development.cer</code>在最初生成CSR文件的MAC机上安装，双击即可安装，同时会打开钥匙串页面，安装之后我们找到之前生成CSR文件时生成的专用密钥，名称就是我们之前生成CSR文件时填写的，选择该专用密钥，同时选中刚刚安装成功的推送证书，（<strong>必须注意，同时选择，我们需要将专用密钥以及安装成功的推送证书同时导出成一个文件</strong>）右键菜单导出，
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode6.png" alt="导出专用密钥和本地安装的推送证书" />
-如图我们命名Push，点击存储，
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode7.png" alt="保存到本地" />
-接下来需要为证书添加密码，这个密码是需要提供给服务器的。
+<p>如图我们命名Push，点击存储，
+<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode7.png" alt="保存到本地" /></p>
+
+<p>接下来需要为证书添加密码，这个密码是需要提供给服务器的。
 <img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode8.png" alt="添加证书密码" /></p>
 
 <p>最后我们需要配置我们本地的开发环境，也就是XCode，第一步我们点击XCode的Preference打开XCode的首选项菜单，
@@ -458,12 +479,13 @@
 <p>之后会显示该开发者账户的证书和Provisioning Profiles等信息，该信息会和你开发者账号里面显示的一致，如果不一致就点击刷新，
 <img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode3.png" alt="刷新账户信息" /></p>
 
-<p>不久就会出现我们之前创建的Provisioning Profiles，接下来，我们在XCode中Build Settings -&gt; Code Signing中选择我们需要的Provisioning Profiles文件即可
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode4.png" alt="XCode选择对应的Provisioning Profile文件" /></p>
+<p>不久就会出现我们之前创建的Provisioning Profiles，接下来，我们在 Xcode中 Build Settings -&gt; Code Signing中选择我们需要的Provisioning Profiles文件即可</p>
+
+<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode4.png" alt="XCode选择对应的Provisioning Profile文件" /></p>
 
 <p>此时本地开发环境已经配置完毕。接下来就开始Coding，Coding，Coding。。。。</p>
 
-<h4 id="远端推送通知的代码实现">远端推送通知的代码实现</h4>
+<h2 id="远端推送通知的代码实现">远端推送通知的代码实现</h2>
 
 <p>首先我们需要注册推送通知服务并获取DeviceToken；</p>
 <div class="highlight"><div class="chroma">
@@ -758,13 +780,15 @@
 </div>
 </div>
 <ul>
-<li>然后将这两个pem文件合成成一个pem文件，Push.pem
+<li>然后将这两个pem文件合成成一个pem文件，Push.pem</li>
+<li>
 <code>
 cat PushCert.pem PushKey.pem &gt; Push.pem
-</code>
-整个过程如下图所示：
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode9.png" alt="pem文件生成过程" /></li>
+</code></li>
 </ul>
+
+<p>整个过程如下图所示：
+<img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode9.png" alt="pem文件生成过程" /></p>
 
 <p>证书生成完毕之后，我们就可以在代码中使用了。
 如下为PHP写的推送通知服务。代码很简单，主要是注意其中证书为上一步生成的Push.pem，密码就是生成时输入的密码。</p>
@@ -876,10 +900,13 @@ cat PushCert.pem PushKey.pem &gt; Push.pem
 <p>运行下下测试：
 <img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushResult.png" alt="最终测试效果" /></p>
 
-<p>参考：
-[1]. <a href="https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Introduction.html#//apple_ref/doc/uid/TP40008194-CH1-SW1">https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Introduction.html#//apple_ref/doc/uid/TP40008194-CH1-SW1</a>
-[2]. <a href="https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/">https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/</a>
-[3]. <a href="http://blog.csdn.net/shenjie12345678/article/details/41120637">http://blog.csdn.net/shenjie12345678/article/details/41120637</a></p>
+<h3 id="参考文献">参考文献</h3>
+
+<ol>
+<li><a href="https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Introduction.html#//apple_ref/doc/uid/TP40008194-CH1-SW1">https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Introduction.html#//apple_ref/doc/uid/TP40008194-CH1-SW1</a></li>
+<li><a href="https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/">https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/</a></li>
+<li><a href="http://blog.csdn.net/shenjie12345678/article/details/41120637">http://blog.csdn.net/shenjie12345678/article/details/41120637</a></li>
+</ol>
 
     </div>
 
