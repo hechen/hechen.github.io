@@ -2,18 +2,20 @@
 title: 模块化 Xcode 工程
 date: 2017-11-19 18:17:15
 categories: ["Translation"]
-tags: ["iOS","XCode","CocoaPods","Carthage"]
+tags: ["iOS","Xcode","CocoaPods","Carthage"]
 ---
 
-
-
 > 原文：[Modular Xcode projects](https://ppinera.es/2017/09/29/modular-xcode-projects.html)
+> 
 > 原作者 & Copyright [@pepibumur](http://twitter.com/pepibumur)
+> 
 > 翻译：[@OgreMergO](https://twitter.com/OgreMergO)
 
+使用 Xcode 构建模块化的工程就需要对工程结构以及其基础概念有很好的理解才行。
 
+<!-- more --> 
 
-使用 Xcode 构建模块化的工程就需要对工程结构以及其基础概念有很好的理解才行。<!-- more --> 我们平时不怎么关注工程结构本身，只有在工程逐渐变大，要添加更多依赖的时候才会注意的到。而即使到了这个时候，我们大多数的工程都会使用  [CocoaPods](https://cocoapods.org/) 来设置那些依赖项，或者 [Carthage](https://github.com/carthage), 后者虽然没有帮我们做依赖性的设置，但是使得我们会更容易的，通过在工程的 build phase 选项中添加一些内容，达到同样的目的。当配置项越来越复杂，我们就很容易产生困惑，这是因为我们并没有完全掌握 Xcode 工程中所涉及的所有元素。我经常被问到的问题如下：
+我们平时不怎么关注工程结构本身，只有在工程逐渐变大，要添加更多依赖的时候才会注意的到。而即使到了这个时候，我们大多数的工程都会使用  [CocoaPods](https://cocoapods.org/) 来设置那些依赖项，或者 [Carthage](https://github.com/carthage), 后者虽然没有帮我们做依赖性的设置，但是使得我们会更容易的，通过在工程的 build phase 选项中添加一些内容，达到同样的目的。当配置项越来越复杂，我们就很容易产生困惑，这是因为我们并没有完全掌握 Xcode 工程中所涉及的所有元素。我经常被问到的问题如下：
 
 * 我能不能在工程里同时使用 Carthage，Cocoapods 以及自己个人的依赖设置？
 * 我添加了依赖，但是当模拟器打开 App 的时候 Crash 了。
@@ -116,7 +118,7 @@ scheme 文件定义是存储在 `Project.xcodeproj/xcshareddata/xcodeproj.xcsche
 
 Target 本身可以链接其他 target 的输出，我们可以使用 Xcode 中的工具，比如 scheme 或者 target dependencies 来指定依赖，但是，我们是如何通过定义这些依赖的链接关系来将它们融为一体的？
 
-#### 1\. 动态或者静态链接 libraries 和 frameworks
+#### 1. 动态或者静态链接 libraries 和 frameworks
 
 我们可以通过以下的方式定义链接：
 
@@ -127,11 +129,11 @@ Target 本身可以链接其他 target 的输出，我们可以使用 Xcode 中�
 * `OTHER_LDFLAGS` *(Other Linker Flags)*：我们可以使用`-l`参数指定链接的 library，比如`-l"1PasswordExtension" -l"Adjust"`。如果需要链接一个 framework，就需要使用`-framework`参数，比如：`-framework "GoogleSignIn" -framework "HockeySDK"`。如果我们尝试链接一个无法在上方指定路径中找到的 framework 或者 library 的话，编译过程就会失败。
 
 
-#### 2\. 暴露库的头文件
+#### 2. 暴露库的头文件
 
 Library 的头文件需要暴露给依赖该库的 targe。为了做到这个，有一个编译设置项：`HEADER_SEARCH_PATHS`用来指定头文件所在路径。如果我们链接某个库，但是忘记暴露该库的头文件，编译过程就会因为找不到其头文件而失败。
 
-#### 3\. 将 Framework 嵌入到应用中
+#### 3. 将 Framework 嵌入到应用中
 
 App 的 target 链接动态 framework，需要把这些依赖项复制到应用的 bundle 中。这个过程被称作 **framework embedding**。为了达到这个目的，我们需要使用 Xcode 的**Copy Files Phase**，其拷贝 这些 framework 到 `Frameworks`目录中。不仅仅需要把这些直接依赖项嵌入应用中，还包括直接依赖所依赖的项目。如果缺少任意的 framework，当我们尝试打开 app 的时候都会抛出错误。
 
@@ -146,7 +148,6 @@ App 的 target 链接动态 framework，需要把这些依赖项复制到应用�
 
 ![CocoaPods](https://i.imgur.com/yYLLsbQ.png)
 
-
 Cocoapods 解析你的工程依赖，并将它们融合到你的工程中。虽然直接修改你的工程配置是不太推荐的，但是它从最初的版本已经有了很大的提升，用这种方式，我们几乎不需要对 project 做很多改变。那么它底层到底是怎么做到的？
 
 * 它创建一个工程（project）*(*`*Pods.xcodeproj*`*)* ，其包含了所有的依赖项，每个依赖项以 target 的形式存在。每个 target 各自编译需要被链接到 app 中的依赖项；
@@ -159,11 +160,9 @@ Cocoapods 解析你的工程依赖，并将它们融合到你的工程中。虽�
 
 ![CocoaPods 如何将依赖项融合到整个 Project 中](https://i.imgur.com/UARMUhl.png)
 
-
 #### Carthage
 
 ![Carthage](https://i.imgur.com/IUXCxhQ.png)
-
 
 Carthage 的方式和 CocoaPods 比起来大不同。除了依赖项的解析，该工具是还一种去中心化的模式，其生成那些需要被链接或者嵌入到 app 的依赖项的预编译版本。
 
@@ -172,9 +171,7 @@ Carthage 的方式和 CocoaPods 比起来大不同。除了依赖项的解析，
 * 嵌入过程使用 Carthage 提供的脚本完成。这个脚本会剔除那些我们正在构建目标所不必要的架构版本；
 * 使用同样的脚本，复制符号到合适的文件夹，使得调试能够正常进行。
 
-
 ![Carthage 是如何生成依赖项的 framework 和 symbol](https://i.imgur.com/HXqtoDl.png)
-
 
 ### References
 
