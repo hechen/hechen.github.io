@@ -7,103 +7,131 @@ tags: ["iOS","Push","Notification"]
 
 最近几天被iOS的推送部署给搞懵了，现在特地整理下和大家进行分享。
 
-#### iOS远端推送机制
+# iOS远端推送机制
 
 APNS，全称为Apple Push Notification service，是苹果通知推送服务中最重要的一环。它是苹果通知推送服务器，为所有iOS设备以及OS X设备提供强大并且可靠的推送通知服务。每个注册通知服务的设备都会和该服务器进行长连接，从而实时获取推送通知。即使当前APP不在运行状态，当通知到达的时候也会有提示发生，最常见的就是短信服务。
 
 <!-- more -->
 
 每一个App必须向APNs注册通知服务，APNs会返回给设备一个DeviceToken，该Token为APNs上针对该设备的唯一标示符。App需要将该DeviceToken返给自身的Server端保存后续使用，如下所示。
+
 ![DeviceToken的操作流程](http://7xilk1.com1.z0.glb.clouddn.com/iosPushshare%20the%20device%20Token.png)
 
 当App开发者的server需要向特定设备推送通知时，就使用DeviceToken和固定格式数据（Push payload）发给APNs，然后APNs就会向DeviceToken指定的设备推送通知了，具体流程如下所示，单一推送
+
 ![通知方推送一条远端通知给客户端代码的整个流程](http://7xilk1.com1.z0.glb.clouddn.com/iosPushPushing%20a%20remote%20notification%20from%20a%20provider%20to%20a%20client%20app.png)
+
 或者多方通知，APNs都能一一对应，靠的就是之前我们提供给它的DeviceToken。
+
 ![多个通知方向向不同的客户端推送通知的流程示意](http://7xilk1.com1.z0.glb.clouddn.com/iosPushPushing%20remote%20notifications%20from%20multiple%20providers%20to%20multiple%20devices.png)
 
 
-----------
-
-#### 本地推送证书配置
+## 本地推送证书配置
 
 打开你mac的钥匙串访问，然后点击钥匙串访问
+
 ![打开钥匙串](http://7xilk1.com1.z0.glb.clouddn.com/iosPush钥匙串.png)
+
 随后它会弹出一个窗口 用户电子邮件信息
 ![生成CSR文件](http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书1.png)
+
 就填写你苹果开发者账号的名称即可（应该是一个邮件名称），点击保存到磁盘的选项，点击继续，点击存储，文件名为：CertificateSigningRequest.certSigningRequest。
 ![保存生成的CSR文件](http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书2.png)
 
-然后我们打开[苹果开发者中心](developer.apple.com)  进入Member Center
+然后我们打开[苹果开发者中心](developer.apple.com)  进入 Member Center
 ![苹果开发者中心](http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书3.png)
 然后点击左侧列表中任意一项进入详情页面，
+
 ![开发者个人首页选项](http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书4.png)
+
 ![选择IOS Apps中列表项](http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书5.png)
 
-##### APP ID
+## APP ID
 
 首先我们需要为我们要开发的APP建立身份信息，就是AppID，如图所示，点击左侧
+
 ![添加AppID](http://7xilk1.com1.z0.glb.clouddn.com/iosPushAPPID1.png)
+
 点击添加按钮进入注册页面，我们需要输入App Id的名字以及BundleID，其中BundleID不能有通配符，否则无法具备推送功能，然后在下面的APP Service中勾选Push Notification一项
+
 ![填写BundleID以及App ID Description](http://7xilk1.com1.z0.glb.clouddn.com/iosPushAPPID2.png)
 ![选择App Service](http://7xilk1.com1.z0.glb.clouddn.com/iosPushAPPID3.png)
+
 点击下一步，然后确认提交即可，大家注意到Push Notification一项为Configurable，这是因为我们还没有为该AppID生成推送证书，等推送证书生成完毕之后可以再回来查看该AppID 的状态。
+
 ![确认提交App ID](http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书13.jpg)
 
-##### Certificates
+## Certificates
 
 其次，我们需要生成开发者证书和推送证书，如下图所示，点击左侧Cerifications列表，选择添加进入下一页面，
+
 ![添加证书](http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书11.png)
 
 如果您的页面如图所示为灰色不可选，说明您已经拥有了开发者证书。就不需要再次生成了，如果可选就选择该选项，
+
 ![选择证书类型](http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书7.png)
 
 接下来进入以下界面，选择你之前添加的AppID，之后点击Continue即可，
+
 ![选择需要绑定证书的App ID](http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书8.png)
 
 然后选择之前我们保存在本地的CSR文件CertificateSigningRequest.certSigningRequest，点击Generate就生成了开发者的证书。
+
 ![上传本机CSR文件](http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书9.png)
 
 同理我们需要生成推送测试证书，生成流程和开发者证书类似，只是在证书类型页面，选择的证书类型换成了Apple Push Notification service SSL。
+
 ![选择生成证书类型](http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书10.png)
 
 当我们生成好推送证书之后再回头看我们之前创建的AppId，能够看Push Notifications一项已经为Enabled了。当然发布推送证书配置完毕之后，Distribution一项也显示为Enable。
+
 ![再次查看APPID 状态](http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书12.jpg)
 
-##### Provisioning Profiles
+## Provisioning Profiles
 
 第三步，需要生成Provisioning Profiles，该文件其实就是以上的证书、AppId以及设备信息的打包集合，我们只要在不同的场景下生成不同类型Provisioning Profiles即可，它会在后续打包ipa文件的时候被嵌入安装包内。
+
 首先我们选择左侧列表中的Provisioning Profiles中的All选项，选择添加
+
 ![添加Provisioning Profiles文件](http://7xilk1.com1.z0.glb.clouddn.com/iosPushProvision1.png)
 
 之后选择生成类型，我们这里以开发类型为例，下面还有发布的两种类型，
+
 ![选择生成PP文件类型](http://7xilk1.com1.z0.glb.clouddn.com/iosPushProvision2.png)
 
 之后点击Continue，进入下一页面，同样选择我们之前创建的具有Push服务的AppId，
+
 ![选择绑定的App ID](http://7xilk1.com1.z0.glb.clouddn.com/iosPushProvision3.png)
 
 接下来，选择上面生成的开发证书（一一对应的，如果你选择生成的是发布Provisioning Profiles，则会出现发布证书），
+
 ![选择之前生成的对应证书](http://7xilk1.com1.z0.glb.clouddn.com/iosPushProvision4.png)
 
 紧接着，我们选择授权设备，即你需要进行开发的设备，该设备可以在左侧Devices列表中添加，需要提供设备的UUID，这里我们选择所有设备，点击Continue，
+
 ![选择授权设备](http://7xilk1.com1.z0.glb.clouddn.com/iosPushProvision5.png)
 
 最后一步，我们给Provisioning Profiles添加名称，
+
 ![添加Provisioning Profiles名称](http://7xilk1.com1.z0.glb.clouddn.com/iosPushProvision6.png)
+
 点击Generate即生成我们所需要的Provisioning Profile。
 
+
 其实同理，我们可以生成发布版的开发者证书，推送证书以及对应的Provisioning Profiles。最后的文件我们都放到同一个文件夹里，如图所示，其中我把发布的两种（Ad Hoc 和 Distribution）都一起搞出来。
+
 ![生成的各个证书以及Provisioning Profile文件](http://7xilk1.com1.z0.glb.clouddn.com/iosPush证书200.png)
 
 其中Push.p12文件后续会提及~
 
-----------
+## 开发环境配置
 
-#### 开发环境配置
-
-我们将上一步生成的开发者证书`ios_development.cer`以及推送证书`aps_development.cer`在最初生成CSR文件的MAC机上安装，双击即可安装，同时会打开钥匙串页面，安装之后我们找到之前生成CSR文件时生成的专用密钥，名称就是我们之前生成CSR文件时填写的，选择该专用密钥，同时选中刚刚安装成功的推送证书，（**必须注意，同时选择，我们需要将专用密钥以及安装成功的推送证书同时导出成一个文件**）右键菜单导出，
+我们将上一步生成的开发者证书`ios_development.cer`以及推送证书`aps_development.cer`在最初生成CSR文件的MAC机上安装，双击即可安装，同时会打开钥匙串页面，安装之后我们找到之前生成CSR文件时生成的专用密钥，名称就是我们之前生成CSR文件时填写的，选择该专用密钥，同时选中刚刚安装成功的推送证书，**必须注意，同时选择，我们需要将专用密钥以及安装成功的推送证书同时导出成一个文件**）右键菜单导出，
 ![导出专用密钥和本地安装的推送证书](http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode6.png)
+
 如图我们命名Push，点击存储，
 ![保存到本地](http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode7.png)
+
 接下来需要为证书添加密码，这个密码是需要提供给服务器的。
 ![添加证书密码](http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode8.png)
 
@@ -116,16 +144,15 @@ APNS，全称为Apple Push Notification service，是苹果通知推送服务中
 之后会显示该开发者账户的证书和Provisioning Profiles等信息，该信息会和你开发者账号里面显示的一致，如果不一致就点击刷新，
 ![刷新账户信息](http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode3.png)
 
-不久就会出现我们之前创建的Provisioning Profiles，接下来，我们在XCode中Build Settings -> Code Signing中选择我们需要的Provisioning Profiles文件即可
+不久就会出现我们之前创建的Provisioning Profiles，接下来，我们在 Xcode中 Build Settings -> Code Signing中选择我们需要的Provisioning Profiles文件即可
+
 ![XCode选择对应的Provisioning Profile文件](http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode4.png)
 
 此时本地开发环境已经配置完毕。接下来就开始Coding，Coding，Coding。。。。
 
-
-#### 远端推送通知的代码实现
+## 远端推送通知的代码实现
 
 首先我们需要注册推送通知服务并获取DeviceToken；
-
 ``` Objc
 - (void)initPushNotificationWithApp: (UIApplication*)application {
     // 注册通知服务
@@ -144,9 +171,6 @@ APNS，全称为Apple Push Notification service，是苹果通知推送服务中
     }
 }
 ```
-
-
-
 
 如果注册成功，APNs会返回给你设备的token，iOS系统会把它传递给app delegate代理：
 
@@ -179,7 +203,7 @@ APNS，全称为Apple Push Notification service，是苹果通知推送服务中
 
 之后我们就可以在AppDelegate中添加处理代码，当用户点击通知栏的通知或者处于运行状态时，App代码会执行- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo代理方法，如下所示：
 
-``` Objective-C
+``` objc
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     PRINT_FUNC
     
@@ -195,7 +219,7 @@ APNS，全称为Apple Push Notification service，是苹果通知推送服务中
 
 还有一个方法 
 
-``` Objective-C
+``` objc
 /*! This delegate method offers an opportunity for applications with the "remote-notification" background mode to fetch appropriate new data in response to an incoming remote notification. You should call the fetchCompletionHandler as soon as you're finished performing that operation, so the system can accurately estimate its power and data cost.
  
  This method will be invoked even if the application was launched or resumed because of the remote notification. The respective delegate methods will be invoked first. Note that this behavior is in contrast to application:didReceiveRemoteNotification:, which is not called in those cases, and which will not be invoked if this method is implemented. !*/
@@ -217,11 +241,12 @@ APNS，全称为Apple Push Notification service，是苹果通知推送服务中
 
 ----------
 
-####服务器端代码实现
+## 服务器端代码实现
 
 Apple官方APNs地址：
-1. 测试地址 gateway.sandbox.push.apple.com:2195
-2. 正式发布地址 gateway.push.apple.com:2195
+1. 测试地址 `gateway.sandbox.push.apple.com:2195`
+2. 正式发布地址 `gateway.push.apple.com:2195`
+
 
 简单的通知数据格式，以二进制形式发送，网络字节序。
 ![简单的推送通知格式](http://7xilk1.com1.z0.glb.clouddn.com/iosPushSimple%20Notification%20Format.png)
@@ -285,15 +310,19 @@ public class testApplePush
 ```
 openssl x509 -in aps_development.cer -inform der -out PushCert.pem
 ```
+
 - 紧接着执行命令将Push.p12文件转换成pem格式文件，之后在本目录下生成PushKey.pem文件，其中会提示你先输入之前生成Push.p12文件的时候的密码，然后需要为新生成的证书文件添加密码，这个密码是要提供给服务端使用的；
 
 ```
 openssl pkcs12 -nocerts -out Pushkey.pem -in Push.p12 
 ```
+
 - 然后将这两个pem文件合成成一个pem文件，Push.pem
+- 
 ```
 cat PushCert.pem PushKey.pem > Push.pem
 ```
+
 整个过程如下图所示：
 ![pem文件生成过程](http://7xilk1.com1.z0.glb.clouddn.com/iosPushXCode9.png)
 
@@ -351,13 +380,13 @@ else
 fclose($fp);
 ?>
 ```
+
 运行下下测试：
 ![最终测试效果](http://7xilk1.com1.z0.glb.clouddn.com/iosPushResult.png)
 
-
-参考：
-[1]. https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Introduction.html#//apple_ref/doc/uid/TP40008194-CH1-SW1
-[2]. https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/
-[3]. http://blog.csdn.net/shenjie12345678/article/details/41120637
+### 参考文献
+1. https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Introduction.html#//apple_ref/doc/uid/TP40008194-CH1-SW1
+2. https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/
+3. http://blog.csdn.net/shenjie12345678/article/details/41120637
 
 
