@@ -9222,7 +9222,7 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
 &lt;p&gt;之后我们就可以在AppDelegate中添加处理代码，当用户点击通知栏的通知或者处于运行状态时，App代码会执行- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo代理方法，如下所示：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Objective-C&#34; data-lang=&#34;Objective-C&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-objc&#34; data-lang=&#34;objc&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
@@ -9235,7 +9235,7 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Objective-C&#34; data-lang=&#34;Objective-C&#34;&gt;&lt;span class=&#34;p&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;application:&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;UIApplication&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;application&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;didReceiveRemoteNotification:&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;NSDictionary&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;userInfo&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-objc&#34; data-lang=&#34;objc&#34;&gt;&lt;span class=&#34;p&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;application:&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;UIApplication&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;application&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;didReceiveRemoteNotification:&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;NSDictionary&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;userInfo&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
     &lt;span class=&#34;n&#34;&gt;PRINT_FUNC&lt;/span&gt;
     
     &lt;span class=&#34;n&#34;&gt;NSLog&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;@&amp;#34;收到推送通知: %@&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;userInfo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
@@ -9251,14 +9251,14 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
 &lt;p&gt;还有一个方法&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Objective-C&#34; data-lang=&#34;Objective-C&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-objc&#34; data-lang=&#34;objc&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Objective-C&#34; data-lang=&#34;Objective-C&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/*! This delegate method offers an opportunity for applications with the &amp;#34;remote-notification&amp;#34; background mode to fetch appropriate new data in response to an incoming remote notification. You should call the fetchCompletionHandler as soon as you&amp;#39;re finished performing that operation, so the system can accurately estimate its power and data cost.
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-objc&#34; data-lang=&#34;objc&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/*! This delegate method offers an opportunity for applications with the &amp;#34;remote-notification&amp;#34; background mode to fetch appropriate new data in response to an incoming remote notification. You should call the fetchCompletionHandler as soon as you&amp;#39;re finished performing that operation, so the system can accurately estimate its power and data cost.
 &lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; 
 &lt;/span&gt;&lt;span class=&#34;cm&#34;&gt; This method will be invoked even if the application was launched or resumed because of the remote notification. The respective delegate methods will be invoked first. Note that this behavior is in contrast to application:didReceiveRemoteNotification:, which is not called in those cases, and which will not be invoked if this method is implemented. !*/&lt;/span&gt;
  
@@ -9286,11 +9286,11 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
 &lt;/div&gt;
 &lt;hr /&gt;
 
-&lt;p&gt;####服务器端代码实现&lt;/p&gt;
+&lt;h2 id=&#34;服务器端代码实现&#34;&gt;服务器端代码实现&lt;/h2&gt;
 
 &lt;p&gt;Apple官方APNs地址：
-1. 测试地址 gateway.sandbox.push.apple.com:2195
-2. 正式发布地址 gateway.push.apple.com:2195&lt;/p&gt;
+1. 测试地址 &lt;code&gt;gateway.sandbox.push.apple.com:2195&lt;/code&gt;
+2. 正式发布地址 &lt;code&gt;gateway.push.apple.com:2195&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;简单的通知数据格式，以二进制形式发送，网络字节序。
 &lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/iosPushSimple%20Notification%20Format.png&#34; alt=&#34;简单的推送通知格式&#34; /&gt;&lt;/p&gt;

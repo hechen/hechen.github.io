@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2015-07-30T14:30:00&#43;00:00" />
 <meta itemprop="dateModified" content="2015-07-30T14:30:00&#43;00:00" />
-<meta itemprop="wordCount" content="4721">
+<meta itemprop="wordCount" content="4717">
 
 
 
@@ -328,7 +328,8 @@
 <li><a href="#certificates">Certificates</a></li>
 <li><a href="#provisioning-profiles">Provisioning Profiles</a></li>
 <li><a href="#开发环境配置">开发环境配置</a></li>
-<li><a href="#远端推送通知的代码实现">远端推送通知的代码实现</a>
+<li><a href="#远端推送通知的代码实现">远端推送通知的代码实现</a></li>
+<li><a href="#服务器端代码实现">服务器端代码实现</a>
 <ul>
 <li><a href="#参考文献">参考文献</a></li>
 </ul></li>
@@ -584,7 +585,7 @@
 <p>之后我们就可以在AppDelegate中添加处理代码，当用户点击通知栏的通知或者处于运行状态时，App代码会执行- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo代理方法，如下所示：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="lnt"> 1
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -597,7 +598,7 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didReceiveRemoteNotification:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">userInfo</span> <span class="p">{</span>
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">application:</span><span class="p">(</span><span class="n">UIApplication</span> <span class="o">*</span><span class="p">)</span><span class="nv">application</span> <span class="nf">didReceiveRemoteNotification:</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="p">)</span><span class="nv">userInfo</span> <span class="p">{</span>
     <span class="n">PRINT_FUNC</span>
     
     <span class="n">NSLog</span><span class="p">(</span><span class="s">@&#34;收到推送通知: %@&#34;</span><span class="p">,</span> <span class="n">userInfo</span><span class="p">);</span>
@@ -613,14 +614,14 @@
 <p>还有一个方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="lnt">1
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="cm">/*! This delegate method offers an opportunity for applications with the &#34;remote-notification&#34; background mode to fetch appropriate new data in response to an incoming remote notification. You should call the fetchCompletionHandler as soon as you&#39;re finished performing that operation, so the system can accurately estimate its power and data cost.
+<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="cm">/*! This delegate method offers an opportunity for applications with the &#34;remote-notification&#34; background mode to fetch appropriate new data in response to an incoming remote notification. You should call the fetchCompletionHandler as soon as you&#39;re finished performing that operation, so the system can accurately estimate its power and data cost.
 </span><span class="cm"> 
 </span><span class="cm"> This method will be invoked even if the application was launched or resumed because of the remote notification. The respective delegate methods will be invoked first. Note that this behavior is in contrast to application:didReceiveRemoteNotification:, which is not called in those cases, and which will not be invoked if this method is implemented. !*/</span>
  
@@ -648,11 +649,11 @@
 </div>
 <hr />
 
-<p>####服务器端代码实现</p>
+<h2 id="服务器端代码实现">服务器端代码实现</h2>
 
 <p>Apple官方APNs地址：
-1. 测试地址 gateway.sandbox.push.apple.com:2195
-2. 正式发布地址 gateway.push.apple.com:2195</p>
+1. 测试地址 <code>gateway.sandbox.push.apple.com:2195</code>
+2. 正式发布地址 <code>gateway.push.apple.com:2195</code></p>
 
 <p>简单的通知数据格式，以二进制形式发送，网络字节序。
 <img src="http://7xilk1.com1.z0.glb.clouddn.com/iosPushSimple%20Notification%20Format.png" alt="简单的推送通知格式" /></p>
