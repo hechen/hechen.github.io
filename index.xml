@@ -4056,12 +4056,18 @@ window.rootViewController = UINavigationController(
         <description>
 
 &lt;blockquote&gt;
-&lt;p&gt;原文：&lt;a href=&#34;https://ppinera.es/2017/09/29/modular-xcode-projects.html&#34;&gt;Modular Xcode projects&lt;/a&gt;
-原作者 &amp;amp; Copyright &lt;a href=&#34;http://twitter.com/pepibumur&#34;&gt;@pepibumur&lt;/a&gt;
-翻译：&lt;a href=&#34;https://twitter.com/OgreMergO&#34;&gt;@OgreMergO&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;原文：&lt;a href=&#34;https://ppinera.es/2017/09/29/modular-xcode-projects.html&#34;&gt;Modular Xcode projects&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;原作者 &amp;amp; Copyright &lt;a href=&#34;http://twitter.com/pepibumur&#34;&gt;@pepibumur&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;翻译：&lt;a href=&#34;https://twitter.com/OgreMergO&#34;&gt;@OgreMergO&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;使用 Xcode 构建模块化的工程就需要对工程结构以及其基础概念有很好的理解才行。&lt;!-- more --&gt; 我们平时不怎么关注工程结构本身，只有在工程逐渐变大，要添加更多依赖的时候才会注意的到。而即使到了这个时候，我们大多数的工程都会使用  &lt;a href=&#34;https://cocoapods.org/&#34;&gt;CocoaPods&lt;/a&gt; 来设置那些依赖项，或者 &lt;a href=&#34;https://github.com/carthage&#34;&gt;Carthage&lt;/a&gt;, 后者虽然没有帮我们做依赖性的设置，但是使得我们会更容易的，通过在工程的 build phase 选项中添加一些内容，达到同样的目的。当配置项越来越复杂，我们就很容易产生困惑，这是因为我们并没有完全掌握 Xcode 工程中所涉及的所有元素。我经常被问到的问题如下：&lt;/p&gt;
+&lt;p&gt;使用 Xcode 构建模块化的工程就需要对工程结构以及其基础概念有很好的理解才行。&lt;/p&gt;
+
+&lt;!-- more --&gt; 
+
+&lt;p&gt;我们平时不怎么关注工程结构本身，只有在工程逐渐变大，要添加更多依赖的时候才会注意的到。而即使到了这个时候，我们大多数的工程都会使用  &lt;a href=&#34;https://cocoapods.org/&#34;&gt;CocoaPods&lt;/a&gt; 来设置那些依赖项，或者 &lt;a href=&#34;https://github.com/carthage&#34;&gt;Carthage&lt;/a&gt;, 后者虽然没有帮我们做依赖性的设置，但是使得我们会更容易的，通过在工程的 build phase 选项中添加一些内容，达到同样的目的。当配置项越来越复杂，我们就很容易产生困惑，这是因为我们并没有完全掌握 Xcode 工程中所涉及的所有元素。我经常被问到的问题如下：&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;我能不能在工程里同时使用 Carthage，Cocoapods 以及自己个人的依赖设置？&lt;/li&gt;
