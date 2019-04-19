@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2019-03-18T17:29:54&#43;08:00" />
 <meta itemprop="dateModified" content="2019-04-01T10:20:38&#43;08:00" />
-<meta itemprop="wordCount" content="2476">
+<meta itemprop="wordCount" content="2489">
 
 
 
@@ -543,7 +543,7 @@
 </div>
 <p>辅助应用启动之后，查询主应用是否已经运行，如果已经运行，就自觉干掉自己。如果没有运行，我们唤醒主 App，在此之前设置监听，等到主应用启动之后会发给自己通知，然后再自杀 😂</p>
 
-<p>这其中我们使用了 DistributedNotificationCenter，和平时我们使用的 NotificationCenter 不同，其发出的通知是跨任务的，也就是其他进程如果注册了同样的通知，也是能够收到监听通知的。 系统的日夜间通知就是这种类型，其会在所有 Task 之间进行广播，该通知的 NotificationName 是 <code>AppleInterfaceThemeChangedNotification</code>.</p>
+<p>这其中我们使用了 DistributedNotificationCenter，和平时我们使用的 NotificationCenter 不同，其发出的通知是跨任务（进程间）的，也就是其他进程如果注册了同样的通知，也是能够收到监听通知的。 系统的日夜间通知就是这种类型，其会在所有 Task 之间进行广播，该通知的 NotificationName 是 <code>AppleInterfaceThemeChangedNotification</code>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
@@ -570,7 +570,7 @@
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
-<p>因此 Demo 中的通知名字只是示例，尽可能的确保通知的唯一性。</p>
+<p>因此 Demo 中的通知名字只是示例，在实际开发中，尽可能的确保通知的唯一性。</p>
 
 <h4 id="切换自启动状态">切换自启动状态</h4>
 
@@ -715,6 +715,7 @@
 <li><a href="https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html#//apple_ref/doc/uid/TP40011183-CH1-SW1">App Sandbox Design Guide</a></li>
 <li><a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/Introduction.html#//apple_ref/doc/uid/10000172i-SW1-SW1">Daemons and Services Programming Guide</a></li>
 <li><a href="https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/LaunchServicesConcepts/LSCIntro/LSCIntro.html#//apple_ref/doc/uid/TP30000999">Launch Services Programming Guide</a></li>
+<li><a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Notifications/Articles/NotificationCenters.html">NSDistributedNotificationCenter</a></li>
 </ol>
 
     </div>
