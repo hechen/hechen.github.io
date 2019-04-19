@@ -153,7 +153,7 @@ func applicationDidFinishLaunching(_ aNotification: Notification) {
 
 辅助应用启动之后，查询主应用是否已经运行，如果已经运行，就自觉干掉自己。如果没有运行，我们唤醒主 App，在此之前设置监听，等到主应用启动之后会发给自己通知，然后再自杀 😂
 
-这其中我们使用了 DistributedNotificationCenter，和平时我们使用的 NotificationCenter 不同，其发出的通知是跨任务的，也就是其他进程如果注册了同样的通知，也是能够收到监听通知的。 系统的日夜间通知就是这种类型，其会在所有 Task 之间进行广播，该通知的 NotificationName 是 `AppleInterfaceThemeChangedNotification`.
+这其中我们使用了 DistributedNotificationCenter，和平时我们使用的 NotificationCenter 不同，其发出的通知是跨任务（进程间）的，也就是其他进程如果注册了同样的通知，也是能够收到监听通知的。 系统的日夜间通知就是这种类型，其会在所有 Task 之间进行广播，该通知的 NotificationName 是 `AppleInterfaceThemeChangedNotification`.
 
 ``` Swift
 
@@ -168,7 +168,7 @@ private static func selectorHandler() {
     print("Theme Changed!")		
 }
 ```
-因此 Demo 中的通知名字只是示例，尽可能的确保通知的唯一性。
+因此 Demo 中的通知名字只是示例，在实际开发中，尽可能的确保通知的唯一性。
 
 #### 切换自启动状态
 
@@ -269,3 +269,4 @@ SMLoginItemSetEnabled(launchHelperIdentifier as CFString, startAtLogin)
 1. [App Sandbox Design Guide](https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html#//apple_ref/doc/uid/TP40011183-CH1-SW1)
 2. [Daemons and Services Programming Guide](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/Introduction.html#//apple_ref/doc/uid/10000172i-SW1-SW1)
 3. [Launch Services Programming Guide](https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/LaunchServicesConcepts/LSCIntro/LSCIntro.html#//apple_ref/doc/uid/TP30000999)
+4. [NSDistributedNotificationCenter](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Notifications/Articles/NotificationCenters.html)
