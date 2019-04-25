@@ -5,7 +5,7 @@
     <description>Recent content on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 30 Mar 2019 11:29:54 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 25 Apr 2019 11:30:30 +0800</lastBuildDate>
     
         <atom:link href="https://hechen.xyz/index.xml" rel="self" type="application/rss+xml" />
     
@@ -24,6 +24,499 @@
 &lt;p&gt;偶尔写点 Python，Ruby&lt;/p&gt;
 
 &lt;p&gt;打杂中&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>Xcode Build Process</title>
+      <link>https://hechen.xyz/post/xcode-build-system/</link>
+      <pubDate>Thu, 25 Apr 2019 11:30:30 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/xcode-build-system/</guid>
+      
+        <description>
+
+&lt;p&gt;编程语言的处理过程大致会有五个阶段，其每个阶段均有对应的工具：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;预处理器 Preprocessor&lt;/li&gt;
+&lt;li&gt;编译器 Compiler&lt;/li&gt;
+&lt;li&gt;汇编器 Assembler&lt;/li&gt;
+&lt;li&gt;链接器 Linker&lt;/li&gt;
+&lt;li&gt;加载器 Loader&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;以下，我们以一个简单的源文件，来看看具体这几个步骤都做了哪些事情。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//  main.m
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//  MachO
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//  Created by chen he on 2019/4/22.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//  Copyright © 2019 chen he. All rights reserved.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;cp&#34;&gt;#import &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[])&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Hello World.&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;预处理器-preprocessor&#34;&gt;预处理器 Preprocessor&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;符号化&lt;/li&gt;
+&lt;li&gt;宏定义展开&lt;/li&gt;
+&lt;li&gt;头文件引入展开&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;在命令行执行如下命令，我们导出输出到本地文件&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;n&#34;&gt;xcrun&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;clang&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;E&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;helloworld&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;preprocessed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;txt&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;打开 preprocessed.txt 看输出如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;cp&#34;&gt;# 1 &amp;#34;helloworld.c&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 1 &amp;#34;&amp;lt;built-in&amp;gt;&amp;#34; 1
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 1 &amp;#34;&amp;lt;built-in&amp;gt;&amp;#34; 3
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 361 &amp;#34;&amp;lt;built-in&amp;gt;&amp;#34; 3
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 1 &amp;#34;&amp;lt;command line&amp;gt;&amp;#34; 1
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 1 &amp;#34;&amp;lt;built-in&amp;gt;&amp;#34; 2
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 1 &amp;#34;helloworld.c&amp;#34; 2
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 1 &amp;#34;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include&lt;/span&gt;&lt;span class=&#34;cpf&#34;&gt;/stdio.h&amp;#34; 1 3 4&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 64 &amp;#34;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include&lt;/span&gt;&lt;span class=&#34;cpf&#34;&gt;/stdio.h&amp;#34; 3 4&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 1 &amp;#34;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include&lt;/span&gt;&lt;span class=&#34;cpf&#34;&gt;/_stdio.h&amp;#34; 1 3 4&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 68 &amp;#34;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include&lt;/span&gt;&lt;span class=&#34;cpf&#34;&gt;/_stdio.h&amp;#34; 3 4&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 1 &amp;#34;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include&lt;/span&gt;&lt;span class=&#34;cpf&#34;&gt;/sys/cdefs.h&amp;#34; 1 3 4&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;// 省略一万字
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;extern&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;__vsnprintf_chk&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;restrict&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;size_t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;size_t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+       &lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;restrict&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;va_list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;cp&#34;&gt;# 412 &amp;#34;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include&lt;/span&gt;&lt;span class=&#34;cpf&#34;&gt;/stdio.h&amp;#34; 2 3 4&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 2 &amp;#34;helloworld.c&amp;#34; 2
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;argv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[])&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Hello World!&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;可以看到预编译处理之后的源文件，仅仅只有几行的源文件进行头文件展开之后能增加到几百行，而我们仅仅只引入了 stdio.h 一个头文件。当然，你可以使用 Xcode 来执行预处理命令。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/vmwexNC.png&#34; alt=&#34;xcode_preprocess&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;而在 Swift 提出的同时，Module 的概念被同时引入 C 系语言中，在 Xcode 的 &lt;code&gt;build settings&lt;/code&gt; 中能找到其开关。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/lUGiInP.png&#34; alt=&#34;enable_module&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Modules 默认是开启的（当然这个开关也只是针对 C 系语言，Swift 原生就是以 Module 形式存在的），大家可以在开启的情况下再进行预处理命令看结果，已经由原来的 548 行减少到了 14 行，这也是 &lt;code&gt;LLVM&lt;/code&gt; 极力推荐 Module 的其中一个原因，大大减少了预编译处理时间。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;cp&#34;&gt;# 1 &amp;#34;/Users/chen/Desktop/Share/Code/MachO/MachO/1/helloworld.m&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 1 &amp;#34;&amp;lt;built-in&amp;gt;&amp;#34; 1
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 1 &amp;#34;&amp;lt;built-in&amp;gt;&amp;#34; 3
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 374 &amp;#34;&amp;lt;built-in&amp;gt;&amp;#34; 3
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 1 &amp;#34;&amp;lt;command line&amp;gt;&amp;#34; 1
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 1 &amp;#34;&amp;lt;built-in&amp;gt;&amp;#34; 2
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 1 &amp;#34;/Users/chen/Desktop/Share/Code/MachO/MachO/1/helloworld.m&amp;#34; 2
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;# 10 &amp;#34;/Users/chen/Desktop/Share/Code/MachO/MachO/1/helloworld.m&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Darwin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;libc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[])&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Hello World.&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;当进行预处理完成之后，下一步就是基于展开的源码进行 AST 语法树解析，生成中间代码，并且输出目标机器代码的过程。这就是编译器做的事情。&lt;/p&gt;
+
+&lt;h2 id=&#34;编译器-compiler&#34;&gt;编译器 Compiler&lt;/h2&gt;
+
+&lt;p&gt;编译器自身就是个二进制程序，用来将代码源文件转换成语义上完全一致的等价语言的，该等价语言就是机器码（machine code）。目前在 Apple 的生态里完成这件事情的就是 LLVM（出现就是为了替换掉 GCC）。&lt;/p&gt;
+
+&lt;p&gt;我们平时所说的编译器实质上是一个广义上的概念，其还包括编译器前端，中间代码生成器，代码优化器，编译器后端。&lt;/p&gt;
+
+&lt;p&gt;以目前 Apple 生态下编译器（核心是 LLVM 套件）进行细化之后，可以看到详细的划分阶段如下所示。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/fTwjs0q.png&#34; alt=&#34;LLVM&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;其中 Clang 以及 swiftc / swift 实质上是 LLVM 编译链条中的前端，虽然是前端，但是目前工具集本身已经内置了一些注入汇编器，代码优化等功能。&lt;/p&gt;
+
+&lt;p&gt;无论是 Clang 还是 swiftc 最终都会在编译前端将源文件生成中间代码 LLVM Intermediate representation （LLVM IR），然后会经历中间代码优化等阶段，最后交由汇编器生成对应目标指令集的目标文件。&lt;/p&gt;
+
+&lt;p&gt;Xcode 使用两种不同的编译器前端，一种是针对 Objective-C/Objective-C++ 或者 C/C++ 代码使用的，另一种就是在 Swift 出现之后针对 Swift 语言使用的。前者就是 clang，后者是 swiftc / swift。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/kN76TgI.png&#34; alt=&#34;Clang-Swiftc&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;因为 swift 语言本身是没有预处理器的，因此忽略前一步。在预编译阶段，我使用了 Clang 作为演示，而 Swift 文件是无需进行预编译处理的。最终编译器生成的文件，称之为目标文件，在 Apple 平台中以特殊的格式存在，这种格式就是 &lt;code&gt;Mach-O&lt;/code&gt; 格式，下文会讲。
+而每个目标文件中都有暴露给其他目标文件所使用的符号，这些也就是外部符号，这些符号被管理起来，以一个符号表的形式存在，对于变量和函数来说，其符号表中的 Key 就是这些变量和函数的名字，而 Value 就是其在目标文件中的地址。&lt;/p&gt;
+
+&lt;h2 id=&#34;链接器-linker&#34;&gt;链接器 Linker&lt;/h2&gt;
+
+&lt;p&gt;每个源文件就按照上面的步骤，生成了一个一个我们称之为目标文件的二进制，接下来我们需要将所有的目标文件整合成一个可执行文件。比如上面的例子中，我们有两个文件，Foo.o 以及 main.o 文件，当然还有依赖的其他库，Linker 该出场了。整个链接过程正是基于每个目标文件中的符号才能正确完成，链接过程中很关键的一部分就是符号的管理。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/BN3Tr47.png&#34; alt=&#34;Linker&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们新建两个文件，分别是 main.m，Foo.m 以及其对应的头文件 Foo.h。分别经历预处理，编译生成对应目标文件，给 clang 传递 -c 是用来完成以上所有工作集合，直接生成目标文件的。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;xcrun clang -c main.m
+xcrun clang -c Foo.m&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;生成产物为两个对应的目标文件，main.o 以及 Foo.o ，使用链接器进行链接，传统的链接器，无论是 Mac 还是 Linux 上都会有 ld 这个工具，在 /usr/bin/ 下，我们先使用 ld 将对应两个目标文件链接起来，如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;n&#34;&gt;ld&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Foo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;但是报错，如下所示:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;ld: warning: No version-min specified on &lt;span class=&#34;nb&#34;&gt;command&lt;/span&gt; line
+Undefined symbols &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; architecture x86_64:
+  &lt;span class=&#34;s2&#34;&gt;&amp;#34;_OBJC_CLASS_&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$_NSObject&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;, referenced from:
+      _OBJC_CLASS_&lt;span class=&#34;nv&#34;&gt;$_Foo&lt;/span&gt; in Foo.o
+  &lt;span class=&#34;s2&#34;&gt;&amp;#34;_OBJC_METACLASS_&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$_NSObject&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;, referenced from:
+      _OBJC_METACLASS_&lt;span class=&#34;nv&#34;&gt;$_Foo&lt;/span&gt; in Foo.o
+  &lt;span class=&#34;s2&#34;&gt;&amp;#34;__objc_empty_cache&amp;#34;&lt;/span&gt;, referenced from:
+      _OBJC_METACLASS_&lt;span class=&#34;nv&#34;&gt;$_Foo&lt;/span&gt; in Foo.o
+      _OBJC_CLASS_&lt;span class=&#34;nv&#34;&gt;$_Foo&lt;/span&gt; in Foo.o
+  &lt;span class=&#34;s2&#34;&gt;&amp;#34;_objc_msgSend&amp;#34;&lt;/span&gt;, referenced from:
+      _main in main.o
+  &lt;span class=&#34;s2&#34;&gt;&amp;#34;_printf&amp;#34;&lt;/span&gt;, referenced from:
+      -&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Foo hello&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; in Foo.o
+ld: symbol&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;s&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; not found &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; inferred architecture x86_64&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;其中，报了一堆 OBJC 库找不到的问题，因为是静态链接，我们内部使用了 Foundation 的一些内容，这里也在侧面证明了，想要完成静态链接，所有未定义的符号都需要在静态链接阶段进行修正，因此我们还需要将这些库也链进来，当然，还有 _printf 也找不到，我们还需要把 C++ 相关的库也同时一并链接，最后的链接命令如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;ld main.o Foo.o &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;xcrun --show-sdk-path&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;/System/Library/Frameworks/Foundation.framework/Foundation &lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;xcrun --show-sdk-path&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;/usr/lib/libSystem.B.tbd&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这样就能够顺利的生成我们所需要的目标文件了。当然，如果你要是使用 clang 提供的默认命令来做，如下，&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;xcrun clang main.o Foo.o -Wl,&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;xcrun --show-sdk-path&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;/System/Library/Frameworks/Foundation.framework/Foundation&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;会看到你不需要把一些基础的 C 库引入，是因为 clang 本身工具帮你做了一堆环境路径查找的事情，感兴趣可以加上 -v 指令来看完整的输出，a.out 是链接器默认生成的文件名称。&lt;/p&gt;
+
+&lt;h3 id=&#34;nm&#34;&gt;nm&lt;/h3&gt;
+
+&lt;p&gt;接下来，引入一个新的命令 nm，其是用来展示目标文件中的符号表信息的。我们使用 nm 命令来查看该可执行文件的符号表信息。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;xcrun nm -nm Foo.o
+
+
+&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;undefined&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; external _OBJC_CLASS_&lt;span class=&#34;nv&#34;&gt;$_NSObject&lt;/span&gt;
+                 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;undefined&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; external _OBJC_METACLASS_&lt;span class=&#34;nv&#34;&gt;$_NSObject&lt;/span&gt;
+                 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;undefined&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; external __objc_empty_cache
+                 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;undefined&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; external _printf
+&lt;span class=&#34;m&#34;&gt;0000000000000000&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;__TEXT,__text&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; non-external -&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Foo hello&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;m&#34;&gt;0000000000000040&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;__DATA,__objc_const&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; non-external l_OBJC_METACLASS_RO_&lt;span class=&#34;nv&#34;&gt;$_Foo&lt;/span&gt;
+&lt;span class=&#34;m&#34;&gt;0000000000000088&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;__DATA,__objc_const&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; non-external l_OBJC_&lt;span class=&#34;nv&#34;&gt;$_INSTANCE_METHODS_Foo&lt;/span&gt;
+00000000000000a8 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;__DATA,__objc_const&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; non-external l_OBJC_CLASS_RO_&lt;span class=&#34;nv&#34;&gt;$_Foo&lt;/span&gt;
+00000000000000f0 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;__DATA,__objc_data&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; external _OBJC_METACLASS_&lt;span class=&#34;nv&#34;&gt;$_Foo&lt;/span&gt;
+&lt;span class=&#34;m&#34;&gt;0000000000000118&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;__DATA,__objc_data&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; external _OBJC_CLASS_&lt;span class=&#34;nv&#34;&gt;$_Foo&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;同时，我们再查看下 main.o 这个目标文件。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;xcrun nm -nm main.o
+
+&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;undefined&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; external _OBJC_CLASS_&lt;span class=&#34;nv&#34;&gt;$_Foo&lt;/span&gt;
+                 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;undefined&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; external _objc_msgSend
+&lt;span class=&#34;m&#34;&gt;0000000000000000&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;__TEXT,__text&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; external _main&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;再查看下最终的目标输出文件的符号信息，如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;xcun nm -nm a.out
+
+&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;undefined&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; external _OBJC_CLASS_&lt;span class=&#34;nv&#34;&gt;$_NSObject&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;from libobjc&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+                 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;undefined&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; external _OBJC_METACLASS_&lt;span class=&#34;nv&#34;&gt;$_NSObject&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;from libobjc&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+                 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;undefined&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; external __objc_empty_cache &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;from libobjc&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+                 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;undefined&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; external _objc_msgSend &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;from libobjc&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+                 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;undefined&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; external _printf &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;from libSystem&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+                 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;undefined&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; external dyld_stub_binder &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;from libSystem&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;m&#34;&gt;0000000000001000&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;__TEXT,__text&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;referenced dynamically&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; external __mh_execute_header
+0000000000001ef0 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;__TEXT,__text&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; external _main
+0000000000001f50 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;__TEXT,__text&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; non-external -&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Foo hello&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;m&#34;&gt;0000000000002100&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;__DATA,__objc_data&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; external _OBJC_METACLASS_&lt;span class=&#34;nv&#34;&gt;$_Foo&lt;/span&gt;
+&lt;span class=&#34;m&#34;&gt;0000000000002128&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;__DATA,__objc_data&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; external _OBJC_CLASS_&lt;span class=&#34;nv&#34;&gt;$_Foo&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;大家会看到每一个目标文件符号表信息中会存储着 undefined 字样的符号，名字均为我们没有在代码中所体现出来的函数名字或者字符变量（本例没有引入变量）名称，在生成对应的可执行文件的过程中，链接器会查找所有输入的目标文件中每一个的符号表，然后组成全局符号表，相互找所需要的符号，并且对非动态库文件的符号进行定位。&lt;/p&gt;
+
+&lt;p&gt;在进行链接之后，所有原来标记为 undefined 的符号依然是 undefined，但是会发现在对应符号后方会标记出该符号来自于哪里。这个也就是当我们可执行文件需要使用该符号的时候，对应去哪里加载对应的 dylib。&lt;/p&gt;
+
+&lt;h3 id=&#34;otool&#34;&gt;otool&lt;/h3&gt;
+
+&lt;p&gt;接下来再介绍一个命令行工具 otool(object file displaying tool)，其底层是对 objdump 的封装，而 objdump 是 Linux 下查看二进制文件的工具。&lt;/p&gt;
+
+&lt;p&gt;我们就用 otool 来查看目标文件所需要使用的库的地址在哪里。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;// -L print shared libraries used
+xcrun otool -L a.out
+
+
+a.out:
+        /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;300&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1560&lt;/span&gt;.12.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+        /usr/lib/libSystem.B.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1252&lt;/span&gt;.200.5&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+        /usr/lib/libobjc.A.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;228&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;当然，我们也可以查看一下其中的 libSystem.B.dylib 的情况，其实 macOS 上的 C 基础库。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;xcrun otool -L /usr/lib/libSystem.B.dylib
+    
+    /usr/lib/libSystem.B.dylib:
+            /usr/lib/libSystem.B.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1252&lt;/span&gt;.250.1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libcache.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;81&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libcommonCrypto.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;60118&lt;/span&gt;.250.2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libcompiler_rt.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;63&lt;/span&gt;.4.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libcopyfile.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libcorecrypto.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;602&lt;/span&gt;.250.23&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libdispatch.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1008&lt;/span&gt;.250.7&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libdyld.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;655&lt;/span&gt;.1.1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libkeymgr.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;30&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/liblaunch.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1336&lt;/span&gt;.251.2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libmacho.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;927&lt;/span&gt;.0.2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libquarantine.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;86&lt;/span&gt;.220.1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libremovefile.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;45&lt;/span&gt;.200.2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_asl.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;356&lt;/span&gt;.200.4&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_blocks.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;73&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_c.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1272&lt;/span&gt;.250.1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_configuration.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;963&lt;/span&gt;.250.1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_coreservices.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;66&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_darwin.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_dnssd.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;878&lt;/span&gt;.250.4&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_info.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_m.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;3158&lt;/span&gt;.200.7&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_malloc.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;166&lt;/span&gt;.251.2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_networkextension.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_notify.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;172&lt;/span&gt;.200.21&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_sandbox.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;851&lt;/span&gt;.250.12&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_secinit.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;30&lt;/span&gt;.220.1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_kernel.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;4903&lt;/span&gt;.251.3&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_platform.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;177&lt;/span&gt;.250.1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_pthread.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;330&lt;/span&gt;.250.2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_symptoms.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libsystem_trace.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;906&lt;/span&gt;.250.5&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libunwind.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;35&lt;/span&gt;.4.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            /usr/lib/system/libxpc.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1336&lt;/span&gt;.251.2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;甚至查看 a.out 可执行文件在执行时所需要依赖的所有依赖。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;DYLD_PRINT_LIBRARIES&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; ./a.out &lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;可以通过结果看到，一个简单的程序所需要链接的 &lt;code&gt;dylib&lt;/code&gt; 有多少，就是因为有这么多动态库要加载，在可执行程序加载到内存中执行的时候，不断的需要装载动态库进入内存，所需要花费的时间其实很可观，所以系统层面提供了共享缓存，也即会提前加载到内存中的动态链接库集合，当需要链接到对应动态库的时候就省略了从磁盘写入内存的过程。&lt;/p&gt;
+
+&lt;h2 id=&#34;总结一句话&#34;&gt;总结一句话&lt;/h2&gt;
+
+&lt;p&gt;整个编译过程可以归结为：
+&amp;gt; 头文件约定，编译器信任彼此，链接器验证&lt;/p&gt;
 </description>
       
     </item>

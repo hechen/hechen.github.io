@@ -6,10 +6,19 @@
     <description>Recent content in XCode on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 17 Jul 2018 17:09:57 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 25 Apr 2019 11:30:30 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/tags/xcode/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Xcode Build Process</title>
+      <link>https://hechen.xyz/post/xcode-build-system/</link>
+      <pubDate>Thu, 25 Apr 2019 11:30:30 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/xcode-build-system/</guid>
+      <description>编程语言的处理过程大致会有五个阶段，其每个阶段均有对应的工具： 预处理器 Preprocessor 编译器 Compiler 汇编器 Assembler 链接器 Linker 加载器 Loader 以下，我们以一个简单的源文件，来看看</description>
+    </item>
     
     <item>
       <title>三个简单步骤让你测试使用系统单例的代码</title>
