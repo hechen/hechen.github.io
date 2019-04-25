@@ -6,10 +6,46 @@
     <description>Recent content in Tags on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 30 Mar 2019 11:29:54 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 25 Apr 2019 11:30:30 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Build</title>
+      <link>https://hechen.xyz/tags/build/</link>
+      <pubDate>Thu, 25 Apr 2019 11:30:30 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/build/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Compile</title>
+      <link>https://hechen.xyz/tags/compile/</link>
+      <pubDate>Thu, 25 Apr 2019 11:30:30 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/compile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Preprocess</title>
+      <link>https://hechen.xyz/tags/preprocess/</link>
+      <pubDate>Thu, 25 Apr 2019 11:30:30 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/preprocess/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>XCode</title>
+      <link>https://hechen.xyz/tags/xcode/</link>
+      <pubDate>Thu, 25 Apr 2019 11:30:30 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/xcode/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>AppleScript</title>
@@ -152,42 +188,6 @@
       <pubDate>Tue, 26 Feb 2019 10:24:38 +0800</pubDate>
       
       <guid>https://hechen.xyz/tags/variable/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Sandbox</title>
-      <link>https://hechen.xyz/tags/sandbox/</link>
-      <pubDate>Thu, 21 Feb 2019 23:25:38 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/sandbox/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Safari</title>
-      <link>https://hechen.xyz/tags/safari/</link>
-      <pubDate>Mon, 28 Jan 2019 17:51:35 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/safari/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Shadowsocks</title>
-      <link>https://hechen.xyz/tags/shadowsocks/</link>
-      <pubDate>Mon, 28 Jan 2019 17:51:35 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/shadowsocks/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Traffic</title>
-      <link>https://hechen.xyz/tags/traffic/</link>
-      <pubDate>Mon, 28 Jan 2019 17:51:35 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/traffic/</guid>
       <description></description>
     </item>
     

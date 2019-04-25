@@ -6,10 +6,19 @@
     <description>Recent content in Posts on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 30 Mar 2019 11:29:54 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 25 Apr 2019 11:30:30 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Xcode Build Process</title>
+      <link>https://hechen.xyz/post/xcode-build-system/</link>
+      <pubDate>Thu, 25 Apr 2019 11:30:30 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/xcode-build-system/</guid>
+      <description>编程语言的处理过程大致会有五个阶段，其每个阶段均有对应的工具： 预处理器 Preprocessor 编译器 Compiler 汇编器 Assembler 链接器 Linker 加载器 Loader 以下，我们以一个简单的源文件，来看看</description>
+    </item>
     
     <item>
       <title>写个小工具 Swwwitch</title>
@@ -180,15 +189,6 @@
       
       <guid>https://hechen.xyz/post/dependency-injection-using-factories-in-swift/</guid>
       <description>依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象</description>
-    </item>
-    
-    <item>
-      <title>模块化 Xcode 工程</title>
-      <link>https://hechen.xyz/post/modular-xcode-projects/</link>
-      <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/modular-xcode-projects/</guid>
-      <description>原文：Modular Xcode projects 原作者 &amp;amp; Copyright @pepibumur 翻译：@OgreMergO 使用 Xcode 构建模块化的工程就需要对工程结构以及其基础概念有很好的理解才行。 我们平时</description>
     </item>
     
   </channel>
