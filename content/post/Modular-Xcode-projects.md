@@ -181,6 +181,3 @@ Carthage 的方式和 CocoaPods 比起来大不同。除了依赖项的解析，
 * [Embedding Frameworks in an App](https://developer.apple.com/library/content/technotes/tn2435/_index.html)
 * [Introduction to Framework Programming Guide](https://developer.apple.com/library/content/documentation/MacOSX/Conceptual/BPFrameworks/Frameworks.html)
 * [Skippy Copy Phase Strip](https://www.cocoanetics.com/2015/04/skipping-copy-phase-strip/)
-
-
-
