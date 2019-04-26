@@ -15,6 +15,13 @@
   </url>
   
   <url>
+    <loc>https://hechen.xyz/post/xcode-build-system/</loc>
+    <lastmod>2019-04-25T11:30:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://hechen.xyz/categories/</loc>
     <lastmod>2019-04-25T11:30:30+08:00</lastmod>
     <priority>0</priority>
@@ -54,13 +61,6 @@
     <loc>https://hechen.xyz/tags/xcode/</loc>
     <lastmod>2019-04-25T11:30:30+08:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/post/xcode-build-system/</loc>
-    <lastmod>2019-04-25T11:30:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   
   <url>
