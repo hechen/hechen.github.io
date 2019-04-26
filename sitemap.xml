@@ -9,6 +9,61 @@
   </url>
   
   <url>
+    <loc>https://hechen.xyz/categories/</loc>
+    <lastmod>2019-04-27T03:01:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/framework/</loc>
+    <lastmod>2019-04-27T03:01:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/</loc>
+    <lastmod>2019-04-27T03:01:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/library/</loc>
+    <lastmod>2019-04-27T03:01:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/mach-o/</loc>
+    <lastmod>2019-04-27T03:01:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/post/</loc>
+    <lastmod>2019-04-27T03:01:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/</loc>
+    <lastmod>2019-04-27T03:01:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/categories/macos/</loc>
+    <lastmod>2019-04-27T03:01:30+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/post/library_framework/</loc>
+    <lastmod>2019-04-27T03:01:30+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://hechen.xyz/tags/build/</loc>
     <lastmod>2019-04-25T11:30:30+08:00</lastmod>
     <priority>0</priority>
@@ -22,25 +77,7 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/</loc>
-    <lastmod>2019-04-25T11:30:30+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://hechen.xyz/tags/compile/</loc>
-    <lastmod>2019-04-25T11:30:30+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/</loc>
-    <lastmod>2019-04-25T11:30:30+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/post/</loc>
     <lastmod>2019-04-25T11:30:30+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -52,19 +89,7 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/</loc>
-    <lastmod>2019-04-25T11:30:30+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://hechen.xyz/tags/xcode/</loc>
-    <lastmod>2019-04-25T11:30:30+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/categories/macos/</loc>
     <lastmod>2019-04-25T11:30:30+08:00</lastmod>
     <priority>0</priority>
   </url>

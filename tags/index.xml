@@ -6,10 +6,37 @@
     <description>Recent content in Tags on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 25 Apr 2019 11:30:30 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 26 Apr 2019 00:35:30 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Framework</title>
+      <link>https://hechen.xyz/tags/framework/</link>
+      <pubDate>Fri, 26 Apr 2019 00:35:30 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/framework/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Library</title>
+      <link>https://hechen.xyz/tags/library/</link>
+      <pubDate>Fri, 26 Apr 2019 00:35:30 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/library/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mach-O</title>
+      <link>https://hechen.xyz/tags/mach-o/</link>
+      <pubDate>Fri, 26 Apr 2019 00:35:30 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/mach-o/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Build</title>
@@ -161,33 +188,6 @@
       <pubDate>Mon, 11 Mar 2019 15:19:49 +0800</pubDate>
       
       <guid>https://hechen.xyz/tags/nsview/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>backgroundColor</title>
-      <link>https://hechen.xyz/tags/backgroundcolor/</link>
-      <pubDate>Mon, 11 Mar 2019 15:19:49 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/backgroundcolor/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Subject</title>
-      <link>https://hechen.xyz/tags/subject/</link>
-      <pubDate>Tue, 26 Feb 2019 10:24:38 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/subject/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Variable</title>
-      <link>https://hechen.xyz/tags/variable/</link>
-      <pubDate>Tue, 26 Feb 2019 10:24:38 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/variable/</guid>
       <description></description>
     </item>
     

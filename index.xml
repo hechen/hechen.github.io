@@ -5,7 +5,7 @@
     <description>Recent content on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 25 Apr 2019 11:30:30 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 26 Apr 2019 00:35:30 +0800</lastBuildDate>
     
         <atom:link href="https://hechen.xyz/index.xml" rel="self" type="application/rss+xml" />
     
@@ -24,6 +24,449 @@
 &lt;p&gt;偶尔写点 Python，Ruby&lt;/p&gt;
 
 &lt;p&gt;打杂中&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>关于 Library 和 Framework</title>
+      <link>https://hechen.xyz/post/library_framework/</link>
+      <pubDate>Fri, 26 Apr 2019 00:35:30 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/library_framework/</guid>
+      
+        <description>
+
+&lt;p&gt;本文并不是深究每一项内容本质，仅做概念讲解以做到区分。&lt;/p&gt;
+
+&lt;p&gt;在链接 Library 以及 Framework 之前，我们需要先了解一下 Mach—O。&lt;/p&gt;
+
+&lt;p&gt;提到 Mach-O ，需要明确下 object file（目标文件）的概念，其实质上是指那些由源代码编译之后生成的，还未进行链接的中间文件（比如 Linux 下的 .o 以及 Windows 下的 .obj），它和可执行文件的内容和结构很相似，所以一般上会跟可执行文件格式采用一样的格式存储。&lt;/p&gt;
+
+&lt;p&gt;那在 Unix 系统上的 COFF 是当时发明的在 Unix 表示一个目标文件的存取格式，后来 Linux 基于 COFF 发明了 ELF，而 Windows 基于 COFF 发明了 PE 格式。广义上来说，目标文件与可执行文件几乎一样。在 Linux 下统称为 ELF 文件，Windows 上统称为 PE-COFF 文件，而在 Mac 上我们的目标文件就是 Mach-O 格式，其在目标文件的大体组成上和其他两种很相似。&lt;/p&gt;
+
+&lt;p&gt;我们以 Linux 上 ELF 结构的一张图来大概说明一下情况，不同的源文件通过分类，将代码和数据，以及变量放入不同的职责段，代码段 _TEXT，数据段 _DATA 等。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/ozMscrW.jpg&#34; alt=&#34;ELF&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;而 Mach-O 文件格式如下图（源自于 Apple 文档）, 和 ELF 格式类似，其也是将不同职责的代码和数据放置于不同的 Section 段，然后再集中成一个一个的 Segment，而 Load Commands 是用来控制每一个 Segment 是如何被加载的，数据是从哪里取的，等等。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/8p9pwgn.png&#34; alt=&#34;Mach-O&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们通过将如下代码编译输出成可执行文件来看，&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//  main.m
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//  MachO
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//  Created by chen he on 2019/4/22.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//  Copyright © 2019 chen he. All rights reserved.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;cp&#34;&gt;#import &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[])&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Hello World.&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;通过 clang 工具套件编译源文件生成可执行文件。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;// output the main.o
+clang -c main.m
+// link main.o with c lib
+// default output file is a.out, you can specify another name with -o
+clang main.o -Wl,&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;xcrun --show-sdk-path&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;/usr/lib/libSystem.B.tbd&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;接着可以使用 MachOView 来查看刚才 a.out 以及 main.o 文件。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;MachOView 是一款开源软件，用以查看目标文件格式的，不过已经好几年没有更新了，所有有的 Load Command 识别不出。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/ehG4guP.png&#34; alt=&#34;a.out 的内容&#34; /&gt;
+我们再看看 main.o 这个目标文件的结构是怎么样的。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/tOzXqC1.png&#34; alt=&#34;main.o 的内容&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;library&#34;&gt;Library&lt;/h3&gt;
+
+&lt;p&gt;在 &lt;a href=&#34;https://hechen.xyz/post/xcode-build-system/&#34;&gt;这篇文章&lt;/a&gt; 中说明了，每个源文件最终都会生成对应的目标文件，当工程项目变大之后，我们希望能够将具体协同工作的单一组件内的目标文件一起进行交付，对于功能稳定的代码无需参与再次编译的过程，我们需要将同一个组件内部的所有目标文件归拢到一起，这也是初期库（Library） 出现的由来。简单而言，库就是一堆目标文件的集合。&lt;/p&gt;
+
+&lt;p&gt;通过简单的 ar 命令即可将多个 .o 文件整合成一个 .a 文件，同时使用 ranlib 命令更新静态库 .a 的符号索引。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;ar -r libfoo.a foo.o bar.o baz.o
+ranlib libfoo.a&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h3 id=&#34;static-library&#34;&gt;Static Library&lt;/h3&gt;
+
+&lt;p&gt;关于静态和动态的由来，是因为链接过程的不同而产生，基于静态链接的库被称作静态库，基于动态链接的库被称作动态库（共享库）。&lt;/p&gt;
+
+&lt;p&gt;静态库实质上是目标文件的集合。它是把很多目标文件捆绑在一起形成一个文件，再加上一些索引，你可以简单地把它理解为一个包含有很多目标文件的文件包。也就是上面我们介绍的 .a 文件。&lt;/p&gt;
+
+&lt;p&gt;静态库的存在形式使得不同的成员开发者和部门都能够独立的自行开发自己的功能功能和程序模块，在一定阶段和程度上是大大提高了开发效率的，但是静态库也有一些问题：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;浪费内存和磁盘空间&lt;/li&gt;
+&lt;li&gt;模块更新难&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;以上方的 HelloWorld 程序为例，其中 printf 的符号是定义在 C 的标准库文件中的，如果要进行静态链接，也就是 C 的标准库要以静态库的方式参与链接到程序内部，假如平均一个 C 程序会使用到大概 1MB 的空间（磁盘以及内存），如果我们操作系统运行 100 个这样简单的程序就需要近 100MB 的空间，这个不太可取，而且这些标准库本身所有的程序都需要一人带一份，不太可取。&lt;/p&gt;
+
+&lt;p&gt;另外一个问题是模块更新问题，因为最终要在链接阶段直接链接到可执行文件中，因此一旦某个模块发生变化，我们需要将该静态库重新进行编译，链接，发布，而且整个可执行文件都做了变更，因此需要完整的替换掉当下的可执行文件。&lt;/p&gt;
+
+&lt;p&gt;例如一个程序如果包含 20 个模块，每个模块 1 MB，每次更新任何一个模块，用户需要重新获取 20MB 的程序。&lt;/p&gt;
+
+&lt;p&gt;要想解决以上两个问题，最简单的办法就是将程序的每个模块隔离开，形成单独的文件，而不再将其都混合在一起。简单的来说，就是不再对那些组成程序的目标文件进行链接，而是等到程序用的时候再实时的进行链接，这个也是动态链接的基本思想，而基于动态链接产生的 Library 支持，即为共享库（动态链接库）&lt;/p&gt;
+
+&lt;h3 id=&#34;dynamic-library&#34;&gt;Dynamic Library&lt;/h3&gt;
+
+&lt;p&gt;动态链接最大的变化在于可执行程序和动态链接的目标文件是独立的两个文件，只是在程序初始执行的目标文件（比如 main 入口所在的文件）内部持有动态链接库的符号，当真正运行起来，需要用到对应的符号时，链接器才去查找对应目标文件，然后链接执行。&lt;/p&gt;
+
+&lt;p&gt;当运行程序需要更新的时候，我们不需要完整的编译二进制可执行文件，而只需要在动态库的接口不变的前提下，仅仅更新那部分包含了所需升级功能的动态库而已。这一点，在 Windows 系统上体现的尤为明显。&lt;/p&gt;
+
+&lt;p&gt;当然动态链接也存在自身的问题，很常见的一个问题，当程序所使用的其中一个模块发生更新之后，很容易造成库接口不兼容导致程序无法运行，这也是为什么有的时候你更新完系统，原来使用好好的 App 打开发生闪退或者某个功能无法使用了的缘故。&lt;/p&gt;
+
+&lt;p&gt;另外一个缺点就是，由于所需调用的符号不再和可执行文件在一起，在进行方法调用的时候，过程要比之前复杂的多，要先找对应的动态库文件，如果在内存中不存在，还需要再去磁盘中实时加载，导致动态库的方法调用时间要比静态链接的情况下慢。&lt;/p&gt;
+
+&lt;p&gt;在 Mac / iOS 上所有的动态库都是通过 dyld 来进行动态加载的，这里不详细说明了，大概列一下动态库的加载顺序：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;首先会加载系统级别的dylib, 目录在设备的&lt;code&gt;/usr/lib/&lt;/code&gt;, 文件:&lt;code&gt;libsqlite3.dylib、libc++.1.dylib...&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;然后加载系统级别的framework, 目录在设备的&lt;code&gt;/System/Library/Frameworks&lt;/code&gt;, 文件:&lt;code&gt;Foundation.framework&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;再引入runtime、gcd存放的dylib, 目录在设备的&lt;code&gt;/usr/lib/&lt;/code&gt;, 文件:&lt;code&gt;libSystem.B.dylib、libobjc.A.dylib&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;再引入自己注入的dylib, &lt;code&gt;@executable_path/&lt;/code&gt;(目录存放在当前可执行文件底下)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;而对于 App 来讲，实际上的路径是通过 @rpath 来指定的，该符号说白了就是占位符，当你的 App 成功安装到 iOS 系统之后，@rpath 就是该 App 的安装路径，以某个 iap 文件内部的可执行文件为例，使用 otool 查看其依赖的动态库如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;45
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;46
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;47
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;48
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;49
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;50
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;51
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;52
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;53
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;54
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;55
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;56
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;57
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;58
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;59
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;60
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;61
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;62
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;63
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;64
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;65
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;66
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;67
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;68
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;69
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;70
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;71
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;72
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;73
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;74
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;75
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;76
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;77
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;78
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;79
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;80
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;81
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;82
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;83
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;84
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;85
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;86
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;87
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;88
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;89
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;90
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;    otool -L osee2unifiedRelease.app/osee2unifiedRelease
+    
+    
+    osee2unifiedRelease.app/osee2unifiedRelease:
+    	/usr/lib/libbz2.1.0.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.5&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/usr/lib/libc++.1.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;400&lt;/span&gt;.9.4&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/usr/lib/libiconv.2.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;7&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;7&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/usr/lib/libicucore.A.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;62&lt;/span&gt;.1.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/usr/lib/libresolv.9.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/usr/lib/libsqlite3.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;9&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;274&lt;/span&gt;.20.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/usr/lib/libxml2.2.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt;.9.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/usr/lib/libz.1.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.2.11&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/AVFoundation.framework/AVFoundation &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/Accelerate.framework/Accelerate &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/AdSupport.framework/AdSupport &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/AudioToolbox.framework/AudioToolbox &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;492&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/CFNetwork.framework/CFNetwork &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;975&lt;/span&gt;.0.3&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;150&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1560&lt;/span&gt;.10.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;64&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1245&lt;/span&gt;.9.2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/CoreLocation.framework/CoreLocation &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;2245&lt;/span&gt;.8.12&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/CoreMotion.framework/CoreMotion &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;2245&lt;/span&gt;.8.12&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/CoreSpotlight.framework/CoreSpotlight &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/CoreTelephony.framework/CoreTelephony &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/CoreText.framework/CoreText &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/ExternalAccessory.framework/ExternalAccessory &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/Foundation.framework/Foundation &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;300&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1560&lt;/span&gt;.10.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/GLKit.framework/GLKit &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;103&lt;/span&gt;.2.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/ImageIO.framework/ImageIO &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/MediaPlayer.framework/MediaPlayer &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/MobileCoreServices.framework/MobileCoreServices &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;935&lt;/span&gt;.2.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/OpenGLES.framework/OpenGLES &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/Photos.framework/Photos &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/QuartzCore.framework/QuartzCore &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.2.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.11.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/Security.framework/Security &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;58286&lt;/span&gt;.222.2&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;963&lt;/span&gt;.200.27&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/UIKit.framework/UIKit &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;61000&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/VideoEdit.framework/VideoEdit &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/VideoPlayer.framework/VideoPlayer &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/VideoToolbox.framework/VideoToolbox &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/ZmFFmpeg.framework/ZmFFmpeg &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/du.framework/du &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/Metal.framework/Metal &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/CoreMedia.framework/CoreMedia &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/WebKit.framework/WebKit &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;606&lt;/span&gt;.2.104&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/Social.framework/Social &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;87&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/Accounts.framework/Accounts &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/MessageUI.framework/MessageUI &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;3445&lt;/span&gt;.100.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/AddressBook.framework/AddressBook &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/StoreKit.framework/StoreKit &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/usr/lib/libobjc.A.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;228&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/usr/lib/libSystem.B.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1252&lt;/span&gt;.200.5&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/AssetsLibrary.framework/AssetsLibrary &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/Contacts.framework/Contacts &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/CoreData.framework/CoreData &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;866&lt;/span&gt;.2.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/CoreImage.framework/CoreImage &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/CoreVideo.framework/CoreVideo &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.2.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.5.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/EventKit.framework/EventKit &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;100&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/LocalAuthentication.framework/LocalAuthentication &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;425&lt;/span&gt;.222.1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/MapKit.framework/MapKit &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;14&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/MetalKit.framework/MetalKit &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;113&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/NetworkExtension.framework/NetworkExtension &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/PassKit.framework/PassKit &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/SafariServices.framework/SafariServices &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/UserNotifications.framework/UserNotifications &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	/System/Library/Frameworks/iAd.framework/iAd &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftAVFoundation.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftAccelerate.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftContacts.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftCore.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftCoreAudio.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftCoreData.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftCoreFoundation.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftCoreGraphics.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftCoreImage.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftCoreLocation.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftCoreMedia.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftDarwin.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftDispatch.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftFoundation.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftGLKit.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftMapKit.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftMediaPlayer.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftMetal.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftModelIO.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftObjectiveC.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftPhotos.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftQuartzCore.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftUIKit.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftos.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    	@rpath/libswiftsimd.dylib &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;compatibility version &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;.0.0, current version &lt;span class=&#34;m&#34;&gt;1000&lt;/span&gt;.11.42&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;dyld 是开源的，感兴趣可以一看。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/opensource-apple/dyld&#34;&gt;opensource-apple/dyld&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;framework&#34;&gt;Framework&lt;/h3&gt;
+
+&lt;p&gt;在库刚出现的时候，我们将自己创建的 Library 提供给对方的时候，不仅需要将 .a 文件提供给对方，还需要同时提供 Header，用以开发人员在高级语言层面能够直观的使用该库提供的功能。后来，我们的模块越来越大，不仅仅包含代码文件，还加入了资源文件，Apple 引入了 framework 的概念用来将一个独立功能模块所需提供的内容打包提供。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;A framework is a bundle (a structured directory) that contains a dynamic shared library along with associated resources, such as nib files, image files, and header files.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;所以，你要明白，framework 本质上只是一种 Bundle 存在的形式，类似于一种目录结构，其并无动静之分。 内部包含的库文件，如果是静态库，其被称作为静态 Framework，如果内部为动态库，就被称作动态 Framework。由于官方在 iOS 上推出 Framework 的时候直接以 Dynamic Framework 的形式推出，通过 Xcode 创建的 Target 我们也可以了解。&lt;/p&gt;
+
+&lt;h3 id=&#34;text-based-dylib-stubs&#34;&gt;Text Based .dylib Stubs&lt;/h3&gt;
+
+&lt;p&gt;自 Xcode 7 引入，目前未查找到官方正式文档说明，但是在官方论坛中有 Apple 官方人员针对 .tbd 文件的回应如下：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;For those who are curious, the .tbd files are new &amp;ldquo;text-based stub libraries&amp;rdquo;, that provide a much more compact version of the stub libraries for use in the SDK, and help to significantly reduce its download size.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;以  libc++ 为例，在我们 iOS 开发过程中链接的 libc++ 的动态库是通过 libc++.tbd 引入的，可以查到其原始路径位于每个 SDK 文件夹下。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/lib/libc++.tbd&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;使用文本编辑器即可打开查看：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;--- !tapi-tbd-v3
+
+   archs:           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt; i386, x86_64 &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+    uuids:           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;i386: A9FCC99A-209C-348E-BB79-0A29A5FCB82B&amp;#39;&lt;/span&gt;, &lt;span class=&#34;s1&#34;&gt;&amp;#39;x86_64: 66B692F1-FA7E-3CBB-817A-73A7FE29A765&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+    platform:        ios
+    install-name:    &lt;span class=&#34;s1&#34;&gt;&amp;#39;/usr/lib/libc++.1.dylib&amp;#39;&lt;/span&gt;
+    current-version: &lt;span class=&#34;m&#34;&gt;400&lt;/span&gt;.9.4
+    objc-constraint: none
+    exports:         
+      - archs:           &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt; i386 &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+        symbols:         &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt; __ZNKSt3__18messagesIcE6do_getEiiiRKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEE, 
+                           __ZNKSt3__18messagesIcE8do_closeEi, __ZNKSt3__18messagesIwE6do_getEiiiRKNS_12basic_stringIwNS_11char_traitsIwEENS_9allocatorIwEEEE, 
+                           __ZNKSt3__18messagesIwE8do_closeEi, __ZNSt3__111this_thread9sleep_forERKNS_6chrono8durationIxNS_5ratioILx1ELx1000000000EEEEE, 
+                           __ZNSt3__112strstreambuf6__initEPciS1_, __ZNSt3__112strstreambufC1EPKai, 
+                           __ZNSt3__112strstreambufC1EPKci, __ZNSt3__112strstreambufC1EPKhi, 
+                           __ZNSt3__112strstreambufC1EPaiS1_, __ZNSt3__112strstreambufC1EPciS1_, 
+                           __ZNSt3__112strstreambufC1EPhiS1_, __ZNSt3__112strstreambufC1Ei, 
+                           __ZNSt3__112strstreambufC2EPKai, __ZNSt3__112strstreambufC2EPKci, 
+                           __ZNSt3__112strstreambufC2EPKhi, __ZNSt3__112strstreambufC2EPaiS1_, 
+                           __ZNSt3__112strstreambufC2EPciS1_, __ZNSt3__112strstreambufC2EPhiS1_, 
+                           __ZNSt3__112strstreambufC2Ei, __ZNSt3__113basic_istreamIcNS_11char_traitsIcEEE3getEPci, 
+                           __ZNSt3__113basic_istreamIcNS_11char_traitsIcEEE3getEPcic, 
+                           __ZNSt3__113basic_istreamIcNS_11char_traitsIcEEE4readEPci, 
+                           __ZNSt3__113basic_istreamIcNS_11char_traitsIcEEE6ignoreEii, 
+                           __ZNSt3__113basic_istreamIcNS_11char_traitsIcEEE7getlineEPci, 
+                           __ZNSt3__113basic_istreamIcNS_11char_traitsIcEEE7getlineEPcic, 
+                           __ZNSt3__113basic_istreamIcNS_11char_traitsIcEEE8readsomeEPci, 
+                           __ZNSt3__113basic_istreamIwNS_11char_traitsIwEEE3getEPwi, 
+                           __ZNSt3__113basic_istreamIwNS_11char_traitsIwEEE3getEPwiw,&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;其中将本身的动态链接库所提供出的符号（函数，全局变量等）列出，因为在 macOS 以及 iOS 中系统目录下已经集成了这些动态库，因为为了避免不必要的下载和提供重复的动态链接库，因而提供了 tbd 这种格式文件用来做桥接。实质上当真正可执行文件进行链接的时候，会加载系统原有的动态链接库，这个具体的动态链接库位置由 &lt;code&gt;install-name&lt;/code&gt; 给出。&lt;/p&gt;
+
+&lt;p&gt;简而言之，tbd 是 Apple 用来减小 SDK 体积大小所提供的中间文件。&lt;/p&gt;
+
+&lt;p&gt;所以，当你下载 Xcode 的时候，其自带的 SDK 中包含的动态链接库大部分均为 tbd 格式，而真正我们运行起来可执行文件之后加载的动态链接库会直接使用系统目录下的（无论是 iOS 还是 macOS）。&lt;/p&gt;
+
+&lt;h1 id=&#34;参考链接&#34;&gt;参考链接&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/gdbinit/MachOView&#34;&gt;MachOView&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.objc.io/issues/6-build-tools/mach-o-executables/&#34;&gt;Mach-O Executables&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://lowlevelbits.org/parsing-mach-o-files/&#34;&gt;PARSING MACH-O FILES&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
       
     </item>

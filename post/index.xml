@@ -6,10 +6,19 @@
     <description>Recent content in Posts on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 25 Apr 2019 11:30:30 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 26 Apr 2019 00:35:30 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>关于 Library 和 Framework</title>
+      <link>https://hechen.xyz/post/library_framework/</link>
+      <pubDate>Fri, 26 Apr 2019 00:35:30 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/library_framework/</guid>
+      <description>本文并不是深究每一项内容本质，仅做概念讲解以做到区分。 在链接 Library 以及 Framework 之前，我们需要先了解一下 Mach—O。 提到 Mach-O ，需要明确下 object file（目标</description>
+    </item>
     
     <item>
       <title>Build Process</title>
@@ -180,15 +189,6 @@
       
       <guid>https://hechen.xyz/post/in-app-purchase/</guid>
       <description>对于在 App Store 中上架的应⽤来说，应⽤内购买(In-App Purchase，简称 IAP) 应该是一个避不开的话题，尤其是去年微信打赏和 Apple 之间的争执更让 IAP 火</description>
-    </item>
-    
-    <item>
-      <title>在 Swift 中使用工厂模式进行依赖注入</title>
-      <link>https://hechen.xyz/post/dependency-injection-using-factories-in-swift/</link>
-      <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/dependency-injection-using-factories-in-swift/</guid>
-      <description>依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象</description>
     </item>
     
   </channel>

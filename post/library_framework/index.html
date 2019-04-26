@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>关于 Library 和 Framework - I make stuff</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="chen" />
+  <meta name="description" content="本文并不是深究每一项内容本质，仅做概念讲解以做到区分。 在链接 Library 以及 Framework 之前，我们需要先了解一下 Mach—O。 提到 Mach-O ，需要明确下 object file（目标" />
+
+  <meta name="keywords" content="Chen, iOS, Swift, Productivity" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.56.0-DEV" />
+
+
+<link rel="canonical" href="https://hechen.xyz/post/library_framework/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.ec807d8b802a40889537c26e014f733206312ea440d42e1f0dabed80918de1ac.css" integrity="sha256-7IB9i4AqQIiVN8JuAU9zMgYxLqRA1C4fDavtgJGN4aw=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="关于 Library 和 Framework" />
+<meta property="og:description" content="本文并不是深究每一项内容本质，仅做概念讲解以做到区分。 在链接 Library 以及 Framework 之前，我们需要先了解一下 Mach—O。 提到 Mach-O ，需要明确下 object file（目标" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hechen.xyz/post/library_framework/" />
+<meta property="article:published_time" content="2019-04-26T00:35:30&#43;08:00"/>
+<meta property="article:modified_time" content="2019-04-27T03:01:30&#43;08:00"/>
+
+<meta itemprop="name" content="关于 Library 和 Framework">
+<meta itemprop="description" content="本文并不是深究每一项内容本质，仅做概念讲解以做到区分。 在链接 Library 以及 Framework 之前，我们需要先了解一下 Mach—O。 提到 Mach-O ，需要明确下 object file（目标">
+
+
+<meta itemprop="datePublished" content="2019-04-26T00:35:30&#43;08:00" />
+<meta itemprop="dateModified" content="2019-04-27T03:01:30&#43;08:00" />
+<meta itemprop="wordCount" content="3963">
+
+
+
+<meta itemprop="keywords" content="Library,Framework,Mach-O," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="关于 Library 和 Framework"/>
+<meta name="twitter:description" content="本文并不是深究每一项内容本质，仅做概念讲解以做到区分。 在链接 Library 以及 Framework 之前，我们需要先了解一下 Mach—O。 提到 Mach-O ，需要明确下 object file（目标"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Chen</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/about/">About</a>
+          
+        
+      </li>
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      Chen
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/">Home</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://hechen.xyz/about/">About</a>
+          
+
+        
+
+      </li>
+    
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">关于 Library 和 Framework</h1>
+      
+      <div class="post-meta">
+        <time datetime="2019-04-26" class="post-time">
+          2019-04-26
+        </time>
+        <div class="post-category">
+            <a href="https://hechen.xyz/categories/macos/"> macOS </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
+          <span id="/post/library_framework/" class="leancloud_visitors" data-flag-title="关于 Library 和 Framework">
+            <span class="post-meta-item-text"> | 阅读 </span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#library">Library</a></li>
+<li><a href="#static-library">Static Library</a></li>
+<li><a href="#dynamic-library">Dynamic Library</a></li>
+<li><a href="#framework">Framework</a></li>
+<li><a href="#text-based-dylib-stubs">Text Based .dylib Stubs</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#参考链接">参考链接</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<p>本文并不是深究每一项内容本质，仅做概念讲解以做到区分。</p>
+
+<p>在链接 Library 以及 Framework 之前，我们需要先了解一下 Mach—O。</p>
+
+<p>提到 Mach-O ，需要明确下 object file（目标文件）的概念，其实质上是指那些由源代码编译之后生成的，还未进行链接的中间文件（比如 Linux 下的 .o 以及 Windows 下的 .obj），它和可执行文件的内容和结构很相似，所以一般上会跟可执行文件格式采用一样的格式存储。</p>
+
+<p>那在 Unix 系统上的 COFF 是当时发明的在 Unix 表示一个目标文件的存取格式，后来 Linux 基于 COFF 发明了 ELF，而 Windows 基于 COFF 发明了 PE 格式。广义上来说，目标文件与可执行文件几乎一样。在 Linux 下统称为 ELF 文件，Windows 上统称为 PE-COFF 文件，而在 Mac 上我们的目标文件就是 Mach-O 格式，其在目标文件的大体组成上和其他两种很相似。</p>
+
+<p>我们以 Linux 上 ELF 结构的一张图来大概说明一下情况，不同的源文件通过分类，将代码和数据，以及变量放入不同的职责段，代码段 _TEXT，数据段 _DATA 等。</p>
+
+<p><img src="https://i.imgur.com/ozMscrW.jpg" alt="ELF" /></p>
+
+<p>而 Mach-O 文件格式如下图（源自于 Apple 文档）, 和 ELF 格式类似，其也是将不同职责的代码和数据放置于不同的 Section 段，然后再集中成一个一个的 Segment，而 Load Commands 是用来控制每一个 Segment 是如何被加载的，数据是从哪里取的，等等。</p>
+
+<p><img src="https://i.imgur.com/8p9pwgn.png" alt="Mach-O" /></p>
+
+<p>我们通过将如下代码编译输出成可执行文件来看，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="c1">//
+</span><span class="c1">//  main.m
+</span><span class="c1">//  MachO
+</span><span class="c1">//
+</span><span class="c1">//  Created by chen he on 2019/4/22.
+</span><span class="c1">//  Copyright © 2019 chen he. All rights reserved.
+</span><span class="c1">//
+</span><span class="c1"></span>
+<span class="cp">#import &lt;stdio.h&gt;
+</span><span class="cp"></span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&#34;Hello World.</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>通过 clang 工具套件编译源文件生成可执行文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Shell" data-lang="Shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Shell" data-lang="Shell">// output the main.o
+clang -c main.m
+// link main.o with c lib
+// default output file is a.out, you can specify another name with -o
+clang main.o -Wl,<span class="sb">`</span>xcrun --show-sdk-path<span class="sb">`</span>/usr/lib/libSystem.B.tbd</code></pre></td></tr></table>
+</div>
+</div>
+<p>接着可以使用 MachOView 来查看刚才 a.out 以及 main.o 文件。</p>
+
+<blockquote>
+<p>MachOView 是一款开源软件，用以查看目标文件格式的，不过已经好几年没有更新了，所有有的 Load Command 识别不出。</p>
+</blockquote>
+
+<p><img src="https://i.imgur.com/ehG4guP.png" alt="a.out 的内容" />
+我们再看看 main.o 这个目标文件的结构是怎么样的。</p>
+
+<p><img src="https://i.imgur.com/tOzXqC1.png" alt="main.o 的内容" /></p>
+
+<h3 id="library">Library</h3>
+
+<p>在 <a href="https://hechen.xyz/post/xcode-build-system/">这篇文章</a> 中说明了，每个源文件最终都会生成对应的目标文件，当工程项目变大之后，我们希望能够将具体协同工作的单一组件内的目标文件一起进行交付，对于功能稳定的代码无需参与再次编译的过程，我们需要将同一个组件内部的所有目标文件归拢到一起，这也是初期库（Library） 出现的由来。简单而言，库就是一堆目标文件的集合。</p>
+
+<p>通过简单的 ar 命令即可将多个 .o 文件整合成一个 .a 文件，同时使用 ranlib 命令更新静态库 .a 的符号索引。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">ar -r libfoo.a foo.o bar.o baz.o
+ranlib libfoo.a</pre></td></tr></table>
+</div>
+</div>
+<h3 id="static-library">Static Library</h3>
+
+<p>关于静态和动态的由来，是因为链接过程的不同而产生，基于静态链接的库被称作静态库，基于动态链接的库被称作动态库（共享库）。</p>
+
+<p>静态库实质上是目标文件的集合。它是把很多目标文件捆绑在一起形成一个文件，再加上一些索引，你可以简单地把它理解为一个包含有很多目标文件的文件包。也就是上面我们介绍的 .a 文件。</p>
+
+<p>静态库的存在形式使得不同的成员开发者和部门都能够独立的自行开发自己的功能功能和程序模块，在一定阶段和程度上是大大提高了开发效率的，但是静态库也有一些问题：</p>
+
+<ol>
+<li>浪费内存和磁盘空间</li>
+<li>模块更新难</li>
+</ol>
+
+<p>以上方的 HelloWorld 程序为例，其中 printf 的符号是定义在 C 的标准库文件中的，如果要进行静态链接，也就是 C 的标准库要以静态库的方式参与链接到程序内部，假如平均一个 C 程序会使用到大概 1MB 的空间（磁盘以及内存），如果我们操作系统运行 100 个这样简单的程序就需要近 100MB 的空间，这个不太可取，而且这些标准库本身所有的程序都需要一人带一份，不太可取。</p>
+
+<p>另外一个问题是模块更新问题，因为最终要在链接阶段直接链接到可执行文件中，因此一旦某个模块发生变化，我们需要将该静态库重新进行编译，链接，发布，而且整个可执行文件都做了变更，因此需要完整的替换掉当下的可执行文件。</p>
+
+<p>例如一个程序如果包含 20 个模块，每个模块 1 MB，每次更新任何一个模块，用户需要重新获取 20MB 的程序。</p>
+
+<p>要想解决以上两个问题，最简单的办法就是将程序的每个模块隔离开，形成单独的文件，而不再将其都混合在一起。简单的来说，就是不再对那些组成程序的目标文件进行链接，而是等到程序用的时候再实时的进行链接，这个也是动态链接的基本思想，而基于动态链接产生的 Library 支持，即为共享库（动态链接库）</p>
+
+<h3 id="dynamic-library">Dynamic Library</h3>
+
+<p>动态链接最大的变化在于可执行程序和动态链接的目标文件是独立的两个文件，只是在程序初始执行的目标文件（比如 main 入口所在的文件）内部持有动态链接库的符号，当真正运行起来，需要用到对应的符号时，链接器才去查找对应目标文件，然后链接执行。</p>
+
+<p>当运行程序需要更新的时候，我们不需要完整的编译二进制可执行文件，而只需要在动态库的接口不变的前提下，仅仅更新那部分包含了所需升级功能的动态库而已。这一点，在 Windows 系统上体现的尤为明显。</p>
+
+<p>当然动态链接也存在自身的问题，很常见的一个问题，当程序所使用的其中一个模块发生更新之后，很容易造成库接口不兼容导致程序无法运行，这也是为什么有的时候你更新完系统，原来使用好好的 App 打开发生闪退或者某个功能无法使用了的缘故。</p>
+
+<p>另外一个缺点就是，由于所需调用的符号不再和可执行文件在一起，在进行方法调用的时候，过程要比之前复杂的多，要先找对应的动态库文件，如果在内存中不存在，还需要再去磁盘中实时加载，导致动态库的方法调用时间要比静态链接的情况下慢。</p>
+
+<p>在 Mac / iOS 上所有的动态库都是通过 dyld 来进行动态加载的，这里不详细说明了，大概列一下动态库的加载顺序：</p>
+
+<ol>
+<li>首先会加载系统级别的dylib, 目录在设备的<code>/usr/lib/</code>, 文件:<code>libsqlite3.dylib、libc++.1.dylib...</code></li>
+<li>然后加载系统级别的framework, 目录在设备的<code>/System/Library/Frameworks</code>, 文件:<code>Foundation.framework</code></li>
+<li>再引入runtime、gcd存放的dylib, 目录在设备的<code>/usr/lib/</code>, 文件:<code>libSystem.B.dylib、libobjc.A.dylib</code></li>
+<li>再引入自己注入的dylib, <code>@executable_path/</code>(目录存放在当前可执行文件底下)</li>
+</ol>
+
+<p>而对于 App 来讲，实际上的路径是通过 @rpath 来指定的，该符号说白了就是占位符，当你的 App 成功安装到 iOS 系统之后，@rpath 就是该 App 的安装路径，以某个 iap 文件内部的可执行文件为例，使用 otool 查看其依赖的动态库如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Shell" data-lang="Shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Shell" data-lang="Shell">    otool -L osee2unifiedRelease.app/osee2unifiedRelease
+    
+    
+    osee2unifiedRelease.app/osee2unifiedRelease:
+    	/usr/lib/libbz2.1.0.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.5<span class="o">)</span>
+    	/usr/lib/libc++.1.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">400</span>.9.4<span class="o">)</span>
+    	/usr/lib/libiconv.2.dylib <span class="o">(</span>compatibility version <span class="m">7</span>.0.0, current version <span class="m">7</span>.0.0<span class="o">)</span>
+    	/usr/lib/libicucore.A.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">62</span>.1.0<span class="o">)</span>
+    	/usr/lib/libresolv.9.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/usr/lib/libsqlite3.dylib <span class="o">(</span>compatibility version <span class="m">9</span>.0.0, current version <span class="m">274</span>.20.0<span class="o">)</span>
+    	/usr/lib/libxml2.2.dylib <span class="o">(</span>compatibility version <span class="m">10</span>.0.0, current version <span class="m">10</span>.9.0<span class="o">)</span>
+    	/usr/lib/libz.1.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.2.11<span class="o">)</span>
+    	/System/Library/Frameworks/AVFoundation.framework/AVFoundation <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">2</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/Accelerate.framework/Accelerate <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">4</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/AdSupport.framework/AdSupport <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/AudioToolbox.framework/AudioToolbox <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">492</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/CFNetwork.framework/CFNetwork <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">975</span>.0.3<span class="o">)</span>
+    	/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation <span class="o">(</span>compatibility version <span class="m">150</span>.0.0, current version <span class="m">1560</span>.10.0<span class="o">)</span>
+    	/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics <span class="o">(</span>compatibility version <span class="m">64</span>.0.0, current version <span class="m">1245</span>.9.2<span class="o">)</span>
+    	/System/Library/Frameworks/CoreLocation.framework/CoreLocation <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">2245</span>.8.12<span class="o">)</span>
+    	/System/Library/Frameworks/CoreMotion.framework/CoreMotion <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">2245</span>.8.12<span class="o">)</span>
+    	/System/Library/Frameworks/CoreSpotlight.framework/CoreSpotlight <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/CoreTelephony.framework/CoreTelephony <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">0</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/CoreText.framework/CoreText <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/ExternalAccessory.framework/ExternalAccessory <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/Foundation.framework/Foundation <span class="o">(</span>compatibility version <span class="m">300</span>.0.0, current version <span class="m">1560</span>.10.0<span class="o">)</span>
+    	/System/Library/Frameworks/GLKit.framework/GLKit <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">103</span>.2.0<span class="o">)</span>
+    	/System/Library/Frameworks/ImageIO.framework/ImageIO <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">0</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/MediaPlayer.framework/MediaPlayer <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/MobileCoreServices.framework/MobileCoreServices <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">935</span>.2.0<span class="o">)</span>
+    	/System/Library/Frameworks/OpenGLES.framework/OpenGLES <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/Photos.framework/Photos <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/QuartzCore.framework/QuartzCore <span class="o">(</span>compatibility version <span class="m">1</span>.2.0, current version <span class="m">1</span>.11.0<span class="o">)</span>
+    	/System/Library/Frameworks/Security.framework/Security <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">58286</span>.222.2<span class="o">)</span>
+    	/System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">963</span>.200.27<span class="o">)</span>
+    	/System/Library/Frameworks/UIKit.framework/UIKit <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">61000</span>.0.0<span class="o">)</span>
+    	@rpath/VideoEdit.framework/VideoEdit <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	@rpath/VideoPlayer.framework/VideoPlayer <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/VideoToolbox.framework/VideoToolbox <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	@rpath/ZmFFmpeg.framework/ZmFFmpeg <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	@rpath/du.framework/du <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/Metal.framework/Metal <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/CoreMedia.framework/CoreMedia <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/WebKit.framework/WebKit <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">606</span>.2.104<span class="o">)</span>
+    	/System/Library/Frameworks/Social.framework/Social <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">87</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/Accounts.framework/Accounts <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/MessageUI.framework/MessageUI <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">3445</span>.100.42<span class="o">)</span>
+    	/System/Library/Frameworks/AddressBook.framework/AddressBook <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/StoreKit.framework/StoreKit <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/usr/lib/libobjc.A.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">228</span>.0.0<span class="o">)</span>
+    	/usr/lib/libSystem.B.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1252</span>.200.5<span class="o">)</span>
+    	/System/Library/Frameworks/AssetsLibrary.framework/AssetsLibrary <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/Contacts.framework/Contacts <span class="o">(</span>compatibility version <span class="m">0</span>.0.0, current version <span class="m">0</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/CoreData.framework/CoreData <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">866</span>.2.0<span class="o">)</span>
+    	/System/Library/Frameworks/CoreImage.framework/CoreImage <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">5</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/CoreVideo.framework/CoreVideo <span class="o">(</span>compatibility version <span class="m">1</span>.2.0, current version <span class="m">1</span>.5.0<span class="o">)</span>
+    	/System/Library/Frameworks/EventKit.framework/EventKit <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">100</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/LocalAuthentication.framework/LocalAuthentication <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">425</span>.222.1<span class="o">)</span>
+    	/System/Library/Frameworks/MapKit.framework/MapKit <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">14</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/MetalKit.framework/MetalKit <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">113</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/NetworkExtension.framework/NetworkExtension <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/PassKit.framework/PassKit <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/SafariServices.framework/SafariServices <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/UserNotifications.framework/UserNotifications <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	/System/Library/Frameworks/iAd.framework/iAd <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1</span>.0.0<span class="o">)</span>
+    	@rpath/libswiftAVFoundation.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftAccelerate.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftContacts.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftCore.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftCoreAudio.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftCoreData.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftCoreFoundation.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftCoreGraphics.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftCoreImage.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftCoreLocation.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftCoreMedia.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftDarwin.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftDispatch.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftFoundation.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftGLKit.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftMapKit.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftMediaPlayer.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftMetal.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftModelIO.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftObjectiveC.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftPhotos.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftQuartzCore.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftUIKit.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftos.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span>
+    	@rpath/libswiftsimd.dylib <span class="o">(</span>compatibility version <span class="m">1</span>.0.0, current version <span class="m">1000</span>.11.42<span class="o">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>dyld 是开源的，感兴趣可以一看。</p>
+
+<p><a href="https://github.com/opensource-apple/dyld">opensource-apple/dyld</a></p>
+
+<h3 id="framework">Framework</h3>
+
+<p>在库刚出现的时候，我们将自己创建的 Library 提供给对方的时候，不仅需要将 .a 文件提供给对方，还需要同时提供 Header，用以开发人员在高级语言层面能够直观的使用该库提供的功能。后来，我们的模块越来越大，不仅仅包含代码文件，还加入了资源文件，Apple 引入了 framework 的概念用来将一个独立功能模块所需提供的内容打包提供。</p>
+
+<blockquote>
+<p>A framework is a bundle (a structured directory) that contains a dynamic shared library along with associated resources, such as nib files, image files, and header files.</p>
+</blockquote>
+
+<p>所以，你要明白，framework 本质上只是一种 Bundle 存在的形式，类似于一种目录结构，其并无动静之分。 内部包含的库文件，如果是静态库，其被称作为静态 Framework，如果内部为动态库，就被称作动态 Framework。由于官方在 iOS 上推出 Framework 的时候直接以 Dynamic Framework 的形式推出，通过 Xcode 创建的 Target 我们也可以了解。</p>
+
+<h3 id="text-based-dylib-stubs">Text Based .dylib Stubs</h3>
+
+<p>自 Xcode 7 引入，目前未查找到官方正式文档说明，但是在官方论坛中有 Apple 官方人员针对 .tbd 文件的回应如下：</p>
+
+<blockquote>
+<p>For those who are curious, the .tbd files are new &ldquo;text-based stub libraries&rdquo;, that provide a much more compact version of the stub libraries for use in the SDK, and help to significantly reduce its download size.</p>
+</blockquote>
+
+<p>以  libc++ 为例，在我们 iOS 开发过程中链接的 libc++ 的动态库是通过 libc++.tbd 引入的，可以查到其原始路径位于每个 SDK 文件夹下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/lib/libc++.tbd</pre></td></tr></table>
+</div>
+</div>
+<p>使用文本编辑器即可打开查看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Shell" data-lang="Shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Shell" data-lang="Shell">--- !tapi-tbd-v3
+
+   archs:           <span class="o">[</span> i386, x86_64 <span class="o">]</span>
+    uuids:           <span class="o">[</span> <span class="s1">&#39;i386: A9FCC99A-209C-348E-BB79-0A29A5FCB82B&#39;</span>, <span class="s1">&#39;x86_64: 66B692F1-FA7E-3CBB-817A-73A7FE29A765&#39;</span> <span class="o">]</span>
+    platform:        ios
+    install-name:    <span class="s1">&#39;/usr/lib/libc++.1.dylib&#39;</span>
+    current-version: <span class="m">400</span>.9.4
+    objc-constraint: none
+    exports:         
+      - archs:           <span class="o">[</span> i386 <span class="o">]</span>
+        symbols:         <span class="o">[</span> __ZNKSt3__18messagesIcE6do_getEiiiRKNS_12basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEE, 
+                           __ZNKSt3__18messagesIcE8do_closeEi, __ZNKSt3__18messagesIwE6do_getEiiiRKNS_12basic_stringIwNS_11char_traitsIwEENS_9allocatorIwEEEE, 
+                           __ZNKSt3__18messagesIwE8do_closeEi, __ZNSt3__111this_thread9sleep_forERKNS_6chrono8durationIxNS_5ratioILx1ELx1000000000EEEEE, 
+                           __ZNSt3__112strstreambuf6__initEPciS1_, __ZNSt3__112strstreambufC1EPKai, 
+                           __ZNSt3__112strstreambufC1EPKci, __ZNSt3__112strstreambufC1EPKhi, 
+                           __ZNSt3__112strstreambufC1EPaiS1_, __ZNSt3__112strstreambufC1EPciS1_, 
+                           __ZNSt3__112strstreambufC1EPhiS1_, __ZNSt3__112strstreambufC1Ei, 
+                           __ZNSt3__112strstreambufC2EPKai, __ZNSt3__112strstreambufC2EPKci, 
+                           __ZNSt3__112strstreambufC2EPKhi, __ZNSt3__112strstreambufC2EPaiS1_, 
+                           __ZNSt3__112strstreambufC2EPciS1_, __ZNSt3__112strstreambufC2EPhiS1_, 
+                           __ZNSt3__112strstreambufC2Ei, __ZNSt3__113basic_istreamIcNS_11char_traitsIcEEE3getEPci, 
+                           __ZNSt3__113basic_istreamIcNS_11char_traitsIcEEE3getEPcic, 
+                           __ZNSt3__113basic_istreamIcNS_11char_traitsIcEEE4readEPci, 
+                           __ZNSt3__113basic_istreamIcNS_11char_traitsIcEEE6ignoreEii, 
+                           __ZNSt3__113basic_istreamIcNS_11char_traitsIcEEE7getlineEPci, 
+                           __ZNSt3__113basic_istreamIcNS_11char_traitsIcEEE7getlineEPcic, 
+                           __ZNSt3__113basic_istreamIcNS_11char_traitsIcEEE8readsomeEPci, 
+                           __ZNSt3__113basic_istreamIwNS_11char_traitsIwEEE3getEPwi, 
+                           __ZNSt3__113basic_istreamIwNS_11char_traitsIwEEE3getEPwiw,</code></pre></td></tr></table>
+</div>
+</div>
+<p>其中将本身的动态链接库所提供出的符号（函数，全局变量等）列出，因为在 macOS 以及 iOS 中系统目录下已经集成了这些动态库，因为为了避免不必要的下载和提供重复的动态链接库，因而提供了 tbd 这种格式文件用来做桥接。实质上当真正可执行文件进行链接的时候，会加载系统原有的动态链接库，这个具体的动态链接库位置由 <code>install-name</code> 给出。</p>
+
+<p>简而言之，tbd 是 Apple 用来减小 SDK 体积大小所提供的中间文件。</p>
+
+<p>所以，当你下载 Xcode 的时候，其自带的 SDK 中包含的动态链接库大部分均为 tbd 格式，而真正我们运行起来可执行文件之后加载的动态链接库会直接使用系统目录下的（无论是 iOS 还是 macOS）。</p>
+
+<h1 id="参考链接">参考链接</h1>
+
+<ul>
+<li><a href="https://github.com/gdbinit/MachOView">MachOView</a></li>
+<li><a href="https://www.objc.io/issues/6-build-tools/mach-o-executables/">Mach-O Executables</a></li>
+<li><a href="https://lowlevelbits.org/parsing-mach-o-files/">PARSING MACH-O FILES</a></li>
+</ul>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">chen</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-04-27</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://hechen.xyz/tags/library/">Library</a>
+          <a href="https://hechen.xyz/tags/framework/">Framework</a>
+          <a href="https://hechen.xyz/tags/mach-o/">Mach-O</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/xcode-build-system/">
+            <span class="next-text nav-default">Build Process</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "hechen/Comments"
+            issue-term="pathname"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
+
+  
+
+  
+
+  <div class="disqus-comment">
+  <div class="disqus-button" id="load_disqus" onclick="load_disqus()">
+    显示 Disqus 评论
+  </div>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = "https://hechen.xyz/post/library_framework/";
+    };
+    function load_disqus() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'stoneman';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+      $('#load_disqus').remove();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  </div>
+  
+    
+
+
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:hechen.dream@gmail.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://stackoverflow.com/users/10229101/chen-he" rel="me noopener" class="iconfont"
+      title="stack-overflow"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M809.714286 932.571429l-638.857143 0 0-274.285714-91.428571 0 0 365.714286 821.714286 0 0-365.714286-91.428571 0 0 274.285714zm-538.285714-299.428571l18.857143-89.714286 447.428571 94.285714-18.857143 89.142857zm58.857143-213.714286l38.285714-83.428571 414.285714 193.714286-38.285714 82.857143zm114.857143-203.428571l58.285714-70.285714 350.857143 293.142857-58.285714 70.285714zm226.857143-216l272.571429 366.285714-73.142857 54.857143-272.571429-366.285714zm-410.285714 840.571429l0-90.857143 457.142857 0 0 90.857143-457.142857 0z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://twitter.com/OgreMergO" rel="me noopener" class="iconfont"
+      title="twitter"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1264 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M1229.8616 18.043658c0 0-117.852626 63.135335-164.151872 67.344358-105.225559-164.151872-505.082682-92.598492-437.738325 223.078185C278.622548 312.675223 89.216542 47.506814 89.216542 47.506814s-117.852626 189.406006 75.762402 345.139833C127.097743 396.85567 55.544363 371.601535 55.544363 371.601535S26.081207 535.753407 253.368414 615.724832c-21.045112 29.463156-113.643603 8.418045-113.643603 8.418045s25.254134 143.10676 231.496229 180.987961c-143.10676 130.479693-387.230056 92.598492-370.393967 105.225559 206.242095 189.406006 1119.599946 231.496229 1128.01799-643.98042C1179.353331 249.539887 1263.533778 123.269217 1263.533778 123.269217s-130.479693 37.881201-138.897738 33.672179C1225.652577 98.015083 1229.8616 18.043658 1229.8616 18.043658"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://weibo.com/hc2feifei" rel="me noopener" class="iconfont"
+      title="weibo"  target="_blank"
+      >
+      <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M385.714286 733.714286q12-19.428571 6.285714-39.428571t-25.714286-28.571429q-19.428571-8-41.714286-0.571429t-34.285714 26.285714q-12.571429 19.428571-7.428571 39.142857t24.571429 28.857143 42.571429 1.428571 35.714286-27.142857zm53.714286-69.142857q4.571429-7.428571 2-15.142857t-10-10.571429q-8-2.857143-16.285714 2.857143t-12.285714 10.571429q-9.714286 17.714286 7.428571 25.714286 8 2.857143 16.571429 2.857143t12.571429-10.571429zm99.428571 61.142857q-25.714286 58.285714-90.285714 85.714286t-128 6.857143q-61.142857-19.428571-84.285714-72.285714t3.714286-107.142857q26.857143-53.142857 86.571429-79.428571t120.285714-10.857143q63.428571 16.571429 90.571429 68.285714t1.428571 108.857143zm178.285714-91.428571q-5.142857-54.857143-50.857143-97.142857t-119.142857-62.285714-156.857143-12q-127.428571 13.142857-211.142857 80.857143t-75.714286 151.142857q5.142857 54.857143 50.857143 97.142857t119.142857 62.285714 156.857143 12q127.428571-13.142857 211.142857-80.857143t75.714286-151.142857zm176 2.285714q0 38.857143-21.142857 79.714286t-62.285714 78.285714-96.285714 67.142857-129.142857 47.428571-154.571429 17.714286-157.142857-19.142857-137.428571-53.142857-98-86.285714-37.142857-114q0-65.714286 39.714286-140t112.857143-147.428571q96.571429-96.571429 195.142857-134.857143t140.857143 4q37.142857 36.571429 11.428571 119.428571-2.285714 8-0.571429 11.428571t5.714286 4 8.285714 2.857143 7.714286-2l3.428571-1.142857q79.428571-33.714286 140.571429-33.714286t87.428571 34.857143q25.714286 36 0 101.714286-1.142857 7.428571-2.571429 11.428571t2.571429 7.142857 6.857143 4.285714 9.714286 3.428571q32.571429 10.285714 58.857143 26.857143t45.714286 46.571429 19.428571 66.571429zm-42.285714-356.571429q24 26.857143 31.142857 62t-3.714286 67.142857q-4.571429 13.142857-16.857143 19.428571t-25.428571 2.285714q-13.142857-4.571429-19.428571-16.857143t-2.285714-25.428571q11.428571-36-13.714286-63.428571t-61.142857-20q-13.714286 2.857143-25.714286-4.571429t-14.285714-21.142857q-2.857143-13.714286 4.571429-25.428571t21.142857-14.571429q34.285714-7.428571 68 3.142857t57.714286 37.428571zm103.428571-93.142857q49.714286 54.857143 64.285714 127.142857t-7.714286 138q-5.142857 15.428571-19.428571 22.857143t-29.714286 2.285714-22.857143-19.428571-2.857143-29.714286q16-46.857143 5.714286-98.285714t-45.714286-90.285714q-35.428571-39.428571-84.571429-54.571429t-98.857143-4.857143q-16 3.428571-29.714286-5.428571t-17.142857-24.857143 5.428571-29.428571 24.857143-16.857143q70.285714-14.857143 139.428571 6.571429t118.857143 76.857143z"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://hechen.xyz/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2015 -
+    2019
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        chen
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script type="text/javascript">
+    AV.initialize("wgbxcKzgAuMNE8wvfGp38xwG-gzGzoHsz", "JPVrQwSXVrxiVVsK3WoViro4");
+  </script>
+
+  <script>
+    function showHitCount(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push($(this).attr("id").trim());
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var hits = item.get('hits');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(hits);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function (results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("hits");
+            counter.save(null, {
+              success: function (counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('hits'));
+              },
+              error: function (counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+             
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+             
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("hits", 1);
+            newcounter.save(null, {
+              success: function (newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('hits'));
+              },
+              error: function (newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function (error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function () {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        
+        addCount(Counter);
+      } else if ($('.post-link').length > 1) {
+        
+        showHitCount(Counter);
+      }
+    });
+  </script>
+
+
+
+  <script id="dsq-count-scr" src="//stoneman.disqus.com/count.js" async></script>
+
+
+
+
+
+</body>
+</html>
