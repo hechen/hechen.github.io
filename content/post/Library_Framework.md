@@ -1,27 +1,27 @@
 ---
 title: "关于 Library 和 Framework"
 date: 2019-04-26T00:35:30+08:00
-draft: true
+lastmod: 2019-04-27T03:01:30+08:00
 categories: ["macOS"]
 tags: ["Library", "Framework","Mach-O"]
 ---
 
-在链接 Library 以及 Framework 之前，我们需要先了解一下 Mach—O，这篇文章并不是讲述 Mach-O 格式本身的，这里只先了解点概念。 
+
+本文并不是深究每一项内容本质，仅做概念讲解以做到区分。
+
+在链接 Library 以及 Framework 之前，我们需要先了解一下 Mach—O。
 
 提到 Mach-O ，需要明确下 object file（目标文件）的概念，其实质上是指那些由源代码编译之后生成的，还未进行链接的中间文件（比如 Linux 下的 .o 以及 Windows 下的 .obj），它和可执行文件的内容和结构很相似，所以一般上会跟可执行文件格式采用一样的格式存储。
 
 那在 Unix 系统上的 COFF 是当时发明的在 Unix 表示一个目标文件的存取格式，后来 Linux 基于 COFF 发明了 ELF，而 Windows 基于 COFF 发明了 PE 格式。广义上来说，目标文件与可执行文件几乎一样。在 Linux 下统称为 ELF 文件，Windows 上统称为 PE-COFF 文件，而在 Mac 上我们的目标文件就是 Mach-O 格式，其在目标文件的大体组成上和其他两种很相似。
 
 我们以 Linux 上 ELF 结构的一张图来大概说明一下情况，不同的源文件通过分类，将代码和数据，以及变量放入不同的职责段，代码段 _TEXT，数据段 _DATA 等。
+
 ![ELF](https://i.imgur.com/ozMscrW.jpg)
 
+而 Mach-O 文件格式如下图（源自于 Apple 文档）, 和 ELF 格式类似，其也是将不同职责的代码和数据放置于不同的 Section 段，然后再集中成一个一个的 Segment，而 Load Commands 是用来控制每一个 Segment 是如何被加载的，数据是从哪里取的，等等。
 
-而 Mach-O 文件格式如下图（源自于 Apple 文档），：
-
-![Mach-O](media/Mach-O.png)
-
-
-
+![Mach-O](https://i.imgur.com/8p9pwgn.png)
 
 我们通过将如下代码编译输出成可执行文件来看，
 
@@ -53,14 +53,13 @@ clang main.o -Wl,`xcrun --show-sdk-path`/usr/lib/libSystem.B.tbd
 ```
 
 接着可以使用 MachOView 来查看刚才 a.out 以及 main.o 文件。
+
 > MachOView 是一款开源软件，用以查看目标文件格式的，不过已经好几年没有更新了，所有有的 Load Command 识别不出。
 
 ![a.out 的内容](https://i.imgur.com/ehG4guP.png)
 我们再看看 main.o 这个目标文件的结构是怎么样的。
 
 ![main.o 的内容](https://i.imgur.com/tOzXqC1.png)
-在 Header 的信息中，我们能看到具体该目标文件能够执行的 CPU 指令集，具体该文件的类型，以及有多少 Load Commands。
-
 
 
 ### Library
@@ -270,10 +269,8 @@ dyld 是开源的，感兴趣可以一看。
 所以，当你下载 Xcode 的时候，其自带的 SDK 中包含的动态链接库大部分均为 tbd 格式，而真正我们运行起来可执行文件之后加载的动态链接库会直接使用系统目录下的（无论是 iOS 还是 macOS）。
 
 
-
-
 # 参考链接
 
 - [MachOView](https://github.com/gdbinit/MachOView)
 - [Mach-O Executables](https://www.objc.io/issues/6-build-tools/mach-o-executables/)
-- 
+- [PARSING MACH-O FILES](https://lowlevelbits.org/parsing-mach-o-files/)
