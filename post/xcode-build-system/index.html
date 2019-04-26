@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Xcode Build Process - I make stuff</title>
+  <title>Build Process - I make stuff</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -57,26 +57,26 @@
 
 
 
-<meta property="og:title" content="Xcode Build Process" />
+<meta property="og:title" content="Build Process" />
 <meta property="og:description" content="编程语言的处理过程大致会有五个阶段，其每个阶段均有对应的工具： 预处理器 Preprocessor 编译器 Compiler 汇编器 Assembler 链接器 Linker 加载器 Loader 以下，我们以一个简单的源文件，来看看" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hechen.xyz/post/xcode-build-system/" />
 <meta property="article:published_time" content="2019-04-25T11:30:30&#43;08:00"/>
 <meta property="article:modified_time" content="2019-04-25T11:30:30&#43;08:00"/>
 
-<meta itemprop="name" content="Xcode Build Process">
+<meta itemprop="name" content="Build Process">
 <meta itemprop="description" content="编程语言的处理过程大致会有五个阶段，其每个阶段均有对应的工具： 预处理器 Preprocessor 编译器 Compiler 汇编器 Assembler 链接器 Linker 加载器 Loader 以下，我们以一个简单的源文件，来看看">
 
 
 <meta itemprop="datePublished" content="2019-04-25T11:30:30&#43;08:00" />
 <meta itemprop="dateModified" content="2019-04-25T11:30:30&#43;08:00" />
-<meta itemprop="wordCount" content="3106">
+<meta itemprop="wordCount" content="3193">
 
 
 
 <meta itemprop="keywords" content="Xcode,Build,Compile,Preprocess," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Xcode Build Process"/>
+<meta name="twitter:title" content="Build Process"/>
 <meta name="twitter:description" content="编程语言的处理过程大致会有五个阶段，其每个阶段均有对应的工具： 预处理器 Preprocessor 编译器 Compiler 汇编器 Assembler 链接器 Linker 加载器 Loader 以下，我们以一个简单的源文件，来看看"/>
 
 <!--[if lte IE 9]>
@@ -289,7 +289,7 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">Xcode Build Process</h1>
+      <h1 class="post-title">Build Process</h1>
       
       <div class="post-meta">
         <time datetime="2019-04-25" class="post-time">
@@ -306,7 +306,7 @@
 
         
         
-          <span id="/post/xcode-build-system/" class="leancloud_visitors" data-flag-title="Xcode Build Process">
+          <span id="/post/xcode-build-system/" class="leancloud_visitors" data-flag-title="Build Process">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -325,6 +325,7 @@
 <ul>
 <li><a href="#预处理器-preprocessor">预处理器 Preprocessor</a></li>
 <li><a href="#编译器-compiler">编译器 Compiler</a></li>
+<li><a href="#汇编器-assembler">汇编器 Assembler</a></li>
 <li><a href="#链接器-linker">链接器 Linker</a>
 <ul>
 <li><a href="#nm">nm</a></li>
@@ -462,7 +463,7 @@
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
-<p>可以看到预编译处理之后的源文件，仅仅只有几行的源文件进行头文件展开之后能增加到几百行，而我们仅仅只引入了 stdio.h 一个头文件。当然，你可以使用 Xcode 来执行预处理命令。</p>
+<p>可以看到预编译处理之后的源文件，仅仅只有几行的源文件进行头文件展开之后能增加到几百行，而我们仅仅只引入了 <code>stdio.h</code> 一个头文件。当然，你可以使用 Xcode 来执行预处理命令。</p>
 
 <p><img src="https://i.imgur.com/vmwexNC.png" alt="xcode_preprocess" /></p>
 
@@ -509,9 +510,7 @@
 
 <h2 id="编译器-compiler">编译器 Compiler</h2>
 
-<p>编译器自身就是个二进制程序，用来将代码源文件转换成语义上完全一致的等价语言的，该等价语言就是机器码（machine code）。目前在 Apple 的生态里完成这件事情的就是 LLVM（出现就是为了替换掉 GCC）。</p>
-
-<p>我们平时所说的编译器实质上是一个广义上的概念，其还包括编译器前端，中间代码生成器，代码优化器，编译器后端。</p>
+<p>编译器自身就是个二进制程序，用来将代码源文件转换成语义上完全一致的等价语言的，该等价语言就是机器码（machine code）。目前在 Apple 的生态里完成这件事情的就是 LLVM（出现就是为了替换掉 GCC）。我们平时所说的编译器实质上是一个广义上的概念，其还包括编译器前端，中间代码生成器，代码优化器，编译器后端。</p>
 
 <p>以目前 Apple 生态下编译器（核心是 LLVM 套件）进行细化之后，可以看到详细的划分阶段如下所示。</p>
 
@@ -527,6 +526,10 @@
 
 <p>因为 swift 语言本身是没有预处理器的，因此忽略前一步。在预编译阶段，我使用了 Clang 作为演示，而 Swift 文件是无需进行预编译处理的。最终编译器生成的文件，称之为目标文件，在 Apple 平台中以特殊的格式存在，这种格式就是 <code>Mach-O</code> 格式，下文会讲。
 而每个目标文件中都有暴露给其他目标文件所使用的符号，这些也就是外部符号，这些符号被管理起来，以一个符号表的形式存在，对于变量和函数来说，其符号表中的 Key 就是这些变量和函数的名字，而 Value 就是其在目标文件中的地址。</p>
+
+<h2 id="汇编器-assembler">汇编器 Assembler</h2>
+
+<p>汇编器实际上是将中间过程生成的中间代码翻译成指定机器指令集的汇编代码，其实 Clang 工具集中已经集成了</p>
 
 <h2 id="链接器-linker">链接器 Linker</h2>
 
@@ -589,7 +592,7 @@ Undefined symbols <span class="k">for</span> architecture x86_64:
 ld: symbol<span class="o">(</span>s<span class="o">)</span> not found <span class="k">for</span> inferred architecture x86_64</code></pre></td></tr></table>
 </div>
 </div>
-<p>其中，报了一堆 OBJC 库找不到的问题，因为是静态链接，我们内部使用了 Foundation 的一些内容，这里也在侧面证明了，想要完成静态链接，所有未定义的符号都需要在静态链接阶段进行修正，因此我们还需要将这些库也链进来，当然，还有 _printf 也找不到，我们还需要把 C++ 相关的库也同时一并链接，最后的链接命令如下：</p>
+<p>其中，报了一堆 OBJC 库找不到的问题，因为是静态链接，我们内部使用了 Foundation 的一些内容，这里也在侧面证明了，想要完成静态链接，所有未定义的符号都需要在静态链接阶段进行修正，因此我们还需要将这些库也链进来，当然，还有 <code>_printf</code> 也找不到，我们还需要把 C++ 相关的库也同时一并链接，最后的链接命令如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-Shell" data-lang="Shell"><span class="lnt">1
@@ -610,6 +613,10 @@ ld: symbol<span class="o">(</span>s<span class="o">)</span> not found <span clas
 <p>会看到你不需要把一些基础的 C 库引入，是因为 clang 本身工具帮你做了一堆环境路径查找的事情，感兴趣可以加上 -v 指令来看完整的输出，a.out 是链接器默认生成的文件名称。</p>
 
 <h3 id="nm">nm</h3>
+
+<blockquote>
+<p>nm - display name list (symbol table)</p>
+</blockquote>
 
 <p>接下来，引入一个新的命令 nm，其是用来展示目标文件中的符号表信息的。我们使用 nm 命令来查看该可执行文件的符号表信息。</p>
 <div class="highlight"><div class="chroma">
@@ -699,6 +706,11 @@ ld: symbol<span class="o">(</span>s<span class="o">)</span> not found <span clas
 <p>在进行链接之后，所有原来标记为 undefined 的符号依然是 undefined，但是会发现在对应符号后方会标记出该符号来自于哪里。这个也就是当我们可执行文件需要使用该符号的时候，对应去哪里加载对应的 dylib。</p>
 
 <h3 id="otool">otool</h3>
+
+<blockquote>
+<p>llvm-otool - the otool-compatible command line parser for llvm-objdump.
+The  command  line  shim  llvm-otool  takes all the same options as the original otool(1) command and executes an  equivalent  objdump(1) command.</p>
+</blockquote>
 
 <p>接下来再介绍一个命令行工具 otool(object file displaying tool)，其底层是对 objdump 的封装，而 objdump 是 Linux 下查看二进制文件的工具。</p>
 
@@ -820,7 +832,7 @@ a.out:
 <h2 id="总结一句话">总结一句话</h2>
 
 <p>整个编译过程可以归结为：
-&gt; 头文件约定，编译器信任彼此，链接器验证</p>
+头文件约定，编译器信任彼此，链接器验证</p>
 
     </div>
 
