@@ -1,5 +1,5 @@
 ---
-title: "Xcode Build Process"
+title: "Build Process"
 date: 2019-04-25T11:30:30+08:00
 categories: ["macOS"]
 tags: ["Xcode", "Build", "Compile", "Preprocess"]
@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
 }
 ```
 
-可以看到预编译处理之后的源文件，仅仅只有几行的源文件进行头文件展开之后能增加到几百行，而我们仅仅只引入了 stdio.h 一个头文件。当然，你可以使用 Xcode 来执行预处理命令。
+可以看到预编译处理之后的源文件，仅仅只有几行的源文件进行头文件展开之后能增加到几百行，而我们仅仅只引入了 `stdio.h` 一个头文件。当然，你可以使用 Xcode 来执行预处理命令。
 
 ![xcode_preprocess](https://i.imgur.com/vmwexNC.png)
 
@@ -107,15 +107,11 @@ int main(int argc, const char * argv[]) {
 
 ## 编译器 Compiler
 
-编译器自身就是个二进制程序，用来将代码源文件转换成语义上完全一致的等价语言的，该等价语言就是机器码（machine code）。目前在 Apple 的生态里完成这件事情的就是 LLVM（出现就是为了替换掉 GCC）。
-
-我们平时所说的编译器实质上是一个广义上的概念，其还包括编译器前端，中间代码生成器，代码优化器，编译器后端。
+编译器自身就是个二进制程序，用来将代码源文件转换成语义上完全一致的等价语言的，该等价语言就是机器码（machine code）。目前在 Apple 的生态里完成这件事情的就是 LLVM（出现就是为了替换掉 GCC）。我们平时所说的编译器实质上是一个广义上的概念，其还包括编译器前端，中间代码生成器，代码优化器，编译器后端。
 
 以目前 Apple 生态下编译器（核心是 LLVM 套件）进行细化之后，可以看到详细的划分阶段如下所示。
 
 ![LLVM](https://i.imgur.com/fTwjs0q.png)
-
-
 
 
 其中 Clang 以及 swiftc / swift 实质上是 LLVM 编译链条中的前端，虽然是前端，但是目前工具集本身已经内置了一些注入汇编器，代码优化等功能。
@@ -129,6 +125,11 @@ Xcode 使用两种不同的编译器前端，一种是针对 Objective-C/Objecti
 
 因为 swift 语言本身是没有预处理器的，因此忽略前一步。在预编译阶段，我使用了 Clang 作为演示，而 Swift 文件是无需进行预编译处理的。最终编译器生成的文件，称之为目标文件，在 Apple 平台中以特殊的格式存在，这种格式就是 `Mach-O` 格式，下文会讲。
 而每个目标文件中都有暴露给其他目标文件所使用的符号，这些也就是外部符号，这些符号被管理起来，以一个符号表的形式存在，对于变量和函数来说，其符号表中的 Key 就是这些变量和函数的名字，而 Value 就是其在目标文件中的地址。
+
+## 汇编器 Assembler
+
+汇编器实际上是将中间过程生成的中间代码翻译成指定机器指令集的汇编代码，其实 Clang 工具集中已经集成了
+
 
 ## 链接器 Linker
 
@@ -169,8 +170,7 @@ Undefined symbols for architecture x86_64:
 ld: symbol(s) not found for inferred architecture x86_64
 ```
 
-其中，报了一堆 OBJC 库找不到的问题，因为是静态链接，我们内部使用了 Foundation 的一些内容，这里也在侧面证明了，想要完成静态链接，所有未定义的符号都需要在静态链接阶段进行修正，因此我们还需要将这些库也链进来，当然，还有 _printf 也找不到，我们还需要把 C++ 相关的库也同时一并链接，最后的链接命令如下：
-
+其中，报了一堆 OBJC 库找不到的问题，因为是静态链接，我们内部使用了 Foundation 的一些内容，这里也在侧面证明了，想要完成静态链接，所有未定义的符号都需要在静态链接阶段进行修正，因此我们还需要将这些库也链进来，当然，还有 `_printf` 也找不到，我们还需要把 C++ 相关的库也同时一并链接，最后的链接命令如下：
 
 ``` Shell
 ld main.o Foo.o `xcrun --show-sdk-path`/System/Library/Frameworks/Foundation.framework/Foundation `xcrun --show-sdk-path`/usr/lib/libSystem.B.tbd
@@ -185,6 +185,7 @@ xcrun clang main.o Foo.o -Wl,`xcrun --show-sdk-path`/System/Library/Frameworks/F
 会看到你不需要把一些基础的 C 库引入，是因为 clang 本身工具帮你做了一堆环境路径查找的事情，感兴趣可以加上 -v 指令来看完整的输出，a.out 是链接器默认生成的文件名称。
 
 ### nm
+> nm - display name list (symbol table)
 
 接下来，引入一个新的命令 nm，其是用来展示目标文件中的符号表信息的。我们使用 nm 命令来查看该可执行文件的符号表信息。
 
@@ -236,8 +237,10 @@ xcun nm -nm a.out
 
 在进行链接之后，所有原来标记为 undefined 的符号依然是 undefined，但是会发现在对应符号后方会标记出该符号来自于哪里。这个也就是当我们可执行文件需要使用该符号的时候，对应去哪里加载对应的 dylib。
 
-
 ### otool
+
+> llvm-otool - the otool-compatible command line parser for llvm-objdump.
+> The  command  line  shim  llvm-otool  takes all the same options as the original otool(1) command and executes an  equivalent  objdump(1) command.
 
 接下来再介绍一个命令行工具 otool(object file displaying tool)，其底层是对 objdump 的封装，而 objdump 是 Linux 下查看二进制文件的工具。
 
@@ -305,8 +308,9 @@ xcrun otool -L /usr/lib/libSystem.B.dylib
 可以通过结果看到，一个简单的程序所需要链接的 `dylib` 有多少，就是因为有这么多动态库要加载，在可执行程序加载到内存中执行的时候，不断的需要装载动态库进入内存，所需要花费的时间其实很可观，所以系统层面提供了共享缓存，也即会提前加载到内存中的动态链接库集合，当需要链接到对应动态库的时候就省略了从磁盘写入内存的过程。
 
 
+
 ## 总结一句话
 
 整个编译过程可以归结为：
-> 头文件约定，编译器信任彼此，链接器验证
+头文件约定，编译器信任彼此，链接器验证
 
