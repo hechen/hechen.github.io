@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>[003] Two Sum - I make stuff</title>
+  <title>Two Sum - I make stuff</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="chen" />
-  <meta name="description" content="本文主要包括leetCode题集里的两个题目，Two Sum1 和 Two Sum2 题目1： Two Sum 1 Given an array of integers, find two numbers such that they add up to a specific target number. The function twoSum should return indices of the two numbers such that they add up" />
+  <meta name="description" content="本文主要包括 leetCode 题集里的两个题目，Two Sum1 和 Two Sum2 题目1： 1. Two Sum 1 Given an array of integers, find two numbers such that they add up to a specific target number. The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must" />
 
   <meta name="keywords" content="Chen, iOS, Swift, Productivity" />
 
@@ -57,27 +57,27 @@
 
 
 
-<meta property="og:title" content="[003] Two Sum" />
-<meta property="og:description" content="本文主要包括leetCode题集里的两个题目，Two Sum1 和 Two Sum2 题目1： Two Sum 1 Given an array of integers, find two numbers such that they add up to a specific target number. The function twoSum should return indices of the two numbers such that they add up" />
+<meta property="og:title" content="Two Sum" />
+<meta property="og:description" content="本文主要包括 leetCode 题集里的两个题目，Two Sum1 和 Two Sum2 题目1： 1. Two Sum 1 Given an array of integers, find two numbers such that they add up to a specific target number. The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hechen.xyz/post/leetcode-003-two-sum/" />
 <meta property="article:published_time" content="2015-04-29T13:15:00&#43;00:00"/>
-<meta property="article:modified_time" content="2015-04-29T13:15:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-04-27T23:11:00&#43;00:00"/>
 
-<meta itemprop="name" content="[003] Two Sum">
-<meta itemprop="description" content="本文主要包括leetCode题集里的两个题目，Two Sum1 和 Two Sum2 题目1： Two Sum 1 Given an array of integers, find two numbers such that they add up to a specific target number. The function twoSum should return indices of the two numbers such that they add up">
+<meta itemprop="name" content="Two Sum">
+<meta itemprop="description" content="本文主要包括 leetCode 题集里的两个题目，Two Sum1 和 Two Sum2 题目1： 1. Two Sum 1 Given an array of integers, find two numbers such that they add up to a specific target number. The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must">
 
 
 <meta itemprop="datePublished" content="2015-04-29T13:15:00&#43;00:00" />
-<meta itemprop="dateModified" content="2015-04-29T13:15:00&#43;00:00" />
-<meta itemprop="wordCount" content="1161">
+<meta itemprop="dateModified" content="2019-04-27T23:11:00&#43;00:00" />
+<meta itemprop="wordCount" content="1076">
 
 
 
 <meta itemprop="keywords" content="Array," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[003] Two Sum"/>
-<meta name="twitter:description" content="本文主要包括leetCode题集里的两个题目，Two Sum1 和 Two Sum2 题目1： Two Sum 1 Given an array of integers, find two numbers such that they add up to a specific target number. The function twoSum should return indices of the two numbers such that they add up"/>
+<meta name="twitter:title" content="Two Sum"/>
+<meta name="twitter:description" content="本文主要包括 leetCode 题集里的两个题目，Two Sum1 和 Two Sum2 题目1： 1. Two Sum 1 Given an array of integers, find two numbers such that they add up to a specific target number. The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -289,7 +289,7 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">[003] Two Sum</h1>
+      <h1 class="post-title">Two Sum</h1>
       
       <div class="post-meta">
         <time datetime="2015-04-29" class="post-time">
@@ -306,7 +306,7 @@
 
         
         
-          <span id="/post/leetcode-003-two-sum/" class="leancloud_visitors" data-flag-title="[003] Two Sum">
+          <span id="/post/leetcode-003-two-sum/" class="leancloud_visitors" data-flag-title="Two Sum">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -321,21 +321,15 @@
   <div class="post-toc-content">
     <nav id="TableOfContents">
 <ul>
-<li>
+<li><a href="#题目1-1-two-sum-1">题目1： 1. Two Sum 1</a>
 <ul>
-<li>
-<ul>
-<li><a href="#题目1-two-sum-1">题目1： Two Sum 1</a>
-<ul>
-<li><a href="#题意">题意：</a></li>
-<li><a href="#关键点">关键点：</a></li>
+<li><a href="#题意">题意</a></li>
+<li><a href="#关键点">关键点</a></li>
 </ul></li>
-<li><a href="#题目2-two-sum-2">题目2：Two Sum 2</a>
+<li><a href="#题目2-167-two-sum-ii-input-array-is-sorted">题目2：167. Two Sum II - Input array is sorted</a>
 <ul>
-<li><a href="#题意-1">题意：</a></li>
-<li><a href="#关键点-1">关键点：</a></li>
-</ul></li>
-</ul></li>
+<li><a href="#题意-1">题意</a></li>
+<li><a href="#关键点-1">关键点</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -346,11 +340,11 @@
     <div class="post-content">
       
 
-<p>本文主要包括leetCode题集里的两个题目，Two Sum1 和 Two Sum2</p>
+<p>本文主要包括 leetCode 题集里的两个题目，Two Sum1 和 Two Sum2</p>
 
 <!-- more -->
 
-<h3 id="题目1-two-sum-1">题目1： Two Sum 1</h3>
+<h1 id="题目1-1-two-sum-1">题目1： 1. Two Sum 1</h1>
 
 <p>Given an array of integers, find two numbers such that they add up to a specific target number.</p>
 
@@ -362,11 +356,11 @@ where index1 must be less than index2. Please note that your returned answers (b
 <p>　　　　Input: numbers={2, 7, 11, 15}, target=9
 　　　　Output: index1=1, index2=2</p>
 
-<h4 id="题意">题意：</h4>
+<h2 id="题意">题意</h2>
 
 <p>题目中要求输入一个整形数组以及一个target，找出该整型数组中这样两个元素，使得这两个元素之和等于指定target的值。 题目中假设该两个元素必然存在，并且是只有一组（所以相对简单），返回的是这两个元素的index值（数组Index从1开始）。</p>
 
-<h4 id="关键点">关键点：</h4>
+<h2 id="关键点">关键点</h2>
 
 <p>我们经常会使用空间换取时间的方法来获取较小的时间复杂度。因此增加必要的数据结构来减少时间复杂度。这道题目一样，我们增加一个map结构，key为数组元素值，value为其在数组中对应的index。每次遍历到数组元素便去map结构中查找对应的补数，如果存在，那就说明找到了。如果没存在就记录当前元素以及其index，直到结束。</p>
 
@@ -426,13 +420,7 @@ where index1 must be less than index2. Please note that your returned answers (b
 </code></pre></td></tr></table>
 </div>
 </div>
-<p>leetCode的OJ系统评判结果如下所示：
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/leetCode003C++.png" alt="leetCode Two Sum 1 C++" /></p>
-
-<p>本地运行结果如下所示：
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/leetCode003Run1.jpg" alt="leetCode Two Sum 1 C++  Run" /></p>
-
-<h3 id="题目2-two-sum-2">题目2：Two Sum 2</h3>
+<h1 id="题目2-167-two-sum-ii-input-array-is-sorted">题目2：167. Two Sum II - Input array is sorted</h1>
 
 <p>Given an array of integers, find two numbers such that they add up to a specific target number.</p>
 
@@ -443,11 +431,11 @@ where index1 must be less than index2. Please note that your returned answers (b
 <p><strong>Input</strong>: numbers={2, 7, 11, 15}, target=9
 <strong>Output</strong>: index1=1, index2=2</p>
 
-<h4 id="题意-1">题意：</h4>
+<h2 id="题意-1">题意</h2>
 
 <p>和上题中Two Sum1 比较，大家发现什么异同了没（没发现的童鞋面壁去），这道题目仅仅更改了输入条件，Input的数组为已经排序的数组，并且呈现升序。输入条件变严格，我们依然可以使用前一篇问丈夫中的方法进行。那这里既然为升序，我们能不能不使用前一种方法而又能够达到O（n）时间复杂度呢？ 答案是必然的。</p>
 
-<h4 id="关键点-1">关键点：</h4>
+<h2 id="关键点-1">关键点</h2>
 
 <ol>
 <li>数组既然排序，元素之前的大小关系相对确定，存在的这一对元素必然处于相对固定的位置，我们可以使用两个游标，一个从头部遍历，一个从尾部遍历，两者所指元素之和如果偏大，调整后面的游标，相反则调整前面的游标。</li>
@@ -516,10 +504,6 @@ where index1 must be less than index2. Please note that your returned answers (b
 </code></pre></td></tr></table>
 </div>
 </div>
-<p>由于Two Sum2 题目是收费的，因此木有进行leetCode的OJ评判，直接上本地运行截图吧，sign~</p>
-
-<p><img src="http://7xilk1.com1.z0.glb.clouddn.com/leetCode003Run2.jpg" alt="leetCode Two Sum 2  Run" /></p>
-
     </div>
 
     
@@ -531,7 +515,7 @@ where index1 must be less than index2. Please note that your returned answers (b
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2015-04-29</span>
+    <span class="item-content">2019-04-27</span>
   </p>
   
   <p class="copyright-item">
