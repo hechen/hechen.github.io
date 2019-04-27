@@ -13,7 +13,6 @@ categories: ["macOS"]
 
 直接把 Surge 规则中的 Rule 由 Direct 改成了 Reject。
 
-
 ## 问题追踪
 
 在 2018 年 12 月底的时候，偶然间登录 AgentNEO 查看刚买的流量使用情况。但是发现，刚在前几天购买的 SS 流量在短短的 4 天之内就耗了将近 95GB，就在 1 月 1 日元旦当天就耗了接近 75GB，要知道，我平时的月均流量也就维持在 10 GB 不到，毕竟平时在公司办公，业余时间 Youtube 也看的相对少。
@@ -50,14 +49,10 @@ categories: ["macOS"]
 
 其实在 iOS 设备上也有同样的进程来做这件事情，抓包有时候也能捕捉到这两个请求（国行）：
 
-
-![iPhone 上的 Safebrowsing](https://i.imgur.com/g9JCPdU.jpg)
-
+![iPhone 上的 safebrowsing](https://i.imgur.com/eDNI4jk.jpg)
 
 而这次出问题的就是 google 提供的欺诈网站特征库。
-
 ![Little Snitch Network Monitor](https://i.imgur.com/BtfvMIV.png)
-
 
 尝试关闭 Surge 作为系统流量代理之后，看到 Activity Monitor 中进程又开始了下载，如下图所示，只是连接请求主体从原来 Surge 切换到了独立进程而已（Surge 会接管网络流量，因此之前该任务的下载会算到 Surge 的头上），但是针对该 host 的下载任务一致持续不断。
 
