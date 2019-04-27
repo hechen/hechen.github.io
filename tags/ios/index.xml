@@ -102,15 +102,6 @@
     </item>
     
     <item>
-      <title>解析 PNChart 第三方库</title>
-      <link>https://hechen.xyz/post/read-sourcecode-of-pnchart/</link>
-      <pubDate>Sun, 12 Feb 2017 16:36:54 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/read-sourcecode-of-pnchart/</guid>
-      <description>学习 PNChart 本篇文章写作时，PChart 版本号为 0.8.9. 代码结构 可视化展示类型 首先，目前 PNChart 提供多达六种图的可视化展示。分别是： PNLineChart PNScatterChart PNRadarChart PNPieChart PNBarChart PNCircleChart 类图 首先来看最</description>
-    </item>
-    
-    <item>
       <title>如何使用UIBezierPath实现一个弹性视图动画</title>
       <link>https://hechen.xyz/post/elastic-view-animation-using-uibezierpath/</link>
       <pubDate>Wed, 02 Dec 2015 18:53:51 +0000</pubDate>

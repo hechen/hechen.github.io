@@ -6823,92 +6823,6 @@ iOS 10 SDK 新加的另一个 Content Extension 可以用来自定义通知的�
     </item>
     
     <item>
-      <title>解析 PNChart 第三方库</title>
-      <link>https://hechen.xyz/post/read-sourcecode-of-pnchart/</link>
-      <pubDate>Sun, 12 Feb 2017 16:36:54 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/read-sourcecode-of-pnchart/</guid>
-      
-        <description>
-
-&lt;h3 id=&#34;学习-pnchart&#34;&gt;学习 PNChart&lt;/h3&gt;
-
-&lt;p&gt;本篇文章写作时，&lt;strong&gt;PChart&lt;/strong&gt; 版本号为 &lt;code&gt;0.8.9&lt;/code&gt;.&lt;/p&gt;
-
-&lt;!-- more --&gt;
-
-&lt;h4 id=&#34;代码结构&#34;&gt;代码结构&lt;/h4&gt;
-
-&lt;h5 id=&#34;可视化展示类型&#34;&gt;可视化展示类型&lt;/h5&gt;
-
-&lt;p&gt;首先，目前 PNChart 提供多达六种图的可视化展示。分别是：&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;PNLineChart
-&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/PNLineChart.png&#34; alt=&#34;PNLineChart-w621&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;PNScatterChart
-&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/PNScatterChart.png&#34; alt=&#34;PNScatterChart-w621&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;PNRadarChart
-&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/PNRadarChart.png&#34; alt=&#34;PNRadarChart&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;PNPieChart
-&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/PNPieChart.png&#34; alt=&#34;PNPieChart&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;PNBarChart
-&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/PNBarChart.png&#34; alt=&#34;PNBarChart&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;PNCircleChart
-&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/PNCircleChart.png&#34; alt=&#34;PNCircleChart&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h5 id=&#34;类图&#34;&gt;类图&lt;/h5&gt;
-
-&lt;p&gt;首先来看最主要的集中图片的类，如下所示：
-&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/14867986596626.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;其中除了 &lt;code&gt;PNCircleChart&lt;/code&gt; 以外，其余均继承了 &lt;code&gt;PNGenericChart&lt;/code&gt;类。&lt;/p&gt;
-
-&lt;p&gt;其中图片和外界的交互回调是通过 PNChartDelegate 来进行的，要包含这么多种类型图片的回调，接口自然无法写的更加优雅，看这个协议定义的方法就能看出来。
-&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/14867993267852.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;同时，针对每一种图形类别，也有相对应的 Model 类型，如下所示：
-&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/14868010321036.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;目前设计来看并不是很统一，其中和外界进行对接的数据类型定义为 &lt;code&gt;PNxxChartData&lt;/code&gt;，而该具体的每一个节点数据类型就用&lt;code&gt;PNxxChartDataItem&lt;/code&gt; 类型来标识，因为具体的图形化业务不同，并不是所有的&lt;code&gt;PNChart&lt;/code&gt;都会使用者两者，比如 &lt;code&gt;PNBarChart&lt;/code&gt; 目前就完全不使用类似的设计，而是直接指定Y轴的值，还有&lt;code&gt;PNCircleChart&lt;/code&gt;也如此，只需指定 Total 和 current 即可。&lt;/p&gt;
-
-&lt;p&gt;还有剩余几个辅助类：
-&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/14868112330724.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;PNColor 类只有一个方法：&lt;code&gt;imageFromColor:&lt;/code&gt; ，生成某种颜色的图片，而在其所定义的文件 PNColor.h 中定义了很多常用颜色的宏；&lt;/li&gt;
-&lt;li&gt;PNLineChartColorRange 类型是定义在 PNLineChartData.h 文件中一个类型，主要是指定折线图上，命中指定的数值区域时显示特定的颜色；如下所示代码，当 Y 轴元素是 10 ~ 30 之间，显示红色折线，当 Y 轴元素是 100 ~ 200 之间，显示紫色折线。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Objective-C&#34; data-lang=&#34;Objective-C&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Objective-C&#34; data-lang=&#34;Objective-C&#34;&gt; &lt;span class=&#34;n&#34;&gt;PNLineChartData&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;data01&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;PNLineChartData&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
- &lt;span class=&#34;n&#34;&gt;data01&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rangeColors&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;l&#34;&gt;@[&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;[[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;PNLineChartColorRange&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;alloc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;nl&#34;&gt;initWithRange&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;NSMakeRange&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;30&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nl&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;UIColor&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;redColor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]],&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;[[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;PNLineChartColorRange&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;alloc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;nl&#34;&gt;initWithRange&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;NSMakeRange&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;200&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nl&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;UIColor&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;purpleColor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]]&lt;/span&gt;
-        &lt;span class=&#34;l&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;ol&gt;
-&lt;li&gt;PNChartLabel类定义 UILabel，库中所用到的 Label 均为该类型，主要是做了一些通用的配置罢了。&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-      
-    </item>
-    
-    <item>
       <title>如何使用UIBezierPath实现一个弹性视图动画</title>
       <link>https://hechen.xyz/post/elastic-view-animation-using-uibezierpath/</link>
       <pubDate>Wed, 02 Dec 2015 18:53:51 +0000</pubDate>
@@ -9423,7 +9337,7 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
     </item>
     
     <item>
-      <title>[021] Implement Strstr</title>
+      <title>Implement Strstr</title>
       <link>https://hechen.xyz/post/leetcode-021-implementstrstr/</link>
       <pubDate>Fri, 21 Aug 2015 09:14:17 +0000</pubDate>
       
@@ -9431,7 +9345,7 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
       
         <description>
 
-&lt;h1 id=&#34;题目-implement-strstr&#34;&gt;题目：Implement strStr()&lt;/h1&gt;
+&lt;h1 id=&#34;题目-28-implement-strstr&#34;&gt;题目：28. Implement strStr()&lt;/h1&gt;
 
 &lt;p&gt;Implement strStr().&lt;/p&gt;
 
@@ -9564,7 +9478,7 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
 &lt;/div&gt;
 &lt;p&gt;那我们就可以很明显的看到，当模式串中j指向位置字符不匹配的时候，其实前面通过匹配我们已经获知了一部分文本的情况，因此如果能够利用这一部分已知的情况来加大模式串移动的有效性。KMP算法就是利用字符串匹配失效之前部分匹配的这个有用信息，通过保持文本指针不回退，仅有效移动模式字符串的位置来进行有效查找的。&lt;/p&gt;
 
-&lt;h4 id=&#34;kmp算法&#34;&gt;KMP算法&lt;/h4&gt;
+&lt;h3 id=&#34;kmp算法&#34;&gt;KMP算法&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm&#34;&gt;KMP算法&lt;/a&gt;常用于在一个文本串S内查找一个模式串P 的出现位置，这个算法由Donald Knuth、Vaughan Pratt、James H. Morris三人同时独立发现，后取这3人的姓氏命名此算法.
 大家可以参看&lt;a href=&#34;http://blog.csdn.net/tukangzheng/article/details/38438481&#34;&gt;july的Blog&lt;/a&gt;，讲解的是我目前看到最详细的了。&lt;/p&gt;
@@ -9667,7 +9581,7 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
     </item>
     
     <item>
-      <title>[019] BinaryTreePaths</title>
+      <title>257. Binary Tree Paths</title>
       <link>https://hechen.xyz/post/leetcode-019-binarytreepaths/</link>
       <pubDate>Tue, 18 Aug 2015 16:28:26 +0000</pubDate>
       
@@ -9675,25 +9589,25 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
       
         <description>
 
-&lt;h3 id=&#34;题目&#34;&gt;题目：&lt;/h3&gt;
+&lt;h1 id=&#34;题目-257-binary-tree-paths&#34;&gt;题目：257. Binary Tree Paths&lt;/h1&gt;
 
 &lt;p&gt;Given a binary tree, return all root-to-leaf paths.
     For example, given the following binary tree:
                            1
                          /   &lt;br /&gt;
                         2     3
-                               &lt;br /&gt;
-                                5
+                          &lt;br /&gt;
+                          5
     All root-to-leaf paths are:
             [&amp;ldquo;1-&amp;gt;2-&amp;gt;5&amp;rdquo;, &amp;ldquo;1-&amp;gt;3&amp;rdquo;]&lt;/p&gt;
 
 &lt;!-- more --&gt;
 
-&lt;h3 id=&#34;题意&#34;&gt;题意：&lt;/h3&gt;
+&lt;h2 id=&#34;题意&#34;&gt;题意：&lt;/h2&gt;
 
 &lt;p&gt;难度不大，考察树的遍历&lt;/p&gt;
 
-&lt;h3 id=&#34;解法&#34;&gt;解法：&lt;/h3&gt;
+&lt;h2 id=&#34;解法&#34;&gt;解法：&lt;/h2&gt;
 
 &lt;p&gt;C++版本实现方法：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -9806,12 +9720,7 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
 		&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;leetCode Oj系统评判结果如下图所示：
-没有各种语言的柱状图，官方解释由于没有充足的提交导致，不知道是新题还是因为太简单大家直接略过了~&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/leetCode019C++.png&#34; alt=&#34;leetCode Binary Tree Paths C++&#34; /&gt;;&lt;/p&gt;
-</description>
+&lt;/div&gt;</description>
       
     </item>
     

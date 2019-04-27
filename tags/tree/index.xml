@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tree on I make stuff</title>
+    <link>https://hechen.xyz/tags/tree/</link>
+    <description>Recent content in Tree on I make stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 18 Aug 2015 16:28:26 +0000</lastBuildDate>
+    
+	<atom:link href="https://hechen.xyz/tags/tree/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>257. Binary Tree Paths</title>
+      <link>https://hechen.xyz/post/leetcode-019-binarytreepaths/</link>
+      <pubDate>Tue, 18 Aug 2015 16:28:26 +0000</pubDate>
+      
+      <guid>https://hechen.xyz/post/leetcode-019-binarytreepaths/</guid>
+      <description>题目：257. Binary Tree Paths Given a binary tree, return all root-to-leaf paths. For example, given the following binary tree: 1 / 2 3 5 All root-to-leaf paths are: [&amp;ldquo;1-&amp;gt;2-&amp;gt;5&amp;rdquo;, &amp;ldquo;1-&amp;gt;3&amp;rdquo;] 题意： 难度不大，考察树的遍历 解法： C++版本实现方法： 1 2 3 4 5 6 7</description>
+    </item>
+    
+  </channel>
+</rss>
