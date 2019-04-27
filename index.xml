@@ -11830,13 +11830,13 @@ singly linked lists begins.&lt;/p&gt;
 
 &lt;p&gt;关于闭包的概念，只能从网路上查找资料加上自己理解写&lt;/p&gt;
 
-&lt;h5 id=&#34;闭包-closure&#34;&gt;闭包（closure）&lt;/h5&gt;
+&lt;h4 id=&#34;闭包-closure&#34;&gt;闭包（closure）&lt;/h4&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;闭包是可以包含自由（未绑定到特定对象）变量的代码块；这些变量不是在这个代码块内或者任何全局上下文中定义的，而是在定义代码块的环境中定义（局部变量）。“闭包” 一词来源于以下两者的结合：要执行的代码块（由于自由变量被包含在代码块中，这些自由变量以及它们引用的对象没有被释放）和为自由变量提供绑定的计算环境（作用域）。在 Scala、Scheme、Common Lisp、Smalltalk、Groovy、JavaScript、Ruby、 Python、Go、Lua、objective c 以及Java（Java8及以上）等语言中都能找到对闭包不同程度的支持。    —— &lt;a href=&#34;http://baike.baidu.com/link?url=vlR71k-FJO5znXeaUghn2u7BXXLi9B4K0_l1i345azAKmXmU-q8TgLxPYxqQJHQaDQgnd8RvjImY1nS7rSH5g_&#34;&gt;百度百科&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h5 id=&#34;代码块-block&#34;&gt;代码块（Block）&lt;/h5&gt;
+&lt;h4 id=&#34;代码块-block&#34;&gt;代码块（Block）&lt;/h4&gt;
 
 &lt;p&gt;而代码块是语法上由一些逻辑性语句组成的一个一个单元：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -11863,7 +11863,7 @@ singly linked lists begins.&lt;/p&gt;
 
 &lt;h5 id=&#34;foldleft&#34;&gt;foldLeft&lt;/h5&gt;
 
-&lt;p&gt;Scala中foldLeft方法定义在&lt;a href=&#34;https://github.com/scala/scala/blob/v2.11.6/src/library/scala/collection/GenTraversableOnce.scala#L1&#34;&gt;GenTraversableOnce.scala&lt;/a&gt;文件中&lt;/p&gt;
+&lt;p&gt;Scala中 &lt;code&gt;foldLeft&lt;/code&gt; 方法定义在&lt;a href=&#34;https://github.com/scala/scala/blob/v2.11.6/src/library/scala/collection/GenTraversableOnce.scala#L1&#34;&gt;GenTraversableOnce.scala&lt;/a&gt;文件中&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-scala&#34; data-lang=&#34;scala&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -11947,7 +11947,7 @@ singly linked lists begins.&lt;/p&gt;
  &lt;span class=&#34;n&#34;&gt;res6&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Int&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;6&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;foldLeft方法被传入一个初始值和一个代码块，这个代码块有两个参数sum 和 value，foldLeft将sum初始化为0，而value通过list遍历将list中每个元素累加到sum上，因此该行代码实现了对list中元素的累加。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;foldLeft&lt;/code&gt;方法被传入一个初始值和一个代码块，这个代码块有两个参数sum 和 value，&lt;code&gt;foldLeft&lt;/code&gt;将sum初始化为0，而value通过list遍历将list中每个元素累加到sum上，因此该行代码实现了对list中元素的累加。&lt;/p&gt;
 
 &lt;h5 id=&#34;foldright&#34;&gt;foldRight&lt;/h5&gt;
 
@@ -11966,7 +11966,7 @@ singly linked lists begins.&lt;/p&gt;
    &lt;span class=&#34;n&#34;&gt;reversed&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;foldLeft&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;z&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)((&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;op&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;我们看到foleRight内部还是调用的foldLeft方法，不过多了一个reversed，它其实是该trait定义的内部方法，实现如下：&lt;/p&gt;
+&lt;p&gt;我们看到&lt;code&gt;foleRight&lt;/code&gt;内部还是调用的foldLeft方法，不过多了一个reversed，它其实是该trait定义的内部方法，实现如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-scala&#34; data-lang=&#34;scala&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -12006,8 +12006,9 @@ singly linked lists begins.&lt;/p&gt;
 &lt;span class=&#34;n&#34;&gt;res10&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Int&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;85&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;回归正题&lt;/strong&gt;
-  题目中要求计算一个列表中字符串的长度之和也就迎刃而解，关键是明白foldLeft方法的使用。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;回归正题&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;题目中要求计算一个列表中字符串的长度之和也就迎刃而解，关键是明白foldLeft方法的使用。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-scala&#34; data-lang=&#34;scala&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -12032,7 +12033,9 @@ singly linked lists begins.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;运算符 /: 和foldLeft方法均能实现需求（本质上一样一样的）&lt;/p&gt;
 
-&lt;p&gt;###编写一个Censor trait，包含一个可将Pucky和Beans替换为Shoot和Darn的方法。使用映射存储脏话和他们的替代品&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;编写一个Censor trait，包含一个可将Pucky和Beans替换为Shoot和Darn的方法。使用映射存储脏话和他们的替代品&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-scala&#34; data-lang=&#34;scala&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -12083,8 +12086,11 @@ singly linked lists begins.&lt;/p&gt;
 &lt;span class=&#34;nc&#34;&gt;Replaced&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Shoot&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Darn&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;###从一个文件中加载脏话或者它们的替代品
-通过针对scala对文件读写的讨论，就可以很轻松的写出这道题的答案，主要是需要将map中存储的映射关系存储下来进行读取。首先读取代码如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;从一个文件中加载脏话或者它们的替代品&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;通过针对scala对文件读写的讨论，就可以很轻松的写出这道题的答案，主要是需要将map中存储的映射关系存储下来进行读取。首先读取代码如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-scala&#34; data-lang=&#34;scala&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -12182,10 +12188,13 @@ singly linked lists begins.&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;That&amp;rsquo;s all! 关于闭包的示例晚上回家补上~~~ 工作鸟&lt;/p&gt;
 
-&lt;p&gt;参考链接：
-&lt;a href=&#34;http://www.tutorialspoint.com/scala/scala_file_io.htm&#34;&gt;http://www.tutorialspoint.com/scala/scala_file_io.htm&lt;/a&gt;
-&lt;a href=&#34;http://blog.csdn.net/oopsoom/article/details/23447317&#34;&gt;http://blog.csdn.net/oopsoom/article/details/23447317&lt;/a&gt;
-&lt;a href=&#34;http://zhangjunhd.github.io/2013/12/22/scala-note7-file.html&#34;&gt;http://zhangjunhd.github.io/2013/12/22/scala-note7-file.html&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;参考链接&#34;&gt;参考链接：&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.tutorialspoint.com/scala/scala_file_io.htm&#34;&gt;http://www.tutorialspoint.com/scala/scala_file_io.htm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.csdn.net/oopsoom/article/details/23447317&#34;&gt;http://blog.csdn.net/oopsoom/article/details/23447317&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://zhangjunhd.github.io/2013/12/22/scala-note7-file.html&#34;&gt;http://zhangjunhd.github.io/2013/12/22/scala-note7-file.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 </description>
       
     </item>
