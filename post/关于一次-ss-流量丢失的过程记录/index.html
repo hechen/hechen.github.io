@@ -383,11 +383,10 @@
 
 <p>其实在 iOS 设备上也有同样的进程来做这件事情，抓包有时候也能捕捉到这两个请求（国行）：</p>
 
-<p><img src="https://i.imgur.com/g9JCPdU.jpg" alt="iPhone 上的 Safebrowsing" /></p>
+<p><img src="https://i.imgur.com/eDNI4jk.jpg" alt="iPhone 上的 safebrowsing" /></p>
 
-<p>而这次出问题的就是 google 提供的欺诈网站特征库。</p>
-
-<p><img src="https://i.imgur.com/BtfvMIV.png" alt="Little Snitch Network Monitor" /></p>
+<p>而这次出问题的就是 google 提供的欺诈网站特征库。
+<img src="https://i.imgur.com/BtfvMIV.png" alt="Little Snitch Network Monitor" /></p>
 
 <p>尝试关闭 Surge 作为系统流量代理之后，看到 Activity Monitor 中进程又开始了下载，如下图所示，只是连接请求主体从原来 Surge 切换到了独立进程而已（Surge 会接管网络流量，因此之前该任务的下载会算到 Surge 的头上），但是针对该 host 的下载任务一致持续不断。</p>
 
