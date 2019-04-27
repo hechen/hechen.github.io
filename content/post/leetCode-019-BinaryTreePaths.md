@@ -1,27 +1,30 @@
 ---
-title: "[019] BinaryTreePaths"
+title: "257. Binary Tree Paths"
 date: 2015-08-18 16:28:26
 categories: ["LeetCode"]
-tags: ["Algorithm","String"]
+tags: ["Algorithm","Tree"]
 ---
 
-### 题目：
+#  题目：257. Binary Tree Paths
+
   Given a binary tree, return all root-to-leaf paths.
     For example, given the following binary tree:
 						   1
 						 /   \
 					    2     3
-							   \
-							    5
+					      \
+						  5
 	All root-to-leaf paths are:
 			["1->2->5", "1->3"]
 			
 <!-- more -->
 
-### 题意：
+## 题意：
+
 难度不大，考察树的遍历
 
-### 解法：
+## 解法：
+
 C++版本实现方法：
 		
 ``` C++
@@ -79,10 +82,4 @@ C++版本实现方法：
 			}
 		}
 ```
-
-leetCode Oj系统评判结果如下图所示：
-没有各种语言的柱状图，官方解释由于没有充足的提交导致，不知道是新题还是因为太简单大家直接略过了~
-
-![leetCode Binary Tree Paths C++](http://7xilk1.com1.z0.glb.clouddn.com/leetCode019C++.png);
-
 
