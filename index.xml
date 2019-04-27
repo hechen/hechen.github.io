@@ -37,13 +37,15 @@
       
         <description>
 
-&lt;p&gt;本文并不是深究每一项内容本质，仅做概念讲解以做到区分。&lt;/p&gt;
+&lt;p&gt;Library 和 Framework 的概念大家应该脑海里都有一些，本文旨在讲述下基本概念，没有对每个字节都了如指掌。关于基本的编译过程在 &lt;a href=&#34;https://hechen.xyz/post/xcode-build-system/&#34;&gt;Build Process&lt;/a&gt; 一文中也大概讲述了一些。&lt;/p&gt;
 
 &lt;p&gt;在链接 Library 以及 Framework 之前，我们需要先了解一下 Mach—O。&lt;/p&gt;
 
 &lt;p&gt;提到 Mach-O ，需要明确下 object file（目标文件）的概念，其实质上是指那些由源代码编译之后生成的，还未进行链接的中间文件（比如 Linux 下的 .o 以及 Windows 下的 .obj），它和可执行文件的内容和结构很相似，所以一般上会跟可执行文件格式采用一样的格式存储。&lt;/p&gt;
 
-&lt;p&gt;那在 Unix 系统上的 COFF 是当时发明的在 Unix 表示一个目标文件的存取格式，后来 Linux 基于 COFF 发明了 ELF，而 Windows 基于 COFF 发明了 PE 格式。广义上来说，目标文件与可执行文件几乎一样。在 Linux 下统称为 ELF 文件，Windows 上统称为 PE-COFF 文件，而在 Mac 上我们的目标文件就是 Mach-O 格式，其在目标文件的大体组成上和其他两种很相似。&lt;/p&gt;
+&lt;p&gt;那在 Unix 系统上的 COFF 是当时发明的在 Unix 表示一个目标文件的存取格式，后来 Linux 基于 COFF 发明了 ELF，而 Windows 基于 COFF 发明了 PE 格式。广义上来说，目标文件与可执行文件几乎一样。在 Linux 下统称为 ELF 文件，Windows 上统称为 PE-COFF 文件，而在 iOS/macOS 上我们的目标文件就是 Mach-O 格式，其在目标文件的大体组成上和其他两种很相似。而 Mach-O 的全称就是 Mach Object 的缩写。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/CUrWruq.png&#34; alt=&#34;目标文件&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;我们以 Linux 上 ELF 结构的一张图来大概说明一下情况，不同的源文件通过分类，将代码和数据，以及变量放入不同的职责段，代码段 _TEXT，数据段 _DATA 等。&lt;/p&gt;
 
@@ -111,8 +113,9 @@ clang main.o -Wl,&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;xcrun --show-sdk-p
 &lt;p&gt;MachOView 是一款开源软件，用以查看目标文件格式的，不过已经好几年没有更新了，所有有的 Load Command 识别不出。&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/ehG4guP.png&#34; alt=&#34;a.out 的内容&#34; /&gt;
-我们再看看 main.o 这个目标文件的结构是怎么样的。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/ehG4guP.png&#34; alt=&#34;a.out 的内容&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们再看看 main.o 这个目标文件的结构是怎么样的。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/tOzXqC1.png&#34; alt=&#34;main.o 的内容&#34; /&gt;&lt;/p&gt;
 

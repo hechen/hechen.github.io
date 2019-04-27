@@ -17,7 +17,7 @@
       <pubDate>Fri, 26 Apr 2019 00:35:30 +0800</pubDate>
       
       <guid>https://hechen.xyz/post/library_framework/</guid>
-      <description>本文并不是深究每一项内容本质，仅做概念讲解以做到区分。 在链接 Library 以及 Framework 之前，我们需要先了解一下 Mach—O。 提到 Mach-O ，需要明确下 object file（目标</description>
+      <description>Library 和 Framework 的概念大家应该脑海里都有一些，本文旨在讲述下基本概念，没有对每个字节都了如指掌。关于基本的编译过程在 Build Process 一文中也大概讲述了一些。 在链接</description>
     </item>
     
     <item>
