@@ -12,12 +12,12 @@
     
     
     <item>
-      <title>[003] Two Sum</title>
+      <title>Two Sum</title>
       <link>https://hechen.xyz/post/leetcode-003-two-sum/</link>
       <pubDate>Wed, 29 Apr 2015 13:15:00 +0000</pubDate>
       
       <guid>https://hechen.xyz/post/leetcode-003-two-sum/</guid>
-      <description>本文主要包括leetCode题集里的两个题目，Two Sum1 和 Two Sum2 题目1： Two Sum 1 Given an array of integers, find two numbers such that they add up to a specific target number. The function twoSum should return indices of the two numbers such that they add up</description>
+      <description>本文主要包括 leetCode 题集里的两个题目，Two Sum1 和 Two Sum2 题目1： 1. Two Sum 1 Given an array of integers, find two numbers such that they add up to a specific target number. The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must</description>
     </item>
     
     <item>

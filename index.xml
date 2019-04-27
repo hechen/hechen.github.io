@@ -10770,7 +10770,7 @@ A: Reduce them to a single space in the reversed string.&lt;/p&gt;
     </item>
     
     <item>
-      <title>[003] Two Sum</title>
+      <title>Two Sum</title>
       <link>https://hechen.xyz/post/leetcode-003-two-sum/</link>
       <pubDate>Wed, 29 Apr 2015 13:15:00 +0000</pubDate>
       
@@ -10778,11 +10778,11 @@ A: Reduce them to a single space in the reversed string.&lt;/p&gt;
       
         <description>
 
-&lt;p&gt;本文主要包括leetCode题集里的两个题目，Two Sum1 和 Two Sum2&lt;/p&gt;
+&lt;p&gt;本文主要包括 leetCode 题集里的两个题目，Two Sum1 和 Two Sum2&lt;/p&gt;
 
 &lt;!-- more --&gt;
 
-&lt;h3 id=&#34;题目1-two-sum-1&#34;&gt;题目1： Two Sum 1&lt;/h3&gt;
+&lt;h1 id=&#34;题目1-1-two-sum-1&#34;&gt;题目1： 1. Two Sum 1&lt;/h1&gt;
 
 &lt;p&gt;Given an array of integers, find two numbers such that they add up to a specific target number.&lt;/p&gt;
 
@@ -10794,11 +10794,11 @@ where index1 must be less than index2. Please note that your returned answers (b
 &lt;p&gt;　　　　Input: numbers={2, 7, 11, 15}, target=9
 　　　　Output: index1=1, index2=2&lt;/p&gt;
 
-&lt;h4 id=&#34;题意&#34;&gt;题意：&lt;/h4&gt;
+&lt;h2 id=&#34;题意&#34;&gt;题意&lt;/h2&gt;
 
 &lt;p&gt;题目中要求输入一个整形数组以及一个target，找出该整型数组中这样两个元素，使得这两个元素之和等于指定target的值。 题目中假设该两个元素必然存在，并且是只有一组（所以相对简单），返回的是这两个元素的index值（数组Index从1开始）。&lt;/p&gt;
 
-&lt;h4 id=&#34;关键点&#34;&gt;关键点：&lt;/h4&gt;
+&lt;h2 id=&#34;关键点&#34;&gt;关键点&lt;/h2&gt;
 
 &lt;p&gt;我们经常会使用空间换取时间的方法来获取较小的时间复杂度。因此增加必要的数据结构来减少时间复杂度。这道题目一样，我们增加一个map结构，key为数组元素值，value为其在数组中对应的index。每次遍历到数组元素便去map结构中查找对应的补数，如果存在，那就说明找到了。如果没存在就记录当前元素以及其index，直到结束。&lt;/p&gt;
 
@@ -10858,13 +10858,7 @@ where index1 must be less than index2. Please note that your returned answers (b
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;leetCode的OJ系统评判结果如下所示：
-&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/leetCode003C++.png&#34; alt=&#34;leetCode Two Sum 1 C++&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;本地运行结果如下所示：
-&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/leetCode003Run1.jpg&#34; alt=&#34;leetCode Two Sum 1 C++  Run&#34; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;题目2-two-sum-2&#34;&gt;题目2：Two Sum 2&lt;/h3&gt;
+&lt;h1 id=&#34;题目2-167-two-sum-ii-input-array-is-sorted&#34;&gt;题目2：167. Two Sum II - Input array is sorted&lt;/h1&gt;
 
 &lt;p&gt;Given an array of integers, find two numbers such that they add up to a specific target number.&lt;/p&gt;
 
@@ -10875,11 +10869,11 @@ where index1 must be less than index2. Please note that your returned answers (b
 &lt;p&gt;&lt;strong&gt;Input&lt;/strong&gt;: numbers={2, 7, 11, 15}, target=9
 &lt;strong&gt;Output&lt;/strong&gt;: index1=1, index2=2&lt;/p&gt;
 
-&lt;h4 id=&#34;题意-1&#34;&gt;题意：&lt;/h4&gt;
+&lt;h2 id=&#34;题意-1&#34;&gt;题意&lt;/h2&gt;
 
 &lt;p&gt;和上题中Two Sum1 比较，大家发现什么异同了没（没发现的童鞋面壁去），这道题目仅仅更改了输入条件，Input的数组为已经排序的数组，并且呈现升序。输入条件变严格，我们依然可以使用前一篇问丈夫中的方法进行。那这里既然为升序，我们能不能不使用前一种方法而又能够达到O（n）时间复杂度呢？ 答案是必然的。&lt;/p&gt;
 
-&lt;h4 id=&#34;关键点-1&#34;&gt;关键点：&lt;/h4&gt;
+&lt;h2 id=&#34;关键点-1&#34;&gt;关键点&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;数组既然排序，元素之前的大小关系相对确定，存在的这一对元素必然处于相对固定的位置，我们可以使用两个游标，一个从头部遍历，一个从尾部遍历，两者所指元素之和如果偏大，调整后面的游标，相反则调整前面的游标。&lt;/li&gt;
@@ -10947,11 +10941,7 @@ where index1 must be less than index2. Please note that your returned answers (b
 	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;由于Two Sum2 题目是收费的，因此木有进行leetCode的OJ评判，直接上本地运行截图吧，sign~&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/leetCode003Run2.jpg&#34; alt=&#34;leetCode Two Sum 2  Run&#34; /&gt;&lt;/p&gt;
-</description>
+&lt;/div&gt;</description>
       
     </item>
     
