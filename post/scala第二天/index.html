@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2015-04-16T18:43:00&#43;00:00" />
 <meta itemprop="dateModified" content="2015-04-16T18:43:00&#43;00:00" />
-<meta itemprop="wordCount" content="2188">
+<meta itemprop="wordCount" content="2175">
 
 
 
@@ -328,11 +328,8 @@
 <li><a href="#关于如何使用scala文件的讨论">关于如何使用Scala文件的讨论</a></li>
 <li><a href="#闭包-closure-和代码块有何不同">闭包(closure)和代码块有何不同</a>
 <ul>
-<li>
-<ul>
 <li><a href="#闭包-closure">闭包（closure）</a></li>
 <li><a href="#代码块-block">代码块（Block）</a></li>
-</ul></li>
 </ul></li>
 </ul></li>
 <li><a href="#做">做</a>
@@ -346,6 +343,7 @@
 </ul></li>
 </ul></li>
 </ul></li>
+<li><a href="#参考链接">参考链接：</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -423,13 +421,13 @@
 
 <p>关于闭包的概念，只能从网路上查找资料加上自己理解写</p>
 
-<h5 id="闭包-closure">闭包（closure）</h5>
+<h4 id="闭包-closure">闭包（closure）</h4>
 
 <blockquote>
 <p>闭包是可以包含自由（未绑定到特定对象）变量的代码块；这些变量不是在这个代码块内或者任何全局上下文中定义的，而是在定义代码块的环境中定义（局部变量）。“闭包” 一词来源于以下两者的结合：要执行的代码块（由于自由变量被包含在代码块中，这些自由变量以及它们引用的对象没有被释放）和为自由变量提供绑定的计算环境（作用域）。在 Scala、Scheme、Common Lisp、Smalltalk、Groovy、JavaScript、Ruby、 Python、Go、Lua、objective c 以及Java（Java8及以上）等语言中都能找到对闭包不同程度的支持。    —— <a href="http://baike.baidu.com/link?url=vlR71k-FJO5znXeaUghn2u7BXXLi9B4K0_l1i345azAKmXmU-q8TgLxPYxqQJHQaDQgnd8RvjImY1nS7rSH5g_">百度百科</a></p>
 </blockquote>
 
-<h5 id="代码块-block">代码块（Block）</h5>
+<h4 id="代码块-block">代码块（Block）</h4>
 
 <p>而代码块是语法上由一些逻辑性语句组成的一个一个单元：</p>
 <div class="highlight"><div class="chroma">
@@ -456,7 +454,7 @@
 
 <h5 id="foldleft">foldLeft</h5>
 
-<p>Scala中foldLeft方法定义在<a href="https://github.com/scala/scala/blob/v2.11.6/src/library/scala/collection/GenTraversableOnce.scala#L1">GenTraversableOnce.scala</a>文件中</p>
+<p>Scala中 <code>foldLeft</code> 方法定义在<a href="https://github.com/scala/scala/blob/v2.11.6/src/library/scala/collection/GenTraversableOnce.scala#L1">GenTraversableOnce.scala</a>文件中</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt"> 1
@@ -540,7 +538,7 @@
  <span class="n">res6</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">6</span></code></pre></td></tr></table>
 </div>
 </div>
-<p>foldLeft方法被传入一个初始值和一个代码块，这个代码块有两个参数sum 和 value，foldLeft将sum初始化为0，而value通过list遍历将list中每个元素累加到sum上，因此该行代码实现了对list中元素的累加。</p>
+<p><code>foldLeft</code>方法被传入一个初始值和一个代码块，这个代码块有两个参数sum 和 value，<code>foldLeft</code>将sum初始化为0，而value通过list遍历将list中每个元素累加到sum上，因此该行代码实现了对list中元素的累加。</p>
 
 <h5 id="foldright">foldRight</h5>
 
@@ -559,7 +557,7 @@
    <span class="n">reversed</span><span class="o">.</span><span class="n">foldLeft</span><span class="o">(</span><span class="n">z</span><span class="o">)((</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">)</span> <span class="k">=&gt;</span> <span class="n">op</span><span class="o">(</span><span class="n">y</span><span class="o">,</span> <span class="n">x</span><span class="o">))</span></code></pre></td></tr></table>
 </div>
 </div>
-<p>我们看到foleRight内部还是调用的foldLeft方法，不过多了一个reversed，它其实是该trait定义的内部方法，实现如下：</p>
+<p>我们看到<code>foleRight</code>内部还是调用的foldLeft方法，不过多了一个reversed，它其实是该trait定义的内部方法，实现如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt">1
@@ -599,8 +597,9 @@
 <span class="n">res10</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">85</span></code></pre></td></tr></table>
 </div>
 </div>
-<p><strong>回归正题</strong>
-  题目中要求计算一个列表中字符串的长度之和也就迎刃而解，关键是明白foldLeft方法的使用。</p>
+<p><strong>回归正题</strong></p>
+
+<p>题目中要求计算一个列表中字符串的长度之和也就迎刃而解，关键是明白foldLeft方法的使用。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt">1
@@ -625,7 +624,9 @@
 </div>
 <p>运算符 /: 和foldLeft方法均能实现需求（本质上一样一样的）</p>
 
-<p>###编写一个Censor trait，包含一个可将Pucky和Beans替换为Shoot和Darn的方法。使用映射存储脏话和他们的替代品</p>
+<blockquote>
+<p>编写一个Censor trait，包含一个可将Pucky和Beans替换为Shoot和Darn的方法。使用映射存储脏话和他们的替代品</p>
+</blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt"> 1
@@ -676,8 +677,11 @@
 <span class="nc">Replaced</span> <span class="nc">String</span><span class="k">:</span> <span class="kt">Shoot</span> <span class="kt">&amp;&amp;</span> <span class="kt">Darn</span></code></pre></td></tr></table>
 </div>
 </div>
-<p>###从一个文件中加载脏话或者它们的替代品
-通过针对scala对文件读写的讨论，就可以很轻松的写出这道题的答案，主要是需要将map中存储的映射关系存储下来进行读取。首先读取代码如下：</p>
+<blockquote>
+<p>从一个文件中加载脏话或者它们的替代品</p>
+</blockquote>
+
+<p>通过针对scala对文件读写的讨论，就可以很轻松的写出这道题的答案，主要是需要将map中存储的映射关系存储下来进行读取。首先读取代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt"> 1
@@ -775,10 +779,13 @@
 </div>
 <p>That&rsquo;s all! 关于闭包的示例晚上回家补上~~~ 工作鸟</p>
 
-<p>参考链接：
-<a href="http://www.tutorialspoint.com/scala/scala_file_io.htm">http://www.tutorialspoint.com/scala/scala_file_io.htm</a>
-<a href="http://blog.csdn.net/oopsoom/article/details/23447317">http://blog.csdn.net/oopsoom/article/details/23447317</a>
-<a href="http://zhangjunhd.github.io/2013/12/22/scala-note7-file.html">http://zhangjunhd.github.io/2013/12/22/scala-note7-file.html</a></p>
+<h2 id="参考链接">参考链接：</h2>
+
+<ol>
+<li><a href="http://www.tutorialspoint.com/scala/scala_file_io.htm">http://www.tutorialspoint.com/scala/scala_file_io.htm</a></li>
+<li><a href="http://blog.csdn.net/oopsoom/article/details/23447317">http://blog.csdn.net/oopsoom/article/details/23447317</a></li>
+<li><a href="http://zhangjunhd.github.io/2013/12/22/scala-note7-file.html">http://zhangjunhd.github.io/2013/12/22/scala-note7-file.html</a></li>
+</ol>
 
     </div>
 
