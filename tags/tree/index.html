@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>解析 PNChart 第三方库 - I make stuff</title>
+  <title>Tree · I make stuff</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,8 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="chen" />
-  <meta name="description" content="学习 PNChart 本篇文章写作时，PChart 版本号为 0.8.9. 代码结构 可视化展示类型 首先，目前 PNChart 提供多达六种图的可视化展示。分别是： PNLineChart PNScatterChart PNRadarChart PNPieChart PNBarChart PNCircleChart 类图 首先来看最" />
-
+  <meta name="description" content="Chen&#39;s personal blog." />
   <meta name="keywords" content="Chen, iOS, Swift, Productivity" />
 
 
@@ -35,7 +34,8 @@
 <meta name="generator" content="Hugo 0.56.0-DEV" />
 
 
-<link rel="canonical" href="https://hechen.xyz/post/read-sourcecode-of-pnchart/" />
+<link rel="canonical" href="https://hechen.xyz/tags/tree/" />
+<link href="https://hechen.xyz/tags/tree/index.xml" rel="alternate" type="application/rss+xml" title="I make stuff" />
 
 
 
@@ -57,27 +57,19 @@
 
 
 
-<meta property="og:title" content="解析 PNChart 第三方库" />
-<meta property="og:description" content="学习 PNChart 本篇文章写作时，PChart 版本号为 0.8.9. 代码结构 可视化展示类型 首先，目前 PNChart 提供多达六种图的可视化展示。分别是： PNLineChart PNScatterChart PNRadarChart PNPieChart PNBarChart PNCircleChart 类图 首先来看最" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://hechen.xyz/post/read-sourcecode-of-pnchart/" />
-<meta property="article:published_time" content="2017-02-12T16:36:54&#43;00:00"/>
-<meta property="article:modified_time" content="2017-02-12T16:36:54&#43;00:00"/>
+<meta property="og:title" content="Tree" />
+<meta property="og:description" content="Chen&#39;s personal blog." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://hechen.xyz/tags/tree/" />
 
-<meta itemprop="name" content="解析 PNChart 第三方库">
-<meta itemprop="description" content="学习 PNChart 本篇文章写作时，PChart 版本号为 0.8.9. 代码结构 可视化展示类型 首先，目前 PNChart 提供多达六种图的可视化展示。分别是： PNLineChart PNScatterChart PNRadarChart PNPieChart PNBarChart PNCircleChart 类图 首先来看最">
+<meta property="og:updated_time" content="2015-08-18T16:28:26&#43;00:00"/>
 
+<meta itemprop="name" content="Tree">
+<meta itemprop="description" content="Chen&#39;s personal blog.">
 
-<meta itemprop="datePublished" content="2017-02-12T16:36:54&#43;00:00" />
-<meta itemprop="dateModified" content="2017-02-12T16:36:54&#43;00:00" />
-<meta itemprop="wordCount" content="616">
-
-
-
-<meta itemprop="keywords" content="iOS,Github,Objective-C," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="解析 PNChart 第三方库"/>
-<meta name="twitter:description" content="学习 PNChart 本篇文章写作时，PChart 版本号为 0.8.9. 代码结构 可视化展示类型 首先，目前 PNChart 提供多达六种图的可视化展示。分别是： PNLineChart PNScatterChart PNRadarChart PNPieChart PNBarChart PNCircleChart 类图 首先来看最"/>
+<meta name="twitter:title" content="Tree"/>
+<meta name="twitter:description" content="Chen&#39;s personal blog."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -286,255 +278,53 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
-          <article class="post bg-white">
-    
-    <header class="post-header">
-      <h1 class="post-title">解析 PNChart 第三方库</h1>
-      
-      <div class="post-meta">
-        <time datetime="2017-02-12" class="post-time">
-          2017-02-12
-        </time>
-        <div class="post-category">
-            <a href="https://hechen.xyz/categories/sourcecode/"> SourceCode </a>
-            
-          </div>
-        
-
-        
-        
-
-        
-        
-          <span id="/post/read-sourcecode-of-pnchart/" class="leancloud_visitors" data-flag-title="解析 PNChart 第三方库">
-            <span class="post-meta-item-text"> | 阅读 </span>
-            <span class="leancloud-visitors-count"></span>
-          </span>
-        
-      </div>
-    </header>
-
-    
-    
-<div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
-  <div class="post-toc-content">
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#学习-pnchart">学习 PNChart</a>
-<ul>
-<li><a href="#代码结构">代码结构</a>
-<ul>
-<li><a href="#可视化展示类型">可视化展示类型</a></li>
-<li><a href="#类图">类图</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
-  </div>
-</div>
-
-    
-    <div class="post-content">
-      
-
-<h3 id="学习-pnchart">学习 PNChart</h3>
-
-<p>本篇文章写作时，<strong>PChart</strong> 版本号为 <code>0.8.9</code>.</p>
-
-<!-- more -->
-
-<h4 id="代码结构">代码结构</h4>
-
-<h5 id="可视化展示类型">可视化展示类型</h5>
-
-<p>首先，目前 PNChart 提供多达六种图的可视化展示。分别是：</p>
-
-<ol>
-<li><p>PNLineChart
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/PNLineChart.png" alt="PNLineChart-w621" /></p></li>
-
-<li><p>PNScatterChart
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/PNScatterChart.png" alt="PNScatterChart-w621" /></p></li>
-
-<li><p>PNRadarChart
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/PNRadarChart.png" alt="PNRadarChart" /></p></li>
-
-<li><p>PNPieChart
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/PNPieChart.png" alt="PNPieChart" /></p></li>
-
-<li><p>PNBarChart
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/PNBarChart.png" alt="PNBarChart" /></p></li>
-
-<li><p>PNCircleChart
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/PNCircleChart.png" alt="PNCircleChart" /></p></li>
-</ol>
-
-<h5 id="类图">类图</h5>
-
-<p>首先来看最主要的集中图片的类，如下所示：
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/14867986596626.jpg" alt="" /></p>
-
-<p>其中除了 <code>PNCircleChart</code> 以外，其余均继承了 <code>PNGenericChart</code>类。</p>
-
-<p>其中图片和外界的交互回调是通过 PNChartDelegate 来进行的，要包含这么多种类型图片的回调，接口自然无法写的更加优雅，看这个协议定义的方法就能看出来。
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/14867993267852.jpg" alt="" /></p>
-
-<p>同时，针对每一种图形类别，也有相对应的 Model 类型，如下所示：
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/14868010321036.jpg" alt="" /></p>
-
-<p>目前设计来看并不是很统一，其中和外界进行对接的数据类型定义为 <code>PNxxChartData</code>，而该具体的每一个节点数据类型就用<code>PNxxChartDataItem</code> 类型来标识，因为具体的图形化业务不同，并不是所有的<code>PNChart</code>都会使用者两者，比如 <code>PNBarChart</code> 目前就完全不使用类似的设计，而是直接指定Y轴的值，还有<code>PNCircleChart</code>也如此，只需指定 Total 和 current 即可。</p>
-
-<p>还有剩余几个辅助类：
-<img src="http://7xilk1.com1.z0.glb.clouddn.com/14868112330724.jpg" alt="" /></p>
-
-<ol>
-<li>PNColor 类只有一个方法：<code>imageFromColor:</code> ，生成某种颜色的图片，而在其所定义的文件 PNColor.h 中定义了很多常用颜色的宏；</li>
-<li>PNLineChartColorRange 类型是定义在 PNLineChartData.h 文件中一个类型，主要是指定折线图上，命中指定的数值区域时显示特定的颜色；如下所示代码，当 Y 轴元素是 10 ~ 30 之间，显示红色折线，当 Y 轴元素是 100 ~ 200 之间，显示紫色折线。</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-Objective-C" data-lang="Objective-C"> <span class="n">PNLineChartData</span> <span class="o">*</span><span class="n">data01</span> <span class="o">=</span> <span class="p">[</span><span class="n">PNLineChartData</span> <span class="n">new</span><span class="p">];</span>
- <span class="n">data01</span><span class="p">.</span><span class="n">rangeColors</span> <span class="o">=</span> <span class="l">@[</span>
-    <span class="p">[[</span><span class="n">PNLineChartColorRange</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithRange</span><span class="p">:</span><span class="n">NSMakeRange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span> <span class="nl">color</span><span class="p">:[</span><span class="n">UIColor</span> <span class="n">redColor</span><span class="p">]],</span>
-    <span class="p">[[</span><span class="n">PNLineChartColorRange</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithRange</span><span class="p">:</span><span class="n">NSMakeRange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span> <span class="nl">color</span><span class="p">:[</span><span class="n">UIColor</span> <span class="n">purpleColor</span><span class="p">]]</span>
-        <span class="l">]</span><span class="p">;</span></code></pre></td></tr></table>
-</div>
-</div>
-<ol>
-<li>PNChartLabel类定义 UILabel，库中所用到的 Label 均为该类型，主要是做了一些通用的配置罢了。</li>
-</ol>
-
-    </div>
-
-    
-    
-<div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">chen</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">2017-02-12</span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">许可协议</span>
-    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
-  </p>
-</div>
-
-
-    
-    
-
-    <footer class="post-footer">
-      <div class="post-tags">
-          <a href="https://hechen.xyz/tags/ios/">iOS</a>
-          <a href="https://hechen.xyz/tags/github/">Github</a>
-          <a href="https://hechen.xyz/tags/objective-c/">Objective-C</a>
           
-        </div>
 
-      
-      <nav class="post-nav">
-        
-          <a class="prev" href="/post/reading-garbage-collection/">
-            
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="18" height="18">
-  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
-</svg>
-
-            </i>
-            <span class="prev-text nav-default">阅读《垃圾回收的算法与实现》</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        
-          <a class="next" href="/post/elastic-view-animation-using-uibezierpath/">
-            <span class="next-text nav-default">如何使用UIBezierPath实现一个弹性视图动画</span>
-            <span class="prev-text nav-mobile">下一篇</span>
-            
-            <i class="iconfont">
-              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="18" height="18">
-  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
-</svg>
-
-            </i>
-          </a>
-      </nav>
-    </footer>
-  </article>
-
-  
-  
-
-  
-  
-
-  
-  
-    <div class="post bg-white">
-      <script src="https://utteranc.es/client.js"
-            repo= "hechen/Comments"
-            issue-term="pathname"
-            crossorigin="anonymous"
-            async>
-      </script>
-    </div>
-  
-
-  
-
-  
-
-  <div class="disqus-comment">
-  <div class="disqus-button" id="load_disqus" onclick="load_disqus()">
-    显示 Disqus 评论
-  </div>
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-    var disqus_config = function () {
-      this.page.url = "https://hechen.xyz/post/read-sourcecode-of-pnchart/";
-    };
-    function load_disqus() {
-      
-      
-      if (window.location.hostname === 'localhost') return;
-
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      var disqus_shortname = 'stoneman';
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-
-      $('#load_disqus').remove();
-    };
-  </script>
-  <noscript>Please enable JavaScript to view the
-    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  
-  </div>
+<section id="archive" class="archive">
   
     
+      <div class="archive-title tag">
+        <h2 class="archive-name">标签： Tree</h2>
+      </div>
+    
+  
+
+  
+    <div class="archive-post">
+      <time datetime="2015-08-18" class="archive-post-time">
+        2015-08-18
+      </time>
+      <span class="archive-post-title">
+        <a href="/post/leetcode-019-binarytreepaths/" class="archive-post-link">
+          257. Binary Tree Paths
+        </a>
+      </span>
+    </div>
+  
+</section>
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
 
 
 
