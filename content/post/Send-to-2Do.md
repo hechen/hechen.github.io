@@ -5,7 +5,9 @@ categories: ["Productivity"]
 tags: ["Bookmark","2Do","Things","OmniFocus","Safari"]
 ---
 
-使用鼠标拖拽下面这个链接到你的 Favorites Bar 上，
+使用鼠标拖拽下面这个链接到你的 Favorites Bar 上，默认点击行为实际上是模拟在当前页面进行导航，而目标地址由 `avascript:window.location` 来指定，目标地址实际上就是各个 App 的 URL Scheme。
+
+需要参考各个主流 App 的 URL Scheme 在 [AppTalk](https://app-talk.com/) 中查阅。
 
 ## 2Do
 
@@ -35,6 +37,8 @@ javascript:window.location='twodo://x-callback-url/add?task='+encodeURIComponent
 things:///add?title=iamtitle&notes=iamnotes&when=tomorrow
 ```
 
+[Try](things:///add?title=iamtitle&notes=iamnotes&when=tomorrow)
+
 比如你可以把链接内容改为支持 Send To Things：
 
 ``` JavaScript
@@ -54,4 +58,3 @@ javascript:window.location='omnifocus:///add?note='+encodeURIComponent(window.lo
 如果你找不到 Favorites Bar，点击 Safari 菜单栏上的 View 菜单就能看到（中文系统叫视图）
 
 ![Favorites Bar](https://i.imgur.com/ZBqkn4Z.jpg)
-
