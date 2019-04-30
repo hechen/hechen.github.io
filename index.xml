@@ -2829,9 +2829,8 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
       
         <description>
 
-&lt;p&gt;使用鼠标拖拽下面这个链接到你的 Favorites Bar 上，默认点击行为实际上是模拟在当前页面进行导航，而目标地址由 &lt;code&gt;avascript:window.location&lt;/code&gt; 来指定，目标地址实际上就是各个 App 的 URL Scheme。&lt;/p&gt;
-
-&lt;p&gt;需要参考各个主流 App 的 URL Scheme 在 &lt;a href=&#34;https://app-talk.com/&#34;&gt;AppTalk&lt;/a&gt; 中查阅。&lt;/p&gt;
+&lt;p&gt;使用鼠标拖拽下面这个链接到你的 Favorites Bar 上，默认点击行为实际上是模拟在当前页面进行导航，而目标地址由 &lt;code&gt;avascript:window.location&lt;/code&gt; 来指定，目标地址实际上就是各个 App 的 URL Scheme。
+你可以在 &lt;a href=&#34;https://app-talk.com/&#34;&gt;AppTalk&lt;/a&gt;查看各个主流 App 的 URL Scheme。&lt;/p&gt;
 
 &lt;h2 id=&#34;2do&#34;&gt;2Do&lt;/h2&gt;
 
@@ -2864,11 +2863,11 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;c1&#34;&gt;/// add a todo due when tommorow
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;c1&#34;&gt;/// add a todo due when tomorrow
 &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nl&#34;&gt;things&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;///&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;iamtitle&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;notes&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;iamnotes&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;when&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tomorrow&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;a href=&#34;things:///add?title=iamtitle&amp;amp;notes=iamnotes&amp;amp;when=tomorrow&#34;&gt;Try&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;things:///add?title=iamtitle&amp;amp;notes=iamnotes&amp;amp;when=tomorrow&#34;&gt;Add a todo to Things&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;比如你可以把链接内容改为支持 Send To Things：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2892,6 +2891,8 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;p&gt;&lt;a href=&#34;things:///add?title=iamtitle&amp;amp;notes=iamnotes&amp;amp;when=tomorrow&#34;&gt;Add a todo to OmniFocus&lt;/a&gt;&lt;/p&gt;
+
 &lt;p&gt;或者直接去 &lt;a href=&#34;http://people.omnigroup.com/kc/OmniFocus/SendToOmniFocusBookmarklet.html&#34;&gt;OmniFocus 页面&lt;/a&gt; 用相同方式把起已经设置好正确 Value 的链接拖到上方工具条上即可。&lt;/p&gt;
 
 &lt;p&gt;如果你找不到 Favorites Bar，点击 Safari 菜单栏上的 View 菜单就能看到（中文系统叫视图）&lt;/p&gt;

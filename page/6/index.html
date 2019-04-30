@@ -24,7 +24,7 @@
 
 <meta name="author" content="chen" />
   <meta name="description" content="Chen&#39;s personal blog." />
-  <meta name="keywords" content="Chen, iOS, Swift, Productivity" />
+  <meta name="keywords" content="Chen, iOS, Swift, Productivity, macOS, Cocoa" />
 
 
 
@@ -291,21 +291,21 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/avoiding-singletons-in-swift/">避免在 Swift 中使用单例</a>
+      <a class="post-link" href="/post/autoclosure-escape/">@autoclosure &amp;&amp; @escape</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="2018-07-16" class="post-time">
-        2018-07-16
+      <time datetime="2017-11-12" class="post-time">
+        2017-11-12
       </time>
       <div class="post-category">
-          <a href="https://hechen.xyz/categories/translation/"> Translation </a>
+          <a href="https://hechen.xyz/categories/swift/"> Swift </a>
           
         </div>
       
       
       
-        <span id="/post/avoiding-singletons-in-swift/" class="leancloud_visitors" data-flag-title="避免在 Swift 中使用单例">
+        <span id="/post/autoclosure-escape/" class="leancloud_visitors" data-flag-title="@autoclosure &amp;&amp; @escape">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -316,10 +316,10 @@
   <div class="post-content">
     
     <div class="post-summary">
-      “我知道单例不好，但是&hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的
+      我们知道在 swift 中，闭包（closure）是一等公民，因此可以被当作参数传递，在学习 swift 的过程中经常会看到某些关键字修饰该闭包，@autoclos
     </div>
     <div class="read-more">
-      <a href="/post/avoiding-singletons-in-swift/" class="read-more-link">阅读全文</a>
+      <a href="/post/autoclosure-escape/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -330,21 +330,21 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/different-flavors-of-dependency-injection-in-swift/">Swift 中几种不同的依赖注入方式</a>
+      <a class="post-link" href="/post/ios-notification/">关于 iOS10 Notification 的那些事儿</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="2018-07-16" class="post-time">
-        2018-07-16
+      <time datetime="2017-05-20" class="post-time">
+        2017-05-20
       </time>
       <div class="post-category">
-          <a href="https://hechen.xyz/categories/translation/"> Translation </a>
+          <a href="https://hechen.xyz/categories/ios/"> iOS </a>
           
         </div>
       
       
       
-        <span id="/post/different-flavors-of-dependency-injection-in-swift/" class="leancloud_visitors" data-flag-title="Swift 中几种不同的依赖注入方式">
+        <span id="/post/ios-notification/" class="leancloud_visitors" data-flag-title="关于 iOS10 Notification 的那些事儿">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -355,10 +355,10 @@
   <div class="post-content">
     
     <div class="post-summary">
-      原文：Modular Xcode projects 原作者 &amp; Copyright @pepibumur 翻译：@OgreMergO 在之前的几篇博客中，我们已经了解了几种使用依赖注入方式使得某个 swift app 拥有一个更加
+      概览 推送通知我们大家都不陌生，可以说几乎每个使用智能手机的人每天都会被不同的通知 打扰 到，正式因为合适的推送是吸引用户注意力的利器，其成为了各
     </div>
     <div class="read-more">
-      <a href="/post/different-flavors-of-dependency-injection-in-swift/" class="read-more-link">阅读全文</a>
+      <a href="/post/ios-notification/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -369,21 +369,21 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/my-favorite-mac-apps/">那些我恢复 Mac 系统之后要安装的 Apps</a>
+      <a class="post-link" href="/post/reading-garbage-collection/">阅读《垃圾回收的算法与实现》</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="2018-07-11" class="post-time">
-        2018-07-11
+      <time datetime="2017-02-12" class="post-time">
+        2017-02-12
       </time>
       <div class="post-category">
-          <a href="https://hechen.xyz/categories/productivity/"> Productivity </a>
+          <a href="https://hechen.xyz/categories/book/"> Book </a>
           
         </div>
       
       
       
-        <span id="/post/my-favorite-mac-apps/" class="leancloud_visitors" data-flag-title="那些我恢复 Mac 系统之后要安装的 Apps">
+        <span id="/post/reading-garbage-collection/" class="leancloud_visitors" data-flag-title="阅读《垃圾回收的算法与实现》">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -394,10 +394,88 @@
   <div class="post-content">
     
     <div class="post-summary">
-      记录一下自己常用的 Mac Apps，每次重装之后到了用的时候发现忘记安装了(不是每次都用 TimeMachine 恢复)，而且强烈简易大家如果某个 App 有对应的独立安装版本的
+      前一阵子 《垃圾回收的算法与实现》 这本书比较火，正好本人也对垃圾回收这个概念挺感兴趣的，就耐着性子一点一点啃，到今天只能说磕磕绊绊的看了大部分
     </div>
     <div class="read-more">
-      <a href="/post/my-favorite-mac-apps/" class="read-more-link">阅读全文</a>
+      <a href="/post/reading-garbage-collection/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+    
+      <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/elastic-view-animation-using-uibezierpath/">如何使用UIBezierPath实现一个弹性视图动画</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2015-12-02" class="post-time">
+        2015-12-02
+      </time>
+      <div class="post-category">
+          <a href="https://hechen.xyz/categories/translation/"> Translation </a>
+          
+        </div>
+      
+      
+      
+        <span id="/post/elastic-view-animation-using-uibezierpath/" class="leancloud_visitors" data-flag-title="如何使用UIBezierPath实现一个弹性视图动画">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Hey！ DGElasticPullToRefresh展示如何实现一个弹性效果。效果如下图所示： 开发环境： Xcode 7 Swift 2.0 要求： 开发者至少对UIBez
+    </div>
+    <div class="read-more">
+      <a href="/post/elastic-view-animation-using-uibezierpath/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+    
+      <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/">Objective-C中Category的一点东西</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2015-09-14" class="post-time">
+        2015-09-14
+      </time>
+      <div class="post-category">
+          <a href="https://hechen.xyz/categories/ios/"> iOS </a>
+          
+        </div>
+      
+      
+      
+        <span id="/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/" class="leancloud_visitors" data-flag-title="Objective-C中Category的一点东西">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Objective-C中的分类（category）是一种编译时的手段，其允许我们通过给某个已知类添加方法来扩充该类的一种方式。当然这其中是有
+    </div>
+    <div class="read-more">
+      <a href="/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -426,499 +504,49 @@
 
   
   
-
-    <nav class="pagination">
-      <ul>
-
+  <nav class="pagination">
+    <ul>
       
+      <li >
+        <a href="/">1</a>
+      </li>
       
-      <li><a href="/">««</a></li>
+      <li >
+        <a href="/page/2/">2</a>
+      </li>
       
-
+      <li >
+        <a href="/page/3/">3</a>
+      </li>
       
+      <li >
+        <a href="/page/4/">4</a>
+      </li>
       
-      <li><a href="/page/5/">«</a></li>
+      <li >
+        <a href="/page/5/">5</a>
+      </li>
       
-
+      <li  class="active" >
+        <a href="/page/6/">6</a>
+      </li>
       
+      <li >
+        <a href="/page/7/">7</a>
+      </li>
       
-
-        
-
-        
-        
-
-          
-          
-          
-
-            
-            
-              
-            
-
-          
-          
-          
-
-        
-        
-
-        
-        
-          <li class="">
-            <a href="/">
-              1
-            </a>
-          </li>
-        
-
+      <li >
+        <a href="/page/8/">8</a>
+      </li>
       
-
-        
-
-        
-        
-
-          
-          
-          
-
-            
-            
-              
-            
-
-          
-          
-          
-
-        
-        
-
-        
-        
-          <li class="">
-            <a href="/page/2/">
-              2
-            </a>
-          </li>
-        
-
+      <li >
+        <a href="/page/9/">9</a>
+      </li>
       
+    </ul>
+  </nav>
 
-        
-
-        
-        
-
-          
-          
-          
-
-            
-            
-              
-            
-
-          
-          
-          
-
-        
-        
-
-        
-        
-          <li class="">
-            <a href="/page/3/">
-              3
-            </a>
-          </li>
-        
-
-      
-
-        
-
-        
-        
-
-          
-          
-          
-
-            
-            
-              
-            
-
-          
-          
-          
-
-        
-        
-
-        
-        
-          <li class="">
-            <a href="/page/4/">
-              4
-            </a>
-          </li>
-        
-
-      
-
-        
-
-        
-        
-
-          
-          
-          
-
-            
-            
-              
-            
-
-          
-          
-          
-
-        
-        
-
-        
-        
-          <li class="">
-            <a href="/page/5/">
-              5
-            </a>
-          </li>
-        
-
-      
-
-        
-
-        
-        
-
-          
-          
-          
-
-            
-            
-              
-            
-
-          
-          
-          
-
-        
-        
-
-        
-        
-          <li class="active">
-            <a href="/page/6/">
-              6
-            </a>
-          </li>
-        
-
-      
-
-        
-
-        
-        
-
-          
-          
-          
-
-            
-            
-              
-            
-
-          
-          
-          
-
-        
-        
-
-        
-        
-          <li class="">
-            <a href="/page/7/">
-              7
-            </a>
-          </li>
-        
-
-      
-
-        
-
-        
-        
-
-          
-          
-          
-
-            
-            
-              
-            
-
-          
-          
-          
-
-        
-        
-
-        
-        
-          <li class="">
-            <a href="/page/8/">
-              8
-            </a>
-          </li>
-        
-
-      
-
-        
-
-        
-        
-
-          
-          
-          
-
-            
-            
-              
-            
-
-          
-          
-          
-
-        
-        
-
-        
-        
-          <li class="">
-            <a href="/page/9/">
-              9
-            </a>
-          </li>
-        
-
-      
-
-        
-
-        
-        
-
-          
-          
-          
-
-            
-            
-              
-            
-
-          
-          
-          
-
-        
-        
-
-        
-        
-          <li class="">
-            <a href="/page/10/">
-              10
-            </a>
-          </li>
-        
-
-      
-
-        
-
-        
-        
-
-          
-          
-          
-
-            
-            
-              
-            
-
-          
-          
-          
-
-        
-        
-
-        
-        
-          <li class="">
-            <a href="/page/11/">
-              11
-            </a>
-          </li>
-        
-
-      
-
-        
-
-        
-        
-
-          
-          
-          
-
-            
-            
-              
-            
-
-          
-          
-          
-
-        
-        
-
-        
-        
-          <li class="">
-            <a href="/page/12/">
-              12
-            </a>
-          </li>
-        
-
-      
-
-        
-
-        
-        
-
-          
-          
-          
-
-            
-            
-              
-            
-
-          
-          
-          
-
-        
-        
-
-        
-        
-          <li class="">
-            <a href="/page/13/">
-              13
-            </a>
-          </li>
-        
-
-      
-
-        
-
-        
-        
-
-          
-          
-          
-
-            
-            
-
-          
-          
-          
-
-        
-        
-
-        
-        
-
-      
-
-        
-
-        
-        
-
-          
-          
-          
-
-            
-            
-
-          
-          
-          
-
-        
-        
-
-        
-        
-
-      
-
-      
-      
-      <li><a href="/page/7/">»</a></li>
-      
-
-      
-      
-      <li><a href="/page/15/">»»</a></li>
-      
-
-      </ul>
-    </nav>
+  
   
 
 
