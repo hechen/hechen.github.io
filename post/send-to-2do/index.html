@@ -25,7 +25,7 @@
 <meta name="author" content="chen" />
   <meta name="description" content="使用鼠标拖拽下面这个链接到你的 Favorites Bar 上，默认点击行为实际上是模拟在当前页面进行导航，而目标地址由 avascript:window.location 来指定，目标地址实际上就是各个 App 的 URL Sche" />
 
-  <meta name="keywords" content="Chen, iOS, Swift, Productivity" />
+  <meta name="keywords" content="Chen, iOS, Swift, Productivity, macOS, Cocoa" />
 
 
 
@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2018-11-26T14:59:50&#43;00:00" />
 <meta itemprop="dateModified" content="2018-11-26T14:59:50&#43;00:00" />
-<meta itemprop="wordCount" content="304">
+<meta itemprop="wordCount" content="322">
 
 
 
@@ -336,9 +336,8 @@
     <div class="post-content">
       
 
-<p>使用鼠标拖拽下面这个链接到你的 Favorites Bar 上，默认点击行为实际上是模拟在当前页面进行导航，而目标地址由 <code>avascript:window.location</code> 来指定，目标地址实际上就是各个 App 的 URL Scheme。</p>
-
-<p>需要参考各个主流 App 的 URL Scheme 在 <a href="https://app-talk.com/">AppTalk</a> 中查阅。</p>
+<p>使用鼠标拖拽下面这个链接到你的 Favorites Bar 上，默认点击行为实际上是模拟在当前页面进行导航，而目标地址由 <code>avascript:window.location</code> 来指定，目标地址实际上就是各个 App 的 URL Scheme。
+你可以在 <a href="https://app-talk.com/">AppTalk</a>查看各个主流 App 的 URL Scheme。</p>
 
 <h2 id="2do">2Do</h2>
 
@@ -371,11 +370,11 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C" data-lang="C"><span class="c1">/// add a todo due when tommorow
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="c1">/// add a todo due when tomorrow
 </span><span class="c1"></span><span class="nl">things</span><span class="p">:</span><span class="o">///</span><span class="n">add</span><span class="o">?</span><span class="n">title</span><span class="o">=</span><span class="n">iamtitle</span><span class="o">&amp;</span><span class="n">notes</span><span class="o">=</span><span class="n">iamnotes</span><span class="o">&amp;</span><span class="n">when</span><span class="o">=</span><span class="n">tomorrow</span></code></pre></td></tr></table>
 </div>
 </div>
-<p><a href="things:///add?title=iamtitle&amp;notes=iamnotes&amp;when=tomorrow">Try</a></p>
+<p><a href="things:///add?title=iamtitle&amp;notes=iamnotes&amp;when=tomorrow">Add a todo to Things</a></p>
 
 <p>比如你可以把链接内容改为支持 Send To Things：</p>
 <div class="highlight"><div class="chroma">
@@ -399,6 +398,8 @@
 </code></pre></td></tr></table>
 </div>
 </div>
+<p><a href="things:///add?title=iamtitle&amp;notes=iamnotes&amp;when=tomorrow">Add a todo to OmniFocus</a></p>
+
 <p>或者直接去 <a href="http://people.omnigroup.com/kc/OmniFocus/SendToOmniFocusBookmarklet.html">OmniFocus 页面</a> 用相同方式把起已经设置好正确 Value 的链接拖到上方工具条上即可。</p>
 
 <p>如果你找不到 Favorites Bar，点击 Safari 菜单栏上的 View 菜单就能看到（中文系统叫视图）</p>
