@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2015-07-30T14:30:00&#43;00:00" />
 <meta itemprop="dateModified" content="2015-07-30T14:30:00&#43;00:00" />
-<meta itemprop="wordCount" content="4717">
+<meta itemprop="wordCount" content="4718">
 
 
 
@@ -770,8 +770,7 @@
 </div>
 </div>
 <ul>
-<li>紧接着执行命令将Push.p12文件转换成pem格式文件，之后在本目录下生成PushKey.pem文件，其中会提示你先输入之前生成Push.p12文件的时候的密码，然后需要为新生成的证书文件添加密码，这个密码是要提供给服务端使用的；</li>
-</ul>
+<li><p>紧接着执行命令将Push.p12文件转换成pem格式文件，之后在本目录下生成PushKey.pem文件，其中会提示你先输入之前生成Push.p12文件的时候的密码，然后需要为新生成的证书文件添加密码，这个密码是要提供给服务端使用的；</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -779,13 +778,18 @@
 <td class="lntd">
 <pre class="chroma">openssl pkcs12 -nocerts -out Pushkey.pem -in Push.p12 </pre></td></tr></table>
 </div>
+</div></li>
+
+<li><p>然后将这两个pem文件合成成一个pem文件，Push.pem</p></li>
+
+<li><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">cat PushCert.pem PushKey.pem &gt; Push.pem</pre></td></tr></table>
 </div>
-<ul>
-<li>然后将这两个pem文件合成成一个pem文件，Push.pem</li>
-<li>
-<code>
-cat PushCert.pem PushKey.pem &gt; Push.pem
-</code></li>
+</div></li>
 </ul>
 
 <p>整个过程如下图所示：

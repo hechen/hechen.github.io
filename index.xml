@@ -1452,7 +1452,7 @@ killall Finder&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
       
         <description>
 
-&lt;p&gt;在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。尤其是针对一些需要便捷性要求比较高的 Application， menu bar 的功能必不可少。本文主要简单介绍关键的几个操作，做个记录。&lt;/p&gt;
+&lt;p&gt;Menu Only 算是 Cocoa App 中最常见的一项，它使得 App 不占用你的 Dock 栏，在多 workspace 的时候也不影响正常使用，随时都可以在屏幕的菜单栏中执行快捷操作。尤其是针对一些需要便捷性要求比较高的应用来讲，Menu bar 的功能必不可少。本文就简单介绍一下关于 Menu App 中关键的几个开发步骤。&lt;/p&gt;
 
 &lt;!-- more --&gt;
 
@@ -5716,8 +5716,8 @@ window.rootViewController = UINavigationController(
 
 &lt;ol&gt;
 &lt;li&gt;很容易忘掉写，尤其是编译器又没检查出来潜在的引用循环的时候；&lt;/li&gt;
-&lt;li&gt;当你希望从 weak self 中强持有 self 的时候还需要写一堆代码（weak strong dance），例如下面这段代码所示：&lt;/li&gt;
-&lt;/ol&gt;
+
+&lt;li&gt;&lt;p&gt;当你希望从 weak self 中强持有 self 的时候还需要写一堆代码（weak strong dance），例如下面这段代码所示：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -5732,16 +5732,18 @@ window.rootViewController = UINavigationController(
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;dataLoader.loadData(from: url) { [weak self] data in
-    guard let strongSelf = self else {
-        return
-    }
+guard let strongSelf = self else {
+    return
+}
 
-    let model = try strongSelf.parser.parse(data, using: strongSelf.schema)
-    strongSelf.titleLabel.text = model.title
-    strongSelf.textLabel.text = model.text
+let model = try strongSelf.parser.parse(data, using: strongSelf.schema)
+strongSelf.titleLabel.text = model.title
+strongSelf.textLabel.text = model.text
 }&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;p&gt;这里其实有一个可选的解决方案，也就是不要捕获 self，而去捕获那些闭包中所需要的对象即可。例如上面例子中的 labels 和 schema 等，我们可以直接捕获它们而不至于引发引用循环（因为其也并不持有 closure 本身），下面是个解决方案，通过使用 context 的 tuple 来解决。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -6340,9 +6342,10 @@ dataLoader.loadData(from: url) { data in
     &lt;span class=&#34;nt&#34;&gt;&amp;#34;image&amp;#34;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;https://pic1.zhimg.com/v2-0314056e4f13141b6ca2277078ec067c.jpg&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;支持音频&lt;/p&gt;
+&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;支持音频&lt;/li&gt;
+&lt;/ol&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-JSON&#34; data-lang=&#34;JSON&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -6426,9 +6429,10 @@ dataLoader.loadData(from: url) { data in
             &lt;span class=&#34;n&#34;&gt;UNUserNotificationCenter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;current&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;().&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;removePendingNotificationRequests&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;withIdentifiers&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;identifier&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;
         &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;更新未展示的通知&lt;/p&gt;
+&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;更新未展示的通知&lt;/li&gt;
+&lt;/ol&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -6542,9 +6546,10 @@ dataLoader.loadData(from: url) { data in
             &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
         &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;更新已经展示的通知&lt;/p&gt;
+&lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;更新已经展示的通知&lt;/li&gt;
+&lt;/ol&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -6979,8 +6984,7 @@ override func preferredStatusBarStyle() -&amp;gt; UIStatusBarStyle {
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;为我们的控制点视图声明变量；&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;为我们的控制点视图声明变量；&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -7000,10 +7004,9 @@ private let r1ControlPointView = UIView()
 private let r2ControlPointView = UIView()  
 private let r3ControlPointView = UIView()  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;将上面定义的控制点视图设置为3*3的size，然后背景色设置为红色（这里我们只是暂时希望能够更方便演示，最终完成的时候会让它们不可见的），然后将这些控制点添加到View子视图中。将下面这些代码拷贝到loadView方法的尾部；&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;将上面定义的控制点视图设置为3*3的size，然后背景色设置为红色（这里我们只是暂时希望能够更方便演示，最终完成的时候会让它们不可见的），然后将这些控制点添加到View子视图中。将下面这些代码拷贝到loadView方法的尾部；&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -7055,10 +7058,9 @@ view.addSubview(r1ControlPointView)
 view.addSubview(r2ControlPointView)  
 view.addSubview(r3ControlPointView)  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;创建一个UIView的扩展，将其放到ViewController的声明上方；&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;创建一个UIView的扩展，将其放到ViewController的声明上方；&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -7072,21 +7074,20 @@ view.addSubview(r3ControlPointView)  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tabl
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;extension UIView {  
-    func dg_center(usePresentationLayerIfPossible: Bool) -&amp;gt; CGPoint {
-        if usePresentationLayerIfPossible, let presentationLayer = layer.presentationLayer() as? CALayer {
-            return presentationLayer.position
-        }
-        return center
+func dg_center(usePresentationLayerIfPossible: Bool) -&amp;gt; CGPoint {
+    if usePresentationLayerIfPossible, let presentationLayer = layer.presentationLayer() as? CALayer {
+        return presentationLayer.position
     }
+    return center
+}
 }&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;ul&gt;
+&lt;/div&gt;&lt;/li&gt;
+
 &lt;li&gt;&lt;p&gt;当UIView从一帧到另外一帧进行动画的时候，你会试图去取得UIView.frame，而UIView.center会提供给你动画最终的值而不是每一帧的过渡值。因此我们需要定义一个扩展方法提供给我们UIView.layer.presentationLayer的实时位置；
 &amp;gt;  presentationLayer的详细信息可以在&lt;a href=&#34;https://developer.apple.com/library/ios/documentation/GraphicsImaging/Reference/CALayer_class/#//apple_ref/occ/instm/CALayer/presentationLayer&#34;&gt;官方文档&lt;/a&gt; 中查看&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;声明一个currentPath()方法；&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;声明一个currentPath()方法；&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -7108,28 +7109,29 @@ view.addSubview(r3ControlPointView)  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tabl
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;private func currentPath() -&amp;gt; CGPath {  
-    let width = view.bounds.width
+let width = view.bounds.width
 
-    let bezierPath = UIBezierPath()
+let bezierPath = UIBezierPath()
 
-    bezierPath.moveToPoint(CGPoint(x: 0.0, y: 0.0))
-    bezierPath.addLineToPoint(CGPoint(x: 0.0, y: l3ControlPointView.dg_center(false).y))
-    bezierPath.addCurveToPoint(l1ControlPointView.dg_center(false), controlPoint1: l3ControlPointView.dg_center(false), controlPoint2: l2ControlPointView.dg_center(false))
-    bezierPath.addCurveToPoint(r1ControlPointView.dg_center(false), controlPoint1: cControlPointView.dg_center(false), controlPoint2: r1ControlPointView.dg_center(false))
-    bezierPath.addCurveToPoint(r3ControlPointView.dg_center(false), controlPoint1: r1ControlPointView.dg_center(false), controlPoint2: r2ControlPointView.dg_center(false))
-    bezierPath.addLineToPoint(CGPoint(x: width, y: 0.0))
+bezierPath.moveToPoint(CGPoint(x: 0.0, y: 0.0))
+bezierPath.addLineToPoint(CGPoint(x: 0.0, y: l3ControlPointView.dg_center(false).y))
+bezierPath.addCurveToPoint(l1ControlPointView.dg_center(false), controlPoint1: l3ControlPointView.dg_center(false), controlPoint2: l2ControlPointView.dg_center(false))
+bezierPath.addCurveToPoint(r1ControlPointView.dg_center(false), controlPoint1: cControlPointView.dg_center(false), controlPoint2: r1ControlPointView.dg_center(false))
+bezierPath.addCurveToPoint(r3ControlPointView.dg_center(false), controlPoint1: r1ControlPointView.dg_center(false), controlPoint2: r2ControlPointView.dg_center(false))
+bezierPath.addLineToPoint(CGPoint(x: width, y: 0.0))
 
-    bezierPath.closePath()
+bezierPath.closePath()
 
-    return bezierPath.CGPath
+return bezierPath.CGPath
 }&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;这个方法返回shapeLayer当前的CGPath。它用到了我们前面所定义和讨论的控制点。&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;声明updateShapeLayer方法；&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;声明updateShapeLayer方法；&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -7138,10 +7140,12 @@ view.addSubview(r3ControlPointView)  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tabl
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;func updateShapeLayer() {  
-    shapeLayer.path = currentPath()
+shapeLayer.path = currentPath()
 }&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;This function will be called when we need shapeLayer to be updated. It is not a private func because we are going to use Selector() for CADisplayLink.&lt;/p&gt;
 
 &lt;p&gt;这个方法会在shapeLayer需要更新的时候调用。
@@ -7203,8 +7207,7 @@ view.addSubview(r3ControlPointView)  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tabl
 的效果时，我就将这些值替换到程序中即可。&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;更新我们的panGestureDidMove方法，这样当我们手指移动的时候所有的控制点也能移动。用以下的代码替换panGestureDidMove方法中的内容；&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;更新我们的panGestureDidMove方法，这样当我们手指移动的时候所有的控制点也能移动。用以下的代码替换panGestureDidMove方法中的内容；&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -7225,29 +7228,30 @@ view.addSubview(r3ControlPointView)  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tabl
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;func panGestureDidMove(gesture: UIPanGestureRecognizer) {  
-    if gesture.state == .Ended || gesture.state == .Failed || gesture.state == .Cancelled {
+if gesture.state == .Ended || gesture.state == .Failed || gesture.state == .Cancelled {
 
-    } else {
-        let additionalHeight = max(gesture.translationInView(view).y, 0)
+} else {
+    let additionalHeight = max(gesture.translationInView(view).y, 0)
 
-        let waveHeight = min(additionalHeight * 0.6, maxWaveHeight)
-        let baseHeight = minimalHeight + additionalHeight - waveHeight
+    let waveHeight = min(additionalHeight * 0.6, maxWaveHeight)
+    let baseHeight = minimalHeight + additionalHeight - waveHeight
 
-        let locationX = gesture.locationInView(gesture.view).x
+    let locationX = gesture.locationInView(gesture.view).x
 
-        layoutControlPoints(baseHeight: baseHeight, waveHeight: waveHeight, locationX: locationX)
-        updateShapeLayer()
-    }
+    layoutControlPoints(baseHeight: baseHeight, waveHeight: waveHeight, locationX: locationX)
+    updateShapeLayer()
+}
 }&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;我们所做的就是计算wave高度，基础高度以及手指的位置，然后调用layoutControlPoints去布局各个控制点，然后调用updateShapeLayer来更新我们的shapeLayer的path。&lt;/p&gt;
 
 &lt;p&gt;What we do is calculate wave height, base height, location of the finger and call our function: layoutControlPoints to layout control points and updateShapeLayer to update our shape layer path.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;在loadView方法尾部添加两行代码，使得我们在打开app的时候正确的显示；&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;在loadView方法尾部添加两行代码，使得我们在打开app的时候正确的显示；&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -7257,14 +7261,18 @@ view.addSubview(r3ControlPointView)  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tabl
 &lt;pre class=&#34;chroma&#34;&gt;layoutControlPoints(baseHeight: minimalHeight, waveHeight: 0.0, locationX: view.bounds.width / 2.0)  
 updateShapeLayer()  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;修改&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;shapeLayer.backgroundColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0).CGColor  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;修改
-&lt;code&gt;
-shapeLayer.backgroundColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0).CGColor  
-&lt;/code&gt;
-为&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/div&gt;
+&lt;p&gt;为&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -7272,7 +7280,9 @@ shapeLayer.backgroundColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/25
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;shapeLayer.fillColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0).CGColor  &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;到这里，效果应该如下所示：&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/DGElasticPullToRefreshBuilds3.gif&#34; alt=&#34;Build3&#34; /&gt;&lt;/p&gt;
@@ -7281,8 +7291,7 @@ shapeLayer.backgroundColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/25
 还是让我们一步一步来吧：&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;定义displayLink变量；&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;定义displayLink变量；&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -7290,7 +7299,9 @@ shapeLayer.backgroundColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/25
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;private var displayLink: CADisplayLink!&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;在loadView方法的末尾进行初始化：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -7307,8 +7318,7 @@ shapeLayer.backgroundColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/25
 &lt;p&gt;前面我们也提到过，我们的CADisplayLink对象会在每一帧都调用指定的方法（这里就是指定的updateShapeLayer），因此我们就可以在UIView的动画期间实时的更新shapeLayer的path了。&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;定义animating变量；&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;定义animating变量；&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -7320,13 +7330,15 @@ shapeLayer.backgroundColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/25
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;private var animating = false {  
-    didSet {
-        view.userInteractionEnabled = !animating
-        displayLink.paused = !animating
-    }
+didSet {
+    view.userInteractionEnabled = !animating
+    displayLink.paused = !animating
+}
 }&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;这个可以控制用户交互是否开启以及displayLink的停止和播放（动画播放期间你肯定不希望用户的交互直接就把动画效果给破坏了。）&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -7369,8 +7381,7 @@ shapeLayer.backgroundColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/25
 &lt;p&gt;更新currentPath方法，将dg_center方法参数换为animating参数仅当动画需要的时候才提供layer的准确过渡值。&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;最后一步就是需要更新panGestureDidMove方法中的if判断语句；&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;最后一步就是需要更新panGestureDidMove方法中的if判断语句；&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -7402,33 +7413,35 @@ shapeLayer.backgroundColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/25
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;if gesture.state == .Ended || gesture.state == .Failed || gesture.state == .Cancelled {  
-    let centerY = minimalHeight
+let centerY = minimalHeight
 
-    animating = true
-    UIView.animateWithDuration(0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [], animations: { () -&amp;gt; Void in
-        self.l3ControlPointView.center.y = centerY
-        self.l2ControlPointView.center.y = centerY
-        self.l1ControlPointView.center.y = centerY
-        self.cControlPointView.center.y = centerY
-        self.r1ControlPointView.center.y = centerY
-        self.r2ControlPointView.center.y = centerY
-        self.r3ControlPointView.center.y = centerY
-        }, completion: { _ in
-            self.animating = false
-    })
+animating = true
+UIView.animateWithDuration(0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [], animations: { () -&amp;gt; Void in
+    self.l3ControlPointView.center.y = centerY
+    self.l2ControlPointView.center.y = centerY
+    self.l1ControlPointView.center.y = centerY
+    self.cControlPointView.center.y = centerY
+    self.r1ControlPointView.center.y = centerY
+    self.r2ControlPointView.center.y = centerY
+    self.r3ControlPointView.center.y = centerY
+    }, completion: { _ in
+        self.animating = false
+})
 } else {
-    let additionalHeight = max(gesture.translationInView(view).y, 0)
+let additionalHeight = max(gesture.translationInView(view).y, 0)
 
-    let waveHeight = min(additionalHeight * 0.6, maxWaveHeight)
-    let baseHeight = minimalHeight + additionalHeight - waveHeight
+let waveHeight = min(additionalHeight * 0.6, maxWaveHeight)
+let baseHeight = minimalHeight + additionalHeight - waveHeight
 
-    let locationX = gesture.locationInView(gesture.view).x
+let locationX = gesture.locationInView(gesture.view).x
 
-    layoutControlPoints(baseHeight: baseHeight, waveHeight: waveHeight, locationX: locationX)
-    updateShapeLayer()
+layoutControlPoints(baseHeight: baseHeight, waveHeight: waveHeight, locationX: locationX)
+updateShapeLayer()
 }&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;我们已经为UIView添加了Sprint动画，让我们的控制点能够通过很优雅的回弹效果回到它们的位置。你可以修改以上的变量值来使你的动画看起来更优美，更好看。&lt;/p&gt;
 
 &lt;p&gt;让我们在设备上运行下看看能够让你震惊的效果：
@@ -10271,8 +10284,7 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;紧接着执行命令将Push.p12文件转换成pem格式文件，之后在本目录下生成PushKey.pem文件，其中会提示你先输入之前生成Push.p12文件的时候的密码，然后需要为新生成的证书文件添加密码，这个密码是要提供给服务端使用的；&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;紧接着执行命令将Push.p12文件转换成pem格式文件，之后在本目录下生成PushKey.pem文件，其中会提示你先输入之前生成Push.p12文件的时候的密码，然后需要为新生成的证书文件添加密码，这个密码是要提供给服务端使用的；&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -10280,13 +10292,18 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;openssl pkcs12 -nocerts -out Pushkey.pem -in Push.p12 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;然后将这两个pem文件合成成一个pem文件，Push.pem&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;cat PushCert.pem PushKey.pem &amp;gt; Push.pem&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;然后将这两个pem文件合成成一个pem文件，Push.pem&lt;/li&gt;
-&lt;li&gt;
-&lt;code&gt;
-cat PushCert.pem PushKey.pem &amp;gt; Push.pem
-&lt;/code&gt;&lt;/li&gt;
+&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;整个过程如下图所示：

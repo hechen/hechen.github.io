@@ -446,8 +446,8 @@
 
 <ol>
 <li>很容易忘掉写，尤其是编译器又没检查出来潜在的引用循环的时候；</li>
-<li>当你希望从 weak self 中强持有 self 的时候还需要写一堆代码（weak strong dance），例如下面这段代码所示：</li>
-</ol>
+
+<li><p>当你希望从 weak self 中强持有 self 的时候还需要写一堆代码（weak strong dance），例如下面这段代码所示：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><span class="lnt">1
@@ -462,16 +462,18 @@
 </span></pre></td>
 <td class="lntd">
 <pre class="chroma">dataLoader.loadData(from: url) { [weak self] data in
-    guard let strongSelf = self else {
-        return
-    }
+guard let strongSelf = self else {
+    return
+}
 
-    let model = try strongSelf.parser.parse(data, using: strongSelf.schema)
-    strongSelf.titleLabel.text = model.title
-    strongSelf.textLabel.text = model.text
+let model = try strongSelf.parser.parse(data, using: strongSelf.schema)
+strongSelf.titleLabel.text = model.title
+strongSelf.textLabel.text = model.text
 }</pre></td></tr></table>
 </div>
-</div>
+</div></li>
+</ol>
+
 <p>这里其实有一个可选的解决方案，也就是不要捕获 self，而去捕获那些闭包中所需要的对象即可。例如上面例子中的 labels 和 schema 等，我们可以直接捕获它们而不至于引发引用循环（因为其也并不持有 closure 本身），下面是个解决方案，通过使用 context 的 tuple 来解决。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
