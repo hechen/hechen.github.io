@@ -6,8 +6,7 @@ categories: ["macOS"]
 tags: ["Dock","Cocoa", "Dockless", "Menu", "Agent"]
 ---
 
-
-在 Mac 平台你判断一个工具好用不好用，吸引不吸引你，其中 Menu Only 也是吸引你的一点，不需要常驻 Dock 栏，在多 workspace 的时候也不影响正常使用。尤其是针对一些需要便捷性要求比较高的 Application， menu bar 的功能必不可少。本文主要简单介绍关键的几个操作，做个记录。
+Menu Only 算是 Cocoa App 中最常见的一项，它使得 App 不占用你的 Dock 栏，在多 workspace 的时候也不影响正常使用，随时都可以在屏幕的菜单栏中执行快捷操作。尤其是针对一些需要便捷性要求比较高的应用来讲，Menu bar 的功能必不可少。本文就简单介绍一下关于 Menu App 中关键的几个开发步骤。
 
 <!-- more -->
 
