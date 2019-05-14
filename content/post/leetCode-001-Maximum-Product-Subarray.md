@@ -1,6 +1,7 @@
 ---
-title: "[001] Maximum Product Subarray"
+title: "152. Maximum Product Subarray"
 date: 2015-04-29 11:30:00
+lastmod: 2019-05-15T09:00:00+08:00
 categories: ["LeetCode"]
 tags: ["Array"]
 ---
@@ -14,7 +15,7 @@ tags: ["Array"]
 
 ### 题意：
 
-题目中给出一个（至少包含一个元素）整形数组，求一个子数组（元素连续），使得其元素之积最大。最直接了当的方法，当然是暴力穷举，但是其O(n^2)是无法通过LeetCode的OJ的，而且从自己平时接触到得面试题而言，直截了当的暴力解法往往不是真正的解决思路。
+题目中给出一个（至少包含一个元素）整形数组，求一个子数组（元素连续），使得其元素之积最大。最直接了当的方法，当然是暴力穷举，但是其O(n^2)是无法通过 OJ 评判的。
 
 C语言实现如下：
 
@@ -38,9 +39,6 @@ C语言实现如下：
 	}
 ```
 
-leetCode Oj系统评判结果如下图所示：
-
-![leetCode C](http://7xilk1.com1.z0.glb.clouddn.com/leetCode001C.png)
 
 C++实现如下：
 
@@ -67,11 +65,6 @@ C++实现如下：
 	};
 ```
 
-leetCode的OJ系统评判结果如下图所示：
-
-![leetCode C++](http://7xilk1.com1.z0.glb.clouddn.com/leetCode001C++.png)
-
-
 Java实现如下：
 
 ``` Java
@@ -96,8 +89,4 @@ Java实现如下：
 	}
     
 ```
-
-leetCode的OJ系统评判结果如下所示：
-
-![leetCode Java](http://7xilk1.com1.z0.glb.clouddn.com/leetCode001Java.png)
 
