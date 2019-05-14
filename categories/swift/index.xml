@@ -29,5 +29,14 @@
       <description>我们知道在 swift 中，闭包（closure）是一等公民，因此可以被当作参数传递，在学习 swift 的过程中经常会看到某些关键字修饰该闭包，@autoclos</description>
     </item>
     
+    <item>
+      <title>一道 Swift Quiz</title>
+      <link>https://hechen.xyz/post/a-swift-quiz/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hechen.xyz/post/a-swift-quiz/</guid>
+      <description>今天在 Twitter 上看到一道题目 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 // Swift Quiz class View {} class A: View {} class B: View {} func add(_ v: View) { print(type(of: v)) } func add(_ v: A) { print(type(of: v)) } func add(_ v: B) { print(type(of: v)) } func build() -&amp;gt;</description>
+    </item>
+    
   </channel>
 </rss>
