@@ -820,4 +820,10 @@
     <priority>0.5</priority>
   </url>
   
+  <url>
+    <loc>https://hechen.xyz/post/a-swift-quiz/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
 </urlset>

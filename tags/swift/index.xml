@@ -110,5 +110,14 @@
       <description>Hey！ DGElasticPullToRefresh展示如何实现一个弹性效果。效果如下图所示： 开发环境： Xcode 7 Swift 2.0 要求： 开发者至少对UIBez</description>
     </item>
     
+    <item>
+      <title>一道 Swift Quiz</title>
+      <link>https://hechen.xyz/post/a-swift-quiz/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hechen.xyz/post/a-swift-quiz/</guid>
+      <description>今天在 Twitter 上看到一道题目 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 // Swift Quiz class View {} class A: View {} class B: View {} func add(_ v: View) { print(type(of: v)) } func add(_ v: A) { print(type(of: v)) } func add(_ v: B) { print(type(of: v)) } func build() -&amp;gt;</description>
+    </item>
+    
   </channel>
 </rss>
