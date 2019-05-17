@@ -10,19 +10,56 @@
   
   <url>
     <loc>https://hechen.xyz/categories/</loc>
-    <lastmod>2019-04-27T23:11:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/framework/</loc>
-    <lastmod>2019-04-27T03:01:30+08:00</lastmod>
+    <lastmod>2019-05-17T12:33:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/</loc>
-    <lastmod>2019-04-27T23:11:00+00:00</lastmod>
+    <lastmod>2019-05-17T12:33:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/metatype/</loc>
+    <lastmod>2019-05-17T12:33:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/post/</loc>
+    <lastmod>2019-05-17T12:33:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/categories/swift/</loc>
+    <lastmod>2019-05-17T12:33:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/swift/</loc>
+    <lastmod>2019-05-17T12:33:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/</loc>
+    <lastmod>2019-05-17T12:33:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/post/a-swift-quiz/</loc>
+    <lastmod>2019-05-17T12:33:54+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/framework/</loc>
+    <lastmod>2019-04-27T03:01:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -35,18 +72,6 @@
   <url>
     <loc>https://hechen.xyz/tags/mach-o/</loc>
     <lastmod>2019-04-27T03:01:30+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/post/</loc>
-    <lastmod>2019-04-27T23:11:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/</loc>
-    <lastmod>2019-04-27T23:11:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -291,18 +316,6 @@
   <url>
     <loc>https://hechen.xyz/tags/module/</loc>
     <lastmod>2019-01-03T21:19:24+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/categories/swift/</loc>
-    <lastmod>2019-01-03T21:19:24+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/swift/</loc>
-    <lastmod>2019-04-13T22:30:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -673,7 +686,7 @@
   
   <url>
     <loc>https://hechen.xyz/categories/leetcode/</loc>
-    <lastmod>2019-04-27T23:11:00+00:00</lastmod>
+    <lastmod>2019-05-15T09:00:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -744,7 +757,7 @@
   
   <url>
     <loc>https://hechen.xyz/tags/array/</loc>
-    <lastmod>2019-04-27T23:11:00+00:00</lastmod>
+    <lastmod>2019-05-15T09:00:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -795,7 +808,7 @@
   
   <url>
     <loc>https://hechen.xyz/post/leetcode-001-maximum-product-subarray/</loc>
-    <lastmod>2015-04-29T11:30:00+00:00</lastmod>
+    <lastmod>2019-05-15T09:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -816,12 +829,6 @@
   <url>
     <loc>https://hechen.xyz/post/myfirstpost/</loc>
     <lastmod>2015-04-15T16:14:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/post/a-swift-quiz/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

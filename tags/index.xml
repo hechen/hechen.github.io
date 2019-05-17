@@ -6,10 +6,28 @@
     <description>Recent content in Tags on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 26 Apr 2019 00:35:30 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 May 2019 16:01:54 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MetaType</title>
+      <link>https://hechen.xyz/tags/metatype/</link>
+      <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/metatype/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Swift</title>
+      <link>https://hechen.xyz/tags/swift/</link>
+      <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/swift/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Framework</title>
@@ -170,24 +188,6 @@
       <pubDate>Wed, 13 Mar 2019 00:30:49 +0800</pubDate>
       
       <guid>https://hechen.xyz/tags/macos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>印象笔记</title>
-      <link>https://hechen.xyz/tags/%E5%8D%B0%E8%B1%A1%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Wed, 13 Mar 2019 00:30:49 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/%E5%8D%B0%E8%B1%A1%E7%AC%94%E8%AE%B0/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>NSView</title>
-      <link>https://hechen.xyz/tags/nsview/</link>
-      <pubDate>Mon, 11 Mar 2019 15:19:49 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/nsview/</guid>
       <description></description>
     </item>
     
