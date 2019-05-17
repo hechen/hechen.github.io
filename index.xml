@@ -5,7 +5,7 @@
     <description>Recent content on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 26 Apr 2019 00:35:30 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 May 2019 16:01:54 +0800</lastBuildDate>
     
         <atom:link href="https://hechen.xyz/index.xml" rel="self" type="application/rss+xml" />
     
@@ -24,6 +24,83 @@
 &lt;p&gt;偶尔写点 Python，Ruby&lt;/p&gt;
 
 &lt;p&gt;打杂中&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>一道 Swift Quiz</title>
+      <link>https://hechen.xyz/post/a-swift-quiz/</link>
+      <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/a-swift-quiz/</guid>
+      
+        <description>
+
+&lt;p&gt;&lt;a href=&#34;https://twitter.com/krzyzanowskim/status/1127875626579288064?s=12&#34;&gt;Twitter&lt;/a&gt; 上看到一道题目&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;// Swift Quiz
+
+class View {}
+class A: View {}
+class B: View {}
+
+func add(_ v: View) { print(type(of: v)) }
+func add(_ v: A) { print(type(of: v)) }
+func add(_ v: B) { print(type(of: v)) }
+
+func build() -&amp;gt; View { return B() }
+add(build())
+
+// What is the output?
+
+&amp;#34;View&amp;#34;
+&amp;#34;A&amp;#34;
+&amp;#34;B&amp;#34;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这里使用多个 add 函数，实际上是起到了一定的迷惑作用，那针对具备不同静态类型的 add 函数来讲，其重载哪个函数就是依据其传入参数的静态类型而决定，因此在本 Quiz 中 build 函数返回了实例的静态类型即为 View，所以一定是会重载具备 View 类型参数的函数。
+而进入函数体内部，主要就是 &lt;code&gt;type(of:)&lt;/code&gt; 方法的执行结果了，而该方法的官方定义里有如下说明：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;func type&amp;lt;T, Metatype&amp;gt;(of value: T) -&amp;gt; Metatype&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can use the type(of:) function to find the dynamic type of a value, particularly when the dynamic type is different from the static type. The static type of a value is the known, compile-time type of the value. The dynamic type of a value is the value’s actual type at run-time, which can be a subtype of its concrete type.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;可以看到，&lt;code&gt;type(of:)&lt;/code&gt; 可以获取到当前所传值的动态类型，也就是其原始的宿主类型。对于本例来讲，传入到该方法的值实质上是由 B 类型实例化而来，因此其动态类型应该是 B。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/vB7DuWI.png&#34; alt=&#34;Carbonize 2019-05-13 at 3.05.42 P&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://developer.apple.com/documentation/swift/2885064-type&#34;&gt;type(of:)&lt;/a&gt;&lt;/p&gt;
 </description>
       
     </item>
@@ -11505,7 +11582,7 @@ singly linked lists begins.&lt;/p&gt;
     </item>
     
     <item>
-      <title>[001] Maximum Product Subarray</title>
+      <title>152. Maximum Product Subarray</title>
       <link>https://hechen.xyz/post/leetcode-001-maximum-product-subarray/</link>
       <pubDate>Wed, 29 Apr 2015 11:30:00 +0000</pubDate>
       
@@ -11522,7 +11599,7 @@ singly linked lists begins.&lt;/p&gt;
 
 &lt;h3 id=&#34;题意&#34;&gt;题意：&lt;/h3&gt;
 
-&lt;p&gt;题目中给出一个（至少包含一个元素）整形数组，求一个子数组（元素连续），使得其元素之积最大。最直接了当的方法，当然是暴力穷举，但是其O(n^2)是无法通过LeetCode的OJ的，而且从自己平时接触到得面试题而言，直截了当的暴力解法往往不是真正的解决思路。&lt;/p&gt;
+&lt;p&gt;题目中给出一个（至少包含一个元素）整形数组，求一个子数组（元素连续），使得其元素之积最大。最直接了当的方法，当然是暴力穷举，但是其O(n^2)是无法通过 OJ 评判的。&lt;/p&gt;
 
 &lt;p&gt;C语言实现如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -11565,10 +11642,6 @@ singly linked lists begins.&lt;/p&gt;
 	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;leetCode Oj系统评判结果如下图所示：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/leetCode001C.png&#34; alt=&#34;leetCode C&#34; /&gt;&lt;/p&gt;
-
 &lt;p&gt;C++实现如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -11617,10 +11690,6 @@ singly linked lists begins.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;leetCode的OJ系统评判结果如下图所示：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/leetCode001C++.png&#34; alt=&#34;leetCode C++&#34; /&gt;&lt;/p&gt;
-
 &lt;p&gt;Java实现如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -11667,11 +11736,7 @@ singly linked lists begins.&lt;/p&gt;
 	&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
     &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;leetCode的OJ系统评判结果如下所示：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/leetCode001Java.png&#34; alt=&#34;leetCode Java&#34; /&gt;&lt;/p&gt;
-</description>
+&lt;/div&gt;</description>
       
     </item>
     
@@ -12132,111 +12197,6 @@ singly linked lists begins.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;其实写博客一直在我的ToDoList上，不过放的时间有点久。我就是这样一个人，想干的太多，做到的却相当少。因此写这个博客的目的也是想督促自己前行，记录生活点滴的同时也能够让自己对生活有一些感悟。告诉自己，世界很大，千万不要局限在自己的小圈圈里无法自拔！&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>一道 Swift Quiz</title>
-      <link>https://hechen.xyz/post/a-swift-quiz/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/a-swift-quiz/</guid>
-      
-        <description>&lt;p&gt;今天在 &lt;a href=&#34;https://twitter.com/krzyzanowskim/status/1127875626579288064?s=12&#34;&gt;Twitter&lt;/a&gt; 上看到一道题目&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;// Swift Quiz
-
-class View {}
-class A: View {}
-class B: View {}
-
-func add(_ v: View) { print(type(of: v)) }
-func add(_ v: A) { print(type(of: v)) }
-func add(_ v: B) { print(type(of: v)) }
-
-func build() -&amp;gt; View { return B() }
-add(build())
-
-// What is the output?
-
-&amp;#34;View&amp;#34;
-&amp;#34;A&amp;#34;
-&amp;#34;B&amp;#34;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;上来大致看了一下就粗略的选择了 &amp;ldquo;View&amp;rdquo;，其实这个重载查找一定是命中第一个基类所在的 &lt;code&gt;add&lt;/code&gt; 函数的，但是关键就在于 &lt;code&gt;type(of:)&lt;/code&gt; 方法。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/vB7DuWI.png&#34; alt=&#34;Carbonize 2019-05-13 at 3.05.42 P&#34; /&gt;
-在 Apple 关于 &lt;code&gt;type(of:)&lt;/code&gt; 的说明文档中有如下 Code Sample，&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;class Smiley {
-    class var text: String {
-        return &amp;#34;:)&amp;#34;
-    }
-}
-
-class EmojiSmiley : Smiley {
-     override class var text: String {
-        return &amp;#34;😀&amp;#34;
-    }
-}
-
-func printSmileyInfo(_ value: Smiley) {
-    let smileyType = type(of: value)
-    print(&amp;#34;Smile!&amp;#34;, smileyType.text)
-}
-
-let emojiSmiley = EmojiSmiley()
-printSmileyInfo(emojiSmiley)
-// Smile! 😀&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;该方法总能找到准确的实例类型。&lt;/p&gt;
 </description>
       
     </item>

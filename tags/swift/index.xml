@@ -6,10 +6,19 @@
     <description>Recent content in Swift on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 03 Jan 2019 21:19:24 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 14 May 2019 16:01:54 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/tags/swift/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>一道 Swift Quiz</title>
+      <link>https://hechen.xyz/post/a-swift-quiz/</link>
+      <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/a-swift-quiz/</guid>
+      <description>Twitter 上看到一道题目 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 // Swift Quiz class View {} class A: View {} class B: View {} func add(_ v: View) { print(type(of: v)) } func add(_ v: A) { print(type(of: v)) } func add(_ v: B) { print(type(of: v)) } func build() -&amp;gt; View { return</description>
+    </item>
     
     <item>
       <title>在 Swift Framework 中使用 C 文件的过程探索</title>
@@ -108,15 +117,6 @@
       
       <guid>https://hechen.xyz/post/elastic-view-animation-using-uibezierpath/</guid>
       <description>Hey！ DGElasticPullToRefresh展示如何实现一个弹性效果。效果如下图所示： 开发环境： Xcode 7 Swift 2.0 要求： 开发者至少对UIBez</description>
-    </item>
-    
-    <item>
-      <title>一道 Swift Quiz</title>
-      <link>https://hechen.xyz/post/a-swift-quiz/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/a-swift-quiz/</guid>
-      <description>今天在 Twitter 上看到一道题目 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 // Swift Quiz class View {} class A: View {} class B: View {} func add(_ v: View) { print(type(of: v)) } func add(_ v: A) { print(type(of: v)) } func add(_ v: B) { print(type(of: v)) } func build() -&amp;gt;</description>
     </item>
     
   </channel>

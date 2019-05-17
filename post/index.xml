@@ -6,10 +6,19 @@
     <description>Recent content in Posts on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 26 Apr 2019 00:35:30 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 May 2019 16:01:54 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>一道 Swift Quiz</title>
+      <link>https://hechen.xyz/post/a-swift-quiz/</link>
+      <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/a-swift-quiz/</guid>
+      <description>Twitter 上看到一道题目 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 // Swift Quiz class View {} class A: View {} class B: View {} func add(_ v: View) { print(type(of: v)) } func add(_ v: A) { print(type(of: v)) } func add(_ v: B) { print(type(of: v)) } func build() -&amp;gt; View { return</description>
+    </item>
     
     <item>
       <title>关于 Library 和 Framework</title>
@@ -180,15 +189,6 @@
       
       <guid>https://hechen.xyz/post/what-is-llvm/</guid>
       <description>什么是 LLVM？隐藏在 Swift，Rust，Clang 等语言背后的奥秘 了解编译器是如何生成机器原生代码会使得倒腾新语言或者加强已经存在的编程</description>
-    </item>
-    
-    <item>
-      <title>In App Purchase</title>
-      <link>https://hechen.xyz/post/in-app-purchase/</link>
-      <pubDate>Thu, 24 May 2018 10:40:39 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/in-app-purchase/</guid>
-      <description>对于在 App Store 中上架的应⽤来说，应⽤内购买(In-App Purchase，简称 IAP) 应该是一个避不开的话题，尤其是去年微信打赏和 Apple 之间的争执更让 IAP 火</description>
     </item>
     
   </channel>

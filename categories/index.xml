@@ -6,10 +6,19 @@
     <description>Recent content in Categories on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 26 Apr 2019 00:35:30 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 14 May 2019 16:01:54 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Swift</title>
+      <link>https://hechen.xyz/categories/swift/</link>
+      <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/categories/swift/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>macOS</title>
@@ -35,15 +44,6 @@
       <pubDate>Tue, 26 Feb 2019 10:24:38 +0800</pubDate>
       
       <guid>https://hechen.xyz/categories/rxswift/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Swift</title>
-      <link>https://hechen.xyz/categories/swift/</link>
-      <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/categories/swift/</guid>
       <description></description>
     </item>
     
