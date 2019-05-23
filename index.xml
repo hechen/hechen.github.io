@@ -5,7 +5,7 @@
     <description>Recent content on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 14 May 2019 16:01:54 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 17 May 2019 15:01:54 +0800</lastBuildDate>
     
         <atom:link href="https://hechen.xyz/index.xml" rel="self" type="application/rss+xml" />
     
@@ -24,6 +24,79 @@
 &lt;p&gt;偶尔写点 Python，Ruby&lt;/p&gt;
 
 &lt;p&gt;打杂中&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>关于 MetaType</title>
+      <link>https://hechen.xyz/post/metatype/</link>
+      <pubDate>Fri, 17 May 2019 15:01:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/metatype/</guid>
+      
+        <description>
+
+&lt;h2 id=&#34;metatype&#34;&gt;MetaType&lt;/h2&gt;
+
+&lt;p&gt;关于 MetaType，在 Swift 的官方文档中是这样说明的，&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;A metatype type refers to the type of any type, including class types, structure types, enumeration types, and protocol types.
+The metatype of a class, structure, or enumeration type is the name of that type followed by .Type. The metatype of a protocol type—not the concrete type that conforms to the protocol at runtime—is the name of that protocol followed by .Protocol.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;说的很清楚，代表任何类型的类型信息，我们知道在编程语言的世界里，每一个实例自身是一个具体类型的实体化，而对于每个类型的定义就是由 MetaType 决定的，例如常见的 「类的类型」、「结构体的类型」、「枚举的类型」以及「协议的类型」。&lt;/p&gt;
+
+&lt;p&gt;我们可以通过 .self 来获取某个类或者结构体的具体的元类型信息，也就是其类型的值。大家可以这样理解。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/SeHkinN.png&#34; alt=&#34;Carbonize 2019-05-23 at 2.38.48 P&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;protocol&#34;&gt;Protocol&lt;/h3&gt;
+
+&lt;p&gt;对于协议类型获取其元类型信息是通过 .Protocol 来获取的，而非其具体实现该协议的类的元类型信息，比如，如果你使用👇这种写法：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/ACmHog7.png&#34; alt=&#34;Carbonize 2019-05-23 at 2.39.08 P&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;编译器会报错，因为使用 MyProtocol 自身的元类型是 .Protocol 类型。
+&lt;img src=&#34;https://i.imgur.com/ETSopLS.png&#34; alt=&#34;Protocol MetaType Demo&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;你需要使用 .Protocol 来获取协议本身的元类型信息，如下&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/208plpn.png&#34; alt=&#34;Carbonize 2019-05-23 at 2.39.25 P&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;type-of&#34;&gt;type(:of)&lt;/h2&gt;
+
+&lt;p&gt;我们可以通过 &lt;code&gt;type(of:)&lt;/code&gt; 来获取某个某个值的类型信息，而且是动态类型信息。其方法签名如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;func type&amp;lt;T, Metatype&amp;gt;(of value: T) -&amp;gt; Metatype&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;其返回值是某元类型的实例，也即元类型的值。&lt;/p&gt;
+
+&lt;p&gt;想要明白 &lt;code&gt;type(of:)&lt;/code&gt; 这里我们需要明确两个概念： static metatype 和 dynamic metatype。&lt;/p&gt;
+
+&lt;p&gt;static type 指的是编译时期，编译器所决议的某个值的类型，而 dynamic type 指的该值真实的类型信息，我们看下面的例子理解。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/W27kJ9X.png&#34; alt=&#34;Demo&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;在 &lt;code&gt;printMetaType(of:)&lt;/code&gt; 中对于编译器来讲 value 的类型就是 Any，其就是 static type，而真正由 type(of:) 得到的类型信息是 Child，其才是真实的值的类型，也即 dynamic type。&lt;/p&gt;
+
+&lt;p&gt;再以官方的 Sample 为例：
+&lt;img src=&#34;https://i.imgur.com/I2FxwAo.png&#34; alt=&#34;MetaType&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;尽管 someInstance 的声明类型是 SomeBaseClass（也是 Static Type），但是其真实的类型信息是其实例化时的类型 —— SomeSubClass。&lt;/p&gt;
+
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.swift.org/swift-book/ReferenceManual/Types.html&#34;&gt;Types&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://swiftrocks.com/whats-type-and-self-swift-metatypes.html&#34;&gt;What&amp;rsquo;s .self, .Type and .Protocol? Understanding Swift Metatypes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
       
     </item>
@@ -96,7 +169,7 @@ add(build())
 
 &lt;p&gt;可以看到，&lt;code&gt;type(of:)&lt;/code&gt; 可以获取到当前所传值的动态类型，也就是其原始的宿主类型。对于本例来讲，传入到该方法的值实质上是由 B 类型实例化而来，因此其动态类型应该是 B。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/vB7DuWI.png&#34; alt=&#34;Carbonize 2019-05-13 at 3.05.42 P&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/vB7DuWI.png&#34; alt=&#34;Quiz&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
 
