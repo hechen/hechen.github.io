@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2019-05-17T15:01:54&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-17T15:01:54&#43;08:00" />
-<meta itemprop="wordCount" content="662">
+<meta itemprop="wordCount" content="678">
 
 
 
@@ -350,18 +350,19 @@ The metatype of a class, structure, or enumeration type is the name of that type
 
 <p>说的很清楚，代表任何类型的类型信息，我们知道在编程语言的世界里，每一个实例自身是一个具体类型的实体化，而对于每个类型的定义就是由 MetaType 决定的，例如常见的 「类的类型」、「结构体的类型」、「枚举的类型」以及「协议的类型」。</p>
 
-<p>我们可以通过 .self 来获取某个类或者结构体的具体的元类型信息，也就是其类型的值。大家可以这样理解。</p>
+<p>我们可以通过 .self 来获取某个类或者结构体的具体的元类型信息，也就是其类型的值。大家可以按照平时定义一个简单值这样来理解。</p>
 
-<p><img src="https://i.imgur.com/SeHkinN.png" alt="Carbonize 2019-05-23 at 2.38.48 P" /></p>
+<p><img src="https://i.imgur.com/SeHkinN.png" alt="What is the metaType" /></p>
 
 <h3 id="protocol">Protocol</h3>
 
 <p>对于协议类型获取其元类型信息是通过 .Protocol 来获取的，而非其具体实现该协议的类的元类型信息，比如，如果你使用👇这种写法：</p>
 
-<p><img src="https://i.imgur.com/ACmHog7.png" alt="Carbonize 2019-05-23 at 2.39.08 P" /></p>
+<p><img src="https://i.imgur.com/ACmHog7.png" alt="Get a Protocol Type" /></p>
 
-<p>编译器会报错，因为使用 MyProtocol 自身的元类型是 .Protocol 类型。
-<img src="https://i.imgur.com/ETSopLS.png" alt="Protocol MetaType Demo" /></p>
+<p>编译器会报错，因为使用 MyProtocol 自身的元类型是 .Protocol 类型。</p>
+
+<p><img src="https://i.imgur.com/ETSopLS.png" alt="Protocol MetaType Demo" /></p>
 
 <p>你需要使用 .Protocol 来获取协议本身的元类型信息，如下</p>
 
@@ -388,8 +389,9 @@ The metatype of a class, structure, or enumeration type is the name of that type
 
 <p>在 <code>printMetaType(of:)</code> 中对于编译器来讲 value 的类型就是 Any，其就是 static type，而真正由 type(of:) 得到的类型信息是 Child，其才是真实的值的类型，也即 dynamic type。</p>
 
-<p>再以官方的 Sample 为例：
-<img src="https://i.imgur.com/I2FxwAo.png" alt="MetaType" /></p>
+<p>再以如下的官方的 Sample Code 为例：</p>
+
+<p><img src="https://i.imgur.com/I2FxwAo.png" alt="MetaType" /></p>
 
 <p>尽管 someInstance 的声明类型是 SomeBaseClass（也是 Static Type），但是其真实的类型信息是其实例化时的类型 —— SomeSubClass。</p>
 
