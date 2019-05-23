@@ -3,7 +3,7 @@ title: "一道 Swift Quiz"
 date: 2019-05-14T16:01:54+08:00
 lastmod: 2019-05-17T12:33:54+08:00
 categories: ["Swift"]
-tags: ["Swift","MetaType"]
+tags: ["Quiz","MetaType","Overload"]
 ---
 
 这两天在 [Twitter](https://twitter.com/krzyzanowskim/status/1127875626579288064?s=12) 上看到一道题目，主要是考察 overload 和 type(of:) 的知识点，本文仅做记录，关于 metatype 会单独写一篇文章来总结。
@@ -41,7 +41,7 @@ func type<T, Metatype>(of value: T) -> Metatype
 
 可以看到，`type(of:)` 可以获取到当前所传值的动态类型，也就是其原始的宿主类型。对于本例来讲，传入到该方法的值实质上是由 B 类型实例化而来，因此其动态类型应该是 B。
 
-![Carbonize 2019-05-13 at 3.05.42 P](https://i.imgur.com/vB7DuWI.png)
+![Quiz](https://i.imgur.com/vB7DuWI.png)
 
 
 ## References
