@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Quiz on I make stuff</title>
+    <link>https://hechen.xyz/tags/quiz/</link>
+    <description>Recent content in Quiz on I make stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 14 May 2019 16:01:54 +0800</lastBuildDate>
+    
+	<atom:link href="https://hechen.xyz/tags/quiz/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>一道 Swift Quiz</title>
+      <link>https://hechen.xyz/post/a-swift-quiz/</link>
+      <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/a-swift-quiz/</guid>
+      <description>这两天在 Twitter 上看到一道题目，主要是考察 overload 和 type(of:) 的知识点，本文仅做记录，关于 metatype 会单独写一篇文章来总结。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 // Swift Quiz class</description>
+    </item>
+    
+  </channel>
+</rss>

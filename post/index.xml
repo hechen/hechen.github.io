@@ -6,10 +6,19 @@
     <description>Recent content in Posts on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 14 May 2019 16:01:54 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 17 May 2019 15:01:54 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>关于 MetaType</title>
+      <link>https://hechen.xyz/post/metatype/</link>
+      <pubDate>Fri, 17 May 2019 15:01:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/metatype/</guid>
+      <description>MetaType 关于 MetaType，在 Swift 的官方文档中是这样说明的， A metatype type refers to the type of any type, including class types, structure types, enumeration types, and protocol types. The metatype of a class, structure, or enumeration type is the name of that type followed by .Type. The metatype of a protocol</description>
+    </item>
     
     <item>
       <title>一道 Swift Quiz</title>
@@ -180,15 +189,6 @@
       
       <guid>https://hechen.xyz/post/my-favorite-mac-apps/</guid>
       <description>记录一下自己常用的 Mac Apps，每次重装之后到了用的时候发现忘记安装了(不是每次都用 TimeMachine 恢复)，而且强烈简易大家如果某个 App 有对应的独立安装版本的</description>
-    </item>
-    
-    <item>
-      <title>What is LLVM</title>
-      <link>https://hechen.xyz/post/what-is-llvm/</link>
-      <pubDate>Tue, 10 Jul 2018 12:05:58 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/what-is-llvm/</guid>
-      <description>什么是 LLVM？隐藏在 Swift，Rust，Clang 等语言背后的奥秘 了解编译器是如何生成机器原生代码会使得倒腾新语言或者加强已经存在的编程</description>
     </item>
     
   </channel>
