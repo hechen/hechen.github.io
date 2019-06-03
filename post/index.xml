@@ -6,10 +6,22 @@
     <description>Recent content in Posts on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 17 May 2019 15:01:54 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 03 Jun 2019 20:55:54 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How to generate a NSViewController without a Nib?</title>
+      <link>https://hechen.xyz/post/create-nsviewcontroller-without-nib/</link>
+      <pubDate>Mon, 03 Jun 2019 20:55:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/create-nsviewcontroller-without-nib/</guid>
+      <description>In the previous days, I create all the ViewController through creating them in the storyboard or the Nib (for views). Today, when I created a demo project without any Nib file, the ViewController did not show as I expected.
+WTF, Can you believe that? I cannot even create a ViewController now.
+There exist some differences between iOS and macOS.
+iOS In the previous development on the iOS platform, create a ViewController, specifically UIViewController instance, is dead simple as below.</description>
+    </item>
     
     <item>
       <title>关于 MetaType</title>
@@ -180,15 +192,6 @@
       
       <guid>https://hechen.xyz/post/different-flavors-of-dependency-injection-in-swift/</guid>
       <description>原文：Modular Xcode projects 原作者 &amp;amp; Copyright @pepibumur 翻译：@OgreMergO 在之前的几篇博客中，我们已经了解了几种使用依赖注入方式使得某个 swift app 拥有一个更加</description>
-    </item>
-    
-    <item>
-      <title>那些我恢复 Mac 系统之后要安装的 Apps</title>
-      <link>https://hechen.xyz/post/my-favorite-mac-apps/</link>
-      <pubDate>Wed, 11 Jul 2018 12:58:37 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/my-favorite-mac-apps/</guid>
-      <description>记录一下自己常用的 Mac Apps，每次重装之后到了用的时候发现忘记安装了(不是每次都用 TimeMachine 恢复)，而且强烈简易大家如果某个 App 有对应的独立安装版本的</description>
     </item>
     
   </channel>

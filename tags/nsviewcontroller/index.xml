@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NSViewController on I make stuff</title>
+    <link>https://hechen.xyz/tags/nsviewcontroller/</link>
+    <description>Recent content in NSViewController on I make stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 03 Jun 2019 20:55:54 +0800</lastBuildDate>
+    
+	<atom:link href="https://hechen.xyz/tags/nsviewcontroller/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to generate a NSViewController without a Nib?</title>
+      <link>https://hechen.xyz/post/create-nsviewcontroller-without-nib/</link>
+      <pubDate>Mon, 03 Jun 2019 20:55:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/create-nsviewcontroller-without-nib/</guid>
+      <description>In the previous days, I create all the ViewController through creating them in the storyboard or the Nib (for views). Today, when I created a demo project without any Nib file, the ViewController did not show as I expected.
+WTF, Can you believe that? I cannot even create a ViewController now.
+There exist some differences between iOS and macOS.
+iOS In the previous development on the iOS platform, create a ViewController, specifically UIViewController instance, is dead simple as below.</description>
+    </item>
+    
+  </channel>
+</rss>
