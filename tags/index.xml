@@ -6,10 +6,28 @@
     <description>Recent content in Tags on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 17 May 2019 15:01:54 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 03 Jun 2019 20:55:54 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>NSViewController</title>
+      <link>https://hechen.xyz/tags/nsviewcontroller/</link>
+      <pubDate>Mon, 03 Jun 2019 20:55:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/nsviewcontroller/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>UIViewController</title>
+      <link>https://hechen.xyz/tags/uiviewcontroller/</link>
+      <pubDate>Mon, 03 Jun 2019 20:55:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/uiviewcontroller/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>MetaType</title>
@@ -170,24 +188,6 @@
       <pubDate>Mon, 18 Mar 2019 17:29:54 +0800</pubDate>
       
       <guid>https://hechen.xyz/tags/login/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Dockless</title>
-      <link>https://hechen.xyz/tags/dockless/</link>
-      <pubDate>Wed, 13 Mar 2019 17:29:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/dockless/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Evernote</title>
-      <link>https://hechen.xyz/tags/evernote/</link>
-      <pubDate>Wed, 13 Mar 2019 00:30:49 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/evernote/</guid>
       <description></description>
     </item>
     
