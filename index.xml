@@ -37,7 +37,9 @@
       
         <description>
 
-&lt;p&gt;In the previous days, I create all the ViewController through creating them in the storyboard or the Nib (for views). Today, when I created a demo project without any Nib file, the ViewController did not show as I expected.&lt;/p&gt;
+&lt;p&gt;In the previous days, I create all the ViewControllers through the storyboard or the Nib (for views). Today, when I created a demo project without any Nib file, the ViewController did not show as I expected.&lt;/p&gt;
+
+&lt;!-- more --&gt;
 
 &lt;p&gt;WTF, Can you believe that? I cannot even create a ViewController now.&lt;/p&gt;
 
@@ -121,8 +123,10 @@
 
 &lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/37526411/instantiate-uiviewcontroller-programmatically-without-nib&#34;&gt;Instantiate a UIViewController without Nib&lt;/a&gt;
-&lt;a href=&#34;https://medium.com/hyperoslo/how-to-write-an-nsviewcontroller-without-interface-builder-on-macos-760283648f12&#34;&gt;Instantiate a NSViewController without Nib&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://stackoverflow.com/questions/37526411/instantiate-uiviewcontroller-programmatically-without-nib&#34;&gt;Instantiate a UIViewController without Nib&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://medium.com/hyperoslo/how-to-write-an-nsviewcontroller-without-interface-builder-on-macos-760283648f12&#34;&gt;Instantiate a NSViewController without Nib&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
 </description>
       
     </item>
