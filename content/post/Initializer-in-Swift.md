@@ -1,6 +1,7 @@
 ---
 title: Initializer in Swift
 date: 2017-11-15 13:09:27
+lastmod: 2019-05-31T20:30:54+08:00
 draft: true
 categories: ["Swift"]
 tags: ["iOS","Swift","Initializer","Designated Initializer","Convenience Initializers"]
@@ -21,11 +22,10 @@ tags: ["iOS","Swift","Initializer","Designated Initializer","Convenience Initial
 
 首先，祭出这张官方镇宅图：
 
-![initializerDelegation02_2x](media/initializerDelegation02_2x.png)
 
 
 
-
+以最简单的无继承 Class 的
 
 
 在某个类的子类中，初始化方法语句的顺序并不是随意的，我们需要保证在当前子类实例的成员初始化完成后才能调用父类的初始化方法。
