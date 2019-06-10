@@ -6,10 +6,28 @@
     <description>Recent content in Tags on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 03 Jun 2019 20:55:54 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 10 Jun 2019 23:50:54 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Codable</title>
+      <link>https://hechen.xyz/tags/codable/</link>
+      <pubDate>Mon, 10 Jun 2019 23:50:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/codable/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tuple</title>
+      <link>https://hechen.xyz/tags/tuple/</link>
+      <pubDate>Mon, 10 Jun 2019 23:50:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/tuple/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>NSViewController</title>
@@ -170,24 +188,6 @@
       <pubDate>Mon, 18 Mar 2019 17:29:54 +0800</pubDate>
       
       <guid>https://hechen.xyz/tags/cocoa/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Dock</title>
-      <link>https://hechen.xyz/tags/dock/</link>
-      <pubDate>Mon, 18 Mar 2019 17:29:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/dock/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Login</title>
-      <link>https://hechen.xyz/tags/login/</link>
-      <pubDate>Mon, 18 Mar 2019 17:29:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/login/</guid>
       <description></description>
     </item>
     

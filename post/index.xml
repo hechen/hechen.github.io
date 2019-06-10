@@ -6,10 +6,21 @@
     <description>Recent content in Posts on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 03 Jun 2019 20:55:54 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 10 Jun 2019 23:50:54 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Codable &amp;&amp; Tuple</title>
+      <link>https://hechen.xyz/post/tuple-codable/</link>
+      <pubDate>Mon, 10 Jun 2019 23:50:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/tuple-codable/</guid>
+      <description>During my learning of Swift, many interesting things I will find. Codable is one of them.
+Today, I defined a model with a tuple type, then Xcode told me some error. Codes may like as below.
+You may want Xcode automatically complete all the codable stuff. However, life is hard. Codes like these can even be compiled. Xcode will tell you name cannot be synthesize the Person because of the FullName.</description>
+    </item>
     
     <item>
       <title>How to generate a NSViewController without a Nib?</title>
@@ -17,7 +28,7 @@
       <pubDate>Mon, 03 Jun 2019 20:55:54 +0800</pubDate>
       
       <guid>https://hechen.xyz/post/create-nsviewcontroller-without-nib/</guid>
-      <description>In the previous days, I create all the ViewControllers through the storyboard or the Nib (for views). Today, when I created a demo project without any Nib file, the ViewController did not show as I expected.
+      <description>In the last days, I created all the ViewControllers through the storyboard or the Nib (for views). Today, when I created a demo project without any Nib file, the ViewController did not show as I expected.
 WTF, Can you believe that? I cannot even create a ViewController now.
 There exist some differences between iOS and macOS.
 iOS In the previous development on the iOS platform, create a ViewController, specifically UIViewController instance, is dead simple as below.</description>
@@ -183,15 +194,6 @@ iOS In the previous development on the iOS platform, create a ViewController, sp
       
       <guid>https://hechen.xyz/post/avoiding-singletons-in-swift/</guid>
       <description>“我知道单例不好，但是&amp;hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的</description>
-    </item>
-    
-    <item>
-      <title>Swift 中几种不同的依赖注入方式</title>
-      <link>https://hechen.xyz/post/different-flavors-of-dependency-injection-in-swift/</link>
-      <pubDate>Mon, 16 Jul 2018 13:57:24 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/different-flavors-of-dependency-injection-in-swift/</guid>
-      <description>原文：Modular Xcode projects 原作者 &amp;amp; Copyright @pepibumur 翻译：@OgreMergO 在之前的几篇博客中，我们已经了解了几种使用依赖注入方式使得某个 swift app 拥有一个更加</description>
     </item>
     
   </channel>
