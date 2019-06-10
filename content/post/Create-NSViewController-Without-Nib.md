@@ -5,7 +5,7 @@ categories: ["macOS"]
 tags: ["NSViewController","UIViewController"]
 ---
 
-In the previous days, I create all the ViewControllers through the storyboard or the Nib (for views). Today, when I created a demo project without any Nib file, the ViewController did not show as I expected.
+In the last days, I created all the ViewControllers through the storyboard or the Nib (for views). Today, when I created a demo project without any Nib file, the ViewController did not show as I expected.
 
 <!-- more -->
 
