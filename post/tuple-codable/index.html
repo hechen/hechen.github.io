@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>I make stuff</title>
+  <title>Codable &amp;&amp; Tuple - I make stuff</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,10 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="chen" />
-  <meta name="description" content="Chen&#39;s personal blog." />
+  <meta name="description" content="During my learning of Swift, many interesting things I will find. Codable is one of them.
+Today, I defined a model with a tuple type, then Xcode told me some error. Codes may like as below.
+You may want Xcode automatically complete all the codable stuff. However, life is hard. Codes like these can even be compiled. Xcode will tell you name cannot be synthesize the Person because of the FullName." />
+
   <meta name="keywords" content="Chen, iOS, Swift, Productivity, macOS, Cocoa" />
 
 
@@ -34,12 +37,7 @@
 <meta name="generator" content="Hugo 0.56.0-DEV" />
 
 
-<link rel="canonical" href="https://hechen.xyz/" />
-<link href="https://hechen.xyz/index.xml" rel="alternate" type="application/rss+xml" title="I make stuff" />
-
-<link
-  href="https://hechen.xyz/feed.json"
-  rel="alternate" type="application/json" title="I make stuff" />
+<link rel="canonical" href="https://hechen.xyz/post/tuple-codable/" />
 
 
 
@@ -61,19 +59,33 @@
 
 
 
-<meta property="og:title" content="I make stuff" />
-<meta property="og:description" content="Chen&#39;s personal blog." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://hechen.xyz/" />
+<meta property="og:title" content="Codable &amp;&amp; Tuple" />
+<meta property="og:description" content="During my learning of Swift, many interesting things I will find. Codable is one of them.
+Today, I defined a model with a tuple type, then Xcode told me some error. Codes may like as below.
+You may want Xcode automatically complete all the codable stuff. However, life is hard. Codes like these can even be compiled. Xcode will tell you name cannot be synthesize the Person because of the FullName." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hechen.xyz/post/tuple-codable/" />
+<meta property="article:published_time" content="2019-06-10T23:50:54+08:00" />
+<meta property="article:modified_time" content="2019-06-11T00:10:38+08:00" />
 
-<meta property="og:updated_time" content="2019-06-10T23:50:54+08:00" />
+<meta itemprop="name" content="Codable &amp;&amp; Tuple">
+<meta itemprop="description" content="During my learning of Swift, many interesting things I will find. Codable is one of them.
+Today, I defined a model with a tuple type, then Xcode told me some error. Codes may like as below.
+You may want Xcode automatically complete all the codable stuff. However, life is hard. Codes like these can even be compiled. Xcode will tell you name cannot be synthesize the Person because of the FullName.">
 
-<meta itemprop="name" content="I make stuff">
-<meta itemprop="description" content="Chen&#39;s personal blog.">
 
+<meta itemprop="datePublished" content="2019-06-10T23:50:54&#43;08:00" />
+<meta itemprop="dateModified" content="2019-06-11T00:10:38&#43;08:00" />
+<meta itemprop="wordCount" content="453">
+
+
+
+<meta itemprop="keywords" content="Tuple,Codable," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="I make stuff"/>
-<meta name="twitter:description" content="Chen&#39;s personal blog."/>
+<meta name="twitter:title" content="Codable &amp;&amp; Tuple"/>
+<meta name="twitter:description" content="During my learning of Swift, many interesting things I will find. Codable is one of them.
+Today, I defined a model with a tuple type, then Xcode told me some error. Codes may like as below.
+You may want Xcode automatically complete all the codable stuff. However, life is hard. Codes like these can even be compiled. Xcode will tell you name cannot be synthesize the Person because of the FullName."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -217,7 +229,7 @@
   <ul id="menu" class="menu">
     
     
-        <li class="menu-item active">
+        <li class="menu-item">
         
           
           
@@ -282,275 +294,271 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
-          
-  <section id="posts" class="posts">
+          <article class="post bg-white">
     
-    
-    
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
+    <header class="post-header">
+      <h1 class="post-title">Codable &amp;&amp; Tuple</h1>
       
-      <a class="post-link" href="/post/userdefaults-and-keychain/">UserDefaults and Keychain</a>
-    </h1>
+      <div class="post-meta">
+        <time datetime="2019-06-10" class="post-time">
+          2019-06-10
+        </time>
+        <div class="post-category">
+            <a href="https://hechen.xyz/categories/swift/"> Swift </a>
+            
+          </div>
+        
+
+        
+        
+
+        
+        
+          <span id="/post/tuple-codable/" class="leancloud_visitors" data-flag-title="Codable &amp;&amp; Tuple">
+            <span class="post-meta-item-text"> | 阅读 </span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
+      </div>
+    </header>
+
     
-    <div class="post-meta">
-      <time datetime="2018-12-21" class="post-time">
-        2018-12-21
-      </time>
-      <div class="post-category">
-          <a href="https://hechen.xyz/categories/ios/"> iOS </a>
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#references">References</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      
+
+<p>During my learning of Swift, many interesting things I will find. Codable is one of them.</p>
+
+<p>Today, I defined a model with a tuple type, then Xcode told me some error. Codes may like as below.</p>
+
+<p><img src="https://i.imgur.com/c67KrA8.png" alt="Carbonize 2019-06-10 at 11.49.43 P" /></p>
+
+<p>You may want Xcode automatically complete all the codable stuff. However, life is hard. Codes like these can even be compiled. Xcode will tell you name cannot be synthesize the Person because of the FullName.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">error: default.playground:5:8: error: type &#39;Person&#39; does not conform to protocol &#39;Decodable&#39;
+struct Person: Codable {
+       ^
+
+Swift.Decodable:2:12: note: protocol requires initializer &#39;init(from:)&#39; with type &#39;Decodable&#39;
+    public init(from decoder: Decoder) throws
+           ^
+
+default.playground:6:9: note: cannot automatically synthesize &#39;Decodable&#39; because &#39;FullName&#39; (aka &#39;(firstName: String, secondName: String)&#39;) does not conform to &#39;Decodable&#39;
+    var name: FullName
+        ^
+
+error: default.playground:5:8: error: type &#39;Person&#39; does not conform to protocol &#39;Encodable&#39;
+struct Person: Codable {
+       ^
+
+Swift.Encodable:2:17: note: protocol requires function &#39;encode(to:)&#39; with type &#39;Encodable&#39;
+    public func encode(to encoder: Encoder) throws
+                ^
+
+default.playground:6:9: note: cannot automatically synthesize &#39;Encodable&#39; because &#39;FullName&#39; (aka &#39;(firstName: String, secondName: String)&#39;) does not conform to &#39;Encodable&#39;
+    var name: FullName
+        ^</pre></td></tr></table>
+</div>
+</div>
+<p>So, We know that if a struct or class is codable implicitly, it must not contain properties which are not codable. Tuple is one of them.</p>
+
+<p>Some people argue that why tuple cannot be designed as a codable type? Yeah, the hope is that tuples could conform to protocols in future. This is covered in the generics manifesto as &ldquo;Extensions of Structural Types 28&rdquo;.</p>
+
+<blockquote>
+<p>Extensions of structural types
+Currently, only nominal types (classes, structs, enums, protocols) can be extended. One could imagine extending structural types&ndash;particularly tuple types&ndash;to allow them to, e.g., conform to protocols. For example, pulling together variadic generics, parameterized extensions, and conditional conformances, one could express &ldquo;a tuple type is Equatable if all of its element types are Equatable&rdquo;:</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">extension&lt;...Elements : Equatable&gt; (Elements...) : Equatable {   // extending the tuple type &#34;(Elements...)&#34; to be Equatable
+}</pre></td></tr></table>
+</div>
+</div>
+<blockquote>
+<p>There are some natural bounds here: one would need to have actual structural types. One would not be able to extend every type:</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">extension&lt;T&gt; T { // error: neither a structural nor a nominal type
+}</pre></td></tr></table>
+</div>
+</div>
+<blockquote>
+<p>And before you think you&rsquo;re cleverly making it possible to have a conditional conformance that makes every type T that conforms to protocol P also conform to protocol Q, see the section &ldquo;Conditional conformances via protocol extensions&rdquo;, below:</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">extension&lt;T : P&gt; T : Q { // error: neither a structural nor a nominal type
+}</pre></td></tr></table>
+</div>
+</div>
+<p>So for now, you have to synthesize the tuple type by yourself.</p>
+
+<p><img src="https://i.imgur.com/CsXtVWP.png" alt="Carbonize 2019-06-11 at 12.07.44 A" /></p>
+
+<h2 id="references">References</h2>
+
+<ol>
+<li><a href="https://forums.swift.org/t/codable-tuples/14174">Codable Tuples</a></li>
+<li><a href="https://github.com/apple/swift/blob/master/docs/GenericsManifesto.md#extensions-of-structural-types">Swift GenericsManifesto.md</a></li>
+</ol>
+
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">chen</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2019-06-11</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">许可协议</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://hechen.xyz/tags/tuple/">Tuple</a>
+          <a href="https://hechen.xyz/tags/codable/">Codable</a>
           
         </div>
+
       
-      
-      
-        <span id="/post/userdefaults-and-keychain/" class="leancloud_visitors" data-flag-title="UserDefaults and Keychain">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/create-nsviewcontroller-without-nib/">
+            <span class="next-text nav-default">How to generate a NSViewController without a Nib?</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
   
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Apple 提供了几种持久化方案，其中 UserDefaults 和 Keychain 是 App 开发过程中使用频率最高的方案，而且从以往和同事的探讨过程中发现对这两个概念中有一些细节还是理解不太透彻
+  
+
+  
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "hechen/Comments"
+            issue-term="pathname"
+            crossorigin="anonymous"
+            async>
+      </script>
     </div>
-    <div class="read-more">
-      <a href="/post/userdefaults-and-keychain/" class="read-more-link">阅读全文</a>
-    </div>
-    
+  
+
+  
+
+  
+
+  <div class="disqus-comment">
+  <div class="disqus-button" id="load_disqus" onclick="load_disqus()">
+    显示 Disqus 评论
   </div>
-</article>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = "https://hechen.xyz/post/tuple-codable/";
+    };
+    function load_disqus() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
 
-    
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/send-to-2do/">如何制作 Send to 2Do 的 Safari 书签</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2018-11-26" class="post-time">
-        2018-11-26
-      </time>
-      <div class="post-category">
-          <a href="https://hechen.xyz/categories/productivity/"> Productivity </a>
-          
-        </div>
-      
-      
-      
-        <span id="/post/send-to-2do/" class="leancloud_visitors" data-flag-title="如何制作 Send to 2Do 的 Safari 书签">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'stoneman';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+      $('#load_disqus').remove();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
   
-  <div class="post-content">
-    
-    <div class="post-summary">
-      使用鼠标拖拽下面这个链接到你的 Favorites Bar 上，默认点击行为实际上是模拟在当前页面进行导航，而目标地址由 avascript:window.location 来指定，目标地址实际上就是各个 App 的 URL Sche
-    </div>
-    <div class="read-more">
-      <a href="/post/send-to-2do/" class="read-more-link">阅读全文</a>
-    </div>
-    
   </div>
-</article>
-
+  
     
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/reading-process/">阅读流程</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2018-10-16" class="post-time">
-        2018-10-16
-      </time>
-      
-      
-      
-      
-        <span id="/post/reading-process/" class="leancloud_visitors" data-flag-title="阅读流程">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      最近统一了一下自己的阅读流程，更新一下，具体用到的工具有 DEVONThink Pro PDFExpert MarginNote 其中 1 是输入和归档源，3 是输出源。 大概就是如下所示： 采集素材 在平时浏览网页的
-    </div>
-    <div class="read-more">
-      <a href="/post/reading-process/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-    
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/">三个简单步骤让你测试使用系统单例的代码</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2018-07-17" class="post-time">
-        2018-07-17
-      </time>
-      <div class="post-category">
-          <a href="https://hechen.xyz/categories/translation/"> Translation </a>
-          
-        </div>
-      
-      
-      
-        <span id="/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/" class="leancloud_visitors" data-flag-title="三个简单步骤让你测试使用系统单例的代码">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      大部分在 Apple 平台开发的 App 都会依赖基于单例的 API。从 UIScreen 到 UIApplication，再到 NSBundle，而 Foundation，UIKit 以
-    </div>
-    <div class="read-more">
-      <a href="/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-    
-      <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/avoiding-singletons-in-swift/">避免在 Swift 中使用单例</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2018-07-16" class="post-time">
-        2018-07-16
-      </time>
-      <div class="post-category">
-          <a href="https://hechen.xyz/categories/translation/"> Translation </a>
-          
-        </div>
-      
-      
-      
-        <span id="/post/avoiding-singletons-in-swift/" class="leancloud_visitors" data-flag-title="避免在 Swift 中使用单例">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      “我知道单例不好，但是&hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的
-    </div>
-    <div class="read-more">
-      <a href="/post/avoiding-singletons-in-swift/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-    
-  </section>
-
-  
-  
-
-
-
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-  <nav class="pagination">
-    <ul>
-      
-      <li >
-        <a href="/">1</a>
-      </li>
-      
-      <li >
-        <a href="/page/2/">2</a>
-      </li>
-      
-      <li >
-        <a href="/page/3/">3</a>
-      </li>
-      
-      <li  class="active" >
-        <a href="/page/4/">4</a>
-      </li>
-      
-      <li >
-        <a href="/page/5/">5</a>
-      </li>
-      
-      <li >
-        <a href="/page/6/">6</a>
-      </li>
-      
-      <li >
-        <a href="/page/7/">7</a>
-      </li>
-      
-      <li >
-        <a href="/page/8/">8</a>
-      </li>
-      
-      <li >
-        <a href="/page/9/">9</a>
-      </li>
-      
-      <li >
-        <a href="/page/10/">10</a>
-      </li>
-      
-    </ul>
-  </nav>
-
-  
-  
-
-
 
 
 
