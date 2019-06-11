@@ -41,9 +41,9 @@
 
 &lt;p&gt;Today, I defined a model with a tuple type, then Xcode told me some error. Codes may like as below.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/c67KrA8.png&#34; alt=&#34;Carbonize 2019-06-10 at 11.49.43 P&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/c67KrA8.png&#34; alt=&#34;Codable Person&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;You may want Xcode automatically complete all the codable stuff. However, life is hard. Codes like these can even be compiled. Xcode will tell you name cannot be synthesize the Person because of the FullName.&lt;/p&gt;
+&lt;p&gt;You may want Xcode automatically complete all the codable stuff. However, life is hard. Codes like these can even not be compiled. Xcode will tell you name cannot be synthesize the Person because of the FullName.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -142,7 +142,7 @@ Currently, only nominal types (classes, structs, enums, protocols) can be extend
 &lt;/div&gt;
 &lt;p&gt;So for now, you have to synthesize the tuple type by yourself.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/CsXtVWP.png&#34; alt=&#34;Carbonize 2019-06-11 at 12.07.44 A&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/CsXtVWP.png&#34; alt=&#34;Synthesize Properties by youself&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
 
