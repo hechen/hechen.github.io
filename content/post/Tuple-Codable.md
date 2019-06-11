@@ -10,9 +10,9 @@ During my learning of Swift, many interesting things I will find. Codable is one
 
 Today, I defined a model with a tuple type, then Xcode told me some error. Codes may like as below.
 
-![Carbonize 2019-06-10 at 11.49.43 P](https://i.imgur.com/c67KrA8.png)
+![Codable Person](https://i.imgur.com/c67KrA8.png)
 
-You may want Xcode automatically complete all the codable stuff. However, life is hard. Codes like these can even be compiled. Xcode will tell you name cannot be synthesize the Person because of the FullName.
+You may want Xcode automatically complete all the codable stuff. However, life is hard. Codes like these can even not be compiled. Xcode will tell you name cannot be synthesize the Person because of the FullName.
 
 ```
 error: default.playground:5:8: error: type 'Person' does not conform to protocol 'Decodable'
@@ -67,7 +67,7 @@ extension<T : P> T : Q { // error: neither a structural nor a nominal type
 
 So for now, you have to synthesize the tuple type by yourself.
 
-![Carbonize 2019-06-11 at 12.07.44 A](https://i.imgur.com/CsXtVWP.png)
+![Synthesize Properties by youself](https://i.imgur.com/CsXtVWP.png)
 
 
 ## References
