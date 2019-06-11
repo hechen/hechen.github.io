@@ -19,7 +19,7 @@
       <guid>https://hechen.xyz/post/tuple-codable/</guid>
       <description>During my learning of Swift, many interesting things I will find. Codable is one of them.
 Today, I defined a model with a tuple type, then Xcode told me some error. Codes may like as below.
-You may want Xcode automatically complete all the codable stuff. However, life is hard. Codes like these can even be compiled. Xcode will tell you name cannot be synthesize the Person because of the FullName.</description>
+You may want Xcode automatically complete all the codable stuff. However, life is hard. Codes like these can even not be compiled. Xcode will tell you name cannot be synthesize the Person because of the FullName.</description>
     </item>
     
   </channel>
