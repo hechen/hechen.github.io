@@ -17,7 +17,7 @@
       <pubDate>Fri, 17 May 2019 15:01:54 +0800</pubDate>
       
       <guid>https://hechen.xyz/post/metatype/</guid>
-      <description>MetaType 关于 MetaType，在 Swift 的官方文档中是这样说明的， A metatype type refers to the type of any type, including class types, structure types, enumeration types, and protocol types. The metatype of a class, structure, or enumeration type is the name of that type followed by .Type. The metatype of a protocol</description>
+      <description>开发过程中总是说某个类定义了实例方法和类方法，我们知道类方法和类包含的静态变量是和该类型自身密切相关的，和具体实例无关。我们经常会写下面这种</description>
     </item>
     
     <item>
