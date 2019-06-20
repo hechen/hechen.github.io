@@ -562,10 +562,9 @@
     <span class="nt">&#34;image&#34;</span> <span class="p">:</span> <span class="s2">&#34;https://pic1.zhimg.com/v2-0314056e4f13141b6ca2277078ec067c.jpg&#34;</span><span class="p">,</span>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div>
-<ol>
-<li>支持音频</li>
-</ol>
+</div></li>
+
+<li><p>支持音频</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-JSON" data-lang="JSON"><span class="lnt"> 1
@@ -649,10 +648,9 @@
             <span class="n">UNUserNotificationCenter</span><span class="p">.</span><span class="n">current</span><span class="p">().</span><span class="n">removePendingNotificationRequests</span><span class="p">(</span><span class="n">withIdentifiers</span><span class="p">:</span> <span class="p">[</span><span class="n">identifier</span><span class="p">])</span>
         <span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div>
-<ol>
-<li>更新未展示的通知</li>
-</ol>
+</div></li>
+
+<li><p>更新未展示的通知</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
@@ -766,10 +764,9 @@
             <span class="p">}</span>
         <span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div>
-<ol>
-<li>更新已经展示的通知</li>
-</ol>
+</div></li>
+
+<li><p>更新已经展示的通知</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
@@ -917,9 +914,8 @@ iOS 10 SDK 新加的另一个 Content Extension 可以用来自定义通知的�
 <p>iOS 10 中另一个比较显著的特点就是支持了多媒体的推送和展示。开发者现在可以在通知中嵌入图片、音频甚至视频，这极大丰富了推送内容的可读性和趣味性。</p>
 
 <ol>
-<li>本地推送支持
-本地通知添加多媒体比较简单一些，只需要通过本地磁盘上的文件 URL 创建一个 UNNotificationAttachment 对象，然后将这个对象放到数组中赋值给 content 的 attachments 属性就行了：</li>
-</ol>
+<li><p>本地推送支持
+本地通知添加多媒体比较简单一些，只需要通过本地磁盘上的文件 URL 创建一个 UNNotificationAttachment 对象，然后将这个对象放到数组中赋值给 content 的 attachments 属性就行了：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
@@ -937,13 +933,13 @@ iOS 10 SDK 新加的另一个 Content Extension 可以用来自定义通知的�
 <span class="n">content</span><span class="p">.</span><span class="n">body</span> <span class="p">=</span> <span class="s">&#34;Show me an image!&#34;</span>
 
 <span class="k">if</span> <span class="kd">let</span> <span class="nv">imageURL</span> <span class="p">=</span> <span class="n">Bundle</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">url</span><span class="p">(</span><span class="n">forResource</span><span class="p">:</span> <span class="s">&#34;image&#34;</span><span class="p">,</span> <span class="n">withExtension</span><span class="p">:</span> <span class="s">&#34;jpg&#34;</span><span class="p">),</span>
-   <span class="kd">let</span> <span class="nv">attachment</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">UNNotificationAttachment</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;imageAttachment&#34;</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="n">imageURL</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">content</span><span class="p">.</span><span class="n">attachments</span> <span class="p">=</span> <span class="p">[</span><span class="n">attachment</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nv">attachment</span> <span class="p">=</span> <span class="k">try</span><span class="p">?</span> <span class="n">UNNotificationAttachment</span><span class="p">(</span><span class="n">identifier</span><span class="p">:</span> <span class="s">&#34;imageAttachment&#34;</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="n">imageURL</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">content</span><span class="p">.</span><span class="n">attachments</span> <span class="p">=</span> <span class="p">[</span><span class="n">attachment</span><span class="p">]</span>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div>
-<ol>
-<li>远程推送支持</li>
+</div></li>
+
+<li><p>远程推送支持</p></li>
 </ol>
 
 <p>首先需要在 payloads 结构中添加对富媒体的支持，aps 字典中添加字段<code>mutable-content</code>并置为 1 来标识该远程通知是需要支持。 然后可以在 payloads 中添加资源地址，可以是本地的资源，也可以是需要 App 下载的。</p>

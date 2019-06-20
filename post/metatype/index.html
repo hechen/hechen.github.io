@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="chen" />
-  <meta name="description" content="开发过程中总是说某个类定义了实例方法和类方法，我们知道类方法和类包含的静态变量是和该类型自身密切相关的，和具体实例无关。我们经常会写下面这种" />
+  <meta name="description" content="开发过程中总是说某个类定义了实例方法和类方法，我们知道类方法和类包含的静态变量是和该类型自身密切相关的，和具体实例无关。还记得在 Objective-C 中每个实例" />
 
   <meta name="keywords" content="Chen, iOS, Swift, Productivity, macOS, Cocoa" />
 
@@ -58,26 +58,26 @@
 
 
 <meta property="og:title" content="关于 MetaType" />
-<meta property="og:description" content="开发过程中总是说某个类定义了实例方法和类方法，我们知道类方法和类包含的静态变量是和该类型自身密切相关的，和具体实例无关。我们经常会写下面这种" />
+<meta property="og:description" content="开发过程中总是说某个类定义了实例方法和类方法，我们知道类方法和类包含的静态变量是和该类型自身密切相关的，和具体实例无关。还记得在 Objective-C 中每个实例" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hechen.xyz/post/metatype/" />
 <meta property="article:published_time" content="2019-05-17T15:01:54+08:00" />
 <meta property="article:modified_time" content="2019-05-17T15:01:54+08:00" />
 
 <meta itemprop="name" content="关于 MetaType">
-<meta itemprop="description" content="开发过程中总是说某个类定义了实例方法和类方法，我们知道类方法和类包含的静态变量是和该类型自身密切相关的，和具体实例无关。我们经常会写下面这种">
+<meta itemprop="description" content="开发过程中总是说某个类定义了实例方法和类方法，我们知道类方法和类包含的静态变量是和该类型自身密切相关的，和具体实例无关。还记得在 Objective-C 中每个实例">
 
 
 <meta itemprop="datePublished" content="2019-05-17T15:01:54&#43;08:00" />
 <meta itemprop="dateModified" content="2019-05-17T15:01:54&#43;08:00" />
-<meta itemprop="wordCount" content="996">
+<meta itemprop="wordCount" content="979">
 
 
 
 <meta itemprop="keywords" content="MetaType," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="关于 MetaType"/>
-<meta name="twitter:description" content="开发过程中总是说某个类定义了实例方法和类方法，我们知道类方法和类包含的静态变量是和该类型自身密切相关的，和具体实例无关。我们经常会写下面这种"/>
+<meta name="twitter:description" content="开发过程中总是说某个类定义了实例方法和类方法，我们知道类方法和类包含的静态变量是和该类型自身密切相关的，和具体实例无关。还记得在 Objective-C 中每个实例"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -342,7 +342,15 @@
     <div class="post-content">
       
 
-<p>开发过程中总是说某个类定义了实例方法和类方法，我们知道类方法和类包含的静态变量是和该类型自身密切相关的，和具体实例无关。我们经常会写下面这种代码：</p>
+<p>开发过程中总是说某个类定义了实例方法和类方法，我们知道类方法和类包含的静态变量是和该类型自身密切相关的，和具体实例无关。还记得在 Objective-C 中每个实例类型会持有 isa 指针，其指向具体该实例对象自身的类信息，如下：</p>
+
+<p><img src="https://i.imgur.com/lTSImnV.png" alt="objc_object 定义" /></p>
+
+<p>而其中 <code>objc_class</code> 结构体定义了一个 Objective-C class 的具体信息，可以称为该类的元信息。</p>
+
+<p><img src="https://i.imgur.com/d4oaI0D.png" alt="objc_class 定义" /></p>
+
+<p>而同样，我们在 Swift 中想要获取类型信息，我们经常会写下面这种代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-swift" data-lang="swift"><span class="lnt">1
@@ -427,64 +435,11 @@ The metatype of a class, structure, or enumeration type is the name of that type
 <p>尽管 someInstance 的声明类型是 SomeBaseClass（也是 Static Type），但是其真实的类型信息是其实例化时的类型 —— SomeSubClass。</p>
 
 <h3 id="举个">举个🌰️</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span></pre></td>
-<td class="lntd">
-<pre class="chroma">import UIKit
 
-func log&lt;View: UIView&gt;(_ view: View) {
-    print(&#34;It&#39;s a \(type(of: view)), frame: \(view.frame)&#34;)
-}
+<p>这个栗子来自于 《Advanced Swift》 一书</p>
 
-func log(_ view: UILabel) {
-    let text = view.text ?? &#34;(empty)&#34;
-    print(&#34;It&#39;s a label, text: \(text)&#34;)
-}
+<p><img src="https://i.imgur.com/BRzKDN4.png" alt="🌰️" /></p>
 
-
-let label = UILabel(frame: CGRect(x: 20, y: 20, width: 200, height: 32))
-label.text = &#34;Password&#34;
-log(label) // It&#39;s a label, text: Password
-
-let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
-log(button) // It&#39;s a UIButton, frame: (0.0, 0.0, 100.0, 50.0)
-
-
-print(&#34;\n----- Difference between static type and dynamic type ------\n&#34;)
-
-let views = [label, button]    // Type of views is [UIView]
-for view in views {
-    log(view)
-}</pre></td></tr></table>
-</div>
-</div>
 <h2 id="references">References</h2>
 
 <ul>

@@ -899,8 +899,7 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
 
 <li><p>如果缓存中没有找到该IMP，我们便紧接着查找类的派发表（dispatch table），如果找到同样跳转到函数执行处；</p></li>
 
-<li><p>如果类的派发表中也未找到我们就需要触发消息分发机制了，这意味着最终你得代码会被编译器转换成了C函数。因此一个如下方法：</p></li>
-</ol>
+<li><p>如果类的派发表中也未找到我们就需要触发消息分发机制了，这意味着最终你得代码会被编译器转换成了C函数。因此一个如下方法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
@@ -908,7 +907,9 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
 <td class="lntd">
 <pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-(</span><span class="kt">int</span><span class="p">)</span><span class="nf">doComputeWithNum:</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="nv">aNum</span> </code></pre></td></tr></table>
 </div>
-</div>
+</div></li>
+</ol>
+
 <p>会被转换成如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -992,8 +993,7 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
 <p>其中方法<code>class_addMethod()</code>中的<code>v@:</code>标明了方法的返回类型以及其参数类型。你可以在运行时文档中[Type Encodings][10]分查看到详细的说明。</p>
 
 <ol>
-<li>如果2中<code>+(BOOL)resolveInstanceMethod:(SEL)aSEL</code>返回NO表示无法解析该方法的话，运行时接着调用<code>- (id)forwardingTargetForSelector:(SEL) aSelector</code>来给你再一次机会是否能够将该消息转发给其他接收者来处理。这要比之后运行完整的消息转发<code>- (void)forwardInvocation:(NSInvocation *)anInvocation</code>要好。你可以这样执行：</li>
-</ol>
+<li><p>如果2中<code>+(BOOL)resolveInstanceMethod:(SEL)aSEL</code>返回NO表示无法解析该方法的话，运行时接着调用<code>- (id)forwardingTargetForSelector:(SEL) aSelector</code>来给你再一次机会是否能够将该消息转发给其他接收者来处理。这要比之后运行完整的消息转发<code>- (void)forwardInvocation:(NSInvocation *)anInvocation</code>要好。你可以这样执行：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
@@ -1005,18 +1005,19 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nf">forwardingTargetForSelector:</span><span class="p">(</span><span class="kt">SEL</span><span class="p">)</span><span class="nv">aSelector</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">aSelector</span> <span class="o">==</span> <span class="k">@selector</span><span class="p">(</span><span class="nl">mysteriousMethod</span><span class="p">:))</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">alternateObject</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="p">[</span><span class="nb">super</span> <span class="nl">forwardingTargetForSelector</span><span class="p">:</span><span class="n">aSelector</span><span class="p">];</span>
+<span class="k">if</span><span class="p">(</span><span class="n">aSelector</span> <span class="o">==</span> <span class="k">@selector</span><span class="p">(</span><span class="nl">mysteriousMethod</span><span class="p">:))</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">alternateObject</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">return</span> <span class="p">[</span><span class="nb">super</span> <span class="nl">forwardingTargetForSelector</span><span class="p">:</span><span class="n">aSelector</span><span class="p">];</span>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div>
+</div></li>
+</ol>
+
 <p>很明显，你肯定不想返回 self，否则会引起死循环。</p>
 
 <ol>
-<li>如果上一步没有找到合适的目标对象来执行上面的消息，接着运行时会尝试最后一步 <code>- (void)forwardInvocation:(NSInvocation *)anInvocation</code>。你可能没见过NSInvocation，它实际上是Objective-C语言中的消息类型。一旦你有一个NSInvocation，你基本上能够改变这个消息的任何东西，包括其目标、选择子以及参数。所以你可以这样做：</li>
-</ol>
+<li><p>如果上一步没有找到合适的目标对象来执行上面的消息，接着运行时会尝试最后一步 <code>- (void)forwardInvocation:(NSInvocation *)anInvocation</code>。你可能没见过NSInvocation，它实际上是Objective-C语言中的消息类型。一旦你有一个NSInvocation，你基本上能够改变这个消息的任何东西，包括其目标、选择子以及参数。所以你可以这样做：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt"> 1
@@ -1032,17 +1033,19 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">forwardInvocation:</span><span class="p">(</span><span class="n">NSInvocation</span> <span class="o">*</span><span class="p">)</span><span class="nv">invocation</span> <span class="p">{</span>
-    <span class="kt">SEL</span> <span class="n">invSEL</span> <span class="o">=</span> <span class="n">invocation</span><span class="p">.</span><span class="n">selector</span><span class="p">;</span>
+<span class="kt">SEL</span> <span class="n">invSEL</span> <span class="o">=</span> <span class="n">invocation</span><span class="p">.</span><span class="n">selector</span><span class="p">;</span>
  
-    <span class="k">if</span><span class="p">([</span><span class="n">altObject</span> <span class="nl">respondsToSelector</span><span class="p">:</span><span class="n">invSEL</span><span class="p">])</span> <span class="p">{</span>
-        <span class="p">[</span><span class="n">invocation</span> <span class="nl">invokeWithTarget</span><span class="p">:</span><span class="n">altObject</span><span class="p">];</span>
-    <span class="p">}</span> 
-    <span class="k">else</span> <span class="p">{</span>
-        <span class="p">[</span><span class="nb">self</span> <span class="nl">doesNotRecognizeSelector</span><span class="p">:</span><span class="n">invSEL</span><span class="p">];</span>
-    <span class="p">}</span>
+<span class="k">if</span><span class="p">([</span><span class="n">altObject</span> <span class="nl">respondsToSelector</span><span class="p">:</span><span class="n">invSEL</span><span class="p">])</span> <span class="p">{</span>
+    <span class="p">[</span><span class="n">invocation</span> <span class="nl">invokeWithTarget</span><span class="p">:</span><span class="n">altObject</span><span class="p">];</span>
+<span class="p">}</span> 
+<span class="k">else</span> <span class="p">{</span>
+    <span class="p">[</span><span class="nb">self</span> <span class="nl">doesNotRecognizeSelector</span><span class="p">:</span><span class="n">invSEL</span><span class="p">];</span>
+<span class="p">}</span>
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
-</div>
+</div></li>
+</ol>
+
 <p>默认情况下，如果你继承自NSObject类，它所实现的<code>- (void)forwardInvocation:(NSInvocation *)anInvocation</code>内部仅仅简单的调用了<code>-doesNotRecognizeSelector:</code>方法，如果你想给自己最后一次机会做一些事情的话，你可以重载该方法。</p>
 
 <h4 id="non-fragile-ivars-modern-runtime">Non Fragile ivars (Modern Runtime)</h4>
