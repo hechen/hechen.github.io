@@ -399,7 +399,7 @@ iOS In the previous development on the iOS platform, create a ViewController, sp
   <div class="post-content">
     
     <div class="post-summary">
-      开发过程中总是说某个类定义了实例方法和类方法，我们知道类方法和类包含的静态变量是和该类型自身密切相关的，和具体实例无关。还记得在 Objective-C 中每个实例
+      我们在 Swift 中想要获取类型信息，我们经常会写下面这种代码： 1 2 3 4 5 class SomeClass { static let code = 1 class func tellEveryone() {} } SomeClass.tellEveryone() 而在 Swift 中，这种写法实际上是编译器帮我们省略的一种
     </div>
     <div class="read-more">
       <a href="/post/metatype/" class="read-more-link">阅读全文</a>
