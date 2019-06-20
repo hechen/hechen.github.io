@@ -5,6 +5,23 @@ categories: ["Swift"]
 tags: ["MetaType"]
 ---
 
+我们在 Swift 中想要获取类型信息，我们经常会写下面这种代码：
+
+``` swift
+class SomeClass {
+    static let code = 1
+    class func tellEveryone() {}
+}
+SomeClass.tellEveryone()
+```
+
+而在 Swift 中，这种写法实际上是编译器帮我们省略的一种简便写法，补全之后的写法其实如下：
+
+```
+SomeClass.self.tellEveryone()
+```
+
+而通过 .self 获取到的就是 SomeClass 的类型信息的具体化值，而对于这些类型信息具体是什么类型呢？ 这就牵涉到一个概念 MetaType
 
 ## MetaType
 
@@ -31,7 +48,7 @@ tags: ["MetaType"]
 
 你需要使用 .Protocol 来获取协议本身的元类型信息，如下
 
-![Carbonize 2019-05-23 at 2.39.25 P](https://i.imgur.com/208plpn.png)
+![Protocol's correct usage](https://i.imgur.com/208plpn.png)
 
 
 ## type(:of)
@@ -58,6 +75,12 @@ static type 指的是编译时期，编译器所决议的某个值的类型，�
 
 尽管 someInstance 的声明类型是 SomeBaseClass（也是 Static Type），但是其真实的类型信息是其实例化时的类型 —— SomeSubClass。
 
+
+### 举个🌰️
+
+这个栗子来自于 《Advanced Swift》 一书
+
+![🌰️](https://i.imgur.com/BRzKDN4.png)
 
 
 ## References
