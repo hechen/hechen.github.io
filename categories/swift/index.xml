@@ -24,24 +24,6 @@ You may want Xcode automatically complete all the codable stuff. However, life i
     
     <item>
       <title>一道 Swift Quiz</title>
-      <link>https://hechen.xyz/post/metatype-macbook-pro.locals-conflicted-copy-2019-06-27/</link>
-      <pubDate>Fri, 17 May 2019 15:01:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/post/metatype-macbook-pro.locals-conflicted-copy-2019-06-27/</guid>
-      <description>关于 MetaType ，在 Swift 的官方文档中是这样说明的， A metatype type refers to the type of any type, including class types, structure types, enumeration types, and protocol types. The metatype of a class, structure, or enumeration type is the name of that type followed by .Type. The metatype of a protocol type—not</description>
-    </item>
-    
-    <item>
-      <title>一道 Swift Quiz</title>
-      <link>https://hechen.xyz/post/a-swift-quiz-macbook-pro.locals-conflicted-copy-2019-06-27/</link>
-      <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/post/a-swift-quiz-macbook-pro.locals-conflicted-copy-2019-06-27/</guid>
-      <description>这两天在 Twitter 上看到一道题目，主要是考察 overload 和 type(of:) 的知识点，本文仅做记录。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 // Swift Quiz class View {} class A: View {} class B: View {} func add(_ v: View) {</description>
-    </item>
-    
-    <item>
-      <title>一道 Swift Quiz</title>
       <link>https://hechen.xyz/post/a-swift-quiz/</link>
       <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
       
