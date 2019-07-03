@@ -258,74 +258,221 @@ Currently, only nominal types (classes, structs, enums, protocols) can be extend
     </item>
     
     <item>
-      <title>关于 MetaType</title>
-      <link>https://hechen.xyz/post/metatype/</link>
+      <title>XPC Services</title>
+      <link>https://hechen.xyz/post/xpcservice/</link>
       <pubDate>Fri, 17 May 2019 15:01:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/metatype/</guid>
+      <guid>https://hechen.xyz/post/xpcservice/</guid>
       
         <description>
 
-&lt;p&gt;我们在 Swift 中想要获取类型信息，我们经常会写下面这种代码：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;SomeClass&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;code&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
-    &lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tellEveryone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;SomeClass&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tellEveryone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;而在 Swift 中，这种写法实际上是编译器帮我们省略的一种简便写法，补全之后的写法其实如下：&lt;/p&gt;
+&lt;h2 id=&#34;关于-xpc&#34;&gt;关于 XPC&lt;/h2&gt;
+
+&lt;p&gt;因为最近在做的工作涉及到这一块，就大致的记录一下，针对 XPC 技术也做个总结。&lt;/p&gt;
+
+&lt;p&gt;XPC 是 macOS 上一种进程间通信的技术统称，其使得我们可以将 Mac 应用的功能模块拆分成不同的多进程模式，关于进程之间的通信也被系统封装完整了，你只需要按照既定的模式做即可。其带来的最大的好处是&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;提高 App 自身的稳定性&lt;/li&gt;
+&lt;li&gt;进行权限隔离&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;拿我目前在做的工作来讲，确实有针对以上这两点的需求。上层业务通过执行脚本命令获取执行结果，执行脚本命令使用的就是 NSTask，大概结构如下：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/8glAV2u.png&#34; alt=&#34;shared-42f9e747-a47b-46fd-b445-0c7615b41020&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;其实具体而言就是封装了 NSTask 执行 Shell 脚本，而执行的脚本文件内置在应用程序内部。&lt;/p&gt;
+
+&lt;p&gt;由于 NSTask 内部执行的脚本程序自身还会调用其他依赖的功能，比如 xcrun 等二进制程序，而对于使用 NSTask 或者 posix_spawn 派生的任务来说，其虽然也是执行拆分出来的小部分工作，但在沙盒环境下的应用程序，使得派生出的进程自身其继承了父进程的沙盒环境，由于某些脚本执行的二进制本身是不允许在沙盒环境下运行的，因此主应用就不得不关闭沙盒。这也使得无法给主应用添加 Push 推送功能，因为 APNS 通知服务需要建立 SSL 链接，这个是需要在 Sandbox 环境下进行的。&lt;/p&gt;
+
+&lt;p&gt;另外，对于执行 NSTask 的这层命令行执行模块来讲，拆分到独立的进程中使得安全性也得以提高，即使 XPC 进程挂掉，一般情况下再次向 XPC 通信，系统会自行恢复启用新的 XPC 进程，而主应用无感知。&lt;/p&gt;
+
+&lt;h2 id=&#34;xpc-架构&#34;&gt;XPC 架构&lt;/h2&gt;
+
+&lt;p&gt;在 Apple 官方文档中有如下图，很清楚的展示了整个 NSXPC 的架构。&lt;/p&gt;
+
+&lt;p&gt;主应用和 XPC Service 之间是通过 NSXPCConnection 对象保持通信的，其通信接口由 Protocol 定义，然后暴露给外界一个符合了该协议的对象。&lt;/p&gt;
+
+&lt;p&gt;所有的 XPC Service 本身是由系统级别程序 launchd 来管理和维护的。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/OdvfZk4.png&#34; alt=&#34;NSXPC_intro_2x-337fb6a3-4df5-47b3-a322-e52c48905753&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;开发过程&#34;&gt;开发过程&lt;/h2&gt;
+
+&lt;p&gt;整体上主应用和 XPC 通信是标准的 Client-Server 模式。客户端询问 Server 端数据，Server 端应答即可。这之间的数据序列化完全交由系统管理。&lt;/p&gt;
+
+&lt;h3 id=&#34;具体步骤&#34;&gt;具体步骤&lt;/h3&gt;
+
+&lt;h4 id=&#34;新建-xpc-service-的-target&#34;&gt;新建 XPC Service 的 Target&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/BNFRaG7.png&#34; alt=&#34;CleanShot_2019-07-03_at_23-ea31e8da-54cb-4d33-9f64-cce21928fc95.24.322x&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/AyEq9Iv.png&#34; alt=&#34;CleanShot_2019-07-03_at_23-5830cf7d-cd83-4b74-bf96-d5bbf0b8ca26.24.492x&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这里要说一点，Xcode 提供的 XPC Service 创建的时候是没有语言选项的，默认都是创建的 Objective-C 的样板文件，但是你是可以把所有的代码文件删除，然后建立 main.swift 来写的，一样能够开发。&lt;/p&gt;
+
+&lt;h4 id=&#34;建立-listener-监听连接&#34;&gt;建立 Listener，监听连接&lt;/h4&gt;
+
+&lt;p&gt;实际上，当你建立完毕 Targe 之后，系统默认生成的文件里已经将对应的代码大致过程已经通过注释和代码列出来了。我们看下在默认生成的 ServiceDelegate.m 文件中的代码逻辑：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/o3gCND7.png&#34; alt=&#34;Carbonize_2019-07-04_at_12-b6e303b7-d48b-45ca-b050-6afe123d8493.30.30_A&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;每个 Service 会启动 NSConnectionListener，其代理方法是 NSXPCListenerDelegate，一旦主应用发起连接，该代理方法就会启动来做连接前的准备，而代理方法中的主要逻辑就三点：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;告诉 Connection 对象，Service 暴露的接口（协议）；&lt;/li&gt;
+&lt;li&gt;传递给 Connection 对象一个符合了前面协议的对象；&lt;/li&gt;
+&lt;li&gt;启动连接；&lt;/li&gt;
+&lt;li&gt;返回是否允许本次连接建立；&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;其中 ServiceDemo 就是具体实现接口的对象。&lt;/p&gt;
+
+&lt;h4 id=&#34;主应用发起连接&#34;&gt;主应用发起连接&lt;/h4&gt;
+
+&lt;p&gt;一般会在 App 启动之后启动连接，具体步骤如下，&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;创建 NSXPCConnection 对象，指定连接哪个 Service&lt;/li&gt;
+&lt;li&gt;指定使用哪个协议接口（Protocol 的 Membership 需要主应用和 XPC Service 的Targe 共享）&lt;/li&gt;
+&lt;li&gt;resume&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/3UTQgK6.png&#34; alt=&#34;Carbonize_2019-07-04_at_12-90971e4f-a6f3-42bc-ae95-8083e70506dd.35.14_A&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;但是此时 Service 里的监听实际上还未执行，直到你发起第一次 Request。向 XPC Service 发起动作的具体就是从刚刚创建的 NSXPCConnection 中获取对应的接口以及执行该接口来和 Service 交互。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/9vACIeA.png&#34; alt=&#34;Carbonize_2019-07-04_at_12-4dddb842-52cc-403a-a6c4-dc9cb587cbdb.40.09_A&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;整体过程如 Apple 文档里的图示过程，&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/BWf2G3l.png&#34; alt=&#34;NSXPC_connection_2x-38a1e530-7c34-400b-a39b-eca9eaadbe22&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;需要注意的几点&#34;&gt;需要注意的几点&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;NSXPCInterface 定义的方法回调只能有一个 Block，如果多于一个就会报异常。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;SomeClass.self.tellEveryone()&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;XPCDemo[46250:3466789] NSXPCInterface: Only one reply block is allowed per selector (XPCDemo.DragonServiceProtocol / fireWithTimes:withSuccess:withFailure:)&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;而通过 .self 获取到的就是 SomeClass 的类型信息的具体化值，而对于这些类型信息具体是什么类型呢？ 这就牵涉到一个概念 MetaType&lt;/p&gt;
+&lt;/div&gt;&lt;/li&gt;
 
-&lt;h2 id=&#34;metatype&#34;&gt;MetaType&lt;/h2&gt;
+&lt;li&gt;&lt;p&gt;关于一次 Request 通信多次 Response&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;关于 MetaType，在 Swift 的官方文档中是这样说明的，&lt;/p&gt;
+&lt;p&gt;类似于下载任务要获取下载进度的问题，在迁移 NSTask 执行层的过程中，面临的一个需求是针对 XPCService 端 NSTask 执行过程中的持续性的输出都要能够回调给 Client 端，而 Reply 回调只能响应一次。&lt;/p&gt;
+
+&lt;p&gt;我们在主应用端希望能够通过一个 Block 不断获取当前最新的数据，可是，不幸的是，XPC 并不支持如此。比如，我们希望能够通过回调实时获取状态。&lt;/p&gt;
+
+&lt;p&gt;具体可以参考 &lt;a href=&#34;https://forums.developer.apple.com/thread/35731&#34;&gt;https://forums.developer.apple.com/thread/35731&lt;/a&gt; 论坛中 Apple 人员的回复，总结起来两点：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Client 以及 Service 自行维护状态，将一次请求多次回调，拆分为多次请求多次回调即可；&lt;/li&gt;
+&lt;li&gt;Client 转移要交付的第三方给 Service 直接交互（一般比如 API ）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;references&#34;&gt;References&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/CreatingXPCServices.html&#34;&gt;Creating XPC Services&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.objc.io/issues/14-mac/xpc/&#34;&gt;XPC · objc.io&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://forums.developer.apple.com/thread/35731&#34;&gt;XPC&amp;hellip;Can&amp;rsquo;t call a reply block multiple times? |Apple Developer Forums&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>一道 Swift Quiz</title>
+      <link>https://hechen.xyz/post/metatype-macbook-pro.locals-conflicted-copy-2019-06-27/</link>
+      <pubDate>Fri, 17 May 2019 15:01:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/metatype-macbook-pro.locals-conflicted-copy-2019-06-27/</guid>
+      
+        <description>
+
+&lt;p&gt;关于 MetaType ，在 Swift 的官方文档中是这样说明的，&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;A metatype type refers to the type of any type, including class types, structure types, enumeration types, and protocol types.
 The metatype of a class, structure, or enumeration type is the name of that type followed by .Type. The metatype of a protocol type—not the concrete type that conforms to the protocol at runtime—is the name of that protocol followed by .Protocol.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;说的很清楚，代表任何类型的类型信息，我们知道在编程语言的世界里，每一个实例自身是一个具体类型的实体化，而对于每个类型的定义就是由 MetaType 决定的，例如常见的 「类的类型」、「结构体的类型」、「枚举的类型」以及「协议的类型」。&lt;/p&gt;
+&lt;p&gt;说的很清楚，代表任何类型的类型信息，我们知道在编程语言的世界里，每一个实例自身是一个具体类型的实体化，而对于每个类型的定义就是由 MetaType 决定的，例如常见的 「类的类型」、「结构体的类型」、「枚举的类型」以及「协议的类型」。
+这其中文档专门举例，对于协议类型获取其元类型信息是通过 .Protocol 来获取的，而非其具体实现该协议的类的元类型信息。&lt;/p&gt;
 
-&lt;p&gt;我们可以通过 .self 来获取某个类或者结构体的具体的元类型信息，也就是其类型的值。大家可以按照平时定义一个简单值这样来理解。&lt;/p&gt;
+&lt;p&gt;我们可以通过 .self 来获取元类型&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/SeHkinN.png&#34; alt=&#34;What is the metaType&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;以官方的 Sample 为例：
+&lt;img src=&#34;https://i.imgur.com/I2FxwAo.png&#34; alt=&#34;MetaType&#34; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&#34;protocol&#34;&gt;Protocol&lt;/h3&gt;
+&lt;p&gt;尽管 someInstance 的声明类型是 SomeBaseClass（也是 Static Type），但是其真实的类型信息是其实例化时的类型 —— SomeSubClass。&lt;/p&gt;
 
-&lt;p&gt;对于协议类型获取其元类型信息是通过 .Protocol 来获取的，而非其具体实现该协议的类的元类型信息，比如，如果你使用👇这种写法：&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/ACmHog7.png&#34; alt=&#34;Get a Protocol Type&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.swift.org/swift-book/ReferenceManual/Types.html&#34;&gt;Types&lt;/a&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
+      <title>一道 Swift Quiz</title>
+      <link>https://hechen.xyz/post/a-swift-quiz-macbook-pro.locals-conflicted-copy-2019-06-27/</link>
+      <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/a-swift-quiz-macbook-pro.locals-conflicted-copy-2019-06-27/</guid>
+      
+        <description>
 
-&lt;p&gt;编译器会报错，因为使用 MyProtocol 自身的元类型是 .Protocol 类型。&lt;/p&gt;
+&lt;p&gt;这两天在 &lt;a href=&#34;https://twitter.com/krzyzanowskim/status/1127875626579288064?s=12&#34;&gt;Twitter&lt;/a&gt; 上看到一道题目，主要是考察 overload 和 type(of:) 的知识点，本文仅做记录。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;// Swift Quiz
 
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/ETSopLS.png&#34; alt=&#34;Protocol MetaType Demo&#34; /&gt;&lt;/p&gt;
+class View {}
+class A: View {}
+class B: View {}
 
-&lt;p&gt;你需要使用 .Protocol 来获取协议本身的元类型信息，如下&lt;/p&gt;
+func add(_ v: View) { print(type(of: v)) }
+func add(_ v: A) { print(type(of: v)) }
+func add(_ v: B) { print(type(of: v)) }
 
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/208plpn.png&#34; alt=&#34;Protocol&#39;s correct usage&#34; /&gt;&lt;/p&gt;
+func build() -&amp;gt; View { return B() }
+add(build())
 
-&lt;h2 id=&#34;type-of&#34;&gt;type(:of)&lt;/h2&gt;
+// What is the output?
 
-&lt;p&gt;我们可以通过 &lt;code&gt;type(of:)&lt;/code&gt; 来获取某个某个值的类型信息，而且是动态类型信息。其方法签名如下：&lt;/p&gt;
+&amp;#34;View&amp;#34;
+&amp;#34;A&amp;#34;
+&amp;#34;B&amp;#34;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这里使用多个 add 函数，实际上是起到了一定的迷惑作用，那针对具备不同静态类型的 add 函数来讲，其重载哪个函数就是依据其传入参数的静态类型而决定，因此在本 Quiz 中 build 函数返回了实例的静态类型即为 View，所以一定是会重载具备 View 类型参数的函数。
+而进入函数体内部，主要就是 &lt;code&gt;type(of:)&lt;/code&gt; 方法的执行结果了，而该方法的官方定义里有如下说明：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -334,34 +481,17 @@ The metatype of a class, structure, or enumeration type is the name of that type
 &lt;pre class=&#34;chroma&#34;&gt;func type&amp;lt;T, Metatype&amp;gt;(of value: T) -&amp;gt; Metatype&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;其返回值是某元类型的实例，也即元类型的值。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You can use the type(of:) function to find the dynamic type of a value, particularly when the dynamic type is different from the static type. The static type of a value is the known, compile-time type of the value. The dynamic type of a value is the value’s actual type at run-time, which can be a subtype of its concrete type.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;想要明白 &lt;code&gt;type(of:)&lt;/code&gt; 这里我们需要明确两个概念： static metatype 和 dynamic metatype。&lt;/p&gt;
+&lt;p&gt;可以看到，&lt;code&gt;type(of:)&lt;/code&gt; 可以获取到当前所传值的动态类型，也就是其原始的宿主类型。对于本例来讲，传入到该方法的值实质上是由 B 类型实例化而来，因此其动态类型应该是 B。&lt;/p&gt;
 
-&lt;p&gt;static type 指的是编译时期，编译器所决议的某个值的类型，而 dynamic type 指的该值真实的类型信息，我们看下面的例子理解。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/W27kJ9X.png&#34; alt=&#34;Demo&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;在 &lt;code&gt;printMetaType(of:)&lt;/code&gt; 中对于编译器来讲 value 的类型就是 Any，其就是 static type，而真正由 type(of:) 得到的类型信息是 Child，其才是真实的值的类型，也即 dynamic type。&lt;/p&gt;
-
-&lt;p&gt;再以如下的官方的 Sample Code 为例：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/I2FxwAo.png&#34; alt=&#34;MetaType&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;尽管 someInstance 的声明类型是 SomeBaseClass（也是 Static Type），但是其真实的类型信息是其实例化时的类型 —— SomeSubClass。&lt;/p&gt;
-
-&lt;h3 id=&#34;举个&#34;&gt;举个🌰️&lt;/h3&gt;
-
-&lt;p&gt;这个栗子来自于 《Advanced Swift》 一书&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/BRzKDN4.png&#34; alt=&#34;🌰️&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/vB7DuWI.png&#34; alt=&#34;Carbonize 2019-05-13 at 3.05.42 P&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.swift.org/swift-book/ReferenceManual/Types.html&#34;&gt;Types&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://swiftrocks.com/whats-type-and-self-swift-metatypes.html&#34;&gt;What&amp;rsquo;s .self, .Type and .Protocol? Understanding Swift Metatypes&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://developer.apple.com/documentation/swift/2885064-type&#34;&gt;type(of:)&lt;/a&gt;&lt;/p&gt;
 </description>
       
     </item>
