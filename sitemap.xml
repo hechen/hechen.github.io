@@ -10,7 +10,44 @@
   
   <url>
     <loc>https://hechen.xyz/categories/</loc>
-    <lastmod>2019-06-11T00:10:38+08:00</lastmod>
+    <lastmod>2019-07-04T01:01:10+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/</loc>
+    <lastmod>2019-07-04T01:01:10+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/post/</loc>
+    <lastmod>2019-07-04T01:01:10+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/</loc>
+    <lastmod>2019-07-04T01:01:10+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/xpc/</loc>
+    <lastmod>2019-07-04T01:01:10+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/post/xpcservice/</loc>
+    <lastmod>2019-07-04T01:01:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/categories/macos/</loc>
+    <lastmod>2019-07-04T01:01:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -28,25 +65,7 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/</loc>
-    <lastmod>2019-06-11T00:10:38+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/post/</loc>
-    <lastmod>2019-06-11T00:10:38+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://hechen.xyz/categories/swift/</loc>
-    <lastmod>2019-06-11T00:10:38+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/</loc>
     <lastmod>2019-06-11T00:10:38+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -77,28 +96,9 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/macos/</loc>
-    <lastmod>2019-06-03T20:55:54+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://hechen.xyz/tags/metatype/</loc>
     <lastmod>2019-05-17T15:01:54+08:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/xpc/</loc>
-    <lastmod>2019-05-17T15:01:54+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/post/xpcservice/</loc>
-    <lastmod>2019-05-17T15:01:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   
   <url>
