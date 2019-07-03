@@ -1,11 +1,22 @@
 ---
 title: "关于 MetaType"
-date: 2019-05-17T15:01:54+08:00
+date: 2019-07-04T1:01:10+08:00
 categories: ["Swift"]
 tags: ["MetaType"]
+draft: true
 ---
 
-我们在 Swift 中想要获取类型信息，我们经常会写下面这种代码：
+开发过程中总是说某个类定义了实例方法和类方法，我们知道类方法和类包含的静态变量是和该类型自身密切相关的，和具体实例无关。还记得在 Objective-C 中每个实例类型会持有 isa 指针，其指向具体该实例对象自身的类信息，如下：
+
+![objc_object 定义](https://i.imgur.com/lTSImnV.png)
+
+而其中 `objc_class` 结构体定义了一个 Objective-C 实例所属类型的具体信息
+
+![objc_class 定义](https://i.imgur.com/d4oaI0D.png)
+
+而我们在 objc_class 定义中也看到，其中也有一个指针指向同样的 objc_class 类型，这个也就是 Objective-C 中的 metaclass，其在全局唯一（可以理解，类型本身）
+
+而同样类似于，我们在 Swift 中想要获取类型信息，我们经常会写下面这种代码：
 
 ``` swift
 class SomeClass {
