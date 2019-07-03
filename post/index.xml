@@ -6,10 +6,19 @@
     <description>Recent content in Posts on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 10 Jun 2019 23:50:54 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jul 2019 01:01:10 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>XPC Services</title>
+      <link>https://hechen.xyz/post/xpcservice/</link>
+      <pubDate>Thu, 04 Jul 2019 01:01:10 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/xpcservice/</guid>
+      <description>关于 XPC 因为最近在做的工作涉及到这一块，就大致的记录一下，针对 XPC 技术也做个总结。 XPC 是 macOS 上一种进程间通信的技术统称，其使得我们可以将 Mac 应用的功能</description>
+    </item>
     
     <item>
       <title>Codable &amp;&amp; Tuple</title>
@@ -32,15 +41,6 @@ You may want Xcode automatically complete all the codable stuff. However, life i
 WTF, Can you believe that? I cannot even create a ViewController now.
 There exist some differences between iOS and macOS.
 iOS In the previous development on the iOS platform, create a ViewController, specifically UIViewController instance, is dead simple as below.</description>
-    </item>
-    
-    <item>
-      <title>XPC Services</title>
-      <link>https://hechen.xyz/post/xpcservice/</link>
-      <pubDate>Fri, 17 May 2019 15:01:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/post/xpcservice/</guid>
-      <description>关于 XPC 因为最近在做的工作涉及到这一块，就大致的记录一下，针对 XPC 技术也做个总结。 XPC 是 macOS 上一种进程间通信的技术统称，其使得我们可以将 Mac 应用的功能</description>
     </item>
     
     <item>
