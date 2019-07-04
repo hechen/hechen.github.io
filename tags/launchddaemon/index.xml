@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LaunchdDaemon on I make stuff</title>
+    <link>https://hechen.xyz/tags/launchddaemon/</link>
+    <description>Recent content in LaunchdDaemon on I make stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 04 Jul 2019 01:19:10 +0800</lastBuildDate>
+    
+	<atom:link href="https://hechen.xyz/tags/launchddaemon/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>LetsMove 中的几个点</title>
+      <link>https://hechen.xyz/post/letsmove/</link>
+      <pubDate>Thu, 04 Jul 2019 01:19:10 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/letsmove/</guid>
+      <description>当我们从网络上下载某个 mac app 之后，一般都会默认在 Downloads 目录里，但是某一些 App 是需要放置到 Application 目录才行，最常见的就是自更新功能是受到当前所处目录的限制的</description>
+    </item>
+    
+  </channel>
+</rss>

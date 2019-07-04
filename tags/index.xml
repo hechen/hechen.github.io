@@ -6,10 +6,46 @@
     <description>Recent content in Tags on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 04 Jul 2019 01:01:10 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jul 2019 01:19:10 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LaunchdDaemon</title>
+      <link>https://hechen.xyz/tags/launchddaemon/</link>
+      <pubDate>Thu, 04 Jul 2019 01:19:10 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/launchddaemon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LetsMove</title>
+      <link>https://hechen.xyz/tags/letsmove/</link>
+      <pubDate>Thu, 04 Jul 2019 01:19:10 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/letsmove/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shell</title>
+      <link>https://hechen.xyz/tags/shell/</link>
+      <pubDate>Thu, 04 Jul 2019 01:19:10 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/shell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SourceCode</title>
+      <link>https://hechen.xyz/tags/sourcecode/</link>
+      <pubDate>Thu, 04 Jul 2019 01:19:10 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/sourcecode/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>XPC</title>
@@ -152,42 +188,6 @@
       <pubDate>Sat, 30 Mar 2019 11:29:54 +0800</pubDate>
       
       <guid>https://hechen.xyz/tags/applescript/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Menu</title>
-      <link>https://hechen.xyz/tags/menu/</link>
-      <pubDate>Sat, 30 Mar 2019 11:29:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/menu/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>NSTask</title>
-      <link>https://hechen.xyz/tags/nstask/</link>
-      <pubDate>Sat, 30 Mar 2019 11:29:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/nstask/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Process</title>
-      <link>https://hechen.xyz/tags/process/</link>
-      <pubDate>Sat, 30 Mar 2019 11:29:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/process/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Agent</title>
-      <link>https://hechen.xyz/tags/agent/</link>
-      <pubDate>Mon, 18 Mar 2019 17:29:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/agent/</guid>
       <description></description>
     </item>
     
