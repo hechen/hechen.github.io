@@ -6,10 +6,19 @@
     <description>Recent content in Posts on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 04 Jul 2019 01:01:10 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jul 2019 01:19:10 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LetsMove 中的几个点</title>
+      <link>https://hechen.xyz/post/letsmove/</link>
+      <pubDate>Thu, 04 Jul 2019 01:19:10 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/letsmove/</guid>
+      <description>当我们从网络上下载某个 mac app 之后，一般都会默认在 Downloads 目录里，但是某一些 App 是需要放置到 Application 目录才行，最常见的就是自更新功能是受到当前所处目录的限制的</description>
+    </item>
     
     <item>
       <title>XPC Services</title>
@@ -185,15 +194,6 @@ iOS In the previous development on the iOS platform, create a ViewController, sp
       
       <guid>https://hechen.xyz/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</guid>
       <description>大部分在 Apple 平台开发的 App 都会依赖基于单例的 API。从 UIScreen 到 UIApplication，再到 NSBundle，而 Foundation，UIKit 以</description>
-    </item>
-    
-    <item>
-      <title>避免在 Swift 中使用单例</title>
-      <link>https://hechen.xyz/post/avoiding-singletons-in-swift/</link>
-      <pubDate>Mon, 16 Jul 2018 17:34:36 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/avoiding-singletons-in-swift/</guid>
-      <description>“我知道单例不好，但是&amp;hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的</description>
     </item>
     
   </channel>
