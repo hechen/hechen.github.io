@@ -52,8 +52,6 @@
 
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/8glAV2u.png&#34; alt=&#34;shared-42f9e747-a47b-46fd-b445-0c7615b41020&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;其实具体而言就是封装了 NSTask 执行 Shell 脚本，而执行的脚本文件内置在应用程序内部。&lt;/p&gt;
-
 &lt;p&gt;由于 NSTask 内部执行的脚本程序自身还会调用其他依赖的功能，比如 xcrun 等二进制程序，而对于使用 NSTask 或者 posix_spawn 派生的任务来说，其虽然也是执行拆分出来的小部分工作，但在沙盒环境下的应用程序，使得派生出的进程自身其继承了父进程的沙盒环境，由于某些脚本执行的二进制本身是不允许在沙盒环境下运行的，因此主应用就不得不关闭沙盒。这也使得无法给主应用添加 Push 推送功能，因为 APNS 通知服务需要建立 SSL 链接，这个是需要在 Sandbox 环境下进行的。&lt;/p&gt;
 
 &lt;p&gt;另外，对于执行 NSTask 的这层命令行执行模块来讲，拆分到独立的进程中使得安全性也得以提高，即使 XPC 进程挂掉，一般情况下再次向 XPC 通信，系统会自行恢复启用新的 XPC 进程，而主应用无感知。&lt;/p&gt;
@@ -138,6 +136,8 @@
 &lt;p&gt;类似于下载任务要获取下载进度的问题，在迁移 NSTask 执行层的过程中，面临的一个需求是针对 XPCService 端 NSTask 执行过程中的持续性的输出都要能够回调给 Client 端，而 Reply 回调只能响应一次。&lt;/p&gt;
 
 &lt;p&gt;我们在主应用端希望能够通过一个 Block 不断获取当前最新的数据，可是，不幸的是，XPC 并不支持如此。比如，我们希望能够通过回调实时获取状态。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/x2qwpVP.png&#34; alt=&#34;Run Command with multiple replies&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;具体可以参考 &lt;a href=&#34;https://forums.developer.apple.com/thread/35731&#34;&gt;https://forums.developer.apple.com/thread/35731&lt;/a&gt; 论坛中 Apple 人员的回复，总结起来两点：&lt;/p&gt;
 
