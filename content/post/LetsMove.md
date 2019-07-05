@@ -65,7 +65,10 @@ Relaunch 方法是将应用移动到 /Applications 目录后的后续动作。
 
 这个是 macOS 自身的安全校验提示，当然一般从 web 下载的 App 本身都会被加上 com.apple.quarantine 的扩展属性，这里是移除了该属性，防止执行了 open 之后弹出该提示叨扰用户。
 
+当然，这一切都是在非沙盒应用中才能够实现，关键原因在于沙盒环境下授权相关的 API 都是受到严格限制的。如果想针对沙盒应用做，一般会制作成 dmg 文件格式来供用户显式操作。
+
 ## References
 
 1. [What does `kill -0` do?](https://unix.stackexchange.com/questions/169898/what-does-kill-0-do)
 2. [Extended file attributes - Wikipedia](https://en.wikipedia.org/wiki/Extended_file_attributes)
+3. [Doesn't work with sandboxed apps](https://github.com/potionfactory/LetsMove/issues/41)
