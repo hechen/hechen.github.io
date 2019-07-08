@@ -1632,7 +1632,7 @@ killall Finder&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;ol&gt;
 &lt;li&gt;创建辅助应用，其作为主应用的 Target 新建出来&lt;/li&gt;
 &lt;li&gt;将辅助应用的 Info.plist 文件中指定属性 &lt;code&gt;LSBackgroundOnly&lt;/code&gt; 为 &lt;code&gt;YES&lt;/code&gt;；&lt;/li&gt;
-&lt;li&gt;在辅助应用 Target 的 build setting 中设置 &lt;code&gt;Skip Install&lt;/code&gt; 为 &lt;code&gt;YES&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;在辅助应用 Target 的 build setting 中设置 &lt;code&gt;Skip Install&lt;/code&gt; 为 &lt;code&gt;YES&lt;/code&gt;（关于其作用主要是不需要 Xcode archive 执行将 Product 拷贝到最终的包里，因为我们执行加入了步骤 4）;&lt;/li&gt;
 &lt;li&gt;在主应用的 build phase 中加入 &lt;code&gt;Copy Files&lt;/code&gt; 阶段，
 
 &lt;ul&gt;
@@ -1954,6 +1954,7 @@ killall Finder&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;li&gt;&lt;a href=&#34;https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/Introduction.html#//apple_ref/doc/uid/10000172i-SW1-SW1&#34;&gt;Daemons and Services Programming Guide&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/LaunchServicesConcepts/LSCIntro/LSCIntro.html#//apple_ref/doc/uid/TP30000999&#34;&gt;Launch Services Programming Guide&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Notifications/Articles/NotificationCenters.html&#34;&gt;NSDistributedNotificationCenter&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://stackoverflow.com/questions/16374851/xcode-4-target-build-setting-skip-install-what-is-it&#34;&gt;What the Skip-Install mean?&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
       
