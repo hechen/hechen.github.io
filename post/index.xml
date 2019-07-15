@@ -58,7 +58,7 @@ iOS In the previous development on the iOS platform, create a ViewController, sp
       <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
       
       <guid>https://hechen.xyz/post/a-swift-quiz/</guid>
-      <description>这两天在 Twitter 上看到一道题目，主要是考察 overload 和 type(of:) 的知识点，本文仅做记录，关于 metatype 会单独写一篇文章来总结。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 // Swift Quiz class</description>
+      <description>这两天在 Twitter 上看到一道题目，主要是考察 overload 和 type(of:) 的知识点，本文仅做记录，关于 MetaType 会单独写一篇文章来总结。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 // Swift Quiz class</description>
     </item>
     
     <item>
