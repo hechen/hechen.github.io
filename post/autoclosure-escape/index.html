@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.56.0-DEV" />
+<meta name="generator" content="Hugo 0.57.0-DEV" />
 
 
 <link rel="canonical" href="https://hechen.xyz/post/autoclosure-escape/" />
@@ -521,9 +521,9 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="kr">@autoclosure</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">?</span>
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="kr">@autoclosure</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">?)</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">?</span>
 
-<span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="kr">@autoclosure</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span></code></pre></td></tr></table>
+<span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="kr">@autoclosure</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>看得出来 <code>??</code> 是一个二元操作符，optional 指代 ?? 前面的输入，defaultValue 指代 <code>??</code> 后面的参数，那我们就会想，我们上面的例子中 <code>fullName</code> 只是一个 <code>String</code>，怎么变成 <code>() -&gt; T</code> 类型的呢？ 这个就看前面的 <code>@autoclosure</code> 的威力了，前面讲过了，该关键字把表达式的值封装成闭包并且返回该表达式的值了。 其实传入该方法的第二个参数是 <code>{ fullName }</code>。</p>
@@ -541,7 +541,7 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="kr">@autoclosure</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span>
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">func</span> <span class="p">??&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kr">optional</span><span class="p">:</span> <span class="n">T</span><span class="p">?,</span> <span class="n">defaultValue</span><span class="p">:</span> <span class="kr">@autoclosure</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="n">T</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="n">T</span> <span class="p">{</span>
     <span class="k">switch</span> <span class="kr">optional</span> <span class="p">{</span>
         <span class="k">case</span> <span class="p">.</span><span class="n">Some</span><span class="p">(</span><span class="kd">let</span> <span class="nv">value</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">value</span>
