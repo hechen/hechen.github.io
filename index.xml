@@ -6646,17 +6646,19 @@ dataLoader.loadData(from: url) { data in
       
         <description>
 
-&lt;h3 id=&#34;概览&#34;&gt;概览&lt;/h3&gt;
+&lt;h2 id=&#34;概览&#34;&gt;概览&lt;/h2&gt;
 
-&lt;p&gt;推送通知我们大家都不陌生，可以说几乎每个使用智能手机的人每天都会被不同的通知 &lt;em&gt;打扰&lt;/em&gt; 到，正式因为合适的推送是吸引用户注意力的利器，其成为了各 App 吸引用户，将用户带回到 App 本身，提升用户的活跃度的一种必要的方式。当然要注意的是，推送本身是一件对用户影响特别大的事情，毕竟注意力被打断，因此合适的推送时机也是各个 App 开发者所要注意的，否则就会成为用户勿扰名单里的一员了。&lt;/p&gt;
+&lt;p&gt;推送通知我们大家都不陌生，可以说几乎每个使用智能手机的人每天都会被不同的通知 &lt;em&gt;打扰&lt;/em&gt; 到，正式因为合适的推送是吸引用户注意力的利器，其成为了各 App 吸引用户，将用户带回到 App 本身，提升用户的活跃度的一种必要的方式。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;当然，过度的推送本身则是一件对用户影响特别大的事情，毕竟注意力被打断，因此合适的推送时机也是各个 App 开发者所要注意的，否则他的 App 就会成为用户勿扰名单里的一员了。&lt;/p&gt;
 
 &lt;p&gt;之前刚开始学习 iOS 开发的时候还整理了下当时部署 iOS 远程推送的流程，详见：&lt;a href=&#34;http://hechen.info/2015/07/30/iOS-Push-Notification/&#34;&gt;iOS 远端推送部署详解&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;接下来，我们大致回顾一下 iOS 平台关于推送都有哪些历程？&lt;/p&gt;
 
-&lt;!-- more --&gt;
-
-&lt;h3 id=&#34;历史&#34;&gt;历史&lt;/h3&gt;
+&lt;h2 id=&#34;历史&#34;&gt;历史&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&amp;lt;= iOS 6&lt;/p&gt;
@@ -6696,7 +6698,7 @@ dataLoader.loadData(from: url) { data in
 
 &lt;p&gt;WWDC 2016 大会上，Apple 在 iOS 10 上引入了 &lt;strong&gt;UserNotification&lt;/strong&gt; 框架，可以说是对之前的各种代码做了一次重构。该框架统一了通知的行为，尤其是针对远程推送和本地推送不再有两套完全不同的使用方式了。&lt;/p&gt;
 
-&lt;h3 id=&#34;变化&#34;&gt;变化&lt;/h3&gt;
+&lt;h2 id=&#34;变化&#34;&gt;变化&lt;/h2&gt;
 
 &lt;p&gt;关于 iOS 10 上 UserNotification 框架的变化，主要从几个方面来讲述：&lt;/p&gt;
 
@@ -6707,7 +6709,7 @@ dataLoader.loadData(from: url) { data in
 &lt;li&gt;Extensions&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h4 id=&#34;权限申请&#34;&gt;权限申请&lt;/h4&gt;
+&lt;h3 id=&#34;权限申请&#34;&gt;权限申请&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -6726,7 +6728,7 @@ dataLoader.loadData(from: url) { data in
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h4 id=&#34;远程推送&#34;&gt;远程推送&lt;/h4&gt;
+&lt;h3 id=&#34;远程推送&#34;&gt;远程推送&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -6776,7 +6778,7 @@ dataLoader.loadData(from: url) { data in
 &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;h4 id=&#34;payloads&#34;&gt;Payloads&lt;/h4&gt;
+&lt;h3 id=&#34;payloads&#34;&gt;Payloads&lt;/h3&gt;
 
 &lt;p&gt;&amp;lt;  iOS 10&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -6902,7 +6904,7 @@ dataLoader.loadData(from: url) { data in
 &lt;p&gt;注意到有个 key:  launch-image ，可以指定用户点击通知启动 App 的时候的 Launch Image&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h4 id=&#34;可以撤销和更新通知了&#34;&gt;可以撤销和更新通知了！&lt;/h4&gt;
+&lt;h3 id=&#34;可以撤销和更新通知了&#34;&gt;可以撤销和更新通知了！&lt;/h3&gt;
 
 &lt;p&gt;UserNotification 框架 API 提供了通知的更新和撤销的接口。具体功能主要包含几个部分：&lt;/p&gt;
 
@@ -7124,7 +7126,7 @@ dataLoader.loadData(from: url) { data in
 
 &lt;p&gt;当然，上述均是针对本地通知的操作，关于远程推送通知，目前只支持更新通知，远程推送可以进行通知的更新，在使用 Provider API 向 APNs 提交请求时，在 HTTP/2 的 header 中 apns-collapse-id key 的内容将被作为该推送的标识符进行使用。多次推送同一标识符的通知即可进行更新。&lt;/p&gt;
 
-&lt;h4 id=&#34;notification-extension&#34;&gt;Notification Extension&lt;/h4&gt;
+&lt;h3 id=&#34;notification-extension&#34;&gt;Notification Extension&lt;/h3&gt;
 
 &lt;p&gt;iOS 10 中最重要的一个变化就是 Extension，从 iMessage Extension 到 SiriKit 中提供的  Intent Extension 等，那对于 UserNotification 来讲就是下面这两种 Extension：&lt;/p&gt;
 
@@ -7274,7 +7276,7 @@ iOS 10 SDK 新加的另一个 Content Extension 可以用来自定义通知的�
 
 &lt;p&gt;&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/14953507334611.png&#34; alt=&#34;未成功设置附件的情况&#34; /&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;推送证书的配置&#34;&gt;推送证书的配置&lt;/h4&gt;
+&lt;h3 id=&#34;推送证书的配置&#34;&gt;推送证书的配置&lt;/h3&gt;
 
 &lt;p&gt;下图是获取推送通知证书并将其注册到 Leancloud 的流程，最关键的地方其实就是需要在本机生成 CSR 文件提交到 Apple Developer Website 生成 Push Certification 文件。&lt;/p&gt;
 
@@ -7309,7 +7311,9 @@ iOS 10 SDK 新加的另一个 Content Extension 可以用来自定义通知的�
 
 &lt;p&gt;&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/Add - iOS Certificates - Apple Developer Google Chrome, 今天 at 下午5.09.58.png&#34; alt=&#34;Add - iOS Certificates - Apple Developer Google Chrome, 今天 at 下午5.09.58&#34; /&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;demo-演示-knuff-https-github-com-knuffapp-knuff&#34;&gt;Demo 演示  &lt;a href=&#34;https://github.com/KnuffApp/Knuff&#34;&gt;Knuff&lt;/a&gt;&lt;/h4&gt;
+&lt;h3 id=&#34;demo-演示&#34;&gt;Demo 演示&lt;/h3&gt;
+
+&lt;p&gt;可以使用 &lt;a href=&#34;https://github.com/KnuffApp/Knuff&#34;&gt;Knuff&lt;/a&gt; 进行通知推送测试。&lt;/p&gt;
 
 &lt;p&gt;参考资料&lt;/p&gt;
 
