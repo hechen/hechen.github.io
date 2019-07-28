@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.56.0-DEV" />
+<meta name="generator" content="Hugo 0.57.0-DEV" />
 
 
 <link rel="canonical" href="https://hechen.xyz/post/autostartwhenlogin/" />
@@ -476,7 +476,7 @@
     <span class="kd">let</span> <span class="nv">isRunning</span> <span class="p">=</span> <span class="o">!</span><span class="n">runningApps</span><span class="p">.</span><span class="bp">filter</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">.</span><span class="n">bundleIdentifier</span> <span class="p">==</span> <span class="n">launcherAppId</span> <span class="p">}.</span><span class="bp">isEmpty</span>
     <span class="k">if</span> <span class="n">isRunning</span> <span class="p">{</span>
     <span class="n">DistributedNotificationCenter</span><span class="p">.</span><span class="k">default</span><span class="p">().</span><span class="n">post</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="p">.</span><span class="n">killLauncher</span><span class="p">,</span>
-                                                         <span class="n">object</span><span class="p">:</span> <span class="n">Bundle</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">bundleIdentifier</span><span class="o">!</span><span class="p">)</span>
+                                                         <span class="n">object</span><span class="p">:</span> <span class="n">Bundle</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">bundleIdentifier</span><span class="p">!)</span>
         <span class="p">}</span>
     <span class="p">}</span></code></pre></td></tr></table>
 </div>
@@ -661,7 +661,7 @@
 <td class="lntd">
 <pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">let</span> <span class="nv">launchHelperIdentifier</span> <span class="p">=</span> <span class="s">&#34;app.chen.osx.demo.StartAtLoginLauncher&#34;</span>
 <span class="kd">let</span> <span class="nv">jobs</span> <span class="p">=</span> <span class="n">SMCopyAllJobDictionaries</span><span class="p">(</span><span class="n">kSMDomainUserLaunchd</span><span class="p">).</span><span class="n">takeRetainedValue</span><span class="p">()</span> <span class="k">as</span><span class="p">?</span> <span class="p">[[</span><span class="nb">String</span><span class="p">:</span> <span class="nb">AnyObject</span><span class="p">]]</span>
-<span class="kd">var</span> <span class="nv">autoLaunchRegistered</span> <span class="p">=</span> <span class="n">jobs</span><span class="p">?.</span><span class="bp">contains</span><span class="p">(</span><span class="k">where</span><span class="p">:</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">[</span><span class="s">&#34;Label&#34;</span><span class="p">]</span> <span class="k">as</span><span class="o">!</span> <span class="nb">String</span> <span class="p">==</span> <span class="n">launchHelperIdentifier</span> <span class="p">})</span> <span class="p">??</span> <span class="kc">false</span></code></pre></td></tr></table>
+<span class="kd">var</span> <span class="nv">autoLaunchRegistered</span> <span class="p">=</span> <span class="n">jobs</span><span class="p">?.</span><span class="bp">contains</span><span class="p">(</span><span class="k">where</span><span class="p">:</span> <span class="p">{</span> <span class="nv">$0</span><span class="p">[</span><span class="s">&#34;Label&#34;</span><span class="p">]</span> <span class="k">as</span><span class="p">!</span> <span class="nb">String</span> <span class="p">==</span> <span class="n">launchHelperIdentifier</span> <span class="p">})</span> <span class="p">??</span> <span class="kc">false</span></code></pre></td></tr></table>
 </div>
 </div>
 <h5 id="smloginitemsetenabled">SMLoginItemSetEnabled</h5>

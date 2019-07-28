@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.56.0-DEV" />
+<meta name="generator" content="Hugo 0.57.0-DEV" />
 
 
 <link rel="canonical" href="https://hechen.xyz/post/leetcode-001-maximum-product-subarray/" />
@@ -462,25 +462,25 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Java" data-lang="Java">	<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-		 <span class="kd">public</span> <span class="kt">int</span> <span class="nf">maxProduct</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
-            <span class="kt">int</span> <span class="n">nMaxPro</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
-            <span class="kt">int</span> <span class="n">max_tmp</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
-            <span class="kt">int</span> <span class="n">min_tmp</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+<pre class="chroma"><code class="language-Java" data-lang="Java">	<span class="kd">public</span> <span class="nf">class</span> <span class="n">Solution</span> <span class="p">{</span>
+		 <span class="kd">public</span> <span class="nf">int</span> <span class="n">maxProduct</span><span class="p">(</span><span class="kt">int</span><span class="p">[]</span> <span class="nf">nums</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="nf">nMaxPro</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">0</span><span class="p">];</span>
+            <span class="kt">int</span> <span class="nf">max_tmp</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">0</span><span class="p">];</span>
+            <span class="kt">int</span> <span class="nf">min_tmp</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">0</span><span class="p">];</span>
 
-            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">){</span>
-                <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">*</span> <span class="n">max_tmp</span><span class="o">;</span>
-                <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">*</span> <span class="n">min_tmp</span><span class="o">;</span>
+            <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="nf">nums</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+                <span class="kt">int</span> <span class="nf">a</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">max_tmp</span><span class="p">;</span>
+                <span class="kt">int</span> <span class="nf">b</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">min_tmp</span><span class="p">;</span>
 
-                <span class="n">max_tmp</span> <span class="o">=</span> <span class="o">((</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span> <span class="o">)</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">?</span> <span class="o">(</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span> <span class="o">)</span> <span class="o">:</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-                <span class="n">min_tmp</span> <span class="o">=</span> <span class="o">((</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span> <span class="o">)</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">?</span> <span class="o">(</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span> <span class="o">)</span> <span class="o">:</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+                <span class="n">max_tmp</span> <span class="o">=</span> <span class="p">((</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span> <span class="p">)</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">?</span> <span class="p">(</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span> <span class="p">)</span> <span class="o">:</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+                <span class="n">min_tmp</span> <span class="o">=</span> <span class="p">((</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span> <span class="p">)</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">?</span> <span class="p">(</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span> <span class="p">)</span> <span class="o">:</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 
-                <span class="n">nMaxPro</span> <span class="o">=</span> <span class="o">(</span><span class="n">nMaxPro</span> <span class="o">&gt;</span> <span class="n">max_tmp</span><span class="o">)</span> <span class="o">?</span> <span class="n">nMaxPro</span> <span class="o">:</span> <span class="n">max_tmp</span><span class="o">;</span>
-            <span class="o">}</span>
+                <span class="n">nMaxPro</span> <span class="o">=</span> <span class="p">(</span><span class="n">nMaxPro</span> <span class="o">&gt;</span> <span class="n">max_tmp</span><span class="p">)</span> <span class="o">?</span> <span class="n">nMaxPro</span> <span class="o">:</span> <span class="n">max_tmp</span><span class="p">;</span>
+            <span class="p">}</span>
 
-            <span class="k">return</span> <span class="n">nMaxPro</span><span class="o">;</span>
-	    <span class="o">}</span>
-	<span class="o">}</span>
+            <span class="k">return</span> <span class="n">nMaxPro</span><span class="p">;</span>
+	    <span class="p">}</span>
+	<span class="p">}</span>
     </code></pre></td></tr></table>
 </div>
 </div>

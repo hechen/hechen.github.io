@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.56.0-DEV" />
+<meta name="generator" content="Hugo 0.57.0-DEV" />
 
 
 <link rel="canonical" href="https://hechen.xyz/post/ios-push-notification/" />
@@ -709,52 +709,52 @@
 </span><span class="lnt">46
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Java" data-lang="Java"><span class="kn">package</span> <span class="nn">testApplePush</span><span class="o">;</span>
+<pre class="chroma"><code class="language-Java" data-lang="Java"><span class="kn">package</span> <span class="nf">testApplePush</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javapns.Push</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javapns.notification.PushNotificationPayload</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javapns.notification.PushedNotifications</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nf">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">List</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nf">javapns</span><span class="p">.</span><span class="na">Push</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nf">javapns</span><span class="p">.</span><span class="na">notification</span><span class="p">.</span><span class="na">PushNotificationPayload</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nf">javapns</span><span class="p">.</span><span class="na">notification</span><span class="p">.</span><span class="na">PushedNotifications</span><span class="p">;</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">testApplePush</span> 
-<span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
-    <span class="o">{</span>
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">testApplePush</span> 
+<span class="p">{</span>
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span>
+    <span class="p">{</span>
        <span class="k">try</span> 
-       <span class="o">{</span>
-          <span class="n">PushNotificationPayload</span> <span class="n">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PushNotificationPayload</span><span class="o">();</span>
+       <span class="p">{</span>
+          <span class="n">PushNotificationPayload</span> <span class="nf">payload</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PushNotificationPayload</span><span class="p">();</span>
 
-          <span class="n">payload</span><span class="o">.</span><span class="na">addAlert</span><span class="o">(</span><span class="s">&#34;这是一条推送通知!&#34;</span><span class="o">);</span> <span class="c1">// 通知主体内容
-</span><span class="c1"></span>          <span class="n">payload</span><span class="o">.</span><span class="na">addBadge</span><span class="o">(</span><span class="n">1</span><span class="o">);</span> <span class="c1">// 角标数字
-</span><span class="c1"></span>          <span class="n">payload</span><span class="o">.</span><span class="na">addSound</span><span class="o">(</span><span class="s">&#34;default&#34;</span><span class="o">);</span> <span class="c1">// 通知铃音
+          <span class="n">payload</span><span class="p">.</span><span class="na">addAlert</span><span class="p">(</span><span class="s">&#34;这是一条推送通知!&#34;</span><span class="p">);</span> <span class="c1">// 通知主体内容
+</span><span class="c1"></span>          <span class="n">payload</span><span class="p">.</span><span class="na">addBadge</span><span class="p">(</span><span class="n">1</span><span class="p">);</span> <span class="c1">// 角标数字
+</span><span class="c1"></span>          <span class="n">payload</span><span class="p">.</span><span class="na">addSound</span><span class="p">(</span><span class="s">&#34;default&#34;</span><span class="p">);</span> <span class="c1">// 通知铃音
 </span><span class="c1"></span>          
           <span class="c1">// 加入自定义信息
-</span><span class="c1"></span>          <span class="n">payload</span><span class="o">.</span><span class="na">addCustomDictionary</span><span class="o">(</span><span class="s">&#34;carryOrderId&#34;</span><span class="o">,</span> <span class="s">&#34;121212121212121212121212&#34;</span><span class="o">);</span>
+</span><span class="c1"></span>          <span class="n">payload</span><span class="p">.</span><span class="na">addCustomDictionary</span><span class="p">(</span><span class="s">&#34;carryOrderId&#34;</span><span class="p">,</span> <span class="s">&#34;121212121212121212121212&#34;</span><span class="p">);</span>
  
 		    <span class="c1">// 服务器端记录的DeviceToken
-</span><span class="c1"></span>          <span class="n">String</span> <span class="n">deviceToken</span> <span class="o">=</span> <span class="s">&#34;************************************************&#34;</span><span class="o">;</span>
-          <span class="n">PushedNotifications</span> <span class="n">notifications</span> <span class="o">=</span> <span class="n">Push</span><span class="o">.</span><span class="na">payload</span><span class="o">(</span><span class="n">payload</span><span class="o">,</span> 	<span class="c1">// 自定义payload
-</span><span class="c1"></span>												          <span class="s">&#34;Push.p12&#34;</span><span class="o">,</span>	<span class="c1">// 前面生成的证书
-</span><span class="c1"></span>												          <span class="s">&#34;111111111&#34;</span><span class="o">,</span> 	<span class="c1">// 证书导出时的密码
-</span><span class="c1"></span>												          <span class="kc">false</span><span class="o">,</span>		<span class="c1">// 是否发送到发布地址
-</span><span class="c1"></span>												          <span class="n">deviceToken</span><span class="o">);</span> <span class="c1">// 客户端DeviceToken
+</span><span class="c1"></span>          <span class="n">String</span> <span class="nf">deviceToken</span> <span class="o">=</span> <span class="s">&#34;************************************************&#34;</span><span class="p">;</span>
+          <span class="n">PushedNotifications</span> <span class="nf">notifications</span> <span class="o">=</span> <span class="n">Push</span><span class="p">.</span><span class="na">payload</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> 	<span class="c1">// 自定义payload
+</span><span class="c1"></span>												          <span class="s">&#34;Push.p12&#34;</span><span class="p">,</span>	<span class="c1">// 前面生成的证书
+</span><span class="c1"></span>												          <span class="s">&#34;111111111&#34;</span><span class="p">,</span> 	<span class="c1">// 证书导出时的密码
+</span><span class="c1"></span>												          <span class="kc">false</span><span class="p">,</span>		<span class="c1">// 是否发送到发布地址
+</span><span class="c1"></span>												          <span class="n">deviceToken</span><span class="p">);</span> <span class="c1">// 客户端DeviceToken
 </span><span class="c1"></span>
-            <span class="kt">int</span> <span class="n">numOfFailedNotifications</span> <span class="o">=</span> <span class="n">notifications</span><span class="o">.</span><span class="na">getFailedNotifications</span><span class="o">()</span>
-                    <span class="o">.</span><span class="na">size</span><span class="o">();</span>
-            <span class="kt">int</span> <span class="n">numOfSuccessfulNotificatios</span> <span class="o">=</span> <span class="n">notifications</span>
-                    <span class="o">.</span><span class="na">getSuccessfulNotifications</span><span class="o">().</span><span class="na">size</span><span class="o">();</span>
+            <span class="kt">int</span> <span class="nf">numOfFailedNotifications</span> <span class="o">=</span> <span class="n">notifications</span><span class="p">.</span><span class="na">getFailedNotifications</span><span class="p">()</span>
+                    <span class="p">.</span><span class="na">size</span><span class="p">();</span>
+            <span class="kt">int</span> <span class="nf">numOfSuccessfulNotificatios</span> <span class="o">=</span> <span class="n">notifications</span>
+                    <span class="p">.</span><span class="na">getSuccessfulNotifications</span><span class="p">().</span><span class="na">size</span><span class="p">();</span>
 
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span>
-                    <span class="s">&#34;Successful Send: %d, Failed Send: %d&#34;</span><span class="o">,</span>
-                    <span class="n">numOfSuccessfulNotificatios</span><span class="o">,</span> <span class="n">numOfFailedNotifications</span><span class="o">));</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span>
+                    <span class="s">&#34;Successful Send: %d, Failed Send: %d&#34;</span><span class="p">,</span>
+                    <span class="n">numOfSuccessfulNotificatios</span><span class="p">,</span> <span class="n">numOfFailedNotifications</span><span class="p">));</span>
 
-        <span class="o">}</span> 
-        <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span>
-        <span class="o">{</span>
-            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre></td></tr></table>
+        <span class="p">}</span> 
+        <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="nf">e</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
 <p>当前这里只是发送一条，如果需要批量发送，貌似Javapns支持的不是太好。这里使用的证书就是上面我们导出的.p12格式证书（<strong>Windows平台使用没问题。有些教程说是Win系统不识别是不正确的</strong>），接下来还有一份PHP写的代码，供大家查阅。但是这其中需要将我们的p12格式证书转换成pem格式证书。具体教程如下：
