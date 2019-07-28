@@ -69,7 +69,7 @@
 
 <meta itemprop="datePublished" content="2017-05-20T10:10:54&#43;00:00" />
 <meta itemprop="dateModified" content="2017-05-20T10:10:54&#43;00:00" />
-<meta itemprop="wordCount" content="2933">
+<meta itemprop="wordCount" content="2948">
 
 
 
@@ -322,8 +322,6 @@
 <ul>
 <li>
 <ul>
-<li>
-<ul>
 <li><a href="#概览">概览</a></li>
 <li><a href="#历史">历史</a></li>
 <li><a href="#变化">变化</a>
@@ -332,11 +330,12 @@
 <li><a href="#远程推送">远程推送</a></li>
 <li><a href="#payloads">Payloads</a></li>
 <li><a href="#可以撤销和更新通知了">可以撤销和更新通知了！</a></li>
-<li><a href="#notification-extension">Notification Extension</a></li>
+<li><a href="#notification-extension">Notification Extension</a>
+<ul>
 <li><a href="#支持多媒体资源在通知中心的展示">支持多媒体资源在通知中心的展示</a></li>
-<li><a href="#推送证书的配置">推送证书的配置</a></li>
-<li><a href="#demo-演示-knuff-https-github-com-knuffapp-knuff">Demo 演示  <a href="https://github.com/KnuffApp/Knuff">Knuff</a></a></li>
 </ul></li>
+<li><a href="#推送证书的配置">推送证书的配置</a></li>
+<li><a href="#demo-演示">Demo 演示</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -348,17 +347,19 @@
     <div class="post-content">
       
 
-<h3 id="概览">概览</h3>
+<h2 id="概览">概览</h2>
 
-<p>推送通知我们大家都不陌生，可以说几乎每个使用智能手机的人每天都会被不同的通知 <em>打扰</em> 到，正式因为合适的推送是吸引用户注意力的利器，其成为了各 App 吸引用户，将用户带回到 App 本身，提升用户的活跃度的一种必要的方式。当然要注意的是，推送本身是一件对用户影响特别大的事情，毕竟注意力被打断，因此合适的推送时机也是各个 App 开发者所要注意的，否则就会成为用户勿扰名单里的一员了。</p>
+<p>推送通知我们大家都不陌生，可以说几乎每个使用智能手机的人每天都会被不同的通知 <em>打扰</em> 到，正式因为合适的推送是吸引用户注意力的利器，其成为了各 App 吸引用户，将用户带回到 App 本身，提升用户的活跃度的一种必要的方式。</p>
+
+<!-- more -->
+
+<p>当然，过度的推送本身则是一件对用户影响特别大的事情，毕竟注意力被打断，因此合适的推送时机也是各个 App 开发者所要注意的，否则他的 App 就会成为用户勿扰名单里的一员了。</p>
 
 <p>之前刚开始学习 iOS 开发的时候还整理了下当时部署 iOS 远程推送的流程，详见：<a href="http://hechen.info/2015/07/30/iOS-Push-Notification/">iOS 远端推送部署详解</a></p>
 
 <p>接下来，我们大致回顾一下 iOS 平台关于推送都有哪些历程？</p>
 
-<!-- more -->
-
-<h3 id="历史">历史</h3>
+<h2 id="历史">历史</h2>
 
 <ul>
 <li><p>&lt;= iOS 6</p>
@@ -398,7 +399,7 @@
 
 <p>WWDC 2016 大会上，Apple 在 iOS 10 上引入了 <strong>UserNotification</strong> 框架，可以说是对之前的各种代码做了一次重构。该框架统一了通知的行为，尤其是针对远程推送和本地推送不再有两套完全不同的使用方式了。</p>
 
-<h3 id="变化">变化</h3>
+<h2 id="变化">变化</h2>
 
 <p>关于 iOS 10 上 UserNotification 框架的变化，主要从几个方面来讲述：</p>
 
@@ -409,7 +410,7 @@
 <li>Extensions</li>
 </ol>
 
-<h4 id="权限申请">权限申请</h4>
+<h3 id="权限申请">权限申请</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
@@ -428,7 +429,7 @@
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
-<h4 id="远程推送">远程推送</h4>
+<h3 id="远程推送">远程推送</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt"> 1
@@ -478,7 +479,7 @@
 <span class="p">}</span></code></pre></td></tr></table>
 </div>
 </div>
-<h4 id="payloads">Payloads</h4>
+<h3 id="payloads">Payloads</h3>
 
 <p>&lt;  iOS 10</p>
 <div class="highlight"><div class="chroma">
@@ -604,7 +605,7 @@
 <p>注意到有个 key:  launch-image ，可以指定用户点击通知启动 App 的时候的 Launch Image</p>
 </blockquote>
 
-<h4 id="可以撤销和更新通知了">可以撤销和更新通知了！</h4>
+<h3 id="可以撤销和更新通知了">可以撤销和更新通知了！</h3>
 
 <p>UserNotification 框架 API 提供了通知的更新和撤销的接口。具体功能主要包含几个部分：</p>
 
@@ -826,7 +827,7 @@
 
 <p>当然，上述均是针对本地通知的操作，关于远程推送通知，目前只支持更新通知，远程推送可以进行通知的更新，在使用 Provider API 向 APNs 提交请求时，在 HTTP/2 的 header 中 apns-collapse-id key 的内容将被作为该推送的标识符进行使用。多次推送同一标识符的通知即可进行更新。</p>
 
-<h4 id="notification-extension">Notification Extension</h4>
+<h3 id="notification-extension">Notification Extension</h3>
 
 <p>iOS 10 中最重要的一个变化就是 Extension，从 iMessage Extension 到 SiriKit 中提供的  Intent Extension 等，那对于 UserNotification 来讲就是下面这两种 Extension：</p>
 
@@ -976,7 +977,7 @@ iOS 10 SDK 新加的另一个 Content Extension 可以用来自定义通知的�
 
 <p><img src="http://7xilk1.com1.z0.glb.clouddn.com/14953507334611.png" alt="未成功设置附件的情况" /></p>
 
-<h4 id="推送证书的配置">推送证书的配置</h4>
+<h3 id="推送证书的配置">推送证书的配置</h3>
 
 <p>下图是获取推送通知证书并将其注册到 Leancloud 的流程，最关键的地方其实就是需要在本机生成 CSR 文件提交到 Apple Developer Website 生成 Push Certification 文件。</p>
 
@@ -1011,7 +1012,9 @@ iOS 10 SDK 新加的另一个 Content Extension 可以用来自定义通知的�
 
 <p><img src="http://7xilk1.com1.z0.glb.clouddn.com/Add - iOS Certificates - Apple Developer Google Chrome, 今天 at 下午5.09.58.png" alt="Add - iOS Certificates - Apple Developer Google Chrome, 今天 at 下午5.09.58" /></p>
 
-<h4 id="demo-演示-knuff-https-github-com-knuffapp-knuff">Demo 演示  <a href="https://github.com/KnuffApp/Knuff">Knuff</a></h4>
+<h3 id="demo-演示">Demo 演示</h3>
+
+<p>可以使用 <a href="https://github.com/KnuffApp/Knuff">Knuff</a> 进行通知推送测试。</p>
 
 <p>参考资料</p>
 
