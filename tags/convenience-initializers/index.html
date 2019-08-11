@@ -24,18 +24,18 @@
 
 <meta name="author" content="chen" />
   <meta name="description" content="Chen&#39;s personal blog." />
-  <meta name="keywords" content="Chen, iOS, Swift, Productivity" />
+  <meta name="keywords" content="Chen, iOS, Swift, Productivity, macOS, Cocoa" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.54.0" />
+<meta name="generator" content="Hugo 0.57.0-DEV" />
 
 
 <link rel="canonical" href="https://hechen.xyz/tags/convenience-initializers/" />
-<link href="https://hechen.xyz/tags/convenience-initializers/index.xml" rel="alternate" type="application/rss+xml" title="I make stuff" />
+<link href="%7balternate%20%7bRSS%20application/rss&#43;xml%20%20index%20alternate%20%20false%20false%20true%20false%20false%200%7d%20/tags/convenience-initializers/index.xml%20https://hechen.xyz/tags/convenience-initializers/index.xml%7d" rel="alternate" type="application/rss+xml" title="I make stuff" />
 
 
 
@@ -51,7 +51,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.ec807d8b802a40889537c26e014f733206312ea440d42e1f0dabed80918de1ac.css" integrity="sha256-7IB9i4AqQIiVN8JuAU9zMgYxLqRA1C4fDavtgJGN4aw=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.31c4b7729c8d71cc152f8de4203d90bfd8a04f7eab69372de7234ebf55b7701b.css" integrity="sha256-McS3cpyNccwVL43kID2Qv9igT36raTct5yNOv1W3cBs=" media="screen" crossorigin="anonymous">
 
 
 
@@ -62,8 +62,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://hechen.xyz/tags/convenience-initializers/" />
 
-<meta property="og:updated_time" content="2017-11-15T13:09:27&#43;00:00"/>
-
+<meta property="og:updated_time" content="2017-11-15T13:09:27+00:00" />
 <meta itemprop="name" content="Convenience Initializers">
 <meta itemprop="description" content="Chen&#39;s personal blog.">
 
@@ -134,6 +133,8 @@
         
       </li>
     
+
+    
   </ul>
 </nav>
 
@@ -195,6 +196,8 @@
     </div>
     </div>
 </div>
+
+  
 
   
 
@@ -268,6 +271,10 @@
 
       </li>
     
+
+    
+    
+
     
   </ul>
 </nav>
@@ -295,7 +302,7 @@
         2017-11-15
       </time>
       <span class="archive-post-title">
-        <a href="/post/initializer-in-swift/" class="archive-post-link">
+        <a href="" class="archive-post-link">
           Initializer in Swift
         </a>
       </span>
@@ -424,10 +431,6 @@
 
   
   
-    <span id="busuanzi_container">
-      访客数/访问量：<span id="busuanzi_value_site_uv"></span>/<span id="busuanzi_value_site_pv"></span>
-    </span>
-  
 
   
 </div>
@@ -469,14 +472,123 @@
 
 
 
-  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script type="text/javascript">
+    AV.initialize("wgbxcKzgAuMNE8wvfGp38xwG-gzGzoHsz", "JPVrQwSXVrxiVVsK3WoViro4");
+  </script>
+
+  <script>
+    function showHitCount(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push($(this).attr("id").trim());
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var hits = item.get('hits');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(hits);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function (results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("hits");
+            counter.save(null, {
+              success: function (counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('hits'));
+              },
+              error: function (counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+             
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+             
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("hits", 1);
+            newcounter.save(null, {
+              success: function (newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('hits'));
+              },
+              error: function (newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function (error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function () {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        
+        addCount(Counter);
+      } else if ($('.post-link').length > 1) {
+        
+        showHitCount(Counter);
+      }
+    });
+  </script>
 
 
 
   <script id="dsq-count-scr" src="//stoneman.disqus.com/count.js" async></script>
+
+
 
 
 

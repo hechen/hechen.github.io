@@ -12,12 +12,30 @@
     
     
     <item>
+      <title></title>
+      <link></link>
+      <pubDate>Mon, 18 Mar 2019 17:29:54 +0800</pubDate>
+      
+      <guid></guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>关于 Mac 应用的自启动是如何做到的</title>
       <link>https://hechen.xyz/post/autostartwhenlogin/</link>
       <pubDate>Mon, 18 Mar 2019 17:29:54 +0800</pubDate>
       
       <guid>https://hechen.xyz/post/autostartwhenlogin/</guid>
       <description>开机自启动是 Cocoa 应用最常见的一种功能，尤其是针对需要常驻 Menu 的服务来说更是如此，今天我们对开机启动项的功能加入做个梳理。 在 Daemons and Services Programming Guide 中我们能找到</description>
+    </item>
+    
+    <item>
+      <title>关于 iOS 安装包的几种大小</title>
+      <link></link>
+      <pubDate>Thu, 20 Dec 2018 17:29:54 +0800</pubDate>
+      
+      <guid></guid>
+      <description></description>
     </item>
     
   </channel>
