@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>Implement Strstr</title>
+      <title>[28] Implement strStr()</title>
       <link>https://hechen.xyz/post/leetcode-021-implementstrstr/</link>
       <pubDate>Fri, 21 Aug 2015 09:14:17 +0000</pubDate>
       
@@ -21,7 +21,7 @@
     </item>
     
     <item>
-      <title>257. Binary Tree Paths</title>
+      <title>[257] Binary Tree Paths</title>
       <link>https://hechen.xyz/post/leetcode-019-binarytreepaths/</link>
       <pubDate>Tue, 18 Aug 2015 16:28:26 +0000</pubDate>
       
@@ -39,7 +39,7 @@
     </item>
     
     <item>
-      <title>[002] Reverse Words in a String</title>
+      <title>[151] Reverse Words in a String</title>
       <link>https://hechen.xyz/post/leetcode-002-reverse-words-in-a-string/</link>
       <pubDate>Fri, 01 May 2015 09:29:09 +0000</pubDate>
       
@@ -57,7 +57,7 @@
     </item>
     
     <item>
-      <title>[002] Intersection of Two Linked lists</title>
+      <title>[160] Intersection of Two Linked Lists</title>
       <link>https://hechen.xyz/post/leetcode-003-intersection-of-two-linked-lists/</link>
       <pubDate>Wed, 29 Apr 2015 12:28:00 +0000</pubDate>
       
@@ -66,7 +66,7 @@
     </item>
     
     <item>
-      <title>152. Maximum Product Subarray</title>
+      <title>[152] Maximum Product Subarray</title>
       <link>https://hechen.xyz/post/leetcode-001-maximum-product-subarray/</link>
       <pubDate>Wed, 29 Apr 2015 11:30:00 +0000</pubDate>
       
