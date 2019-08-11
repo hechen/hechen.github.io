@@ -5,17 +5,19 @@ categories: ["iOS"]
 tags: ["iOS","Swift","Notification"]
 ---
 
-### 概览
+## 概览
 
-推送通知我们大家都不陌生，可以说几乎每个使用智能手机的人每天都会被不同的通知 *打扰* 到，正式因为合适的推送是吸引用户注意力的利器，其成为了各 App 吸引用户，将用户带回到 App 本身，提升用户的活跃度的一种必要的方式。当然要注意的是，推送本身是一件对用户影响特别大的事情，毕竟注意力被打断，因此合适的推送时机也是各个 App 开发者所要注意的，否则就会成为用户勿扰名单里的一员了。
+推送通知我们大家都不陌生，可以说几乎每个使用智能手机的人每天都会被不同的通知 *打扰* 到，正式因为合适的推送是吸引用户注意力的利器，其成为了各 App 吸引用户，将用户带回到 App 本身，提升用户的活跃度的一种必要的方式。
+
+<!-- more -->
+
+当然，过度的推送本身则是一件对用户影响特别大的事情，毕竟注意力被打断，因此合适的推送时机也是各个 App 开发者所要注意的，否则他的 App 就会成为用户勿扰名单里的一员了。
 
 之前刚开始学习 iOS 开发的时候还整理了下当时部署 iOS 远程推送的流程，详见：[iOS 远端推送部署详解](http://hechen.info/2015/07/30/iOS-Push-Notification/)
 
 接下来，我们大致回顾一下 iOS 平台关于推送都有哪些历程？
 
-<!-- more -->
-
-### 历史
+## 历史
 
 - <= iOS 6 
 	- 远程推送通知 （iOS 3）
@@ -38,7 +40,7 @@ tags: ["iOS","Swift","Notification"]
 
 WWDC 2016 大会上，Apple 在 iOS 10 上引入了 **UserNotification** 框架，可以说是对之前的各种代码做了一次重构。该框架统一了通知的行为，尤其是针对远程推送和本地推送不再有两套完全不同的使用方式了。
 
-### 变化
+## 变化
 
 关于 iOS 10 上 UserNotification 框架的变化，主要从几个方面来讲述：
 
@@ -48,7 +50,7 @@ WWDC 2016 大会上，Apple 在 iOS 10 上引入了 **UserNotification** 框架�
 4. Extensions
 
 
-#### 权限申请
+### 权限申请
 
 ``` Swift
 UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
@@ -59,7 +61,7 @@ UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound
 }
 ```
 
-####  远程推送
+### 远程推送
 
 ``` Swift
 // 向 APNs 请求 token：
@@ -75,13 +77,11 @@ else if #available(iOS 9, *) {
 UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil))
     UIApplication.shared.registerForRemoteNotifications()
 }
-
 ```
 
 关于注册远程通知的回调方法一致，
 
 ``` Swift
-
 // AppDelegate.swift
  func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
     let tokenString = deviceToken.hexString
@@ -89,7 +89,7 @@ UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings
 }
 ```
 
-#### Payloads 
+### Payloads 
 
 <  iOS 10
 
@@ -159,7 +159,7 @@ iOS 10 系统提供了更为丰富的结构，比如可以指定 Title，Subtitl
 
 > 注意到有个 key:  launch-image ，可以指定用户点击通知启动 App 的时候的 Launch Image
 
-#### 可以撤销和更新通知了！
+### 可以撤销和更新通知了！
 
 UserNotification 框架 API 提供了通知的更新和撤销的接口。具体功能主要包含几个部分：
 
@@ -279,7 +279,7 @@ UserNotification 框架 API 提供了通知的更新和撤销的接口。具体�
 当然，上述均是针对本地通知的操作，关于远程推送通知，目前只支持更新通知，远程推送可以进行通知的更新，在使用 Provider API 向 APNs 提交请求时，在 HTTP/2 的 header 中 apns-collapse-id key 的内容将被作为该推送的标识符进行使用。多次推送同一标识符的通知即可进行更新。
 
 
-#### Notification Extension
+### Notification Extension
 
 iOS 10 中最重要的一个变化就是 Extension，从 iMessage Extension 到 SiriKit 中提供的  Intent Extension 等，那对于 UserNotification 来讲就是下面这两种 Extension：
 
@@ -382,7 +382,7 @@ if let imageURL = Bundle.main.url(forResource: "image", withExtension: "jpg"),
 
 
 
-#### 推送证书的配置
+### 推送证书的配置
 
 下图是获取推送通知证书并将其注册到 Leancloud 的流程，最关键的地方其实就是需要在本机生成 CSR 文件提交到 Apple Developer Website 生成 Push Certification 文件。
 
@@ -420,7 +420,9 @@ XCode 8 的 Auto Signing 已经省去了难以名状的复杂，但是还是有�
 ![Add - iOS Certificates - Apple Developer Google Chrome, 今天 at 下午5.09.58](http://7xilk1.com1.z0.glb.clouddn.com/Add - iOS Certificates - Apple Developer Google Chrome, 今天 at 下午5.09.58.png)
 
 
-#### Demo 演示  [Knuff](https://github.com/KnuffApp/Knuff) 
+### Demo 演示 
+
+可以使用 [Knuff](https://github.com/KnuffApp/Knuff) 进行通知推送测试。
 
 
 参考资料

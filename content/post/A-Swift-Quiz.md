@@ -6,7 +6,7 @@ categories: ["Swift"]
 tags: ["Quiz","MetaType","Overload"]
 ---
 
-这两天在 [Twitter](https://twitter.com/krzyzanowskim/status/1127875626579288064?s=12) 上看到一道题目，主要是考察 overload 和 type(of:) 的知识点，本文仅做记录，关于 metatype 会单独写一篇文章来总结。
+这两天在 [Twitter](https://twitter.com/krzyzanowskim/status/1127875626579288064?s=12) 上看到一道题目，主要是考察 overload 和 type(of:) 的知识点，本文仅做记录，关于 MetaType 会单独写一篇文章来总结。
 
 ```
 // Swift Quiz

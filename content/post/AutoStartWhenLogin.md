@@ -46,7 +46,7 @@ tags: ["Dock","Cocoa", "Menu", "Agent","Login"]
 
 1. 创建辅助应用，其作为主应用的 Target 新建出来
 2. 将辅助应用的 Info.plist 文件中指定属性 `LSBackgroundOnly` 为 `YES`；
-3. 在辅助应用 Target 的 build setting 中设置 `Skip Install` 为 `YES`；
+3. 在辅助应用 Target 的 build setting 中设置 `Skip Install` 为 `YES`（关于其作用主要是不需要 Xcode archive 执行将 Product 拷贝到最终的包里，因为我们执行加入了步骤 4）;
 4. 在主应用的 build phase 中加入 `Copy Files` 阶段，
     - 指定 destination 为 Wrapper
     - 指定 subpath 为 `Contents/Library/LoginItems`
@@ -270,3 +270,4 @@ SMLoginItemSetEnabled(launchHelperIdentifier as CFString, startAtLogin)
 2. [Daemons and Services Programming Guide](https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/Introduction.html#//apple_ref/doc/uid/10000172i-SW1-SW1)
 3. [Launch Services Programming Guide](https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/LaunchServicesConcepts/LSCIntro/LSCIntro.html#//apple_ref/doc/uid/TP30000999)
 4. [NSDistributedNotificationCenter](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Notifications/Articles/NotificationCenters.html)
+5. [What the Skip-Install mean?](https://stackoverflow.com/questions/16374851/xcode-4-target-build-setting-skip-install-what-is-it)
