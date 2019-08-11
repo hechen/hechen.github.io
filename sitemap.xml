@@ -10,30 +10,63 @@
   
   <url>
     <loc>https://hechen.xyz/categories/</loc>
-    <lastmod>2019-07-04T01:19:10+08:00</lastmod>
+    <lastmod>2019-08-08T19:00:20+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/</loc>
+    <lastmod>2019-08-08T19:00:20+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/post/</loc>
+    <lastmod>2019-08-08T19:00:20+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/protocol/</loc>
+    <lastmod>2019-08-08T19:00:20+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/post/protocol-extension/</loc>
+    <lastmod>2019-08-08T19:00:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/</loc>
-    <lastmod>2019-07-04T01:19:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://hechen.xyz/categories/swift/</loc>
+    <lastmod>2019-08-08T19:00:20+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/swift/</loc>
+    <lastmod>2019-08-08T19:00:20+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/</loc>
+    <lastmod>2019-08-08T19:00:20+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/launchddaemon/</loc>
     <lastmod>2019-07-04T01:19:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/letsmove/</loc>
     <lastmod>2019-07-04T01:19:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -44,59 +77,27 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/macos/</loc>
-    <lastmod>2019-07-04T01:19:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/post/</loc>
-    <lastmod>2019-07-04T01:19:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://hechen.xyz/tags/shell/</loc>
     <lastmod>2019-07-04T01:19:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/sourcecode/</loc>
     <lastmod>2019-07-04T01:19:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/</loc>
+    <loc>https://hechen.xyz/categories/macos/</loc>
     <lastmod>2019-07-04T01:19:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/metatype/</loc>
-    <lastmod>2019-07-04T01:01:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/categories/swift/</loc>
-    <lastmod>2019-07-04T01:01:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/xpc/</loc>
     <lastmod>2019-07-04T01:01:10+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -109,8 +110,7 @@
   <url>
     <loc>https://hechen.xyz/tags/codable/</loc>
     <lastmod>2019-06-11T00:10:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -123,8 +123,7 @@
   <url>
     <loc>https://hechen.xyz/tags/tuple/</loc>
     <lastmod>2019-06-11T00:10:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -137,50 +136,31 @@
   <url>
     <loc>https://hechen.xyz/tags/nsviewcontroller/</loc>
     <lastmod>2019-06-03T20:55:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/uiviewcontroller/</loc>
     <lastmod>2019-06-03T20:55:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/flatmap/</loc>
-    <lastmod>2019-05-23T11:32:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/flatmaplatest/</loc>
-    <lastmod>2019-05-23T11:32:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/categories/rxswift/</loc>
-    <lastmod>2019-05-23T11:32:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://hechen.xyz/tags/metatype/</loc>
+    <lastmod>2019-05-17T12:33:54+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/overload/</loc>
     <lastmod>2019-05-17T12:33:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/quiz/</loc>
     <lastmod>2019-05-17T12:33:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -191,31 +171,21 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/cocoapods/</loc>
-    <lastmod>2019-04-26T00:35:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://hechen.xyz/tags/framework/</loc>
     <lastmod>2019-04-27T03:01:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/library/</loc>
     <lastmod>2019-04-27T03:01:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/mach-o/</loc>
     <lastmod>2019-04-27T03:01:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -228,8 +198,7 @@
   <url>
     <loc>https://hechen.xyz/tags/build/</loc>
     <lastmod>2019-04-25T11:30:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -242,99 +211,43 @@
   <url>
     <loc>https://hechen.xyz/tags/compile/</loc>
     <lastmod>2019-04-25T11:30:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/preprocess/</loc>
     <lastmod>2019-04-25T11:30:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/xcode/</loc>
     <lastmod>2019-04-25T11:30:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/distributednotificationcenter/</loc>
-    <lastmod>2019-04-19T11:16:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/categories/ios/</loc>
-    <lastmod>2019-04-19T11:16:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/notification/</loc>
-    <lastmod>2019-04-19T11:16:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/notificationcenter/</loc>
-    <lastmod>2019-04-19T11:16:30+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/apm/</loc>
-    <lastmod>2019-04-14T23:05:49+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/fluency/</loc>
-    <lastmod>2019-04-14T23:05:49+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/runloop/</loc>
-    <lastmod>2019-04-14T23:05:49+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/applescript/</loc>
     <lastmod>2019-03-30T11:29:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/menu/</loc>
     <lastmod>2019-04-01T10:20:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/nstask/</loc>
     <lastmod>2019-03-30T11:29:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/process/</loc>
     <lastmod>2019-03-30T11:29:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -345,52 +258,27 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/cocoapods/</loc>
-    <lastmod>2019-03-22T17:29:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/podfile/</loc>
-    <lastmod>2019-03-22T17:29:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/reverse/</loc>
-    <lastmod>2019-03-22T17:29:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://hechen.xyz/tags/agent/</loc>
     <lastmod>2019-04-01T10:20:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/cocoa/</loc>
     <lastmod>2019-04-01T10:20:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/dock/</loc>
     <lastmod>2019-04-01T10:20:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/login/</loc>
     <lastmod>2019-04-01T10:20:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -403,8 +291,7 @@
   <url>
     <loc>https://hechen.xyz/tags/dockless/</loc>
     <lastmod>2019-03-15T11:01:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -417,29 +304,25 @@
   <url>
     <loc>https://hechen.xyz/tags/evernote/</loc>
     <lastmod>2019-03-15T11:01:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/macos/</loc>
-    <lastmod>2019-03-15T11:01:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/categories/productivity/</loc>
     <lastmod>2019-03-15T11:01:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/macos/</loc>
+    <lastmod>2019-03-15T11:01:23+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/%E5%8D%B0%E8%B1%A1%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2019-03-15T11:01:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -450,52 +333,15 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/backgroundcolor/</loc>
-    <lastmod>2019-03-11T15:19:49+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/coin/</loc>
-    <lastmod>2019-03-11T15:19:49+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/dp/</loc>
-    <lastmod>2019-03-11T15:19:49+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/dynamic-programming/</loc>
-    <lastmod>2019-03-11T15:19:49+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/categories/interview/</loc>
-    <lastmod>2019-03-11T15:19:49+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://hechen.xyz/tags/nsview/</loc>
     <lastmod>2019-03-11T15:19:49+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/probability/</loc>
+    <loc>https://hechen.xyz/tags/backgroundcolor/</loc>
     <lastmod>2019-03-11T15:19:49+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -506,24 +352,9 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/dragdrop/</loc>
-    <lastmod>2019-04-01T11:01:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/new-features/</loc>
+    <loc>https://hechen.xyz/categories/rxswift/</loc>
     <lastmod>2019-02-26T13:20:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/swift/</loc>
-    <lastmod>2019-05-31T20:30:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -536,15 +367,13 @@
   <url>
     <loc>https://hechen.xyz/tags/subject/</loc>
     <lastmod>2019-02-26T13:20:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/variable/</loc>
     <lastmod>2019-02-26T13:20:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -557,29 +386,25 @@
   <url>
     <loc>https://hechen.xyz/tags/sandbox/</loc>
     <lastmod>2019-02-21T23:25:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/safari/</loc>
     <lastmod>2019-01-28T17:51:35+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/shadowsocks/</loc>
     <lastmod>2019-01-28T17:51:35+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/traffic/</loc>
     <lastmod>2019-01-28T17:51:35+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -590,24 +415,15 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/mouseevent/</loc>
-    <lastmod>2019-01-23T15:33:13+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/ios/</loc>
-    <lastmod>2019-05-31T20:30:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://hechen.xyz/tags/cocoapods/</loc>
+    <lastmod>2019-01-03T21:19:24+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/module/</loc>
     <lastmod>2019-01-03T21:19:24+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -620,15 +436,13 @@
   <url>
     <loc>https://hechen.xyz/tags/keychain/</loc>
     <lastmod>2018-12-21T14:30:50+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/userdefaults/</loc>
     <lastmod>2018-12-21T14:30:50+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -639,38 +453,33 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</loc>
-    <lastmod>2018-12-20T17:29:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://hechen.xyz/categories/ios/</loc>
+    <lastmod>2019-04-13T21:45:23+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/2do/</loc>
     <lastmod>2018-11-26T14:59:50+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/bookmark/</loc>
     <lastmod>2018-11-26T14:59:50+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/omnifocus/</loc>
     <lastmod>2018-11-26T14:59:50+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/things/</loc>
     <lastmod>2018-11-26T14:59:50+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -683,22 +492,19 @@
   <url>
     <loc>https://hechen.xyz/tags/devonthink/</loc>
     <lastmod>2018-10-16T17:01:44+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/marginnote/</loc>
     <lastmod>2018-10-16T17:01:44+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/pdfexpert/</loc>
     <lastmod>2018-10-16T17:01:44+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -711,15 +517,19 @@
   <url>
     <loc>https://hechen.xyz/tags/singleton/</loc>
     <lastmod>2018-07-17T17:09:57+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/categories/translation/</loc>
     <lastmod>2019-04-13T22:30:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/ios/</loc>
+    <lastmod>2018-07-17T17:09:57+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -746,15 +556,13 @@
   <url>
     <loc>https://hechen.xyz/tags/app/</loc>
     <lastmod>2018-07-11T12:58:37+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/mac/</loc>
     <lastmod>2018-07-11T12:58:37+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -767,22 +575,19 @@
   <url>
     <loc>https://hechen.xyz/tags/compiler/</loc>
     <lastmod>2019-04-13T22:30:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/ir/</loc>
     <lastmod>2019-04-13T22:30:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/llvm/</loc>
     <lastmod>2019-04-13T22:30:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -795,8 +600,7 @@
   <url>
     <loc>https://hechen.xyz/tags/iap/</loc>
     <lastmod>2018-05-24T10:40:39+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -809,15 +613,13 @@
   <url>
     <loc>https://hechen.xyz/tags/receipt/</loc>
     <lastmod>2018-05-24T10:40:39+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/carthage/</loc>
     <lastmod>2017-11-19T18:17:15+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -835,31 +637,9 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/convenience-initializers/</loc>
-    <lastmod>2019-05-31T20:30:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/designated-initializer/</loc>
-    <lastmod>2019-05-31T20:30:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/initializer/</loc>
-    <lastmod>2019-05-31T20:30:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://hechen.xyz/tags/optional/</loc>
     <lastmod>2017-11-14T21:53:52+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -872,15 +652,13 @@
   <url>
     <loc>https://hechen.xyz/tags/uigesturerecognizer/</loc>
     <lastmod>2019-04-13T21:45:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/uiresponder/</loc>
     <lastmod>2019-04-13T21:45:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -900,8 +678,7 @@
   <url>
     <loc>https://hechen.xyz/tags/closure/</loc>
     <lastmod>2017-11-12T20:56:50+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -909,6 +686,12 @@
     <lastmod>2017-11-12T20:01:54+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/notification/</loc>
+    <lastmod>2017-05-20T10:10:54+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -921,22 +704,19 @@
   <url>
     <loc>https://hechen.xyz/categories/book/</loc>
     <lastmod>2017-02-12T16:38:24+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/garbage-collection/</loc>
     <lastmod>2017-02-12T16:38:24+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/python/</loc>
     <lastmod>2017-02-12T16:38:24+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -947,31 +727,15 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/github/</loc>
-    <lastmod>2017-02-12T16:36:54+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://hechen.xyz/tags/animation/</loc>
+    <lastmod>2015-12-02T18:53:51+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/objective-c/</loc>
-    <lastmod>2017-02-12T16:36:54+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/categories/sourcecode/</loc>
-    <lastmod>2017-02-12T16:36:54+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/animation/</loc>
     <lastmod>2015-12-02T18:53:51+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -984,8 +748,7 @@
   <url>
     <loc>https://hechen.xyz/tags/category/</loc>
     <lastmod>2015-09-14T15:36:07+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -998,8 +761,7 @@
   <url>
     <loc>https://hechen.xyz/tags/runtime/</loc>
     <lastmod>2015-09-07T17:55:33+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -1019,8 +781,7 @@
   <url>
     <loc>https://hechen.xyz/tags/algorithm/</loc>
     <lastmod>2015-08-21T09:14:17+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -1033,15 +794,13 @@
   <url>
     <loc>https://hechen.xyz/categories/leetcode/</loc>
     <lastmod>2019-05-15T09:00:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/string/</loc>
     <lastmod>2015-08-21T09:14:17+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -1054,8 +813,7 @@
   <url>
     <loc>https://hechen.xyz/tags/tree/</loc>
     <lastmod>2015-08-18T16:28:26+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -1066,14 +824,13 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/ios-push-notification/</loc>
+    <loc>https://hechen.xyz/tags/push/</loc>
     <lastmod>2015-07-30T14:30:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/push/</loc>
+    <loc>https://hechen.xyz/post/ios-push-notification/</loc>
     <lastmod>2015-07-30T14:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1082,15 +839,13 @@
   <url>
     <loc>https://hechen.xyz/categories/data-structure/</loc>
     <lastmod>2015-05-07T13:59:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/linked-list/</loc>
     <lastmod>2015-05-07T13:59:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -1110,8 +865,7 @@
   <url>
     <loc>https://hechen.xyz/tags/array/</loc>
     <lastmod>2019-05-15T09:00:00+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -1122,14 +876,13 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/leetcode-003-intersection-of-two-linked-lists/</loc>
+    <loc>https://hechen.xyz/tags/linkedlist/</loc>
     <lastmod>2015-04-29T12:28:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/linkedlist/</loc>
+    <loc>https://hechen.xyz/post/leetcode-003-intersection-of-two-linked-lists/</loc>
     <lastmod>2015-04-29T12:28:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1138,22 +891,19 @@
   <url>
     <loc>https://hechen.xyz/categories/c&#43;&#43;/</loc>
     <lastmod>2015-04-29T11:57:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/c&#43;&#43;11/</loc>
     <lastmod>2015-04-29T11:57:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/tags/lambda/</loc>
     <lastmod>2015-04-29T11:57:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -1173,8 +923,7 @@
   <url>
     <loc>https://hechen.xyz/categories/scala/</loc>
     <lastmod>2015-04-16T18:43:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <priority>0</priority>
   </url>
   
   <url>

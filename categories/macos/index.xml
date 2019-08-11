@@ -69,24 +69,6 @@ iOS In the previous development on the iOS platform, create a ViewController, sp
     </item>
     
     <item>
-      <title>使用 Interface Inspector 查看 Cocoa App 布局</title>
-      <link></link>
-      <pubDate>Fri, 22 Mar 2019 17:29:54 +0800</pubDate>
-      
-      <guid></guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link></link>
-      <pubDate>Mon, 18 Mar 2019 17:29:54 +0800</pubDate>
-      
-      <guid></guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>关于 Mac 应用的自启动是如何做到的</title>
       <link>https://hechen.xyz/post/autostartwhenlogin/</link>
       <pubDate>Mon, 18 Mar 2019 17:29:54 +0800</pubDate>
@@ -114,15 +96,6 @@ iOS In the previous development on the iOS platform, create a ViewController, sp
     </item>
     
     <item>
-      <title>Cocoa App 中 Drag&amp;&amp;Drop 的实现</title>
-      <link></link>
-      <pubDate>Tue, 05 Mar 2019 00:30:49 +0800</pubDate>
-      
-      <guid></guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Apple Event Sandboxing</title>
       <link>https://hechen.xyz/post/appleevents-usage-description/</link>
       <pubDate>Thu, 21 Feb 2019 23:25:38 +0800</pubDate>
@@ -138,15 +111,6 @@ iOS In the previous development on the iOS platform, create a ViewController, sp
       
       <guid>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</guid>
       <description>2019-01-29 更新 早上一到办公室连接上公司网络，网速直接就飚到了 600KB/s，果不其然，还是 com.apple.Safari.SafeBrowsing.Service 这个服务进程。这就尴尬了，看来并不是说你不用 Safari 就不会触发</description>
-    </item>
-    
-    <item>
-      <title>NSView 中针对鼠标事件的响应处理</title>
-      <link></link>
-      <pubDate>Wed, 23 Jan 2019 15:33:13 +0000</pubDate>
-      
-      <guid></guid>
-      <description></description>
     </item>
     
   </channel>

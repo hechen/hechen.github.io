@@ -6,19 +6,10 @@
     <description>Recent content in iOS on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 23 Jan 2019 12:17:04 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 17 Jul 2018 17:09:57 +0000</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/tags/ios/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>unowned &amp; weak</title>
-      <link></link>
-      <pubDate>Wed, 23 Jan 2019 12:17:04 +0000</pubDate>
-      
-      <guid></guid>
-      <description></description>
-    </item>
     
     <item>
       <title>三个简单步骤让你测试使用系统单例的代码</title>
@@ -75,15 +66,6 @@
     </item>
     
     <item>
-      <title>Initializer in Swift</title>
-      <link></link>
-      <pubDate>Wed, 15 Nov 2017 13:09:27 +0000</pubDate>
-      
-      <guid></guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>处理 Swift 中非可选的可选值类型</title>
       <link>https://hechen.xyz/post/handling-non-optional-optionals-in-swift/</link>
       <pubDate>Tue, 14 Nov 2017 21:53:52 +0000</pubDate>
@@ -117,15 +99,6 @@
       
       <guid>https://hechen.xyz/post/ios-notification/</guid>
       <description>概览 推送通知我们大家都不陌生，可以说几乎每个使用智能手机的人每天都会被不同的通知 打扰 到，正式因为合适的推送是吸引用户注意力的利器，其成为了各</description>
-    </item>
-    
-    <item>
-      <title>解析 PNChart 第三方库</title>
-      <link></link>
-      <pubDate>Sun, 12 Feb 2017 16:36:54 +0000</pubDate>
-      
-      <guid></guid>
-      <description></description>
     </item>
     
     <item>

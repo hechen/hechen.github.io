@@ -20,14 +20,5 @@
       <description>NSView 作为 Cocoa 中最基本的构成元素，是构成整个 Mac App 视图体系的基础，和 UIView 在 iOS 世界中的位置一样重要，可是在 UIView 里司空见惯的背景色设置，在 NSView 中却不见身影。 在</description>
     </item>
     
-    <item>
-      <title>NSView 中针对鼠标事件的响应处理</title>
-      <link></link>
-      <pubDate>Wed, 23 Jan 2019 15:33:13 +0000</pubDate>
-      
-      <guid></guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>

@@ -6,10 +6,28 @@
     <description>Recent content in Tags on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 04 Jul 2019 01:19:10 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 08 Aug 2019 19:00:20 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Protocol</title>
+      <link>https://hechen.xyz/tags/protocol/</link>
+      <pubDate>Thu, 08 Aug 2019 19:00:20 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/protocol/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Swift</title>
+      <link>https://hechen.xyz/tags/swift/</link>
+      <pubDate>Thu, 08 Aug 2019 19:00:20 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/swift/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>LaunchdDaemon</title>
@@ -44,15 +62,6 @@
       <pubDate>Thu, 04 Jul 2019 01:19:10 +0800</pubDate>
       
       <guid>https://hechen.xyz/tags/sourcecode/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>MetaType</title>
-      <link>https://hechen.xyz/tags/metatype/</link>
-      <pubDate>Thu, 04 Jul 2019 01:01:10 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/metatype/</guid>
       <description></description>
     </item>
     
@@ -102,20 +111,11 @@
     </item>
     
     <item>
-      <title>flatMap</title>
-      <link>https://hechen.xyz/tags/flatmap/</link>
-      <pubDate>Thu, 23 May 2019 11:32:54 +0800</pubDate>
+      <title>MetaType</title>
+      <link>https://hechen.xyz/tags/metatype/</link>
+      <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/tags/flatmap/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>flatMapLatest</title>
-      <link>https://hechen.xyz/tags/flatmaplatest/</link>
-      <pubDate>Thu, 23 May 2019 11:32:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/flatmaplatest/</guid>
+      <guid>https://hechen.xyz/tags/metatype/</guid>
       <description></description>
     </item>
     

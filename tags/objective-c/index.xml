@@ -6,19 +6,10 @@
     <description>Recent content in Objective-C on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 12 Feb 2017 16:36:54 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 02 Dec 2015 18:53:51 +0000</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/tags/objective-c/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>解析 PNChart 第三方库</title>
-      <link></link>
-      <pubDate>Sun, 12 Feb 2017 16:36:54 +0000</pubDate>
-      
-      <guid></guid>
-      <description></description>
-    </item>
     
     <item>
       <title>如何使用UIBezierPath实现一个弹性视图动画</title>
