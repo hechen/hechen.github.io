@@ -785,13 +785,6 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/leetcode-021-implementstrstr/</loc>
-    <lastmod>2015-08-21T09:14:17+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://hechen.xyz/categories/leetcode/</loc>
     <lastmod>2019-05-15T09:00:00+08:00</lastmod>
     <priority>0</priority>
@@ -804,8 +797,8 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/leetcode-019-binarytreepaths/</loc>
-    <lastmod>2015-08-18T16:28:26+00:00</lastmod>
+    <loc>https://hechen.xyz/post/leetcode-021-implementstrstr/</loc>
+    <lastmod>2015-08-21T09:14:17+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -814,6 +807,13 @@
     <loc>https://hechen.xyz/tags/tree/</loc>
     <lastmod>2015-08-18T16:28:26+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/post/leetcode-019-binarytreepaths/</loc>
+    <lastmod>2015-08-18T16:28:26+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
