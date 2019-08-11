@@ -21,15 +21,6 @@
     </item>
     
     <item>
-      <title>关于 OC 和 Swift 混编的一些注意事项</title>
-      <link></link>
-      <pubDate>Fri, 27 Jul 2018 18:04:09 +0000</pubDate>
-      
-      <guid></guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>三个简单步骤让你测试使用系统单例的代码</title>
       <link>https://hechen.xyz/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</link>
       <pubDate>Tue, 17 Jul 2018 17:09:57 +0000</pubDate>

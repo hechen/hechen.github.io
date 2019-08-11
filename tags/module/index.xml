@@ -20,14 +20,5 @@
       <description>问题描述 我们在开发线上诊断工具需求的时候，是以单个 Pod 的形式提供支持，并且代码文件中只有纯 Swift 文件，但是其中需要用到系统的 C 库的一些功能，本次就</description>
     </item>
     
-    <item>
-      <title>关于 OC 和 Swift 混编的一些注意事项</title>
-      <link></link>
-      <pubDate>Fri, 27 Jul 2018 18:04:09 +0000</pubDate>
-      
-      <guid></guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>
