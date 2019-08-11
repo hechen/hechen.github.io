@@ -66,6 +66,15 @@
     </item>
     
     <item>
+      <title>MetaType</title>
+      <link>https://hechen.xyz/tags/metatype/</link>
+      <pubDate>Thu, 04 Jul 2019 01:01:10 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/metatype/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>XPC</title>
       <link>https://hechen.xyz/tags/xpc/</link>
       <pubDate>Thu, 04 Jul 2019 01:01:10 +0800</pubDate>
@@ -111,11 +120,20 @@
     </item>
     
     <item>
-      <title>MetaType</title>
-      <link>https://hechen.xyz/tags/metatype/</link>
-      <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
+      <title>flatMap</title>
+      <link>https://hechen.xyz/tags/flatmap/</link>
+      <pubDate>Thu, 23 May 2019 11:32:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/tags/metatype/</guid>
+      <guid>https://hechen.xyz/tags/flatmap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>flatMapLatest</title>
+      <link>https://hechen.xyz/tags/flatmaplatest/</link>
+      <pubDate>Thu, 23 May 2019 11:32:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/flatmaplatest/</guid>
       <description></description>
     </item>
     
@@ -170,24 +188,6 @@
       <pubDate>Thu, 25 Apr 2019 11:30:30 +0800</pubDate>
       
       <guid>https://hechen.xyz/tags/build/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Compile</title>
-      <link>https://hechen.xyz/tags/compile/</link>
-      <pubDate>Thu, 25 Apr 2019 11:30:30 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/compile/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Preprocess</title>
-      <link>https://hechen.xyz/tags/preprocess/</link>
-      <pubDate>Thu, 25 Apr 2019 11:30:30 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/preprocess/</guid>
       <description></description>
     </item>
     

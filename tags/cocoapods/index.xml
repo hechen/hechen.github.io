@@ -6,10 +6,19 @@
     <description>Recent content in CocoaPods on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 03 Jan 2019 21:19:24 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 22 Mar 2019 17:29:54 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/tags/cocoapods/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>关于 Podfile.lock</title>
+      <link></link>
+      <pubDate>Fri, 22 Mar 2019 17:29:54 +0800</pubDate>
+      
+      <guid></guid>
+      <description></description>
+    </item>
     
     <item>
       <title>在 Swift Framework 中使用 C 文件的过程探索</title>

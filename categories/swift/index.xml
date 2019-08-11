@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>关于 MetaType</title>
+      <link></link>
+      <pubDate>Thu, 04 Jul 2019 01:01:10 +0800</pubDate>
+      
+      <guid></guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Codable &amp;&amp; Tuple</title>
       <link>https://hechen.xyz/post/tuple-codable/</link>
       <pubDate>Mon, 10 Jun 2019 23:50:54 +0800</pubDate>
@@ -41,12 +50,48 @@ You may want Xcode automatically complete all the codable stuff. However, life i
     </item>
     
     <item>
+      <title>关于 Swift5 中一些变化</title>
+      <link></link>
+      <pubDate>Tue, 26 Feb 2019 13:20:38 +0800</pubDate>
+      
+      <guid></guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>unowned &amp; weak</title>
+      <link></link>
+      <pubDate>Wed, 23 Jan 2019 12:17:04 +0000</pubDate>
+      
+      <guid></guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>在 Swift Framework 中使用 C 文件的过程探索</title>
       <link>https://hechen.xyz/post/swift-and-modules/</link>
       <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
       
       <guid>https://hechen.xyz/post/swift-and-modules/</guid>
       <description>问题描述 我们在开发线上诊断工具需求的时候，是以单个 Pod 的形式提供支持，并且代码文件中只有纯 Swift 文件，但是其中需要用到系统的 C 库的一些功能，本次就</description>
+    </item>
+    
+    <item>
+      <title>关于 OC 和 Swift 混编的一些注意事项</title>
+      <link></link>
+      <pubDate>Fri, 27 Jul 2018 18:04:09 +0000</pubDate>
+      
+      <guid></guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Initializer in Swift</title>
+      <link></link>
+      <pubDate>Wed, 15 Nov 2017 13:09:27 +0000</pubDate>
+      
+      <guid></guid>
+      <description></description>
     </item>
     
     <item>
