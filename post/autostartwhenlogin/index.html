@@ -51,7 +51,7 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.31c4b7729c8d71cc152f8de4203d90bfd8a04f7eab69372de7234ebf55b7701b.css" integrity="sha256-McS3cpyNccwVL43kID2Qv9igT36raTct5yNOv1W3cBs=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.ec807d8b802a40889537c26e014f733206312ea440d42e1f0dabed80918de1ac.css" integrity="sha256-7IB9i4AqQIiVN8JuAU9zMgYxLqRA1C4fDavtgJGN4aw=" media="screen" crossorigin="anonymous">
 
 
 
@@ -69,7 +69,7 @@
 
 <meta itemprop="datePublished" content="2019-03-18T17:29:54&#43;08:00" />
 <meta itemprop="dateModified" content="2019-04-01T10:20:38&#43;08:00" />
-<meta itemprop="wordCount" content="2533">
+<meta itemprop="wordCount" content="2489">
 
 
 
@@ -115,7 +115,7 @@
         
           
           
-            <a class="menu-item-link" href="https://hechen.xyz/archives/">Archives</a>
+            <a class="menu-item-link" href="https://hechen.xyz/post/">Archives</a>
           
         
       </li><li class="mobile-menu-item">
@@ -140,8 +140,6 @@
           
         
       </li>
-    
-
     
   </ul>
 </nav>
@@ -209,8 +207,6 @@
 
   
 
-  
-
   <header id="header" class="header container">
     <div class="logo-wrapper">
   <a href="/" class="logo">
@@ -239,7 +235,7 @@
         
           
           
-            <a class="menu-item-link" href="https://hechen.xyz/archives/">Archives</a>
+            <a class="menu-item-link" href="https://hechen.xyz/post/">Archives</a>
           
 
         
@@ -279,10 +275,6 @@
 
       </li>
     
-
-    
-    
-
     
   </ul>
 </nav>
@@ -401,7 +393,7 @@
 <ol>
 <li>创建辅助应用，其作为主应用的 Target 新建出来</li>
 <li>将辅助应用的 Info.plist 文件中指定属性 <code>LSBackgroundOnly</code> 为 <code>YES</code>；</li>
-<li>在辅助应用 Target 的 build setting 中设置 <code>Skip Install</code> 为 <code>YES</code>（关于其作用主要是不需要 Xcode archive 执行将 Product 拷贝到最终的包里，因为我们执行加入了步骤 4）;</li>
+<li>在辅助应用 Target 的 build setting 中设置 <code>Skip Install</code> 为 <code>YES</code>；</li>
 <li>在主应用的 build phase 中加入 <code>Copy Files</code> 阶段，
 
 <ul>
@@ -723,7 +715,6 @@
 <li><a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/Introduction.html#//apple_ref/doc/uid/10000172i-SW1-SW1">Daemons and Services Programming Guide</a></li>
 <li><a href="https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/LaunchServicesConcepts/LSCIntro/LSCIntro.html#//apple_ref/doc/uid/TP30000999">Launch Services Programming Guide</a></li>
 <li><a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Notifications/Articles/NotificationCenters.html">NSDistributedNotificationCenter</a></li>
-<li><a href="https://stackoverflow.com/questions/16374851/xcode-4-target-build-setting-skip-install-what-is-it">What the Skip-Install mean?</a></li>
 </ol>
 
     </div>
@@ -737,10 +728,7 @@
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">
-      2019-04-01
-      
-    </span>
+    <span class="item-content">2019-04-01</span>
   </p>
   
   <p class="copyright-item">
@@ -804,14 +792,11 @@
   
 
   
-
-  
   
     <div class="post bg-white">
       <script src="https://utteranc.es/client.js"
             repo= "hechen/Comments"
             issue-term="pathname"
-            theme="github-light"
             crossorigin="anonymous"
             async>
       </script>
@@ -849,8 +834,10 @@
   </noscript>
   
   </div>
-
+  
     
+
+
 
         </div>
       </div>
@@ -1104,8 +1091,6 @@
 
 
   <script id="dsq-count-scr" src="//stoneman.disqus.com/count.js" async></script>
-
-
 
 
 

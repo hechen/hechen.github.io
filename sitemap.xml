@@ -10,56 +10,14 @@
   
   <url>
     <loc>https://hechen.xyz/categories/</loc>
-    <lastmod>2019-08-08T19:00:20+08:00</lastmod>
+    <lastmod>2019-07-04T01:19:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://hechen.xyz/</loc>
-    <lastmod>2019-08-08T19:00:20+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/post/</loc>
-    <lastmod>2019-08-08T19:00:20+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/protocol/</loc>
-    <lastmod>2019-08-08T19:00:20+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/post/protocol-extension/</loc>
-    <lastmod>2019-08-08T19:00:20+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/swift/</loc>
-    <lastmod>2019-08-08T19:00:20+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/categories/swift/</loc>
-    <lastmod>2019-08-08T19:00:20+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/</loc>
-    <lastmod>2019-08-08T19:00:20+08:00</lastmod>
+    <lastmod>2019-07-04T01:19:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -93,6 +51,13 @@
   </url>
   
   <url>
+    <loc>https://hechen.xyz/post/</loc>
+    <lastmod>2019-07-04T01:19:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://hechen.xyz/tags/shell/</loc>
     <lastmod>2019-07-04T01:19:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -107,7 +72,21 @@
   </url>
   
   <url>
+    <loc>https://hechen.xyz/tags/</loc>
+    <lastmod>2019-07-04T01:19:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://hechen.xyz/tags/metatype/</loc>
+    <lastmod>2019-07-04T01:01:10+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/categories/swift/</loc>
     <lastmod>2019-07-04T01:01:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -536,6 +515,13 @@
   <url>
     <loc>https://hechen.xyz/tags/new-features/</loc>
     <lastmod>2019-02-26T13:20:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/tags/swift/</loc>
+    <lastmod>2019-05-31T20:30:54+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
