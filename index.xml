@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>I make stuff</title>
@@ -6,7 +5,7 @@
     <description>Recent content on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 08 Aug 2019 19:00:20 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jul 2019 01:19:10 +0800</lastBuildDate>
     
         <atom:link href="https://hechen.xyz/index.xml" rel="self" type="application/rss+xml" />
     
@@ -18,9 +17,11 @@
       
       <guid>https://hechen.xyz/about/</guid>
       
-        <description>&lt;p&gt;做过 C++ 开发&lt;/p&gt;
+        <description>&lt;p&gt;曾经的 C++ 开发&lt;/p&gt;
 
-&lt;p&gt;目前做 iOS 开发，偶尔做个 Mac 开发&lt;/p&gt;
+&lt;p&gt;目前做 iOS 开发，偶尔做个 mac 开发&lt;/p&gt;
+
+&lt;p&gt;偶尔写点 Python，Ruby&lt;/p&gt;
 
 &lt;p&gt;打杂中&lt;/p&gt;
 </description>
@@ -30,7 +31,7 @@
     <item>
       <title>Posts</title>
       <link>https://hechen.xyz/post/</link>
-      <pubDate>Thu, 08 Aug 2019 19:00:20 +0800</pubDate>
+      <pubDate>Thu, 04 Jul 2019 01:19:10 +0800</pubDate>
       
       <guid>https://hechen.xyz/post/</guid>
       
