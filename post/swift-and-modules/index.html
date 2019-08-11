@@ -32,7 +32,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.57.0-DEV" />
+<meta name="generator" content="Hugo 0.55.3" />
 
 
 <link rel="canonical" href="https://hechen.xyz/post/swift-and-modules/" />
@@ -61,8 +61,9 @@
 <meta property="og:description" content="问题描述 我们在开发线上诊断工具需求的时候，是以单个 Pod 的形式提供支持，并且代码文件中只有纯 Swift 文件，但是其中需要用到系统的 C 库的一些功能，本次就" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hechen.xyz/post/swift-and-modules/" />
-<meta property="article:published_time" content="2019-01-03T21:19:24+00:00" />
-<meta property="article:modified_time" content="2019-01-03T21:19:24+00:00" />
+<meta property="article:published_time" content="2019-01-03T21:19:24&#43;00:00"/>
+<meta property="article:modified_time" content="2019-01-03T21:19:24&#43;00:00"/>
+
 <meta itemprop="name" content="在 Swift Framework 中使用 C 文件的过程探索">
 <meta itemprop="description" content="问题描述 我们在开发线上诊断工具需求的时候，是以单个 Pod 的形式提供支持，并且代码文件中只有纯 Swift 文件，但是其中需要用到系统的 C 库的一些功能，本次就">
 
@@ -808,8 +809,8 @@ ln -sf <span class="s2">&#34;</span><span class="si">${</span><span class="nv">S
 
 <ol>
 <li>直接在 podspec 文件中指定依赖，如 <code>core.library = &quot;resolv&quot;</code></li>
-
-<li><p>在 <code>.modulemap</code> 文件中显式的 link，如下所示：</p>
+<li>在 <code>.modulemap</code> 文件中显式的 link，如下所示：</li>
+</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
@@ -820,14 +821,12 @@ ln -sf <span class="s2">&#34;</span><span class="si">${</span><span class="nv">S
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">module Resolv <span class="o">[</span>system<span class="o">]</span> <span class="o">{</span>
-header <span class="s2">&#34;/usr/include/resolv.h&#34;</span>
-link <span class="s2">&#34;resolv&#34;</span>
-<span class="nb">export</span> *
+    header <span class="s2">&#34;/usr/include/resolv.h&#34;</span>
+    link <span class="s2">&#34;resolv&#34;</span>
+    <span class="nb">export</span> *
 <span class="o">}</span></code></pre></td></tr></table>
 </div>
-</div></li>
-</ol>
-
+</div>
 <p>而且通过将 module map 文件放置于 product 产出目录这里也解决了路径指定的问题，因为 product folder 是默认在编译的搜索路径下的。</p>
 
 <h2 id="总结">总结</h2>
