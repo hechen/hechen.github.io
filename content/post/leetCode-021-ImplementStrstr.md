@@ -1,5 +1,5 @@
 ---
-title: "Implement Strstr"
+title: "[28] Implement strStr()"
 date: 2015-08-21 09:14:17
 categories: ["LeetCode"]
 tags: ["Algorithm","String"]

@@ -1,5 +1,5 @@
 ---
-title: "257. Binary Tree Paths"
+title: "[257] Binary Tree Paths"
 date: 2015-08-18 16:28:26
 categories: ["LeetCode"]
 tags: ["Algorithm","Tree"]

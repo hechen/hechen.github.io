@@ -1,5 +1,5 @@
 ---
-title: "[002] Intersection of Two Linked lists"
+title: "[160] Intersection of Two Linked Lists"
 date: 2015-04-29 12:28:00
 categories: ["LeetCode"]
 tags: ["Linkedlist"]

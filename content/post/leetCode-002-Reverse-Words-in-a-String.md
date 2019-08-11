@@ -1,5 +1,5 @@
 ---
-title: "[002] Reverse Words in a String"
+title: "[151] Reverse Words in a String"
 date: 2015-05-01 09:29:09
 categories: ["LeetCode"]
 tags: ["String"]
@@ -31,16 +31,16 @@ A: Reduce them to a single space in the reversed string.
 #### 解法：
 
 ``` C++
-
 class Solution {
 public:
-	void reverseWords(std::string &s) {		
-	    std::string reversed("");
+	void reverseWords(std::string &s) {
+		
+	   std::string reversed("");
 		int j = s.length();
 
 		for (int i = s.length() - 1; i >= 0; --i) {
 			if(s.at(i) == ' ') j = i;
-			else if (i == 0 || s.at(i - 1) == ' '){
+			else if (i == 0 || s.at(i - 1) == ' ') {
 				if (reversed.length() != 0) reversed += ' ';
 				reversed += s.substr(i, j - i);
 			}
@@ -48,10 +48,5 @@ public:
 		s = reversed;
 	}
 }
-
 ```
-
-
-leetCode的OJ系统评判结果：
-![leetCode C++  Solution3](http://7xilk1.com1.z0.glb.clouddn.com/leetCode_ReverseWordsInAString_C++.png)
 

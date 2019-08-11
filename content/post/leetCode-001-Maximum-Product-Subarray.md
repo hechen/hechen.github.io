@@ -1,5 +1,5 @@
 ---
-title: "152. Maximum Product Subarray"
+title: "[152] Maximum Product Subarray"
 date: 2015-04-29 11:30:00
 lastmod: 2019-05-15T09:00:00+08:00
 categories: ["LeetCode"]
