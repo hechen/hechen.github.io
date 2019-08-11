@@ -6,10 +6,28 @@
     <description>Recent content in Tags on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 04 Jul 2019 01:19:10 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 08 Aug 2019 19:00:20 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Protocol</title>
+      <link>https://hechen.xyz/tags/protocol/</link>
+      <pubDate>Thu, 08 Aug 2019 19:00:20 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/protocol/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Swift</title>
+      <link>https://hechen.xyz/tags/swift/</link>
+      <pubDate>Thu, 08 Aug 2019 19:00:20 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/swift/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>LaunchdDaemon</title>
@@ -170,24 +188,6 @@
       <pubDate>Thu, 25 Apr 2019 11:30:30 +0800</pubDate>
       
       <guid>https://hechen.xyz/tags/preprocess/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>XCode</title>
-      <link>https://hechen.xyz/tags/xcode/</link>
-      <pubDate>Thu, 25 Apr 2019 11:30:30 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/xcode/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>AppleScript</title>
-      <link>https://hechen.xyz/tags/applescript/</link>
-      <pubDate>Sat, 30 Mar 2019 11:29:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/applescript/</guid>
       <description></description>
     </item>
     
