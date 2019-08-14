@@ -188,12 +188,12 @@ iOS In the previous development on the iOS platform, create a ViewController, sp
     </item>
     
     <item>
-      <title>通过 LinkMap 做崩溃日志分发</title>
-      <link>https://hechen.xyz/post/linkmap/</link>
-      <pubDate>Sun, 18 Nov 2018 17:29:54 +0800</pubDate>
+      <title>阅读流程</title>
+      <link>https://hechen.xyz/post/reading-process/</link>
+      <pubDate>Tue, 16 Oct 2018 17:01:44 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/linkmap/</guid>
-      <description>LinkMap 是什么？ 我们编写的代码都是要经过编译，链接等一步一步生成可执行文件。而 LinkMap 文件是 Xcode 产生可执行文件的同时生成的链接信息，用来描述可执行文件的构</description>
+      <guid>https://hechen.xyz/post/reading-process/</guid>
+      <description>最近统一了一下自己的阅读流程，更新一下，具体用到的工具有 DEVONThink Pro PDFExpert MarginNote 其中 1 是输入和归档源，3 是输出源。 大概就是如下所示： 采集素材 在平时浏览网页的</description>
     </item>
     
   </channel>
