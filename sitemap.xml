@@ -40,13 +40,13 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/swift/</loc>
+    <loc>https://hechen.xyz/tags/swift/</loc>
     <lastmod>2019-08-08T19:00:20+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/swift/</loc>
+    <loc>https://hechen.xyz/categories/swift/</loc>
     <lastmod>2019-08-08T19:00:20+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -485,31 +485,6 @@
   <url>
     <loc>https://hechen.xyz/post/send-to-2do/</loc>
     <lastmod>2018-11-26T14:59:50+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/crash/</loc>
-    <lastmod>2019-04-01T10:20:38+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/dispatch/</loc>
-    <lastmod>2019-04-01T10:20:38+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/tags/linkmap/</loc>
-    <lastmod>2019-04-01T10:20:38+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/post/linkmap/</loc>
-    <lastmod>2019-04-01T10:20:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
