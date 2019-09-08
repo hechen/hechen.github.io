@@ -17,7 +17,7 @@
       <pubDate>Wed, 02 Dec 2015 18:53:51 +0000</pubDate>
       
       <guid>https://hechen.xyz/post/elastic-view-animation-using-uibezierpath/</guid>
-      <description>Hey！ DGElasticPullToRefresh展示如何实现一个弹性效果。效果如下图所示： 开发环境： Xcode 7 Swift 2.0 要求： 开发者至少对UIBez</description>
+      <description>原文：Elastic view animation, or how I built DGElasticPullToRefresh 原作者 @gontovnik DGElasticPullToRefresh 展示了如何实现一个弹性效果。效果如下图所示： 开发环境： Xcode 7 Swift 2.0 要求： 开发者至少对 UIBezierPath 和 UIGestureRecognizer 有一定的了</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Tue, 01 Sep 2015 15:52:07 +0000</pubDate>
       
       <guid>https://hechen.xyz/post/how-we-created-guillotine-menu-animation-for-ios/</guid>
-      <description>你是否曾经有过这样的疑问？为什么app中几乎是清一色的侧边栏（sidebar），为什么不把它做成topBar或者bottomBar，甚至co</description>
+      <description>原文：How We Created Guillotine Menu Animation for iOS 原作者 @johnsundell 你是否曾经有过这样的疑问？为什么app中几乎是清一色的侧边栏（sidebar），为什么不把它做成topBa</description>
     </item>
     
   </channel>
