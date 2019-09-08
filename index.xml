@@ -3564,6 +3564,11 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
       
         <description>
 
+&lt;blockquote&gt;
+&lt;p&gt;原文：&lt;a href=&#34;https://www.swiftbysundell.com/articles/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/&#34;&gt;Testing Swift code that uses system singletons in 3 easy steps&lt;/a&gt;
+原作者 &lt;a href=&#34;https://twitter.com/johnsundell&#34;&gt;@johnsundell&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
 &lt;p&gt;大部分在 Apple 平台开发的 App 都会依赖基于单例的 API。从 UIScreen 到 UIApplication，再到 NSBundle，而 Foundation，UIKit 以及 AppKit 里到处充斥着静态的 API。&lt;/p&gt;
 
 &lt;p&gt;尽管单例非常方便，并且随时随地都可以很轻易的获取到特定的 API，但是当它们一旦要面临代码解耦和测试的时候就会出现挑战。单例同时也是平时遇到 Bug 里最常见的一种，在单例中状态会以共享的方式终结，那些针对状态做的变更并不能很好的广播到整个系统层面。&lt;/p&gt;
@@ -7411,8 +7416,12 @@ iOS 10 SDK 新加的另一个 Content Extension 可以用来自定义通知的�
       
         <description>
 
-&lt;p&gt;Hey！
-&lt;a href=&#34;https://github.com/gontovnik/DGElasticPullToRefresh&#34;&gt;DGElasticPullToRefresh&lt;/a&gt;展示如何实现一个弹性效果。效果如下图所示：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;原文：&lt;a href=&#34;https://hackernoon.com/elastic-view-animation-or-how-i-built-dgelasticpulltorefresh-269a3ba8636e&#34;&gt;Elastic view animation, or how I built DGElasticPullToRefresh&lt;/a&gt;
+原作者 &lt;a href=&#34;https://twitter.com/gontovnik&#34;&gt;@gontovnik&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/gontovnik/DGElasticPullToRefresh&#34;&gt;DGElasticPullToRefresh&lt;/a&gt; 展示了如何实现一个弹性效果。效果如下图所示：&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/NzdoFS9.gif&#34; alt=&#34;DGElasticPullToRefresh.gif&#34; /&gt;&lt;/p&gt;
 
@@ -7423,16 +7432,18 @@ Xcode 7
 Swift 2.0&lt;/p&gt;
 
 &lt;p&gt;要求：
-开发者至少对UIBezierPath和UIGestureRecognizer有一定的了解.&lt;/p&gt;
+开发者至少对 UIBezierPath 和 UIGestureRecognizer 有一定的了解.&lt;/p&gt;
 
 &lt;h3 id=&#34;理解业务逻辑&#34;&gt;理解业务逻辑&lt;/h3&gt;
 
 &lt;p&gt;你可能从上面的效果图上可以看到一些端倪，这个动画中我们主要使用到了UIBezierPath来实现上面这种效果。
-我们首先创建一个贝塞尔曲线路径的CAShapeLayer，然后当你的手指在屏幕上移动的时候我们将移动所有的控制点来呈现动画。每一个控制点会使用一个可见的UIView来表示。下面有几张图来演示它们是如何工作的，我将所有的控制点标识成了红色：
-&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/DGElasticPullToRefreshControlPoints1.png&#34; alt=&#34;ControlPoints1&#34; /&gt;
-&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/DGElasticPullToRefreshControlPoints2.png&#34; alt=&#34;ControlPoints2&#34; /&gt;&lt;/p&gt;
+我们首先创建一个贝塞尔曲线路径的CAShapeLayer，然后当你的手指在屏幕上移动的时候我们将移动所有的控制点来呈现动画。每一个控制点会使用一个可见的UIView来表示。下面有几张图来演示它们是如何工作的，我将所有的控制点标识成了红色：&lt;/p&gt;
 
-&lt;p&gt;第二章图片中将每个表示控制点的View的变量名称标记出来了，如L3，L2等。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;media/1_vAmk8ulHh4OJji_X35zW4g.png&#34; alt=&#34;1_vAmk8ulHh4OJji_X35zW4g&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;media/1_ru8KwJ6DZWXgJm1tm_Sw_Q.png&#34; alt=&#34;1_ru8KwJ6DZWXgJm1tm_Sw_Q&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;第二章图片中将每个表示控制点的 View 的变量名称标记出来了，如L3，L2等。&lt;/p&gt;
 
 &lt;p&gt;当你的手指释放的时候，我们就播放Spring动画，让所有的控制点向其初始位置以一定的回弹效果移动。当所有的视图在动画播放过程中，我们需要时刻计算并我们的贝塞尔曲线（每一帧都进行计算）。因此，我们准备使用CADisplayLink，CADisplayLink在主循环中运行而且每一帧都会去执行指定的方法。&lt;/p&gt;
 
@@ -7523,8 +7534,9 @@ override func preferredStatusBarStyle() -&amp;gt; UIStatusBarStyle {
 3. 添加了一个pan手势到view中，并为该手势添加panGestureDidMove目标方法，当手指移动的时候就会被调用，我们在该方法中修改shapeLayer的高度；
 4. 重写父类的preferredStatusBarStyle方法来确保我们的UI更美观一些。&lt;/p&gt;
 
-&lt;p&gt;然后编译你的程序，确保实现了以下效果：
-&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/DGElasticPullToRefreshBuilds1.gif&#34; alt=&#34;Builds1&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;然后编译你的程序，确保实现了以下效果：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;media/1_XNtBBQ6VX2vU30VxX-5R6w.gif&#34; alt=&#34;1_XNtBBQ6VX2vU30VxX-5R6&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;每件事情都在按着我们期待的呈现，不过有一点瑕疵。那就是shapeLayer的高度变化有一定的延迟（动画），那是因为隐式动画的原因。我们确定不需要这样的动画，因此在将shapeLayer添加到view的sublayers中之前禁用该layer关于position、bounds以及path的隐式动画。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -7537,7 +7549,7 @@ override func preferredStatusBarStyle() -&amp;gt; UIStatusBarStyle {
 &lt;/div&gt;
 &lt;p&gt;然后再次运行，会看到延迟的动画效果没有了。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/DGElasticPullToRefreshBuilds2.gif&#34; alt=&#34;Builds2&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;media/1_lSWR6zbrMJSVDEvqFAaNAQ.gif&#34; alt=&#34;1_lSWR6zbrMJSVDEvqFAaNAQ&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;接下来，我们就需要将最开始所说的那些控制点（L3, L2, L1, C, R1, R2, R3）加入到程序里，然后加入必要的逻辑。&lt;/p&gt;
 
@@ -7850,7 +7862,7 @@ shapeLayer.backgroundColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/25
 &lt;/div&gt;
 &lt;p&gt;到这里，效果应该如下所示：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/DGElasticPullToRefreshBuilds3.gif&#34; alt=&#34;Build3&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;media/1_8IP7zFTjhgZMO6HSR1GETg.gif&#34; alt=&#34;1_8IP7zFTjhgZMO6HSR1GETg&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;最后一件要做的事情就是，把我们释放手指之后的回弹动画整合进去。
 还是让我们一步一步来吧：&lt;/p&gt;
@@ -8006,15 +8018,17 @@ shapeLayer.backgroundColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/25
 &lt;/div&gt;
 &lt;p&gt;我们已经为UIView添加了Sprint动画，让我们的控制点能够通过很优雅的回弹效果回到它们的位置。你可以修改以上的变量值来使你的动画看起来更优美，更好看。&lt;/p&gt;
 
-&lt;p&gt;让我们在设备上运行下看看能够让你震惊的效果：
-&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/DGElasticPullToRefreshBuilds4.gif&#34; alt=&#34;Build4&#34; /&gt;
-当然，我们可能不太想显示这些红色的点。你可以在loadView方法中移除那些设置这些控制点的frame以及背景色的代码。&lt;/p&gt;
+&lt;p&gt;让我们在设备上运行下看看能够让你震惊的效果：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;media/1_i67gfk96fveNB1yQqj9Lcw.gif&#34; alt=&#34;1_i67gfk96fveNB1yQqj9Lc&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;当然，我们可能不太想显示这些红色的点。你可以在loadView方法中移除那些设置这些控制点的frame 以及背景色的代码。&lt;/p&gt;
 
 &lt;p&gt;再次运行代码效果如下：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://7xilk1.com1.z0.glb.clouddn.com/DGElasticPullToRefreshBuilds5.gif&#34; alt=&#34;Build5&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;media/1_jsDkgFaoAtyIljyBukq1Ug.gif&#34; alt=&#34;1_jsDkgFaoAtyIljyBukq1Ug&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;效果很完美，但是，在这个例子中有一件事情我们忘记做了，就是我们没有改变shapeLayer的高度，我们仅仅修改了path的高度。这个不够完美，需要修复它。我想这个对于你来说应该是不错的作业。尽情修改frame、path以及所有变量的值吧！&lt;/p&gt;
+&lt;p&gt;效果很完美，但是，在这个例子中我们还有一件事情没做，就是没有改变 shapeLayer 的高度，我们仅仅修改了 path 的高度。这个不够完美，需要修复它。我想这个对于你来说应该是不错的练习。尽情修改frame、path以及所有变量的值吧！&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;这个Demo的源码在&lt;a href=&#34;https://github.com/gontovnik/DGElasticBounceTutorial&#34;&gt;这里&lt;/a&gt;
@@ -9726,6 +9740,11 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
       <guid>https://hechen.xyz/post/how-we-created-guillotine-menu-animation-for-ios/</guid>
       
         <description>
+
+&lt;blockquote&gt;
+&lt;p&gt;原文：&lt;a href=&#34;https://yalantis.com/blog/how-we-created-guillotine-menu-animation/&#34;&gt;How We Created Guillotine Menu Animation for iOS&lt;/a&gt;
+原作者 &lt;a href=&#34;https://twitter.com/johnsundell&#34;&gt;@johnsundell&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;你是否曾经有过这样的疑问？为什么app中几乎是清一色的&lt;strong&gt;侧&lt;/strong&gt;边栏（sidebar），为什么不把它做成&lt;strong&gt;top&lt;/strong&gt;Bar或者&lt;strong&gt;bottom&lt;/strong&gt;Bar，甚至&lt;strong&gt;corner&lt;/strong&gt;Bar呢？&lt;/p&gt;
 
