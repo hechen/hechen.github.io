@@ -13,9 +13,9 @@ tags: ["Crash","LinkMap","Dispatch"]
 
 ## 如何生成？
 
-具体生成需要 Xcode 配合开启某个参数，具体在对应 App 的主 Target 的 Build Setting 选项里，参数为 Write Link Map File，将其修改为 YES，即可在编译阶段生成对应的 Link Map 文件。 对应 Proj 文件中的参数为 LD_GENERATE_MAP_FILE
+具体生成需要 Xcode 配合开启某个参数，具体在对应 App 的主 Target 的 Build Setting 选项里，参数为 Write Link Map File，将其修改为 YES，即可在编译阶段生成对应的 Link Map 文件。 相对应的在 Project 文件中的控制参数为 LD_GENERATE_MAP_FILE
 
-![](https://i.imgur.com/wpKkAGW.png)
+![Project Target Setting](https://i.imgur.com/wpKkAGW.png)
 
 LinkMap 文件生成的默认地址如下，其实在上图中的 Path to Link Map File 就能看到，可以指定不同 Scheme 下的文件路径，我这里直接使用默认路径了（只是有点长）：
 
@@ -23,7 +23,7 @@ LinkMap 文件生成的默认地址如下，其实在上图中的 Path to Link M
 
 那实际在我的电脑上，结合知乎 iOS 工程，编译完成之后在 DerivedData 目录下会生成一堆 build 副产品，其中名称为 {Target}-LinkMap-xxx.txt 文件就是我们所说的 LinkMap 文件。如下图所示：
 
-![](https://i.imgur.com/24Su9xe.png)
+![LinkMap 文件所在](https://i.imgur.com/24Su9xe.png)
 
 ## LinkMap 内容解析
 
@@ -133,7 +133,7 @@ Address(n) = Address(n-1) + Size(n-1)
 
 > 我们知道 Mach-O 是 iOS 和 OSX 系统上使用的可执行文件格式类型，类似于 Linux 系统下的 ELF（Executable Linkable Format） 文件格式以及 Windows 上使用的 PE(Portable Executable) 文件格式，其本质上都是基于最早的 COFF（Common file format）的变种。其中有一个目前大家所熟知的就是针对参与编译的代码文件中不同部分的代码最后会被编译进入不同的 Section 中，比如代码段 .text 数据段 .data 等。后续在发展虚拟存储地址和内存物理地址的对应关系中，因为为了避免段过多导致的空间浪费问题，对于相同权限的段被合并到了一起作为一个段进行映射，前者就是之前的 section，后者就是 Segment。
 实际上 Segment 的概念是从装载的角度重新划分了 ELF 文件的各个段。将目标文件链接成可执行文件的时候，链接器会尽量把相同权限属性的段分配在同一空间。在 ELF 中把这些属性相似的又连在一起的段叫做一个 Segment。
-Segment 和 Section 是从不同的角度来划分同一个ELF文件。这个在ELF中被称为不同的视图（View），从“Section”的角度来看ELF文件就是链接视图（Linking View），从“Segment”的角度来看就是执行视图（Execution View）。当我们在谈到ELF装载时，“段”专门指“Segment”；而在其他的情况下，“段”指的是 Section。
+> Segment 和 Section 是从不同的角度来划分同一个ELF文件。这个在ELF中被称为不同的视图（View），从“Section”的角度来看ELF文件就是链接视图（Linking View），从“Segment”的角度来看就是执行视图（Execution View）。当我们在谈到ELF装载时，“段”专门指“Segment”；而在其他的情况下，“段”指的是 Section。
 
 ### 符号信息
 
@@ -247,23 +247,23 @@ Segment 和 Section 是从不同的角度来划分同一个ELF文件。这个在
 
 ![](https://i.imgur.com/tKUEqKE.png)
 
-这样就可以很确定该 Symbol 出自于 ZHModuleDB.framework 了。 这也是目前基础架构组正在开发的 Crash 分析分发平台 Argus 中分发前端 iOS 这一环得以实现定向分发的的基础。
+这样就可以很确定该 Symbol 出自于 ZHModuleDB.framework 了。从而为 Crash 日志的业务分发提供了可行性的保障。
 
-其次，我们通过上面的文件结构可以知道每一个 Framework 都有多少 目标文件（.o 文件），并且每个 .o 文件的大小是多少，就可以算出来每个 framework 的总体大小。这样可以有两个事情：
+其次，除了能够追溯符号所属大的目标文件，通过上面的文件结构好能够计算得知每一个 Framework 都有多少 目标文件（.o 文件），并且每个 .o 文件的大小是多少以及这单个 framework 的总体大小，从而对包体积的监控也具备了可行性。
 
-1. 统计可执行包中每个业务模块具体占用可执行文件的大小以及占比
+1. 统计可执行包中每个业务模块具体占用可执行文件的大小以及占比；
 2. 对比不同版本，可以知道每个具体模块新增文件大小，从而可以做出主动报警来对包体积大小做一定的控制
+
 
 ## 注意事项：
 
 ### 关于 Symbol 匹配规则
 
-因为真实的 Symbol 会被编译系统进行一定程度的签名，所以不能直接精准匹配，最好的方式是通过模糊查找，在实现的时候通过正则匹配或者尽可能的缩小 Symbol 查找精准度来做，还有就是 Swift 中的 Symbol 因为加入了 namespace 和 method overload 的概念导致符号信息更是不能完全匹配。
+因为真实的 Symbol 会被编译系统进行一定程度的混淆，所以不能直接精准匹配，最好的方式是通过模糊查找，在实现的时候通过正则匹配或者尽可能的缩小 Symbol 查找精准度来做，还有就是 Swift 中的 Symbol 因为加入了 namespace 和 method overload 的概念导致符号信息更是不能完全匹配。
 
 举个🌰：
 
-    比如在 ZHPaymentSDK 中定义了某个 swift 类为  KMSubscriptionLauncher.swift 文件中定义个方法：
-
+比如在 ZHPaymentSDK 中定义了某个 swift 类为  KMSubscriptionLauncher.swift 文件中定义个方法，
 
 ```    
 @objc public func subscribe(withSkuID skuID: String?, autoRenewable: Bool = true, begin: SubscriptionBeginCallback?, cancel: SubscriptionCancelledCallback?, pollingBegin: SubscriptionBeginPollingCallback?, success: SubscriptionSuccessCallback?, failed: SubscriptionFailedCallback?) { }
@@ -289,18 +289,20 @@ Segment 和 Section 是从不同的角度来划分同一个ELF文件。这个在
 
 ```
 
-这就是符号修饰和方法签名，越是复杂的语法，修饰机制越是复杂。比如大名鼎鼎的 C++ ，真的算是一门复杂语言了，其拥有类、继承、虚机制、重载、名称空间等这些特性，它们使得符号管理更为复杂。 专业术语叫 Name Mangling。 Swift 在一定程度上借鉴了其签名机制，不过我们不用深究，如果想知道其对应的原符号签名，使用现有工具即可。
+这就是符号修饰和方法签名，越是复杂的语法，修饰机制越是复杂。比如拥有类、继承、虚机制、重载、名称空间等特性的 C++ 语言，其对符号的管理更为复杂。专业术语叫 Name Mangling。Swift 在一定程度上借鉴了其签名机制，不过我们不用深究，如果想知道其对应的原符号签名，使用现有工具即可。
 
-XCode 有命令可以 demangle 这些符号，如下所示：
+Xcode 工具集中提供了 swift 的 demangle 工具，你可以使用以下命令对某个符号的逆向解析。
 
-    xcrun swift-demangle xxxxxxx
+```
+xcrun swift-demangle xxxxxxx
+```
 
 ## Crash 解析
 
 以上，我们了解了 LinkMap 都是什么并且能够做什么了，用 Python 写了一段脚本，放在了 [Github](https://github.com/hechen/CrashReportParser) 上，有兴趣可以用一下。
 
-
 ## 参考链接
 
 1. [mikeash.com: Friday Q&A 2014-08-15: Swift Name Mangling](https://mikeash.com/pyblog/friday-qa-2014-08-15-swift-name-mangling.html)
 2. [mattgallagher/CwlDemangle](https://github.com/mattgallagher/CwlDemangle/)
+3. [Comparing Swift to C++ for parsing](https://www.cocoawithlove.com/blog/2016/05/01/swift-name-demangling.html)

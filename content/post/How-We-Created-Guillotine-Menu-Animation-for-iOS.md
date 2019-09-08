@@ -6,6 +6,10 @@ tags: ["iOS","Animation","Objective-C"]
 ---
 
 
+> 原文：[How We Created Guillotine Menu Animation for iOS](https://yalantis.com/blog/how-we-created-guillotine-menu-animation/)
+> 原作者 [@johnsundell](https://twitter.com/johnsundell)
+
+
 你是否曾经有过这样的疑问？为什么app中几乎是清一色的**侧**边栏（sidebar），为什么不把它做成**top**Bar或者**bottom**Bar，甚至**corner**Bar呢？
 
 本文将要谈到的就是当前导航条动画的一个新趋势。
@@ -152,5 +156,5 @@ tags: ["iOS","Animation","Objective-C"]
 * [GitHub](https://github.com/Yalantis/GuillotineMenu)
 * [Dribbble](https://dribbble.com/shots/2018249-Side-Topbar-Animation)
 
->译者注：Objective-C 版本实现可以参见[GuillotineMenu-objc](https://github.com/hechen/GuillotineMenu-objc)
+> 译者注：Objective-C 版本实现可以参见[GuillotineMenu-objc](https://github.com/hechen/GuillotineMenu-objc)
 

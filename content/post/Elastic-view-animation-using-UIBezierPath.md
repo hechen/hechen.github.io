@@ -6,8 +6,11 @@ tags: ["iOS","Animation","Objective-C","Swift"]
 ---
 
 
-Hey！
-[DGElasticPullToRefresh](https://github.com/gontovnik/DGElasticPullToRefresh)展示如何实现一个弹性效果。效果如下图所示：
+> 原文：[Elastic view animation, or how I built DGElasticPullToRefresh](https://hackernoon.com/elastic-view-animation-or-how-i-built-dgelasticpulltorefresh-269a3ba8636e)
+> 原作者 [@gontovnik](https://twitter.com/gontovnik)
+
+
+[DGElasticPullToRefresh](https://github.com/gontovnik/DGElasticPullToRefresh) 展示了如何实现一个弹性效果。效果如下图所示：
 
 ![DGElasticPullToRefresh.gif](https://i.imgur.com/NzdoFS9.gif)
 
@@ -18,15 +21,18 @@ Xcode 7
 Swift 2.0
 
 要求：
-开发者至少对UIBezierPath和UIGestureRecognizer有一定的了解.
+开发者至少对 UIBezierPath 和 UIGestureRecognizer 有一定的了解.
 
 ### 理解业务逻辑
 你可能从上面的效果图上可以看到一些端倪，这个动画中我们主要使用到了UIBezierPath来实现上面这种效果。
 我们首先创建一个贝塞尔曲线路径的CAShapeLayer，然后当你的手指在屏幕上移动的时候我们将移动所有的控制点来呈现动画。每一个控制点会使用一个可见的UIView来表示。下面有几张图来演示它们是如何工作的，我将所有的控制点标识成了红色：
-![ControlPoints1](http://7xilk1.com1.z0.glb.clouddn.com/DGElasticPullToRefreshControlPoints1.png)
-![ControlPoints2](http://7xilk1.com1.z0.glb.clouddn.com/DGElasticPullToRefreshControlPoints2.png)
 
-第二章图片中将每个表示控制点的View的变量名称标记出来了，如L3，L2等。
+![1_vAmk8ulHh4OJji_X35zW4g](media/1_vAmk8ulHh4OJji_X35zW4g.png)
+
+![1_ru8KwJ6DZWXgJm1tm_Sw_Q](media/1_ru8KwJ6DZWXgJm1tm_Sw_Q.png)
+
+
+第二章图片中将每个表示控制点的 View 的变量名称标记出来了，如L3，L2等。
 
 当你的手指释放的时候，我们就播放Spring动画，让所有的控制点向其初始位置以一定的回弹效果移动。当所有的视图在动画播放过程中，我们需要时刻计算并我们的贝塞尔曲线（每一帧都进行计算）。因此，我们准备使用CADisplayLink，CADisplayLink在主循环中运行而且每一帧都会去执行指定的方法。
 
@@ -82,7 +88,9 @@ override func preferredStatusBarStyle() -> UIStatusBarStyle {
 4. 重写父类的preferredStatusBarStyle方法来确保我们的UI更美观一些。
 
 然后编译你的程序，确保实现了以下效果：
-![Builds1](http://7xilk1.com1.z0.glb.clouddn.com/DGElasticPullToRefreshBuilds1.gif)
+
+![1_XNtBBQ6VX2vU30VxX-5R6](media/1_XNtBBQ6VX2vU30VxX-5R6w.gif)
+
 
 每件事情都在按着我们期待的呈现，不过有一点瑕疵。那就是shapeLayer的高度变化有一定的延迟（动画），那是因为隐式动画的原因。我们确定不需要这样的动画，因此在将shapeLayer添加到view的sublayers中之前禁用该layer关于position、bounds以及path的隐式动画。
 
@@ -91,7 +99,10 @@ shapeLayer.actions = ["position" : NSNull(), "bounds" : NSNull(), "path" : NSNul
 ```
 然后再次运行，会看到延迟的动画效果没有了。
 
-![Builds2](http://7xilk1.com1.z0.glb.clouddn.com/DGElasticPullToRefreshBuilds2.gif)
+
+![1_lSWR6zbrMJSVDEvqFAaNAQ](media/1_lSWR6zbrMJSVDEvqFAaNAQ.gif)
+
+
 
 接下来，我们就需要将最开始所说的那些控制点（L3, L2, L1, C, R1, R2, R3）加入到程序里，然后加入必要的逻辑。
 
@@ -271,7 +282,7 @@ shapeLayer.fillColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, a
 
 到这里，效果应该如下所示：
 
-![Build3](http://7xilk1.com1.z0.glb.clouddn.com/DGElasticPullToRefreshBuilds3.gif)
+![1_8IP7zFTjhgZMO6HSR1GETg](media/1_8IP7zFTjhgZMO6HSR1GETg.gif)
 
 
 最后一件要做的事情就是，把我们释放手指之后的回弹动画整合进去。
@@ -361,14 +372,19 @@ if gesture.state == .Ended || gesture.state == .Failed || gesture.state == .Canc
 我们已经为UIView添加了Sprint动画，让我们的控制点能够通过很优雅的回弹效果回到它们的位置。你可以修改以上的变量值来使你的动画看起来更优美，更好看。
 
 让我们在设备上运行下看看能够让你震惊的效果：
-![Build4](http://7xilk1.com1.z0.glb.clouddn.com/DGElasticPullToRefreshBuilds4.gif)
-当然，我们可能不太想显示这些红色的点。你可以在loadView方法中移除那些设置这些控制点的frame以及背景色的代码。
+
+![1_i67gfk96fveNB1yQqj9Lc](media/1_i67gfk96fveNB1yQqj9Lcw.gif)
+
+
+当然，我们可能不太想显示这些红色的点。你可以在loadView方法中移除那些设置这些控制点的frame 以及背景色的代码。
 
 再次运行代码效果如下：
 
-![Build5](http://7xilk1.com1.z0.glb.clouddn.com/DGElasticPullToRefreshBuilds5.gif)
+![1_jsDkgFaoAtyIljyBukq1Ug](media/1_jsDkgFaoAtyIljyBukq1Ug.gif)
 
-效果很完美，但是，在这个例子中有一件事情我们忘记做了，就是我们没有改变shapeLayer的高度，我们仅仅修改了path的高度。这个不够完美，需要修复它。我想这个对于你来说应该是不错的作业。尽情修改frame、path以及所有变量的值吧！
+
+
+效果很完美，但是，在这个例子中我们还有一件事情没做，就是没有改变 shapeLayer 的高度，我们仅仅修改了 path 的高度。这个不够完美，需要修复它。我想这个对于你来说应该是不错的练习。尽情修改frame、path以及所有变量的值吧！
 
 
 > 这个Demo的源码在[这里](https://github.com/gontovnik/DGElasticBounceTutorial)

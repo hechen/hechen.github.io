@@ -6,7 +6,6 @@ categories: ["Translation"]
 tags: ["LLVM","Compiler","Swift","IR"]
 ---
 
-
 # 什么是 LLVM？隐藏在 Swift，Rust，Clang 等语言背后的奥秘
 
 > 了解编译器是如何生成机器原生代码会使得倒腾新语言或者加强已经存在的编程语言变得比以往更加容易了。
