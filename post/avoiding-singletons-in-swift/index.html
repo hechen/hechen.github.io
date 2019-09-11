@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="chen" />
-  <meta name="description" content="“我知道单例不好，但是&amp;hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的" />
+  <meta name="description" content="原文：Avoiding singletons in Swift 原作者 &amp;amp; Copyright @johnsundell “我知道单例不好，但是&amp;hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识" />
 
   <meta name="keywords" content="Chen, iOS, Swift, Productivity, macOS, Cocoa" />
 
@@ -58,26 +58,26 @@
 
 
 <meta property="og:title" content="避免在 Swift 中使用单例" />
-<meta property="og:description" content="“我知道单例不好，但是&hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的" />
+<meta property="og:description" content="原文：Avoiding singletons in Swift 原作者 &amp; Copyright @johnsundell “我知道单例不好，但是&hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://hechen.xyz/post/avoiding-singletons-in-swift/" />
 <meta property="article:published_time" content="2018-07-16T17:34:36&#43;00:00"/>
 <meta property="article:modified_time" content="2018-07-16T17:34:36&#43;00:00"/>
 
 <meta itemprop="name" content="避免在 Swift 中使用单例">
-<meta itemprop="description" content="“我知道单例不好，但是&hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的">
+<meta itemprop="description" content="原文：Avoiding singletons in Swift 原作者 &amp; Copyright @johnsundell “我知道单例不好，但是&hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识">
 
 
 <meta itemprop="datePublished" content="2018-07-16T17:34:36&#43;00:00" />
 <meta itemprop="dateModified" content="2018-07-16T17:34:36&#43;00:00" />
-<meta itemprop="wordCount" content="2151">
+<meta itemprop="wordCount" content="2171">
 
 
 
-<meta itemprop="keywords" content="iOS,XCode,Swift,Singleton," />
+<meta itemprop="keywords" content="iOS,Xcode,Swift,Singleton," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="避免在 Swift 中使用单例"/>
-<meta name="twitter:description" content="“我知道单例不好，但是&hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的"/>
+<meta name="twitter:description" content="原文：Avoiding singletons in Swift 原作者 &amp; Copyright @johnsundell “我知道单例不好，但是&hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -342,7 +342,12 @@
     <div class="post-content">
       
 
-<p>“我知道单例不好，但是&hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的 Swift 开发者还是在 App 内部或者共享的 frameworks 里不断在用它们。</p>
+<blockquote>
+<p>原文：<a href="https://www.swiftbysundell.com/articles/avoiding-singletons-in-swift/">Avoiding singletons in Swift</a>
+原作者 &amp; Copyright <a href="https://twitter.com/johnsundell">@johnsundell</a></p>
+</blockquote>
+
+<p>“我知道单例不好，但是&hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的 Swift 开发者还是在 App 内部或者共享的 <code>frameworks</code> 里不断在用它们。</p>
 
 <p>这周，让我们好好看一看单例的问题到底在哪里，探索更多的技巧以便我们日常能够避免使用它们。这就开始吧！</p>
 
@@ -600,7 +605,7 @@
     <footer class="post-footer">
       <div class="post-tags">
           <a href="https://hechen.xyz/tags/ios/">iOS</a>
-          <a href="https://hechen.xyz/tags/xcode/">XCode</a>
+          <a href="https://hechen.xyz/tags/xcode/">Xcode</a>
           <a href="https://hechen.xyz/tags/swift/">Swift</a>
           <a href="https://hechen.xyz/tags/singleton/">Singleton</a>
           
