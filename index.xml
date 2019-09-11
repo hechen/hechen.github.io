@@ -3797,7 +3797,12 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
       
         <description>
 
-&lt;p&gt;“我知道单例不好，但是&amp;hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的 Swift 开发者还是在 App 内部或者共享的 frameworks 里不断在用它们。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;原文：&lt;a href=&#34;https://www.swiftbysundell.com/articles/avoiding-singletons-in-swift/&#34;&gt;Avoiding singletons in Swift&lt;/a&gt;
+原作者 &amp;amp; Copyright &lt;a href=&#34;https://twitter.com/johnsundell&#34;&gt;@johnsundell&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;“我知道单例不好，但是&amp;hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的 Swift 开发者还是在 App 内部或者共享的 &lt;code&gt;frameworks&lt;/code&gt; 里不断在用它们。&lt;/p&gt;
 
 &lt;p&gt;这周，让我们好好看一看单例的问题到底在哪里，探索更多的技巧以便我们日常能够避免使用它们。这就开始吧！&lt;/p&gt;
 
@@ -4041,9 +4046,8 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
         <description>
 
 &lt;blockquote&gt;
-&lt;p&gt;原文：&lt;a href=&#34;https://ppinera.es/2017/09/29/modular-xcode-projects.html&#34;&gt;Modular Xcode projects&lt;/a&gt;
-原作者 &amp;amp; Copyright &lt;a href=&#34;http://twitter.com/pepibumur&#34;&gt;@pepibumur&lt;/a&gt;
-翻译：&lt;a href=&#34;https://twitter.com/OgreMergO&#34;&gt;@OgreMergO&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;原文：&lt;a href=&#34;https://www.swiftbysundell.com/articles/different-flavors-of-dependency-injection-in-swift/&#34;&gt;Different flavors of dependency injection in Swift&lt;/a&gt;
+原作者 &amp;amp; Copyright &lt;a href=&#34;https://twitter.com/johnsundell&#34;&gt;@johnsundell&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;在之前的几篇博客中，我们已经了解了几种使用依赖注入方式使得某个 swift app 拥有一个更加解耦可测试的架构。比如在 &lt;a href=&#34;https://hechen.xyz/2017/11/19/Dependency-injection-using-factories-in-Swift/&#34;&gt;在 Swift 中使用工厂模式进行依赖注入&lt;/a&gt; 中和工厂模式结合，以及在&lt;a href=&#34;http://hechen.xyz/2018/07/16/Avoiding-singletons-in-Swift/&#34;&gt;避免在 Swift 中使用单例&lt;/a&gt;中替换程序中的单例对象等方式进行依赖注入。&lt;/p&gt;
@@ -4866,6 +4870,8 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
 
 &lt;p&gt;整个 IAP 的过程，在客户端的实现依赖于 &lt;code&gt;StoreKit&lt;/code&gt; 这个框架，所有的支付相关操作都是交由 StoreKit 来完成的。&lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/EkBwhM4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
 &lt;p&gt;首先，我们先复习一下 IAP 的整个流程。&lt;/p&gt;
 
 &lt;h2 id=&#34;in-app-purchase-的整体流程&#34;&gt;In App Purchase 的整体流程&lt;/h2&gt;
@@ -4879,8 +4885,8 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
 &lt;li&gt;客户端从 AppStore 中获取本地化的商品信息。&lt;/li&gt;
 &lt;li&gt;把 IAP 的购买界⾯面展示给⽤用户，⽤用户可以同意购买并点击购买按钮。&lt;/li&gt;
 &lt;li&gt;⽤用户授权购买，客户端向服务器器发送购买请求。&lt;/li&gt;
-&lt;li&gt;服务器器处理理购买请求，并把结果返回给 StoreKit。&lt;/li&gt;
-&lt;li&gt;如果购买请求验证通过，客户端此时解锁内容或者提供⾦金金币。&lt;/li&gt;
+&lt;li&gt;服务器器处理理购买请求，并把结果返回给 &lt;code&gt;StoreKit&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;如果购买请求验证通过，客户端此时解锁内容或者提供金币。&lt;/li&gt;
 &lt;li&gt;至此，整个交易易流程结束。&lt;/li&gt;
 &lt;/ol&gt;
 
@@ -5274,6 +5280,11 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
       <guid>https://hechen.xyz/post/dependency-injection-using-factories-in-swift/</guid>
       
         <description>
+
+&lt;blockquote&gt;
+&lt;p&gt;原文：&lt;a href=&#34;https://www.swiftbysundell.com/articles/dependency-injection-using-factories-in-swift/&#34;&gt;Dependency injection using factories in Swift&lt;/a&gt;
+原作者 &amp;amp; Copyright &lt;a href=&#34;https://twitter.com/johnsundell&#34;&gt;@johnsundell&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象能够正常运转所必须的一切内容（其他对象）通过外界传入，这样做的好处在于，一方面能清晰的看得到某个对象的所有依赖项，另一方便也使得测试工作变得更为简单（因为我们可以模拟这些依赖项来捕获、验证状态以及值。）&lt;/p&gt;
 
@@ -5795,6 +5806,11 @@ window.rootViewController = UINavigationController(
       
         <description>
 
+&lt;blockquote&gt;
+&lt;p&gt;原文：&lt;a href=&#34;https://www.swiftbysundell.com/articles/handling-non-optional-optionals-in-swift/&#34;&gt;Handling non-optional optionals in Swift&lt;/a&gt;
+原作者 &amp;amp; Copyright &lt;a href=&#34;https://twitter.com/johnsundell&#34;&gt;@johnsundell&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
 &lt;p&gt;可选值（optionals）无可争议的是 &lt;code&gt;swift&lt;/code&gt; 语言中最重要的特性之一，也是和其他语言，例如 &lt;code&gt;Objective-C&lt;/code&gt; 的最大区别。通过强制处理那些有可能出现 &lt;code&gt;nil&lt;/code&gt; 的地方，我们就能写出更有预测性的以及更健壮的代码。&lt;/p&gt;
 
 &lt;p&gt;然而，有些时候可选值可能会致你于尴尬的境地，尤其是你作为开发者了解（甚至是有些猜测的成分在），有的特定变量始终是非空（non-nil）的，即使它是一个可选类型。例如，我们在一个视图控制器中处理视图的时候：&lt;/p&gt;
@@ -6186,8 +6202,7 @@ window.rootViewController = UINavigationController(
 
 &lt;blockquote&gt;
 &lt;p&gt;原文：&lt;a href=&#34;https://www.swiftbysundell.com/posts/capturing-objects-in-swift-closures&#34;&gt;Capturing objects in Swift closures&lt;/a&gt;
-原作者 &lt;a href=&#34;https://twitter.com/johnsundell&#34;&gt;@johnsundell&lt;/a&gt;
-翻译：&lt;a href=&#34;https://twitter.com/OgreMergO&#34;&gt;@OgreMergO&lt;/a&gt;&lt;/p&gt;
+原作者 &lt;a href=&#34;https://twitter.com/johnsundell&#34;&gt;@johnsundell&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;自从 Block 在 iOS4 被引入 Objective-C 的世界之后就成为了 Apple 各平台上最时髦的 API 的重要组成部分了。当 Swift 语言出现的时候，blocks 的概念就摇身一变通过 closure 的形式引入，成为了目前我们可能每一天都在用的语言特性之一了。&lt;/p&gt;

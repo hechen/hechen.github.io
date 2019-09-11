@@ -26,7 +26,7 @@
       <pubDate>Mon, 16 Jul 2018 17:34:36 +0000</pubDate>
       
       <guid>https://hechen.xyz/post/avoiding-singletons-in-swift/</guid>
-      <description>“我知道单例不好，但是&amp;hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的</description>
+      <description>原文：Avoiding singletons in Swift 原作者 &amp;amp; Copyright @johnsundell “我知道单例不好，但是&amp;hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Mon, 16 Jul 2018 13:57:24 +0000</pubDate>
       
       <guid>https://hechen.xyz/post/different-flavors-of-dependency-injection-in-swift/</guid>
-      <description>原文：Modular Xcode projects 原作者 &amp;amp; Copyright @pepibumur 翻译：@OgreMergO 在之前的几篇博客中，我们已经了解了几种使用依赖注入方式使得某个 swift app 拥有一个更加</description>
+      <description>原文：Different flavors of dependency injection in Swift 原作者 &amp;amp; Copyright @johnsundell 在之前的几篇博客中，我们已经了解了几种使用依赖注入方式使得某个 swift app 拥有一个更加解耦可测试的架</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
       <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
       
       <guid>https://hechen.xyz/post/dependency-injection-using-factories-in-swift/</guid>
-      <description>依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象</description>
+      <description>原文：Dependency injection using factories in Swift 原作者 &amp;amp; Copyright @johnsundell 依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依</description>
     </item>
     
     <item>
@@ -71,7 +71,7 @@
       <pubDate>Tue, 14 Nov 2017 21:53:52 +0000</pubDate>
       
       <guid>https://hechen.xyz/post/handling-non-optional-optionals-in-swift/</guid>
-      <description>可选值（optionals）无可争议的是 swift 语言中最重要的特性之一，也是和其他语言，例如 Objective-C 的最大区别。通过强制处理那些有可能出现 nil 的地方，我们</description>
+      <description>原文：Handling non-optional optionals in Swift 原作者 &amp;amp; Copyright @johnsundell 可选值（optionals）无可争议的是 swift 语言中最重要的特性之一，也是和其他语言，例如 Objective-C 的最大区别</description>
     </item>
     
     <item>
@@ -80,7 +80,7 @@
       <pubDate>Sun, 12 Nov 2017 20:56:50 +0000</pubDate>
       
       <guid>https://hechen.xyz/post/capturing-objects-in-swift-closures/</guid>
-      <description>原文：Capturing objects in Swift closures 原作者 @johnsundell 翻译：@OgreMergO 自从 Block 在 iOS4 被引入 Objective-C 的世界之后就成为了 Apple 各平台上最时髦的 API 的重要组成部分了。</description>
+      <description>原文：Capturing objects in Swift closures 原作者 @johnsundell 自从 Block 在 iOS4 被引入 Objective-C 的世界之后就成为了 Apple 各平台上最时髦的 API 的重要组成部分了。当 Swift 语言出现的时候，blo</description>
     </item>
     
     <item>
