@@ -2,12 +2,14 @@
 title: 避免在 Swift 中使用单例
 date: 2018-07-16 17:34:36
 categories: ["Translation"]
-tags: ["iOS","XCode","Swift","Singleton"]
+tags: ["iOS","Xcode","Swift","Singleton"]
 ---
 
+> 原文：[Avoiding singletons in Swift](https://www.swiftbysundell.com/articles/avoiding-singletons-in-swift/)
+> 原作者 & Copyright [@johnsundell](https://twitter.com/johnsundell)
 
 
-“我知道单例不好，但是...”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的 Swift 开发者还是在 App 内部或者共享的 frameworks 里不断在用它们。
+“我知道单例不好，但是...”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的 Swift 开发者还是在 App 内部或者共享的 `frameworks` 里不断在用它们。
 
 这周，让我们好好看一看单例的问题到底在哪里，探索更多的技巧以便我们日常能够避免使用它们。这就开始吧！
 

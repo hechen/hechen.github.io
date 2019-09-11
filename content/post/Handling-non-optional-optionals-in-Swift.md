@@ -5,6 +5,9 @@ categories: ["Translation"]
 tags: ["iOS","Swift","Optional"]
 ---
 
+> 原文：[Handling non-optional optionals in Swift](https://www.swiftbysundell.com/articles/handling-non-optional-optionals-in-swift/)
+> 原作者 & Copyright [@johnsundell](https://twitter.com/johnsundell)
+
 
 可选值（optionals）无可争议的是 `swift` 语言中最重要的特性之一，也是和其他语言，例如 `Objective-C` 的最大区别。通过强制处理那些有可能出现 `nil` 的地方，我们就能写出更有预测性的以及更健壮的代码。
 

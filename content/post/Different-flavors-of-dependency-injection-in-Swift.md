@@ -6,9 +6,8 @@ tags: ["iOS","XCode","Swift"]
 ---
 
 
-> 原文：[Modular Xcode projects](https://ppinera.es/2017/09/29/modular-xcode-projects.html)
-> 原作者 & Copyright [@pepibumur](http://twitter.com/pepibumur)
-> 翻译：[@OgreMergO](https://twitter.com/OgreMergO)
+> 原文：[Different flavors of dependency injection in Swift](https://www.swiftbysundell.com/articles/different-flavors-of-dependency-injection-in-swift/)
+> 原作者 & Copyright [@johnsundell](https://twitter.com/johnsundell)
 
 
 在之前的几篇博客中，我们已经了解了几种使用依赖注入方式使得某个 swift app 拥有一个更加解耦可测试的架构。比如在 [在 Swift 中使用工厂模式进行依赖注入](https://hechen.xyz/2017/11/19/Dependency-injection-using-factories-in-Swift/) 中和工厂模式结合，以及在[避免在 Swift 中使用单例](http://hechen.xyz/2018/07/16/Avoiding-singletons-in-Swift/)中替换程序中的单例对象等方式进行依赖注入。

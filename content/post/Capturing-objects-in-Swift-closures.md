@@ -5,10 +5,8 @@ categories: ["Translation"]
 tags: ["iOS","Swift","Closure"]
 ---
 
-
 > 原文：[Capturing objects in Swift closures](https://www.swiftbysundell.com/posts/capturing-objects-in-swift-closures)
 > 原作者 [@johnsundell](https://twitter.com/johnsundell)
-> 翻译：[@OgreMergO](https://twitter.com/OgreMergO)
 
 自从 Block 在 iOS4 被引入 Objective-C 的世界之后就成为了 Apple 各平台上最时髦的 API 的重要组成部分了。当 Swift 语言出现的时候，blocks 的概念就摇身一变通过 closure 的形式引入，成为了目前我们可能每一天都在用的语言特性之一了。
 
