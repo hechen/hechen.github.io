@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>XCode on I make stuff</title>
+    <title>Xcode on I make stuff</title>
     <link>https://hechen.xyz/tags/xcode/</link>
-    <description>Recent content in XCode on I make stuff</description>
+    <description>Recent content in Xcode on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 25 Apr 2019 11:30:30 +0800</lastBuildDate>
@@ -35,7 +35,7 @@
       <pubDate>Mon, 16 Jul 2018 17:34:36 +0000</pubDate>
       
       <guid>https://hechen.xyz/post/avoiding-singletons-in-swift/</guid>
-      <description>“我知道单例不好，但是&amp;hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的</description>
+      <description>原文：Avoiding singletons in Swift 原作者 &amp;amp; Copyright @johnsundell “我知道单例不好，但是&amp;hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Mon, 16 Jul 2018 13:57:24 +0000</pubDate>
       
       <guid>https://hechen.xyz/post/different-flavors-of-dependency-injection-in-swift/</guid>
-      <description>原文：Modular Xcode projects 原作者 &amp;amp; Copyright @pepibumur 翻译：@OgreMergO 在之前的几篇博客中，我们已经了解了几种使用依赖注入方式使得某个 swift app 拥有一个更加</description>
+      <description>原文：Different flavors of dependency injection in Swift 原作者 &amp;amp; Copyright @johnsundell 在之前的几篇博客中，我们已经了解了几种使用依赖注入方式使得某个 swift app 拥有一个更加解耦可测试的架</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
       <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
       
       <guid>https://hechen.xyz/post/dependency-injection-using-factories-in-swift/</guid>
-      <description>依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象</description>
+      <description>原文：Dependency injection using factories in Swift 原作者 &amp;amp; Copyright @johnsundell 依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依</description>
     </item>
     
     <item>

@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2018-05-24T10:40:39&#43;00:00" />
 <meta itemprop="dateModified" content="2018-05-24T10:40:39&#43;00:00" />
-<meta itemprop="wordCount" content="3225">
+<meta itemprop="wordCount" content="3223">
 
 
 
@@ -368,6 +368,8 @@
 
 <p>整个 IAP 的过程，在客户端的实现依赖于 <code>StoreKit</code> 这个框架，所有的支付相关操作都是交由 StoreKit 来完成的。</p>
 
+<p><img src="https://i.imgur.com/EkBwhM4.png" alt="" /></p>
+
 <p>首先，我们先复习一下 IAP 的整个流程。</p>
 
 <h2 id="in-app-purchase-的整体流程">In App Purchase 的整体流程</h2>
@@ -381,8 +383,8 @@
 <li>客户端从 AppStore 中获取本地化的商品信息。</li>
 <li>把 IAP 的购买界⾯面展示给⽤用户，⽤用户可以同意购买并点击购买按钮。</li>
 <li>⽤用户授权购买，客户端向服务器器发送购买请求。</li>
-<li>服务器器处理理购买请求，并把结果返回给 StoreKit。</li>
-<li>如果购买请求验证通过，客户端此时解锁内容或者提供⾦金金币。</li>
+<li>服务器器处理理购买请求，并把结果返回给 <code>StoreKit</code>。</li>
+<li>如果购买请求验证通过，客户端此时解锁内容或者提供金币。</li>
 <li>至此，整个交易易流程结束。</li>
 </ol>
 
