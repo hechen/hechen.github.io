@@ -6,10 +6,19 @@
     <description>Recent content in Posts on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 08 Aug 2019 19:00:20 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 15 Sep 2019 20:56:50 +0000</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Swift 中的消息派发</title>
+      <link>https://hechen.xyz/post/messagedispatchinswift/</link>
+      <pubDate>Sun, 15 Sep 2019 20:56:50 +0000</pubDate>
+      
+      <guid>https://hechen.xyz/post/messagedispatchinswift/</guid>
+      <description>什么是消息派发？ 消息派发，英文名称 Method Dispatch，是指程序在运行过程中调用某个方法的时候决议使用哪个具体指令的过程。消息派发的行为在我们</description>
+    </item>
     
     <item>
       <title>Protocol Extension</title>
@@ -185,15 +194,6 @@ iOS In the previous development on the iOS platform, create a ViewController, sp
       
       <guid>https://hechen.xyz/post/send-to-2do/</guid>
       <description>使用鼠标拖拽下面这个链接到你的 Favorites Bar 上，默认点击行为实际上是模拟在当前页面进行导航，而目标地址由 avascript:window.location 来指定，目标地址实际上就是各个 App 的 URL Sche</description>
-    </item>
-    
-    <item>
-      <title>阅读流程</title>
-      <link>https://hechen.xyz/post/reading-process/</link>
-      <pubDate>Tue, 16 Oct 2018 17:01:44 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/reading-process/</guid>
-      <description>最近统一了一下自己的阅读流程，更新一下，具体用到的工具有 DEVONThink Pro PDFExpert MarginNote 其中 1 是输入和归档源，3 是输出源。 大概就是如下所示： 采集素材 在平时浏览网页的</description>
     </item>
     
   </channel>
