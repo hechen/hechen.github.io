@@ -47,13 +47,13 @@ tags: ["iOS","Swift","Dispatch","Inline","PWT","Protocol"]
 
 我们以 WWDC 的某个例子来大概说明下 V-Table 的具体派发过程，如下代码，共有三个 Class，其中 Drawable 是基类，子类化的 Point 和 Line。
 
-![GoXy7tO-squashed](https://i.imgur.com/JiHAs1x.png)
+![image-20190919233507171](https://i.imgur.com/49YUt1Y.png)
 
 在 drawables 真正调用的时候（大家注意下，数组的这个结构中除了 refCount 做引用计数之外，每个元素都是 1 个字长的引用，也就是每一个具体实例的地址），先通过指针找到在堆上的实例，通过实例中存储的类型信息中的虚函数表（V-Table）找到具体的函数执行地址。
 
 
 
-<img src="https://i.imgur.com/9T6aHwq.png" style="zoom: 67%;" />
+<img src="https://i.imgur.com/9T6aHwq.png"  />
 
 
 
@@ -61,7 +61,7 @@ tags: ["iOS","Swift","Dispatch","Inline","PWT","Protocol"]
 
 
 
-<img src="https://i.imgur.com/8n9ZDBT.png" style="zoom:67%;" />
+<img src="https://i.imgur.com/8n9ZDBT.png"  />
 
 
 
@@ -69,13 +69,13 @@ tags: ["iOS","Swift","Dispatch","Inline","PWT","Protocol"]
 
 对于 Swift 来说，还有更为重要的 Protocol，对于符合同一协议的对象本身是不一定拥有继承关系的，因此 V-Table 就没法使用了。这里，Swift 使用了 Protocol Witness Table 的数据结构达到动态查询协议方法的目的。如果将上面的例子中的 Drawable 抽象成协议。
 
-<img src="https://i.imgur.com/GaIILyH.png" alt="Code with Protocol" style="zoom:33%;" />
+<img src="https://i.imgur.com/GaIILyH.png" alt="Code with Protocol"  />
 
 简单来说，Swift 会为每一个实现了该协议的对象生成一个**大小一致**的结构体，这个结构体被称为 `Existential Container`，它内部就包含了 PWT，而这个 Table 中的每一个条目指向了符合该协议的类型信息，而除了 PWT，该结构体中还保留了三个字长的 valueBuffer 用以存储数据成员，一个 Value Witness Table 存储着一组函数的执行地址，这些函数都是针对前面数据成员的具体操作方法，细节这里不展开讲了。 PWT 中包含着该实例实现的协议方法实现地址。
 
 
 
-<img src="https://i.imgur.com/Twp4Juj.png" style="zoom: 33%;" />
+<img src="https://i.imgur.com/Twp4Juj.png"  />
 
 
 
@@ -89,7 +89,7 @@ tags: ["iOS","Swift","Dispatch","Inline","PWT","Protocol"]
 
 关于基于 OC 层面运行时库的核心代码估计大家都已经看过。运行时通过查找该类的方法列表，同时通过 super class 回溯一直查找到该方法即可，这部份核心内容是 objc runtime。而我们知道 Objective-C 运行时的核心方法是 `obj_msgSend`，其会在类的继承链查找所有可能的方法。整个运行时消息的转发过程再发一次。
 
-<img src="media/CleanShot%202019-09-18%20at%2000.05.07.png" alt="CleanShot 2019-09-18 at 00.05.07" style="zoom: 50%;" />
+<img src="https://i.imgur.com/PQWgrbn.png" alt="CleanShot 2019-09-18 at 00.05.07"  />
 
 
 
@@ -134,22 +134,58 @@ swiftc -emit-sil test.swift > test.sil
 
 比如针对下面这份文件会生成对应的 SIL 如下。
 
-<img src="https://i.imgur.com/nO6OwLT.png" alt="Simple Swift"  />
+<img src="https://i.imgur.com/nO6OwLT.png" alt="Simple Swift" style="zoom:;" />
+
+
+
 生成的 SIL 文件如下：
+
+
 
 ![SIL Generated](https://i.imgur.com/LAjbdYh.png)
 ### SIL 几个方法
 
 因为我们在讲述方法派发，因此我们关心几个相关的 SIL 语法，主要有如下四个：
 
-1. class_method
-2. objc_method
-3. witness_method
-4. apply
+
+
+#### class_method
+
+关于 class_method，我们可以在[VTables](https://github.com/apple/swift/blob/master/docs/SIL.rst#id34) 这一 Section 找到说明，证明其表示当前 Swift 语义指令使用 V-Table 进行动态派发。
+
+> SIL represents dynamic dispatch for class methods using the [class_method](https://github.com/apple/swift/blob/master/docs/SIL.rst#class-method), [super_method](https://github.com/apple/swift/blob/master/docs/SIL.rst#super-method), [objc_method](https://github.com/apple/swift/blob/master/docs/SIL.rst#objc-method), and [objc_super_method](https://github.com/apple/swift/blob/master/docs/SIL.rst#objc-super-method) instructions.
+>
+> The potential destinations for [class_method](https://github.com/apple/swift/blob/master/docs/SIL.rst#class-method) and [super_method](https://github.com/apple/swift/blob/master/docs/SIL.rst#super-method) are tracked in `sil_vtable` declarations for every class type.
 
 
 
-想了解完整的其他详细参数，可以到 Swift 的 [Github 页面](https://github.com/apple/swift/blob/master/docs/SIL.rst#dynamic-dispatch)查看。
+#### objc_method
+
+这个字面很明显，使用 Objective-C 的运行时进行派发。在 Github 主页也有说明
+
+> Performs Objective-C method dispatch using `objc_msgSend()`.
+
+
+
+#### witness_method
+
+这个方法的意思表示的语义是在协议目击表（Protocol Witness Table）中查询方法。
+
+
+
+#### function_ref
+
+代表一个函数的引用。
+
+
+
+#### apply
+
+可以将 apply 理解为调用某个函数。
+
+
+
+如果想了解完整的其他详细参数，可以到 Swift 的 [Github 页面](https://github.com/apple/swift/blob/master/docs/SIL.rst#dynamic-dispatch)查看。
 
 
 
@@ -171,15 +207,20 @@ OK，了解完 SIL 之后，进入正题。
 
 首先，不同位置的方法声明，派发的时候各不相同，先看个例子，我们为类和其扩展分别定义了两个方法。
 
-<img src="https://i.imgur.com/LeKq69v.png" alt="Carbonize 2019-09-15 at 8.16.43 P" style="zoom: 50%;" />
+<img src="https://i.imgur.com/LeKq69v.png" alt="Carbonize 2019-09-15 at 8.16.43 P" style="zoom:67%;" />
+
+
+
 针对上面这段代码，实际上 `MyClass` 使用的是函数表派发，而其分类中的方法是使用的静态派发。
 
 1. 值类型毫无疑问进行直接派发；
 2. 存在继承关系可能的类的初始声明下的方法采用虚函数表派发（V-Table）；
-3. 对协议的扩展或者类的扩展进采用直接派发（非 `NSObject` 下的 extension 的方法均为直接派发）
-4. 协议的初始声明下的方法均采用协议目击表派发（PWT）；
+3. 对协议的扩展或者类的扩展进采用直接派发（非 `NSObject` 下的 extension 的方法均为直接派发）;
+4. 协议的初始声明下的方法均采用协议目击表派发（PWT）
 
-![PWT](https://i.imgur.com/rGxsWt7.png)
+
+
+<img src="https://i.imgur.com/rGxsWt7.png" alt="PWT"  />
 
 
 
@@ -187,13 +228,13 @@ OK，了解完 SIL 之后，进入正题。
 
 这其中有个问题是日常开发过程中也经常会遇到的，如下代码。
 
-<img src="https://i.imgur.com/UOlgU25.png" alt="An extension" style="zoom: 33%;" />
+<img src="https://i.imgur.com/UOlgU25.png" alt="An extension"  />
 
 我们在某个类型的扩展中定义了方法，协议扩展中也定义了同名方法，在进行调用的时候，因为声明类型的不同，表现完全不一样，通过调用的结果就能知道是静态派发。
 
 而当我们将该同名方法声明在 MyProtocol 中的时候，这也变成了原始的协议表格派发形式了，通过 PWT 来查找该协议方法的具体实现。
 
-<img src="https://i.imgur.com/nm0ISlh.png" alt="Carbonize 2019-09-15 at 8.21.12 P" style="zoom: 33%;" />
+<img src="https://i.imgur.com/nm0ISlh.png" alt="Carbonize 2019-09-15 at 8.21.12 P"  />
 
 协议扩展是严格的静态派发的，因为没有虚函数表可以把方法的实现地址放进去。扩展能够实现协议的默认实现，那是因为符合这个协议的类型会把扩展的实现方法存到自己的协议目击表里（PWT），而且只有在这些类型没有实现这些协议方法的时候。
 
