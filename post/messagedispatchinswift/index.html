@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2019-09-15T20:56:50&#43;00:00" />
 <meta itemprop="dateModified" content="2019-09-15T20:56:50&#43;00:00" />
-<meta itemprop="wordCount" content="6263">
+<meta itemprop="wordCount" content="6452">
 
 
 
@@ -336,7 +336,14 @@
 <ul>
 <li>
 <ul>
-<li><a href="#sil-几个方法">SIL 几个方法</a></li>
+<li><a href="#sil-几个方法">SIL 几个方法</a>
+<ul>
+<li><a href="#class-method">class_method</a></li>
+<li><a href="#objc-method">objc_method</a></li>
+<li><a href="#witness-method">witness_method</a></li>
+<li><a href="#function-ref">function_ref</a></li>
+<li><a href="#apply">apply</a></li>
+</ul></li>
 </ul></li>
 </ul></li>
 <li><a href="#swift-中的方法派发是什么样子的">Swift 中的方法派发是什么样子的</a>
@@ -468,12 +475,35 @@
 
 <p>因为我们在讲述方法派发，因此我们关心几个相关的 SIL 语法，主要有如下四个：</p>
 
-<ol>
-<li>class_method</li>
-<li>objc_method</li>
-<li>witness_method</li>
-<li>apply</li>
-</ol>
+<h4 id="class-method">class_method</h4>
+
+<p>关于 class_method，我们可以在<a href="https://github.com/apple/swift/blob/master/docs/SIL.rst#id34">VTables</a> 这一 Section 找到说明，证明其表示当前 Swift 语义指令使用 V-Table 进行动态派发。</p>
+
+<blockquote>
+<p>SIL represents dynamic dispatch for class methods using the <a href="https://github.com/apple/swift/blob/master/docs/SIL.rst#class-method">class_method</a>, <a href="https://github.com/apple/swift/blob/master/docs/SIL.rst#super-method">super_method</a>, <a href="https://github.com/apple/swift/blob/master/docs/SIL.rst#objc-method">objc_method</a>, and <a href="https://github.com/apple/swift/blob/master/docs/SIL.rst#objc-super-method">objc_super_method</a> instructions.</p>
+
+<p>The potential destinations for <a href="https://github.com/apple/swift/blob/master/docs/SIL.rst#class-method">class_method</a> and <a href="https://github.com/apple/swift/blob/master/docs/SIL.rst#super-method">super_method</a> are tracked in <code>sil_vtable</code> declarations for every class type.</p>
+</blockquote>
+
+<h4 id="objc-method">objc_method</h4>
+
+<p>这个字面很明显，使用 Objective-C 的运行时进行派发。在 Github 主页也有说明</p>
+
+<blockquote>
+<p>Performs Objective-C method dispatch using <code>objc_msgSend()</code>.</p>
+</blockquote>
+
+<h4 id="witness-method">witness_method</h4>
+
+<p>这个方法的意思表示的语义是在协议目击表（Protocol Witness Table）中查询方法。</p>
+
+<h4 id="function-ref">function_ref</h4>
+
+<p>代表一个函数的引用。</p>
+
+<h4 id="apply">apply</h4>
+
+<p>可以将 apply 理解为函数的调用发起。</p>
 
 <p>想了解完整的其他详细参数，可以到 Swift 的 <a href="https://github.com/apple/swift/blob/master/docs/SIL.rst#dynamic-dispatch">Github 页面</a>查看。</p>
 
@@ -505,7 +535,7 @@
 <li>协议的初始声明下的方法均采用协议目击表派发（PWT）；</li>
 </ol>
 
-<p><img src="https://i.imgur.com/rGxsWt7.png" alt="PWT" /></p>
+<p><img src="https://i.imgur.com/rGxsWt7.png" alt="PWT" style="zoom:50%;" /></p>
 
 <h3 id="案例">案例</h3>
 
