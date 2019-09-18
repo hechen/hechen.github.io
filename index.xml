@@ -137,12 +137,35 @@
 
 &lt;p&gt;因为我们在讲述方法派发，因此我们关心几个相关的 SIL 语法，主要有如下四个：&lt;/p&gt;
 
-&lt;ol&gt;
-&lt;li&gt;class_method&lt;/li&gt;
-&lt;li&gt;objc_method&lt;/li&gt;
-&lt;li&gt;witness_method&lt;/li&gt;
-&lt;li&gt;apply&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h4 id=&#34;class-method&#34;&gt;class_method&lt;/h4&gt;
+
+&lt;p&gt;关于 class_method，我们可以在&lt;a href=&#34;https://github.com/apple/swift/blob/master/docs/SIL.rst#id34&#34;&gt;VTables&lt;/a&gt; 这一 Section 找到说明，证明其表示当前 Swift 语义指令使用 V-Table 进行动态派发。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;SIL represents dynamic dispatch for class methods using the &lt;a href=&#34;https://github.com/apple/swift/blob/master/docs/SIL.rst#class-method&#34;&gt;class_method&lt;/a&gt;, &lt;a href=&#34;https://github.com/apple/swift/blob/master/docs/SIL.rst#super-method&#34;&gt;super_method&lt;/a&gt;, &lt;a href=&#34;https://github.com/apple/swift/blob/master/docs/SIL.rst#objc-method&#34;&gt;objc_method&lt;/a&gt;, and &lt;a href=&#34;https://github.com/apple/swift/blob/master/docs/SIL.rst#objc-super-method&#34;&gt;objc_super_method&lt;/a&gt; instructions.&lt;/p&gt;
+
+&lt;p&gt;The potential destinations for &lt;a href=&#34;https://github.com/apple/swift/blob/master/docs/SIL.rst#class-method&#34;&gt;class_method&lt;/a&gt; and &lt;a href=&#34;https://github.com/apple/swift/blob/master/docs/SIL.rst#super-method&#34;&gt;super_method&lt;/a&gt; are tracked in &lt;code&gt;sil_vtable&lt;/code&gt; declarations for every class type.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&#34;objc-method&#34;&gt;objc_method&lt;/h4&gt;
+
+&lt;p&gt;这个字面很明显，使用 Objective-C 的运行时进行派发。在 Github 主页也有说明&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Performs Objective-C method dispatch using &lt;code&gt;objc_msgSend()&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&#34;witness-method&#34;&gt;witness_method&lt;/h4&gt;
+
+&lt;p&gt;这个方法的意思表示的语义是在协议目击表（Protocol Witness Table）中查询方法。&lt;/p&gt;
+
+&lt;h4 id=&#34;function-ref&#34;&gt;function_ref&lt;/h4&gt;
+
+&lt;p&gt;代表一个函数的引用。&lt;/p&gt;
+
+&lt;h4 id=&#34;apply&#34;&gt;apply&lt;/h4&gt;
+
+&lt;p&gt;可以将 apply 理解为函数的调用发起。&lt;/p&gt;
 
 &lt;p&gt;想了解完整的其他详细参数，可以到 Swift 的 &lt;a href=&#34;https://github.com/apple/swift/blob/master/docs/SIL.rst#dynamic-dispatch&#34;&gt;Github 页面&lt;/a&gt;查看。&lt;/p&gt;
 
@@ -174,7 +197,7 @@
 &lt;li&gt;协议的初始声明下的方法均采用协议目击表派发（PWT）；&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/rGxsWt7.png&#34; alt=&#34;PWT&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/rGxsWt7.png&#34; alt=&#34;PWT&#34; style=&#34;zoom:50%;&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;案例&#34;&gt;案例&lt;/h3&gt;
 
