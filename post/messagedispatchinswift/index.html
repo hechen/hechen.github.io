@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2019-09-15T20:56:50&#43;00:00" />
 <meta itemprop="dateModified" content="2019-09-15T20:56:50&#43;00:00" />
-<meta itemprop="wordCount" content="6452">
+<meta itemprop="wordCount" content="6453">
 
 
 
@@ -504,9 +504,9 @@
 
 <h4 id="apply">apply</h4>
 
-<p>可以将 apply 理解为函数的调用发起。</p>
+<p>可以将 apply 理解为调用某个函数。</p>
 
-<p>想了解完整的其他详细参数，可以到 Swift 的 <a href="https://github.com/apple/swift/blob/master/docs/SIL.rst#dynamic-dispatch">Github 页面</a>查看。</p>
+<p>如果想了解完整的其他详细参数，可以到 Swift 的 <a href="https://github.com/apple/swift/blob/master/docs/SIL.rst#dynamic-dispatch">Github 页面</a>查看。</p>
 
 <p>OK，了解完 SIL 之后，进入正题。</p>
 
@@ -526,8 +526,9 @@
 
 <p>首先，不同位置的方法声明，派发的时候各不相同，先看个例子，我们为类和其扩展分别定义了两个方法。</p>
 
-<p><img src="https://i.imgur.com/LeKq69v.png" alt="Carbonize 2019-09-15 at 8.16.43 P"  />
-针对上面这段代码，实际上 <code>MyClass</code> 使用的是函数表派发，而其分类中的方法是使用的静态派发。</p>
+<p><img src="https://i.imgur.com/LeKq69v.png" alt="Carbonize 2019-09-15 at 8.16.43 P" style="zoom:67%;" /></p>
+
+<p>针对上面这段代码，实际上 <code>MyClass</code> 使用的是函数表派发，而其分类中的方法是使用的静态派发。</p>
 
 <ol>
 <li>值类型毫无疑问进行直接派发；</li>
