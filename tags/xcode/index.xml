@@ -17,7 +17,7 @@
       <pubDate>Thu, 25 Apr 2019 11:30:30 +0800</pubDate>
       
       <guid>https://hechen.xyz/post/xcode-build-system/</guid>
-      <description>编程语言的处理过程大致会有五个阶段，其每个阶段均有对应的工具： 预处理器 Preprocessor 编译器 Compiler 汇编器 Assembler 链接器 Linker 加载器 Loader 以下，我们以一个简单的源文件，来看看</description>
+      <description>编程语言的处理过程大致会有五个阶段，其每个阶段均有对应的工具： 预处理器 Preprocessor 编译器 Compiler 汇编器 Assembler 链接器 Linker 加载器 Loader 我们以一个简单的源文件，来看看具体这</description>
     </item>
     
     <item>

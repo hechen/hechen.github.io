@@ -74,7 +74,7 @@
 
 
 
-<meta itemprop="keywords" content="UIResponder,UIGestureRecognizer," />
+<meta itemprop="keywords" content="UIResponder,UIGestureRecognizer,Document," />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="理解响应者和响应链"/>
 <meta name="twitter:description" content="Apps 是通过响应者（responder）对象来接收和处理事件的。一个响应者对象是 UIResponder 类的一个实例，我们常见的 UIView，UIViewContro"/>
@@ -360,7 +360,7 @@
 
 <h2 id="识别包含-touch-事件的响应者">识别包含 Touch 事件的响应者</h2>
 
-<p>UIKit 使用基于视图的碰撞检测（hit-testing）来决定 touch 事件发生的地点。具体而言，UIKit  拿该 touch 的位置和视图层级中所有的视图对象的 bounds 进行比较。UIView 的 <code>hitTest:withEvent:</code> 方法会游历整个视图层级，找到该 touch 事件发生所在的视图树最底端的视图，其也就是处理该 touch 事件的第一响应者。</p>
+<p>UIKit 使用基于视图的碰撞检测（hit-testing）来决定 touch 事件发生的地点。具体而言，UIKit 拿该 touch 的位置和视图层级中所有的视图对象的 bounds 进行比较。UIView 的 <code>hitTest:withEvent:</code> 方法会游历整个视图层级，找到该 touch 事件发生所在的视图树最底端的视图，其也就是处理该 touch 事件的第一响应者。</p>
 
 <blockquote>
 <p>如果一个 touch 的位置发生在某个视图的外围，<code>hitTest:withEvent:</code>方法就会忽略该视图和其所有子视图。所以，如果你将 view 的<code>clipsToBounds</code>属性设置为 NO 的化，即使其子视图将该 touch 包含在自己领域也是无效的。</p>
@@ -412,6 +412,7 @@
       <div class="post-tags">
           <a href="https://hechen.xyz/tags/uiresponder/">UIResponder</a>
           <a href="https://hechen.xyz/tags/uigesturerecognizer/">UIGestureRecognizer</a>
+          <a href="https://hechen.xyz/tags/document/">Document</a>
           
         </div>
 

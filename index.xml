@@ -1403,7 +1403,7 @@ ranlib libfoo.a&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;li&gt;加载器 Loader&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;以下，我们以一个简单的源文件，来看看具体这几个步骤都做了哪些事情。&lt;/p&gt;
+&lt;p&gt;我们以一个简单的源文件，来看看具体这几个步骤都做了哪些事情。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -3905,8 +3905,9 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
         <description>
 
 &lt;blockquote&gt;
-&lt;p&gt;原文：&lt;a href=&#34;https://www.swiftbysundell.com/articles/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/&#34;&gt;Testing Swift code that uses system singletons in 3 easy steps&lt;/a&gt;
-原作者 &lt;a href=&#34;https://twitter.com/johnsundell&#34;&gt;@johnsundell&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;原文：&lt;a href=&#34;https://www.swiftbysundell.com/articles/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/&#34;&gt;Testing Swift code that uses system singletons in 3 easy steps&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;原作者 &lt;a href=&#34;https://twitter.com/johnsundell&#34;&gt;@johnsundell&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;大部分在 Apple 平台开发的 App 都会依赖基于单例的 API。从 UIScreen 到 UIApplication，再到 NSBundle，而 Foundation，UIKit 以及 AppKit 里到处充斥着静态的 API。&lt;/p&gt;
@@ -4386,8 +4387,9 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
         <description>
 
 &lt;blockquote&gt;
-&lt;p&gt;原文：&lt;a href=&#34;https://www.swiftbysundell.com/articles/different-flavors-of-dependency-injection-in-swift/&#34;&gt;Different flavors of dependency injection in Swift&lt;/a&gt;
-原作者 &amp;amp; Copyright &lt;a href=&#34;https://twitter.com/johnsundell&#34;&gt;@johnsundell&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;原文：&lt;a href=&#34;https://www.swiftbysundell.com/articles/different-flavors-of-dependency-injection-in-swift/&#34;&gt;Different flavors of dependency injection in Swift&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;原作者 &amp;amp; Copyright &lt;a href=&#34;https://twitter.com/johnsundell&#34;&gt;@johnsundell&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;在之前的几篇博客中，我们已经了解了几种使用依赖注入方式使得某个 swift app 拥有一个更加解耦可测试的架构。比如在 &lt;a href=&#34;https://hechen.xyz/2017/11/19/Dependency-injection-using-factories-in-Swift/&#34;&gt;在 Swift 中使用工厂模式进行依赖注入&lt;/a&gt; 中和工厂模式结合，以及在&lt;a href=&#34;http://hechen.xyz/2018/07/16/Avoiding-singletons-in-Swift/&#34;&gt;避免在 Swift 中使用单例&lt;/a&gt;中替换程序中的单例对象等方式进行依赖注入。&lt;/p&gt;
@@ -5622,8 +5624,9 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
         <description>
 
 &lt;blockquote&gt;
-&lt;p&gt;原文：&lt;a href=&#34;https://www.swiftbysundell.com/articles/dependency-injection-using-factories-in-swift/&#34;&gt;Dependency injection using factories in Swift&lt;/a&gt;
-原作者 &amp;amp; Copyright &lt;a href=&#34;https://twitter.com/johnsundell&#34;&gt;@johnsundell&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;原文：&lt;a href=&#34;https://www.swiftbysundell.com/articles/dependency-injection-using-factories-in-swift/&#34;&gt;Dependency injection using factories in Swift&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;原作者 &amp;amp; Copyright &lt;a href=&#34;https://twitter.com/johnsundell&#34;&gt;@johnsundell&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象能够正常运转所必须的一切内容（其他对象）通过外界传入，这样做的好处在于，一方面能清晰的看得到某个对象的所有依赖项，另一方便也使得测试工作变得更为简单（因为我们可以模拟这些依赖项来捕获、验证状态以及值。）&lt;/p&gt;
@@ -6504,7 +6507,7 @@ window.rootViewController = UINavigationController(
 
 &lt;h2 id=&#34;识别包含-touch-事件的响应者&#34;&gt;识别包含 Touch 事件的响应者&lt;/h2&gt;
 
-&lt;p&gt;UIKit 使用基于视图的碰撞检测（hit-testing）来决定 touch 事件发生的地点。具体而言，UIKit  拿该 touch 的位置和视图层级中所有的视图对象的 bounds 进行比较。UIView 的 &lt;code&gt;hitTest:withEvent:&lt;/code&gt; 方法会游历整个视图层级，找到该 touch 事件发生所在的视图树最底端的视图，其也就是处理该 touch 事件的第一响应者。&lt;/p&gt;
+&lt;p&gt;UIKit 使用基于视图的碰撞检测（hit-testing）来决定 touch 事件发生的地点。具体而言，UIKit 拿该 touch 的位置和视图层级中所有的视图对象的 bounds 进行比较。UIView 的 &lt;code&gt;hitTest:withEvent:&lt;/code&gt; 方法会游历整个视图层级，找到该 touch 事件发生所在的视图树最底端的视图，其也就是处理该 touch 事件的第一响应者。&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;如果一个 touch 的位置发生在某个视图的外围，&lt;code&gt;hitTest:withEvent:&lt;/code&gt;方法就会忽略该视图和其所有子视图。所以，如果你将 view 的&lt;code&gt;clipsToBounds&lt;/code&gt;属性设置为 NO 的化，即使其子视图将该 touch 包含在自己领域也是无效的。&lt;/p&gt;
