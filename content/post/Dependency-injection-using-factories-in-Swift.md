@@ -6,6 +6,7 @@ tags: ["iOS","Xcode","Swift"]
 ---
 
 > 原文：[Dependency injection using factories in Swift](https://www.swiftbysundell.com/articles/dependency-injection-using-factories-in-swift/)
+>
 > 原作者 & Copyright [@johnsundell](https://twitter.com/johnsundell)
 
 

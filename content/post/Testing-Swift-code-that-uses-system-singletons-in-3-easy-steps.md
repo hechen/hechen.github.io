@@ -6,6 +6,7 @@ tags: ["iOS","Xcode","Swift","Singleton"]
 ---
 
 > 原文：[Testing Swift code that uses system singletons in 3 easy steps](https://www.swiftbysundell.com/articles/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/)
+>
 > 原作者 [@johnsundell](https://twitter.com/johnsundell)
 
 大部分在 Apple 平台开发的 App 都会依赖基于单例的 API。从 UIScreen 到 UIApplication，再到 NSBundle，而 Foundation，UIKit 以及 AppKit 里到处充斥着静态的 API。

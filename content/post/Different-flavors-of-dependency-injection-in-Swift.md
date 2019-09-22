@@ -7,6 +7,7 @@ tags: ["iOS","XCode","Swift"]
 
 
 > 原文：[Different flavors of dependency injection in Swift](https://www.swiftbysundell.com/articles/different-flavors-of-dependency-injection-in-swift/)
+>
 > 原作者 & Copyright [@johnsundell](https://twitter.com/johnsundell)
 
 

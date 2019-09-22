@@ -3,7 +3,7 @@ title: 理解响应者和响应链
 date: 2017-11-13 21:22:44
 lastmod: 2019-04-13T21:45:23+08:00
 categories: ["iOS"]
-tags: ["UIResponder","UIGestureRecognizer"]
+tags: ["UIResponder","UIGestureRecognizer","Document"]
 ---
 
 Apps 是通过响应者（responder）对象来接收和处理事件的。一个响应者对象是 UIResponder 类的一个实例，我们常见的 UIView，UIViewController 以及 UIApplication 都是 UIResponder 的子类。 UIKit 自动帮你管理着这些 responder 相关的行为，包括事件是如何从一个 responder 传递给另一个 responder 的等等。当然，你也可以修改你的 app 中事件传递的默认行为。
@@ -31,7 +31,7 @@ Controls 向其关联的对象发送动作消息本身不是事件，但是依�
 
 ## 识别包含 Touch 事件的响应者
 
-UIKit 使用基于视图的碰撞检测（hit-testing）来决定 touch 事件发生的地点。具体而言，UIKit  拿该 touch 的位置和视图层级中所有的视图对象的 bounds 进行比较。UIView 的 `hitTest:withEvent:` 方法会游历整个视图层级，找到该 touch 事件发生所在的视图树最底端的视图，其也就是处理该 touch 事件的第一响应者。
+UIKit 使用基于视图的碰撞检测（hit-testing）来决定 touch 事件发生的地点。具体而言，UIKit 拿该 touch 的位置和视图层级中所有的视图对象的 bounds 进行比较。UIView 的 `hitTest:withEvent:` 方法会游历整个视图层级，找到该 touch 事件发生所在的视图树最底端的视图，其也就是处理该 touch 事件的第一响应者。
 
 > 如果一个 touch 的位置发生在某个视图的外围，`hitTest:withEvent:`方法就会忽略该视图和其所有子视图。所以，如果你将 view 的`clipsToBounds`属性设置为 NO 的化，即使其子视图将该 touch 包含在自己领域也是无效的。
 

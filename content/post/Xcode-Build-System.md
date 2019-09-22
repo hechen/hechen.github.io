@@ -14,7 +14,9 @@ tags: ["Xcode", "Build", "Compile", "Preprocess"]
 4. 链接器 Linker
 5. 加载器 Loader
 
-以下，我们以一个简单的源文件，来看看具体这几个步骤都做了哪些事情。
+
+我们以一个简单的源文件，来看看具体这几个步骤都做了哪些事情。
+
 
 ``` c
 //
@@ -33,11 +35,15 @@ int main(int argc, const char * argv[]) {
 }
 ```
 
+
+
 ## 预处理器 Preprocessor
 
 1. 符号化
 2. 宏定义展开
 3. 头文件引入展开
+
+
 
 在命令行执行如下命令，我们导出输出到本地文件
 
