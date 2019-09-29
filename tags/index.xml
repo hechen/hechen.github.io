@@ -6,10 +6,55 @@
     <description>Recent content in Tags on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 15 Sep 2019 20:56:50 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 29 Sep 2019 10:30:30 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Alamofire</title>
+      <link>https://hechen.xyz/tags/alamofire/</link>
+      <pubDate>Sun, 29 Sep 2019 10:30:30 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/alamofire/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AssociatedType</title>
+      <link>https://hechen.xyz/tags/associatedtype/</link>
+      <pubDate>Sun, 29 Sep 2019 10:30:30 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/associatedtype/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Generic</title>
+      <link>https://hechen.xyz/tags/generic/</link>
+      <pubDate>Sun, 29 Sep 2019 10:30:30 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/generic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Protocol</title>
+      <link>https://hechen.xyz/tags/protocol/</link>
+      <pubDate>Sun, 29 Sep 2019 10:30:30 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/protocol/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RxSwift</title>
+      <link>https://hechen.xyz/tags/rxswift/</link>
+      <pubDate>Sun, 29 Sep 2019 10:30:30 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/rxswift/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Dispatch</title>
@@ -35,15 +80,6 @@
       <pubDate>Sun, 15 Sep 2019 20:56:50 +0000</pubDate>
       
       <guid>https://hechen.xyz/tags/pwt/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Protocol</title>
-      <link>https://hechen.xyz/tags/protocol/</link>
-      <pubDate>Sun, 15 Sep 2019 20:56:50 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/tags/protocol/</guid>
       <description></description>
     </item>
     
@@ -152,42 +188,6 @@
       <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
       
       <guid>https://hechen.xyz/tags/metatype/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Overload</title>
-      <link>https://hechen.xyz/tags/overload/</link>
-      <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/overload/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Quiz</title>
-      <link>https://hechen.xyz/tags/quiz/</link>
-      <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/quiz/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Framework</title>
-      <link>https://hechen.xyz/tags/framework/</link>
-      <pubDate>Fri, 26 Apr 2019 00:35:30 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/framework/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Library</title>
-      <link>https://hechen.xyz/tags/library/</link>
-      <pubDate>Fri, 26 Apr 2019 00:35:30 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/library/</guid>
       <description></description>
     </item>
     

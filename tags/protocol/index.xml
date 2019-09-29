@@ -6,10 +6,19 @@
     <description>Recent content in Protocol on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 15 Sep 2019 20:56:50 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 29 Sep 2019 10:30:30 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/tags/protocol/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Alamofire 和 RxSwift 中的 .af 以及 .rx 扩展是怎么实现的</title>
+      <link>https://hechen.xyz/post/alamofire-rxswift-af-rx/</link>
+      <pubDate>Sun, 29 Sep 2019 10:30:30 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/alamofire-rxswift-af-rx/</guid>
+      <description>今天继续来一篇水文，关于 Alamofire 和 RxSwift 两个组件中扩展后缀 .af 以及 .rx 是怎么实现的。相信用过的 (￣ω￣(￣ω￣〃 (￣ω￣〃)ゝ 都看过了。我这里权当自己的记</description>
+    </item>
     
     <item>
       <title>Swift 中的消息派发</title>
