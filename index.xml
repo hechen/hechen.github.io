@@ -41,7 +41,7 @@
 
 &lt;p&gt;先来看 Alamofire 中关于 af 扩展的实现：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/AbPIzgX.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/AbPIzgX.png&#34; alt=&#34;Alamofire&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;使用 Alamofire 扩展的方式如下：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -79,30 +79,27 @@
 
 &lt;p&gt;接下来是 RxSwift 中 Rx 扩展的实现：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/m5O7lo5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/m5O7lo5.png&#34; alt=&#34;RxSwift&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;可以看到，整个使用方式上是完全相同的。仅仅是各项名字不同。&lt;/p&gt;
 
-&lt;p&gt;所以我们可以总结这种方式的使用路径：&lt;/p&gt;
+&lt;p&gt;所以我们可以总结这种方式的使用路径，如何为我们自己开发的&lt;/p&gt;
 
 &lt;h3 id=&#34;声明扩展属性&#34;&gt;声明扩展属性&lt;/h3&gt;
 
-&lt;p&gt;为了能够支持实例变量和类型两者，需要分别增加两个计算属性：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;一个是 static 的，提供给类型使用；&lt;/li&gt;
-&lt;li&gt;一个是实例变量，提供给单个实例来用；&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;为了能够支持实例变量和类型两者，需要分别增加两个计算属性：
+- 一个是 static 的，提供给类型使用；
+- 一个是实例变量，提供给单个实例来用；&lt;/p&gt;
 
 &lt;h3 id=&#34;封装元类型信息&#34;&gt;封装元类型信息&lt;/h3&gt;
 
-&lt;p&gt;为了能够使得 .af/.rx 这些扩展属性也能够获得当前实例或者类型的元信息，不约而同的使用了结构体封装的形式，通过泛型类型实现。我们知道这个封装对象内部就是记录的就是 self&lt;/p&gt;
+&lt;p&gt;为了能够使得 &lt;code&gt;.af/.rx&lt;/code&gt; 这些扩展属性也能够获得当前实例或者类型的元信息，不约而同的使用了结构体封装的形式，通过泛型类型实现。我们知道这个封装对象内部就是记录的就是 self&lt;/p&gt;
 
 &lt;p&gt;我们可以通过编译器提示来看下扩展返回的类型是什么。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/09ikWMm.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/09ikWMm.png&#34; alt=&#34;Compiler Inference&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;这个类型是个 &lt;code&gt;AlamofireExtension&lt;/code&gt; 对象，并且其内部有个变量 type 就是我们扩展的类型 &lt;code&gt;Demo&lt;/code&gt;。而我们为该对象扩展的方法 &lt;code&gt;printSomething&lt;/code&gt; 也能够在实例是 Demo 类型的时候触发。&lt;/p&gt;
+&lt;p&gt;从 print 这个方法可以推断出，这个类型是个 &lt;code&gt;AlamofireExtension&lt;/code&gt; 对象（因为我们是针对该类型增加的扩展方法），并且其内部有个变量 type 就是我们扩展的类型 &lt;code&gt;Demo&lt;/code&gt;。而我们为该对象扩展的方法 &lt;code&gt;printSomething&lt;/code&gt; 也能够在实例是 Demo 类型的时候触发。&lt;/p&gt;
 
 &lt;h3 id=&#34;扩展目标类&#34;&gt;扩展目标类&lt;/h3&gt;
 
@@ -170,7 +167,7 @@
 &lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;    &lt;span class=&#34;kd&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Foundation&lt;/span&gt;
     
     &lt;span class=&#34;c1&#34;&gt;// We implemented a module named Wonderful.&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// Extesion name will be named as wf&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;// Extension name will be named as wf&lt;/span&gt;
     
     &lt;span class=&#34;c1&#34;&gt;// Step 0.&lt;/span&gt;
     &lt;span class=&#34;c1&#34;&gt;// Encapsulate a type which is unknown until now.&lt;/span&gt;
@@ -218,21 +215,18 @@
         &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
     &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
     
-    &lt;span class=&#34;c1&#34;&gt;// Use methods of wf extesion&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;// Use methods of wf extension&lt;/span&gt;
     &lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;obj&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Ordinary&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
     &lt;span class=&#34;n&#34;&gt;obj&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;wf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;wow&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;通过这种形式的写法有什么好处呢，个人理解主要有两点：&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;明确作用域，告知调用者调用的专属方法属于该组件相关；&lt;/li&gt;
-&lt;li&gt;提供该扩展的组件自身就更容易被扩展了（打上了烙印），也有了 RxSwift 所衍生的各种组件；&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;总体上对于这种形式，带来两个显著的好处：
+1. 明确作用域，告知调用者调用的专属方法属于该组件相关；
+2. 提供该扩展的组件自身就更容易被扩展了（打上了烙印），也有了 RxSwift 所衍生的各种组件；&lt;/p&gt;
 
 &lt;p&gt;总结下来，如下&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/6YvVnCM.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/6YvVnCM.png&#34; alt=&#34;Overview&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;尽管非常小的一段代码，可以说利用的正是 Swift 提供的 Protocol Extension 以及 Generic Type，其中每一个点对我来讲都是需要吃透的，明确怎么用，还要明确为何这么用。&lt;/p&gt;
 </description>
