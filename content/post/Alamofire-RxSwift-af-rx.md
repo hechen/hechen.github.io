@@ -9,36 +9,35 @@ tags: ["Alamofire","RxSwift","Generic","Protocol", "AssociatedType","Extension"]
 
 先来看 Alamofire 中关于 af 扩展的实现：
 
-![Alamofire](https://i.imgur.com/AbPIzgX.png)
+![Alamofire][image-1]
 
 使用 Alamofire 扩展的方式如下：
 
 ``` Swift
-    struct Demo {}
-    extension Demo: AlamofireExtended {}
-    extension AlamofireExtension where ExtendedType == Demo {
-        func printSomething() {
-            print("Something arrived.")
-        }
-    }
-    let d = Demo()
-    d.af.printSomething()
+struct Demo {}
+extension Demo: AlamofireExtended {}
+extension AlamofireExtension where ExtendedType == Demo {
+	func printSomething() {
+		print("Something arrived.")
+	}
+}
+let d = Demo()
+d.af.printSomething()
 ```
 
 这里主要有两点：
-
-1. 为将要使用的类 Demo 扩展 AlamofireExtended 协议，也就是增加 af 扩展属性，其返回的是一个封装对象 AlamofireExtension；
-2. 为 AlamofireExtension 对象（1 中返回的封装类型）扩展专属于 Demo 这个类型的方法；
+1. 为将要使用的类 Demo 扩展 `AlamofireExtended` 协议，也就是增加 af 扩展属性，其返回的是一个封装对象 `AlamofireExtension`；
+2. 为 `AlamofireExtension` 对象（1 中返回的封装类型）扩展专属于 Demo 这个类型的方法；
 
 说实话，这里用来封装元类型信息的结构体名称和扩展协议名称一样，我初次看的时候确实是蒙的。相对于 Alamofire 的命名来说，个人更喜欢 RxSwift 的命名。
 
 接下来是 RxSwift 中 Rx 扩展的实现：
 
-![RxSwift](https://i.imgur.com/m5O7lo5.png)
+![RxSwift][image-2]
 
 可以看到，整个使用方式上是完全相同的。仅仅是各项名字不同。
 
-所以我们可以总结这种方式的使用路径，如何为我们自己开发的
+所以我们可以总结这种方式的使用路径，如何为我们自己开发的组件扩充命名空间，具体有三个地方：
 
 ### 声明扩展属性
 
@@ -52,7 +51,7 @@ tags: ["Alamofire","RxSwift","Generic","Protocol", "AssociatedType","Extension"]
 
 我们可以通过编译器提示来看下扩展返回的类型是什么。
 
-![Compiler Inference](https://i.imgur.com/09ikWMm.png)
+![Compiler Inference][image-3]
 
 从 print 这个方法可以推断出，这个类型是个 `AlamofireExtension` 对象（因为我们是针对该类型增加的扩展方法），并且其内部有个变量 type 就是我们扩展的类型 `Demo`。而我们为该对象扩展的方法 `printSomething` 也能够在实例是 Demo 类型的时候触发。
 
@@ -124,8 +123,14 @@ tags: ["Alamofire","RxSwift","Generic","Protocol", "AssociatedType","Extension"]
 1. 明确作用域，告知调用者调用的专属方法属于该组件相关；
 2. 提供该扩展的组件自身就更容易被扩展了（打上了烙印），也有了 RxSwift 所衍生的各种组件；
 
-总结下来，如下
+所以，这段代码中涉及的 Swift 类型系统中的几个关键支持：
+1. 关联类型， Associated Type
+2. 泛型系统， Generic
+3. 扩展的默认实现， Extension Default Implementation
 
-![Overview](https://i.imgur.com/6YvVnCM.png)
+![Overview][image-4]
 
-尽管非常小的一段代码，可以说利用的正是 Swift 提供的 Protocol Extension 以及 Generic Type，其中每一个点对我来讲都是需要吃透的，明确怎么用，还要明确为何这么用。
+[image-1]:	https://i.imgur.com/AbPIzgX.png
+[image-2]:	https://i.imgur.com/m5O7lo5.png
+[image-3]:	https://i.imgur.com/09ikWMm.png
+[image-4]:	https://i.imgur.com/6YvVnCM.png
