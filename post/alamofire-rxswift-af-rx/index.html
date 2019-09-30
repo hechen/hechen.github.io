@@ -70,7 +70,7 @@
 
 <meta itemprop="datePublished" content="2019-09-29T10:30:30&#43;08:00" />
 <meta itemprop="dateModified" content="2019-09-29T10:30:30&#43;08:00" />
-<meta itemprop="wordCount" content="1132">
+<meta itemprop="wordCount" content="1129">
 
 
 
@@ -359,23 +359,20 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift">    <span class="kd">struct</span> <span class="nc">Demo</span> <span class="p">{}</span>
-    <span class="kd">extension</span> <span class="nc">Demo</span><span class="p">:</span> <span class="n">AlamofireExtended</span> <span class="p">{}</span>
-    <span class="kd">extension</span> <span class="nc">AlamofireExtension</span> <span class="k">where</span> <span class="n">ExtendedType</span> <span class="p">==</span> <span class="n">Demo</span> <span class="p">{</span>
-        <span class="kd">func</span> <span class="nf">printSomething</span><span class="p">()</span> <span class="p">{</span>
-            <span class="bp">print</span><span class="p">(</span><span class="s">&#34;Something arrived.&#34;</span><span class="p">)</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="kd">let</span> <span class="nv">d</span> <span class="p">=</span> <span class="n">Demo</span><span class="p">()</span>
-    <span class="n">d</span><span class="p">.</span><span class="n">af</span><span class="p">.</span><span class="n">printSomething</span><span class="p">()</span></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="kd">struct</span> <span class="nc">Demo</span> <span class="p">{}</span>
+<span class="kd">extension</span> <span class="nc">Demo</span><span class="p">:</span> <span class="n">AlamofireExtended</span> <span class="p">{}</span>
+<span class="kd">extension</span> <span class="nc">AlamofireExtension</span> <span class="k">where</span> <span class="n">ExtendedType</span> <span class="p">==</span> <span class="n">Demo</span> <span class="p">{</span>
+	<span class="kd">func</span> <span class="nf">printSomething</span><span class="p">()</span> <span class="p">{</span>
+		<span class="bp">print</span><span class="p">(</span><span class="s">&#34;Something arrived.&#34;</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nv">d</span> <span class="p">=</span> <span class="n">Demo</span><span class="p">()</span>
+<span class="n">d</span><span class="p">.</span><span class="n">af</span><span class="p">.</span><span class="n">printSomething</span><span class="p">()</span></code></pre></td></tr></table>
 </div>
 </div>
-<p>这里主要有两点：</p>
-
-<ol>
-<li>为将要使用的类 Demo 扩展 AlamofireExtended 协议，也就是增加 af 扩展属性，其返回的是一个封装对象 AlamofireExtension；</li>
-<li>为 AlamofireExtension 对象（1 中返回的封装类型）扩展专属于 Demo 这个类型的方法；</li>
-</ol>
+<p>这里主要有两点：
+1. 为将要使用的类 Demo 扩展 <code>AlamofireExtended</code> 协议，也就是增加 af 扩展属性，其返回的是一个封装对象 <code>AlamofireExtension</code>；
+2. 为 <code>AlamofireExtension</code> 对象（1 中返回的封装类型）扩展专属于 Demo 这个类型的方法；</p>
 
 <p>说实话，这里用来封装元类型信息的结构体名称和扩展协议名称一样，我初次看的时候确实是蒙的。相对于 Alamofire 的命名来说，个人更喜欢 RxSwift 的命名。</p>
 
@@ -385,7 +382,7 @@
 
 <p>可以看到，整个使用方式上是完全相同的。仅仅是各项名字不同。</p>
 
-<p>所以我们可以总结这种方式的使用路径，如何为我们自己开发的</p>
+<p>所以我们可以总结这种方式的使用路径，如何为我们自己开发的组件扩充命名空间，具体有三个地方：</p>
 
 <h3 id="声明扩展属性">声明扩展属性</h3>
 
@@ -526,11 +523,12 @@
 1. 明确作用域，告知调用者调用的专属方法属于该组件相关；
 2. 提供该扩展的组件自身就更容易被扩展了（打上了烙印），也有了 RxSwift 所衍生的各种组件；</p>
 
-<p>总结下来，如下</p>
+<p>所以，这段代码中涉及的 Swift 类型系统中的几个关键支持：
+1. 关联类型， Associated Type
+2. 泛型系统， Generic
+3. 扩展的默认实现， Extension Default Implementation</p>
 
 <p><img src="https://i.imgur.com/6YvVnCM.png" alt="Overview" /></p>
-
-<p>尽管非常小的一段代码，可以说利用的正是 Swift 提供的 Protocol Extension 以及 Generic Type，其中每一个点对我来讲都是需要吃透的，明确怎么用，还要明确为何这么用。</p>
 
     </div>
 

@@ -57,23 +57,20 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;    &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Demo&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
-    &lt;span class=&#34;kd&#34;&gt;extension&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Demo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;AlamofireExtended&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
-    &lt;span class=&#34;kd&#34;&gt;extension&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;AlamofireExtension&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;where&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ExtendedType&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Demo&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;printSomething&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-            &lt;span class=&#34;bp&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Something arrived.&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-    &lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;d&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Demo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;af&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;printSomething&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Swift&#34; data-lang=&#34;Swift&#34;&gt;&lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Demo&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
+&lt;span class=&#34;kd&#34;&gt;extension&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Demo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;AlamofireExtended&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
+&lt;span class=&#34;kd&#34;&gt;extension&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;AlamofireExtension&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;where&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ExtendedType&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Demo&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;printSomething&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+		&lt;span class=&#34;bp&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Something arrived.&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;kd&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;d&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Demo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;af&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;printSomething&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;这里主要有两点：&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;为将要使用的类 Demo 扩展 AlamofireExtended 协议，也就是增加 af 扩展属性，其返回的是一个封装对象 AlamofireExtension；&lt;/li&gt;
-&lt;li&gt;为 AlamofireExtension 对象（1 中返回的封装类型）扩展专属于 Demo 这个类型的方法；&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;这里主要有两点：
+1. 为将要使用的类 Demo 扩展 &lt;code&gt;AlamofireExtended&lt;/code&gt; 协议，也就是增加 af 扩展属性，其返回的是一个封装对象 &lt;code&gt;AlamofireExtension&lt;/code&gt;；
+2. 为 &lt;code&gt;AlamofireExtension&lt;/code&gt; 对象（1 中返回的封装类型）扩展专属于 Demo 这个类型的方法；&lt;/p&gt;
 
 &lt;p&gt;说实话，这里用来封装元类型信息的结构体名称和扩展协议名称一样，我初次看的时候确实是蒙的。相对于 Alamofire 的命名来说，个人更喜欢 RxSwift 的命名。&lt;/p&gt;
 
@@ -83,7 +80,7 @@
 
 &lt;p&gt;可以看到，整个使用方式上是完全相同的。仅仅是各项名字不同。&lt;/p&gt;
 
-&lt;p&gt;所以我们可以总结这种方式的使用路径，如何为我们自己开发的&lt;/p&gt;
+&lt;p&gt;所以我们可以总结这种方式的使用路径，如何为我们自己开发的组件扩充命名空间，具体有三个地方：&lt;/p&gt;
 
 &lt;h3 id=&#34;声明扩展属性&#34;&gt;声明扩展属性&lt;/h3&gt;
 
@@ -224,11 +221,12 @@
 1. 明确作用域，告知调用者调用的专属方法属于该组件相关；
 2. 提供该扩展的组件自身就更容易被扩展了（打上了烙印），也有了 RxSwift 所衍生的各种组件；&lt;/p&gt;
 
-&lt;p&gt;总结下来，如下&lt;/p&gt;
+&lt;p&gt;所以，这段代码中涉及的 Swift 类型系统中的几个关键支持：
+1. 关联类型， Associated Type
+2. 泛型系统， Generic
+3. 扩展的默认实现， Extension Default Implementation&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://i.imgur.com/6YvVnCM.png&#34; alt=&#34;Overview&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;尽管非常小的一段代码，可以说利用的正是 Swift 提供的 Protocol Extension 以及 Generic Type，其中每一个点对我来讲都是需要吃透的，明确怎么用，还要明确为何这么用。&lt;/p&gt;
 </description>
       
     </item>
