@@ -6,10 +6,19 @@
     <description>Recent content in macOS on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 04 Jul 2019 01:19:10 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 10 Aug 2020 12:05:54 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/categories/macos/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>获取某个 Mac 应用的 BundleID</title>
+      <link>https://hechen.xyz/post/reveal-bundleid-application/</link>
+      <pubDate>Mon, 10 Aug 2020 12:05:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/reveal-bundleid-application/</guid>
+      <description>我们知道无论是 iOS 还是 macOS 上的应用，其配置信息都是通过 plist 文件组织的，该应用的 BundleID 就藏在这个文件中，通过读取 plist 文件就能够知道其 Bundle ID 以及应用版本号等信</description>
+    </item>
     
     <item>
       <title>LetsMove 中的几个点</title>

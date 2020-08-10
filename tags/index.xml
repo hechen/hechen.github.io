@@ -6,10 +6,28 @@
     <description>Recent content in Tags on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 29 Sep 2019 10:30:30 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 10 Aug 2020 12:05:54 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>BundleID</title>
+      <link>https://hechen.xyz/tags/bundleid/</link>
+      <pubDate>Mon, 10 Aug 2020 12:05:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/bundleid/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Plist</title>
+      <link>https://hechen.xyz/tags/plist/</link>
+      <pubDate>Mon, 10 Aug 2020 12:05:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/tags/plist/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Alamofire</title>
@@ -170,24 +188,6 @@
       <pubDate>Mon, 10 Jun 2019 23:50:54 +0800</pubDate>
       
       <guid>https://hechen.xyz/tags/tuple/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>NSViewController</title>
-      <link>https://hechen.xyz/tags/nsviewcontroller/</link>
-      <pubDate>Mon, 03 Jun 2019 20:55:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/nsviewcontroller/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>UIViewController</title>
-      <link>https://hechen.xyz/tags/uiviewcontroller/</link>
-      <pubDate>Mon, 03 Jun 2019 20:55:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/tags/uiviewcontroller/</guid>
       <description></description>
     </item>
     
