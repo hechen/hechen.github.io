@@ -6,10 +6,19 @@
     <description>Recent content in Posts on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 29 Sep 2019 10:30:30 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 10 Aug 2020 12:05:54 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>获取某个 Mac 应用的 BundleID</title>
+      <link>https://hechen.xyz/post/reveal-bundleid-application/</link>
+      <pubDate>Mon, 10 Aug 2020 12:05:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/reveal-bundleid-application/</guid>
+      <description>我们知道无论是 iOS 还是 macOS 上的应用，其配置信息都是通过 plist 文件组织的，该应用的 BundleID 就藏在这个文件中，通过读取 plist 文件就能够知道其 Bundle ID 以及应用版本号等信</description>
+    </item>
     
     <item>
       <title>Alamofire 和 RxSwift 中的 .af 以及 .rx 扩展是怎么实现的</title>
@@ -185,15 +194,6 @@ iOS In the previous development on the iOS platform, create a ViewController, sp
       
       <guid>https://hechen.xyz/post/swift-and-modules/</guid>
       <description>问题描述 我们在开发线上诊断工具需求的时候，是以单个 Pod 的形式提供支持，并且代码文件中只有纯 Swift 文件，但是其中需要用到系统的 C 库的一些功能，本次就</description>
-    </item>
-    
-    <item>
-      <title>UserDefaults and Keychain</title>
-      <link>https://hechen.xyz/post/userdefaults-and-keychain/</link>
-      <pubDate>Fri, 21 Dec 2018 14:30:50 +0000</pubDate>
-      
-      <guid>https://hechen.xyz/post/userdefaults-and-keychain/</guid>
-      <description>Apple 提供了几种持久化方案，其中 UserDefaults 和 Keychain 是 App 开发过程中使用频率最高的方案，而且从以往和同事的探讨过程中发现对这两个概念中有一些细节还是理解不太透彻</description>
     </item>
     
   </channel>
