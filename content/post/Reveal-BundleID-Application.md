@@ -19,7 +19,6 @@ tags: ["Plist", "BundleID"]
 
 ![PlistBuddy](https://tva1.sinaimg.cn/large/007S8ZIlly1ghll60762tj31l202m0sr.jpg)
 
-## Reference
 
-1. [What is PlistBuddy?](https://medium.com/@marksiu/what-is-plistbuddy-76cb4f0c262d)
-2. [Getting the bundle identifier of an OS X application in a shell script](https://superuser.com/questions/346369/getting-the-bundle-identifier-of-an-os-x-application-in-a-shell-script)
+详细的 PlistBuddy 描述可以看下 [What is PlistBuddy?](https://medium.com/@marksiu/what-is-plistbuddy-76cb4f0c262d)
+
