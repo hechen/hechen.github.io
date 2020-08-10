@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Plist on I make stuff</title>
+    <link>https://hechen.xyz/tags/plist/</link>
+    <description>Recent content in Plist on I make stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 10 Aug 2020 12:05:54 +0800</lastBuildDate>
+    
+	<atom:link href="https://hechen.xyz/tags/plist/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>获取某个 Mac 应用的 BundleID</title>
+      <link>https://hechen.xyz/post/reveal-bundleid-application/</link>
+      <pubDate>Mon, 10 Aug 2020 12:05:54 +0800</pubDate>
+      
+      <guid>https://hechen.xyz/post/reveal-bundleid-application/</guid>
+      <description>我们知道无论是 iOS 还是 macOS 上的应用，其配置信息都是通过 plist 文件组织的，该应用的 BundleID 就藏在这个文件中，通过读取 plist 文件就能够知道其 Bundle ID 以及应用版本号等信</description>
+    </item>
+    
+  </channel>
+</rss>
