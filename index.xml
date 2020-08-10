@@ -29,9 +29,7 @@
       
       <guid>https://hechen.xyz/post/reveal-bundleid-application/</guid>
       
-        <description>
-
-&lt;p&gt;我们知道无论是 iOS 还是 macOS 上的应用，其配置信息都是通过 plist 文件组织的，该应用的 BundleID 就藏在这个文件中，通过读取 plist 文件就能够知道其 Bundle ID 以及应用版本号等信息。我们以 App &lt;a href=&#34;http://store.app&#34;&gt;Store.app&lt;/a&gt; 为例，其 plist 文件就存储在如下路径，其他应用也是如此。&lt;/p&gt;
+        <description>&lt;p&gt;我们知道无论是 iOS 还是 macOS 上的应用，其配置信息都是通过 plist 文件组织的，该应用的 BundleID 就藏在这个文件中，通过读取 plist 文件就能够知道其 Bundle ID 以及应用版本号等信息。我们以 App &lt;a href=&#34;http://store.app&#34;&gt;Store.app&lt;/a&gt; 为例，其 plist 文件就存储在如下路径，其他应用也是如此。&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/007S8ZIlly1ghll6b7ut0j30x50srte2.jpg&#34; alt=&#34;App Store in Alfred&#34; /&gt;&lt;/p&gt;
 
@@ -45,12 +43,7 @@
 
 &lt;p&gt;&lt;img src=&#34;https://tva1.sinaimg.cn/large/007S8ZIlly1ghll60762tj31l202m0sr.jpg&#34; alt=&#34;PlistBuddy&#34; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://medium.com/@marksiu/what-is-plistbuddy-76cb4f0c262d&#34;&gt;What is PlistBuddy?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://superuser.com/questions/346369/getting-the-bundle-identifier-of-an-os-x-application-in-a-shell-script&#34;&gt;Getting the bundle identifier of an OS X application in a shell script&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;详细的 PlistBuddy 描述可以看下 &lt;a href=&#34;https://medium.com/@marksiu/what-is-plistbuddy-76cb4f0c262d&#34;&gt;What is PlistBuddy?&lt;/a&gt;&lt;/p&gt;
 </description>
       
     </item>
