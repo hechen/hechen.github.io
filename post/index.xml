@@ -6,19 +6,10 @@
     <description>Recent content in Posts on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 10 Nov 2020 11:29:54 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 10 Aug 2020 12:05:54 +0800</lastBuildDate>
     
 	<atom:link href="https://hechen.xyz/post/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Use ES to filter MetricKit Data</title>
-      <link>https://hechen.xyz/post/use-es-to-filter-metrickit-data/</link>
-      <pubDate>Tue, 10 Nov 2020 11:29:54 +0800</pubDate>
-      
-      <guid>https://hechen.xyz/post/use-es-to-filter-metrickit-data/</guid>
-      <description>You can use the powerful tools provided by ES to search all data you want, such as to extract or convert specific data. Fetch Count Use _count to query the count of the data which match the specific condition. 1 2 3 4 5 6 GET ios-metric-info/_count { &amp;#34;query&amp;#34;: { &amp;#34;match&amp;#34;: { &amp;#34;appVersion&amp;#34; : &amp;#34;6.60.0&amp;#34; } } } Result: 1 2 3 4 5 6 7 8 9 { &amp;#34;count&amp;#34;</description>
-    </item>
     
     <item>
       <title>获取某个 Mac 应用的 BundleID</title>
@@ -194,6 +185,15 @@ iOS In the previous development on the iOS platform, create a ViewController, sp
       
       <guid>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</guid>
       <description>2019-01-29 更新 早上一到办公室连接上公司网络，网速直接就飚到了 600KB/s，果不其然，还是 com.apple.Safari.SafeBrowsing.Service 这个服务进程。这就尴尬了，看来并不是说你不用 Safari 就不会触发</description>
+    </item>
+    
+    <item>
+      <title>在 Swift Framework 中使用 C 文件的过程探索</title>
+      <link>https://hechen.xyz/post/swift-and-modules/</link>
+      <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
+      
+      <guid>https://hechen.xyz/post/swift-and-modules/</guid>
+      <description>问题描述 我们在开发线上诊断工具需求的时候，是以单个 Pod 的形式提供支持，并且代码文件中只有纯 Swift 文件，但是其中需要用到系统的 C 库的一些功能，本次就</description>
     </item>
     
   </channel>
