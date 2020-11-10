@@ -9,44 +9,31 @@
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/</loc>
-    <lastmod>2020-11-10T11:29:54+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/</loc>
-    <lastmod>2020-11-10T11:29:54+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/post/</loc>
-    <lastmod>2020-11-10T11:29:54+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/categories/tutorial/</loc>
-    <lastmod>2020-11-10T11:29:54+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/post/use-es-to-filter-metrickit-data/</loc>
-    <lastmod>2020-11-10T11:29:54+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://hechen.xyz/tags/bundleid/</loc>
     <lastmod>2020-08-10T12:05:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://hechen.xyz/categories/</loc>
+    <lastmod>2020-08-10T12:05:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/</loc>
+    <lastmod>2020-08-10T12:05:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://hechen.xyz/tags/plist/</loc>
+    <lastmod>2020-08-10T12:05:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.xyz/post/</loc>
     <lastmod>2020-08-10T12:05:54+08:00</lastmod>
     <priority>0</priority>
   </url>
