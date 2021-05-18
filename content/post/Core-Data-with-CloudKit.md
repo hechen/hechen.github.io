@@ -3,7 +3,6 @@ title: Core Data with CloudKit
 date: 2020-11-27 16:59:21
 tags: ["CloudKit", "Core Data"]
 categories: "Core Data"
-draft: true
 ---
 
 
