@@ -1,14 +1,13 @@
 ---
-title: Core Data with CloudKit
-date: 2020-11-27 16:59:21
-tags: ["CloudKit", "Core Data"]
-categories: "Core Data"
+title: "CoreData With CloudKit"
+date: 2020-11-27T16:59:37+08:00
+categories: ["CoreData"]
+tags: ["iCloud", "CloudKit"]
 ---
-
 
 Integrate your codebase with CloudKit is actually a tricky stuff for me since the first impression the CloudKit gave me several years ago is not good.
 
-In recent days, I had to cope with this bad feeling ( Never mind, CloudKit) in the development of Sideloader.
+In recent days, I had to cope with this bad feeling (Never mind, CloudKit) in the development of Sideloader.
 
 CoreData is not an easy-API framework, as we all know. However, CloudKit defeats CoreData. You can imagine how frustrated I felt when I first use CloudKit to synchronize data stored in local CoreData.
 
@@ -55,7 +54,7 @@ My complete CoreDataStack codes are shown below:
 ``` Swift
 public final class PersistentManager {
     private init() {
-		    // Register the Transformer used in Custom CoreData Models
+            // Register the Transformer used in Custom CoreData Models
         YoutubeVideoMetaInfoTransformer.register()
     }
     
