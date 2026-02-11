@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Generic on I make stuff</title>
-    <link>https://hechen.xyz/tags/generic/</link>
+    <link>https://hechen.github.io/tags/generic/</link>
     <description>Recent content in Generic on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 29 Sep 2019 10:30:30 +0800</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/generic/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/tags/generic/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Alamofire 和 RxSwift 中的 .af 以及 .rx 扩展是怎么实现的</title>
-      <link>https://hechen.xyz/post/alamofire-rxswift-af-rx/</link>
+      <link>https://hechen.github.io/post/alamofire-rxswift-af-rx/</link>
       <pubDate>Sun, 29 Sep 2019 10:30:30 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/alamofire-rxswift-af-rx/</guid>
+      <guid>https://hechen.github.io/post/alamofire-rxswift-af-rx/</guid>
       <description>今天继续来一篇水文，关于 Alamofire 和 RxSwift 两个组件中扩展后缀 .af 以及 .rx 是怎么实现的。相信用过的 (￣ω￣(￣ω￣〃 (￣ω￣〃)ゝ 都看过了。我这里权当自己的记</description>
     </item>
     

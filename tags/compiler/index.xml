@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Compiler on I make stuff</title>
-    <link>https://hechen.xyz/tags/compiler/</link>
+    <link>https://hechen.github.io/tags/compiler/</link>
     <description>Recent content in Compiler on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 10 Jul 2018 12:05:58 +0000</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/compiler/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/tags/compiler/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>What is LLVM</title>
-      <link>https://hechen.xyz/post/what-is-llvm/</link>
+      <link>https://hechen.github.io/post/what-is-llvm/</link>
       <pubDate>Tue, 10 Jul 2018 12:05:58 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/what-is-llvm/</guid>
+      <guid>https://hechen.github.io/post/what-is-llvm/</guid>
       <description>什么是 LLVM？隐藏在 Swift，Rust，Clang 等语言背后的奥秘 了解编译器是如何生成机器原生代码会使得倒腾新语言或者加强已经存在的编程</description>
     </item>
     

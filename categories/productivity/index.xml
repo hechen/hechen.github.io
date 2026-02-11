@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Productivity on I make stuff</title>
-    <link>https://hechen.xyz/categories/productivity/</link>
+    <link>https://hechen.github.io/categories/productivity/</link>
     <description>Recent content in Productivity on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 13 Mar 2019 00:30:49 +0800</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/categories/productivity/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/categories/productivity/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>在英文语言系统的 Safari 中使用印象笔记</title>
-      <link>https://hechen.xyz/post/using-yinxiangbiji-system-english/</link>
+      <link>https://hechen.github.io/post/using-yinxiangbiji-system-english/</link>
       <pubDate>Wed, 13 Mar 2019 00:30:49 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/using-yinxiangbiji-system-english/</guid>
+      <guid>https://hechen.github.io/post/using-yinxiangbiji-system-english/</guid>
       <description>因为 Evernote 在国内使用了不同的账户体系，去年团队也彻底独立出来，但是 Safari 的剪藏插件是同一个，下载地址，但是当你系统是英文系统的时候，使用 Safari 剪藏有点尴</description>
     </item>
     
     <item>
       <title>如何制作 Send to 2Do 的 Safari 书签</title>
-      <link>https://hechen.xyz/post/send-to-2do/</link>
+      <link>https://hechen.github.io/post/send-to-2do/</link>
       <pubDate>Mon, 26 Nov 2018 14:59:50 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/send-to-2do/</guid>
+      <guid>https://hechen.github.io/post/send-to-2do/</guid>
       <description>使用鼠标拖拽下面这个链接到你的 Favorites Bar 上，默认点击行为实际上是模拟在当前页面进行导航，而目标地址由 avascript:window.location 来指定，目标地址实际上就是各个 App 的 URL Sche</description>
     </item>
     
     <item>
       <title>那些我恢复 Mac 系统之后要安装的 Apps</title>
-      <link>https://hechen.xyz/post/my-favorite-mac-apps/</link>
+      <link>https://hechen.github.io/post/my-favorite-mac-apps/</link>
       <pubDate>Wed, 11 Jul 2018 12:58:37 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/my-favorite-mac-apps/</guid>
+      <guid>https://hechen.github.io/post/my-favorite-mac-apps/</guid>
       <description>记录一下自己常用的 Mac Apps，每次重装之后到了用的时候发现忘记安装了(不是每次都用 TimeMachine 恢复)，而且强烈简易大家如果某个 App 有对应的独立安装版本的</description>
     </item>
     

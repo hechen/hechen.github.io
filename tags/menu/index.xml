@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Menu on I make stuff</title>
-    <link>https://hechen.xyz/tags/menu/</link>
+    <link>https://hechen.github.io/tags/menu/</link>
     <description>Recent content in Menu on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sat, 30 Mar 2019 11:29:54 +0800</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/menu/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/tags/menu/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>写个小工具 Swwwitch</title>
-      <link>https://hechen.xyz/post/swwwitch/</link>
+      <link>https://hechen.github.io/post/swwwitch/</link>
       <pubDate>Sat, 30 Mar 2019 11:29:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/swwwitch/</guid>
+      <guid>https://hechen.github.io/post/swwwitch/</guid>
       <description>最近看到开发圈某热点，做了个小工具，总结下最近的几个 CocoaApp 上的功能，仅做练手。现在只包含了两个开关：切换系统主题和隐藏桌面 icon 的功能。 功能点 切换系</description>
     </item>
     
     <item>
       <title>关于 Mac 应用的自启动是如何做到的</title>
-      <link>https://hechen.xyz/post/autostartwhenlogin/</link>
+      <link>https://hechen.github.io/post/autostartwhenlogin/</link>
       <pubDate>Mon, 18 Mar 2019 17:29:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/autostartwhenlogin/</guid>
+      <guid>https://hechen.github.io/post/autostartwhenlogin/</guid>
       <description>开机自启动是 Cocoa 应用最常见的一种功能，尤其是针对需要常驻 Menu 的服务来说更是如此，今天我们对开机启动项的功能加入做个梳理。 在 Daemons and Services Programming Guide 中我们能找到</description>
     </item>
     
     <item>
       <title>Mac 平台上那些 Dockless 的 App 都是如何实现的？</title>
-      <link>https://hechen.xyz/post/dockless-cocoaapps/</link>
+      <link>https://hechen.github.io/post/dockless-cocoaapps/</link>
       <pubDate>Wed, 13 Mar 2019 17:29:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/dockless-cocoaapps/</guid>
+      <guid>https://hechen.github.io/post/dockless-cocoaapps/</guid>
       <description>Menu Only 算是 Cocoa App 中最常见的一项，它使得 App 不占用你的 Dock 栏，在多 workspace 的时候也不影响正常使用，随时都可以在屏幕的菜单栏中执行快捷操作。尤其是针对一些需要</description>
     </item>
     

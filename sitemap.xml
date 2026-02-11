@@ -1,1027 +1,1027 @@
-<?xml-stylesheet type="text/xsl" href="https://hechen.xyz/sitemap.xsl"?>
+<?xml-stylesheet type="text/xsl" href="https://hechen.github.io/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://hechen.xyz/about/</loc>
+    <loc>https://hechen.github.io/about/</loc>
     <lastmod>2017-08-28T21:41:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/bundleid/</loc>
+    <loc>https://hechen.github.io/tags/bundleid/</loc>
     <lastmod>2020-08-10T12:05:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/</loc>
+    <loc>https://hechen.github.io/categories/</loc>
     <lastmod>2020-08-10T12:05:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/</loc>
+    <loc>https://hechen.github.io/</loc>
     <lastmod>2020-08-10T12:05:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/plist/</loc>
+    <loc>https://hechen.github.io/tags/plist/</loc>
     <lastmod>2020-08-10T12:05:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/</loc>
+    <loc>https://hechen.github.io/post/</loc>
     <lastmod>2020-08-10T12:05:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/</loc>
+    <loc>https://hechen.github.io/tags/</loc>
     <lastmod>2020-08-10T12:05:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/macos/</loc>
+    <loc>https://hechen.github.io/categories/macos/</loc>
     <lastmod>2020-08-10T12:05:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/reveal-bundleid-application/</loc>
+    <loc>https://hechen.github.io/post/reveal-bundleid-application/</loc>
     <lastmod>2020-08-10T12:05:54+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/alamofire/</loc>
+    <loc>https://hechen.github.io/tags/alamofire/</loc>
     <lastmod>2019-09-29T10:30:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/alamofire-rxswift-af-rx/</loc>
+    <loc>https://hechen.github.io/post/alamofire-rxswift-af-rx/</loc>
     <lastmod>2019-09-29T10:30:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/associatedtype/</loc>
+    <loc>https://hechen.github.io/tags/associatedtype/</loc>
     <lastmod>2019-09-29T10:30:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/extension/</loc>
+    <loc>https://hechen.github.io/tags/extension/</loc>
     <lastmod>2019-09-29T10:30:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/generic/</loc>
+    <loc>https://hechen.github.io/tags/generic/</loc>
     <lastmod>2019-09-29T10:30:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/protocol/</loc>
+    <loc>https://hechen.github.io/tags/protocol/</loc>
     <lastmod>2019-09-29T10:30:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/rxswift/</loc>
+    <loc>https://hechen.github.io/tags/rxswift/</loc>
     <lastmod>2019-09-29T10:30:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/swift/</loc>
+    <loc>https://hechen.github.io/categories/swift/</loc>
     <lastmod>2019-09-29T10:30:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/dispatch/</loc>
+    <loc>https://hechen.github.io/tags/dispatch/</loc>
     <lastmod>2019-09-15T20:56:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/inline/</loc>
+    <loc>https://hechen.github.io/tags/inline/</loc>
     <lastmod>2019-09-15T20:56:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/pwt/</loc>
+    <loc>https://hechen.github.io/tags/pwt/</loc>
     <lastmod>2019-09-15T20:56:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/swift/</loc>
+    <loc>https://hechen.github.io/tags/swift/</loc>
     <lastmod>2019-09-15T20:56:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/messagedispatchinswift/</loc>
+    <loc>https://hechen.github.io/post/messagedispatchinswift/</loc>
     <lastmod>2019-09-15T20:56:50+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/ios/</loc>
+    <loc>https://hechen.github.io/tags/ios/</loc>
     <lastmod>2019-09-15T20:56:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/protocol-extension/</loc>
+    <loc>https://hechen.github.io/post/protocol-extension/</loc>
     <lastmod>2019-08-08T19:00:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/launchddaemon/</loc>
+    <loc>https://hechen.github.io/tags/launchddaemon/</loc>
     <lastmod>2019-07-04T01:19:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/letsmove/</loc>
+    <loc>https://hechen.github.io/tags/letsmove/</loc>
     <lastmod>2019-07-04T01:19:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/letsmove/</loc>
+    <loc>https://hechen.github.io/post/letsmove/</loc>
     <lastmod>2019-07-04T01:19:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/shell/</loc>
+    <loc>https://hechen.github.io/tags/shell/</loc>
     <lastmod>2019-07-04T01:19:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/sourcecode/</loc>
+    <loc>https://hechen.github.io/tags/sourcecode/</loc>
     <lastmod>2019-07-04T01:19:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/xpc/</loc>
+    <loc>https://hechen.github.io/tags/xpc/</loc>
     <lastmod>2019-07-04T01:01:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/xpcservice/</loc>
+    <loc>https://hechen.github.io/post/xpcservice/</loc>
     <lastmod>2019-07-04T01:01:10+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/codable/</loc>
+    <loc>https://hechen.github.io/tags/codable/</loc>
     <lastmod>2019-06-11T00:10:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/tuple-codable/</loc>
+    <loc>https://hechen.github.io/post/tuple-codable/</loc>
     <lastmod>2019-06-11T00:10:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/tuple/</loc>
+    <loc>https://hechen.github.io/tags/tuple/</loc>
     <lastmod>2019-06-11T00:10:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/create-nsviewcontroller-without-nib/</loc>
+    <loc>https://hechen.github.io/post/create-nsviewcontroller-without-nib/</loc>
     <lastmod>2019-06-03T20:55:54+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/nsviewcontroller/</loc>
+    <loc>https://hechen.github.io/tags/nsviewcontroller/</loc>
     <lastmod>2019-06-03T20:55:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/uiviewcontroller/</loc>
+    <loc>https://hechen.github.io/tags/uiviewcontroller/</loc>
     <lastmod>2019-06-03T20:55:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/metatype/</loc>
+    <loc>https://hechen.github.io/tags/metatype/</loc>
     <lastmod>2019-05-17T12:33:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/overload/</loc>
+    <loc>https://hechen.github.io/tags/overload/</loc>
     <lastmod>2019-05-17T12:33:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/quiz/</loc>
+    <loc>https://hechen.github.io/tags/quiz/</loc>
     <lastmod>2019-05-17T12:33:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/a-swift-quiz/</loc>
+    <loc>https://hechen.github.io/post/a-swift-quiz/</loc>
     <lastmod>2019-05-17T12:33:54+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/framework/</loc>
+    <loc>https://hechen.github.io/tags/framework/</loc>
     <lastmod>2019-04-27T03:01:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/library/</loc>
+    <loc>https://hechen.github.io/tags/library/</loc>
     <lastmod>2019-04-27T03:01:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/mach-o/</loc>
+    <loc>https://hechen.github.io/tags/mach-o/</loc>
     <lastmod>2019-04-27T03:01:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/library_framework/</loc>
+    <loc>https://hechen.github.io/post/library_framework/</loc>
     <lastmod>2019-04-27T03:01:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/build/</loc>
+    <loc>https://hechen.github.io/tags/build/</loc>
     <lastmod>2019-04-25T11:30:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/xcode-build-system/</loc>
+    <loc>https://hechen.github.io/post/xcode-build-system/</loc>
     <lastmod>2019-04-25T11:30:30+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/compile/</loc>
+    <loc>https://hechen.github.io/tags/compile/</loc>
     <lastmod>2019-04-25T11:30:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/preprocess/</loc>
+    <loc>https://hechen.github.io/tags/preprocess/</loc>
     <lastmod>2019-04-25T11:30:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/xcode/</loc>
+    <loc>https://hechen.github.io/tags/xcode/</loc>
     <lastmod>2019-04-25T11:30:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/applescript/</loc>
+    <loc>https://hechen.github.io/tags/applescript/</loc>
     <lastmod>2019-03-30T11:29:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/menu/</loc>
+    <loc>https://hechen.github.io/tags/menu/</loc>
     <lastmod>2019-04-01T10:20:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/nstask/</loc>
+    <loc>https://hechen.github.io/tags/nstask/</loc>
     <lastmod>2019-03-30T11:29:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/process/</loc>
+    <loc>https://hechen.github.io/tags/process/</loc>
     <lastmod>2019-03-30T11:29:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/swwwitch/</loc>
+    <loc>https://hechen.github.io/post/swwwitch/</loc>
     <lastmod>2019-03-30T11:29:54+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/agent/</loc>
+    <loc>https://hechen.github.io/tags/agent/</loc>
     <lastmod>2019-04-01T10:20:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/cocoa/</loc>
+    <loc>https://hechen.github.io/tags/cocoa/</loc>
     <lastmod>2019-04-01T10:20:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/dock/</loc>
+    <loc>https://hechen.github.io/tags/dock/</loc>
     <lastmod>2019-04-01T10:20:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/login/</loc>
+    <loc>https://hechen.github.io/tags/login/</loc>
     <lastmod>2019-04-01T10:20:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/autostartwhenlogin/</loc>
+    <loc>https://hechen.github.io/post/autostartwhenlogin/</loc>
     <lastmod>2019-04-01T10:20:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/dockless/</loc>
+    <loc>https://hechen.github.io/tags/dockless/</loc>
     <lastmod>2019-03-15T11:01:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/dockless-cocoaapps/</loc>
+    <loc>https://hechen.github.io/post/dockless-cocoaapps/</loc>
     <lastmod>2019-03-15T11:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/evernote/</loc>
+    <loc>https://hechen.github.io/tags/evernote/</loc>
     <lastmod>2019-03-15T11:01:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/productivity/</loc>
+    <loc>https://hechen.github.io/categories/productivity/</loc>
     <lastmod>2019-03-15T11:01:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/macos/</loc>
+    <loc>https://hechen.github.io/tags/macos/</loc>
     <lastmod>2019-03-15T11:01:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/%E5%8D%B0%E8%B1%A1%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://hechen.github.io/tags/%E5%8D%B0%E8%B1%A1%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2019-03-15T11:01:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/using-yinxiangbiji-system-english/</loc>
+    <loc>https://hechen.github.io/post/using-yinxiangbiji-system-english/</loc>
     <lastmod>2019-03-15T11:01:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/nsview/</loc>
+    <loc>https://hechen.github.io/tags/nsview/</loc>
     <lastmod>2019-03-11T15:19:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/backgroundcolor/</loc>
+    <loc>https://hechen.github.io/tags/backgroundcolor/</loc>
     <lastmod>2019-03-11T15:19:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/nsview&#43;backgroundcolor/</loc>
+    <loc>https://hechen.github.io/post/nsview&#43;backgroundcolor/</loc>
     <lastmod>2019-03-11T15:19:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/rxswift/</loc>
+    <loc>https://hechen.github.io/categories/rxswift/</loc>
     <lastmod>2019-02-26T13:20:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/rxswift-subjects/</loc>
+    <loc>https://hechen.github.io/post/rxswift-subjects/</loc>
     <lastmod>2019-02-26T13:20:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/subject/</loc>
+    <loc>https://hechen.github.io/tags/subject/</loc>
     <lastmod>2019-02-26T13:20:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/variable/</loc>
+    <loc>https://hechen.github.io/tags/variable/</loc>
     <lastmod>2019-02-26T13:20:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/appleevents-usage-description/</loc>
+    <loc>https://hechen.github.io/post/appleevents-usage-description/</loc>
     <lastmod>2019-02-21T23:25:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/sandbox/</loc>
+    <loc>https://hechen.github.io/tags/sandbox/</loc>
     <lastmod>2019-02-21T23:25:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/safari/</loc>
+    <loc>https://hechen.github.io/tags/safari/</loc>
     <lastmod>2019-01-28T17:51:35+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/shadowsocks/</loc>
+    <loc>https://hechen.github.io/tags/shadowsocks/</loc>
     <lastmod>2019-01-28T17:51:35+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/traffic/</loc>
+    <loc>https://hechen.github.io/tags/traffic/</loc>
     <lastmod>2019-01-28T17:51:35+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</loc>
+    <loc>https://hechen.github.io/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2019-01-28T17:51:35+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/cocoapods/</loc>
+    <loc>https://hechen.github.io/tags/cocoapods/</loc>
     <lastmod>2019-01-03T21:19:24+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/module/</loc>
+    <loc>https://hechen.github.io/tags/module/</loc>
     <lastmod>2019-01-03T21:19:24+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/swift-and-modules/</loc>
+    <loc>https://hechen.github.io/post/swift-and-modules/</loc>
     <lastmod>2019-01-03T21:19:24+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/keychain/</loc>
+    <loc>https://hechen.github.io/tags/keychain/</loc>
     <lastmod>2018-12-21T14:30:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/userdefaults/</loc>
+    <loc>https://hechen.github.io/tags/userdefaults/</loc>
     <lastmod>2018-12-21T14:30:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/userdefaults-and-keychain/</loc>
+    <loc>https://hechen.github.io/post/userdefaults-and-keychain/</loc>
     <lastmod>2018-12-21T14:30:50+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/ios/</loc>
+    <loc>https://hechen.github.io/categories/ios/</loc>
     <lastmod>2019-04-13T21:45:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/2do/</loc>
+    <loc>https://hechen.github.io/tags/2do/</loc>
     <lastmod>2018-11-26T14:59:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/bookmark/</loc>
+    <loc>https://hechen.github.io/tags/bookmark/</loc>
     <lastmod>2018-11-26T14:59:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/omnifocus/</loc>
+    <loc>https://hechen.github.io/tags/omnifocus/</loc>
     <lastmod>2018-11-26T14:59:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/things/</loc>
+    <loc>https://hechen.github.io/tags/things/</loc>
     <lastmod>2018-11-26T14:59:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/send-to-2do/</loc>
+    <loc>https://hechen.github.io/post/send-to-2do/</loc>
     <lastmod>2018-11-26T14:59:50+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/devonthink/</loc>
+    <loc>https://hechen.github.io/tags/devonthink/</loc>
     <lastmod>2018-10-16T17:01:44+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/marginnote/</loc>
+    <loc>https://hechen.github.io/tags/marginnote/</loc>
     <lastmod>2018-10-16T17:01:44+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/pdfexpert/</loc>
+    <loc>https://hechen.github.io/tags/pdfexpert/</loc>
     <lastmod>2018-10-16T17:01:44+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/reading-process/</loc>
+    <loc>https://hechen.github.io/post/reading-process/</loc>
     <lastmod>2018-10-16T17:01:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/singleton/</loc>
+    <loc>https://hechen.github.io/tags/singleton/</loc>
     <lastmod>2018-07-17T17:09:57+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/translation/</loc>
+    <loc>https://hechen.github.io/categories/translation/</loc>
     <lastmod>2019-04-13T22:30:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</loc>
+    <loc>https://hechen.github.io/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</loc>
     <lastmod>2018-07-17T17:09:57+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/avoiding-singletons-in-swift/</loc>
+    <loc>https://hechen.github.io/post/avoiding-singletons-in-swift/</loc>
     <lastmod>2018-07-16T17:34:36+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/different-flavors-of-dependency-injection-in-swift/</loc>
+    <loc>https://hechen.github.io/post/different-flavors-of-dependency-injection-in-swift/</loc>
     <lastmod>2018-07-16T13:57:24+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/app/</loc>
+    <loc>https://hechen.github.io/tags/app/</loc>
     <lastmod>2018-07-11T12:58:37+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/mac/</loc>
+    <loc>https://hechen.github.io/tags/mac/</loc>
     <lastmod>2018-07-11T12:58:37+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/my-favorite-mac-apps/</loc>
+    <loc>https://hechen.github.io/post/my-favorite-mac-apps/</loc>
     <lastmod>2018-07-11T12:58:37+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/compiler/</loc>
+    <loc>https://hechen.github.io/tags/compiler/</loc>
     <lastmod>2019-04-13T22:30:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/ir/</loc>
+    <loc>https://hechen.github.io/tags/ir/</loc>
     <lastmod>2019-04-13T22:30:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/llvm/</loc>
+    <loc>https://hechen.github.io/tags/llvm/</loc>
     <lastmod>2019-04-13T22:30:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/what-is-llvm/</loc>
+    <loc>https://hechen.github.io/post/what-is-llvm/</loc>
     <lastmod>2019-04-13T22:30:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/iap/</loc>
+    <loc>https://hechen.github.io/tags/iap/</loc>
     <lastmod>2018-05-24T10:40:39+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/in-app-purchase/</loc>
+    <loc>https://hechen.github.io/post/in-app-purchase/</loc>
     <lastmod>2018-05-24T10:40:39+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/receipt/</loc>
+    <loc>https://hechen.github.io/tags/receipt/</loc>
     <lastmod>2018-05-24T10:40:39+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/carthage/</loc>
+    <loc>https://hechen.github.io/tags/carthage/</loc>
     <lastmod>2017-11-19T18:17:15+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/dependency-injection-using-factories-in-swift/</loc>
-    <lastmod>2017-11-19T18:17:15+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://hechen.xyz/post/modular-xcode-projects/</loc>
+    <loc>https://hechen.github.io/post/dependency-injection-using-factories-in-swift/</loc>
     <lastmod>2017-11-19T18:17:15+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/optional/</loc>
+    <loc>https://hechen.github.io/post/modular-xcode-projects/</loc>
+    <lastmod>2017-11-19T18:17:15+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://hechen.github.io/tags/optional/</loc>
     <lastmod>2017-11-14T21:53:52+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/handling-non-optional-optionals-in-swift/</loc>
+    <loc>https://hechen.github.io/post/handling-non-optional-optionals-in-swift/</loc>
     <lastmod>2017-11-14T21:53:52+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/document/</loc>
+    <loc>https://hechen.github.io/tags/document/</loc>
     <lastmod>2019-04-13T21:45:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/uigesturerecognizer/</loc>
+    <loc>https://hechen.github.io/tags/uigesturerecognizer/</loc>
     <lastmod>2019-04-13T21:45:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/uiresponder/</loc>
+    <loc>https://hechen.github.io/tags/uiresponder/</loc>
     <lastmod>2019-04-13T21:45:23+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/understanding-responders-and-the-responder-chain/</loc>
+    <loc>https://hechen.github.io/post/understanding-responders-and-the-responder-chain/</loc>
     <lastmod>2019-04-13T21:45:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/capturing-objects-in-swift-closures/</loc>
+    <loc>https://hechen.github.io/post/capturing-objects-in-swift-closures/</loc>
     <lastmod>2017-11-12T20:56:50+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/closure/</loc>
+    <loc>https://hechen.github.io/tags/closure/</loc>
     <lastmod>2017-11-12T20:56:50+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/autoclosure-escape/</loc>
+    <loc>https://hechen.github.io/post/autoclosure-escape/</loc>
     <lastmod>2017-11-12T20:01:54+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/notification/</loc>
+    <loc>https://hechen.github.io/tags/notification/</loc>
     <lastmod>2017-05-20T10:10:54+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/ios-notification/</loc>
+    <loc>https://hechen.github.io/post/ios-notification/</loc>
     <lastmod>2017-05-20T10:10:54+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/book/</loc>
+    <loc>https://hechen.github.io/categories/book/</loc>
     <lastmod>2017-02-12T16:38:24+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/garbage-collection/</loc>
+    <loc>https://hechen.github.io/tags/garbage-collection/</loc>
     <lastmod>2017-02-12T16:38:24+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/python/</loc>
+    <loc>https://hechen.github.io/tags/python/</loc>
     <lastmod>2017-02-12T16:38:24+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/reading-garbage-collection/</loc>
+    <loc>https://hechen.github.io/post/reading-garbage-collection/</loc>
     <lastmod>2017-02-12T16:38:24+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/animation/</loc>
+    <loc>https://hechen.github.io/tags/animation/</loc>
     <lastmod>2015-12-02T18:53:51+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/objective-c/</loc>
+    <loc>https://hechen.github.io/tags/objective-c/</loc>
     <lastmod>2015-12-02T18:53:51+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/elastic-view-animation-using-uibezierpath/</loc>
+    <loc>https://hechen.github.io/post/elastic-view-animation-using-uibezierpath/</loc>
     <lastmod>2015-12-02T18:53:51+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/category/</loc>
+    <loc>https://hechen.github.io/tags/category/</loc>
     <lastmod>2015-09-14T15:36:07+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</loc>
+    <loc>https://hechen.github.io/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</loc>
     <lastmod>2015-09-14T15:36:07+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/runtime/</loc>
+    <loc>https://hechen.github.io/tags/runtime/</loc>
     <lastmod>2015-09-07T17:55:33+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/understanding-the-objective-c-runtime/</loc>
+    <loc>https://hechen.github.io/post/understanding-the-objective-c-runtime/</loc>
     <lastmod>2015-09-07T17:55:33+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/how-we-created-guillotine-menu-animation-for-ios/</loc>
+    <loc>https://hechen.github.io/post/how-we-created-guillotine-menu-animation-for-ios/</loc>
     <lastmod>2015-09-01T15:52:07+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/algorithm/</loc>
+    <loc>https://hechen.github.io/tags/algorithm/</loc>
     <lastmod>2015-08-21T09:14:17+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/leetcode/</loc>
+    <loc>https://hechen.github.io/categories/leetcode/</loc>
     <lastmod>2019-05-15T09:00:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/string/</loc>
+    <loc>https://hechen.github.io/tags/string/</loc>
     <lastmod>2015-08-21T09:14:17+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/leetcode-021-implementstrstr/</loc>
+    <loc>https://hechen.github.io/post/leetcode-021-implementstrstr/</loc>
     <lastmod>2015-08-21T09:14:17+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/tree/</loc>
+    <loc>https://hechen.github.io/tags/tree/</loc>
     <lastmod>2015-08-18T16:28:26+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/leetcode-019-binarytreepaths/</loc>
+    <loc>https://hechen.github.io/post/leetcode-019-binarytreepaths/</loc>
     <lastmod>2015-08-18T16:28:26+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/leetcode-018-lengthoflastword/</loc>
+    <loc>https://hechen.github.io/post/leetcode-018-lengthoflastword/</loc>
     <lastmod>2015-08-18T16:13:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/push/</loc>
+    <loc>https://hechen.github.io/tags/push/</loc>
     <lastmod>2015-07-30T14:30:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/ios-push-notification/</loc>
+    <loc>https://hechen.github.io/post/ios-push-notification/</loc>
     <lastmod>2015-07-30T14:30:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/data-structure/</loc>
+    <loc>https://hechen.github.io/categories/data-structure/</loc>
     <lastmod>2015-05-07T13:59:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/linked-list/</loc>
+    <loc>https://hechen.github.io/tags/linked-list/</loc>
     <lastmod>2015-05-07T13:59:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/</loc>
+    <loc>https://hechen.github.io/post/%E5%85%B3%E4%BA%8E%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/</loc>
     <lastmod>2015-05-07T13:59:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/leetcode-002-reverse-words-in-a-string/</loc>
+    <loc>https://hechen.github.io/post/leetcode-002-reverse-words-in-a-string/</loc>
     <lastmod>2015-05-01T09:29:09+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/array/</loc>
+    <loc>https://hechen.github.io/tags/array/</loc>
     <lastmod>2019-05-15T09:00:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/leetcode-003-two-sum/</loc>
+    <loc>https://hechen.github.io/post/leetcode-003-two-sum/</loc>
     <lastmod>2019-04-27T23:11:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/linkedlist/</loc>
+    <loc>https://hechen.github.io/tags/linkedlist/</loc>
     <lastmod>2015-04-29T12:28:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/leetcode-003-intersection-of-two-linked-lists/</loc>
+    <loc>https://hechen.github.io/post/leetcode-003-intersection-of-two-linked-lists/</loc>
     <lastmod>2015-04-29T12:28:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/c&#43;&#43;/</loc>
+    <loc>https://hechen.github.io/categories/c&#43;&#43;/</loc>
     <lastmod>2015-04-29T11:57:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/c&#43;&#43;11/</loc>
+    <loc>https://hechen.github.io/tags/c&#43;&#43;11/</loc>
     <lastmod>2015-04-29T11:57:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/tags/lambda/</loc>
+    <loc>https://hechen.github.io/tags/lambda/</loc>
     <lastmod>2015-04-29T11:57:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/%E5%85%B3%E4%BA%8Elambda%E7%9A%84%E4%B8%80%E7%82%B9%E6%A2%B3%E7%90%86/</loc>
+    <loc>https://hechen.github.io/post/%E5%85%B3%E4%BA%8Elambda%E7%9A%84%E4%B8%80%E7%82%B9%E6%A2%B3%E7%90%86/</loc>
     <lastmod>2015-04-29T11:57:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/leetcode-001-maximum-product-subarray/</loc>
+    <loc>https://hechen.github.io/post/leetcode-001-maximum-product-subarray/</loc>
     <lastmod>2019-05-15T09:00:00+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/categories/scala/</loc>
+    <loc>https://hechen.github.io/categories/scala/</loc>
     <lastmod>2015-04-16T18:43:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/scala%E7%AC%AC%E4%BA%8C%E5%A4%A9/</loc>
+    <loc>https://hechen.github.io/post/scala%E7%AC%AC%E4%BA%8C%E5%A4%A9/</loc>
     <lastmod>2015-04-16T18:43:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://hechen.xyz/post/myfirstpost/</loc>
+    <loc>https://hechen.github.io/post/myfirstpost/</loc>
     <lastmod>2015-04-15T16:14:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
