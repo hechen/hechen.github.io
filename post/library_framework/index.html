@@ -35,7 +35,7 @@
 <meta name="generator" content="Hugo 0.55.3" />
 
 
-<link rel="canonical" href="https://hechen.xyz/post/library_framework/" />
+<link rel="canonical" href="https://hechen.github.io/post/library_framework/" />
 
 
 
@@ -60,7 +60,7 @@
 <meta property="og:title" content="关于 Library 和 Framework" />
 <meta property="og:description" content="Library 和 Framework 的概念大家应该脑海里都有一些，本文旨在讲述下基本概念，没有对每个字节都了如指掌。关于基本的编译过程在 Build Process 一文中也大概讲述了一些。 在链接" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://hechen.xyz/post/library_framework/" />
+<meta property="og:url" content="https://hechen.github.io/post/library_framework/" />
 <meta property="article:published_time" content="2019-04-26T00:35:30&#43;08:00"/>
 <meta property="article:modified_time" content="2019-04-27T03:01:30&#43;08:00"/>
 
@@ -109,35 +109,35 @@
         
           
           
-            <a class="menu-item-link" href="https://hechen.xyz/">Home</a>
+            <a class="menu-item-link" href="https://hechen.github.io/">Home</a>
           
         
       </li><li class="mobile-menu-item">
         
           
           
-            <a class="menu-item-link" href="https://hechen.xyz/post/">Archives</a>
+            <a class="menu-item-link" href="https://hechen.github.io/post/">Archives</a>
           
         
       </li><li class="mobile-menu-item">
         
           
           
-            <a class="menu-item-link" href="https://hechen.xyz/tags/">Tags</a>
+            <a class="menu-item-link" href="https://hechen.github.io/tags/">Tags</a>
           
         
       </li><li class="mobile-menu-item">
         
           
           
-            <a class="menu-item-link" href="https://hechen.xyz/categories/">Categories</a>
+            <a class="menu-item-link" href="https://hechen.github.io/categories/">Categories</a>
           
         
       </li><li class="mobile-menu-item">
         
           
           
-            <a class="menu-item-link" href="https://hechen.xyz/about/">About</a>
+            <a class="menu-item-link" href="https://hechen.github.io/about/">About</a>
           
         
       </li>
@@ -225,7 +225,7 @@
         
           
           
-            <a class="menu-item-link" href="https://hechen.xyz/">Home</a>
+            <a class="menu-item-link" href="https://hechen.github.io/">Home</a>
           
 
         
@@ -236,7 +236,7 @@
         
           
           
-            <a class="menu-item-link" href="https://hechen.xyz/post/">Archives</a>
+            <a class="menu-item-link" href="https://hechen.github.io/post/">Archives</a>
           
 
         
@@ -247,7 +247,7 @@
         
           
           
-            <a class="menu-item-link" href="https://hechen.xyz/tags/">Tags</a>
+            <a class="menu-item-link" href="https://hechen.github.io/tags/">Tags</a>
           
 
         
@@ -258,7 +258,7 @@
         
           
           
-            <a class="menu-item-link" href="https://hechen.xyz/categories/">Categories</a>
+            <a class="menu-item-link" href="https://hechen.github.io/categories/">Categories</a>
           
 
         
@@ -269,7 +269,7 @@
         
           
           
-            <a class="menu-item-link" href="https://hechen.xyz/about/">About</a>
+            <a class="menu-item-link" href="https://hechen.github.io/about/">About</a>
           
 
         
@@ -296,7 +296,7 @@
           2019-04-26
         </time>
         <div class="post-category">
-            <a href="https://hechen.xyz/categories/macos/"> macOS </a>
+            <a href="https://hechen.github.io/categories/macos/"> macOS </a>
             
           </div>
         
@@ -342,7 +342,7 @@
     <div class="post-content">
       
 
-<p>Library 和 Framework 的概念大家应该脑海里都有一些，本文旨在讲述下基本概念，没有对每个字节都了如指掌。关于基本的编译过程在 <a href="https://hechen.xyz/post/xcode-build-system/">Build Process</a> 一文中也大概讲述了一些。</p>
+<p>Library 和 Framework 的概念大家应该脑海里都有一些，本文旨在讲述下基本概念，没有对每个字节都了如指掌。关于基本的编译过程在 <a href="https://hechen.github.io/post/xcode-build-system/">Build Process</a> 一文中也大概讲述了一些。</p>
 
 <p>在链接 Library 以及 Framework 之前，我们需要先了解一下 Mach—O。</p>
 
@@ -426,7 +426,7 @@ clang main.o -Wl,<span class="sb">`</span>xcrun --show-sdk-path<span class="sb">
 
 <h3 id="library">Library</h3>
 
-<p>在 <a href="https://hechen.xyz/post/xcode-build-system/">这篇文章</a> 中说明了，每个源文件最终都会生成对应的目标文件，当工程项目变大之后，我们希望能够将具体协同工作的单一组件内的目标文件一起进行交付，对于功能稳定的代码无需参与再次编译的过程，我们需要将同一个组件内部的所有目标文件归拢到一起，这也是初期库（Library） 出现的由来。简单而言，库就是一堆目标文件的集合。</p>
+<p>在 <a href="https://hechen.github.io/post/xcode-build-system/">这篇文章</a> 中说明了，每个源文件最终都会生成对应的目标文件，当工程项目变大之后，我们希望能够将具体协同工作的单一组件内的目标文件一起进行交付，对于功能稳定的代码无需参与再次编译的过程，我们需要将同一个组件内部的所有目标文件归拢到一起，这也是初期库（Library） 出现的由来。简单而言，库就是一堆目标文件的集合。</p>
 
 <p>通过简单的 ar 命令即可将多个 .o 文件整合成一个 .a 文件，同时使用 ranlib 命令更新静态库 .a 的符号索引。</p>
 <div class="highlight"><div class="chroma">
@@ -802,9 +802,9 @@ ranlib libfoo.a</pre></td></tr></table>
 
     <footer class="post-footer">
       <div class="post-tags">
-          <a href="https://hechen.xyz/tags/library/">Library</a>
-          <a href="https://hechen.xyz/tags/framework/">Framework</a>
-          <a href="https://hechen.xyz/tags/mach-o/">Mach-O</a>
+          <a href="https://hechen.github.io/tags/library/">Library</a>
+          <a href="https://hechen.github.io/tags/framework/">Framework</a>
+          <a href="https://hechen.github.io/tags/mach-o/">Mach-O</a>
           
         </div>
 
@@ -871,7 +871,7 @@ ranlib libfoo.a</pre></td></tr></table>
   <div id="disqus_thread"></div>
   <script type="text/javascript">
     var disqus_config = function () {
-      this.page.url = "https://hechen.xyz/post/library_framework/";
+      this.page.url = "https://hechen.github.io/post/library_framework/";
     };
     function load_disqus() {
       
@@ -948,7 +948,7 @@ ranlib libfoo.a</pre></td></tr></table>
     </a>
 
 
-<a href="https://hechen.xyz/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+<a href="https://hechen.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
     class="iconfont" title="rss" target="_blank">
     <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"

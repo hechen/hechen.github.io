@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Login on I make stuff</title>
-    <link>https://hechen.xyz/tags/login/</link>
+    <link>https://hechen.github.io/tags/login/</link>
     <description>Recent content in Login on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 18 Mar 2019 17:29:54 +0800</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/login/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/tags/login/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>关于 Mac 应用的自启动是如何做到的</title>
-      <link>https://hechen.xyz/post/autostartwhenlogin/</link>
+      <link>https://hechen.github.io/post/autostartwhenlogin/</link>
       <pubDate>Mon, 18 Mar 2019 17:29:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/autostartwhenlogin/</guid>
+      <guid>https://hechen.github.io/post/autostartwhenlogin/</guid>
       <description>开机自启动是 Cocoa 应用最常见的一种功能，尤其是针对需要常驻 Menu 的服务来说更是如此，今天我们对开机启动项的功能加入做个梳理。 在 Daemons and Services Programming Guide 中我们能找到</description>
     </item>
     

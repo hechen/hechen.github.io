@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Sandbox on I make stuff</title>
-    <link>https://hechen.xyz/tags/sandbox/</link>
+    <link>https://hechen.github.io/tags/sandbox/</link>
     <description>Recent content in Sandbox on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 21 Feb 2019 23:25:38 +0800</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/sandbox/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/tags/sandbox/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Apple Event Sandboxing</title>
-      <link>https://hechen.xyz/post/appleevents-usage-description/</link>
+      <link>https://hechen.github.io/post/appleevents-usage-description/</link>
       <pubDate>Thu, 21 Feb 2019 23:25:38 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/appleevents-usage-description/</guid>
+      <guid>https://hechen.github.io/post/appleevents-usage-description/</guid>
       <description>问题背景 最近在修改某个 Mac 应用，其原理就是通过执行一段 AppleScript 获取 OmniFocus 的信息，然后进行可视化展示，但是总取不到数据。 原因 关键数据获取阶段执行的 AppleScript 的时候</description>
     </item>
     

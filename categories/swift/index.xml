@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Swift on I make stuff</title>
-    <link>https://hechen.xyz/categories/swift/</link>
+    <link>https://hechen.github.io/categories/swift/</link>
     <description>Recent content in Swift on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 29 Sep 2019 10:30:30 +0800</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/categories/swift/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/categories/swift/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Alamofire 和 RxSwift 中的 .af 以及 .rx 扩展是怎么实现的</title>
-      <link>https://hechen.xyz/post/alamofire-rxswift-af-rx/</link>
+      <link>https://hechen.github.io/post/alamofire-rxswift-af-rx/</link>
       <pubDate>Sun, 29 Sep 2019 10:30:30 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/alamofire-rxswift-af-rx/</guid>
+      <guid>https://hechen.github.io/post/alamofire-rxswift-af-rx/</guid>
       <description>今天继续来一篇水文，关于 Alamofire 和 RxSwift 两个组件中扩展后缀 .af 以及 .rx 是怎么实现的。相信用过的 (￣ω￣(￣ω￣〃 (￣ω￣〃)ゝ 都看过了。我这里权当自己的记</description>
     </item>
     
     <item>
       <title>Swift 中的消息派发</title>
-      <link>https://hechen.xyz/post/messagedispatchinswift/</link>
+      <link>https://hechen.github.io/post/messagedispatchinswift/</link>
       <pubDate>Sun, 15 Sep 2019 20:56:50 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/messagedispatchinswift/</guid>
+      <guid>https://hechen.github.io/post/messagedispatchinswift/</guid>
       <description>什么是消息派发？ 消息派发，英文名称 Method Dispatch，是指程序在运行过程中调用某个方法的时候决议使用哪个具体指令的过程。消息派发的行为在我们</description>
     </item>
     
     <item>
       <title>Protocol Extension</title>
-      <link>https://hechen.xyz/post/protocol-extension/</link>
+      <link>https://hechen.github.io/post/protocol-extension/</link>
       <pubDate>Thu, 08 Aug 2019 19:00:20 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/protocol-extension/</guid>
+      <guid>https://hechen.github.io/post/protocol-extension/</guid>
       <description>Protocol 作为 Swift 生态的最重要的组成部分（没有之一），其搭建起了整个语言生态的各个组成部分。 相对于继承而言，Protocol 的几个比较直观的优势： 无需</description>
     </item>
     
     <item>
       <title>Codable &amp;&amp; Tuple</title>
-      <link>https://hechen.xyz/post/tuple-codable/</link>
+      <link>https://hechen.github.io/post/tuple-codable/</link>
       <pubDate>Mon, 10 Jun 2019 23:50:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/tuple-codable/</guid>
+      <guid>https://hechen.github.io/post/tuple-codable/</guid>
       <description>During my learning of Swift, many interesting things I will find. Codable is one of them.
 Today, I defined a model with a tuple type, then Xcode told me some error. Codes may like as below.
 You may want Xcode automatically complete all the codable stuff. However, life is hard. Codes like these can even not be compiled. Xcode will tell you name cannot be synthesize the Person because of the FullName.</description>
@@ -51,28 +51,28 @@ You may want Xcode automatically complete all the codable stuff. However, life i
     
     <item>
       <title>一道 Swift Quiz</title>
-      <link>https://hechen.xyz/post/a-swift-quiz/</link>
+      <link>https://hechen.github.io/post/a-swift-quiz/</link>
       <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/a-swift-quiz/</guid>
+      <guid>https://hechen.github.io/post/a-swift-quiz/</guid>
       <description>这两天在 Twitter 上看到一道题目，主要是考察 overload 和 type(of:) 的知识点，本文仅做记录，关于 MetaType 会单独写一篇文章来总结。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 // Swift Quiz class</description>
     </item>
     
     <item>
       <title>在 Swift Framework 中使用 C 文件的过程探索</title>
-      <link>https://hechen.xyz/post/swift-and-modules/</link>
+      <link>https://hechen.github.io/post/swift-and-modules/</link>
       <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/swift-and-modules/</guid>
+      <guid>https://hechen.github.io/post/swift-and-modules/</guid>
       <description>问题描述 我们在开发线上诊断工具需求的时候，是以单个 Pod 的形式提供支持，并且代码文件中只有纯 Swift 文件，但是其中需要用到系统的 C 库的一些功能，本次就</description>
     </item>
     
     <item>
       <title>@autoclosure &amp;&amp; @escape</title>
-      <link>https://hechen.xyz/post/autoclosure-escape/</link>
+      <link>https://hechen.github.io/post/autoclosure-escape/</link>
       <pubDate>Sun, 12 Nov 2017 20:01:54 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/autoclosure-escape/</guid>
+      <guid>https://hechen.github.io/post/autoclosure-escape/</guid>
       <description>我们知道在 swift 中，闭包（closure）是一等公民，因此可以被当作参数传递，在学习 swift 的过程中经常会看到某些关键字修饰该闭包，@autoclos</description>
     </item>
     

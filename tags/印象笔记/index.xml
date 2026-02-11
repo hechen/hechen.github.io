@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>印象笔记 on I make stuff</title>
-    <link>https://hechen.xyz/tags/%E5%8D%B0%E8%B1%A1%E7%AC%94%E8%AE%B0/</link>
+    <link>https://hechen.github.io/tags/%E5%8D%B0%E8%B1%A1%E7%AC%94%E8%AE%B0/</link>
     <description>Recent content in 印象笔记 on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 13 Mar 2019 00:30:49 +0800</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/%E5%8D%B0%E8%B1%A1%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/tags/%E5%8D%B0%E8%B1%A1%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>在英文语言系统的 Safari 中使用印象笔记</title>
-      <link>https://hechen.xyz/post/using-yinxiangbiji-system-english/</link>
+      <link>https://hechen.github.io/post/using-yinxiangbiji-system-english/</link>
       <pubDate>Wed, 13 Mar 2019 00:30:49 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/using-yinxiangbiji-system-english/</guid>
+      <guid>https://hechen.github.io/post/using-yinxiangbiji-system-english/</guid>
       <description>因为 Evernote 在国内使用了不同的账户体系，去年团队也彻底独立出来，但是 Safari 的剪藏插件是同一个，下载地址，但是当你系统是英文系统的时候，使用 Safari 剪藏有点尴</description>
     </item>
     

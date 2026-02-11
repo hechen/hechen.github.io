@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Category on I make stuff</title>
-    <link>https://hechen.xyz/tags/category/</link>
+    <link>https://hechen.github.io/tags/category/</link>
     <description>Recent content in Category on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 14 Sep 2015 15:36:07 +0000</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/category/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/tags/category/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Objective-C中Category的一点东西</title>
-      <link>https://hechen.xyz/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</link>
+      <link>https://hechen.github.io/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</link>
       <pubDate>Mon, 14 Sep 2015 15:36:07 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</guid>
+      <guid>https://hechen.github.io/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</guid>
       <description>Objective-C中的分类（category）是一种编译时的手段，其允许我们通过给某个已知类添加方法来扩充该类的一种方式。当然这其中是有</description>
     </item>
     
