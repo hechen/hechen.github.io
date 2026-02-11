@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Array on I make stuff</title>
-    <link>https://hechen.xyz/tags/array/</link>
+    <link>https://hechen.github.io/tags/array/</link>
     <description>Recent content in Array on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 29 Apr 2015 13:15:00 +0000</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/array/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/tags/array/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Two Sum</title>
-      <link>https://hechen.xyz/post/leetcode-003-two-sum/</link>
+      <link>https://hechen.github.io/post/leetcode-003-two-sum/</link>
       <pubDate>Wed, 29 Apr 2015 13:15:00 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/leetcode-003-two-sum/</guid>
+      <guid>https://hechen.github.io/post/leetcode-003-two-sum/</guid>
       <description>本文主要包括 leetCode 题集里的两个题目，Two Sum1 和 Two Sum2 题目1： 1. Two Sum 1 Given an array of integers, find two numbers such that they add up to a specific target number. The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must</description>
     </item>
     
     <item>
       <title>[152] Maximum Product Subarray</title>
-      <link>https://hechen.xyz/post/leetcode-001-maximum-product-subarray/</link>
+      <link>https://hechen.github.io/post/leetcode-001-maximum-product-subarray/</link>
       <pubDate>Wed, 29 Apr 2015 11:30:00 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/leetcode-001-maximum-product-subarray/</guid>
+      <guid>https://hechen.github.io/post/leetcode-001-maximum-product-subarray/</guid>
       <description>题目： Find the contiguous subarray within an array (containing at least one number) which has the largest product. For example, given the array [2,3,-2,4], the contiguous subarray [2,3] has the largest product = 6. 题意： 题目中给出一个（至少包含一个元素）整形数组，求一个子数组（元素</description>
     </item>
     

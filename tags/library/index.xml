@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Library on I make stuff</title>
-    <link>https://hechen.xyz/tags/library/</link>
+    <link>https://hechen.github.io/tags/library/</link>
     <description>Recent content in Library on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 26 Apr 2019 00:35:30 +0800</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/library/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/tags/library/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>关于 Library 和 Framework</title>
-      <link>https://hechen.xyz/post/library_framework/</link>
+      <link>https://hechen.github.io/post/library_framework/</link>
       <pubDate>Fri, 26 Apr 2019 00:35:30 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/library_framework/</guid>
+      <guid>https://hechen.github.io/post/library_framework/</guid>
       <description>Library 和 Framework 的概念大家应该脑海里都有一些，本文旨在讲述下基本概念，没有对每个字节都了如指掌。关于基本的编译过程在 Build Process 一文中也大概讲述了一些。 在链接</description>
     </item>
     

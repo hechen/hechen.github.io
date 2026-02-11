@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>NSTask on I make stuff</title>
-    <link>https://hechen.xyz/tags/nstask/</link>
+    <link>https://hechen.github.io/tags/nstask/</link>
     <description>Recent content in NSTask on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sat, 30 Mar 2019 11:29:54 +0800</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/nstask/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/tags/nstask/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>写个小工具 Swwwitch</title>
-      <link>https://hechen.xyz/post/swwwitch/</link>
+      <link>https://hechen.github.io/post/swwwitch/</link>
       <pubDate>Sat, 30 Mar 2019 11:29:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/swwwitch/</guid>
+      <guid>https://hechen.github.io/post/swwwitch/</guid>
       <description>最近看到开发圈某热点，做了个小工具，总结下最近的几个 CocoaApp 上的功能，仅做练手。现在只包含了两个开关：切换系统主题和隐藏桌面 icon 的功能。 功能点 切换系</description>
     </item>
     

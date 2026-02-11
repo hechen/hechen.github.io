@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>NSView on I make stuff</title>
-    <link>https://hechen.xyz/tags/nsview/</link>
+    <link>https://hechen.github.io/tags/nsview/</link>
     <description>Recent content in NSView on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 11 Mar 2019 15:19:49 +0800</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/nsview/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/tags/nsview/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>为 NSView 增加 backgroundColor</title>
-      <link>https://hechen.xyz/post/nsview&#43;backgroundcolor/</link>
+      <link>https://hechen.github.io/post/nsview&#43;backgroundcolor/</link>
       <pubDate>Mon, 11 Mar 2019 15:19:49 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/nsview&#43;backgroundcolor/</guid>
+      <guid>https://hechen.github.io/post/nsview&#43;backgroundcolor/</guid>
       <description>NSView 作为 Cocoa 中最基本的构成元素，是构成整个 Mac App 视图体系的基础，和 UIView 在 iOS 世界中的位置一样重要，可是在 UIView 里司空见惯的背景色设置，在 NSView 中却不见身影。 在</description>
     </item>
     

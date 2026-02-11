@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Optional on I make stuff</title>
-    <link>https://hechen.xyz/tags/optional/</link>
+    <link>https://hechen.github.io/tags/optional/</link>
     <description>Recent content in Optional on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 14 Nov 2017 21:53:52 +0000</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/optional/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/tags/optional/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>处理 Swift 中非可选的可选值类型</title>
-      <link>https://hechen.xyz/post/handling-non-optional-optionals-in-swift/</link>
+      <link>https://hechen.github.io/post/handling-non-optional-optionals-in-swift/</link>
       <pubDate>Tue, 14 Nov 2017 21:53:52 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/handling-non-optional-optionals-in-swift/</guid>
+      <guid>https://hechen.github.io/post/handling-non-optional-optionals-in-swift/</guid>
       <description>原文：Handling non-optional optionals in Swift 原作者 &amp;amp; Copyright @johnsundell 可选值（optionals）无可争议的是 swift 语言中最重要的特性之一，也是和其他语言，例如 Objective-C 的最大区别</description>
     </item>
     

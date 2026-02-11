@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Traffic on I make stuff</title>
-    <link>https://hechen.xyz/tags/traffic/</link>
+    <link>https://hechen.github.io/tags/traffic/</link>
     <description>Recent content in Traffic on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 28 Jan 2019 17:51:35 +0000</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/traffic/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/tags/traffic/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>关于一次 SS 流量丢失的过程记录</title>
-      <link>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</link>
+      <link>https://hechen.github.io/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Mon, 28 Jan 2019 17:51:35 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</guid>
+      <guid>https://hechen.github.io/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</guid>
       <description>2019-01-29 更新 早上一到办公室连接上公司网络，网速直接就飚到了 600KB/s，果不其然，还是 com.apple.Safari.SafeBrowsing.Service 这个服务进程。这就尴尬了，看来并不是说你不用 Safari 就不会触发</description>
     </item>
     

@@ -1,21 +1,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>I make stuff</title>
-    <link>https://hechen.xyz/</link>
+    <link>https://hechen.github.io/</link>
     <description>Recent content on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 10 Aug 2020 12:05:54 +0800</lastBuildDate>
     
-        <atom:link href="https://hechen.xyz/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://hechen.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>https://hechen.xyz/about/</link>
+      <link>https://hechen.github.io/about/</link>
       <pubDate>Sun, 20 Aug 2017 21:38:52 +0800</pubDate>
       
-      <guid>https://hechen.xyz/about/</guid>
+      <guid>https://hechen.github.io/about/</guid>
       
         <description>&lt;p&gt;打杂中&lt;/p&gt;
 </description>
@@ -24,10 +24,10 @@
     
     <item>
       <title>获取某个 Mac 应用的 BundleID</title>
-      <link>https://hechen.xyz/post/reveal-bundleid-application/</link>
+      <link>https://hechen.github.io/post/reveal-bundleid-application/</link>
       <pubDate>Mon, 10 Aug 2020 12:05:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/reveal-bundleid-application/</guid>
+      <guid>https://hechen.github.io/post/reveal-bundleid-application/</guid>
       
         <description>&lt;p&gt;我们知道无论是 iOS 还是 macOS 上的应用，其配置信息都是通过 plist 文件组织的，该应用的 BundleID 就藏在这个文件中，通过读取 plist 文件就能够知道其 Bundle ID 以及应用版本号等信息。我们以 App &lt;a href=&#34;http://store.app&#34;&gt;Store.app&lt;/a&gt; 为例，其 plist 文件就存储在如下路径，其他应用也是如此。&lt;/p&gt;
 
@@ -50,10 +50,10 @@
     
     <item>
       <title>Alamofire 和 RxSwift 中的 .af 以及 .rx 扩展是怎么实现的</title>
-      <link>https://hechen.xyz/post/alamofire-rxswift-af-rx/</link>
+      <link>https://hechen.github.io/post/alamofire-rxswift-af-rx/</link>
       <pubDate>Sun, 29 Sep 2019 10:30:30 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/alamofire-rxswift-af-rx/</guid>
+      <guid>https://hechen.github.io/post/alamofire-rxswift-af-rx/</guid>
       
         <description>
 
@@ -253,10 +253,10 @@
     
     <item>
       <title>Swift 中的消息派发</title>
-      <link>https://hechen.xyz/post/messagedispatchinswift/</link>
+      <link>https://hechen.github.io/post/messagedispatchinswift/</link>
       <pubDate>Sun, 15 Sep 2019 20:56:50 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/messagedispatchinswift/</guid>
+      <guid>https://hechen.github.io/post/messagedispatchinswift/</guid>
       
         <description>
 
@@ -593,10 +593,10 @@ The only other solution that comes to mind is turning all protocol dispatch into
     
     <item>
       <title>Protocol Extension</title>
-      <link>https://hechen.xyz/post/protocol-extension/</link>
+      <link>https://hechen.github.io/post/protocol-extension/</link>
       <pubDate>Thu, 08 Aug 2019 19:00:20 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/protocol-extension/</guid>
+      <guid>https://hechen.github.io/post/protocol-extension/</guid>
       
         <description>&lt;p&gt;Protocol 作为 Swift 生态的最重要的组成部分（没有之一），其搭建起了整个语言生态的各个组成部分。&lt;/p&gt;
 
@@ -646,10 +646,10 @@ The only other solution that comes to mind is turning all protocol dispatch into
     
     <item>
       <title>LetsMove 中的几个点</title>
-      <link>https://hechen.xyz/post/letsmove/</link>
+      <link>https://hechen.github.io/post/letsmove/</link>
       <pubDate>Thu, 04 Jul 2019 01:19:10 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/letsmove/</guid>
+      <guid>https://hechen.github.io/post/letsmove/</guid>
       
         <description>
 
@@ -729,10 +729,10 @@ for this functionality.&lt;/p&gt;
     
     <item>
       <title>XPC Services</title>
-      <link>https://hechen.xyz/post/xpcservice/</link>
+      <link>https://hechen.github.io/post/xpcservice/</link>
       <pubDate>Thu, 04 Jul 2019 01:01:10 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/xpcservice/</guid>
+      <guid>https://hechen.github.io/post/xpcservice/</guid>
       
         <description>
 
@@ -857,10 +857,10 @@ for this functionality.&lt;/p&gt;
     
     <item>
       <title>Codable &amp;&amp; Tuple</title>
-      <link>https://hechen.xyz/post/tuple-codable/</link>
+      <link>https://hechen.github.io/post/tuple-codable/</link>
       <pubDate>Mon, 10 Jun 2019 23:50:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/tuple-codable/</guid>
+      <guid>https://hechen.github.io/post/tuple-codable/</guid>
       
         <description>
 
@@ -983,10 +983,10 @@ Currently, only nominal types (classes, structs, enums, protocols) can be extend
     
     <item>
       <title>How to generate a NSViewController without a Nib?</title>
-      <link>https://hechen.xyz/post/create-nsviewcontroller-without-nib/</link>
+      <link>https://hechen.github.io/post/create-nsviewcontroller-without-nib/</link>
       <pubDate>Mon, 03 Jun 2019 20:55:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/create-nsviewcontroller-without-nib/</guid>
+      <guid>https://hechen.github.io/post/create-nsviewcontroller-without-nib/</guid>
       
         <description>
 
@@ -1086,10 +1086,10 @@ Currently, only nominal types (classes, structs, enums, protocols) can be extend
     
     <item>
       <title>一道 Swift Quiz</title>
-      <link>https://hechen.xyz/post/a-swift-quiz/</link>
+      <link>https://hechen.github.io/post/a-swift-quiz/</link>
       <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/a-swift-quiz/</guid>
+      <guid>https://hechen.github.io/post/a-swift-quiz/</guid>
       
         <description>
 
@@ -1163,14 +1163,14 @@ add(build())
     
     <item>
       <title>关于 Library 和 Framework</title>
-      <link>https://hechen.xyz/post/library_framework/</link>
+      <link>https://hechen.github.io/post/library_framework/</link>
       <pubDate>Fri, 26 Apr 2019 00:35:30 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/library_framework/</guid>
+      <guid>https://hechen.github.io/post/library_framework/</guid>
       
         <description>
 
-&lt;p&gt;Library 和 Framework 的概念大家应该脑海里都有一些，本文旨在讲述下基本概念，没有对每个字节都了如指掌。关于基本的编译过程在 &lt;a href=&#34;https://hechen.xyz/post/xcode-build-system/&#34;&gt;Build Process&lt;/a&gt; 一文中也大概讲述了一些。&lt;/p&gt;
+&lt;p&gt;Library 和 Framework 的概念大家应该脑海里都有一些，本文旨在讲述下基本概念，没有对每个字节都了如指掌。关于基本的编译过程在 &lt;a href=&#34;https://hechen.github.io/post/xcode-build-system/&#34;&gt;Build Process&lt;/a&gt; 一文中也大概讲述了一些。&lt;/p&gt;
 
 &lt;p&gt;在链接 Library 以及 Framework 之前，我们需要先了解一下 Mach—O。&lt;/p&gt;
 
@@ -1254,7 +1254,7 @@ clang main.o -Wl,&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;xcrun --show-sdk-p
 
 &lt;h3 id=&#34;library&#34;&gt;Library&lt;/h3&gt;
 
-&lt;p&gt;在 &lt;a href=&#34;https://hechen.xyz/post/xcode-build-system/&#34;&gt;这篇文章&lt;/a&gt; 中说明了，每个源文件最终都会生成对应的目标文件，当工程项目变大之后，我们希望能够将具体协同工作的单一组件内的目标文件一起进行交付，对于功能稳定的代码无需参与再次编译的过程，我们需要将同一个组件内部的所有目标文件归拢到一起，这也是初期库（Library） 出现的由来。简单而言，库就是一堆目标文件的集合。&lt;/p&gt;
+&lt;p&gt;在 &lt;a href=&#34;https://hechen.github.io/post/xcode-build-system/&#34;&gt;这篇文章&lt;/a&gt; 中说明了，每个源文件最终都会生成对应的目标文件，当工程项目变大之后，我们希望能够将具体协同工作的单一组件内的目标文件一起进行交付，对于功能稳定的代码无需参与再次编译的过程，我们需要将同一个组件内部的所有目标文件归拢到一起，这也是初期库（Library） 出现的由来。简单而言，库就是一堆目标文件的集合。&lt;/p&gt;
 
 &lt;p&gt;通过简单的 ar 命令即可将多个 .o 文件整合成一个 .a 文件，同时使用 ranlib 命令更新静态库 .a 的符号索引。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1609,10 +1609,10 @@ ranlib libfoo.a&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
     
     <item>
       <title>Build Process</title>
-      <link>https://hechen.xyz/post/xcode-build-system/</link>
+      <link>https://hechen.github.io/post/xcode-build-system/</link>
       <pubDate>Thu, 25 Apr 2019 11:30:30 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/xcode-build-system/</guid>
+      <guid>https://hechen.github.io/post/xcode-build-system/</guid>
       
         <description>
 
@@ -2113,10 +2113,10 @@ a.out:
     
     <item>
       <title>写个小工具 Swwwitch</title>
-      <link>https://hechen.xyz/post/swwwitch/</link>
+      <link>https://hechen.github.io/post/swwwitch/</link>
       <pubDate>Sat, 30 Mar 2019 11:29:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/swwwitch/</guid>
+      <guid>https://hechen.github.io/post/swwwitch/</guid>
       
         <description>
 
@@ -2135,7 +2135,7 @@ a.out:
 &lt;li&gt;开机自启动&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;关于第三点的实现在&lt;a href=&#34;https://hechen.xyz/post/dockless-cocoaapps/&#34;&gt;另外一篇文章&lt;/a&gt;有讲过，第四点的实现在 &lt;a href=&#34;https://hechen.xyz/post/autostartwhenlogin/&#34;&gt;这一篇&lt;/a&gt; 中有讲。&lt;/p&gt;
+&lt;p&gt;关于第三点的实现在&lt;a href=&#34;https://hechen.github.io/post/dockless-cocoaapps/&#34;&gt;另外一篇文章&lt;/a&gt;有讲过，第四点的实现在 &lt;a href=&#34;https://hechen.github.io/post/autostartwhenlogin/&#34;&gt;这一篇&lt;/a&gt; 中有讲。&lt;/p&gt;
 
 &lt;h3 id=&#34;系统主题切换&#34;&gt;系统主题切换&lt;/h3&gt;
 
@@ -2198,10 +2198,10 @@ killall Finder&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
     
     <item>
       <title>关于 Mac 应用的自启动是如何做到的</title>
-      <link>https://hechen.xyz/post/autostartwhenlogin/</link>
+      <link>https://hechen.github.io/post/autostartwhenlogin/</link>
       <pubDate>Mon, 18 Mar 2019 17:29:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/autostartwhenlogin/</guid>
+      <guid>https://hechen.github.io/post/autostartwhenlogin/</guid>
       
         <description>
 
@@ -2579,10 +2579,10 @@ killall Finder&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
     
     <item>
       <title>Mac 平台上那些 Dockless 的 App 都是如何实现的？</title>
-      <link>https://hechen.xyz/post/dockless-cocoaapps/</link>
+      <link>https://hechen.github.io/post/dockless-cocoaapps/</link>
       <pubDate>Wed, 13 Mar 2019 17:29:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/dockless-cocoaapps/</guid>
+      <guid>https://hechen.github.io/post/dockless-cocoaapps/</guid>
       
         <description>
 
@@ -2851,10 +2851,10 @@ killall Finder&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
     
     <item>
       <title>在英文语言系统的 Safari 中使用印象笔记</title>
-      <link>https://hechen.xyz/post/using-yinxiangbiji-system-english/</link>
+      <link>https://hechen.github.io/post/using-yinxiangbiji-system-english/</link>
       <pubDate>Wed, 13 Mar 2019 00:30:49 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/using-yinxiangbiji-system-english/</guid>
+      <guid>https://hechen.github.io/post/using-yinxiangbiji-system-english/</guid>
       
         <description>&lt;blockquote&gt;
 &lt;p&gt;因为 Evernote 在国内使用了不同的账户体系，去年团队也彻底独立出来，但是 Safari 的剪藏插件是同一个，&lt;a href=&#34;https://safari-extensions.apple.com/details/?id=com.evernote.safari.clipper-Q79WDW8YH9&#34;&gt;下载地址&lt;/a&gt;，但是当你系统是英文系统的时候，使用 Safari 剪藏有点尴尬，就是根本找不到印象笔记的登录入口，该文做个记录。&lt;/p&gt;
@@ -2919,10 +2919,10 @@ killall Finder&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
     
     <item>
       <title>为 NSView 增加 backgroundColor</title>
-      <link>https://hechen.xyz/post/nsview&#43;backgroundcolor/</link>
+      <link>https://hechen.github.io/post/nsview&#43;backgroundcolor/</link>
       <pubDate>Mon, 11 Mar 2019 15:19:49 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/nsview&#43;backgroundcolor/</guid>
+      <guid>https://hechen.github.io/post/nsview&#43;backgroundcolor/</guid>
       
         <description>&lt;p&gt;NSView 作为 Cocoa 中最基本的构成元素，是构成整个 Mac App 视图体系的基础，和 UIView 在 iOS 世界中的位置一样重要，可是在 UIView 里司空见惯的背景色设置，在 NSView 中却不见身影。&lt;/p&gt;
 
@@ -2979,10 +2979,10 @@ killall Finder&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
     
     <item>
       <title>RxSwift 中的几种 Subject</title>
-      <link>https://hechen.xyz/post/rxswift-subjects/</link>
+      <link>https://hechen.github.io/post/rxswift-subjects/</link>
       <pubDate>Tue, 26 Feb 2019 10:24:38 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/rxswift-subjects/</guid>
+      <guid>https://hechen.github.io/post/rxswift-subjects/</guid>
       
         <description>
 
@@ -3092,10 +3092,10 @@ killall Finder&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
     
     <item>
       <title>Apple Event Sandboxing</title>
-      <link>https://hechen.xyz/post/appleevents-usage-description/</link>
+      <link>https://hechen.github.io/post/appleevents-usage-description/</link>
       <pubDate>Thu, 21 Feb 2019 23:25:38 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/appleevents-usage-description/</guid>
+      <guid>https://hechen.github.io/post/appleevents-usage-description/</guid>
       
         <description>
 
@@ -3217,10 +3217,10 @@ killall Finder&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
     
     <item>
       <title>关于一次 SS 流量丢失的过程记录</title>
-      <link>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</link>
+      <link>https://hechen.github.io/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Mon, 28 Jan 2019 17:51:35 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</guid>
+      <guid>https://hechen.github.io/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</guid>
       
         <description>
 
@@ -3309,10 +3309,10 @@ killall Finder&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
     
     <item>
       <title>在 Swift Framework 中使用 C 文件的过程探索</title>
-      <link>https://hechen.xyz/post/swift-and-modules/</link>
+      <link>https://hechen.github.io/post/swift-and-modules/</link>
       <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/swift-and-modules/</guid>
+      <guid>https://hechen.github.io/post/swift-and-modules/</guid>
       
         <description>
 
@@ -3822,10 +3822,10 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
     
     <item>
       <title>UserDefaults and Keychain</title>
-      <link>https://hechen.xyz/post/userdefaults-and-keychain/</link>
+      <link>https://hechen.github.io/post/userdefaults-and-keychain/</link>
       <pubDate>Fri, 21 Dec 2018 14:30:50 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/userdefaults-and-keychain/</guid>
+      <guid>https://hechen.github.io/post/userdefaults-and-keychain/</guid>
       
         <description>
 
@@ -3956,10 +3956,10 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
     
     <item>
       <title>如何制作 Send to 2Do 的 Safari 书签</title>
-      <link>https://hechen.xyz/post/send-to-2do/</link>
+      <link>https://hechen.github.io/post/send-to-2do/</link>
       <pubDate>Mon, 26 Nov 2018 14:59:50 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/send-to-2do/</guid>
+      <guid>https://hechen.github.io/post/send-to-2do/</guid>
       
         <description>
 
@@ -4038,10 +4038,10 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
     
     <item>
       <title>阅读流程</title>
-      <link>https://hechen.xyz/post/reading-process/</link>
+      <link>https://hechen.github.io/post/reading-process/</link>
       <pubDate>Tue, 16 Oct 2018 17:01:44 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/reading-process/</guid>
+      <guid>https://hechen.github.io/post/reading-process/</guid>
       
         <description>
 
@@ -4120,10 +4120,10 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
     
     <item>
       <title>三个简单步骤让你测试使用系统单例的代码</title>
-      <link>https://hechen.xyz/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</link>
+      <link>https://hechen.github.io/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</link>
       <pubDate>Tue, 17 Jul 2018 17:09:57 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</guid>
+      <guid>https://hechen.github.io/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/</guid>
       
         <description>
 
@@ -4354,10 +4354,10 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
     
     <item>
       <title>避免在 Swift 中使用单例</title>
-      <link>https://hechen.xyz/post/avoiding-singletons-in-swift/</link>
+      <link>https://hechen.github.io/post/avoiding-singletons-in-swift/</link>
       <pubDate>Mon, 16 Jul 2018 17:34:36 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/avoiding-singletons-in-swift/</guid>
+      <guid>https://hechen.github.io/post/avoiding-singletons-in-swift/</guid>
       
         <description>
 
@@ -4602,10 +4602,10 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
     
     <item>
       <title>Swift 中几种不同的依赖注入方式</title>
-      <link>https://hechen.xyz/post/different-flavors-of-dependency-injection-in-swift/</link>
+      <link>https://hechen.github.io/post/different-flavors-of-dependency-injection-in-swift/</link>
       <pubDate>Mon, 16 Jul 2018 13:57:24 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/different-flavors-of-dependency-injection-in-swift/</guid>
+      <guid>https://hechen.github.io/post/different-flavors-of-dependency-injection-in-swift/</guid>
       
         <description>
 
@@ -4615,7 +4615,7 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
 &lt;p&gt;原作者 &amp;amp; Copyright &lt;a href=&#34;https://twitter.com/johnsundell&#34;&gt;@johnsundell&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;在之前的几篇博客中，我们已经了解了几种使用依赖注入方式使得某个 swift app 拥有一个更加解耦可测试的架构。比如在 &lt;a href=&#34;https://hechen.xyz/2017/11/19/Dependency-injection-using-factories-in-Swift/&#34;&gt;在 Swift 中使用工厂模式进行依赖注入&lt;/a&gt; 中和工厂模式结合，以及在&lt;a href=&#34;http://hechen.xyz/2018/07/16/Avoiding-singletons-in-Swift/&#34;&gt;避免在 Swift 中使用单例&lt;/a&gt;中替换程序中的单例对象等方式进行依赖注入。&lt;/p&gt;
+&lt;p&gt;在之前的几篇博客中，我们已经了解了几种使用依赖注入方式使得某个 swift app 拥有一个更加解耦可测试的架构。比如在 &lt;a href=&#34;https://hechen.github.io/2017/11/19/Dependency-injection-using-factories-in-Swift/&#34;&gt;在 Swift 中使用工厂模式进行依赖注入&lt;/a&gt; 中和工厂模式结合，以及在&lt;a href=&#34;http://hechen.xyz/2018/07/16/Avoiding-singletons-in-Swift/&#34;&gt;避免在 Swift 中使用单例&lt;/a&gt;中替换程序中的单例对象等方式进行依赖注入。&lt;/p&gt;
 
 &lt;p&gt;到目前为止，大部分我的博文以及例子中都使用了基于初始化的依赖注入方式。然而，就像大部分的编程技巧一样，还有很多 “口味” 的进行依赖注入的方式 ── 每一种都有其优缺点。 这周，让我们来看看其中三种方式以及如何在 Swift 中使用它们。&lt;/p&gt;
 
@@ -4865,10 +4865,10 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
     
     <item>
       <title>那些我恢复 Mac 系统之后要安装的 Apps</title>
-      <link>https://hechen.xyz/post/my-favorite-mac-apps/</link>
+      <link>https://hechen.github.io/post/my-favorite-mac-apps/</link>
       <pubDate>Wed, 11 Jul 2018 12:58:37 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/my-favorite-mac-apps/</guid>
+      <guid>https://hechen.github.io/post/my-favorite-mac-apps/</guid>
       
         <description>
 
@@ -5302,10 +5302,10 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
     
     <item>
       <title>What is LLVM</title>
-      <link>https://hechen.xyz/post/what-is-llvm/</link>
+      <link>https://hechen.github.io/post/what-is-llvm/</link>
       <pubDate>Tue, 10 Jul 2018 12:05:58 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/what-is-llvm/</guid>
+      <guid>https://hechen.github.io/post/what-is-llvm/</guid>
       
         <description>
 
@@ -5422,10 +5422,10 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
     
     <item>
       <title>In App Purchase</title>
-      <link>https://hechen.xyz/post/in-app-purchase/</link>
+      <link>https://hechen.github.io/post/in-app-purchase/</link>
       <pubDate>Thu, 24 May 2018 10:40:39 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/in-app-purchase/</guid>
+      <guid>https://hechen.github.io/post/in-app-purchase/</guid>
       
         <description>
 
@@ -5839,10 +5839,10 @@ ln -sf &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;
     
     <item>
       <title>在 Swift 中使用工厂模式进行依赖注入</title>
-      <link>https://hechen.xyz/post/dependency-injection-using-factories-in-swift/</link>
+      <link>https://hechen.github.io/post/dependency-injection-using-factories-in-swift/</link>
       <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/dependency-injection-using-factories-in-swift/</guid>
+      <guid>https://hechen.github.io/post/dependency-injection-using-factories-in-swift/</guid>
       
         <description>
 
@@ -6156,10 +6156,10 @@ window.rootViewController = UINavigationController(
     
     <item>
       <title>模块化 Xcode 工程</title>
-      <link>https://hechen.xyz/post/modular-xcode-projects/</link>
+      <link>https://hechen.github.io/post/modular-xcode-projects/</link>
       <pubDate>Sun, 19 Nov 2017 18:17:15 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/modular-xcode-projects/</guid>
+      <guid>https://hechen.github.io/post/modular-xcode-projects/</guid>
       
         <description>
 
@@ -6365,10 +6365,10 @@ window.rootViewController = UINavigationController(
     
     <item>
       <title>处理 Swift 中非可选的可选值类型</title>
-      <link>https://hechen.xyz/post/handling-non-optional-optionals-in-swift/</link>
+      <link>https://hechen.github.io/post/handling-non-optional-optionals-in-swift/</link>
       <pubDate>Tue, 14 Nov 2017 21:53:52 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/handling-non-optional-optionals-in-swift/</guid>
+      <guid>https://hechen.github.io/post/handling-non-optional-optionals-in-swift/</guid>
       
         <description>
 
@@ -6698,10 +6698,10 @@ window.rootViewController = UINavigationController(
     
     <item>
       <title>理解响应者和响应链</title>
-      <link>https://hechen.xyz/post/understanding-responders-and-the-responder-chain/</link>
+      <link>https://hechen.github.io/post/understanding-responders-and-the-responder-chain/</link>
       <pubDate>Mon, 13 Nov 2017 21:22:44 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/understanding-responders-and-the-responder-chain/</guid>
+      <guid>https://hechen.github.io/post/understanding-responders-and-the-responder-chain/</guid>
       
         <description>
 
@@ -6759,10 +6759,10 @@ window.rootViewController = UINavigationController(
     
     <item>
       <title>Capturing objects in Swift closures</title>
-      <link>https://hechen.xyz/post/capturing-objects-in-swift-closures/</link>
+      <link>https://hechen.github.io/post/capturing-objects-in-swift-closures/</link>
       <pubDate>Sun, 12 Nov 2017 20:56:50 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/capturing-objects-in-swift-closures/</guid>
+      <guid>https://hechen.github.io/post/capturing-objects-in-swift-closures/</guid>
       
         <description>
 
@@ -7053,10 +7053,10 @@ dataLoader.loadData(from: url) { data in
     
     <item>
       <title>@autoclosure &amp;&amp; @escape</title>
-      <link>https://hechen.xyz/post/autoclosure-escape/</link>
+      <link>https://hechen.github.io/post/autoclosure-escape/</link>
       <pubDate>Sun, 12 Nov 2017 20:01:54 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/autoclosure-escape/</guid>
+      <guid>https://hechen.github.io/post/autoclosure-escape/</guid>
       
         <description>
 
@@ -7277,10 +7277,10 @@ dataLoader.loadData(from: url) { data in
     
     <item>
       <title>关于 iOS10 Notification 的那些事儿</title>
-      <link>https://hechen.xyz/post/ios-notification/</link>
+      <link>https://hechen.github.io/post/ios-notification/</link>
       <pubDate>Sat, 20 May 2017 10:10:54 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/ios-notification/</guid>
+      <guid>https://hechen.github.io/post/ios-notification/</guid>
       
         <description>
 
@@ -7968,10 +7968,10 @@ iOS 10 SDK 新加的另一个 Content Extension 可以用来自定义通知的�
     
     <item>
       <title>阅读《垃圾回收的算法与实现》</title>
-      <link>https://hechen.xyz/post/reading-garbage-collection/</link>
+      <link>https://hechen.github.io/post/reading-garbage-collection/</link>
       <pubDate>Sun, 12 Feb 2017 16:38:24 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/reading-garbage-collection/</guid>
+      <guid>https://hechen.github.io/post/reading-garbage-collection/</guid>
       
         <description>
 
@@ -7990,10 +7990,10 @@ iOS 10 SDK 新加的另一个 Content Extension 可以用来自定义通知的�
     
     <item>
       <title>如何使用UIBezierPath实现一个弹性视图动画</title>
-      <link>https://hechen.xyz/post/elastic-view-animation-using-uibezierpath/</link>
+      <link>https://hechen.github.io/post/elastic-view-animation-using-uibezierpath/</link>
       <pubDate>Wed, 02 Dec 2015 18:53:51 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/elastic-view-animation-using-uibezierpath/</guid>
+      <guid>https://hechen.github.io/post/elastic-view-animation-using-uibezierpath/</guid>
       
         <description>
 
@@ -8621,10 +8621,10 @@ shapeLayer.backgroundColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/25
     
     <item>
       <title>Objective-C中Category的一点东西</title>
-      <link>https://hechen.xyz/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</link>
+      <link>https://hechen.github.io/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</link>
       <pubDate>Mon, 14 Sep 2015 15:36:07 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</guid>
+      <guid>https://hechen.github.io/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/</guid>
       
         <description>
 
@@ -9334,10 +9334,10 @@ shapeLayer.backgroundColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/25
     
     <item>
       <title>理解Objective-C运行时</title>
-      <link>https://hechen.xyz/post/understanding-the-objective-c-runtime/</link>
+      <link>https://hechen.github.io/post/understanding-the-objective-c-runtime/</link>
       <pubDate>Mon, 07 Sep 2015 17:55:33 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/understanding-the-objective-c-runtime/</guid>
+      <guid>https://hechen.github.io/post/understanding-the-objective-c-runtime/</guid>
       
         <description>
 
@@ -10315,10 +10315,10 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
     
     <item>
       <title>我们是如何创建iOS版的Guillotine菜单动画的</title>
-      <link>https://hechen.xyz/post/how-we-created-guillotine-menu-animation-for-ios/</link>
+      <link>https://hechen.github.io/post/how-we-created-guillotine-menu-animation-for-ios/</link>
       <pubDate>Tue, 01 Sep 2015 15:52:07 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/how-we-created-guillotine-menu-animation-for-ios/</guid>
+      <guid>https://hechen.github.io/post/how-we-created-guillotine-menu-animation-for-ios/</guid>
       
         <description>
 
@@ -10518,10 +10518,10 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
     
     <item>
       <title>[28] Implement strStr()</title>
-      <link>https://hechen.xyz/post/leetcode-021-implementstrstr/</link>
+      <link>https://hechen.github.io/post/leetcode-021-implementstrstr/</link>
       <pubDate>Fri, 21 Aug 2015 09:14:17 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/leetcode-021-implementstrstr/</guid>
+      <guid>https://hechen.github.io/post/leetcode-021-implementstrstr/</guid>
       
         <description>
 
@@ -10762,10 +10762,10 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
     
     <item>
       <title>[257] Binary Tree Paths</title>
-      <link>https://hechen.xyz/post/leetcode-019-binarytreepaths/</link>
+      <link>https://hechen.github.io/post/leetcode-019-binarytreepaths/</link>
       <pubDate>Tue, 18 Aug 2015 16:28:26 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/leetcode-019-binarytreepaths/</guid>
+      <guid>https://hechen.github.io/post/leetcode-019-binarytreepaths/</guid>
       
         <description>
 
@@ -10906,10 +10906,10 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
     
     <item>
       <title>[018] Length Of Last Word</title>
-      <link>https://hechen.xyz/post/leetcode-018-lengthoflastword/</link>
+      <link>https://hechen.github.io/post/leetcode-018-lengthoflastword/</link>
       <pubDate>Tue, 18 Aug 2015 16:13:44 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/leetcode-018-lengthoflastword/</guid>
+      <guid>https://hechen.github.io/post/leetcode-018-lengthoflastword/</guid>
       
         <description>
 
@@ -11012,10 +11012,10 @@ Objective-C中的Selector（选择子）是一个重要的C数据结构，用以
     
     <item>
       <title>iOS 远端推送部署详解</title>
-      <link>https://hechen.xyz/post/ios-push-notification/</link>
+      <link>https://hechen.github.io/post/ios-push-notification/</link>
       <pubDate>Thu, 30 Jul 2015 14:30:00 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/ios-push-notification/</guid>
+      <guid>https://hechen.github.io/post/ios-push-notification/</guid>
       
         <description>
 
@@ -11590,10 +11590,10 @@ cat PushCert.pem PushKey.pem &amp;gt; Push.pem
     
     <item>
       <title>关于单链表的那些事儿</title>
-      <link>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/</link>
+      <link>https://hechen.github.io/post/%E5%85%B3%E4%BA%8E%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/</link>
       <pubDate>Thu, 07 May 2015 13:59:00 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/</guid>
+      <guid>https://hechen.github.io/post/%E5%85%B3%E4%BA%8E%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/</guid>
       
         <description>
 
@@ -11782,10 +11782,10 @@ cat PushCert.pem PushKey.pem &amp;gt; Push.pem
     
     <item>
       <title>[151] Reverse Words in a String</title>
-      <link>https://hechen.xyz/post/leetcode-002-reverse-words-in-a-string/</link>
+      <link>https://hechen.github.io/post/leetcode-002-reverse-words-in-a-string/</link>
       <pubDate>Fri, 01 May 2015 09:29:09 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/leetcode-002-reverse-words-in-a-string/</guid>
+      <guid>https://hechen.github.io/post/leetcode-002-reverse-words-in-a-string/</guid>
       
         <description>
 
@@ -11859,10 +11859,10 @@ A: Reduce them to a single space in the reversed string.&lt;/p&gt;
     
     <item>
       <title>Two Sum</title>
-      <link>https://hechen.xyz/post/leetcode-003-two-sum/</link>
+      <link>https://hechen.github.io/post/leetcode-003-two-sum/</link>
       <pubDate>Wed, 29 Apr 2015 13:15:00 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/leetcode-003-two-sum/</guid>
+      <guid>https://hechen.github.io/post/leetcode-003-two-sum/</guid>
       
         <description>
 
@@ -12035,10 +12035,10 @@ where index1 must be less than index2. Please note that your returned answers (b
     
     <item>
       <title>[160] Intersection of Two Linked Lists</title>
-      <link>https://hechen.xyz/post/leetcode-003-intersection-of-two-linked-lists/</link>
+      <link>https://hechen.github.io/post/leetcode-003-intersection-of-two-linked-lists/</link>
       <pubDate>Wed, 29 Apr 2015 12:28:00 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/leetcode-003-intersection-of-two-linked-lists/</guid>
+      <guid>https://hechen.github.io/post/leetcode-003-intersection-of-two-linked-lists/</guid>
       
         <description>
 
@@ -12448,10 +12448,10 @@ singly linked lists begins.&lt;/p&gt;
     
     <item>
       <title>关于Lambda的一点梳理</title>
-      <link>https://hechen.xyz/post/%E5%85%B3%E4%BA%8Elambda%E7%9A%84%E4%B8%80%E7%82%B9%E6%A2%B3%E7%90%86/</link>
+      <link>https://hechen.github.io/post/%E5%85%B3%E4%BA%8Elambda%E7%9A%84%E4%B8%80%E7%82%B9%E6%A2%B3%E7%90%86/</link>
       <pubDate>Wed, 29 Apr 2015 11:57:00 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/%E5%85%B3%E4%BA%8Elambda%E7%9A%84%E4%B8%80%E7%82%B9%E6%A2%B3%E7%90%86/</guid>
+      <guid>https://hechen.github.io/post/%E5%85%B3%E4%BA%8Elambda%E7%9A%84%E4%B8%80%E7%82%B9%E6%A2%B3%E7%90%86/</guid>
       
         <description>
 
@@ -12663,10 +12663,10 @@ singly linked lists begins.&lt;/p&gt;
     
     <item>
       <title>[152] Maximum Product Subarray</title>
-      <link>https://hechen.xyz/post/leetcode-001-maximum-product-subarray/</link>
+      <link>https://hechen.github.io/post/leetcode-001-maximum-product-subarray/</link>
       <pubDate>Wed, 29 Apr 2015 11:30:00 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/leetcode-001-maximum-product-subarray/</guid>
+      <guid>https://hechen.github.io/post/leetcode-001-maximum-product-subarray/</guid>
       
         <description>
 
@@ -12822,10 +12822,10 @@ singly linked lists begins.&lt;/p&gt;
     
     <item>
       <title>scala Day2</title>
-      <link>https://hechen.xyz/post/scala%E7%AC%AC%E4%BA%8C%E5%A4%A9/</link>
+      <link>https://hechen.github.io/post/scala%E7%AC%AC%E4%BA%8C%E5%A4%A9/</link>
       <pubDate>Thu, 16 Apr 2015 18:43:00 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/scala%E7%AC%AC%E4%BA%8C%E5%A4%A9/</guid>
+      <guid>https://hechen.github.io/post/scala%E7%AC%AC%E4%BA%8C%E5%A4%A9/</guid>
       
         <description>
 
@@ -13267,10 +13267,10 @@ singly linked lists begins.&lt;/p&gt;
     
     <item>
       <title>博客之旅</title>
-      <link>https://hechen.xyz/post/myfirstpost/</link>
+      <link>https://hechen.github.io/post/myfirstpost/</link>
       <pubDate>Wed, 15 Apr 2015 16:14:00 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/myfirstpost/</guid>
+      <guid>https://hechen.github.io/post/myfirstpost/</guid>
       
         <description>&lt;blockquote&gt;
 &lt;p&gt;如果你不给自己烦恼，别人也永远不可能给你烦恼，因为你自己的内心，你放不下&lt;/p&gt;

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Build on I make stuff</title>
-    <link>https://hechen.xyz/tags/build/</link>
+    <link>https://hechen.github.io/tags/build/</link>
     <description>Recent content in Build on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 25 Apr 2019 11:30:30 +0800</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/build/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/tags/build/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Build Process</title>
-      <link>https://hechen.xyz/post/xcode-build-system/</link>
+      <link>https://hechen.github.io/post/xcode-build-system/</link>
       <pubDate>Thu, 25 Apr 2019 11:30:30 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/xcode-build-system/</guid>
+      <guid>https://hechen.github.io/post/xcode-build-system/</guid>
       <description>编程语言的处理过程大致会有五个阶段，其每个阶段均有对应的工具： 预处理器 Preprocessor 编译器 Compiler 汇编器 Assembler 链接器 Linker 加载器 Loader 我们以一个简单的源文件，来看看具体这</description>
     </item>
     

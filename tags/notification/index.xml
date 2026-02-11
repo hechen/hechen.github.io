@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Notification on I make stuff</title>
-    <link>https://hechen.xyz/tags/notification/</link>
+    <link>https://hechen.github.io/tags/notification/</link>
     <description>Recent content in Notification on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sat, 20 May 2017 10:10:54 +0000</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/notification/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/tags/notification/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>关于 iOS10 Notification 的那些事儿</title>
-      <link>https://hechen.xyz/post/ios-notification/</link>
+      <link>https://hechen.github.io/post/ios-notification/</link>
       <pubDate>Sat, 20 May 2017 10:10:54 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/ios-notification/</guid>
+      <guid>https://hechen.github.io/post/ios-notification/</guid>
       <description>概览 推送通知我们大家都不陌生，可以说几乎每个使用智能手机的人每天都会被不同的通知 打扰 到，正式因为合适的推送是吸引用户注意力的利器，其成为了各</description>
     </item>
     
     <item>
       <title>iOS 远端推送部署详解</title>
-      <link>https://hechen.xyz/post/ios-push-notification/</link>
+      <link>https://hechen.github.io/post/ios-push-notification/</link>
       <pubDate>Thu, 30 Jul 2015 14:30:00 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/ios-push-notification/</guid>
+      <guid>https://hechen.github.io/post/ios-push-notification/</guid>
       <description>最近几天被iOS的推送部署给搞懵了，现在特地整理下和大家进行分享。 iOS远端推送机制 APNS，全称为Apple Push Notification service，是苹果通知</description>
     </item>
     

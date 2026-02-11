@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>XPC on I make stuff</title>
-    <link>https://hechen.xyz/tags/xpc/</link>
+    <link>https://hechen.github.io/tags/xpc/</link>
     <description>Recent content in XPC on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 04 Jul 2019 01:01:10 +0800</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/xpc/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/tags/xpc/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>XPC Services</title>
-      <link>https://hechen.xyz/post/xpcservice/</link>
+      <link>https://hechen.github.io/post/xpcservice/</link>
       <pubDate>Thu, 04 Jul 2019 01:01:10 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/xpcservice/</guid>
+      <guid>https://hechen.github.io/post/xpcservice/</guid>
       <description>关于 XPC 因为最近在做的工作涉及到这一块，就大致的记录一下，针对 XPC 技术也做个总结。 XPC 是 macOS 上一种进程间通信的技术统称，其使得我们可以将 Mac 应用的功能</description>
     </item>
     

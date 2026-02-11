@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linkedlist on I make stuff</title>
-    <link>https://hechen.xyz/tags/linkedlist/</link>
+    <link>https://hechen.github.io/tags/linkedlist/</link>
     <description>Recent content in Linkedlist on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 29 Apr 2015 12:28:00 +0000</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/linkedlist/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/tags/linkedlist/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>[160] Intersection of Two Linked Lists</title>
-      <link>https://hechen.xyz/post/leetcode-003-intersection-of-two-linked-lists/</link>
+      <link>https://hechen.github.io/post/leetcode-003-intersection-of-two-linked-lists/</link>
       <pubDate>Wed, 29 Apr 2015 12:28:00 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/leetcode-003-intersection-of-two-linked-lists/</guid>
+      <guid>https://hechen.github.io/post/leetcode-003-intersection-of-two-linked-lists/</guid>
       <description>题目：Intersection of Two Linked lists Write a program to find the node at which the intersection of two singly linked lists begins. For example, the following two linked lists: A: a1 → a2 ↘ c1 → c2 → c3 ↗ B: b1 → b2 → b3 begin to intersect at node c1. Notes: 1. If the</description>
     </item>
     

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Codable on I make stuff</title>
-    <link>https://hechen.xyz/tags/codable/</link>
+    <link>https://hechen.github.io/tags/codable/</link>
     <description>Recent content in Codable on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 10 Jun 2019 23:50:54 +0800</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/tags/codable/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/tags/codable/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Codable &amp;&amp; Tuple</title>
-      <link>https://hechen.xyz/post/tuple-codable/</link>
+      <link>https://hechen.github.io/post/tuple-codable/</link>
       <pubDate>Mon, 10 Jun 2019 23:50:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/tuple-codable/</guid>
+      <guid>https://hechen.github.io/post/tuple-codable/</guid>
       <description>During my learning of Swift, many interesting things I will find. Codable is one of them.
 Today, I defined a model with a tuple type, then Xcode told me some error. Codes may like as below.
 You may want Xcode automatically complete all the codable stuff. However, life is hard. Codes like these can even not be compiled. Xcode will tell you name cannot be synthesize the Person because of the FullName.</description>

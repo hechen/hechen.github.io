@@ -2,75 +2,75 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on I make stuff</title>
-    <link>https://hechen.xyz/post/</link>
+    <link>https://hechen.github.io/post/</link>
     <description>Recent content in Posts on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 10 Aug 2020 12:05:54 +0800</lastBuildDate>
     
-	<atom:link href="https://hechen.xyz/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://hechen.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>获取某个 Mac 应用的 BundleID</title>
-      <link>https://hechen.xyz/post/reveal-bundleid-application/</link>
+      <link>https://hechen.github.io/post/reveal-bundleid-application/</link>
       <pubDate>Mon, 10 Aug 2020 12:05:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/reveal-bundleid-application/</guid>
+      <guid>https://hechen.github.io/post/reveal-bundleid-application/</guid>
       <description>我们知道无论是 iOS 还是 macOS 上的应用，其配置信息都是通过 plist 文件组织的，该应用的 BundleID 就藏在这个文件中，通过读取 plist 文件就能够知道其 Bundle ID 以及应用版本号等信</description>
     </item>
     
     <item>
       <title>Alamofire 和 RxSwift 中的 .af 以及 .rx 扩展是怎么实现的</title>
-      <link>https://hechen.xyz/post/alamofire-rxswift-af-rx/</link>
+      <link>https://hechen.github.io/post/alamofire-rxswift-af-rx/</link>
       <pubDate>Sun, 29 Sep 2019 10:30:30 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/alamofire-rxswift-af-rx/</guid>
+      <guid>https://hechen.github.io/post/alamofire-rxswift-af-rx/</guid>
       <description>今天继续来一篇水文，关于 Alamofire 和 RxSwift 两个组件中扩展后缀 .af 以及 .rx 是怎么实现的。相信用过的 (￣ω￣(￣ω￣〃 (￣ω￣〃)ゝ 都看过了。我这里权当自己的记</description>
     </item>
     
     <item>
       <title>Swift 中的消息派发</title>
-      <link>https://hechen.xyz/post/messagedispatchinswift/</link>
+      <link>https://hechen.github.io/post/messagedispatchinswift/</link>
       <pubDate>Sun, 15 Sep 2019 20:56:50 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/messagedispatchinswift/</guid>
+      <guid>https://hechen.github.io/post/messagedispatchinswift/</guid>
       <description>什么是消息派发？ 消息派发，英文名称 Method Dispatch，是指程序在运行过程中调用某个方法的时候决议使用哪个具体指令的过程。消息派发的行为在我们</description>
     </item>
     
     <item>
       <title>Protocol Extension</title>
-      <link>https://hechen.xyz/post/protocol-extension/</link>
+      <link>https://hechen.github.io/post/protocol-extension/</link>
       <pubDate>Thu, 08 Aug 2019 19:00:20 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/protocol-extension/</guid>
+      <guid>https://hechen.github.io/post/protocol-extension/</guid>
       <description>Protocol 作为 Swift 生态的最重要的组成部分（没有之一），其搭建起了整个语言生态的各个组成部分。 相对于继承而言，Protocol 的几个比较直观的优势： 无需</description>
     </item>
     
     <item>
       <title>LetsMove 中的几个点</title>
-      <link>https://hechen.xyz/post/letsmove/</link>
+      <link>https://hechen.github.io/post/letsmove/</link>
       <pubDate>Thu, 04 Jul 2019 01:19:10 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/letsmove/</guid>
+      <guid>https://hechen.github.io/post/letsmove/</guid>
       <description>当我们从网络上下载某个 mac app 之后，一般都会默认在 Downloads 目录里，但是某一些 App 是需要放置到 Application 目录才行，最常见的就是自更新功能是受到当前所处目录的限制的</description>
     </item>
     
     <item>
       <title>XPC Services</title>
-      <link>https://hechen.xyz/post/xpcservice/</link>
+      <link>https://hechen.github.io/post/xpcservice/</link>
       <pubDate>Thu, 04 Jul 2019 01:01:10 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/xpcservice/</guid>
+      <guid>https://hechen.github.io/post/xpcservice/</guid>
       <description>关于 XPC 因为最近在做的工作涉及到这一块，就大致的记录一下，针对 XPC 技术也做个总结。 XPC 是 macOS 上一种进程间通信的技术统称，其使得我们可以将 Mac 应用的功能</description>
     </item>
     
     <item>
       <title>Codable &amp;&amp; Tuple</title>
-      <link>https://hechen.xyz/post/tuple-codable/</link>
+      <link>https://hechen.github.io/post/tuple-codable/</link>
       <pubDate>Mon, 10 Jun 2019 23:50:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/tuple-codable/</guid>
+      <guid>https://hechen.github.io/post/tuple-codable/</guid>
       <description>During my learning of Swift, many interesting things I will find. Codable is one of them.
 Today, I defined a model with a tuple type, then Xcode told me some error. Codes may like as below.
 You may want Xcode automatically complete all the codable stuff. However, life is hard. Codes like these can even not be compiled. Xcode will tell you name cannot be synthesize the Person because of the FullName.</description>
@@ -78,10 +78,10 @@ You may want Xcode automatically complete all the codable stuff. However, life i
     
     <item>
       <title>How to generate a NSViewController without a Nib?</title>
-      <link>https://hechen.xyz/post/create-nsviewcontroller-without-nib/</link>
+      <link>https://hechen.github.io/post/create-nsviewcontroller-without-nib/</link>
       <pubDate>Mon, 03 Jun 2019 20:55:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/create-nsviewcontroller-without-nib/</guid>
+      <guid>https://hechen.github.io/post/create-nsviewcontroller-without-nib/</guid>
       <description>In the last days, I created all the ViewControllers through the storyboard or the Nib (for views). Today, when I created a demo project without any Nib file, the ViewController did not show as I expected.
 WTF, Can you believe that? I cannot even create a ViewController now.
 There exist some differences between iOS and macOS.
@@ -90,109 +90,109 @@ iOS In the previous development on the iOS platform, create a ViewController, sp
     
     <item>
       <title>一道 Swift Quiz</title>
-      <link>https://hechen.xyz/post/a-swift-quiz/</link>
+      <link>https://hechen.github.io/post/a-swift-quiz/</link>
       <pubDate>Tue, 14 May 2019 16:01:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/a-swift-quiz/</guid>
+      <guid>https://hechen.github.io/post/a-swift-quiz/</guid>
       <description>这两天在 Twitter 上看到一道题目，主要是考察 overload 和 type(of:) 的知识点，本文仅做记录，关于 MetaType 会单独写一篇文章来总结。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 // Swift Quiz class</description>
     </item>
     
     <item>
       <title>关于 Library 和 Framework</title>
-      <link>https://hechen.xyz/post/library_framework/</link>
+      <link>https://hechen.github.io/post/library_framework/</link>
       <pubDate>Fri, 26 Apr 2019 00:35:30 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/library_framework/</guid>
+      <guid>https://hechen.github.io/post/library_framework/</guid>
       <description>Library 和 Framework 的概念大家应该脑海里都有一些，本文旨在讲述下基本概念，没有对每个字节都了如指掌。关于基本的编译过程在 Build Process 一文中也大概讲述了一些。 在链接</description>
     </item>
     
     <item>
       <title>Build Process</title>
-      <link>https://hechen.xyz/post/xcode-build-system/</link>
+      <link>https://hechen.github.io/post/xcode-build-system/</link>
       <pubDate>Thu, 25 Apr 2019 11:30:30 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/xcode-build-system/</guid>
+      <guid>https://hechen.github.io/post/xcode-build-system/</guid>
       <description>编程语言的处理过程大致会有五个阶段，其每个阶段均有对应的工具： 预处理器 Preprocessor 编译器 Compiler 汇编器 Assembler 链接器 Linker 加载器 Loader 我们以一个简单的源文件，来看看具体这</description>
     </item>
     
     <item>
       <title>写个小工具 Swwwitch</title>
-      <link>https://hechen.xyz/post/swwwitch/</link>
+      <link>https://hechen.github.io/post/swwwitch/</link>
       <pubDate>Sat, 30 Mar 2019 11:29:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/swwwitch/</guid>
+      <guid>https://hechen.github.io/post/swwwitch/</guid>
       <description>最近看到开发圈某热点，做了个小工具，总结下最近的几个 CocoaApp 上的功能，仅做练手。现在只包含了两个开关：切换系统主题和隐藏桌面 icon 的功能。 功能点 切换系</description>
     </item>
     
     <item>
       <title>关于 Mac 应用的自启动是如何做到的</title>
-      <link>https://hechen.xyz/post/autostartwhenlogin/</link>
+      <link>https://hechen.github.io/post/autostartwhenlogin/</link>
       <pubDate>Mon, 18 Mar 2019 17:29:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/autostartwhenlogin/</guid>
+      <guid>https://hechen.github.io/post/autostartwhenlogin/</guid>
       <description>开机自启动是 Cocoa 应用最常见的一种功能，尤其是针对需要常驻 Menu 的服务来说更是如此，今天我们对开机启动项的功能加入做个梳理。 在 Daemons and Services Programming Guide 中我们能找到</description>
     </item>
     
     <item>
       <title>Mac 平台上那些 Dockless 的 App 都是如何实现的？</title>
-      <link>https://hechen.xyz/post/dockless-cocoaapps/</link>
+      <link>https://hechen.github.io/post/dockless-cocoaapps/</link>
       <pubDate>Wed, 13 Mar 2019 17:29:54 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/dockless-cocoaapps/</guid>
+      <guid>https://hechen.github.io/post/dockless-cocoaapps/</guid>
       <description>Menu Only 算是 Cocoa App 中最常见的一项，它使得 App 不占用你的 Dock 栏，在多 workspace 的时候也不影响正常使用，随时都可以在屏幕的菜单栏中执行快捷操作。尤其是针对一些需要</description>
     </item>
     
     <item>
       <title>在英文语言系统的 Safari 中使用印象笔记</title>
-      <link>https://hechen.xyz/post/using-yinxiangbiji-system-english/</link>
+      <link>https://hechen.github.io/post/using-yinxiangbiji-system-english/</link>
       <pubDate>Wed, 13 Mar 2019 00:30:49 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/using-yinxiangbiji-system-english/</guid>
+      <guid>https://hechen.github.io/post/using-yinxiangbiji-system-english/</guid>
       <description>因为 Evernote 在国内使用了不同的账户体系，去年团队也彻底独立出来，但是 Safari 的剪藏插件是同一个，下载地址，但是当你系统是英文系统的时候，使用 Safari 剪藏有点尴</description>
     </item>
     
     <item>
       <title>为 NSView 增加 backgroundColor</title>
-      <link>https://hechen.xyz/post/nsview&#43;backgroundcolor/</link>
+      <link>https://hechen.github.io/post/nsview&#43;backgroundcolor/</link>
       <pubDate>Mon, 11 Mar 2019 15:19:49 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/nsview&#43;backgroundcolor/</guid>
+      <guid>https://hechen.github.io/post/nsview&#43;backgroundcolor/</guid>
       <description>NSView 作为 Cocoa 中最基本的构成元素，是构成整个 Mac App 视图体系的基础，和 UIView 在 iOS 世界中的位置一样重要，可是在 UIView 里司空见惯的背景色设置，在 NSView 中却不见身影。 在</description>
     </item>
     
     <item>
       <title>RxSwift 中的几种 Subject</title>
-      <link>https://hechen.xyz/post/rxswift-subjects/</link>
+      <link>https://hechen.github.io/post/rxswift-subjects/</link>
       <pubDate>Tue, 26 Feb 2019 10:24:38 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/rxswift-subjects/</guid>
+      <guid>https://hechen.github.io/post/rxswift-subjects/</guid>
       <description>文中所用插图均出自书籍 《RxSwift - Reactive Programming with Swift》 Subject 在 Rx 的世界里是这么一种存在，其既可以作为观测者，也可以作为被观测者。自然而然想到</description>
     </item>
     
     <item>
       <title>Apple Event Sandboxing</title>
-      <link>https://hechen.xyz/post/appleevents-usage-description/</link>
+      <link>https://hechen.github.io/post/appleevents-usage-description/</link>
       <pubDate>Thu, 21 Feb 2019 23:25:38 +0800</pubDate>
       
-      <guid>https://hechen.xyz/post/appleevents-usage-description/</guid>
+      <guid>https://hechen.github.io/post/appleevents-usage-description/</guid>
       <description>问题背景 最近在修改某个 Mac 应用，其原理就是通过执行一段 AppleScript 获取 OmniFocus 的信息，然后进行可视化展示，但是总取不到数据。 原因 关键数据获取阶段执行的 AppleScript 的时候</description>
     </item>
     
     <item>
       <title>关于一次 SS 流量丢失的过程记录</title>
-      <link>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</link>
+      <link>https://hechen.github.io/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Mon, 28 Jan 2019 17:51:35 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</guid>
+      <guid>https://hechen.github.io/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</guid>
       <description>2019-01-29 更新 早上一到办公室连接上公司网络，网速直接就飚到了 600KB/s，果不其然，还是 com.apple.Safari.SafeBrowsing.Service 这个服务进程。这就尴尬了，看来并不是说你不用 Safari 就不会触发</description>
     </item>
     
     <item>
       <title>在 Swift Framework 中使用 C 文件的过程探索</title>
-      <link>https://hechen.xyz/post/swift-and-modules/</link>
+      <link>https://hechen.github.io/post/swift-and-modules/</link>
       <pubDate>Thu, 03 Jan 2019 21:19:24 +0000</pubDate>
       
-      <guid>https://hechen.xyz/post/swift-and-modules/</guid>
+      <guid>https://hechen.github.io/post/swift-and-modules/</guid>
       <description>问题描述 我们在开发线上诊断工具需求的时候，是以单个 Pod 的形式提供支持，并且代码文件中只有纯 Swift 文件，但是其中需要用到系统的 C 库的一些功能，本次就</description>
     </item>
     
