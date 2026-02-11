@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structly - Beautiful JSON Formatting in Safari</title>
+    <meta name="description" content="Transform messy JSON into readable, navigable structures with Structly. Universal Safari extension for iPhone, iPad, and Mac.">
+    <meta name="keywords" content="JSON, Safari extension, JSON formatter, JSON viewer, iOS, macOS, developer tools">
+    <meta property="og:title" content="Structly - Beautiful JSON Formatting in Safari">
+    <meta property="og:description" content="Transform messy JSON into readable, navigable structures. One extension, all your Apple devices.">
+    <meta property="og:type" content="website">
+    <link rel="apple-touch-icon" href="icon.png">
+    <style>
+        :root {
+            --purple-500: #7C3AED;
+            --purple-600: #6D28D9;
+            --purple-700: #5B21B6;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--gray-50);
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--purple-600) 0%, var(--purple-700) 100%);
+            color: white;
+            padding: 80px 0 100px;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 8px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .tagline {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 32px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .btn-primary {
+            background: white;
+            color: var(--purple-600);
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        /* Features */
+        .features {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 48px;
+            color: var(--gray-900);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+        
+        .feature-card {
+            padding: 24px;
+            border-radius: 16px;
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--gray-900);
+        }
+        
+        .feature-card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+            background: var(--gray-50);
+        }
+        
+        .steps {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .step {
+            text-align: center;
+            max-width: 280px;
+        }
+        
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--purple-600);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0 auto 16px;
+        }
+        
+        .step h3 {
+            margin-bottom: 8px;
+            color: var(--gray-900);
+        }
+        
+        .step p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+        
+        /* Perfect For */
+        .perfect-for {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .use-cases {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+        
+        .use-case {
+            background: var(--purple-600);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+        }
+        
+        /* Try It */
+        .try-it {
+            padding: 80px 0;
+            background: var(--gray-50);
+        }
+        
+        .api-links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .api-link {
+            background: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--purple-600);
+            font-weight: 500;
+            border: 2px solid var(--gray-200);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        
+        .api-link:hover {
+            border-color: var(--purple-500);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
+        }
+        
+        /* Privacy */
+        .privacy {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .privacy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .privacy-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .privacy-check {
+            color: #10B981;
+            font-size: 1.25rem;
+        }
+        
+        .privacy-item h4 {
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        
+        .privacy-item p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+        
+        /* Requirements */
+        .requirements {
+            padding: 60px 0;
+            background: var(--gray-50);
+            text-align: center;
+        }
+        
+        .req-list {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+        
+        .req-item {
+            color: var(--gray-600);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 48px 0;
+            background: var(--gray-900);
+            color: var(--gray-200);
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--gray-200);
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            header {
+                padding: 60px 0 80px;
+            }
+            
+            .features, .how-it-works, .perfect-for, .try-it, .privacy {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">📄</div>
+            <h1>Structly</h1>
+            <p class="tagline">Beautiful, Automatic JSON Formatting in Safari. Transform messy JSON into readable, navigable structures.</p>
+            <div class="badge">🎯 One Extension, All Your Devices</div>
+            <div class="cta-buttons">
+                <a href="https://apps.apple.com/app/apple-store/id6753774575" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                    Download on App Store
+                </a>
+                <a href="https://github.com/user/structly" class="btn btn-secondary">
+                    View on GitHub
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">✨ Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Automatic Detection</h3>
+                    <p>Visit any JSON URL in Safari and watch it transform instantly. No buttons to click, no setup required.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Beautiful Syntax Highlighting</h3>
+                    <p>Color-coded keys, strings, numbers, and booleans make JSON easy to read at a glance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📂</div>
+                    <h3>Collapsible Tree View</h3>
+                    <p>Click to expand or collapse objects and arrays. Navigate complex JSON structures effortlessly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔢</div>
+                    <h3>Line Numbers</h3>
+                    <p>Perfect for debugging and referencing specific lines of JSON data.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Smart Copy</h3>
+                    <p>Copy formatted JSON, raw JSON, or specific values with one click.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🗺️</div>
+                    <h3>JSON Path Display</h3>
+                    <p>Click any value to see its path (e.g., root.users[0].name). Copy paths or values instantly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌓</div>
+                    <h3>Dark & Light Mode</h3>
+                    <p>Seamlessly adapts to your system theme. Beautiful in both modes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Universal App</h3>
+                    <p>One purchase works on iPhone, iPad, and Mac. No subscription required.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">🚀 How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Install</h3>
+                    <p>Download Structly from the App Store.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Enable</h3>
+                    <p>Go to Settings → Safari → Extensions and turn on Structly.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Browse</h3>
+                    <p>Visit any JSON URL in Safari and enjoy beautifully formatted JSON!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="perfect-for">
+        <div class="container">
+            <h2 class="section-title">💡 Perfect For</h2>
+            <div class="use-cases">
+                <span class="use-case">Developers testing REST APIs</span>
+                <span class="use-case">Mobile development debugging</span>
+                <span class="use-case">Learning JSON structure</span>
+                <span class="use-case">Reading API documentation</span>
+                <span class="use-case">Debugging production issues</span>
+            </div>
+        </div>
+    </section>
+    
+    <section class="try-it">
+        <div class="container">
+            <h2 class="section-title">🧪 Try It Now</h2>
+            <p style="text-align: center; color: var(--gray-600); margin-bottom: 24px;">Test Structly with these public APIs:</p>
+            <div class="api-links">
+                <a href="https://api.github.com/users/github" class="api-link">GitHub API</a>
+                <a href="https://jsonplaceholder.typicode.com/users" class="api-link">JSONPlaceholder Users</a>
+                <a href="https://jsonplaceholder.typicode.com/posts" class="api-link">JSONPlaceholder Posts</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="privacy">
+        <div class="container">
+            <h2 class="section-title">🔒 Privacy First</h2>
+            <div class="privacy-grid">
+                <div class="privacy-item">
+                    <span class="privacy-check">✅</span>
+                    <div>
+                        <h4>No Data Collection</h4>
+                        <p>Zero tracking or analytics</p>
+                    </div>
+                </div>
+                <div class="privacy-item">
+                    <span class="privacy-check">✅</span>
+                    <div>
+                        <h4>Works Offline</h4>
+                        <p>All processing happens locally</p>
+                    </div>
+                </div>
+                <div class="privacy-item">
+                    <span class="privacy-check">✅</span>
+                    <div>
+                        <h4>No Servers</h4>
+                        <p>Your JSON never leaves your device</p>
+                    </div>
+                </div>
+                <div class="privacy-item">
+                    <span class="privacy-check">✅</span>
+                    <div>
+                        <h4>Open Principles</h4>
+                        <p>Transparent about what we do (nothing!)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="requirements">
+        <div class="container">
+            <h2 class="section-title">📱 System Requirements</h2>
+            <div class="req-list">
+                <span class="req-item">iOS/iPadOS 15.0+</span>
+                <span class="req-item">macOS 11.0 (Big Sur)+</span>
+                <span class="req-item">Safari 15.0+</span>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://chenhe.craft.me/kN36g0S6uryU4h">Privacy Policy</a>
+                <a href="mailto:chen.dev@icloud.com">Contact Us</a>
+                <a href="mailto:chen.dev@icloud.com">Support</a>
+            </div>
+            <p class="copyright">© 2026 Chen. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
