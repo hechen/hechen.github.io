@@ -1,0 +1,101 @@
+{
+  "app": "Structly",
+  "description": "Beautiful JSON formatting for Safari",
+  "version": "1.0.1",
+  "features": [
+    "Syntax highlighting",
+    "Collapsible sections",
+    "Search and filter",
+    "Copy formatted or raw JSON",
+    "Dark mode support"
+  ],
+  "sample_data": {
+    "users": [
+      {
+        "id": 1,
+        "name": "Alice Johnson",
+        "email": "alice@example.com",
+        "role": "admin",
+        "active": true,
+        "preferences": {
+          "theme": "dark",
+          "language": "en",
+          "notifications": {
+            "email": true,
+            "push": false,
+            "sms": false
+          }
+        },
+        "tags": ["developer", "team-lead"]
+      },
+      {
+        "id": 2,
+        "name": "Bob Smith",
+        "email": "bob@example.com",
+        "role": "user",
+        "active": true,
+        "preferences": {
+          "theme": "light",
+          "language": "en",
+          "notifications": {
+            "email": true,
+            "push": true,
+            "sms": false
+          }
+        },
+        "tags": ["designer"]
+      },
+      {
+        "id": 3,
+        "name": "Carol Williams",
+        "email": "carol@example.com",
+        "role": "moderator",
+        "active": false,
+        "preferences": {
+          "theme": "auto",
+          "language": "fr",
+          "notifications": {
+            "email": false,
+            "push": false,
+            "sms": false
+          }
+        },
+        "tags": ["content", "marketing"]
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "per_page": 10,
+      "total": 3,
+      "total_pages": 1
+    },
+    "metadata": {
+      "api_version": "2.0",
+      "request_id": "abc-123-def-456",
+      "timestamp": "2026-02-13T10:00:00Z",
+      "response_time_ms": 42
+    }
+  },
+  "nested_example": {
+    "level1": {
+      "level2": {
+        "level3": {
+          "level4": {
+            "deep_value": "This demonstrates Structly's ability to handle deeply nested JSON structures",
+            "array_here": [1, 2, 3, 4, 5]
+          }
+        }
+      }
+    }
+  },
+  "types_demo": {
+    "string": "Hello, World!",
+    "number_int": 42,
+    "number_float": 3.14159,
+    "boolean_true": true,
+    "boolean_false": false,
+    "null_value": null,
+    "empty_array": [],
+    "empty_object": {}
+  }
+}
