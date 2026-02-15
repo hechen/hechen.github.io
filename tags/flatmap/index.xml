@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FlatMap on I make stuff</title>
+    <link>http://localhost:1313/tags/flatmap/</link>
+    <description>Recent content in FlatMap on I make stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <managingEditor>hechen.dream@gmail.com (Chen)</managingEditor>
+    <webMaster>hechen.dream@gmail.com (Chen)</webMaster>
+    <lastBuildDate>Thu, 23 May 2019 11:32:54 +0800</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/tags/flatmap/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>flatMap and flatMapLatest</title>
+      <link>http://localhost:1313/post/flatmap_flatmaplatest/</link>
+      <pubDate>Thu, 23 May 2019 11:32:54 +0800</pubDate>
+      <author>hechen.dream@gmail.com (Chen)</author>
+      <guid>http://localhost:1313/post/flatmap_flatmaplatest/</guid>
+      
+        <description>&lt;p&gt;RxSwift 中&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;media/img80.png&#34; alt=&#34;flatMap&#34;&gt;
+&lt;img src=&#34;media/Carbonize%202019-05-23%20at%2011.27.20%20AM.png&#34; alt=&#34;flatMap Code&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;media/img81.png&#34; alt=&#34;flatMapLatest&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;media/Carbonize%202019-05-23%20at%2011.27.32%20AM.png&#34; alt=&#34;flatMapLatest Code&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;materialize--dematerialize&#34;&gt;Materialize &amp;amp;&amp;amp; Dematerialize&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;media/15585837032523.png&#34; alt=&#34;Materialize&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;media/15585837094476.png&#34; alt=&#34;Dematerialize&#34;&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+  </channel>
+</rss>

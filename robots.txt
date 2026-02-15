@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://hechen.xyz/sitemap.xml
+Sitemap: https://hechen.github.io/sitemap.xml
