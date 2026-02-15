@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Designated Initializer on I make stuff</title>
+    <link>http://localhost:1313/tags/designated-initializer/</link>
+    <description>Recent content in Designated Initializer on I make stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <managingEditor>hechen.dream@gmail.com (Chen)</managingEditor>
+    <webMaster>hechen.dream@gmail.com (Chen)</webMaster>
+    <lastBuildDate>Wed, 15 Nov 2017 13:09:27 +0000</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/tags/designated-initializer/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Initializer in Swift</title>
+      <link>http://localhost:1313/post/initializer-in-swift/</link>
+      <pubDate>Wed, 15 Nov 2017 13:09:27 +0000</pubDate>
+      <author>hechen.dream@gmail.com (Chen)</author>
+      <guid>http://localhost:1313/post/initializer-in-swift/</guid>
+      
+        <description>&lt;p&gt;我想 &lt;code&gt;[[xxx alloc] init]&lt;/code&gt; 应该是自己接触 iOS 开发以来写的最多的语句了吧。一个对象初始化是其得以存在的前提，无论你是使用 new 关键字与否，根本上都会执行到 init 方法。&lt;/p&gt;
+&lt;p&gt;转入 swift 语言之后，在刚接触的时候经常会因为自建初始化方法不合适，编译器报一堆错误，很是痛苦，但是当理解 Swift 语言为了保障安全的初始化行为所做的工作之后，你就会明白，Swift 初始化方法是有一定的规范要求的。&lt;/p&gt;
+&lt;p&gt;这篇文章是想做个记录。&lt;/p&gt;
+&lt;h3 id=&#34;初始化方法&#34;&gt;初始化方法&lt;/h3&gt;
+&lt;p&gt;顺序很重要！&lt;/p&gt;
+&lt;p&gt;与 &lt;code&gt;Objective-C&lt;/code&gt; 中不同，Swift 语言会保证某个类的所有属性均被初始化才行。因此初始化方法会非常严格，那第一点需要保障的就是&lt;strong&gt;顺序&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;首先，祭出这张官方镇宅图：&lt;/p&gt;
+&lt;p&gt;以最简单的无继承 Class 的&lt;/p&gt;
+&lt;p&gt;在某个类的子类中，初始化方法语句的顺序并不是随意的，我们需要保证在当前子类实例的成员初始化完成后才能调用父类的初始化方法。&lt;/p&gt;
+</description>
+      
+    </item>
+    
+  </channel>
+</rss>

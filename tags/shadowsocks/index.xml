@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Shadowsocks on I make stuff</title>
@@ -6,18 +6,79 @@
     <description>Recent content in Shadowsocks on I make stuff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
+    <managingEditor>hechen.dream@gmail.com (Chen)</managingEditor>
+    <webMaster>hechen.dream@gmail.com (Chen)</webMaster>
     <lastBuildDate>Mon, 28 Jan 2019 17:51:35 +0000</lastBuildDate>
     
-	<atom:link href="https://hechen.github.io/tags/shadowsocks/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://hechen.github.io/tags/shadowsocks/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>关于一次 SS 流量丢失的过程记录</title>
       <link>https://hechen.github.io/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</link>
       <pubDate>Mon, 28 Jan 2019 17:51:35 +0000</pubDate>
-      
+      <author>hechen.dream@gmail.com (Chen)</author>
       <guid>https://hechen.github.io/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</guid>
-      <description>2019-01-29 更新 早上一到办公室连接上公司网络，网速直接就飚到了 600KB/s，果不其然，还是 com.apple.Safari.SafeBrowsing.Service 这个服务进程。这就尴尬了，看来并不是说你不用 Safari 就不会触发</description>
+      
+        <description>&lt;h2 id=&#34;2019-01-29-更新&#34;&gt;2019-01-29 更新&lt;/h2&gt;
+&lt;p&gt;早上一到办公室连接上公司网络，网速直接就飚到了 600KB/s，果不其然，还是 &lt;code&gt;com.apple.Safari.SafeBrowsing.Service&lt;/code&gt; 这个服务进程。这就尴尬了，看来并不是说你不用 Safari 就不会触发。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/yifgIEZ.png&#34; alt=&#34;Surge Dashboard&#34;&gt;&lt;/p&gt;
+&lt;p&gt;直接把 Surge 规则中的 Rule 由 Direct 改成了 Reject。&lt;/p&gt;
+&lt;h2 id=&#34;问题追踪&#34;&gt;问题追踪&lt;/h2&gt;
+&lt;p&gt;在 2018 年 12 月底的时候，偶然间登录 AgentNEO 查看刚买的流量使用情况。但是发现，刚在前几天购买的 SS 流量在短短的 4 天之内就耗了将近 95GB，就在 1 月 1 日元旦当天就耗了接近 75GB，要知道，我平时的月均流量也就维持在 10 GB 不到，毕竟平时在公司办公，业余时间 Youtube 也看的相对少。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/9tRs9vh.png&#34; alt=&#34;AgentNEO 流量面板&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在最初看到这个统计数据之后，我一度怀疑是他们网站的流量统计有问题。&lt;/p&gt;
+&lt;p&gt;后续几天，我实际上对流量耗损比较关注，有一天注意到，Surge 的流量监控速率一直持续不断的显示达五六百 KB/s 的下载流量，但是我知道自己当时并没有下载任何东西。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/nWz8JAt.png&#34; alt=&#34;Surge Menu Bar&#34;&gt;&lt;/p&gt;
+&lt;p&gt;打开 Surge Dashboard，看到如下的情形：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/9kVX27V.png&#34; alt=&#34;Surge Dashboard&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到当时在持续不断的进行下载动作的进程名称是 &lt;code&gt;com.apple.Safari.SafeBrowsing.Service&lt;/code&gt;，看请求地址是 safebrowsing.googleapis.com。&lt;/p&gt;
+&lt;p&gt;从进程名字来看应该是 Safari 和安全流量相关的服务，通过 Snitch 的数据库查到对其的说明：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Safari has built-in support for Google’s Safe Browsing service to identify fraudulent and unsafe websites. Right before Safari navigates to a certain website, the website gets checked for possible security concerns using Google’s Safe Browsing online database. Accessing the online database requires connections to Google servers.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;说的大概是该服务是针对 Safari 浏览器启用的，在 Safari 要帮你导航到下一级页面的时候，会识别该页面是否是欺诈🐶或者不安全⚠️的网站，我们在 Safari 的 Security 菜单中可以找到启用关于欺诈网站的检测功能的开关。以我本机上看到的内容如下&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Safari uses Tencent Safe Browsing and Google Safe Browsing to identify fraudulent websites.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;大概意思就是 Safari 使用腾讯的安全浏览服务和 Google 的安全浏览服务来鉴别欺诈网站，腾讯应该是本地化的产物。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/wEhv8iu.png&#34; alt=&#34;Little Snitch Network Monitor&#34;&gt;&lt;/p&gt;
+&lt;p&gt;通过针对该进程的出口请求 host 也可以验证这一点，该进程发起的网络请求会有如下两个 host 出口：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;safebrowsing.googleapis.com&lt;/li&gt;
+&lt;li&gt;safebrowsing.urlsec.qq.com&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;其实在 iOS 设备上也有同样的进程来做这件事情，抓包有时候也能捕捉到这两个请求（国行）：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/eDNI4jk.jpg&#34; alt=&#34;iPhone 上的 safebrowsing&#34;&gt;&lt;/p&gt;
+&lt;p&gt;而这次出问题的就是 google 提供的欺诈网站特征库。
+&lt;img src=&#34;https://i.imgur.com/BtfvMIV.png&#34; alt=&#34;Little Snitch Network Monitor&#34;&gt;&lt;/p&gt;
+&lt;p&gt;尝试关闭 Surge 作为系统流量代理之后，看到 Activity Monitor 中进程又开始了下载，如下图所示，只是连接请求主体从原来 Surge 切换到了独立进程而已（Surge 会接管网络流量，因此之前该任务的下载会算到 Surge 的头上），但是针对该 host 的下载任务一致持续不断。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;说起来，Little Snitch Network Monitor 这款软件也是当时为了查流量丢失问题，才买的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/SUT5qQC.png&#34; alt=&#34;Little Snitch Network Monitor&#34;&gt;&lt;/p&gt;
+&lt;p&gt;而在我关闭 Surge 作为代理之前，可以看到该进程大概在 7 个小时之内耗了 12.4 GB 的流量。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://i.imgur.com/Gnxc4bB.png&#34; alt=&#34;Little Snitch Network Monitor&#34;&gt;&lt;/p&gt;
+&lt;p&gt;而在网络上目前未看到针对 safebrowsing 进程的大量讨论，国内论坛 &lt;a href=&#34;https://www.v2ex.com/t/404025&#34;&gt;V2EX&lt;/a&gt; 里也看到有人遇到该问题。&lt;/p&gt;
+&lt;p&gt;目前暂时不清楚是官方 Bug 还是我电脑安装了什么插件或者软件导致。暂时先停掉使用 Safari 了，用 Chrome 用上一段时间之后再用 Snitch 看下情况吧。&lt;/p&gt;
+&lt;p&gt;另一方面，因为不放心，在 Surge 的自定义规则中加了一条：&lt;/p&gt;
+&lt;div class=&#34;highlight-container&#34;&gt;
+
+  &lt;button class=&#34;copy-code-btn outline&#34;&gt;Copy&lt;/button&gt;
+
+  
+  &lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;
+&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	NAME,com.apple.Safari.SafeBrowsing.Service,DIRECT&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;针对该进程的所有流量都直连，不用代理了。 后续有任何进展会更新到 Blog 中。&lt;/p&gt;
+</description>
+      
     </item>
     
   </channel>

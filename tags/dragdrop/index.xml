@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DragDrop on I make stuff</title>
+    <link>http://localhost:1313/tags/dragdrop/</link>
+    <description>Recent content in DragDrop on I make stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <managingEditor>hechen.dream@gmail.com (Chen)</managingEditor>
+    <webMaster>hechen.dream@gmail.com (Chen)</webMaster>
+    <lastBuildDate>Tue, 05 Mar 2019 00:30:49 +0800</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/tags/dragdrop/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cocoa App 中 Drag&amp;&amp;Drop 的实现</title>
+      <link>http://localhost:1313/post/cocoa-drag-drop/</link>
+      <pubDate>Tue, 05 Mar 2019 00:30:49 +0800</pubDate>
+      <author>hechen.dream@gmail.com (Chen)</author>
+      <guid>http://localhost:1313/post/cocoa-drag-drop/</guid>
+      
+        <description></description>
+      
+    </item>
+    
+  </channel>
+</rss>

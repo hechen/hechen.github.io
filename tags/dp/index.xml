@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DP on I make stuff</title>
+    <link>http://localhost:1313/tags/dp/</link>
+    <description>Recent content in DP on I make stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <managingEditor>hechen.dream@gmail.com (Chen)</managingEditor>
+    <webMaster>hechen.dream@gmail.com (Chen)</webMaster>
+    <lastBuildDate>Mon, 11 Mar 2019 15:19:49 +0800</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/tags/dp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Probability of getting &#39;k&#39; heads with &#39;n&#39; coins</title>
+      <link>http://localhost:1313/post/probability&#43;of&#43;getting&#43;k&#43;heads&#43;with&#43;n&#43;coins/</link>
+      <pubDate>Mon, 11 Mar 2019 15:19:49 +0800</pubDate>
+      <author>hechen.dream@gmail.com (Chen)</author>
+      <guid>http://localhost:1313/post/probability&#43;of&#43;getting&#43;k&#43;heads&#43;with&#43;n&#43;coins/</guid>
+      
+        <description>&lt;p&gt;Given 𝑛 biased coins, with each coin giving heads with probability 𝑃𝑖, find the probability that on tossing the 𝑛 coins you will obtain exactly 𝑘 heads. You have to write the formula for this (i.e. the expression that would give 𝑃(𝑛,𝑘)).&lt;/p&gt;
+&lt;p&gt;其解法是经典的 DP 问题，其递推公式如下：&lt;/p&gt;
+&lt;p&gt;You can use Dynamic Programming as 𝑁th turn&amp;rsquo;s outcome is mutually independent to 𝑁−1th and there are two possible cases here :&lt;/p&gt;
+&lt;p&gt;𝐾 heads already came in 𝑁−1 turns
+𝐾−1 heads already came in 𝑁−1 turns
+𝑑𝑝[𝑖][𝑗] : probability of getting 𝑗 heads in 𝑖 trials.&lt;/p&gt;
+&lt;p&gt;So, 𝑑𝑝[𝑛][𝑘]=𝑑𝑝[𝑛−1][𝑘]⋅(1−𝑃[𝑛])+𝑑𝑝[𝑛−1][𝑘−1]⋅𝑝[𝑛]&lt;/p&gt;
+&lt;p&gt;还有一道题目，&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://math.stackexchange.com/questions/429698/probability-of-getting-k-heads-with-n-coins&#34;&gt;Probability of getting &amp;lsquo;k&amp;rsquo; heads with &amp;rsquo;n&amp;rsquo; coins&lt;/a&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+  </channel>
+</rss>

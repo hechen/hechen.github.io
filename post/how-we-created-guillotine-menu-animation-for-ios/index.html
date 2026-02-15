@@ -1,43 +1,85 @@
 <!DOCTYPE html>
-<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage" data-theme="light">
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>我们是如何创建iOS版的Guillotine菜单动画的 - I make stuff</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>
+    
+    我们是如何创建iOS版的Guillotine菜单动画的 - I make stuff
+    </title>
   
 
-<meta name="renderer" content="webkit" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-<meta name="MobileOptimized" content="width"/>
-<meta name="HandheldFriendly" content="true"/>
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+
+
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
 
 
 <meta name="applicable-device" content="pc,mobile">
-
-<meta name="theme-color" content="#f8f5ec" />
+<meta name="color-scheme" content="light dark" />
 <meta name="msapplication-navbutton-color" content="#f8f5ec">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 <meta name="mobile-web-app-capable" content="yes">
 
-<meta name="author" content="chen" />
-  <meta name="description" content="原文：How We Created Guillotine Menu Animation for iOS 原作者 @johnsundell 你是否曾经有过这样的疑问？为什么app中几乎是清一色的侧边栏（sidebar），为什么不把它做成topBa" />
 
-  <meta name="keywords" content="Chen, iOS, Swift, Productivity, macOS, Cocoa" />
-
-
-
-
-
-
-<meta name="generator" content="Hugo 0.55.3" />
+<meta name="generator" content="Hugo 0.155.3" />
 
 
 <link rel="canonical" href="https://hechen.github.io/post/how-we-created-guillotine-menu-animation-for-ios/" />
 
 
+
+
+<meta name="author" content="Chen" />
+<meta name="description" content=" 原文：How We Created Guillotine Menu Animation for iOS 原作者 @johnsundell
+你是否曾经有过这样的疑问？为什么app中几乎是清一色的侧边栏（sidebar），为什么不把它做成topBar或者bottomBar，甚至cornerBar呢？
+" />
+
+
+
+
+
+  
+
+
+
+
+
+
+<meta name="keywords" content="iOS, Animation, Objective-C" />
+
+
+<meta property="og:url" content="https://hechen.github.io/post/how-we-created-guillotine-menu-animation-for-ios/">
+  <meta property="og:site_name" content="I make stuff">
+  <meta property="og:title" content="我们是如何创建iOS版的Guillotine菜单动画的">
+  <meta property="og:description" content="原文：How We Created Guillotine Menu Animation for iOS 原作者 @johnsundell
+你是否曾经有过这样的疑问？为什么app中几乎是清一色的侧边栏（sidebar），为什么不把它做成topBar或者bottomBar，甚至cornerBar呢？">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2015-09-01T15:52:07+00:00">
+    <meta property="article:modified_time" content="2015-09-01T15:52:07+00:00">
+    <meta property="article:tag" content="IOS">
+    <meta property="article:tag" content="Animation">
+    <meta property="article:tag" content="Objective-C">
+
+  <meta itemprop="name" content="我们是如何创建iOS版的Guillotine菜单动画的">
+  <meta itemprop="description" content="原文：How We Created Guillotine Menu Animation for iOS 原作者 @johnsundell
+你是否曾经有过这样的疑问？为什么app中几乎是清一色的侧边栏（sidebar），为什么不把它做成topBar或者bottomBar，甚至cornerBar呢？">
+  <meta itemprop="datePublished" content="2015-09-01T15:52:07+00:00">
+  <meta itemprop="dateModified" content="2015-09-01T15:52:07+00:00">
+  <meta itemprop="wordCount" content="4127">
+  <meta itemprop="keywords" content="IOS,Animation,Objective-C">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="我们是如何创建iOS版的Guillotine菜单动画的">
+  <meta name="twitter:description" content="原文：How We Created Guillotine Menu Animation for iOS 原作者 @johnsundell
+你是否曾经有过这样的疑问？为什么app中几乎是清一色的侧边栏（sidebar），为什么不把它做成topBar或者bottomBar，甚至cornerBar呢？">
 
 <link rel="icon" href="/favicon.ico" />
 
@@ -51,33 +93,12 @@
 
 
 
-<link rel="stylesheet" href="/sass/jane.min.ec807d8b802a40889537c26e014f733206312ea440d42e1f0dabed80918de1ac.css" integrity="sha256-7IB9i4AqQIiVN8JuAU9zMgYxLqRA1C4fDavtgJGN4aw=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/style.min.a0ae63bb9404f735c1a2045deae9e97f06e10118e5ad7befa80df30c5cd7fabc.css" integrity="sha256-oK5ju5QE9zXBogRd6unpfwbhARjlrXvvqA3zDFzX&#43;rw=" media="screen"
+  crossorigin="anonymous">
 
 
 
 
-
-<meta property="og:title" content="我们是如何创建iOS版的Guillotine菜单动画的" />
-<meta property="og:description" content="原文：How We Created Guillotine Menu Animation for iOS 原作者 @johnsundell 你是否曾经有过这样的疑问？为什么app中几乎是清一色的侧边栏（sidebar），为什么不把它做成topBa" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://hechen.github.io/post/how-we-created-guillotine-menu-animation-for-ios/" />
-<meta property="article:published_time" content="2015-09-01T15:52:07&#43;00:00"/>
-<meta property="article:modified_time" content="2015-09-01T15:52:07&#43;00:00"/>
-
-<meta itemprop="name" content="我们是如何创建iOS版的Guillotine菜单动画的">
-<meta itemprop="description" content="原文：How We Created Guillotine Menu Animation for iOS 原作者 @johnsundell 你是否曾经有过这样的疑问？为什么app中几乎是清一色的侧边栏（sidebar），为什么不把它做成topBa">
-
-
-<meta itemprop="datePublished" content="2015-09-01T15:52:07&#43;00:00" />
-<meta itemprop="dateModified" content="2015-09-01T15:52:07&#43;00:00" />
-<meta itemprop="wordCount" content="4126">
-
-
-
-<meta itemprop="keywords" content="iOS,Animation,Objective-C," />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="我们是如何创建iOS版的Guillotine菜单动画的"/>
-<meta name="twitter:description" content="原文：How We Created Guillotine Menu Animation for iOS 原作者 @johnsundell 你是否曾经有过这样的疑问？为什么app中几乎是清一色的侧边栏（sidebar），为什么不把它做成topBa"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -91,465 +112,481 @@
 
 
 
+
+<script>
+  (function () {
+    var savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  })();
+</script>
+
+
 </head>
+
 <body>
-  <div id="mobile-navbar" class="mobile-navbar">
-  <div class="mobile-header-logo">
-    <a href="/" class="logo">Chen</a>
-  </div>
-  <div class="mobile-navbar-icon">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-</div>
-<nav id="mobile-menu" class="mobile-menu slideout-menu">
-  <ul class="mobile-menu-list">
-    <li class="mobile-menu-item">
-        
-          
-          
-            <a class="menu-item-link" href="https://hechen.github.io/">Home</a>
-          
-        
-      </li><li class="mobile-menu-item">
-        
-          
-          
-            <a class="menu-item-link" href="https://hechen.github.io/post/">Archives</a>
-          
-        
-      </li><li class="mobile-menu-item">
-        
-          
-          
-            <a class="menu-item-link" href="https://hechen.github.io/tags/">Tags</a>
-          
-        
-      </li><li class="mobile-menu-item">
-        
-          
-          
-            <a class="menu-item-link" href="https://hechen.github.io/categories/">Categories</a>
-          
-        
-      </li><li class="mobile-menu-item">
-        
-          
-          
-            <a class="menu-item-link" href="https://hechen.github.io/about/">About</a>
-          
-        
-      </li>
+  <div id="back-to-top"></div>
+
+  <header class="site-header">
     
-  </ul>
-</nav>
-
-
-  
-    
-
-
-
-
-
-
-  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
-  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
-
-
-
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-<div class="pswp__bg"></div>
-
-<div class="pswp__scroll-wrap">
-    
-    <div class="pswp__container">
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-      <div class="pswp__item"></div>
-    </div>
-    
-    <div class="pswp__ui pswp__ui--hidden">
-    <div class="pswp__top-bar">
+<div class="desktop-header">
+  <div class="desktop-header-logo">
+    <a href="/" class="logo">
       
-      <div class="pswp__counter"></div>
-      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-      <button class="pswp__button pswp__button--share" title="Share"></button>
-      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-      
-      
-      <div class="pswp__preloader">
-        <div class="pswp__preloader__icn">
-          <div class="pswp__preloader__cut">
-            <div class="pswp__preloader__donut"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-      <div class="pswp__share-tooltip"></div>
-    </div>
-    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-    </button>
-    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-    </button>
-    <div class="pswp__caption">
-      <div class="pswp__caption__center"></div>
-    </div>
-    </div>
-    </div>
-</div>
-
-  
-
-  
-
-  <header id="header" class="header container">
-    <div class="logo-wrapper">
-  <a href="/" class="logo">
-    
       Chen
-    
-  </a>
+      
+    </a>
+  </div>
+
+  <nav class="desktop-navbar">
+    <ul id="menu" class="menu">
+      
+      
+      <li class="menu-item">
+        
+        
+        
+        <a class="menu-item-link" href="https://hechen.github.io/">首页</a>
+        
+
+        
+
+      </li>
+      
+      <li class="menu-item">
+        
+        
+        
+        <a class="menu-item-link" href="https://hechen.github.io/post/">归档</a>
+        
+
+        
+
+      </li>
+      
+      <li class="menu-item">
+        
+        
+        
+        <a class="menu-item-link" href="https://hechen.github.io/tags/">标签</a>
+        
+
+        
+
+      </li>
+      
+      <li class="menu-item">
+        
+        
+        
+        <a class="menu-item-link" href="https://hechen.github.io/categories/">分类</a>
+        
+
+        
+
+      </li>
+      
+      <li class="menu-item">
+        
+        
+        
+        <a class="menu-item-link" href="https://hechen.github.io/about/">About</a>
+        
+
+        
+
+      </li>
+      
+
+      
+      
+
+      
+
+      <li class="menu-item">
+        <a class="theme-toggle menu-item-link" href="javascript:void(0);">
+
+          
+<svg aria-hidden="true" class="lucide lucide-sun hi-svg-inline theme-icon-light" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+
+          
+<svg aria-hidden="true" class="lucide lucide-moon hi-svg-inline theme-icon-dark" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a class="menu-item-link" href="https://hechen.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+          title="rss" target="_blank">
+          
+<svg aria-hidden="true" class="lucide lucide-rss hi-svg-inline icon--rss" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+        </a>
+        
+      </li>
+    </ul>
+  </nav>
 </div>
 
-<nav class="site-navbar">
-  <ul id="menu" class="menu">
     
-    
-        <li class="menu-item">
-        
-          
-          
-            <a class="menu-item-link" href="https://hechen.github.io/">Home</a>
-          
 
-        
+<div class="mobile-header">
+  <div id="mobile-navbar" class="mobile-navbar">
+    <div id="mobile-navbar-icon" class="mobile-navbar-icon">
+      
+<svg aria-hidden="true" class="lucide lucide-menu hi-svg-inline icon--menu" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+    </div>
+    <div class="mobile-navbar-logo">
+      <a href="/" class="logo">Chen</a>
+    </div>
+  </div>
 
+  <div id="mobile-menu-close-modal" class="mobile-menu-close-modal"></div>
+  <nav id="mobile-menu" class="mobile-menu">
+    <ul class="mobile-menu-list">
+      <li class="mobile-menu-item">
+        
+        
+        
+        <a class="menu-item-link" href="https://hechen.github.io/">首页</a>
+        
+        
+      </li><li class="mobile-menu-item">
+        
+        
+        
+        <a class="menu-item-link" href="https://hechen.github.io/post/">归档</a>
+        
+        
+      </li><li class="mobile-menu-item">
+        
+        
+        
+        <a class="menu-item-link" href="https://hechen.github.io/tags/">标签</a>
+        
+        
+      </li><li class="mobile-menu-item">
+        
+        
+        
+        <a class="menu-item-link" href="https://hechen.github.io/categories/">分类</a>
+        
+        
+      </li><li class="mobile-menu-item">
+        
+        
+        
+        <a class="menu-item-link" href="https://hechen.github.io/about/">About</a>
+        
+        
       </li>
-    
-        <li class="menu-item">
-        
-          
-          
-            <a class="menu-item-link" href="https://hechen.github.io/post/">Archives</a>
-          
+      
 
-        
+      
 
+      <li class="mobile-menu-item">
+        <a class="theme-toggle menu-item-link" href="javascript:void(0);">
+
+          
+<svg aria-hidden="true" class="lucide lucide-sun hi-svg-inline theme-icon-light" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+
+          
+<svg aria-hidden="true" class="lucide lucide-moon hi-svg-inline theme-icon-dark" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+
+        </a>
       </li>
-    
-        <li class="menu-item">
-        
-          
-          
-            <a class="menu-item-link" href="https://hechen.github.io/tags/">Tags</a>
-          
 
+      <li class="mobile-menu-item">
+        <a class="menu-item-link" href="https://hechen.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+          title="rss" target="_blank">
+          
+<svg aria-hidden="true" class="lucide lucide-rss hi-svg-inline icon--rss" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+        </a>
         
-
       </li>
-    
-        <li class="menu-item">
-        
-          
-          
-            <a class="menu-item-link" href="https://hechen.github.io/categories/">Categories</a>
-          
-
-        
-
-      </li>
-    
-        <li class="menu-item">
-        
-          
-          
-            <a class="menu-item-link" href="https://hechen.github.io/about/">About</a>
-          
-
-        
-
-      </li>
-    
-    
-  </ul>
-</nav>
+    </ul>
+  </nav>
+</div>
 
   </header>
 
-  <div id="mobile-panel">
-    <main id="main" class="main bg-llight">
-      <div class="content-wrapper">
-        <div id="content" class="content container">
-          <article class="post bg-white">
-    
-    <header class="post-header">
-      <h1 class="post-title">我们是如何创建iOS版的Guillotine菜单动画的</h1>
+  
+
+  
+
+
+
+  <main id="main" class="main pico container">
+    <div class="content-wrapper">
+    <aside class="left-sidebar">
       
-      <div class="post-meta">
-        <time datetime="2015-09-01" class="post-time">
-          2015-09-01
-        </time>
-        <div class="post-category">
-            <a href="https://hechen.github.io/categories/translation/"> Translation </a>
-            
-          </div>
-        
-
-        
-        
-
-        
-        
-          <span id="/post/how-we-created-guillotine-menu-animation-for-ios/" class="leancloud_visitors" data-flag-title="我们是如何创建iOS版的Guillotine菜单动画的">
-            <span class="post-meta-item-text"> | 阅读 </span>
-            <span class="leancloud-visitors-count"></span>
-          </span>
-        
-      </div>
-    </header>
-
-    
-    
-<div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">文章目录</h2>
-  <div class="post-toc-content">
-    <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#我们是如何开发guillotine-menu的">我们是如何开发Guillotine Menu的？</a>
-<ul>
-<li><a href="#guillotinemenusegue">GuillotineMenuSegue</a></li>
-<li><a href="#guillotinemenutransitionanimation">GuillotineMenuTransitionAnimation</a></li>
-</ul></li>
-<li><a href="#我们如何实现菜单视图的掉落以及旋转">我们如何实现菜单视图的掉落以及旋转？</a>
-<ul>
-<li><a href="#uiviewextension">UIViewExtension</a></li>
-<li><a href="#guillotine-menu-view-controller">Guillotine Menu View Controller</a></li>
-</ul></li>
-<li><a href="#你如何才能定制该动画">你如何才能定制该动画？</a></li>
-</ul></li>
-</ul></li>
-</ul>
+<nav class="toc" id="toc">
+    <div class="toc-title">文章目录</div>
+    <div class="toc-content custom-scrollbar">
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#我们是如何开发guillotine-menu的">我们是如何开发Guillotine Menu的？</a></li>
+        <li><a href="#我们如何实现菜单视图的掉落以及旋转">我们如何实现菜单视图的掉落以及旋转？</a></li>
+        <li><a href="#你如何才能定制该动画">你如何才能定制该动画？</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
+    </div>
+  </nav>
+
+
+    </aside>
+
+    <div id="content" class="content">
+      <article class="post">
+        
+        <header class="post-header">
+          <h1 class="post-title">我们是如何创建iOS版的Guillotine菜单动画的</h1>
+          
+
+
+
+          <div class="post-meta-list">
+  <div class="post-meta-item post-meta-author">
+    
+<svg aria-hidden="true" class="lucide lucide-user-round-pen hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M2 21a8 8 0 0 1 10.821-7.487"/><path d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/><circle cx="10" cy="8" r="5"/></svg>
+    <a href="/about">
+      <span class="post-meta-author-name">
+        Chen
+      </span>
+    </a>
+    
+  </div>
+
+  <div class="post-meta-item post-meta-time">
+    
+<svg aria-hidden="true" class="lucide lucide-calendar-days hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
+    <time datetime=" 2015-09-01">
+      2015-09-01
+    </time>
+
+
+    
+
+  </div>
+
+
+  <div class="post-meta__right">
+    
+
+    <div class="post-meta-item post-meta-category">
+      
+        
+          
+        <a href="https://hechen.github.io/categories/translation/">translation</a>
+    </div>
+
+
+    
+    
+
+
+    
+    
   </div>
 </div>
 
-    
-    <div class="post-content">
-      
+        </header>
 
-<blockquote>
+        
+        <div class="post-content">
+          <blockquote>
 <p>原文：<a href="https://yalantis.com/blog/how-we-created-guillotine-menu-animation/">How We Created Guillotine Menu Animation for iOS</a>
 原作者 <a href="https://twitter.com/johnsundell">@johnsundell</a></p>
 </blockquote>
-
 <p>你是否曾经有过这样的疑问？为什么app中几乎是清一色的<strong>侧</strong>边栏（sidebar），为什么不把它做成<strong>top</strong>Bar或者<strong>bottom</strong>Bar，甚至<strong>corner</strong>Bar呢？</p>
-
 <p>本文将要谈到的就是当前导航条动画的一个新趋势。</p>
-
 <!-- more -->
-
 <p>动画很有趣，但更重要的是能发挥很大的作用，它们可以改变你思考问题的方式，使得你的产品更好用并提升的app整体的用户体验。接下来我们将要展示的是设计师<strong>Vitaly Rubtsov</strong>的一个非常棒的点子：</p>
-
 <p>“每个设计师都有那么一刻感到无聊。因为几乎所有（对动画）的完善修补、裁剪以及规格设定都给他们留下了很少发挥想象的余地。而每当这些时候，我就会驱使自己打开Adobe After Effects软件然后创作一些比较有趣的东西。</p>
-
 <p>当我开始想我要创建一个什么东西的时候，我突然有个想法，通常侧边栏都从屏幕左侧划出，同时将所有的内容都移动到右侧位置。这种传统侧边栏的实现方式太过无聊了。那如果我们将侧边栏变成上边栏会怎么样呢？它从页面的上方掉落然后以一种特别的方式呈现，听起来很棒不是吗？“</p>
-
 <p><strong>Vitaly</strong>设计的topBar动画由我们的iOS开发工程师<strong>Maksym Lazebnyi</strong>使用<code>swift</code>语言实现，并且开发者给了它一个很有趣的名字—— <strong>Guillotine Menu</strong>。</p>
-
-<p><img src="https://i.imgur.com/Q2GueMC.gif" alt="Guillotine Menu Animation" /></p>
-
-<hr />
-
+<p><img src="https://i.imgur.com/Q2GueMC.gif" alt="Guillotine Menu Animation"></p>
+<hr>
 <h3 id="我们是如何开发guillotine-menu的">我们是如何开发Guillotine Menu的？</h3>
-
 <p><strong>by Makssym Lazebnyi</strong></p>
-
 <p>实际上，我们的iOS团队见到过很多实现这种动画效果的方法。我们选择了其中一种方式实现，这种方式允许开发者在Storyboard中以任何方式自定义菜单。</p>
-
 <p>为了实现我们的转场动画（transitioning animation），我们创建了一个UIStoryboardSegue的子类和一个自定义动画管理器（custom animation controller）。基本上这就是你实现该动画所需要做的全部工作，除非你想让它更炫酷。当然我们也确实想这样做，因此还创建了一些辅助的类。</p>
-
 <p>整体上，你需要三个类以及一个<code>UIView</code>的扩展类来创建这个动画，如下所示：</p>
-
 <ul>
-<li><p><code>GuillotineMenuSegue</code>.  该类是继承自<code>UIStoryboardSegue</code>类。我们使用它来模态显示菜单，并实现由 <code>GuillotineMenuTransitionAnimation</code>类控制的呈现动画。 <code>GuillotineMenuSegue</code>允许你为菜单添加透明度，当然本文并没有做这个工作。</p></li>
-
-<li><p><code>GuillotineMenuTransitionAnimation</code>.  该类是为了自定义呈现  <code>GuillotineMenuViewController</code> 类中视图的动画所用。</p></li>
-
-<li><p><code>GuillotineMenuViewController</code>. 该类是一个UIViewController的子类，存放菜单视图所用。</p></li>
+<li>
+<p><code>GuillotineMenuSegue</code>.  该类是继承自<code>UIStoryboardSegue</code>类。我们使用它来模态显示菜单，并实现由 <code>GuillotineMenuTransitionAnimation</code>类控制的呈现动画。 <code>GuillotineMenuSegue</code>允许你为菜单添加透明度，当然本文并没有做这个工作。</p>
+</li>
+<li>
+<p><code>GuillotineMenuTransitionAnimation</code>.  该类是为了自定义呈现  <code>GuillotineMenuViewController</code> 类中视图的动画所用。</p>
+</li>
+<li>
+<p><code>GuillotineMenuViewController</code>. 该类是一个UIViewController的子类，存放菜单视图所用。</p>
+</li>
 </ul>
-
 <p>除此之外，我们还为UIView添加了扩展方法以便能为子视图添加约束来更好的适应父视图。</p>
-
 <p>接下来，我们逐一对每一个类进行阐述。</p>
-
 <h4 id="guillotinemenusegue">GuillotineMenuSegue</h4>
-
 <p>这个类中没有什么特别的地方，我只提及一些关键点。</p>
-
 <p>在该类重载的init方法中，我们检查目标视图控制器（destination view controller）是否遵守<code>GuillotineAnimationProtocol</code> 协议（该协议我们后面会讲到）。在重载的perform方法中我们将self设置成一个过渡动画的代理。</p>
-
 <p>在代理方法 <code>animationControllerForPresentedController</code> 中我们使用关联对象将<code>GuillotineMenuSegue</code>的实例对象（<strong>self</strong>）关联到具体的将要呈现的视图控制器中，这样当menu view controller呈现在屏幕上的时候，segue实例不会被销毁。（译者注：代码如下）</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
+<div class="highlight-container">
+
+  <button class="copy-code-btn outline">Copy</button>
+
+  
+  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
 </span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="p">-</span> <span class="p">(</span><span class="kt">id</span> <span class="o">&lt;</span><span class="n">UIViewControllerAnimatedTransitioning</span><span class="o">&gt;</span><span class="p">)</span><span class="nf">animationControllerForPresentedController:</span><span class="p">(</span><span class="n">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">presented</span> <span class="nf">presentingController:</span><span class="p">(</span><span class="n">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">presenting</span> <span class="nf">sourceController:</span><span class="p">(</span><span class="n">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">source</span>
-<span class="p">{</span>
-	<span class="c1">// 将segue示例self关联到将要呈现的试图控制器presented中，这样确保presented生命周期内segue实例不会被释放
-</span><span class="c1"></span>    <span class="n">objc_setAssociatedObject</span><span class="p">(</span><span class="n">presented</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">key</span><span class="p">,</span> <span class="nb">self</span><span class="p">,</span> <span class="n">OBJC_ASSOCIATION_RETAIN_NONATOMIC</span><span class="p">);</span>
-    
-    <span class="k">return</span> <span class="p">[[</span><span class="n">GuillotineTransitionAnimation</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithMode</span><span class="p">:</span><span class="n">AnimationModePresentation</span><span class="p">];</span>
-<span class="p">}</span></code></pre></td></tr></table>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-objc" data-lang="objc"><span style="display:flex;"><span>- (<span style="color:#66d9ef">id</span> <span style="color:#f92672">&lt;</span>UIViewControllerAnimatedTransitioning<span style="color:#f92672">&gt;</span>)<span style="color:#a6e22e">animationControllerForPresentedController:</span>(UIViewController <span style="color:#f92672">*</span>)presented <span style="color:#a6e22e">presentingController:</span>(UIViewController <span style="color:#f92672">*</span>)presenting <span style="color:#a6e22e">sourceController:</span>(UIViewController <span style="color:#f92672">*</span>)source
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 将segue示例self关联到将要呈现的试图控制器presented中，这样确保presented生命周期内segue实例不会被释放
+</span></span></span><span style="display:flex;"><span>    objc_setAssociatedObject(presented, <span style="color:#f92672">&amp;</span>key, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [[GuillotineTransitionAnimation alloc] initWithMode:AnimationModePresentation];
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
+</div>
 </div>
 </div>
 <h4 id="guillotinemenutransitionanimation">GuillotineMenuTransitionAnimation</h4>
-
 <p>所有的动画处理逻辑都在这个类中实现。</p>
-
 <p>起初我们考虑使用 <code>animateWithDuration usingSpringWithDamping &amp; initialSprintVelocity</code>方法，但是当我们认真考虑这个动画之后我们改变了主意。我们需要实现的菜单动画中，当菜单从上方掉落之后，需要和父视图的左侧边界发生碰撞，产生碰撞效果。而上面方法中的回弹效果会穿过左边界（spring through the border of the superview），因此我们放弃了这个实现方式，转而采用了<code>UIDynamicAnimator</code>。</p>
-
 <p>为了实现我们的动画，<code>GuillotineMenuTransitionAnimation</code>类必须遵从 <code>UIViewControllerAnimatedTransitioning</code> 协议，该协议中有两个代理方法：</p>
-
 <ul>
-<li><p>transitionDuration  动画的过渡时间对我们影响不是太多，因此你可以返回任意的时间值。</p></li>
-
-<li><p>animationDuration 当菜单开启和关闭均会调用该方法</p></li>
+<li>
+<p>transitionDuration  动画的过渡时间对我们影响不是太多，因此你可以返回任意的时间值。</p>
+</li>
+<li>
+<p>animationDuration 当菜单开启和关闭均会调用该方法</p>
+</li>
 </ul>
-
-<hr />
-
+<hr>
 <p>###我们如何计算动画的位置信息？</p>
-
 <p>我们需要了解动画中每一刻的精确位置。<code>GuillotineMenuTransitionAnimation</code>类需要<code>GuillotineMenuViewController</code>提供menu button中心的坐标来做为旋转动画的锚点（anchorPoint）。另外还需要<code>GuillotineMenuViewController</code>提供一些其他属性，因此我们创建一个协议<code>GuillotineMenuViewController</code>，视图控制器通过遵守该协议返回我们所需要的几个属性。
 代码如下：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
+<div class="highlight-container">
+
+  <button class="copy-code-btn outline">Copy</button>
+
+  
+  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-Swift" data-lang="Swift"> <span class="kr">@objc</span> <span class="kd">protocol</span> <span class="nc">GuillotineAnimationProtocol</span><span class="p">:</span> <span class="nb">NSObjectProtocol</span> <span class="p">{</span>
-      <span class="kd">func</span> <span class="nf">navigationBarHeight</span><span class="p">()</span> <span class="p">-&gt;</span><span class="n">CGFloat</span>
-      <span class="kd">func</span> <span class="nf">anchorPoint</span><span class="p">()</span> <span class="p">-&gt;</span><span class="n">CGPoint</span>
-      <span class="kd">func</span> <span class="nf">hostTitle</span><span class="p">()</span> <span class="p">-&gt;</span><span class="n">NSString</span>
- <span class="p">}</span></code></pre></td></tr></table>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Swift" data-lang="Swift"><span style="display:flex;"><span> <span style="color:#66d9ef">@objc</span> <span style="color:#66d9ef">protocol</span> <span style="color:#a6e22e">GuillotineAnimationProtocol</span>: NSObjectProtocol {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">navigationBarHeight</span>() -&gt;CGFloat
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">anchorPoint</span>() -&gt;CGPoint
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">hostTitle</span>() -&gt;NSString
+</span></span><span style="display:flex;"><span> }</span></span></code></pre></td></tr></table>
+</div>
 </div>
 </div>
 <p>译者注：Objective-C版本代码如下：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
+<div class="highlight-container">
+
+  <button class="copy-code-btn outline">Copy</button>
+
+  
+  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
 </span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-objc" data-lang="objc"><span class="k">@protocol</span> <span class="nc">GuillotineAnimationProtocol</span> <span class="o">&lt;</span><span class="n">NSObject</span><span class="o">&gt;</span>
-	<span class="o">-</span> <span class="p">(</span><span class="n">CGFloat</span><span class="p">)</span> <span class="n">navigationBarHeight</span><span class="p">;</span>
-	<span class="p">-</span> <span class="p">(</span><span class="n">CGPoint</span><span class="p">)</span> <span class="nf">anchorPoint</span><span class="p">;</span>
-	<span class="p">-</span> <span class="p">(</span><span class="n">NSString</span><span class="o">*</span><span class="p">)</span> <span class="nf">hostTitle</span><span class="p">;</span>
-<span class="k">@end</span></code></pre></td></tr></table>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-objc" data-lang="objc"><span style="display:flex;"><span><span style="color:#66d9ef">@protocol</span> <span style="color:#a6e22e">GuillotineAnimationProtocol</span> <span style="color:#f92672">&lt;</span>NSObject<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">-</span> (CGFloat) navigationBarHeight;
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">-</span> (CGPoint) anchorPoint;
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">-</span> (NSString<span style="color:#f92672">*</span>) hostTitle;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@end</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
-<p>这三个方法的意义如下：
-- <strong>navigationBarHeight</strong>  <code>GuillotineMenuViewController</code>开始显示动画的时候需要旋转90度，同时覆盖导航条（navigation bar）。我们需要将<code>GuillotineMenuViewController</code>中的视图位置设置成<code>CGPoint(0，navigationBarHeight)</code>；</p>
-
+</div>
+<p>这三个方法的意义如下：</p>
 <ul>
-<li><p><strong>anchorPoint</strong> 提供我们动画的旋转轴心，这里是<code>GuillotineMenuViewController</code>中的menu button的中心位置；</p></li>
-
-<li><p><strong>hostTitle</strong> 用来询问<code>GuillotineMenuViewController</code>获得主视图控制器的标题。</p></li>
+<li>
+<p><strong>navigationBarHeight</strong>  <code>GuillotineMenuViewController</code>开始显示动画的时候需要旋转90度，同时覆盖导航条（navigation bar）。我们需要将<code>GuillotineMenuViewController</code>中的视图位置设置成<code>CGPoint(0，navigationBarHeight)</code>；</p>
+</li>
+<li>
+<p><strong>anchorPoint</strong> 提供我们动画的旋转轴心，这里是<code>GuillotineMenuViewController</code>中的menu button的中心位置；</p>
+</li>
+<li>
+<p><strong>hostTitle</strong> 用来询问<code>GuillotineMenuViewController</code>获得主视图控制器的标题。</p>
+</li>
 </ul>
-
-<hr />
-
+<hr>
 <h3 id="我们如何实现菜单视图的掉落以及旋转">我们如何实现菜单视图的掉落以及旋转？</h3>
-
 <p>为了实现掉落以及旋转的动画，我们使用<code>UIDynamicAnimator</code>并为其添加四种动力行为：
- （译者注：实际上实现UIKit动力学中的推动力、吸附、碰撞以及辅助行为，详见<a href="http://www.coderyi.com/archives/426">UIKit动力学</a>）
-- <code>UIPushBehavior</code>  为view添加一个拖拽的力，当我们需要呈现显示动画的时候，施加到view的底部，当我们需要呈现关闭菜单的动画时，施加到view的顶部；</p>
-
+（译者注：实际上实现UIKit动力学中的推动力、吸附、碰撞以及辅助行为，详见<a href="http://www.coderyi.com/archives/426">UIKit动力学</a>）</p>
 <ul>
-<li><p><code>UIAttachmentBehavior</code> 相当于一个钉子在menu button的中心点将整个view固定住。</p></li>
-
-<li><p><code>UICollisionBehavior</code>  我们为view的父视图（<strong>superview</strong>）添加了一个边界，从视图中心位置到左下角位置的长度。用以实现<code>GuillotineMenuViewController</code>在掉落路径的末端模拟碰撞效果（译者注：当菜单视图关闭而回弹到上方时，同样需要添加boundary，不过此时是在顶部，屏幕水平方向菜单视图的中心位置到其右下角位置）；</p></li>
-
-<li><p><code>UIDynamicItemBehavior</code> 实现菜单碰撞左边界之后的回弹效果。</p></li>
+<li>
+<p><code>UIPushBehavior</code>  为view添加一个拖拽的力，当我们需要呈现显示动画的时候，施加到view的底部，当我们需要呈现关闭菜单的动画时，施加到view的顶部；</p>
+</li>
+<li>
+<p><code>UIAttachmentBehavior</code> 相当于一个钉子在menu button的中心点将整个view固定住。</p>
+</li>
+<li>
+<p><code>UICollisionBehavior</code>  我们为view的父视图（<strong>superview</strong>）添加了一个边界，从视图中心位置到左下角位置的长度。用以实现<code>GuillotineMenuViewController</code>在掉落路径的末端模拟碰撞效果（译者注：当菜单视图关闭而回弹到上方时，同样需要添加boundary，不过此时是在顶部，屏幕水平方向菜单视图的中心位置到其右下角位置）；</p>
+</li>
+<li>
+<p><code>UIDynamicItemBehavior</code> 实现菜单碰撞左边界之后的回弹效果。</p>
+</li>
 </ul>
-
 <p>基本上，我们的动画是这样，首先使用<code>CGAffineTransformRotate</code>将<code>GuillotineMenuViewController</code>的view旋转正向90度，设置该view的边框位置为<code>CGPoint(0, navigationBarHeight)</code>。然后，我们将该view添加以上每一种需要使用的<code>UIDynamicBehavior</code>（UIPushBehavior、UIAttachmentBehavior、UICollisionBehavior以及UIDynamicItemBehavior）。</p>
-
 <p><code>UIDynamicAnimator</code>会使得菜单的动画持续，一直到所有附加在其上的物理作用力达到平衡。</p>
-
 <p>我们通过代理协议<code>UIDynamicAnimatorDelegate</code>来告知视图控制器动画的完成情况。另外，我们还需要调用<code>endAppearanceTransition()</code>方法。</p>
-
 <p>这里有一个比较棘手的地方就是设置<strong>anchorPoint</strong>。为了使得动画正确呈现，锚点的位置到<code>GuillotineMenuViewController</code>中视图的左边界的距离必须和锚点到顶部导航条底部之间的距离相同。而且，当设备发生旋转也需要修改锚点位置。但是<code>GuillotineMenuTransitionAnimation</code>类调用代理方法<code>anchorPoint()</code>是在<code>viewDidLayoutSubviews()</code>用之前。</p>
-
 <p>因此我们将设备处于水平方向时的按钮位置进行了硬编码</p>
-
 <p>译者注： 设备布局一旦发生变化，例如设备进行了旋转，便会调用<code>viewDidLayoutSubviews()</code>方法，本身我们可以在该方法中动态调整按钮位置（也就是锚点位置），可是转场动画必须在该方法调用之前取到锚点位置，因此矛盾。作者就在代码里硬编码处理布局发生变化之后菜单按钮的位置了。</p>
-
 <h4 id="uiviewextension">UIViewExtension</h4>
-
 <p>针对UIView的简单扩展，主要是针对子视图添加约束以更好的适应父视图。代码本身就很好能够说明功能了（self explanatory），这里就不叙述了。</p>
-
 <p>译者注： 针对Objective-C语言的类扩展和swift语言不同，在objc实现版本中，文件名字为UIView+ConstraintExtension.h和UIView+ConstraintExtension.m</p>
-
 <h4 id="guillotine-menu-view-controller">Guillotine Menu View Controller</h4>
-
 <p>你可以继承该视图控制器或者进行任何的自定义甚至重写。唯一必须要记得是的遵守<code>GuillotineAnimationProtocol</code>协议。</p>
-
-<hr />
-
+<hr>
 <h3 id="你如何才能定制该动画">你如何才能定制该动画？</h3>
-
 <p>你可以用任何可能的方式来定制菜单视图！你只需要创建一个自定义的<code>GuillotineMenuSegue</code>，其中源视图控制器就是你的主视图控制器（host view controller），目标视图控制器就是你需要呈现的菜单视图控制器。</p>
-
 <p>实话讲，刚开始创建这个动画的时候我自认为这是一件很简单的事情，这个过程应该也没什么挑战。可是现在我们必须承认，对于iOS开发者而言这里面还有巨大的潜力可挖。另外，我们的动画还可以作为一个简单的动画视图来使用，或者作为一个带有自定义导航条的<code>UINavigationViewController</code>的子类来使用。接下来我们计划将不断更新这项工作，力图创造一个完整的带自定义转场动画效果的<code>UINavigationViewController</code>的子类。</p>
-
 <p>你可以在以下这几个位置找到我们的工程源码以及设计：</p>
-
 <ul>
 <li><a href="https://github.com/Yalantis/GuillotineMenu">GitHub</a></li>
 <li><a href="https://dribbble.com/shots/2018249-Side-Topbar-Animation">Dribbble</a></li>
 </ul>
-
 <blockquote>
 <p>译者注：Objective-C 版本实现可以参见<a href="https://github.com/hechen/GuillotineMenu-objc">GuillotineMenu-objc</a></p>
 </blockquote>
 
-    </div>
+        </div>
 
-    
-    
+        
+        
 <div class="post-copyright">
   <p class="copyright-item">
     <span class="item-title">文章作者</span>
-    <span class="item-content">chen</span>
+    <span class="item-content">Chen</span>
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2015-09-01</span>
+    <span class="item-content">
+      2015-09-01
+      
+    </span>
   </p>
   
   <p class="copyright-item">
@@ -559,167 +596,128 @@
 </div>
 
 
-    
-    
 
-    <footer class="post-footer">
-      <div class="post-tags">
-          <a href="https://hechen.github.io/tags/ios/">iOS</a>
-          <a href="https://hechen.github.io/tags/animation/">Animation</a>
-          <a href="https://hechen.github.io/tags/objective-c/">Objective-C</a>
+        
+        
+
+
+        <footer class="post-footer">
+          <div class="post-tags">
+              <a href="https://hechen.github.io/tags/ios/">iOS</a>
+                <a href="https://hechen.github.io/tags/animation/">Animation</a>
+                <a href="https://hechen.github.io/tags/objective-c/">Objective-C</a>
+                
+            </div>
+
+
           
-        </div>
-
-      
-      <nav class="post-nav">
-        
-          <a class="prev" href="/post/understanding-the-objective-c-runtime/">
+          <nav class="post-nav">
             
-            <i class="iconfont">
-              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="18" height="18">
-  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
-</svg>
-
-            </i>
-            <span class="prev-text nav-default">理解Objective-C运行时</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
-        
-          <a class="next" href="/post/leetcode-021-implementstrstr/">
-            <span class="next-text nav-default">[28] Implement strStr()</span>
-            <span class="prev-text nav-mobile">下一篇</span>
+              <a class="prev" href="/post/understanding-the-objective-c-runtime/">
+                
+                <i class="iconfont">
+                  
+<svg aria-hidden="true" class="lucide lucide-chevron-left hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"/></svg>
+                </i>
+                <span class="prev-text nav-default">理解Objective-C运行时</span>
+                <span class="prev-text nav-mobile">上一篇</span>
+              </a>
             
-            <i class="iconfont">
-              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="18" height="18">
-  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
-</svg>
+              <a class="next" href="/post/leetcode-021-implementstrstr/">
+                <span class="next-text nav-default">[28] Implement strStr()</span>
+                <span class="prev-text nav-mobile">下一篇</span>
+                
+                <i class="iconfont">
+                  
+<svg aria-hidden="true" class="lucide lucide-chevron-right hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"/></svg>
+                </i>
+              </a>
+          </nav>
+        </footer>
+      </article>
 
-            </i>
-          </a>
-      </nav>
-    </footer>
-  </article>
-
-  
-  
-
-  
-  
-
-  
-  
-    <div class="post bg-white">
-      <script src="https://utteranc.es/client.js"
-            repo= "hechen/Comments"
-            issue-term="pathname"
-            crossorigin="anonymous"
-            async>
-      </script>
-    </div>
-  
-
-  
-
-  
-
-  <div class="disqus-comment">
-  <div class="disqus-button" id="load_disqus" onclick="load_disqus()">
-    显示 Disqus 评论
-  </div>
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-    var disqus_config = function () {
-      this.page.url = "https://hechen.github.io/post/how-we-created-guillotine-menu-animation-for-ios/";
-    };
-    function load_disqus() {
       
       
-      if (window.location.hostname === 'localhost') return;
 
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      var disqus_shortname = 'stoneman';
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
 
-      $('#load_disqus').remove();
-    };
+      
+      
+
+  
+
+  
+  
+
+  
+  
+    <div class="post">
+  <script src="https://utteranc.es/client.js"
+        repo= "hechen/Comments"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
   </script>
-  <noscript>Please enable JavaScript to view the
-    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
+</div>
+
   
-  </div>
+
   
+
+  
+
     
 
-
-
-        </div>
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="icon-links">
   
+
   
-    <a href="mailto:hechen.dream@gmail.com" rel="me noopener" class="iconfont"
-      title="email" >
-      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="36" height="36">
+
+
+    </div>
+
+    <aside class="right-sidebar">
+      
+    </aside>
+  </div>
+  </main>
+
+  <footer id="footer" class="site-footer">
+    <div class="social-icon-links">
+  
+
+
+<a href="mailto:hechen.dream@gmail.com" rel="me noopener" class="social-icon-link" title="email" >
+  
+<svg aria-hidden="true" class="icon hi-svg-inline" fill="currentColor" height="1em" version="1.1" viewBox="0 0 1451 1024" width="1em" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
   <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
 </svg>
 
-    </a>
+</a>
+
+<a href="https://stackoverflow.com/users/10229101/chen-he" rel="me noopener" class="social-icon-link" title="stack-overflow"  target="_blank" >
   
-    <a href="https://stackoverflow.com/users/10229101/chen-he" rel="me noopener" class="iconfont"
-      title="stack-overflow"  target="_blank"
-      >
-      <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="36" height="36">
-  <path d="M809.714286 932.571429l-638.857143 0 0-274.285714-91.428571 0 0 365.714286 821.714286 0 0-365.714286-91.428571 0 0 274.285714zm-538.285714-299.428571l18.857143-89.714286 447.428571 94.285714-18.857143 89.142857zm58.857143-213.714286l38.285714-83.428571 414.285714 193.714286-38.285714 82.857143zm114.857143-203.428571l58.285714-70.285714 350.857143 293.142857-58.285714 70.285714zm226.857143-216l272.571429 366.285714-73.142857 54.857143-272.571429-366.285714zm-410.285714 840.571429l0-90.857143 457.142857 0 0 90.857143-457.142857 0z"></path>
+<svg aria-hidden="true" class="hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
+  <path d="M15 3h6v6" />
+  <path d="M10 14 21 3" />
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
 </svg>
 
-    </a>
+</a>
+<a href="https://github.com/hechen" rel="me noopener" class="social-icon-link" title="github"  target="_blank" >
   
-    <a href="https://twitter.com/OgreMergO" rel="me noopener" class="iconfont"
-      title="twitter"  target="_blank"
-      >
-      <svg class="icon" viewBox="0 0 1264 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="36" height="36">
-  <path d="M1229.8616 18.043658c0 0-117.852626 63.135335-164.151872 67.344358-105.225559-164.151872-505.082682-92.598492-437.738325 223.078185C278.622548 312.675223 89.216542 47.506814 89.216542 47.506814s-117.852626 189.406006 75.762402 345.139833C127.097743 396.85567 55.544363 371.601535 55.544363 371.601535S26.081207 535.753407 253.368414 615.724832c-21.045112 29.463156-113.643603 8.418045-113.643603 8.418045s25.254134 143.10676 231.496229 180.987961c-143.10676 130.479693-387.230056 92.598492-370.393967 105.225559 206.242095 189.406006 1119.599946 231.496229 1128.01799-643.98042C1179.353331 249.539887 1263.533778 123.269217 1263.533778 123.269217s-130.479693 37.881201-138.897738 33.672179C1225.652577 98.015083 1229.8616 18.043658 1229.8616 18.043658"></path>
+<svg aria-hidden="true" class="icon hi-svg-inline" fill="currentColor" height="1em" version="1.1" viewBox="0 0 1024 1024" width="1em" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
 </svg>
 
-    </a>
+</a>
+
+
+<a href="https://hechen.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml" class="social-icon-link" title="rss"
+  target="_blank">
   
-    <a href="https://weibo.com/hc2feifei" rel="me noopener" class="iconfont"
-      title="weibo"  target="_blank"
-      >
-      <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="36" height="36">
-  <path d="M385.714286 733.714286q12-19.428571 6.285714-39.428571t-25.714286-28.571429q-19.428571-8-41.714286-0.571429t-34.285714 26.285714q-12.571429 19.428571-7.428571 39.142857t24.571429 28.857143 42.571429 1.428571 35.714286-27.142857zm53.714286-69.142857q4.571429-7.428571 2-15.142857t-10-10.571429q-8-2.857143-16.285714 2.857143t-12.285714 10.571429q-9.714286 17.714286 7.428571 25.714286 8 2.857143 16.571429 2.857143t12.571429-10.571429zm99.428571 61.142857q-25.714286 58.285714-90.285714 85.714286t-128 6.857143q-61.142857-19.428571-84.285714-72.285714t3.714286-107.142857q26.857143-53.142857 86.571429-79.428571t120.285714-10.857143q63.428571 16.571429 90.571429 68.285714t1.428571 108.857143zm178.285714-91.428571q-5.142857-54.857143-50.857143-97.142857t-119.142857-62.285714-156.857143-12q-127.428571 13.142857-211.142857 80.857143t-75.714286 151.142857q5.142857 54.857143 50.857143 97.142857t119.142857 62.285714 156.857143 12q127.428571-13.142857 211.142857-80.857143t75.714286-151.142857zm176 2.285714q0 38.857143-21.142857 79.714286t-62.285714 78.285714-96.285714 67.142857-129.142857 47.428571-154.571429 17.714286-157.142857-19.142857-137.428571-53.142857-98-86.285714-37.142857-114q0-65.714286 39.714286-140t112.857143-147.428571q96.571429-96.571429 195.142857-134.857143t140.857143 4q37.142857 36.571429 11.428571 119.428571-2.285714 8-0.571429 11.428571t5.714286 4 8.285714 2.857143 7.714286-2l3.428571-1.142857q79.428571-33.714286 140.571429-33.714286t87.428571 34.857143q25.714286 36 0 101.714286-1.142857 7.428571-2.571429 11.428571t2.571429 7.142857 6.857143 4.285714 9.714286 3.428571q32.571429 10.285714 58.857143 26.857143t45.714286 46.571429 19.428571 66.571429zm-42.285714-356.571429q24 26.857143 31.142857 62t-3.714286 67.142857q-4.571429 13.142857-16.857143 19.428571t-25.428571 2.285714q-13.142857-4.571429-19.428571-16.857143t-2.285714-25.428571q11.428571-36-13.714286-63.428571t-61.142857-20q-13.714286 2.857143-25.714286-4.571429t-14.285714-21.142857q-2.857143-13.714286 4.571429-25.428571t21.142857-14.571429q34.285714-7.428571 68 3.142857t57.714286 37.428571zm103.428571-93.142857q49.714286 54.857143 64.285714 127.142857t-7.714286 138q-5.142857 15.428571-19.428571 22.857143t-29.714286 2.285714-22.857143-19.428571-2.857143-29.714286q16-46.857143 5.714286-98.285714t-45.714286-90.285714q-35.428571-39.428571-84.571429-54.571429t-98.857143-4.857143q-16 3.428571-29.714286-5.428571t-17.142857-24.857143 5.428571-29.428571 24.857143-16.857143q70.285714-14.857143 139.428571 6.571429t118.857143 76.857143z"></path>
-</svg>
+<svg aria-hidden="true" class="lucide lucide-rss hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+</a>
 
-    </a>
-
-
-<a href="https://hechen.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
-    class="iconfont" title="rss" target="_blank">
-    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="30" height="30">
-  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
-</svg>
-
-  </a>
-   
 </div>
 
 <div class="copyright">
@@ -734,23 +732,18 @@
   <span class="copyright-year">
     &copy;
     
-      2015 -
-    2020
+    2015 -
+    2026
     <span class="heart">
       
       <i class="iconfont">
-        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="14" height="14">
-  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
-   fill="#8a8a8a"></path>
-</svg>
-
+        
+<svg aria-hidden="true" class="lucide lucide-heart hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
       </i>
     </span><span class="author">
-        chen
-        
-      </span></span>
+      Chen
+      
+    </span></span>
 
   
   
@@ -758,28 +751,20 @@
   
 </div>
 
-    </footer>
+  </footer>
 
-    <div class="back-to-top" id="back-to-top">
-      <i class="iconfont">
-        
-        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
-  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  width="35" height="35">
-  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
-</svg>
-
-      </i>
-    </div>
-  </div>
   
-<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
 
 
 
 
-<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/main.825a735b828ff4d6bcd5e24cb3cd9f61039aff34e3bc692884644008aff75707.js" integrity="sha256-glpzW4KP9Na81eJMs82fYQOa/zTjvGkohGRACK/3Vwc=" crossorigin="anonymous"></script>
+
+
+
+
+
+
 
 
 
@@ -787,7 +772,6 @@
 
 
   
-    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
     <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
     <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
   
@@ -798,122 +782,16 @@
 
 
 
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script type="text/javascript">
-    AV.initialize("wgbxcKzgAuMNE8wvfGp38xwG-gzGzoHsz", "JPVrQwSXVrxiVVsK3WoViro4");
-  </script>
-
-  <script>
-    function showHitCount(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push($(this).attr("id").trim());
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var hits = item.get('hits');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(hits);
-          }
-          for (var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if (countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function (results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("hits");
-            counter.save(null, {
-              success: function (counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('hits'));
-              },
-              error: function (counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-             
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-             
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("hits", 1);
-            newcounter.save(null, {
-              success: function (newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('hits'));
-              },
-              error: function (newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function (error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function () {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        
-        addCount(Counter);
-      } else if ($('.post-link').length > 1) {
-        
-        showHitCount(Counter);
-      }
-    });
-  </script>
 
 
 
-  <script id="dsq-count-scr" src="//stoneman.disqus.com/count.js" async></script>
+
+
 
 
 
 
 
 </body>
+
 </html>
