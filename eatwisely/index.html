@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatWisely - AI-Powered Nutrition Tracking</title>
+    <meta name="description" content="Track your meals effortlessly with AI. Snap a photo, get instant nutrition info. Available on iPhone, iPad, Apple Watch, and Mac.">
+    <meta name="keywords" content="nutrition tracking, calorie counter, food diary, AI meal tracking, iOS app, health app, diet tracker">
+    <meta property="og:title" content="EatWisely - AI-Powered Nutrition Tracking">
+    <meta property="og:description" content="Snap a photo of your meal and let AI do the rest. Accurate nutrition tracking made simple.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="og-image.png">
+    <link rel="apple-touch-icon" href="icon.png">
+    <style>
+        :root {
+            --green-400: #4ADE80;
+            --green-500: #22C55E;
+            --green-600: #16A34A;
+            --green-700: #15803D;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--gray-50);
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--green-600) 0%, var(--green-700) 100%);
+            color: white;
+            padding: 80px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: pulse 15s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.3; }
+        }
+        
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.75rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        
+        .tagline {
+            font-size: 1.35rem;
+            opacity: 0.95;
+            max-width: 650px;
+            margin: 0 auto 32px;
+            position: relative;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            margin-bottom: 32px;
+            position: relative;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 14px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background: white;
+            color: var(--green-700);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.25);
+        }
+        
+        /* Features */
+        .features {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--gray-900);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            margin: 0 auto 48px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+        
+        .feature-card {
+            background: var(--gray-50);
+            padding: 32px;
+            border-radius: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--gray-900);
+        }
+        
+        .feature-card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+            background: var(--gray-50);
+        }
+        
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 48px;
+        }
+        
+        .step {
+            text-align: center;
+            max-width: 280px;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--green-500), var(--green-600));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 16px;
+        }
+        
+        .step h3 {
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            color: var(--gray-900);
+        }
+        
+        .step p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+        
+        /* Platforms */
+        .platforms {
+            padding: 80px 0;
+            background: white;
+            text-align: center;
+        }
+        
+        .platform-icons {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .platform {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .platform-icon {
+            font-size: 3rem;
+        }
+        
+        .platform span {
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+        
+        /* Privacy Highlight */
+        .privacy-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, var(--gray-800), var(--gray-900));
+            color: white;
+            text-align: center;
+        }
+        
+        .privacy-section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 16px;
+        }
+        
+        .privacy-section p {
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+        
+        .privacy-link {
+            color: var(--green-400);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .privacy-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            background: var(--gray-900);
+            color: var(--gray-200);
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--gray-200);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 60px 0 80px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .features, .how-it-works, .platforms {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">🥗</div>
+            <h1>EatWisely</h1>
+            <p class="tagline">AI-powered nutrition tracking that actually works. Snap a photo, get instant nutrition info.</p>
+            <div class="badge">✨ Powered by GPT-4 Vision & Claude</div>
+            <div class="cta-buttons">
+                <a href="https://apps.apple.com/app/eatwisely/id6759225918" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                    Download on App Store
+                </a>
+                <a href="#features" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </header>
+    
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why EatWisely?</h2>
+            <p class="section-subtitle">Stop guessing about nutrition. Let AI do the heavy lifting so you can focus on eating well.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📸</div>
+                    <h3>Snap & Track</h3>
+                    <p>Take a photo of your meal. Our AI identifies every item and estimates calories, protein, carbs, and fats instantly.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Accurate Estimates</h3>
+                    <p>Powered by GPT-4 Vision and Claude, with context awareness for portion sizes and preparation methods.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Beautiful Insights</h3>
+                    <p>Track your progress with intuitive charts. See daily, weekly, and monthly trends at a glance.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Barcode Scanner</h3>
+                    <p>Scan packaged foods to get exact nutrition from our database of millions of products.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⌚</div>
+                    <h3>Apple Watch</h3>
+                    <p>Quick logging and calorie tracking right from your wrist. Syncs seamlessly with iPhone.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🍳</div>
+                    <h3>Recipe Support</h3>
+                    <p>Save favorite meals as recipes. Log complex dishes with one tap.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Three simple steps to effortless nutrition tracking</p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Snap Your Meal</h3>
+                    <p>Take a photo or choose from your library. Add context like "small portion" for better accuracy.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>AI Analyzes</h3>
+                    <p>Our AI identifies each food item, estimates portions, and calculates nutrition in seconds.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Review & Log</h3>
+                    <p>Edit if needed, then log with one tap. Your data syncs across all your devices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="platforms">
+        <div class="container">
+            <h2 class="section-title">Available Everywhere</h2>
+            <p class="section-subtitle">One subscription, all your Apple devices</p>
+            
+            <div class="platform-icons">
+                <div class="platform">
+                    <div class="platform-icon">📱</div>
+                    <span>iPhone</span>
+                </div>
+                <div class="platform">
+                    <div class="platform-icon">📱</div>
+                    <span>iPad</span>
+                </div>
+                <div class="platform">
+                    <div class="platform-icon">⌚</div>
+                    <span>Apple Watch</span>
+                </div>
+                <div class="platform">
+                    <div class="platform-icon">💻</div>
+                    <span>Mac</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="privacy-section">
+        <div class="container">
+            <h2>🔒 Your Privacy Matters</h2>
+            <p>Your food photos are processed securely and never stored on our servers. All data syncs via your personal iCloud account.</p>
+            <a href="privacy.html" class="privacy-link">Read our Privacy Policy →</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="support.html">Support</a>
+                <a href="mailto:support@eatwisely.app">Contact</a>
+            </div>
+            <p class="copyright">© 2026 EatWisely. Made with 🥗 for healthier eating.</p>
+        </div>
+    </footer>
+</body>
+</html>
