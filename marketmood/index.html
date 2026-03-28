@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Mood - Track Market Sentiment</title>
+    <meta name="description" content="Track VIX and CNN Fear & Greed Index in one beautiful app. Get real-time market sentiment with widgets and notifications.">
+    <link rel="icon" type="image/png" href="icon.png">
+    <style>
+        :root {
+            --bg: #0a0a1a;
+            --card: #141428;
+            --text: #ffffff;
+            --text-secondary: #8888aa;
+            --accent: #4a90d9;
+            --fear: #e74c3c;
+            --greed: #27ae60;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 80px 0 60px;
+        }
+        
+        .app-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .tagline {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+        
+        .app-store-badge {
+            height: 54px;
+        }
+        
+        /* Features */
+        .features {
+            padding: 60px 0;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 48px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .feature-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 28px;
+        }
+        
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+        
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+        
+        /* Indicators */
+        .indicators {
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .indicators h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+        
+        .indicators .subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+        
+        .indicator-cards {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .indicator-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 32px;
+            min-width: 280px;
+            flex: 1;
+            max-width: 400px;
+        }
+        
+        .indicator-card h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        
+        .indicator-card .source {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        
+        .indicator-card ul {
+            text-align: left;
+            list-style: none;
+        }
+        
+        .indicator-card li {
+            padding: 6px 0;
+            color: var(--text-secondary);
+        }
+        
+        .indicator-card li::before {
+            content: "✓ ";
+            color: var(--greed);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 48px 0;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+        
+        .footer-links {
+            margin-bottom: 24px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin: 0 16px;
+            font-size: 15px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--text);
+        }
+        
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 36px; }
+            .tagline { font-size: 17px; }
+            .hero { padding: 60px 0 40px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="hero">
+            <img src="icon.png" alt="Market Mood" class="app-icon">
+            <h1>Market Mood</h1>
+            <p class="tagline">Track VIX and CNN Fear & Greed Index in one beautiful app. Know when markets are fearful or greedy.</p>
+            <a href="https://apps.apple.com/app/id6743266424">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" class="app-store-badge">
+            </a>
+        </section>
+        
+        <section class="features">
+            <h2>Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Dual Indicators</h3>
+                    <p>Track both VIX (volatility) and CNN Fear & Greed Index side by side for a complete market sentiment picture.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Home Screen Widgets</h3>
+                    <p>Glance at market mood right from your home screen. Small, medium, and large widget sizes available.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Smart Notifications</h3>
+                    <p>Get alerted when sentiment shifts from fear to greed or vice versa. Optional daily summaries with price ranges.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Day Range & Change</h3>
+                    <p>See daily high/low, open price, and change from previous close. Full context at a glance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Beautiful Gauges</h3>
+                    <p>Multiple gauge styles to match your preference. Minimal, classic, or detailed views.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Background Refresh</h3>
+                    <p>Data stays fresh with configurable background updates. Choose from 15 minutes to 4 hours.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="indicators">
+            <h2>Two Indicators, One App</h2>
+            <p class="subtitle">Get the complete picture of market sentiment</p>
+            <div class="indicator-cards">
+                <div class="indicator-card">
+                    <h3>📉 VIX Index</h3>
+                    <p class="source">CBOE Volatility Index via Yahoo Finance</p>
+                    <ul>
+                        <li>Real-time VIX value</li>
+                        <li>Daily high, low, open</li>
+                        <li>52-week range</li>
+                        <li>Fear level classification</li>
+                    </ul>
+                </div>
+                <div class="indicator-card">
+                    <h3>😱 CNN Fear & Greed</h3>
+                    <p class="source">CNN Business Sentiment Index</p>
+                    <ul>
+                        <li>7 market indicators combined</li>
+                        <li>Score from 0 (Extreme Fear) to 100 (Extreme Greed)</li>
+                        <li>Previous close comparison</li>
+                        <li>Sentiment classification</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="support.html">Support</a>
+        </div>
+        <p class="copyright">© 2026 Chen He. All rights reserved.</p>
+    </footer>
+</body>
+</html>
