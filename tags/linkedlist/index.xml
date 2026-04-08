@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linkedlist on I make stuff</title><link>https://hechen.github.io/tags/linkedlist/</link><description>Recent content in Linkedlist on I make stuff</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>© 2026 Chen</copyright><lastBuildDate>Wed, 29 Apr 2015 12:28:00 +0000</lastBuildDate><atom:link href="https://hechen.github.io/tags/linkedlist/index.xml" rel="self" type="application/rss+xml"/><item><title>[160] Intersection of Two Linked Lists</title><link>https://hechen.github.io/post/leetcode-003-intersection-of-two-linked-lists/</link><pubDate>Wed, 29 Apr 2015 12:28:00 +0000</pubDate><guid>https://hechen.github.io/post/leetcode-003-intersection-of-two-linked-lists/</guid><description>&lt;h3 class="relative group"&gt;题目：Intersection of Two Linked lists
+ &lt;div id="题目intersection-of-two-linked-lists" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e9%a2%98%e7%9b%aeintersection-of-two-linked-lists" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h3&gt;
+&lt;p&gt;Write a program to find the node at which the intersection of two
+singly linked lists begins.&lt;/p&gt;</description></item></channel></rss>

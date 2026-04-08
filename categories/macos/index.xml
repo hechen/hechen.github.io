@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MacOS on I make stuff</title><link>https://hechen.github.io/categories/macos/</link><description>Recent content in MacOS on I make stuff</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>© 2026 Chen</copyright><lastBuildDate>Mon, 10 Aug 2020 12:05:54 +0800</lastBuildDate><atom:link href="https://hechen.github.io/categories/macos/index.xml" rel="self" type="application/rss+xml"/><item><title>获取某个 Mac 应用的 BundleID</title><link>https://hechen.github.io/post/reveal-bundleid-application/</link><pubDate>Mon, 10 Aug 2020 12:05:54 +0800</pubDate><guid>https://hechen.github.io/post/reveal-bundleid-application/</guid><description>&lt;p&gt;我们知道无论是 iOS 还是 macOS 上的应用，其配置信息都是通过 plist 文件组织的，该应用的 BundleID 就藏在这个文件中，通过读取 plist 文件就能够知道其 Bundle ID 以及应用版本号等信息。我们以 App &lt;a href="http://store.app" target="_blank" rel="noreferrer"&gt;Store.app&lt;/a&gt; 为例，其 plist 文件就存储在如下路径，其他应用也是如此。&lt;/p&gt;</description></item><item><title>LetsMove 中的几个点</title><link>https://hechen.github.io/post/letsmove/</link><pubDate>Thu, 04 Jul 2019 01:19:10 +0800</pubDate><guid>https://hechen.github.io/post/letsmove/</guid><description>&lt;p&gt;当我们从网络上下载某个 mac app 之后，一般都会默认在 Downloads 目录里，但是某一些 App 是需要放置到 Application 目录才行，最常见的就是自更新功能是受到当前所处目录的限制的，这时候很多下载到本地的 .app 文件打开之后都会弹出提示框，让用户选择是否移动到 Applications 目录，LetsMove 就是大部分 mac app 参考或者集成的开源库，封装了这套逻辑。&lt;/p&gt;</description></item><item><title>XPC Services</title><link>https://hechen.github.io/post/xpcservice/</link><pubDate>Thu, 04 Jul 2019 01:01:10 +0800</pubDate><guid>https://hechen.github.io/post/xpcservice/</guid><description>&lt;h2 class="relative group"&gt;关于 XPC
+ &lt;div id="关于-xpc" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e5%85%b3%e4%ba%8e-xpc" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;因为最近在做的工作涉及到这一块，就大致的记录一下，针对 XPC 技术也做个总结。&lt;/p&gt;</description></item><item><title>How to generate a NSViewController without a Nib?</title><link>https://hechen.github.io/post/create-nsviewcontroller-without-nib/</link><pubDate>Mon, 03 Jun 2019 20:55:54 +0800</pubDate><guid>https://hechen.github.io/post/create-nsviewcontroller-without-nib/</guid><description>&lt;p&gt;In the last days, I created all the ViewControllers through the storyboard or the Nib (for views). Today, when I created a demo project without any Nib file, the ViewController did not show as I expected.&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;WTF, Can you believe that? I cannot even create a ViewController now.&lt;/p&gt;</description></item><item><title>关于 Library 和 Framework</title><link>https://hechen.github.io/post/library_framework/</link><pubDate>Fri, 26 Apr 2019 00:35:30 +0800</pubDate><guid>https://hechen.github.io/post/library_framework/</guid><description>&lt;p&gt;Library 和 Framework 的概念大家应该脑海里都有一些，本文旨在讲述下基本概念，没有对每个字节都了如指掌。关于基本的编译过程在 &lt;a href="https://hechen.xyz/post/xcode-build-system/" target="_blank" rel="noreferrer"&gt;Build Process&lt;/a&gt; 一文中也大概讲述了一些。&lt;/p&gt;</description></item><item><title>Build Process</title><link>https://hechen.github.io/post/xcode-build-system/</link><pubDate>Thu, 25 Apr 2019 11:30:30 +0800</pubDate><guid>https://hechen.github.io/post/xcode-build-system/</guid><description>&lt;p&gt;编程语言的处理过程大致会有五个阶段，其每个阶段均有对应的工具：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;预处理器 Preprocessor&lt;/li&gt;
+&lt;li&gt;编译器 Compiler&lt;/li&gt;
+&lt;li&gt;汇编器 Assembler&lt;/li&gt;
+&lt;li&gt;链接器 Linker&lt;/li&gt;
+&lt;li&gt;加载器 Loader&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我们以一个简单的源文件，来看看具体这几个步骤都做了哪些事情。&lt;/p&gt;</description></item><item><title>写个小工具 Swwwitch</title><link>https://hechen.github.io/post/swwwitch/</link><pubDate>Sat, 30 Mar 2019 11:29:54 +0800</pubDate><guid>https://hechen.github.io/post/swwwitch/</guid><description>&lt;p&gt;最近看到开发圈某热点，做了个小工具，总结下最近的几个 CocoaApp 上的功能，仅做练手。现在只包含了两个开关：切换系统主题和隐藏桌面 icon 的功能。&lt;/p&gt;</description></item><item><title>关于 Mac 应用的自启动是如何做到的</title><link>https://hechen.github.io/post/autostartwhenlogin/</link><pubDate>Mon, 18 Mar 2019 17:29:54 +0800</pubDate><guid>https://hechen.github.io/post/autostartwhenlogin/</guid><description>&lt;p&gt;开机自启动是 Cocoa 应用最常见的一种功能，尤其是针对需要常驻 Menu 的服务来说更是如此，今天我们对开机启动项的功能加入做个梳理。&lt;/p&gt;</description></item><item><title>Mac 平台上那些 Dockless 的 App 都是如何实现的？</title><link>https://hechen.github.io/post/dockless-cocoaapps/</link><pubDate>Wed, 13 Mar 2019 17:29:54 +0800</pubDate><guid>https://hechen.github.io/post/dockless-cocoaapps/</guid><description>&lt;p&gt;Menu Only 算是 Cocoa App 中最常见的一项，它使得 App 不占用你的 Dock 栏，在多 workspace 的时候也不影响正常使用，随时都可以在屏幕的菜单栏中执行快捷操作。尤其是针对一些需要便捷性要求比较高的应用来讲，Menu bar 的功能必不可少。本文就简单介绍一下关于 Menu App 中关键的几个开发步骤。&lt;/p&gt;</description></item><item><title>为 NSView 增加 backgroundColor</title><link>https://hechen.github.io/post/nsview+backgroundcolor/</link><pubDate>Mon, 11 Mar 2019 15:19:49 +0800</pubDate><guid>https://hechen.github.io/post/nsview+backgroundcolor/</guid><description>&lt;p&gt;NSView 作为 Cocoa 中最基本的构成元素，是构成整个 Mac App 视图体系的基础，和 UIView 在 iOS 世界中的位置一样重要，可是在 UIView 里司空见惯的背景色设置，在 NSView 中却不见身影。&lt;/p&gt;</description></item><item><title>Apple Event Sandboxing</title><link>https://hechen.github.io/post/appleevents-usage-description/</link><pubDate>Thu, 21 Feb 2019 23:25:38 +0800</pubDate><guid>https://hechen.github.io/post/appleevents-usage-description/</guid><description>&lt;h2 class="relative group"&gt;问题背景
+ &lt;div id="问题背景" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#%e9%97%ae%e9%a2%98%e8%83%8c%e6%99%af" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;最近在修改某个 &lt;a href="https://github.com/hechen/vibe" target="_blank" rel="noreferrer"&gt;Mac 应用&lt;/a&gt;，其原理就是通过执行一段 AppleScript 获取 OmniFocus 的信息，然后进行可视化展示，但是总取不到数据。&lt;/p&gt;</description></item><item><title>关于一次 SS 流量丢失的过程记录</title><link>https://hechen.github.io/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</link><pubDate>Mon, 28 Jan 2019 17:51:35 +0000</pubDate><guid>https://hechen.github.io/post/%E5%85%B3%E4%BA%8E%E4%B8%80%E6%AC%A1-ss-%E6%B5%81%E9%87%8F%E4%B8%A2%E5%A4%B1%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/</guid><description>&lt;h2 class="relative group"&gt;2019-01-29 更新
+ &lt;div id="2019-01-29-更新" class="anchor"&gt;&lt;/div&gt;
+ 
+ &lt;span
+ class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"&gt;
+ &lt;a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2019-01-29-%e6%9b%b4%e6%96%b0" aria-label="锚点"&gt;#&lt;/a&gt;
+ &lt;/span&gt;
+ 
+&lt;/h2&gt;
+&lt;p&gt;早上一到办公室连接上公司网络，网速直接就飚到了 600KB/s，果不其然，还是 &lt;code&gt;com.apple.Safari.SafeBrowsing.Service&lt;/code&gt; 这个服务进程。这就尴尬了，看来并不是说你不用 Safari 就不会触发。&lt;/p&gt;</description></item></channel></rss>
