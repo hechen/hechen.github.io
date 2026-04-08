@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Objective-C on I make stuff</title><link>https://hechen.github.io/tags/objective-c/</link><description>Recent content in Objective-C on I make stuff</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>© 2026 Chen</copyright><lastBuildDate>Wed, 02 Dec 2015 18:53:51 +0000</lastBuildDate><atom:link href="https://hechen.github.io/tags/objective-c/index.xml" rel="self" type="application/rss+xml"/><item><title>如何使用UIBezierPath实现一个弹性视图动画</title><link>https://hechen.github.io/post/elastic-view-animation-using-uibezierpath/</link><pubDate>Wed, 02 Dec 2015 18:53:51 +0000</pubDate><guid>https://hechen.github.io/post/elastic-view-animation-using-uibezierpath/</guid><description>&lt;blockquote&gt;&lt;p&gt;原文：&lt;a href="https://hackernoon.com/elastic-view-animation-or-how-i-built-dgelasticpulltorefresh-269a3ba8636e" target="_blank" rel="noreferrer"&gt;Elastic view animation, or how I built DGElasticPullToRefresh&lt;/a&gt;
+原作者 &lt;a href="https://twitter.com/gontovnik" target="_blank" rel="noreferrer"&gt;@gontovnik&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;&lt;p&gt;&lt;a href="https://github.com/gontovnik/DGElasticPullToRefresh" target="_blank" rel="noreferrer"&gt;DGElasticPullToRefresh&lt;/a&gt; 展示了如何实现一个弹性效果。效果如下图所示：&lt;/p&gt;
+&lt;figure&gt;&lt;img
+ class="my-0 rounded-md"
+ loading="lazy"
+ decoding="async"
+ fetchpriority="low"
+ alt="DGElasticPullToRefresh.gif"
+ src="https://i.imgur.com/NzdoFS9.gif"
+ &gt;&lt;/figure&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;开发环境：
+Xcode 7
+Swift 2.0&lt;/p&gt;</description></item><item><title>理解Objective-C运行时</title><link>https://hechen.github.io/post/understanding-the-objective-c-runtime/</link><pubDate>Mon, 07 Sep 2015 17:55:33 +0000</pubDate><guid>https://hechen.github.io/post/understanding-the-objective-c-runtime/</guid><description>&lt;p&gt;Objective-C 运行时对于刚刚踏入 Cocoa/Objective 世界的人是很容易忽
+略的 Objective-C 语言的特性之一。原因就是尽管 Objective-C 是一门几个小时之内入门的语言，但是投身 Cocoa 的新手们会花费大量时间在 Cocoa 框架中，试图搞清楚他到底是怎么工作的。&lt;!-- more --&gt; 我觉得每个开发者都应该对其有深入的了解，明白一些内部的实现细节，而不仅仅只知道代码 &lt;code&gt;[target doMethodWith:var]&lt;/code&gt; 会被编译器转换成 &lt;code&gt;objc_msgSend(target,@selector(doMethodWith:),var1);&lt;/code&gt; 而已。了解 Objective-C 运行时的原理有助于你对 Objective-C 语言有更深入的理解，清楚你得 App 是怎么运行的。我觉得这对无论是 Mac/iPhone 新手或者老手都会有所帮助。&lt;/p&gt;</description></item><item><title>我们是如何创建iOS版的Guillotine菜单动画的</title><link>https://hechen.github.io/post/how-we-created-guillotine-menu-animation-for-ios/</link><pubDate>Tue, 01 Sep 2015 15:52:07 +0000</pubDate><guid>https://hechen.github.io/post/how-we-created-guillotine-menu-animation-for-ios/</guid><description>&lt;blockquote&gt;&lt;p&gt;原文：&lt;a href="https://yalantis.com/blog/how-we-created-guillotine-menu-animation/" target="_blank" rel="noreferrer"&gt;How We Created Guillotine Menu Animation for iOS&lt;/a&gt;
+原作者 &lt;a href="https://twitter.com/johnsundell" target="_blank" rel="noreferrer"&gt;@johnsundell&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;&lt;p&gt;你是否曾经有过这样的疑问？为什么app中几乎是清一色的&lt;strong&gt;侧&lt;/strong&gt;边栏（sidebar），为什么不把它做成&lt;strong&gt;top&lt;/strong&gt;Bar或者&lt;strong&gt;bottom&lt;/strong&gt;Bar，甚至&lt;strong&gt;corner&lt;/strong&gt;Bar呢？&lt;/p&gt;</description></item></channel></rss>

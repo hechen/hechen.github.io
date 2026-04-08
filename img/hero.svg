@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0c1445;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a237e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d47a1;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#42a5f5;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#7c4dff;stop-opacity:0.6" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <!-- Grid pattern -->
+  <g opacity="0.08" stroke="#42a5f5" stroke-width="1" fill="none">
+    <line x1="0" y1="0" x2="0" y2="600"/><line x1="60" y1="0" x2="60" y2="600"/>
+    <line x1="120" y1="0" x2="120" y2="600"/><line x1="180" y1="0" x2="180" y2="600"/>
+    <line x1="240" y1="0" x2="240" y2="600"/><line x1="300" y1="0" x2="300" y2="600"/>
+    <line x1="360" y1="0" x2="360" y2="600"/><line x1="420" y1="0" x2="420" y2="600"/>
+    <line x1="480" y1="0" x2="480" y2="600"/><line x1="540" y1="0" x2="540" y2="600"/>
+    <line x1="600" y1="0" x2="600" y2="600"/><line x1="660" y1="0" x2="660" y2="600"/>
+    <line x1="720" y1="0" x2="720" y2="600"/><line x1="780" y1="0" x2="780" y2="600"/>
+    <line x1="840" y1="0" x2="840" y2="600"/><line x1="900" y1="0" x2="900" y2="600"/>
+    <line x1="960" y1="0" x2="960" y2="600"/><line x1="1020" y1="0" x2="1020" y2="600"/>
+    <line x1="1080" y1="0" x2="1080" y2="600"/><line x1="1140" y1="0" x2="1140" y2="600"/>
+    <line x1="0" y1="60" x2="1200" y2="60"/><line x1="0" y1="120" x2="1200" y2="120"/>
+    <line x1="0" y1="180" x2="1200" y2="180"/><line x1="0" y1="240" x2="1200" y2="240"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/><line x1="0" y1="360" x2="1200" y2="360"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/><line x1="0" y1="480" x2="1200" y2="480"/>
+    <line x1="0" y1="540" x2="1200" y2="540"/>
+  </g>
+  <!-- Floating orbs -->
+  <circle cx="200" cy="150" r="80" fill="#42a5f5" opacity="0.12"/>
+  <circle cx="900" cy="400" r="120" fill="#7c4dff" opacity="0.10"/>
+  <circle cx="600" cy="100" r="50" fill="#00bcd4" opacity="0.08"/>
+  <circle cx="1000" cy="150" r="60" fill="#42a5f5" opacity="0.06"/>
+  <circle cx="400" cy="450" r="90" fill="#7c4dff" opacity="0.08"/>
+  <!-- Code bracket decorations -->
+  <g fill="none" stroke="url(#glow)" stroke-width="3" opacity="0.3">
+    <path d="M 150 250 L 100 300 L 150 350"/>
+    <path d="M 1050 250 L 1100 300 L 1050 350"/>
+  </g>
+  <!-- Swift bird silhouette -->
+  <g transform="translate(560, 240)" fill="#42a5f5" opacity="0.15">
+    <path d="M 60 0 C 40 20 10 50 0 70 C 20 60 40 55 60 55 C 40 70 25 90 20 100 C 50 80 80 70 110 70 C 90 50 80 30 60 0 Z"/>
+  </g>
+</svg>
