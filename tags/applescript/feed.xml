@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>AppleScript on I make stuff</title><link>https://hechen.github.io/tags/applescript/</link><description>Recent content in AppleScript on I make stuff</description><generator>Hugo</generator><language>zh-cn</language><copyright>2015–2026 Chen · CC BY-NC-ND 4.0</copyright><lastBuildDate>Thu, 28 Feb 2019 17:20:38 +0800</lastBuildDate><atom:link href="https://hechen.github.io/tags/applescript/feed.xml" rel="self" type="application/rss+xml"/><item><title>写个小工具 Swwwitch</title><link>https://hechen.github.io/post/swwwitch/</link><pubDate>Sat, 30 Mar 2019 11:29:54 +0800</pubDate><guid>https://hechen.github.io/post/swwwitch/</guid><description>&lt;p&gt;最近看到开发圈某热点，做了个小工具，总结下最近的几个 CocoaApp 上的功能，仅做练手。现在只包含了两个开关：切换系统主题和隐藏桌面 icon 的功能。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;p&gt;&lt;img alt="Swwwitch-c500" loading="lazy" src="https://i.imgur.com/U9RTmVU.png"&gt;&lt;/p&gt;
+&lt;h2 id="功能点"&gt;功能点&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;切换系统主题&lt;/li&gt;
+&lt;li&gt;显式或者印象桌面图标&lt;/li&gt;
+&lt;li&gt;完全的 Menu Only 应用&lt;/li&gt;
+&lt;li&gt;开机自启动&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;关于第三点的实现在&lt;a href="https://hechen.xyz/post/dockless-cocoaapps/"&gt;另外一篇文章&lt;/a&gt;有讲过，第四点的实现在 &lt;a href="https://hechen.xyz/post/autostartwhenlogin/"&gt;这一篇&lt;/a&gt; 中有讲。&lt;/p&gt;</description></item></channel></rss>
