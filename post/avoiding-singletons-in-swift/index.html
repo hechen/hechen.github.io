@@ -1,879 +1,171 @@
-<!DOCTYPE html>
-<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage" data-theme="light">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>
-    
-    避免在 Swift 中使用单例 - I make stuff
-    </title>
-  
-
-
-<meta name="renderer" content="webkit" />
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
-
-
-<meta name="MobileOptimized" content="width" />
-<meta name="HandheldFriendly" content="true" />
-
-
-<meta name="applicable-device" content="pc,mobile">
-<meta name="color-scheme" content="light dark" />
-<meta name="msapplication-navbutton-color" content="#f8f5ec">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
-
-<meta name="mobile-web-app-capable" content="yes">
-
-
-<meta name="generator" content="Hugo 0.155.3" />
-
-
-<link rel="canonical" href="https://hechen.github.io/post/avoiding-singletons-in-swift/" />
-
-
-
-
-<meta name="author" content="Chen" />
-<meta name="description" content=" 原文：Avoiding singletons in Swift 原作者 &amp; Copyright @johnsundell
-“我知道单例不好，但是&hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的 Swift 开发者还是在 App 内部或者共享的 frameworks 里不断在用它们。
-" />
-
-
-
-
-
-  
-
-
-
-
-
-
-<meta name="keywords" content="iOS, Xcode, Swift, Singleton" />
-
-
-<meta property="og:url" content="https://hechen.github.io/post/avoiding-singletons-in-swift/">
-  <meta property="og:site_name" content="I make stuff">
-  <meta property="og:title" content="避免在 Swift 中使用单例">
-  <meta property="og:description" content="原文：Avoiding singletons in Swift 原作者 &amp; Copyright @johnsundell
-“我知道单例不好，但是…”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的 Swift 开发者还是在 App 内部或者共享的 frameworks 里不断在用它们。">
-  <meta property="og:locale" content="zh_cn">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="post">
-    <meta property="article:published_time" content="2018-07-16T17:34:36+00:00">
-    <meta property="article:modified_time" content="2018-07-16T17:34:36+00:00">
-    <meta property="article:tag" content="IOS">
-    <meta property="article:tag" content="Xcode">
-    <meta property="article:tag" content="Swift">
-    <meta property="article:tag" content="Singleton">
-
-  <meta itemprop="name" content="避免在 Swift 中使用单例">
-  <meta itemprop="description" content="原文：Avoiding singletons in Swift 原作者 &amp; Copyright @johnsundell
-“我知道单例不好，但是…”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的 Swift 开发者还是在 App 内部或者共享的 frameworks 里不断在用它们。">
-  <meta itemprop="datePublished" content="2018-07-16T17:34:36+00:00">
-  <meta itemprop="dateModified" content="2018-07-16T17:34:36+00:00">
-  <meta itemprop="wordCount" content="2181">
-  <meta itemprop="keywords" content="IOS,Xcode,Swift,Singleton">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="避免在 Swift 中使用单例">
-  <meta name="twitter:description" content="原文：Avoiding singletons in Swift 原作者 &amp; Copyright @johnsundell
-“我知道单例不好，但是…”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的 Swift 开发者还是在 App 内部或者共享的 frameworks 里不断在用它们。">
-
-<link rel="icon" href="/favicon.ico" />
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/css/style.min.a0ae63bb9404f735c1a2045deae9e97f06e10118e5ad7befa80df30c5cd7fabc.css" integrity="sha256-oK5ju5QE9zXBogRd6unpfwbhARjlrXvvqA3zDFzX&#43;rw=" media="screen"
-  crossorigin="anonymous">
-
-
-
-
-
-<!--[if lte IE 9]>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-<![endif]-->
-
-<!--[if lt IE 9]>
-  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-<![endif]-->
-
-
-
-
-
-<script>
-  (function () {
-    var savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-  })();
-</script>
-
-
-</head>
-
-<body>
-  <div id="back-to-top"></div>
-
-  <header class="site-header">
-    
-<div class="desktop-header">
-  <div class="desktop-header-logo">
-    <a href="/" class="logo">
-      
-      Chen
-      
-    </a>
-  </div>
-
-  <nav class="desktop-navbar">
-    <ul id="menu" class="menu">
-      
-      
-      <li class="menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/">首页</a>
-        
-
-        
-
-      </li>
-      
-      <li class="menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/post/">归档</a>
-        
-
-        
-
-      </li>
-      
-      <li class="menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/tags/">标签</a>
-        
-
-        
-
-      </li>
-      
-      <li class="menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/categories/">分类</a>
-        
-
-        
-
-      </li>
-      
-      <li class="menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/about/">About</a>
-        
-
-        
-
-      </li>
-      
-
-      
-      
-
-      
-
-      <li class="menu-item">
-        <a class="theme-toggle menu-item-link" href="javascript:void(0);">
-
-          
-<svg aria-hidden="true" class="lucide lucide-sun hi-svg-inline theme-icon-light" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-
-          
-<svg aria-hidden="true" class="lucide lucide-moon hi-svg-inline theme-icon-dark" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-
-        </a>
-      </li>
-
-      <li class="menu-item">
-        <a class="menu-item-link" href="https://hechen.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
-          title="rss" target="_blank">
-          
-<svg aria-hidden="true" class="lucide lucide-rss hi-svg-inline icon--rss" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
-        </a>
-        
-      </li>
-    </ul>
-  </nav>
-</div>
-
-    
-
-<div class="mobile-header">
-  <div id="mobile-navbar" class="mobile-navbar">
-    <div id="mobile-navbar-icon" class="mobile-navbar-icon">
-      
-<svg aria-hidden="true" class="lucide lucide-menu hi-svg-inline icon--menu" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-    </div>
-    <div class="mobile-navbar-logo">
-      <a href="/" class="logo">Chen</a>
-    </div>
-  </div>
-
-  <div id="mobile-menu-close-modal" class="mobile-menu-close-modal"></div>
-  <nav id="mobile-menu" class="mobile-menu">
-    <ul class="mobile-menu-list">
-      <li class="mobile-menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/">首页</a>
-        
-        
-      </li><li class="mobile-menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/post/">归档</a>
-        
-        
-      </li><li class="mobile-menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/tags/">标签</a>
-        
-        
-      </li><li class="mobile-menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/categories/">分类</a>
-        
-        
-      </li><li class="mobile-menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/about/">About</a>
-        
-        
-      </li>
-      
-
-      
-
-      <li class="mobile-menu-item">
-        <a class="theme-toggle menu-item-link" href="javascript:void(0);">
-
-          
-<svg aria-hidden="true" class="lucide lucide-sun hi-svg-inline theme-icon-light" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-
-          
-<svg aria-hidden="true" class="lucide lucide-moon hi-svg-inline theme-icon-dark" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-
-        </a>
-      </li>
-
-      <li class="mobile-menu-item">
-        <a class="menu-item-link" href="https://hechen.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
-          title="rss" target="_blank">
-          
-<svg aria-hidden="true" class="lucide lucide-rss hi-svg-inline icon--rss" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
-        </a>
-        
-      </li>
-    </ul>
-  </nav>
-</div>
-
-  </header>
-
-  
-
-  
-
-
-
-  <main id="main" class="main pico container">
-    <div class="content-wrapper">
-    <aside class="left-sidebar">
-      
-<nav class="toc" id="toc">
-    <div class="toc-title">文章目录</div>
-    <div class="toc-content custom-scrollbar">
-      <nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#为什么单例这么流行">为什么单例这么流行？</a></li>
-        <li><a href="#为什么单例会很糟糕">为什么单例会很糟糕？</a></li>
-        <li><a href="#依赖注入">依赖注入</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#翻新">翻新</a></li>
-        <li><a href="#结论">结论</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-    </div>
-  </nav>
-
-
-    </aside>
-
-    <div id="content" class="content">
-      <article class="post">
-        
-        <header class="post-header">
-          <h1 class="post-title">避免在 Swift 中使用单例</h1>
-          
-
-
-
-          <div class="post-meta-list">
-  <div class="post-meta-item post-meta-author">
-    
-<svg aria-hidden="true" class="lucide lucide-user-round-pen hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M2 21a8 8 0 0 1 10.821-7.487"/><path d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/><circle cx="10" cy="8" r="5"/></svg>
-    <a href="/about">
-      <span class="post-meta-author-name">
-        Chen
-      </span>
-    </a>
-    
-  </div>
-
-  <div class="post-meta-item post-meta-time">
-    
-<svg aria-hidden="true" class="lucide lucide-calendar-days hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
-    <time datetime=" 2018-07-16">
-      2018-07-16
-    </time>
-
-
-    
-
-  </div>
-
-
-  <div class="post-meta__right">
-    
-
-    <div class="post-meta-item post-meta-category">
-      
-        
-          
-        <a href="https://hechen.github.io/categories/translation/">translation</a>
-    </div>
-
-
-    
-    
-
-
-    
-    
-  </div>
-</div>
-
-        </header>
-
-        
-        <div class="post-content">
-          <blockquote>
-<p>原文：<a href="https://www.swiftbysundell.com/articles/avoiding-singletons-in-swift/">Avoiding singletons in Swift</a>
-原作者 &amp; Copyright <a href="https://twitter.com/johnsundell">@johnsundell</a></p>
-</blockquote>
-<p>“我知道单例不好，但是&hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的 Swift 开发者还是在 App 内部或者共享的 <code>frameworks</code> 里不断在用它们。</p>
-<p>这周，让我们好好看一看单例的问题到底在哪里，探索更多的技巧以便我们日常能够避免使用它们。这就开始吧！</p>
-<h3 id="为什么单例这么流行">为什么单例这么流行？</h3>
-<p>首先一点我们要想的是问问自己，为什么单例这么流行？热过大多数开发者都认同，单例应该被避免的话，为什么它们还不断的出现呢？</p>
-<p>我认为有两部分原因。</p>
-<p>我觉得日常开发 Apple 平台上的 App 时候大量使用单例，最大的原因是苹果自己也在经常的用。作为第三方开发者来讲，我们常常会把 Apple 的做法作为最佳实践来用，任何 Apple 自己常常使用的模式在社区也会发展的很迅速。</p>
-<p>这个谜题的第二个原因是单例非常方便。单例因为它可以在任何地方获取到，因而经常会扮演一个获取特定核心值或者对象的快捷方式。可以看下下面这个例子，在这个例子中，我们想在 <strong>ProfileViewController</strong> 中展示当前登录用户的名字，同时当某个按钮按下的时候，退登当前用户。</p>
-<div class="highlight-container">
-
-  <button class="copy-code-btn outline">Copy</button>
-
-  
-  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Swift" data-lang="Swift"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ProfileViewController</span>: UIViewController {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">lazy</span> <span style="color:#66d9ef">var</span> nameLabel = UILabel()
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">viewDidLoad</span>() {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>.viewDidLoad()
-</span></span><span style="display:flex;"><span>        nameLabel.text = UserManager.shared.currentUser?.name
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">handleLogOutButtonTap</span>() {
-</span></span><span style="display:flex;"><span>        UserManager.shared.logOut()
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<p>按照上面这样，把一个 UserManager 单例的用户和账户处理的功能封装起来，确实很方便（而且很常见！），那这种模式的使用到底不好在哪里呢？</p>
-<h3 id="为什么单例会很糟糕">为什么单例会很糟糕？</h3>
-<p>当讨论类似模式和架构这些东西的时候，很容易陷入一个特别理论化的圈套。虽然让我们的代码理论上“正确”，遵循最佳实践和原则是很美好的，但是现实经常会很受打击，我们需要寻找一些中间方案。</p>
-<p>所以，关于单例引起的实质性问题是什么呢？为什么它们要应该被避免呢？这里我倾向于三个原因：</p>
-<ol>
-<li>这些单例是全局的可变的共享状态。它们的状态是在整个 App 里自动共享的，因此当其状态发生不可预期的变化的时候，Bug 也就可能开始发生了；</li>
-<li>单例之间的关系以及依赖这些单例的代码常常不那么好定义。因为单例是如此方便和容易获得，大量的使用它们常常会导致很难维护<a href="https://zh.wikipedia.org/wiki/%E9%9D%A2%E6%9D%A1%E5%BC%8F%E4%BB%A3%E7%A0%81">面条式代码</a>，这些代码中对象和对象之间没有清晰的隔离；</li>
-<li>管理这些单例的生命周期非常的难。因为单例本身会在应用的整个生命周期内存活，管理它们就变得异常困难，因此常常会不得不依赖可选值来跟踪值的变化。这也使得依赖单例的代码变得很难测试，因为你没法在一个测试 case 里把状态重置。</li>
-</ol>
-<p>在我们前面的 <strong>ProfileViewController</strong> 的例子中，我们已经看到了有这三个问题的信号出现。首先它依赖 UserManager 导致这二者关系很不清晰，其次，它不得不让 currentUser 作为可选值出现，因为我们没办法在编译期就能够确定视图控制器实际上出现的时候这个数据一定在。听起来就感觉要有 bug 发生的感觉 😬!</p>
-<h3 id="依赖注入">依赖注入</h3>
-<p>相对于使用 <strong>ProfileViewController</strong> 通过单例来获取它所需的依赖项，我们要在其初始化方法中将依赖项传入。这里我们是将当前的 User 作为非可选传入的，同样，传入一个 <strong>LogOutService</strong> 来进行登出操作：</p>
-<div class="highlight-container">
-
-  <button class="copy-code-btn outline">Copy</button>
-
-  
-  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Swift" data-lang="Swift"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ProfileViewController</span>: UIViewController {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">let</span> user: User
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">let</span> logOutService: LogOutService
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">lazy</span> <span style="color:#66d9ef">var</span> nameLabel = UILabel()
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">init</span>(user: User, logOutService: LogOutService) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">self</span>.user = user
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">self</span>.logOutService = logOutService
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>.<span style="color:#66d9ef">init</span>(nibName: <span style="color:#66d9ef">nil</span>, bundle: <span style="color:#66d9ef">nil</span>)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">viewDidLoad</span>() {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>.viewDidLoad()
-</span></span><span style="display:flex;"><span>        nameLabel.text = user.name
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">handleLogOutButtonTap</span>() {
-</span></span><span style="display:flex;"><span>        logOutService.logOut()
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<p>这样的话，代码就会变得更加清晰，并且容易管理。我们的代码现在安全的依赖其 Model，并且有一个清晰的 API 进行登出的交互。一般情况下，将各种单例以及管理器重构成清晰分离的服务能够使得一个 App 的核心对象之间的关系更加清晰。</p>
-<h3 id="services">Services</h3>
-<p>举个例子，让我们更近一些来看下 <strong>LogOutService</strong> 这个类是如何实现的。它内部也对其依赖的服务使用了依赖注入，并且提供了一个优雅的，定义清晰的 API 来只做一件事情 ── 登出。</p>
-<div class="highlight-container">
-
-  <button class="copy-code-btn outline">Copy</button>
-
-  
-  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Swift" data-lang="Swift"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LogOutService</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">let</span> user: User
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">let</span> networkService: NetworkService
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">let</span> navigationService: NavigationService
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">init</span>(user: User,
-</span></span><span style="display:flex;"><span>         networkService: NetworkService,
-</span></span><span style="display:flex;"><span>         navigationService: NavigationService) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">self</span>.user = user
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">self</span>.networkService = networkService
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">self</span>.navigationService = navigationService
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">logOut</span>() {
-</span></span><span style="display:flex;"><span>        networkService.request(.logout(user)) { [<span style="color:#66d9ef">weak</span> <span style="color:#66d9ef">self</span>] <span style="color:#66d9ef">in</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">self</span>?.navigationService.showLoginScreen()
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<h3 id="翻新">翻新</h3>
-<p>从一个重度使用单例的设置到完全使用服务，依赖注入以及本地状态来改造会非常的困难，会花费大量时间。而且，会很难认为花大量时间在这上面是合理的，而且有些时候可能会需要一次更大规模的重构才行。</p>
-<p>谢天谢地，我们可以使用相近的技术，在<a href="https://www.swiftbysundell.com/posts/testing-swift-code-that-uses-system-singletons-in-3-easy-steps">Testing Swift code that uses system singletons in 3 easy steps</a>这篇文章中也使用到过，其允许我们可以以一种非常容易的方式单例开始。和很多其他解决方案类似 ── 协议来救场！</p>
-<p>我们不是一次性重构所有的单例，而是创建 Service 类，我们可以很简单的把我们的 Service 定义成 Protocol，如下所示：</p>
-<div class="highlight-container">
-
-  <button class="copy-code-btn outline">Copy</button>
-
-  
-  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Swift" data-lang="Swift"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">protocol</span> <span style="color:#a6e22e">LogOutService</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">logOut</span>()
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">protocol</span> <span style="color:#a6e22e">NetworkService</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">request</span>(<span style="color:#66d9ef">_</span> endpoint: Endpoint, completionHandler: @escaping () -&gt; Void)
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">protocol</span> <span style="color:#a6e22e">NavigationService</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">showLoginScreen</span>()
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">showProfile</span>(<span style="color:#66d9ef">for</span> user: User)
-</span></span><span style="display:flex;"><span>    ...
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<p>然后我们就能通过将单例符合我们新创建的 Service 协议来使其翻新为一堆 Service。在很多情况下，我们甚至不需要改变任何实现，只是简单的传递它们 shared 实例作为一个 Service 即可。</p>
-<p>同样的技巧也能够被用作重构我们 app 中其他核心对象，那些对象我们也许也都正在以某种单例形式在使用着，例如使用 AppDelegate 来做导航。</p>
-<div class="highlight-container">
-
-  <button class="copy-code-btn outline">Copy</button>
-
-  
-  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-Swift" data-lang="Swift"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extension</span> <span style="color:#a6e22e">UserManager</span>: LoginService, LogOutService {}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">extension</span> <span style="color:#a6e22e">AppDelegate</span>: NavigationService {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">showLoginScreen</span>() {
-</span></span><span style="display:flex;"><span>        navigationController.viewControllers = [
-</span></span><span style="display:flex;"><span>            LoginViewController(
-</span></span><span style="display:flex;"><span>                loginService: UserManager.shared,
-</span></span><span style="display:flex;"><span>                navigationService: <span style="color:#66d9ef">self</span>
-</span></span><span style="display:flex;"><span>            )
-</span></span><span style="display:flex;"><span>        ]
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">showProfile</span>(<span style="color:#66d9ef">for</span> user: User) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> viewController = ProfileViewController(
-</span></span><span style="display:flex;"><span>            user: user,
-</span></span><span style="display:flex;"><span>            logOutService: UserManager.shared
-</span></span><span style="display:flex;"><span>        )
-</span></span><span style="display:flex;"><span>        navigationController.pushViewController(viewController, animated: <span style="color:#66d9ef">true</span>)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<p>我们现在通过使用依赖注入以及 Service 的方式，开始使得我们工程处在 Singleton free 的状态，而不需要进行特别巨大的工程改造和重写。接下来我们就能够使用 Service 或者其他类型的 API 逐个替换掉单例，比如说使用<a href="https://www.swiftbysundell.com/posts/replacing-legacy-code-using-swift-protocols">这篇博文</a>中的技巧。</p>
-<h3 id="结论">结论</h3>
-<p>单例也不是都是不好的，只是在很多情况下，它们会引发一系列问题，这些问题可以通过使用依赖注入的方式为你程序里的对象建立良好的关系来解决。</p>
-<p>如果你现在正在开发的 App 里在使用大量的单例，那你一定也在经历或者已经经历过它们所带来的 bug 了吧。希望这篇文章能够给你一些灵感让你没有那么慌乱的开始远离它们。</p>
-
-        </div>
-
-        
-        
-<div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">Chen</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">
-      2018-07-16
-      
-    </span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">许可协议</span>
-    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
-  </p>
-</div>
-
-
-
-        
-        
-
-
-        <footer class="post-footer">
-          <div class="post-tags">
-              <a href="https://hechen.github.io/tags/ios/">iOS</a>
-                <a href="https://hechen.github.io/tags/xcode/">Xcode</a>
-                <a href="https://hechen.github.io/tags/swift/">Swift</a>
-                <a href="https://hechen.github.io/tags/singleton/">Singleton</a>
-                
-            </div>
-
-
-          
-          <nav class="post-nav">
-            
-              <a class="prev" href="/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/">
-                
-                <i class="iconfont">
-                  
-<svg aria-hidden="true" class="lucide lucide-chevron-left hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"/></svg>
-                </i>
-                <span class="prev-text nav-default">三个简单步骤让你测试使用系统单例的代码</span>
-                <span class="prev-text nav-mobile">上一篇</span>
-              </a>
-            
-              <a class="next" href="/post/different-flavors-of-dependency-injection-in-swift/">
-                <span class="next-text nav-default">Swift 中几种不同的依赖注入方式</span>
-                <span class="prev-text nav-mobile">下一篇</span>
-                
-                <i class="iconfont">
-                  
-<svg aria-hidden="true" class="lucide lucide-chevron-right hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"/></svg>
-                </i>
-              </a>
-          </nav>
-        </footer>
-      </article>
-
-      
-      
-
-
-      
-      
-
-  
-
-  
-  
-
-  
-  
-    <div class="post">
-  <script src="https://utteranc.es/client.js"
-        repo= "hechen/Comments"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-  </script>
-</div>
-
-  
-
-  
-
-  
-
-    
-
-  
-
-  
-
-
-    </div>
-
-    <aside class="right-sidebar">
-      
-    </aside>
-  </div>
-  </main>
-
-  <footer id="footer" class="site-footer">
-    <div class="social-icon-links">
-  
-
-
-<a href="mailto:hechen.dream@gmail.com" rel="me noopener" class="social-icon-link" title="email" >
-  
-<svg aria-hidden="true" class="icon hi-svg-inline" fill="currentColor" height="1em" version="1.1" viewBox="0 0 1451 1024" width="1em" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
-  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
-</svg>
-
-</a>
-
-<a href="https://stackoverflow.com/users/10229101/chen-he" rel="me noopener" class="social-icon-link" title="stack-overflow"  target="_blank" >
-  
-<svg aria-hidden="true" class="hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
-  <path d="M15 3h6v6" />
-  <path d="M10 14 21 3" />
-  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-</svg>
-
-</a>
-<a href="https://github.com/hechen" rel="me noopener" class="social-icon-link" title="github"  target="_blank" >
-  
-<svg aria-hidden="true" class="icon hi-svg-inline" fill="currentColor" height="1em" version="1.1" viewBox="0 0 1024 1024" width="1em" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
-  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
-</svg>
-
-</a>
-
-
-<a href="https://hechen.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml" class="social-icon-link" title="rss"
-  target="_blank">
-  
-<svg aria-hidden="true" class="lucide lucide-rss hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
-</a>
-
-</div>
-
-<div class="copyright">
-  <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
-  </span>
-  <span class="division">|</span>
-  <span class="theme-info">
-    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
-  </span>
-
-  <span class="copyright-year">
-    &copy;
-    
-    2015 -
-    2026
-    <span class="heart">
-      
-      <i class="iconfont">
-        
-<svg aria-hidden="true" class="lucide lucide-heart hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-      </i>
-    </span><span class="author">
-      Chen
-      
-    </span></span>
-
-  
-  
-
-  
-</div>
-
-  </footer>
-
-  
-
-
-
-
-<script type="text/javascript" src="/js/main.825a735b828ff4d6bcd5e24cb3cd9f61039aff34e3bc692884644008aff75707.js" integrity="sha256-glpzW4KP9Na81eJMs82fYQOa/zTjvGkohGRACK/3Vwc=" crossorigin="anonymous"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</body>
-
-</html>
+<!doctype html><html lang=zh-cn dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>避免在 Swift 中使用单例 | I make stuff</title><meta name=keywords content="iOS,Xcode,Swift,Singleton"><meta name=description content="
+原文：Avoiding singletons in Swift
+原作者 & Copyright @johnsundell
+
+“我知道单例不好，但是&mldr;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的 Swift 开发者还是在 App 内部或者共享的 frameworks 里不断在用它们。"><meta name=author content="Chen"><link rel=canonical href=https://hechen.github.io/post/avoiding-singletons-in-swift/><link crossorigin=anonymous href=/assets/css/stylesheet.199042e659bc7245f5609d333d6c044eb554a0640849bb874e1dff8eb0f57209.css integrity="sha256-GZBC5lm8ckX1YJ0zPWwETrVUoGQISbuHTh3/jrD1cgk=" rel="preload stylesheet" as=style><link rel=icon href=https://hechen.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://hechen.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://hechen.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://hechen.github.io/apple-touch-icon.png><link rel=mask-icon href=https://hechen.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh-cn href=https://hechen.github.io/post/avoiding-singletons-in-swift/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}@media(prefers-color-scheme:light){.list::-webkit-scrollbar-thumb{border-color:var(--code-bg)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://hechen.github.io/post/avoiding-singletons-in-swift/"><meta property="og:site_name" content="I make stuff"><meta property="og:title" content="避免在 Swift 中使用单例"><meta property="og:description" content="原文：Avoiding singletons in Swift 原作者 & Copyright @johnsundell
+“我知道单例不好，但是…”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的 Swift 开发者还是在 App 内部或者共享的 frameworks 里不断在用它们。"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2018-07-16T17:34:36+00:00"><meta property="article:modified_time" content="2018-07-16T17:34:36+00:00"><meta property="article:tag" content="IOS"><meta property="article:tag" content="Xcode"><meta property="article:tag" content="Swift"><meta property="article:tag" content="Singleton"><meta name=twitter:card content="summary"><meta name=twitter:title content="避免在 Swift 中使用单例"><meta name=twitter:description content="原文：Avoiding singletons in Swift 原作者 & Copyright @johnsundell
+“我知道单例不好，但是…”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的 Swift 开发者还是在 App 内部或者共享的 frameworks 里不断在用它们。"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://hechen.github.io/post/"},{"@type":"ListItem","position":2,"name":"避免在 Swift 中使用单例","item":"https://hechen.github.io/post/avoiding-singletons-in-swift/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"避免在 Swift 中使用单例","name":"避免在 Swift 中使用单例","description":" 原文：Avoiding singletons in Swift 原作者 \u0026amp; Copyright @johnsundell\n“我知道单例不好，但是\u0026hellip;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的 Swift 开发者还是在 App 内部或者共享的 frameworks 里不断在用它们。\n","keywords":["iOS","Xcode","Swift","Singleton"],"articleBody":" 原文：Avoiding singletons in Swift 原作者 \u0026 Copyright @johnsundell\n“我知道单例不好，但是…”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的 Swift 开发者还是在 App 内部或者共享的 frameworks 里不断在用它们。\n这周，让我们好好看一看单例的问题到底在哪里，探索更多的技巧以便我们日常能够避免使用它们。这就开始吧！\n为什么单例这么流行？ 首先一点我们要想的是问问自己，为什么单例这么流行？热过大多数开发者都认同，单例应该被避免的话，为什么它们还不断的出现呢？\n我认为有两部分原因。\n我觉得日常开发 Apple 平台上的 App 时候大量使用单例，最大的原因是苹果自己也在经常的用。作为第三方开发者来讲，我们常常会把 Apple 的做法作为最佳实践来用，任何 Apple 自己常常使用的模式在社区也会发展的很迅速。\n这个谜题的第二个原因是单例非常方便。单例因为它可以在任何地方获取到，因而经常会扮演一个获取特定核心值或者对象的快捷方式。可以看下下面这个例子，在这个例子中，我们想在 ProfileViewController 中展示当前登录用户的名字，同时当某个按钮按下的时候，退登当前用户。\n1 2 3 4 5 6 7 8 9 10 11 class ProfileViewController: UIViewController { private lazy var nameLabel = UILabel() override func viewDidLoad() { super.viewDidLoad() nameLabel.text = UserManager.shared.currentUser?.name } private func handleLogOutButtonTap() { UserManager.shared.logOut() } } 按照上面这样，把一个 UserManager 单例的用户和账户处理的功能封装起来，确实很方便（而且很常见！），那这种模式的使用到底不好在哪里呢？\n为什么单例会很糟糕？ 当讨论类似模式和架构这些东西的时候，很容易陷入一个特别理论化的圈套。虽然让我们的代码理论上“正确”，遵循最佳实践和原则是很美好的，但是现实经常会很受打击，我们需要寻找一些中间方案。\n所以，关于单例引起的实质性问题是什么呢？为什么它们要应该被避免呢？这里我倾向于三个原因：\n这些单例是全局的可变的共享状态。它们的状态是在整个 App 里自动共享的，因此当其状态发生不可预期的变化的时候，Bug 也就可能开始发生了； 单例之间的关系以及依赖这些单例的代码常常不那么好定义。因为单例是如此方便和容易获得，大量的使用它们常常会导致很难维护面条式代码，这些代码中对象和对象之间没有清晰的隔离； 管理这些单例的生命周期非常的难。因为单例本身会在应用的整个生命周期内存活，管理它们就变得异常困难，因此常常会不得不依赖可选值来跟踪值的变化。这也使得依赖单例的代码变得很难测试，因为你没法在一个测试 case 里把状态重置。 在我们前面的 ProfileViewController 的例子中，我们已经看到了有这三个问题的信号出现。首先它依赖 UserManager 导致这二者关系很不清晰，其次，它不得不让 currentUser 作为可选值出现，因为我们没办法在编译期就能够确定视图控制器实际上出现的时候这个数据一定在。听起来就感觉要有 bug 发生的感觉 😬!\n依赖注入 相对于使用 ProfileViewController 通过单例来获取它所需的依赖项，我们要在其初始化方法中将依赖项传入。这里我们是将当前的 User 作为非可选传入的，同样，传入一个 LogOu\u0010tService 来进行登出操作：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 class ProfileViewController: UIViewController { private let user: User private let logOutService: LogOutService private lazy var nameLabel = UILabel() init(user: User, logOutService: LogOutService) { self.user = user self.logOutService = logOutService super.init(nibName: nil, bundle: nil) } override func viewDidLoad() { super.viewDidLoad() nameLabel.text = user.name } private func handleLogOutButtonTap() { logOutService.logOut() } } 这样的话，代码就会变得更加清晰，并且容易管理。我们的代码现在安全的依赖其 Model，并且有一个清晰的 API 进行登出的交互。一般情况下，将各种单例以及管理器重构成清晰分离的服务能够使得一个 App 的核心对象之间的关系更加清晰。\nServices 举个例子，让我们更近一些来看下 LogOutService 这个类是如何实现的。它内部也对其依赖的服务使用了依赖注入，并且提供了一个优雅的，定义清晰的 API 来只做一件事情 ── 登出。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 class LogOutService { private let user: User private let networkService: NetworkService private let navigationService: NavigationService init(user: User, networkService: NetworkService, navigationService: NavigationService) { self.user = user self.networkService = networkService self.navigationService = navigationService } func logOut() { networkService.request(.logout(user)) { [weak self] in self?.navigationService.showLoginScreen() } } } 翻新 从一个重度使用单例的设置到完全使用服务，依赖注入以及本地状态来改造会非常的困难，会花费大量时间。而且，会很难认为花大量时间在这上面是合理的，而且有些时候可能会需要一次更大规模的重构才行。\n谢天谢地，我们可以使用相近的技术，在Testing Swift code that uses system singletons in 3 easy steps这篇文章中也使用到过，其允许我们可以以一种非常容易的方式单例开始。和很多其他解决方案类似 ── 协议来救场！\n我们不是一次性重构所有的单例，而是创建 Service 类，我们可以很简单的把我们的 Service 定义成 Protocol，如下所示：\n1 2 3 4 5 6 7 8 9 10 11 12 protocol LogOutService { func logOut() } protocol NetworkService { func request(_ endpoint: Endpoint, completionHandler: @escaping () -\u003e Void) } protocol NavigationService { func showLoginScreen() func showProfile(for user: User) ... } 然后我们就能通过将单例符合我们新创建的 Service 协议来使其翻新为一堆 Service。在很多情况下，我们甚至不需要改变任何实现，只是简单的传递它们 shared 实例作为一个 Service 即可。\n同样的技巧也能够被用作重构我们 app 中其他核心对象，那些对象我们也许也都正在以某种单例形式在使用着，例如使用 AppDelegate 来做导航。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 extension UserManager: LoginService, LogOutService {} extension AppDelegate: NavigationService { func showLoginScreen() { navigationController.viewControllers = [ LoginViewController( loginService: UserManager.shared, navigationService: self ) ] } func showProfile(for user: User) { let viewController = ProfileViewController( user: user, logOutService: UserManager.shared ) navigationController.pushViewController(viewController, animated: true) } } 我们现在通过使用依赖注入以及 Service 的方式，开始使得我们工程处在 Singleton free 的状态，而不需要进行特别巨大的工程改造和重写。接下来我们就能够使用 Service 或者其他类型的 API 逐个替换掉单例，比如说使用这篇博文中的技巧。\n结论 单例也不是都是不好的，只是在很多情况下，它们会引发一系列问题，这些问题可以通过使用依赖注入的方式为你程序里的对象建立良好的关系来解决。\n如果你现在正在开发的 App 里在使用大量的单例，那你一定也在经历或者已经经历过它们所带来的 bug 了吧。希望这篇文章能够给你一些灵感让你没有那么慌乱的开始远离它们。\n","wordCount":"2176","inLanguage":"zh-cn","datePublished":"2018-07-16T17:34:36Z","dateModified":"2018-07-16T17:34:36Z","author":{"@type":"Person","name":"Chen"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://hechen.github.io/post/avoiding-singletons-in-swift/"},"publisher":{"@type":"Organization","name":"I make stuff","logo":{"@type":"ImageObject","url":"https://hechen.github.io/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=nav><div class=logo><a href=https://hechen.github.io/ accesskey=h title="I make stuff (Alt + H)">I make stuff</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://hechen.github.io/ title="Chen's Blog"><span>Home</span></a></li><li><a href=https://hechen.github.io/post/ title=Posts><span>Blog</span></a></li><li><a href=https://hechen.github.io/apps/ title=Apps><span>Apps</span></a></li><li><a href=https://hechen.github.io/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://hechen.github.io/>Home</a>&nbsp;»&nbsp;<a href=https://hechen.github.io/post/>Posts</a></div><h1 class="post-title entry-hint-parent">避免在 Swift 中使用单例</h1><div class=post-meta><span title='2018-07-16 17:34:36 +0000 UTC'>2018-07-16</span>&nbsp;·&nbsp;<span>5 min</span>&nbsp;·&nbsp;<span>Chen</span></div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#%e4%b8%ba%e4%bb%80%e4%b9%88%e5%8d%95%e4%be%8b%e8%bf%99%e4%b9%88%e6%b5%81%e8%a1%8c aria-label=为什么单例这么流行？>为什么单例这么流行？</a></li><li><a href=#%e4%b8%ba%e4%bb%80%e4%b9%88%e5%8d%95%e4%be%8b%e4%bc%9a%e5%be%88%e7%b3%9f%e7%b3%95 aria-label=为什么单例会很糟糕？>为什么单例会很糟糕？</a></li><li><a href=#%e4%be%9d%e8%b5%96%e6%b3%a8%e5%85%a5 aria-label=依赖注入>依赖注入</a></li><li><a href=#services aria-label=Services>Services</a></li><li><a href=#%e7%bf%bb%e6%96%b0 aria-label=翻新>翻新</a></li><li><a href=#%e7%bb%93%e8%ae%ba aria-label=结论>结论</a></li></ul></div></details></div><div class=post-content><blockquote><p>原文：<a href=https://www.swiftbysundell.com/articles/avoiding-singletons-in-swift/>Avoiding singletons in Swift</a>
+原作者 & Copyright <a href=https://twitter.com/johnsundell>@johnsundell</a></p></blockquote><p>“我知道单例不好，但是&mldr;”，这是开发者常常在讨论代码的时候会提到的。貌似社区大家有共识 ── 单例不好。但是同时，包括 Apple 和第三方的 Swift 开发者还是在 App 内部或者共享的 <code>frameworks</code> 里不断在用它们。</p><p>这周，让我们好好看一看单例的问题到底在哪里，探索更多的技巧以便我们日常能够避免使用它们。这就开始吧！</p><h3 id=为什么单例这么流行>为什么单例这么流行？<a hidden class=anchor aria-hidden=true href=#为什么单例这么流行>#</a></h3><p>首先一点我们要想的是问问自己，为什么单例这么流行？热过大多数开发者都认同，单例应该被避免的话，为什么它们还不断的出现呢？</p><p>我认为有两部分原因。</p><p>我觉得日常开发 Apple 平台上的 App 时候大量使用单例，最大的原因是苹果自己也在经常的用。作为第三方开发者来讲，我们常常会把 Apple 的做法作为最佳实践来用，任何 Apple 自己常常使用的模式在社区也会发展的很迅速。</p><p>这个谜题的第二个原因是单例非常方便。单例因为它可以在任何地方获取到，因而经常会扮演一个获取特定核心值或者对象的快捷方式。可以看下下面这个例子，在这个例子中，我们想在 <strong>ProfileViewController</strong> 中展示当前登录用户的名字，同时当某个按钮按下的时候，退登当前用户。</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-Swift data-lang=Swift><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ProfileViewController</span>: UIViewController {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>lazy</span> <span style=color:#66d9ef>var</span> nameLabel = UILabel()
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>override</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>viewDidLoad</span>() {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>super</span>.viewDidLoad()
+</span></span><span style=display:flex><span>        nameLabel.text = UserManager.shared.currentUser?.name
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>handleLogOutButtonTap</span>() {
+</span></span><span style=display:flex><span>        UserManager.shared.logOut()
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></td></tr></table></div></div><p>按照上面这样，把一个 UserManager 单例的用户和账户处理的功能封装起来，确实很方便（而且很常见！），那这种模式的使用到底不好在哪里呢？</p><h3 id=为什么单例会很糟糕>为什么单例会很糟糕？<a hidden class=anchor aria-hidden=true href=#为什么单例会很糟糕>#</a></h3><p>当讨论类似模式和架构这些东西的时候，很容易陷入一个特别理论化的圈套。虽然让我们的代码理论上“正确”，遵循最佳实践和原则是很美好的，但是现实经常会很受打击，我们需要寻找一些中间方案。</p><p>所以，关于单例引起的实质性问题是什么呢？为什么它们要应该被避免呢？这里我倾向于三个原因：</p><ol><li>这些单例是全局的可变的共享状态。它们的状态是在整个 App 里自动共享的，因此当其状态发生不可预期的变化的时候，Bug 也就可能开始发生了；</li><li>单例之间的关系以及依赖这些单例的代码常常不那么好定义。因为单例是如此方便和容易获得，大量的使用它们常常会导致很难维护<a href=https://zh.wikipedia.org/wiki/%E9%9D%A2%E6%9D%A1%E5%BC%8F%E4%BB%A3%E7%A0%81>面条式代码</a>，这些代码中对象和对象之间没有清晰的隔离；</li><li>管理这些单例的生命周期非常的难。因为单例本身会在应用的整个生命周期内存活，管理它们就变得异常困难，因此常常会不得不依赖可选值来跟踪值的变化。这也使得依赖单例的代码变得很难测试，因为你没法在一个测试 case 里把状态重置。</li></ol><p>在我们前面的 <strong>ProfileViewController</strong> 的例子中，我们已经看到了有这三个问题的信号出现。首先它依赖 UserManager 导致这二者关系很不清晰，其次，它不得不让 currentUser 作为可选值出现，因为我们没办法在编译期就能够确定视图控制器实际上出现的时候这个数据一定在。听起来就感觉要有 bug 发生的感觉 😬!</p><h3 id=依赖注入>依赖注入<a hidden class=anchor aria-hidden=true href=#依赖注入>#</a></h3><p>相对于使用 <strong>ProfileViewController</strong> 通过单例来获取它所需的依赖项，我们要在其初始化方法中将依赖项传入。这里我们是将当前的 User 作为非可选传入的，同样，传入一个 <strong>LogOutService</strong> 来进行登出操作：</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-Swift data-lang=Swift><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ProfileViewController</span>: UIViewController {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>let</span> user: User
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>let</span> logOutService: LogOutService
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>lazy</span> <span style=color:#66d9ef>var</span> nameLabel = UILabel()
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>init</span>(user: User, logOutService: LogOutService) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>self</span>.user = user
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>self</span>.logOutService = logOutService
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>super</span>.<span style=color:#66d9ef>init</span>(nibName: <span style=color:#66d9ef>nil</span>, bundle: <span style=color:#66d9ef>nil</span>)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>override</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>viewDidLoad</span>() {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>super</span>.viewDidLoad()
+</span></span><span style=display:flex><span>        nameLabel.text = user.name
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>handleLogOutButtonTap</span>() {
+</span></span><span style=display:flex><span>        logOutService.logOut()
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></td></tr></table></div></div><p>这样的话，代码就会变得更加清晰，并且容易管理。我们的代码现在安全的依赖其 Model，并且有一个清晰的 API 进行登出的交互。一般情况下，将各种单例以及管理器重构成清晰分离的服务能够使得一个 App 的核心对象之间的关系更加清晰。</p><h3 id=services>Services<a hidden class=anchor aria-hidden=true href=#services>#</a></h3><p>举个例子，让我们更近一些来看下 <strong>LogOutService</strong> 这个类是如何实现的。它内部也对其依赖的服务使用了依赖注入，并且提供了一个优雅的，定义清晰的 API 来只做一件事情 ── 登出。</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-Swift data-lang=Swift><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>LogOutService</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>let</span> user: User
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>let</span> networkService: NetworkService
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>let</span> navigationService: NavigationService
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>init</span>(user: User,
+</span></span><span style=display:flex><span>         networkService: NetworkService,
+</span></span><span style=display:flex><span>         navigationService: NavigationService) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>self</span>.user = user
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>self</span>.networkService = networkService
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>self</span>.navigationService = navigationService
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>logOut</span>() {
+</span></span><span style=display:flex><span>        networkService.request(.logout(user)) { [<span style=color:#66d9ef>weak</span> <span style=color:#66d9ef>self</span>] <span style=color:#66d9ef>in</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>self</span>?.navigationService.showLoginScreen()
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></td></tr></table></div></div><h3 id=翻新>翻新<a hidden class=anchor aria-hidden=true href=#翻新>#</a></h3><p>从一个重度使用单例的设置到完全使用服务，依赖注入以及本地状态来改造会非常的困难，会花费大量时间。而且，会很难认为花大量时间在这上面是合理的，而且有些时候可能会需要一次更大规模的重构才行。</p><p>谢天谢地，我们可以使用相近的技术，在<a href=https://www.swiftbysundell.com/posts/testing-swift-code-that-uses-system-singletons-in-3-easy-steps>Testing Swift code that uses system singletons in 3 easy steps</a>这篇文章中也使用到过，其允许我们可以以一种非常容易的方式单例开始。和很多其他解决方案类似 ── 协议来救场！</p><p>我们不是一次性重构所有的单例，而是创建 Service 类，我们可以很简单的把我们的 Service 定义成 Protocol，如下所示：</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-Swift data-lang=Swift><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>protocol</span> <span style=color:#a6e22e>LogOutService</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>logOut</span>()
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>protocol</span> <span style=color:#a6e22e>NetworkService</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>request</span>(<span style=color:#66d9ef>_</span> endpoint: Endpoint, completionHandler: @escaping () -&gt; Void)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>protocol</span> <span style=color:#a6e22e>NavigationService</span> {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>showLoginScreen</span>()
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>showProfile</span>(<span style=color:#66d9ef>for</span> user: User)
+</span></span><span style=display:flex><span>    ...
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></td></tr></table></div></div><p>然后我们就能通过将单例符合我们新创建的 Service 协议来使其翻新为一堆 Service。在很多情况下，我们甚至不需要改变任何实现，只是简单的传递它们 shared 实例作为一个 Service 即可。</p><p>同样的技巧也能够被用作重构我们 app 中其他核心对象，那些对象我们也许也都正在以某种单例形式在使用着，例如使用 AppDelegate 来做导航。</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-Swift data-lang=Swift><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>extension</span> <span style=color:#a6e22e>UserManager</span>: LoginService, LogOutService {}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>extension</span> <span style=color:#a6e22e>AppDelegate</span>: NavigationService {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>showLoginScreen</span>() {
+</span></span><span style=display:flex><span>        navigationController.viewControllers = [
+</span></span><span style=display:flex><span>            LoginViewController(
+</span></span><span style=display:flex><span>                loginService: UserManager.shared,
+</span></span><span style=display:flex><span>                navigationService: <span style=color:#66d9ef>self</span>
+</span></span><span style=display:flex><span>            )
+</span></span><span style=display:flex><span>        ]
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> <span style=color:#a6e22e>showProfile</span>(<span style=color:#66d9ef>for</span> user: User) {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>let</span> viewController = ProfileViewController(
+</span></span><span style=display:flex><span>            user: user,
+</span></span><span style=display:flex><span>            logOutService: UserManager.shared
+</span></span><span style=display:flex><span>        )
+</span></span><span style=display:flex><span>        navigationController.pushViewController(viewController, animated: <span style=color:#66d9ef>true</span>)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></td></tr></table></div></div><p>我们现在通过使用依赖注入以及 Service 的方式，开始使得我们工程处在 Singleton free 的状态，而不需要进行特别巨大的工程改造和重写。接下来我们就能够使用 Service 或者其他类型的 API 逐个替换掉单例，比如说使用<a href=https://www.swiftbysundell.com/posts/replacing-legacy-code-using-swift-protocols>这篇博文</a>中的技巧。</p><h3 id=结论>结论<a hidden class=anchor aria-hidden=true href=#结论>#</a></h3><p>单例也不是都是不好的，只是在很多情况下，它们会引发一系列问题，这些问题可以通过使用依赖注入的方式为你程序里的对象建立良好的关系来解决。</p><p>如果你现在正在开发的 App 里在使用大量的单例，那你一定也在经历或者已经经历过它们所带来的 bug 了吧。希望这篇文章能够给你一些灵感让你没有那么慌乱的开始远离它们。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://hechen.github.io/tags/ios/>IOS</a></li><li><a href=https://hechen.github.io/tags/xcode/>Xcode</a></li><li><a href=https://hechen.github.io/tags/swift/>Swift</a></li><li><a href=https://hechen.github.io/tags/singleton/>Singleton</a></li></ul><nav class=paginav><a class=prev href=https://hechen.github.io/post/testing-swift-code-that-uses-system-singletons-in-3-easy-steps/><span class=title>«</span><br><span>三个简单步骤让你测试使用系统单例的代码</span>
+</a><a class=next href=https://hechen.github.io/post/different-flavors-of-dependency-injection-in-swift/><span class=title>»</span><br><span>Swift 中几种不同的依赖注入方式</span></a></nav></footer></article></main><footer class=footer><span>© 2015–2026 Chen · <a href=https://creativecommons.org/licenses/by-nc-nd/4.0/>CC BY-NC-ND 4.0</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

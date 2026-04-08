@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Linkedlist on I make stuff</title><link>https://hechen.github.io/tags/linkedlist/</link><description>Recent content in Linkedlist on I make stuff</description><generator>Hugo</generator><language>zh-cn</language><copyright>2015–2026 Chen · CC BY-NC-ND 4.0</copyright><lastBuildDate>Wed, 29 Apr 2015 12:28:00 +0000</lastBuildDate><atom:link href="https://hechen.github.io/tags/linkedlist/feed.xml" rel="self" type="application/rss+xml"/><item><title>[160] Intersection of Two Linked Lists</title><link>https://hechen.github.io/post/leetcode-003-intersection-of-two-linked-lists/</link><pubDate>Wed, 29 Apr 2015 12:28:00 +0000</pubDate><guid>https://hechen.github.io/post/leetcode-003-intersection-of-two-linked-lists/</guid><description>&lt;h3 id="题目intersection-of-two-linked-lists"&gt;题目：Intersection of Two Linked lists&lt;/h3&gt;
+&lt;p&gt;Write a program to find the node at which the intersection of two
+singly linked lists begins.&lt;/p&gt;
+&lt;p&gt;　　　　For example, the following two linked lists:&lt;/p&gt;
+&lt;p&gt;　　　　　　A: a1 → a2
+　　　　　　　　　　　　↘
+　　　　　　　　　　　　 c1 → c2 → c3
+　　　　　　　　　　 ↗ 　　　
+B: b1 → b2 → b3 　　
+　begin to intersect at node c1.&lt;/p&gt;
+&lt;p&gt;　　Notes:
+　　　　1. If the two linked lists have no intersection at all, return null.
+　　　　2. The linked lists must retain their original structure after the function returns.
+　　　　3. You may assume there are no cycles anywhere in the entire linked structure.
+　　　　4. Your code should preferably run in O(n) time and use only O(1) memory&lt;/p&gt;</description></item></channel></rss>

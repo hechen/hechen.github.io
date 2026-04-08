@@ -1,981 +1,182 @@
-<!DOCTYPE html>
-<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage" data-theme="light">
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>
-    
-    在 Swift 中使用工厂模式进行依赖注入 - I make stuff
-    </title>
-  
-
-
-<meta name="renderer" content="webkit" />
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
-
-
-<meta name="MobileOptimized" content="width" />
-<meta name="HandheldFriendly" content="true" />
-
-
-<meta name="applicable-device" content="pc,mobile">
-<meta name="color-scheme" content="light dark" />
-<meta name="msapplication-navbutton-color" content="#f8f5ec">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
-
-<meta name="mobile-web-app-capable" content="yes">
-
-
-<meta name="generator" content="Hugo 0.155.3" />
-
-
-<link rel="canonical" href="https://hechen.github.io/post/dependency-injection-using-factories-in-swift/" />
-
-
-
-
-<meta name="author" content="Chen" />
-<meta name="description" content=" 原文：Dependency injection using factories in Swift
-原作者 &amp; Copyright @johnsundell
-依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象能够正常运转所必须的一切内容（其他对象）通过外界传入，这样做的好处在于，一方面能清晰的看得到某个对象的所有依赖项，另一方便也使得测试工作变得更为简单（因为我们可以模拟这些依赖项来捕获、验证状态以及值。）
-" />
-
-
-
-
-
-  
-
-
-
-
-
-
-<meta name="keywords" content="iOS, Xcode, Swift" />
-
-
-<meta property="og:url" content="https://hechen.github.io/post/dependency-injection-using-factories-in-swift/">
-  <meta property="og:site_name" content="I make stuff">
-  <meta property="og:title" content="在 Swift 中使用工厂模式进行依赖注入">
-  <meta property="og:description" content="原文：Dependency injection using factories in Swift
-原作者 &amp; Copyright @johnsundell
-依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象能够正常运转所必须的一切内容（其他对象）通过外界传入，这样做的好处在于，一方面能清晰的看得到某个对象的所有依赖项，另一方便也使得测试工作变得更为简单（因为我们可以模拟这些依赖项来捕获、验证状态以及值。）">
-  <meta property="og:locale" content="zh_cn">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="post">
-    <meta property="article:published_time" content="2017-11-19T18:17:15+00:00">
-    <meta property="article:modified_time" content="2017-11-19T18:17:15+00:00">
-    <meta property="article:tag" content="IOS">
-    <meta property="article:tag" content="Xcode">
-    <meta property="article:tag" content="Swift">
-
-  <meta itemprop="name" content="在 Swift 中使用工厂模式进行依赖注入">
-  <meta itemprop="description" content="原文：Dependency injection using factories in Swift
-原作者 &amp; Copyright @johnsundell
-依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象能够正常运转所必须的一切内容（其他对象）通过外界传入，这样做的好处在于，一方面能清晰的看得到某个对象的所有依赖项，另一方便也使得测试工作变得更为简单（因为我们可以模拟这些依赖项来捕获、验证状态以及值。）">
-  <meta itemprop="datePublished" content="2017-11-19T18:17:15+00:00">
-  <meta itemprop="dateModified" content="2017-11-19T18:17:15+00:00">
-  <meta itemprop="wordCount" content="2638">
-  <meta itemprop="keywords" content="IOS,Xcode,Swift">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="在 Swift 中使用工厂模式进行依赖注入">
-  <meta name="twitter:description" content="原文：Dependency injection using factories in Swift
-原作者 &amp; Copyright @johnsundell
-依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象能够正常运转所必须的一切内容（其他对象）通过外界传入，这样做的好处在于，一方面能清晰的看得到某个对象的所有依赖项，另一方便也使得测试工作变得更为简单（因为我们可以模拟这些依赖项来捕获、验证状态以及值。）">
-
-<link rel="icon" href="/favicon.ico" />
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/css/style.min.a0ae63bb9404f735c1a2045deae9e97f06e10118e5ad7befa80df30c5cd7fabc.css" integrity="sha256-oK5ju5QE9zXBogRd6unpfwbhARjlrXvvqA3zDFzX&#43;rw=" media="screen"
-  crossorigin="anonymous">
-
-
-
-
-
-<!--[if lte IE 9]>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
-<![endif]-->
-
-<!--[if lt IE 9]>
-  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-<![endif]-->
-
-
-
-
-
-<script>
-  (function () {
-    var savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-  })();
-</script>
-
-
-</head>
-
-<body>
-  <div id="back-to-top"></div>
-
-  <header class="site-header">
-    
-<div class="desktop-header">
-  <div class="desktop-header-logo">
-    <a href="/" class="logo">
-      
-      Chen
-      
-    </a>
-  </div>
-
-  <nav class="desktop-navbar">
-    <ul id="menu" class="menu">
-      
-      
-      <li class="menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/">首页</a>
-        
-
-        
-
-      </li>
-      
-      <li class="menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/post/">归档</a>
-        
-
-        
-
-      </li>
-      
-      <li class="menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/tags/">标签</a>
-        
-
-        
-
-      </li>
-      
-      <li class="menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/categories/">分类</a>
-        
-
-        
-
-      </li>
-      
-      <li class="menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/about/">About</a>
-        
-
-        
-
-      </li>
-      
-
-      
-      
-
-      
-
-      <li class="menu-item">
-        <a class="theme-toggle menu-item-link" href="javascript:void(0);">
-
-          
-<svg aria-hidden="true" class="lucide lucide-sun hi-svg-inline theme-icon-light" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-
-          
-<svg aria-hidden="true" class="lucide lucide-moon hi-svg-inline theme-icon-dark" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-
-        </a>
-      </li>
-
-      <li class="menu-item">
-        <a class="menu-item-link" href="https://hechen.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
-          title="rss" target="_blank">
-          
-<svg aria-hidden="true" class="lucide lucide-rss hi-svg-inline icon--rss" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
-        </a>
-        
-      </li>
-    </ul>
-  </nav>
-</div>
-
-    
-
-<div class="mobile-header">
-  <div id="mobile-navbar" class="mobile-navbar">
-    <div id="mobile-navbar-icon" class="mobile-navbar-icon">
-      
-<svg aria-hidden="true" class="lucide lucide-menu hi-svg-inline icon--menu" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-    </div>
-    <div class="mobile-navbar-logo">
-      <a href="/" class="logo">Chen</a>
-    </div>
-  </div>
-
-  <div id="mobile-menu-close-modal" class="mobile-menu-close-modal"></div>
-  <nav id="mobile-menu" class="mobile-menu">
-    <ul class="mobile-menu-list">
-      <li class="mobile-menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/">首页</a>
-        
-        
-      </li><li class="mobile-menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/post/">归档</a>
-        
-        
-      </li><li class="mobile-menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/tags/">标签</a>
-        
-        
-      </li><li class="mobile-menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/categories/">分类</a>
-        
-        
-      </li><li class="mobile-menu-item">
-        
-        
-        
-        <a class="menu-item-link" href="https://hechen.github.io/about/">About</a>
-        
-        
-      </li>
-      
-
-      
-
-      <li class="mobile-menu-item">
-        <a class="theme-toggle menu-item-link" href="javascript:void(0);">
-
-          
-<svg aria-hidden="true" class="lucide lucide-sun hi-svg-inline theme-icon-light" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-
-          
-<svg aria-hidden="true" class="lucide lucide-moon hi-svg-inline theme-icon-dark" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-
-        </a>
-      </li>
-
-      <li class="mobile-menu-item">
-        <a class="menu-item-link" href="https://hechen.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
-          title="rss" target="_blank">
-          
-<svg aria-hidden="true" class="lucide lucide-rss hi-svg-inline icon--rss" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
-        </a>
-        
-      </li>
-    </ul>
-  </nav>
-</div>
-
-  </header>
-
-  
-
-  
-
-
-
-  <main id="main" class="main pico container">
-    <div class="content-wrapper">
-    <aside class="left-sidebar">
-      
-<nav class="toc" id="toc">
-    <div class="toc-title">文章目录</div>
-    <div class="toc-content custom-scrollbar">
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#传递依赖项">传递依赖项</a></li>
-    <li><a href="#工厂模式来救场">工厂模式来救场</a>
-      <ul>
-        <li><a href="#那我们该怎么做呢">那我们该怎么做呢？</a></li>
-      </ul>
-    </li>
-    <li><a href="#单例依赖">单例依赖</a></li>
-    <li><a href="#一个使用-container-的例子">一个使用 Container 的例子</a></li>
-    <li><a href="#分布式的所有权">分布式的所有权</a></li>
-    <li><a href="#总结">总结</a></li>
-  </ul>
-</nav>
-    </div>
-  </nav>
-
-
-    </aside>
-
-    <div id="content" class="content">
-      <article class="post">
-        
-        <header class="post-header">
-          <h1 class="post-title">在 Swift 中使用工厂模式进行依赖注入</h1>
-          
-
-
-
-          <div class="post-meta-list">
-  <div class="post-meta-item post-meta-author">
-    
-<svg aria-hidden="true" class="lucide lucide-user-round-pen hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M2 21a8 8 0 0 1 10.821-7.487"/><path d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/><circle cx="10" cy="8" r="5"/></svg>
-    <a href="/about">
-      <span class="post-meta-author-name">
-        Chen
-      </span>
-    </a>
-    
-  </div>
-
-  <div class="post-meta-item post-meta-time">
-    
-<svg aria-hidden="true" class="lucide lucide-calendar-days hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
-    <time datetime=" 2017-11-19">
-      2017-11-19
-    </time>
-
-
-    
-
-  </div>
-
-
-  <div class="post-meta__right">
-    
-
-    <div class="post-meta-item post-meta-category">
-      
-        
-          
-        <a href="https://hechen.github.io/categories/translation/">translation</a>
-    </div>
-
-
-    
-    
-
-
-    
-    
-  </div>
-</div>
-
-        </header>
-
-        
-        <div class="post-content">
-          <blockquote>
-<p>原文：<a href="https://www.swiftbysundell.com/articles/dependency-injection-using-factories-in-swift/">Dependency injection using factories in Swift</a></p>
-<p>原作者 &amp; Copyright <a href="https://twitter.com/johnsundell">@johnsundell</a></p>
-</blockquote>
-<p>依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象能够正常运转所必须的一切内容（其他对象）通过外界传入，这样做的好处在于，一方面能清晰的看得到某个对象的所有依赖项，另一方便也使得测试工作变得更为简单（因为我们可以模拟这些依赖项来捕获、验证状态以及值。）</p>
-<!-- more -->
-<p>然而，尽管依赖注入确实很有用，但是当在工程中广泛使用的时候还是会有一些痛点。随着某个对象的依赖项越来越多，初始化该对象就变得越来越蹩脚。虽然使得代码可测没毛病，但是如果像下面这种每次需要这样来写初始化方法，也太不爽了。</p>
-<div class="highlight-container">
-
-  <button class="copy-code-btn outline">Copy</button>
-
-  
-  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>class UserManager {
-</span></span><span style="display:flex;"><span>    init(dataLoader: DataLoader, database: Database, cache: Cache,
-</span></span><span style="display:flex;"><span>        keychain: Keychain, tokenManager: TokenManager) {
-</span></span><span style="display:flex;"><span>        // ...
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<p>所以，这周咱们来深入了解一下某种依赖注入的技巧，使得我们的代码不失去可测性，我们也不需要再强迫自己去写一团初始化方法或者复杂的依赖管理的代码。</p>
-<h2 id="传递依赖项">传递依赖项</h2>
-<p>我们遇到上面代码 demo 中的问题，最主要的原因是我们需要把这么多依赖项传递给某个对象，以便之后来使用。举例来说，我们在构建一个消息收发的 App，这里有一个 view controller 需要展示某个用户所有的消息：</p>
-<div class="highlight-container">
-
-  <button class="copy-code-btn outline">Copy</button>
-
-  
-  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> MessageListViewController: UITableViewController {
-</span></span><span style="display:flex;"><span>    private let loader: MessageLoader
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    init(loader: MessageLoader) {
-</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>loader <span style="color:#f92672">=</span> loader
-</span></span><span style="display:flex;"><span>        super<span style="color:#f92672">.</span>init(nibName: nil, bundle: nil)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    override <span style="color:#66d9ef">func</span> viewWillAppear(_ animated: Bool) {
-</span></span><span style="display:flex;"><span>        super<span style="color:#f92672">.</span>viewWillAppear(animated)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        loader<span style="color:#f92672">.</span>load { [weak self]() messages <span style="color:#f92672">in</span>
-</span></span><span style="display:flex;"><span>            self<span style="color:#960050;background-color:#1e0010">?</span><span style="color:#f92672">.</span>reloadTableView(with: messages)
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<p>如上代码能看到，我们给 <code>MessageListViewController</code> 传入某个依赖项 <code>MessageLoader</code>，之后其被用来加载数据。这里其实并没有太大的问题，因为仅仅只有一个依赖而已。然而，我们的列表视图并不是一个死气沉沉的展示而已，某些状态下还需要们进行导航到某视图控制器的工作。</p>
-<p>具体来讲，我们想让用户在点击消息列表中某个 cell 的时候，导航到一个新的视图中。我们为这个新的视图创建一个视图控制器 <code>MessageViewController</code>，使得用户能够单独查看某条消息，并且能够回复该消息。为了该功能，我们实现了 <code>MessageSender</code> 类，当创建该类的时候，我们将前面那个新的视图控制器传递给他，代码类似下面这样：</p>
-<div class="highlight-container">
-
-  <button class="copy-code-btn outline">Copy</button>
-
-  
-  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>override <span style="color:#66d9ef">func</span> tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-</span></span><span style="display:flex;"><span>    let message <span style="color:#f92672">=</span> messages[indexPath<span style="color:#f92672">.</span>row]()
-</span></span><span style="display:flex;"><span>    let viewController <span style="color:#f92672">=</span> MessageViewController(message: message, sender: sender)
-</span></span><span style="display:flex;"><span>    navigationController<span style="color:#960050;background-color:#1e0010">?</span><span style="color:#f92672">.</span>pushViewController(viewController, animated: true)
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<p>问题来了，<code>MessageViewController</code> 需要有一个 <code>MessageSender</code> 实例，我们也需要使得 <code>MessageListViewController</code> 看到该类。一种办法就是简单的，将 sender 加入到 列表视图控制器的初始化方法中，如下所示：</p>
-<div class="highlight-container">
-
-  <button class="copy-code-btn outline">Copy</button>
-
-  
-  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> MessageListViewController: UITableViewController {
-</span></span><span style="display:flex;"><span>    init(loader: MessageLoader, sender: MessageSender) {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">...</span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<p>一旦如上面这样开始写代码，我们就逐步的进入庞大初始化方法的不归路上咯，然后使得 <code>MessageListViewController</code> 会变得越来越难用（也会让调用这很困惑，为什么一个列表视图控制器还需要关心某个发送消息的人？）。</p>
-<p>另外一个可能的解决方案（也是一个很常用的解决方案），就是把 MessageSender 做成一个单例，这样的话，我们可以很容易在任何地方取到他的值，也可以随时将单例对象注入<code>MessageViewController</code> 中：</p>
-<div class="highlight-container">
-
-  <button class="copy-code-btn outline">Copy</button>
-
-  
-  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>let viewController = MessageViewController(
-</span></span><span style="display:flex;"><span>    message: message,
-</span></span><span style="display:flex;"><span>    sender: MessageSender.shared
-</span></span><span style="display:flex;"><span>)</span></span></code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<p>然而，就如 <a href="https://www.swiftbysundell.com/posts/avoiding-singletons-in-swift">Avoiding singletons in Swift</a> 这篇文章中讲的，单例这种方式会伴随一些明显的缺陷，导致我们会难以看清依赖关系，从而对整个框架都难以理解。</p>
-<h2 id="工厂模式来救场">工厂模式来救场</h2>
-<p>Wouldn&rsquo;t it be nice if we could just skip all of the above, and enable MessageListViewController to be completely unaware of MessageSender, and all other dependencies that any subsequent view controllers might need?</p>
-<p>如果我们能够避免掉上面这些问题，能够使得 <code>MessageListViewController</code> 完全不关心 <code>MessageSender</code>，甚至是后续的视图控制器的其他依赖，岂不是很爽？</p>
-<p>如果我们有某种形式的工厂，我们可以给其传入指定的 message，然后很方便的产出一个 <code>MessageViewController</code> 出来，类似下面这样，就能够很方便并且简洁的实现上面的理想：</p>
-<div class="highlight-container">
-
-  <button class="copy-code-btn outline">Copy</button>
-
-  
-  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>let viewController = factory.makeMessageViewController(for: message)</span></span></code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<p>如 <a href="https://www.swiftbysundell.com/posts/using-the-factory-pattern-to-avoid-shared-state-in-swift?rq=factories">Using the factory pattern to avoid shared state in Swift</a> 这篇文章中我们看到的，关于工厂模式中，我最喜欢的一点就是，他能够使得你将某个对象的创建和使用两者解耦，也能使得许多对象和这些对象的依赖之间有一个相对解耦的关系，进而能使得我们想重构代码或者修改某些部分的时候相对更容易一些。</p>
-<h3 id="那我们该怎么做呢">那我们该怎么做呢？</h3>
-<p>首先，我们定义一个工厂协议，该协议使得我们能够在并不知道某个视图控制器的依赖项或者其初始化方法的前提下，很容易的在我们的应用中创建出我们需要的任意的视图控制器。</p>
-<div class="highlight-container">
-
-  <button class="copy-code-btn outline">Copy</button>
-
-  
-  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>protocol ViewControllerFactory {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> makeMessageListViewController() <span style="color:#f92672">-&gt;</span> MessageListViewController
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> makeMessageViewController(<span style="color:#66d9ef">for</span> message: Message) <span style="color:#f92672">-&gt;</span> MessageViewController
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<p>到这里我们还不能停止。我们同样为工厂添加一些附件的协议用来创建视图控制器的依赖，比如下面这个协议，使得我们可以为某个列表视图控制器生成一个 <code>MessageLoader</code> 出来：</p>
-<div class="highlight-container">
-
-  <button class="copy-code-btn outline">Copy</button>
-
-  
-  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>protocol MessageLoaderFactory {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> makeMessageLoader() <span style="color:#f92672">-&gt;</span> MessageLoader
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<h2 id="单例依赖">单例依赖</h2>
-<p>一旦我们准备好这些工厂协议之后，回到上面 <code>MessageListViewController</code> 的地方，重构这段代码，无需使用其依赖项的实例而是简单的引入一个工厂实例即可。</p>
-<div class="highlight-container">
-
-  <button class="copy-code-btn outline">Copy</button>
-
-  
-  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> MessageListViewController: UITableViewController {
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    typealias Factory <span style="color:#f92672">=</span> MessageLoaderFactory <span style="color:#f92672">&amp;</span> ViewControllerFactory
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    private let factory: Factory
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    private lazy <span style="color:#66d9ef">var</span> loader <span style="color:#f92672">=</span> factory<span style="color:#f92672">.</span>makeMessageLoader()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    init(factory: Factory) {
-</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>factory <span style="color:#f92672">=</span> factory
-</span></span><span style="display:flex;"><span>        super<span style="color:#f92672">.</span>init(nibName: nil, bundle: nil)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<p>通过上面这么做，我们可以做到两点：</p>
-<ol>
-<li>我们将一堆依赖项简化成了一个单一的工厂；</li>
-<li><code>MessageListViewController</code> 无需再需再关心 <code>MessageViewController</code> 的依赖项了</li>
-</ol>
-<h2 id="一个使用-container-的例子">一个使用 Container 的例子</h2>
-<p>接下来，我们该实现工厂协议了。首先，我们需要定义一个 <code>DependencyContainer</code>，该对象会包含我们应用中那些正常情况下会被直接用来作为依赖的核心工具对象们。这些不仅仅包括类似之前 <code>MessageSender</code>，也包括更加底层的业务逻辑上的类，比如我们可能会用到 <code>NetworkManager</code>。</p>
-<div class="highlight-container">
-
-  <button class="copy-code-btn outline">Copy</button>
-
-  
-  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> DependencyContainer {
-</span></span><span style="display:flex;"><span>    private lazy <span style="color:#66d9ef">var</span> messageSender <span style="color:#f92672">=</span> MessageSender(networkManager: networkManager)
-</span></span><span style="display:flex;"><span>    private lazy <span style="color:#66d9ef">var</span> networkManager <span style="color:#f92672">=</span> NetworkManager(urlSession: <span style="color:#f92672">.</span>shared)
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<p>从上面这段代码，你能看到，我们使用了懒加载属性以便能够在初始化该对象的时候能够引用相同类中的其他属性。这是设置你依赖关系的一种非常方便而且优雅的方式，你可以利用编译器帮助你避免比如<a href="https://en.wikipedia.org/wiki/Circular_dependency">引用循环</a>等问题。</p>
-<p>最后，我们为 <code>DependencyContainer</code> 实现我们的工厂协议，使得我们能够将该工厂注入各种视图控制器或其他对象中：</p>
-<div class="highlight-container">
-
-  <button class="copy-code-btn outline">Copy</button>
-
-  
-  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>extension DependencyContainer: ViewControllerFactory {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> makeMessageListViewController() <span style="color:#f92672">-&gt;</span> MessageListViewController {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> MessageListViewController(factory: self)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> makeMessageViewController(<span style="color:#66d9ef">for</span> message: Message) <span style="color:#f92672">-&gt;</span> MessageViewController {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> MessageViewController(message: message, sender: messageSender)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>extension DependencyContainer: MessageLoaderFactory {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> makeMessageLoader() <span style="color:#f92672">-&gt;</span> MessageLoader {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> MessageLoader(networkManager: networkManager)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}</span></span></code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<h2 id="分布式的所有权">分布式的所有权</h2>
-<p>最后一步了，我们在哪里实际储存依赖存储器，谁应该拥有它？它应该在哪里设置？这里有些比较 cool 的事情就是，由于我们把依赖容器作为对象们所需要的工厂的一种实现，而对象们强持有其工厂，所以，我们其实无需在任何地方储存该依赖容器。</p>
-<p>举例来说，如果 <code>MessageListViewController</code> 是我们应用的初始化视图控制器，我们可以很简单的创建一个 <code>DependencyContainer</code> 的实例传入：</p>
-<div class="highlight-container">
-
-  <button class="copy-code-btn outline">Copy</button>
-
-  
-  <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
-<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>let container = DependencyContainer()
-</span></span><span style="display:flex;"><span>let listViewController = container.makeMessageListViewController()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>window.rootViewController = UINavigationController(
-</span></span><span style="display:flex;"><span>    rootViewController: listViewController
-</span></span><span style="display:flex;"><span>)</span></span></code></pre></td></tr></table>
-</div>
-</div>
-</div>
-<p>无需保留任何全局的变量或者在 app delegate 中使用可选属性。</p>
-<h2 id="总结">总结</h2>
-<p>使用工厂协议和容器配置依赖注入是一种很好的方式，其可以避免需要传递大量依赖而创建很复杂的初始化方法。它可以使得依赖注入使用起来更加方便，使得你能够对自己创建的对象实际的依赖关系有很明晰的判断，也使得测试更加简单。</p>
-<p>因为我们能够把工厂定义为协议，因此可以很容易的在测试中通过给定不同测试指定版本的具体实现来模拟输出。未来我会写大量关于模拟数据以及如何在测试中充分利用依赖注入的博文。</p>
-
-        </div>
-
-        
-        
-<div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">文章作者</span>
-    <span class="item-content">Chen</span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">上次更新</span>
-    <span class="item-content">
-      2017-11-19
-      
-    </span>
-  </p>
-  
-  <p class="copyright-item">
-    <span class="item-title">许可协议</span>
-    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
-  </p>
-</div>
-
-
-
-        
-        
-
-
-        <footer class="post-footer">
-          <div class="post-tags">
-              <a href="https://hechen.github.io/tags/ios/">iOS</a>
-                <a href="https://hechen.github.io/tags/xcode/">Xcode</a>
-                <a href="https://hechen.github.io/tags/swift/">Swift</a>
-                
-            </div>
-
-
-          
-          <nav class="post-nav">
-            
-              <a class="prev" href="/post/modular-xcode-projects/">
-                
-                <i class="iconfont">
-                  
-<svg aria-hidden="true" class="lucide lucide-chevron-left hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"/></svg>
-                </i>
-                <span class="prev-text nav-default">模块化 Xcode 工程</span>
-                <span class="prev-text nav-mobile">上一篇</span>
-              </a>
-            
-              <a class="next" href="/post/handling-non-optional-optionals-in-swift/">
-                <span class="next-text nav-default">处理 Swift 中非可选的可选值类型</span>
-                <span class="prev-text nav-mobile">下一篇</span>
-                
-                <i class="iconfont">
-                  
-<svg aria-hidden="true" class="lucide lucide-chevron-right hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"/></svg>
-                </i>
-              </a>
-          </nav>
-        </footer>
-      </article>
-
-      
-      
-
-
-      
-      
-
-  
-
-  
-  
-
-  
-  
-    <div class="post">
-  <script src="https://utteranc.es/client.js"
-        repo= "hechen/Comments"
-        issue-term="pathname"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-  </script>
-</div>
-
-  
-
-  
-
-  
-
-    
-
-  
-
-  
-
-
-    </div>
-
-    <aside class="right-sidebar">
-      
-    </aside>
-  </div>
-  </main>
-
-  <footer id="footer" class="site-footer">
-    <div class="social-icon-links">
-  
-
-
-<a href="mailto:hechen.dream@gmail.com" rel="me noopener" class="social-icon-link" title="email" >
-  
-<svg aria-hidden="true" class="icon hi-svg-inline" fill="currentColor" height="1em" version="1.1" viewBox="0 0 1451 1024" width="1em" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
-  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
-</svg>
-
-</a>
-
-<a href="https://stackoverflow.com/users/10229101/chen-he" rel="me noopener" class="social-icon-link" title="stack-overflow"  target="_blank" >
-  
-<svg aria-hidden="true" class="hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg">
-  <path d="M15 3h6v6" />
-  <path d="M10 14 21 3" />
-  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-</svg>
-
-</a>
-<a href="https://github.com/hechen" rel="me noopener" class="social-icon-link" title="github"  target="_blank" >
-  
-<svg aria-hidden="true" class="icon hi-svg-inline" fill="currentColor" height="1em" version="1.1" viewBox="0 0 1024 1024" width="1em" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
-  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
-</svg>
-
-</a>
-
-
-<a href="https://hechen.github.io/index.xml" rel="noopener alternate" type="application/rss&#43;xml" class="social-icon-link" title="rss"
-  target="_blank">
-  
-<svg aria-hidden="true" class="lucide lucide-rss hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
-</a>
-
-</div>
-
-<div class="copyright">
-  <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
-  </span>
-  <span class="division">|</span>
-  <span class="theme-info">
-    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
-  </span>
-
-  <span class="copyright-year">
-    &copy;
-    
-    2015 -
-    2026
-    <span class="heart">
-      
-      <i class="iconfont">
-        
-<svg aria-hidden="true" class="lucide lucide-heart hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-      </i>
-    </span><span class="author">
-      Chen
-      
-    </span></span>
-
-  
-  
-
-  
-</div>
-
-  </footer>
-
-  
-
-
-
-
-<script type="text/javascript" src="/js/main.825a735b828ff4d6bcd5e24cb3cd9f61039aff34e3bc692884644008aff75707.js" integrity="sha256-glpzW4KP9Na81eJMs82fYQOa/zTjvGkohGRACK/3Vwc=" crossorigin="anonymous"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
-    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</body>
-
-</html>
+<!doctype html><html lang=zh-cn dir=auto data-theme=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>在 Swift 中使用工厂模式进行依赖注入 | I make stuff</title><meta name=keywords content="iOS,Xcode,Swift"><meta name=description content="
+原文：Dependency injection using factories in Swift
+原作者 & Copyright @johnsundell
+
+依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象能够正常运转所必须的一切内容（其他对象）通过外界传入，这样做的好处在于，一方面能清晰的看得到某个对象的所有依赖项，另一方便也使得测试工作变得更为简单（因为我们可以模拟这些依赖项来捕获、验证状态以及值。）"><meta name=author content="Chen"><link rel=canonical href=https://hechen.github.io/post/dependency-injection-using-factories-in-swift/><link crossorigin=anonymous href=/assets/css/stylesheet.199042e659bc7245f5609d333d6c044eb554a0640849bb874e1dff8eb0f57209.css integrity="sha256-GZBC5lm8ckX1YJ0zPWwETrVUoGQISbuHTh3/jrD1cgk=" rel="preload stylesheet" as=style><link rel=icon href=https://hechen.github.io/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://hechen.github.io/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://hechen.github.io/favicon-32x32.png><link rel=apple-touch-icon href=https://hechen.github.io/apple-touch-icon.png><link rel=mask-icon href=https://hechen.github.io/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh-cn href=https://hechen.github.io/post/dependency-injection-using-factories-in-swift/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51);color-scheme:dark}.list{background:var(--theme)}.toc{background:var(--entry)}}@media(prefers-color-scheme:light){.list::-webkit-scrollbar-thumb{border-color:var(--code-bg)}}</style></noscript><script>localStorage.getItem("pref-theme")==="dark"?document.querySelector("html").dataset.theme="dark":localStorage.getItem("pref-theme")==="light"?document.querySelector("html").dataset.theme="light":window.matchMedia("(prefers-color-scheme: dark)").matches?document.querySelector("html").dataset.theme="dark":document.querySelector("html").dataset.theme="light"</script><meta property="og:url" content="https://hechen.github.io/post/dependency-injection-using-factories-in-swift/"><meta property="og:site_name" content="I make stuff"><meta property="og:title" content="在 Swift 中使用工厂模式进行依赖注入"><meta property="og:description" content="原文：Dependency injection using factories in Swift
+原作者 & Copyright @johnsundell
+依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象能够正常运转所必须的一切内容（其他对象）通过外界传入，这样做的好处在于，一方面能清晰的看得到某个对象的所有依赖项，另一方便也使得测试工作变得更为简单（因为我们可以模拟这些依赖项来捕获、验证状态以及值。）"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2017-11-19T18:17:15+00:00"><meta property="article:modified_time" content="2017-11-19T18:17:15+00:00"><meta property="article:tag" content="IOS"><meta property="article:tag" content="Xcode"><meta property="article:tag" content="Swift"><meta name=twitter:card content="summary"><meta name=twitter:title content="在 Swift 中使用工厂模式进行依赖注入"><meta name=twitter:description content="原文：Dependency injection using factories in Swift
+原作者 & Copyright @johnsundell
+依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象能够正常运转所必须的一切内容（其他对象）通过外界传入，这样做的好处在于，一方面能清晰的看得到某个对象的所有依赖项，另一方便也使得测试工作变得更为简单（因为我们可以模拟这些依赖项来捕获、验证状态以及值。）"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://hechen.github.io/post/"},{"@type":"ListItem","position":2,"name":"在 Swift 中使用工厂模式进行依赖注入","item":"https://hechen.github.io/post/dependency-injection-using-factories-in-swift/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"在 Swift 中使用工厂模式进行依赖注入","name":"在 Swift 中使用工厂模式进行依赖注入","description":" 原文：Dependency injection using factories in Swift\n原作者 \u0026amp; Copyright @johnsundell\n依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象能够正常运转所必须的一切内容（其他对象）通过外界传入，这样做的好处在于，一方面能清晰的看得到某个对象的所有依赖项，另一方便也使得测试工作变得更为简单（因为我们可以模拟这些依赖项来捕获、验证状态以及值。）\n","keywords":["iOS","Xcode","Swift"],"articleBody":" 原文：Dependency injection using factories in Swift\n原作者 \u0026 Copyright @johnsundell\n依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象能够正常运转所必须的一切内容（其他对象）通过外界传入，这样做的好处在于，一方面能清晰的看得到某个对象的所有依赖项，另一方便也使得测试工作变得更为简单（因为我们可以模拟这些依赖项来捕获、验证状态以及值。）\n然而，尽管依赖注入确实很有用，但是当在工程中广泛使用的时候还是会有一些痛点。随着某个对象的依赖项越来越多，初始化该对象就变得越来越蹩脚。虽然使得代码可测没毛病，但是如果像下面这种每次需要这样来写初始化方法，也太不爽了。\n1 2 3 4 5 6 class UserManager { init(dataLoader: DataLoader, database: Database, cache: Cache, keychain: Keychain, tokenManager: TokenManager) { // ... } } 所以，这周咱们来深入了解一下某种依赖注入的技巧，使得我们的代码不失去可测性，我们也不需要再强迫自己去写一团初始化方法或者复杂的依赖管理的代码。\n传递依赖项 我们遇到上面代码 demo 中的问题，最主要的原因是我们需要把这么多依赖项传递给某个对象，以便之后来使用。举例来说，我们在构建一个消息收发的 App，这里有一个 view controller 需要展示某个用户所有的消息：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 class MessageListViewController: UITableViewController { private let loader: MessageLoader init(loader: MessageLoader) { self.loader = loader super.init(nibName: nil, bundle: nil) } override func viewWillAppear(_ animated: Bool) { super.viewWillAppear(animated) loader.load { [weak self]() messages in self?.reloadTableView(with: messages) } } } 如上代码能看到，我们给 MessageListViewController 传入某个依赖项 MessageLoader，之后其被用来加载数据。这里其实并没有太大的问题，因为仅仅只有一个依赖而已。然而，我们的列表视图并不是一个死气沉沉的展示而已，某些状态下还需要们进行导航到某视图控制器的工作。\n具体来讲，我们想让用户在点击消息列表中某个 cell 的时候，导航到一个新的视图中。我们为这个新的视图创建一个视图控制器 MessageViewController，使得用户能够单独查看某条消息，并且能够回复该消息。为了该功能，我们实现了 MessageSender 类，当创建该类的时候，我们将前面那个新的视图控制器传递给他，代码类似下面这样：\n1 2 3 4 5 override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { let message = messages[indexPath.row]() let viewController = MessageViewController(message: message, sender: sender) navigationController?.pushViewController(viewController, animated: true) } 问题来了，MessageViewController 需要有一个 MessageSender 实例，我们也需要使得 MessageListViewController 看到该类。一种办法就是简单的，将 sender 加入到 列表视图控制器的初始化方法中，如下所示：\n1 2 3 4 5 class MessageListViewController: UITableViewController { init(loader: MessageLoader, sender: MessageSender) { ... } } 一旦如上面这样开始写代码，我们就逐步的进入庞大初始化方法的不归路上咯，然后使得 MessageListViewController 会变得越来越难用（也会让调用这很困惑，为什么一个列表视图控制器还需要关心某个发送消息的人？）。\n另外一个可能的解决方案（也是一个很常用的解决方案），就是把 MessageSender 做成一个单例，这样的话，我们可以很容易在任何地方取到他的值，也可以随时将单例对象注入MessageViewController 中：\n1 2 3 4 let viewController = MessageViewController( message: message, sender: MessageSender.shared ) 然而，就如 Avoiding singletons in Swift 这篇文章中讲的，单例这种方式会伴随一些明显的缺陷，导致我们会难以看清依赖关系，从而对整个框架都难以理解。\n工厂模式来救场 Wouldn’t it be nice if we could just skip all of the above, and enable MessageListViewController to be completely unaware of MessageSender, and all other dependencies that any subsequent view controllers might need?\n如果我们能够避免掉上面这些问题，能够使得 MessageListViewController 完全不关心 MessageSender，甚至是后续的视图控制器的其他依赖，岂不是很爽？\n如果我们有某种形式的工厂，我们可以给其传入指定的 message，然后很方便的产出一个 MessageViewController 出来，类似下面这样，就能够很方便并且简洁的实现上面的理想：\n1 let viewController = factory.makeMessageViewController(for: message) 如 Using the factory pattern to avoid shared state in Swift 这篇文章中我们看到的，关于工厂模式中，我最喜欢的一点就是，他能够使得你将某个对象的创建和使用两者解耦，也能使得许多对象和这些对象的依赖之间有一个相对解耦的关系，进而能使得我们想重构代码或者修改某些部分的时候相对更容易一些。\n那我们该怎么做呢？ 首先，我们定义一个工厂协议，该协议使得我们能够在并不知道某个视图控制器的依赖项或者其初始化方法的前提下，很容易的在我们的应用中创建出我们需要的任意的视图控制器。\n1 2 3 4 protocol ViewControllerFactory { func makeMessageListViewController() -\u003e MessageListViewController func makeMessageViewController(for message: Message) -\u003e MessageViewController } 到这里我们还不能停止。我们同样为工厂添加一些附件的协议用来创建视图控制器的依赖，比如下面这个协议，使得我们可以为某个列表视图控制器生成一个 MessageLoader 出来：\n1 2 3 protocol MessageLoaderFactory { func makeMessageLoader() -\u003e MessageLoader } 单例依赖 一旦我们准备好这些工厂协议之后，回到上面 MessageListViewController 的地方，重构这段代码，无需使用其依赖项的实例而是简单的引入一个工厂实例即可。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 class MessageListViewController: UITableViewController { typealias Factory = MessageLoaderFactory \u0026 ViewControllerFactory private let factory: Factory private lazy var loader = factory.makeMessageLoader() init(factory: Factory) { self.factory = factory super.init(nibName: nil, bundle: nil) } } 通过上面这么做，我们可以做到两点：\n我们将一堆依赖项简化成了一个单一的工厂； MessageListViewController 无需再需再关心 MessageViewController 的依赖项了 一个使用 Container 的例子 接下来，我们该实现工厂协议了。首先，我们需要定义一个 DependencyContainer，该对象会包含我们应用中那些正常情况下会被直接用来作为依赖的核心工具对象们。这些不仅仅包括类似之前 MessageSender，也包括更加底层的业务逻辑上的类，比如我们可能会用到 NetworkManager。\n1 2 3 4 class DependencyContainer { private lazy var messageSender = MessageSender(networkManager: networkManager) private lazy var networkManager = NetworkManager(urlSession: .shared) } 从上面这段代码，你能看到，我们使用了懒加载属性以便能够在初始化该对象的时候能够引用相同类中的其他属性。这是设置你依赖关系的一种非常方便而且优雅的方式，你可以利用编译器帮助你避免比如引用循环等问题。\n最后，我们为 DependencyContainer 实现我们的工厂协议，使得我们能够将该工厂注入各种视图控制器或其他对象中：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 extension DependencyContainer: ViewControllerFactory { func makeMessageListViewController() -\u003e MessageListViewController { return MessageListViewController(factory: self) } func makeMessageViewController(for message: Message) -\u003e MessageViewController { return MessageViewController(message: message, sender: messageSender) } } extension DependencyContainer: MessageLoaderFactory { func makeMessageLoader() -\u003e MessageLoader { return MessageLoader(networkManager: networkManager) } } 分布式的所有权 最后一步了，我们在哪里实际储存依赖存储器，谁应该拥有它？它应该在哪里设置？这里有些比较 cool 的事情就是，由于我们把依赖容器作为对象们所需要的工厂的一种实现，而对象们强持有其工厂，所以，我们其实无需在任何地方储存该依赖容器。\n举例来说，如果 MessageListViewController 是我们应用的初始化视图控制器，我们可以很简单的创建一个 DependencyContainer 的实例传入：\n1 2 3 4 5 6 let container = DependencyContainer() let listViewController = container.makeMessageListViewController() window.rootViewController = UINavigationController( rootViewController: listViewController ) 无需保留任何全局的变量或者在 app delegate 中使用可选属性。\n总结 使用工厂协议和容器配置依赖注入是一种很好的方式，其可以避免需要传递大量依赖而创建很复杂的初始化方法。它可以使得依赖注入使用起来更加方便，使得你能够对自己创建的对象实际的依赖关系有很明晰的判断，也使得测试更加简单。\n因为我们能够把工厂定义为协议，因此可以很容易的在测试中通过给定不同测试指定版本的具体实现来模拟输出。未来我会写大量关于模拟数据以及如何在测试中充分利用依赖注入的博文。\n","wordCount":"2626","inLanguage":"zh-cn","datePublished":"2017-11-19T18:17:15Z","dateModified":"2017-11-19T18:17:15Z","author":{"@type":"Person","name":"Chen"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://hechen.github.io/post/dependency-injection-using-factories-in-swift/"},"publisher":{"@type":"Organization","name":"I make stuff","logo":{"@type":"ImageObject","url":"https://hechen.github.io/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=nav><div class=logo><a href=https://hechen.github.io/ accesskey=h title="I make stuff (Alt + H)">I make stuff</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://hechen.github.io/ title="Chen's Blog"><span>Home</span></a></li><li><a href=https://hechen.github.io/post/ title=Posts><span>Blog</span></a></li><li><a href=https://hechen.github.io/apps/ title=Apps><span>Apps</span></a></li><li><a href=https://hechen.github.io/about/ title=About><span>About</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><div class=breadcrumbs><a href=https://hechen.github.io/>Home</a>&nbsp;»&nbsp;<a href=https://hechen.github.io/post/>Posts</a></div><h1 class="post-title entry-hint-parent">在 Swift 中使用工厂模式进行依赖注入</h1><div class=post-meta><span title='2017-11-19 18:17:15 +0000 UTC'>2017-11-19</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>Chen</span></div></header><div class=toc><details><summary accesskey=c title="(Alt + C)"><span class=details>Table of Contents</span></summary><div class=inner><ul><li><a href=#%e4%bc%a0%e9%80%92%e4%be%9d%e8%b5%96%e9%a1%b9 aria-label=传递依赖项>传递依赖项</a></li><li><a href=#%e5%b7%a5%e5%8e%82%e6%a8%a1%e5%bc%8f%e6%9d%a5%e6%95%91%e5%9c%ba aria-label=工厂模式来救场>工厂模式来救场</a><ul><li><a href=#%e9%82%a3%e6%88%91%e4%bb%ac%e8%af%a5%e6%80%8e%e4%b9%88%e5%81%9a%e5%91%a2 aria-label=那我们该怎么做呢？>那我们该怎么做呢？</a></li></ul></li><li><a href=#%e5%8d%95%e4%be%8b%e4%be%9d%e8%b5%96 aria-label=单例依赖>单例依赖</a></li><li><a href=#%e4%b8%80%e4%b8%aa%e4%bd%bf%e7%94%a8-container-%e7%9a%84%e4%be%8b%e5%ad%90 aria-label="一个使用 Container 的例子">一个使用 Container 的例子</a></li><li><a href=#%e5%88%86%e5%b8%83%e5%bc%8f%e7%9a%84%e6%89%80%e6%9c%89%e6%9d%83 aria-label=分布式的所有权>分布式的所有权</a></li><li><a href=#%e6%80%bb%e7%bb%93 aria-label=总结>总结</a></li></ul></div></details></div><div class=post-content><blockquote><p>原文：<a href=https://www.swiftbysundell.com/articles/dependency-injection-using-factories-in-swift/>Dependency injection using factories in Swift</a></p><p>原作者 & Copyright <a href=https://twitter.com/johnsundell>@johnsundell</a></p></blockquote><p>依赖注入是一项使得代码更加可测试的关键工具。我们不需要持有某些对象，或者创建这些对象的自有依赖，或者通过单例来获取他们，而是尽可能使那些对象能够正常运转所必须的一切内容（其他对象）通过外界传入，这样做的好处在于，一方面能清晰的看得到某个对象的所有依赖项，另一方便也使得测试工作变得更为简单（因为我们可以模拟这些依赖项来捕获、验证状态以及值。）</p><p>然而，尽管依赖注入确实很有用，但是当在工程中广泛使用的时候还是会有一些痛点。随着某个对象的依赖项越来越多，初始化该对象就变得越来越蹩脚。虽然使得代码可测没毛病，但是如果像下面这种每次需要这样来写初始化方法，也太不爽了。</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-fallback data-lang=fallback><span style=display:flex><span>class UserManager {
+</span></span><span style=display:flex><span>    init(dataLoader: DataLoader, database: Database, cache: Cache,
+</span></span><span style=display:flex><span>        keychain: Keychain, tokenManager: TokenManager) {
+</span></span><span style=display:flex><span>        // ...
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></td></tr></table></div></div><p>所以，这周咱们来深入了解一下某种依赖注入的技巧，使得我们的代码不失去可测性，我们也不需要再强迫自己去写一团初始化方法或者复杂的依赖管理的代码。</p><h2 id=传递依赖项>传递依赖项<a hidden class=anchor aria-hidden=true href=#传递依赖项>#</a></h2><p>我们遇到上面代码 demo 中的问题，最主要的原因是我们需要把这么多依赖项传递给某个对象，以便之后来使用。举例来说，我们在构建一个消息收发的 App，这里有一个 view controller 需要展示某个用户所有的消息：</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-gdscript3 data-lang=gdscript3><span style=display:flex><span><span style=color:#66d9ef>class</span> MessageListViewController: UITableViewController {
+</span></span><span style=display:flex><span>    private let loader: MessageLoader
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    init(loader: MessageLoader) {
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>loader <span style=color:#f92672>=</span> loader
+</span></span><span style=display:flex><span>        super<span style=color:#f92672>.</span>init(nibName: nil, bundle: nil)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    override <span style=color:#66d9ef>func</span> viewWillAppear(_ animated: Bool) {
+</span></span><span style=display:flex><span>        super<span style=color:#f92672>.</span>viewWillAppear(animated)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        loader<span style=color:#f92672>.</span>load { [weak self]() messages <span style=color:#f92672>in</span>
+</span></span><span style=display:flex><span>            self<span style=color:#960050;background-color:#1e0010>?</span><span style=color:#f92672>.</span>reloadTableView(with: messages)
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></td></tr></table></div></div><p>如上代码能看到，我们给 <code>MessageListViewController</code> 传入某个依赖项 <code>MessageLoader</code>，之后其被用来加载数据。这里其实并没有太大的问题，因为仅仅只有一个依赖而已。然而，我们的列表视图并不是一个死气沉沉的展示而已，某些状态下还需要们进行导航到某视图控制器的工作。</p><p>具体来讲，我们想让用户在点击消息列表中某个 cell 的时候，导航到一个新的视图中。我们为这个新的视图创建一个视图控制器 <code>MessageViewController</code>，使得用户能够单独查看某条消息，并且能够回复该消息。为了该功能，我们实现了 <code>MessageSender</code> 类，当创建该类的时候，我们将前面那个新的视图控制器传递给他，代码类似下面这样：</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-gdscript3 data-lang=gdscript3><span style=display:flex><span>override <span style=color:#66d9ef>func</span> tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+</span></span><span style=display:flex><span>    let message <span style=color:#f92672>=</span> messages[indexPath<span style=color:#f92672>.</span>row]()
+</span></span><span style=display:flex><span>    let viewController <span style=color:#f92672>=</span> MessageViewController(message: message, sender: sender)
+</span></span><span style=display:flex><span>    navigationController<span style=color:#960050;background-color:#1e0010>?</span><span style=color:#f92672>.</span>pushViewController(viewController, animated: true)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></td></tr></table></div></div><p>问题来了，<code>MessageViewController</code> 需要有一个 <code>MessageSender</code> 实例，我们也需要使得 <code>MessageListViewController</code> 看到该类。一种办法就是简单的，将 sender 加入到 列表视图控制器的初始化方法中，如下所示：</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-gdscript3 data-lang=gdscript3><span style=display:flex><span><span style=color:#66d9ef>class</span> MessageListViewController: UITableViewController {
+</span></span><span style=display:flex><span>    init(loader: MessageLoader, sender: MessageSender) {
+</span></span><span style=display:flex><span>        <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></td></tr></table></div></div><p>一旦如上面这样开始写代码，我们就逐步的进入庞大初始化方法的不归路上咯，然后使得 <code>MessageListViewController</code> 会变得越来越难用（也会让调用这很困惑，为什么一个列表视图控制器还需要关心某个发送消息的人？）。</p><p>另外一个可能的解决方案（也是一个很常用的解决方案），就是把 MessageSender 做成一个单例，这样的话，我们可以很容易在任何地方取到他的值，也可以随时将单例对象注入<code>MessageViewController</code> 中：</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-fallback data-lang=fallback><span style=display:flex><span>let viewController = MessageViewController(
+</span></span><span style=display:flex><span>    message: message,
+</span></span><span style=display:flex><span>    sender: MessageSender.shared
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></td></tr></table></div></div><p>然而，就如 <a href=https://www.swiftbysundell.com/posts/avoiding-singletons-in-swift>Avoiding singletons in Swift</a> 这篇文章中讲的，单例这种方式会伴随一些明显的缺陷，导致我们会难以看清依赖关系，从而对整个框架都难以理解。</p><h2 id=工厂模式来救场>工厂模式来救场<a hidden class=anchor aria-hidden=true href=#工厂模式来救场>#</a></h2><p>Wouldn&rsquo;t it be nice if we could just skip all of the above, and enable MessageListViewController to be completely unaware of MessageSender, and all other dependencies that any subsequent view controllers might need?</p><p>如果我们能够避免掉上面这些问题，能够使得 <code>MessageListViewController</code> 完全不关心 <code>MessageSender</code>，甚至是后续的视图控制器的其他依赖，岂不是很爽？</p><p>如果我们有某种形式的工厂，我们可以给其传入指定的 message，然后很方便的产出一个 <code>MessageViewController</code> 出来，类似下面这样，就能够很方便并且简洁的实现上面的理想：</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-fallback data-lang=fallback><span style=display:flex><span>let viewController = factory.makeMessageViewController(for: message)
+</span></span></code></pre></td></tr></table></div></div><p>如 <a href="https://www.swiftbysundell.com/posts/using-the-factory-pattern-to-avoid-shared-state-in-swift?rq=factories">Using the factory pattern to avoid shared state in Swift</a> 这篇文章中我们看到的，关于工厂模式中，我最喜欢的一点就是，他能够使得你将某个对象的创建和使用两者解耦，也能使得许多对象和这些对象的依赖之间有一个相对解耦的关系，进而能使得我们想重构代码或者修改某些部分的时候相对更容易一些。</p><h3 id=那我们该怎么做呢>那我们该怎么做呢？<a hidden class=anchor aria-hidden=true href=#那我们该怎么做呢>#</a></h3><p>首先，我们定义一个工厂协议，该协议使得我们能够在并不知道某个视图控制器的依赖项或者其初始化方法的前提下，很容易的在我们的应用中创建出我们需要的任意的视图控制器。</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-gdscript3 data-lang=gdscript3><span style=display:flex><span>protocol ViewControllerFactory {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> makeMessageListViewController() <span style=color:#f92672>-&gt;</span> MessageListViewController
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> makeMessageViewController(<span style=color:#66d9ef>for</span> message: Message) <span style=color:#f92672>-&gt;</span> MessageViewController
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></td></tr></table></div></div><p>到这里我们还不能停止。我们同样为工厂添加一些附件的协议用来创建视图控制器的依赖，比如下面这个协议，使得我们可以为某个列表视图控制器生成一个 <code>MessageLoader</code> 出来：</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-gdscript3 data-lang=gdscript3><span style=display:flex><span>protocol MessageLoaderFactory {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> makeMessageLoader() <span style=color:#f92672>-&gt;</span> MessageLoader
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></td></tr></table></div></div><h2 id=单例依赖>单例依赖<a hidden class=anchor aria-hidden=true href=#单例依赖>#</a></h2><p>一旦我们准备好这些工厂协议之后，回到上面 <code>MessageListViewController</code> 的地方，重构这段代码，无需使用其依赖项的实例而是简单的引入一个工厂实例即可。</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-gdscript3 data-lang=gdscript3><span style=display:flex><span><span style=color:#66d9ef>class</span> MessageListViewController: UITableViewController {
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    typealias Factory <span style=color:#f92672>=</span> MessageLoaderFactory <span style=color:#f92672>&amp;</span> ViewControllerFactory
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    private let factory: Factory
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    private lazy <span style=color:#66d9ef>var</span> loader <span style=color:#f92672>=</span> factory<span style=color:#f92672>.</span>makeMessageLoader()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    init(factory: Factory) {
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>factory <span style=color:#f92672>=</span> factory
+</span></span><span style=display:flex><span>        super<span style=color:#f92672>.</span>init(nibName: nil, bundle: nil)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></td></tr></table></div></div><p>通过上面这么做，我们可以做到两点：</p><ol><li>我们将一堆依赖项简化成了一个单一的工厂；</li><li><code>MessageListViewController</code> 无需再需再关心 <code>MessageViewController</code> 的依赖项了</li></ol><h2 id=一个使用-container-的例子>一个使用 Container 的例子<a hidden class=anchor aria-hidden=true href=#一个使用-container-的例子>#</a></h2><p>接下来，我们该实现工厂协议了。首先，我们需要定义一个 <code>DependencyContainer</code>，该对象会包含我们应用中那些正常情况下会被直接用来作为依赖的核心工具对象们。这些不仅仅包括类似之前 <code>MessageSender</code>，也包括更加底层的业务逻辑上的类，比如我们可能会用到 <code>NetworkManager</code>。</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-gdscript3 data-lang=gdscript3><span style=display:flex><span><span style=color:#66d9ef>class</span> DependencyContainer {
+</span></span><span style=display:flex><span>    private lazy <span style=color:#66d9ef>var</span> messageSender <span style=color:#f92672>=</span> MessageSender(networkManager: networkManager)
+</span></span><span style=display:flex><span>    private lazy <span style=color:#66d9ef>var</span> networkManager <span style=color:#f92672>=</span> NetworkManager(urlSession: <span style=color:#f92672>.</span>shared)
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></td></tr></table></div></div><p>从上面这段代码，你能看到，我们使用了懒加载属性以便能够在初始化该对象的时候能够引用相同类中的其他属性。这是设置你依赖关系的一种非常方便而且优雅的方式，你可以利用编译器帮助你避免比如<a href=https://en.wikipedia.org/wiki/Circular_dependency>引用循环</a>等问题。</p><p>最后，我们为 <code>DependencyContainer</code> 实现我们的工厂协议，使得我们能够将该工厂注入各种视图控制器或其他对象中：</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-gdscript3 data-lang=gdscript3><span style=display:flex><span>extension DependencyContainer: ViewControllerFactory {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> makeMessageListViewController() <span style=color:#f92672>-&gt;</span> MessageListViewController {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> MessageListViewController(factory: self)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> makeMessageViewController(<span style=color:#66d9ef>for</span> message: Message) <span style=color:#f92672>-&gt;</span> MessageViewController {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> MessageViewController(message: message, sender: messageSender)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>extension DependencyContainer: MessageLoaderFactory {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>func</span> makeMessageLoader() <span style=color:#f92672>-&gt;</span> MessageLoader {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> MessageLoader(networkManager: networkManager)
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></td></tr></table></div></div><h2 id=分布式的所有权>分布式的所有权<a hidden class=anchor aria-hidden=true href=#分布式的所有权>#</a></h2><p>最后一步了，我们在哪里实际储存依赖存储器，谁应该拥有它？它应该在哪里设置？这里有些比较 cool 的事情就是，由于我们把依赖容器作为对象们所需要的工厂的一种实现，而对象们强持有其工厂，所以，我们其实无需在任何地方储存该依赖容器。</p><p>举例来说，如果 <code>MessageListViewController</code> 是我们应用的初始化视图控制器，我们可以很简单的创建一个 <code>DependencyContainer</code> 的实例传入：</p><div class=highlight><div style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><table style=border-spacing:0;padding:0;margin:0;border:0><tr><td style=vertical-align:top;padding:0;margin:0;border:0><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:.4em;padding:0 .4em;color:#7f7f7f">6
+</span></code></pre></td><td style=vertical-align:top;padding:0;margin:0;border:0;width:100%><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-fallback data-lang=fallback><span style=display:flex><span>let container = DependencyContainer()
+</span></span><span style=display:flex><span>let listViewController = container.makeMessageListViewController()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>window.rootViewController = UINavigationController(
+</span></span><span style=display:flex><span>    rootViewController: listViewController
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></td></tr></table></div></div><p>无需保留任何全局的变量或者在 app delegate 中使用可选属性。</p><h2 id=总结>总结<a hidden class=anchor aria-hidden=true href=#总结>#</a></h2><p>使用工厂协议和容器配置依赖注入是一种很好的方式，其可以避免需要传递大量依赖而创建很复杂的初始化方法。它可以使得依赖注入使用起来更加方便，使得你能够对自己创建的对象实际的依赖关系有很明晰的判断，也使得测试更加简单。</p><p>因为我们能够把工厂定义为协议，因此可以很容易的在测试中通过给定不同测试指定版本的具体实现来模拟输出。未来我会写大量关于模拟数据以及如何在测试中充分利用依赖注入的博文。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://hechen.github.io/tags/ios/>IOS</a></li><li><a href=https://hechen.github.io/tags/xcode/>Xcode</a></li><li><a href=https://hechen.github.io/tags/swift/>Swift</a></li></ul><nav class=paginav><a class=prev href=https://hechen.github.io/post/modular-xcode-projects/><span class=title>«</span><br><span>模块化 Xcode 工程</span>
+</a><a class=next href=https://hechen.github.io/post/handling-non-optional-optionals-in-swift/><span class=title>»</span><br><span>处理 Swift 中非可选的可选值类型</span></a></nav></footer></article></main><footer class=footer><span>© 2015–2026 Chen · <a href=https://creativecommons.org/licenses/by-nc-nd/4.0/>CC BY-NC-ND 4.0</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>

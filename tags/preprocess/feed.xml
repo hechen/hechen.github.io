@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Preprocess on I make stuff</title><link>https://hechen.github.io/tags/preprocess/</link><description>Recent content in Preprocess on I make stuff</description><generator>Hugo</generator><language>zh-cn</language><copyright>2015–2026 Chen · CC BY-NC-ND 4.0</copyright><lastBuildDate>Thu, 25 Apr 2019 11:30:30 +0800</lastBuildDate><atom:link href="https://hechen.github.io/tags/preprocess/feed.xml" rel="self" type="application/rss+xml"/><item><title>Build Process</title><link>https://hechen.github.io/post/xcode-build-system/</link><pubDate>Thu, 25 Apr 2019 11:30:30 +0800</pubDate><guid>https://hechen.github.io/post/xcode-build-system/</guid><description>&lt;p&gt;编程语言的处理过程大致会有五个阶段，其每个阶段均有对应的工具：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;预处理器 Preprocessor&lt;/li&gt;
+&lt;li&gt;编译器 Compiler&lt;/li&gt;
+&lt;li&gt;汇编器 Assembler&lt;/li&gt;
+&lt;li&gt;链接器 Linker&lt;/li&gt;
+&lt;li&gt;加载器 Loader&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我们以一个简单的源文件，来看看具体这几个步骤都做了哪些事情。&lt;/p&gt;</description></item></channel></rss>
