@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DupeOut — Privacy Policy</title>
+<meta name="description" content="DupeOut privacy policy: photos never leave your device, no analytics, no third-party SDKs, no network calls.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <p><a href="index.html">← DupeOut</a></p>
+  <h1>Privacy Policy</h1>
+  <p><strong>Last updated:</strong> 27 April 2026</p>
+
+  <h2>The short version</h2>
+  <p>DupeOut never sends your photos anywhere. Hashing, similarity embeddings, clustering, and bad-photo detection all run locally on your iPhone or iPad using Apple's Vision and PhotoKit frameworks. There is no DupeOut server because there is no DupeOut server. Nothing to upload, nothing to leak, nothing to subpoena.</p>
+
+  <h2>What data is collected</h2>
+  <p>None on our side. DupeOut has no analytics, no telemetry, no crash reporters, no third-party SDKs, and no advertising. The app makes zero network calls during normal use. The only data the app touches is your photo library, and only because you explicitly granted Photos access.</p>
+
+  <h2>Photo library access</h2>
+  <p>When you grant Photos access (full library, not Limited), DupeOut reads each asset's perceptual hash, a small image embedding, sharpness/luminance signals, EXIF capture date, and Live Photo / file size metadata. Those derived signals stay in a SwiftData store inside the app's sandbox on your device. The original photos are never copied — only short fixed-size feature vectors derived from a 96×96 grayscale pass.</p>
+  <p>The app uses Apple's <code class="mono">VNFeaturePrintObservation</code> for similarity, the system Laplacian variance for sharpness, and standard luminance histograms for the Bad Photos detector. None of that touches the network.</p>
+
+  <h2>Deletions and the Trash safety net</h2>
+  <p>When you tap Move to Trash, DupeOut backs up the photo's image data to its local sandbox first, then asks the system Photos library to delete the original via <code class="mono">PHAssetChangeRequest.deleteAssets</code>. Photos shows the standard "Allow DupeOut to delete N photos?" confirmation; tap Don't Allow and nothing is deleted. The 30-day Trash inside DupeOut is the safety net — restore from there returns the photo to your library with its Live Photo pairing intact when applicable.</p>
+
+  <h2>iCloud Photos</h2>
+  <p>DupeOut respects your iCloud Photos download state. If a photo is iCloud-only and not downloaded to your device, DupeOut will request the resource from iCloud through PhotoKit (the same way Photos.app does); Apple handles the network. We never see iCloud credentials or content directly.</p>
+
+  <h2>Third-party services</h2>
+  <p>DupeOut uses only Apple-provided frameworks: PhotoKit, Vision, SwiftData, StoreKit, App Intents. There are no third-party tracking SDKs, ad networks, analytics services, or AI providers in the app.</p>
+
+  <h2>Data retention</h2>
+  <p>The local SwiftData index persists on your device until you clear the cache from Settings → Cache, or delete the app. There is no remote copy. Uninstalling DupeOut removes everything.</p>
+
+  <h2>Children's privacy</h2>
+  <p>DupeOut is not directed at children under 13. We do not knowingly collect data from children.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If material changes are made, the "Last updated" date above changes and the change is mentioned in the next release notes.</p>
+
+  <h2>Contact</h2>
+  <p>For privacy questions, email <a href="mailto:hechen.dream@gmail.com">hechen.dream@gmail.com</a>.</p>
+
+  <footer>
+    <span>© 2026 Chen He</span>
+    <span><a href="index.html">Home</a> · <a href="support.html">Support</a></span>
+  </footer>
+</main>
+</body>
+</html>
