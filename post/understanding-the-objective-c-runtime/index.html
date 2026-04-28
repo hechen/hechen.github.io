@@ -1,319 +1,453 @@
-<!doctype html><html lang=zh-cn dir=ltr class=scroll-smooth data-default-appearance=dark data-auto-appearance=true><head><meta charset=utf-8><meta http-equiv=content-language content="zh-cn"><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="ie=edge"><meta name=theme-color><title>理解Objective-C运行时 &#183; I make stuff</title><meta name=title content="理解Objective-C运行时 &#183; I make stuff"><meta name=description content="Chen's blog — iOS / macOS developer, Swift & SwiftUI"><meta name=keywords content="iOS,Objective-C,Runtime,"><link rel=canonical href=https://hechen.github.io/post/understanding-the-objective-c-runtime/><meta name=author content="Chen"><link href=https://github.com/hechen rel=me><link href=https://stackoverflow.com/users/10229101/chen-he rel=me><meta property="og:url" content="https://hechen.github.io/post/understanding-the-objective-c-runtime/"><meta property="og:site_name" content="I make stuff"><meta property="og:title" content="理解Objective-C运行时"><meta property="og:description" content="Objective-C 运行时对于刚刚踏入 Cocoa/Objective 世界的人是很容易忽 略的 Objective-C 语言的特性之一。原因就是尽管 Objective-C 是一门几个小时之内入门的语言，但是投身 Cocoa 的新手们会花费大量时间在 Cocoa 框架中，试图搞清楚他到底是怎么工作的。 我觉得每个开发者都应该对其有深入的了解，明白一些内部的实现细节，而不仅仅只知道代码 [target doMethodWith:var] 会被编译器转换成 objc_msgSend(target,@selector(doMethodWith:),var1); 而已。了解 Objective-C 运行时的原理有助于你对 Objective-C 语言有更深入的理解，清楚你得 App 是怎么运行的。我觉得这对无论是 Mac/iPhone 新手或者老手都会有所帮助。"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2015-09-07T17:55:33+00:00"><meta property="article:modified_time" content="2015-09-07T17:55:33+00:00"><meta property="article:tag" content="IOS"><meta property="article:tag" content="Objective-C"><meta property="article:tag" content="Runtime"><meta name=twitter:card content="summary"><meta name=twitter:title content="理解Objective-C运行时"><meta name=twitter:description content="Objective-C 运行时对于刚刚踏入 Cocoa/Objective 世界的人是很容易忽 略的 Objective-C 语言的特性之一。原因就是尽管 Objective-C 是一门几个小时之内入门的语言，但是投身 Cocoa 的新手们会花费大量时间在 Cocoa 框架中，试图搞清楚他到底是怎么工作的。 我觉得每个开发者都应该对其有深入的了解，明白一些内部的实现细节，而不仅仅只知道代码 [target doMethodWith:var] 会被编译器转换成 objc_msgSend(target,@selector(doMethodWith:),var1); 而已。了解 Objective-C 运行时的原理有助于你对 Objective-C 语言有更深入的理解，清楚你得 App 是怎么运行的。我觉得这对无论是 Mac/iPhone 新手或者老手都会有所帮助。"><link type=text/css rel=stylesheet href=/css/main.bundle.min.8e6ba815b5fd6ac21beac4baa919c463561db2cb4a5a51049be736fe65126c9c280d922f741d44bf25aec024981e9b00db0cbca69728722b4095f6d7e62821a1.css integrity="sha512-jmuoFbX9asIb6sS6qRnEY1YdsstKWlEEm+c2/mUSbJwoDZIvdB1EvyWuwCSYHpsA2wy8ppcocitAlfbX5ighoQ=="><script type=text/javascript src=/js/appearance.min.6f41174b3a05b680820fe08cadbfa5fb7a7ca347b76a0955cdc68b9d8aca1ce24f0547e138cea33bcc7904d551a90afcb1cc7f2d9fe8557075d501419046c08c.js integrity="sha512-b0EXSzoFtoCCD+CMrb+l+3p8o0e3aglVzcaLnYrKHOJPBUfhOM6jO8x5BNVRqQr8scx/LZ/oVXB11QFBkEbAjA=="></script><script type=text/javascript src=/js/zen-mode.min.9814dee9614d32aeb56239d118edfe20acd6231424f9b19c2dd48835038414130a5e946c0d1c9087d60e60e31840c9babfd217e3d4b95643dc8d651a71ccdf4a.js integrity="sha512-mBTe6WFNMq61YjnRGO3+IKzWIxQk+bGcLdSINQOEFBMKXpRsDRyQh9YOYOMYQMm6v9IX49S5VkPcjWUacczfSg=="></script><script src=/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7+kfJ6kKCJxQGC+8wm+Bz9JucDjDTGNew=="></script><script defer type=text/javascript id=script-bundle src=/js/main.bundle.min.6b483bdc9246a18b35259ce2a40e363ade34a01edf2f3a31094f0a396844e75f863d18735a89b85ee8301f2dfdb9e471bdf47c44483d4b8f0d6eb93701873824.js integrity="sha512-a0g73JJGoYs1JZzipA42Ot40oB7fLzoxCU8KOWhE51+GPRhzWom4XugwHy39ueRxvfR8REg9S48Nbrk3AYc4JA==" data-copy=复制 data-copied=已复制></script><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><script type=application/ld+json>[{"@context":"https://schema.org","@type":"Article","articleSection":"Posts","name":"理解Objective-C运行时","headline":"理解Objective-C运行时","inLanguage":"zh-cn","url":"https://hechen.github.io/post/understanding-the-objective-c-runtime/","author":{"@type":"Person","name":"Chen"},"copyrightYear":"2015","dateCreated":"2015-09-07T17:55:33\u002b00:00","datePublished":"2015-09-07T17:55:33\u002b00:00","dateModified":"2015-09-07T17:55:33\u002b00:00","keywords":["iOS","Objective-C","Runtime"],"mainEntityOfPage":"true","wordCount":"8867"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://hechen.github.io/post/"},{"@type":"ListItem","position":2,"name":"理解Objective-C运行时","item":"https://hechen.github.io/post/understanding-the-objective-c-runtime/"}]}]</script></head><body class="flex flex-col h-screen m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32 text-lg bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral bf-scrollbar"><div id=the-top class="absolute flex self-center"><a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600" href=#main-content><span class="font-bold text-primary-600 pe-2 dark:text-primary-400">&darr;</span>
-跳过正文</a></div><div class=min-h-[148px]></div><div class="fixed inset-x-0 z-100"><div id=menu-blur class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl backdrop-saturate-220 backdrop-brightness-112 dark:backdrop-saturate-180 dark:backdrop-brightness-95 bg-primary-200/80 bg-linear-60 dark:bg-primary-800/30 shadow-xl"></div><div class="relative m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32"><div class="main-menu flex items-center w-full gap-2 p-1 pl-0"><a href=/ class="text-base font-medium truncate min-w-0 shrink">I make stuff</a><div class="flex items-center ms-auto"><div class="hidden md:flex"><nav class="flex items-center gap-x-5 h-12"><a href=/post/ class="flex items-center bf-icon-color-hover" aria-label=Blog title=Posts><span class="text-base font-medium break-normal">Blog
-</span></a><a href=/apps/ class="flex items-center bf-icon-color-hover" aria-label=Apps title=Apps><span class="text-base font-medium break-normal">Apps
-</span></a><a href=/tags/ class="flex items-center bf-icon-color-hover" aria-label=Tags title=Tags><span class="text-base font-medium break-normal">Tags
-</span></a><a href=/about/ class="flex items-center bf-icon-color-hover" aria-label=About title=About><span class="text-base font-medium break-normal">About
-</span></a><a href=/search/ class="flex items-center bf-icon-color-hover" aria-label=search title><span><span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7 405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9.0 208 0S0 93.1.0 208s93.1 208 208 208c48.3.0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9.0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7.0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7.0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
-</span></span></a><a href=https://github.com/hechen target=_blank class="flex items-center bf-icon-color-hover" aria-label=github title><span><span class="relative block icon"><svg viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6.0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6.0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3.0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1.0-6.2-.3-40.4-.3-61.4.0.0-70 15-84.7-29.8.0.0-11.4-29.1-27.8-36.6.0.0-22.9-15.7 1.6-15.4.0.0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5.0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9.0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4.0 33.7-.3 75.4-.3 83.6.0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6.0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9.0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
-</span></span></a><button id=search-button aria-label=Search class="text-base bf-icon-color-hover" title="搜索 (/)">
-<span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7 405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9.0 208 0S0 93.1.0 208s93.1 208 208 208c48.3.0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9.0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7.0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7.0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span></button><div class="flex items-center"><button id=appearance-switcher aria-label="Dark mode switcher" type=button class="text-base bf-icon-color-hover"><div class="flex items-center justify-center dark:hidden"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentColor" d="M32 256C32 132.2 132.3 32 255.8 32c11.36.0 29.7 1.668 40.9 3.746 9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3 9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480 132.1 480 32 379.6 32 256z"/></svg></span></div><div class="items-center justify-center hidden dark:flex"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02.0-95.1 42.98-95.1 95.1s41.2 96.9 95.1 96.9 95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347l-63.2-91.9 63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89 164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6 12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256 2.74 347.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7 19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109 109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69.0-127.1-57.31-127.1-127.1.0-70.69 57.31-127.1 127.1-127.1S383.1 186.2 383.1 256c0 70.7-56.4 127.1-127.1 127.1z"/></svg></span></div></button></div></nav></div><div class="flex md:hidden"><div class="flex items-center h-14 gap-4"><button id=search-button-mobile aria-label=Search class="flex items-center justify-center bf-icon-color-hover" title="搜索 (/)">
-<span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7 405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9.0 208 0S0 93.1.0 208s93.1 208 208 208c48.3.0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9.0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7.0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7.0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
-</span></button>
-<button id=appearance-switcher-mobile type=button aria-label="Dark mode switcher" class="flex items-center justify-center text-neutral-900 hover:text-primary-600 dark:text-neutral-200 dark:hover:text-primary-400"><div class=dark:hidden><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentColor" d="M32 256C32 132.2 132.3 32 255.8 32c11.36.0 29.7 1.668 40.9 3.746 9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3 9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480 132.1 480 32 379.6 32 256z"/></svg></span></div><div class="hidden dark:block"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02.0-95.1 42.98-95.1 95.1s41.2 96.9 95.1 96.9 95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347l-63.2-91.9 63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89 164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6 12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256 2.74 347.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7 19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109 109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69.0-127.1-57.31-127.1-127.1.0-70.69 57.31-127.1 127.1-127.1S383.1 186.2 383.1 256c0 70.7-56.4 127.1-127.1 127.1z"/></svg></span></div></button>
-<input type=checkbox id=mobile-menu-toggle autocomplete=off class="hidden peer">
-<label for=mobile-menu-toggle class="flex items-center justify-center cursor-pointer bf-icon-color-hover"><span class="relative block icon"><svg viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416c17.7.0 32 14.33 32 32 0 17.7-14.3 32-32 32H32C14.33 128 0 113.7.0 96zM0 256c0-17.7 14.33-32 32-32H416c17.7.0 32 14.3 32 32s-14.3 32-32 32H32c-17.67.0-32-14.3-32-32zM416 448H32c-17.67.0-32-14.3-32-32s14.33-32 32-32H416c17.7.0 32 14.3 32 32s-14.3 32-32 32z"/></svg></span></label><div role=dialog aria-modal=true style=scrollbar-gutter:stable class="fixed inset-0 z-50 invisible overflow-y-auto px-6 py-20 opacity-0 transition-[opacity,visibility] duration-300 peer-checked:visible peer-checked:opacity-100 bg-neutral-50/97 dark:bg-neutral-900/99
-bf-scrollbar"><label for=mobile-menu-toggle class="fixed end-8 top-5 flex items-center justify-center z-50 h-12 w-12 cursor-pointer select-none rounded-full bf-icon-color-hover border bf-border-color bf-border-color-hover bg-neutral-50 dark:bg-neutral-900"><span class="relative block icon"><svg viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75.0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3 54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75.0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75.0-45.25s32.75-12.5 45.25.0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25.0s12.5 32.75.0 45.25l-105.4 105.4L310.6 361.4z"/></svg></span></label><nav class="mx-auto max-w-md space-y-6"><div class=px-2><a href=/post/ aria-label=Blog class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200"><span title=Posts class="text-2xl font-bold tracking-tight">Blog</span></a></div><div class=px-2><a href=/apps/ aria-label=Apps class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200"><span title=Apps class="text-2xl font-bold tracking-tight">Apps</span></a></div><div class=px-2><a href=/tags/ aria-label=Tags class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200"><span title=Tags class="text-2xl font-bold tracking-tight">Tags</span></a></div><div class=px-2><a href=/about/ aria-label=About class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200"><span title=About class="text-2xl font-bold tracking-tight">About</span></a></div><div class=px-2><a href=/search/ aria-label=search class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200"><span class="flex items-center justify-center h-8 w-8 text-2xl"><span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7 405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9.0 208 0S0 93.1.0 208s93.1 208 208 208c48.3.0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9.0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7.0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7.0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
-</span></span><span title class="text-2xl font-bold tracking-tight"></span></a></div><div class=px-2><a href=https://github.com/hechen aria-label=github target=_blank class="flex items-center gap-4 group bf-icon-color-hover text-neutral-700 dark:text-neutral-200"><span class="flex items-center justify-center h-8 w-8 text-2xl"><span class="relative block icon"><svg viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6.0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6.0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3.0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1.0-6.2-.3-40.4-.3-61.4.0.0-70 15-84.7-29.8.0.0-11.4-29.1-27.8-36.6.0.0-22.9-15.7 1.6-15.4.0.0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5.0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9.0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4.0 33.7-.3 75.4-.3 83.6.0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6.0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9.0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
-</span></span><span title class="text-2xl font-bold tracking-tight"></span></a></div></nav></div></div></div></div></div><script>(function(){var t,n,e=document.querySelector(".main-menu");if(!e)return;t=window.location.pathname,n=e.querySelectorAll('a[href="'+t+'"]'),n.forEach(function(e){var t=e.querySelectorAll("span");t.forEach(function(e){e.classList.add("active")})})})()</script></div></div><script type=text/javascript src=/js/background-blur.min.605b3b942818f0ab5a717ae446135ec46b8ee5a2ad12ae56fb90dc2a76ce30c388f9fec8bcc18db15bd47e3fa8a09d779fa12aa9c184cf614a315bc72c6c163d.js integrity="sha512-YFs7lCgY8KtacXrkRhNexGuO5aKtEq5W+5DcKnbOMMOI+f7IvMGNsVvUfj+ooJ13n6EqqcGEz2FKMVvHLGwWPQ==" data-blur-id=menu-blur></script><div class="relative flex flex-col grow"><main id=main-content class=grow><article><header id=single_header class="mt-5 max-w-prose"><ol class="text-sm text-neutral-500 dark:text-neutral-400 print:hidden"><li class=hidden><a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href=/>I make stuff</a><span class="px-1 text-primary-500">/</span></li><li class=inline><a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href=/post/>Posts</a><span class="px-1 text-primary-500">/</span></li><li class=hidden><a class="hover:underline decoration-neutral-300 dark:underline-neutral-600" href=/post/understanding-the-objective-c-runtime/>理解Objective-C运行时</a><span class="px-1 text-primary-500">/</span></li></ol><h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">理解Objective-C运行时</h1><div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden"><div class="flex flex-row flex-wrap items-center"><time datetime=2015-09-07T17:55:33+00:00>2015-09-07</time><span class="px-2 text-primary-500">&#183;</span><span title=预计阅读>18 分钟</span><span class="px-2 text-primary-500">&#183;</span><span class=mb-[2px]>
-<span id=zen-mode-button class="text-lg hover:text-primary-500" title=啟用阅读模式 data-title-i18n-disable=啟用阅读模式 data-title-i18n-enable=停用阅读模式><span class="inline-block align-text-bottom"><span class="relative block icon"><svg viewBox="0 0 50 50" width="50" height="50"><path fill="currentColor" d="M12.980469 4C9.1204688 4 5.9804688 7.14 5.9804688 11L6 26H9.9804688V11c0-1.65 1.3400002-3 3.0000002-3H40.019531c1.66.0 3 1.35 3 3V39c0 1.65-1.34 3-3 3H29c0 1.54-.579062 2.94-1.539062 4H40.019531c3.86.0 7-3.14 7-7V11c0-3.86-3.14-7-7-7H12.980469zM7 28c-2.206.0-4 1.794-4 4V42c0 2.206 1.794 4 4 4H23c2.206.0 4-1.794 4-4V32c0-2.206-1.794-4-4-4H7zm0 4H23L23.001953 42H7V32z"/></svg></span></span></span></span></div><div class="flex flex-row flex-wrap items-center"><a class="relative mt-[0.5rem] me-2" href=/categories/translation/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">Translation
-</span></span></a><a class="relative mt-[0.5rem] me-2" href=/tags/ios/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">IOS
-</span></span></a><a class="relative mt-[0.5rem] me-2" href=/tags/objective-c/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">Objective-C
-</span></span></a><a class="relative mt-[0.5rem] me-2" href=/tags/runtime/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">Runtime</span></span></a></div></div></header><section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row"><div class="order-first lg:ms-auto px-0 lg:order-last lg:ps-8 lg:max-w-2xs"><div class="toc ps-5 print:hidden lg:sticky lg:top-[140px]"><details open id=TOCView class="toc-right mt-0 overflow-y-auto overscroll-contain bf-scrollbar rounded-lg -ms-5 ps-5 pe-2 hidden lg:block"><summary class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">目录</summary><div class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600"><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#objective-c运行时是开源的>Objective-C运行时是开源的</a></li><li><a href=#动态-vs-静态>动态 Vs. 静态</a></li><li><a href=#什么是-objective-c-运行时>什么是 Objective-C 运行时？</a></li><li><a href=#objective-c-运行时术语>Objective-C 运行时术语</a></li><li><a href=#因此类定义了对象而不是对象本身那这又是如何实现的>因此类定义了对象而不是对象本身，那这又是如何实现的？</a></li><li><a href=#为什么我们都要继承自apple的类呢>为什么我们都要继承自Apple的类呢？</a></li><li><a href=#类缓存objc_cache-cache是什么>类缓存（objc_cache* cache）是什么？</a></li><li><a href=#那-objc_msgsend-方法都发生了什么呢>那 objc_msgSend 方法都发生了什么呢？</a></li><li><a href=#objective-c-消息转发>Objective-C 消息转发</a></li><li><a href=#non-fragile-ivars-modern-runtime>Non Fragile ivars (Modern Runtime)</a></li><li><a href=#objective-c-关联对象>Objective-C 关联对象</a></li><li><a href=#混合的虚表派生>混合的虚表派生</a></li><li><a href=#因此你如何能知道你正在和它打交道呢>因此你如何能知道你正在和它打交道呢？</a></li><li><a href=#总结>总结</a></li><li><a href=#参考链接>参考链接</a></li></ul></li></ul></li></ul></nav></div></details><details class="toc-inside mt-0 overflow-hidden rounded-lg -ms-5 ps-5 lg:hidden"><summary class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">目录</summary><div class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600"><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#objective-c运行时是开源的>Objective-C运行时是开源的</a></li><li><a href=#动态-vs-静态>动态 Vs. 静态</a></li><li><a href=#什么是-objective-c-运行时>什么是 Objective-C 运行时？</a></li><li><a href=#objective-c-运行时术语>Objective-C 运行时术语</a></li><li><a href=#因此类定义了对象而不是对象本身那这又是如何实现的>因此类定义了对象而不是对象本身，那这又是如何实现的？</a></li><li><a href=#为什么我们都要继承自apple的类呢>为什么我们都要继承自Apple的类呢？</a></li><li><a href=#类缓存objc_cache-cache是什么>类缓存（objc_cache* cache）是什么？</a></li><li><a href=#那-objc_msgsend-方法都发生了什么呢>那 objc_msgSend 方法都发生了什么呢？</a></li><li><a href=#objective-c-消息转发>Objective-C 消息转发</a></li><li><a href=#non-fragile-ivars-modern-runtime>Non Fragile ivars (Modern Runtime)</a></li><li><a href=#objective-c-关联对象>Objective-C 关联对象</a></li><li><a href=#混合的虚表派生>混合的虚表派生</a></li><li><a href=#因此你如何能知道你正在和它打交道呢>因此你如何能知道你正在和它打交道呢？</a></li><li><a href=#总结>总结</a></li><li><a href=#参考链接>参考链接</a></li></ul></li></ul></li></ul></nav></div></details><script>(function(){"use strict";const s=.33,o="#TableOfContents",i=".anchor",a='a[href^="#"]',r="li ul",c="active";let t=!1;function l(e,n){const o=window.scrollY+window.innerHeight*n,i=[...document.querySelectorAll('#TableOfContents a[href^="#"]')],s=new Set(i.map(e=>e.getAttribute("href").substring(1)));if(t)for(let t=0;t<e.length;t++){const n=e[t];if(!s.has(n.id))continue;const o=n.getBoundingClientRect().top+window.scrollY;if(Math.abs(window.scrollY-o)<100)return n.id}for(let t=e.length-1;t>=0;t--){const n=e[t].getBoundingClientRect().top+window.scrollY;if(n<=o&&s.has(e[t].id))return e[t].id}return e.find(e=>s.has(e.id))?.id||""}function e({toc:e,anchors:t,links:n,scrollOffset:s,collapseInactive:o}){const i=l(t,s);if(!i)return;if(n.forEach(e=>{const t=e.getAttribute("href")===`#${i}`;if(e.classList.toggle(c,t),o){const n=e.closest("li")?.querySelector("ul");n&&(n.style.display=t?"":"none")}}),o){const n=e.querySelector(`a[href="#${CSS.escape(i)}"]`);let t=n;for(;t&&t!==e;)t.tagName==="UL"&&(t.style.display=""),t.tagName==="LI"&&t.querySelector("ul")?.style.setProperty("display",""),t=t.parentElement}}function n(){const n=document.querySelector(o);if(!n)return;const l=!1,u=[...document.querySelectorAll(i)],d=[...n.querySelectorAll(a)];l&&n.querySelectorAll(r).forEach(e=>e.style.display="none"),d.forEach(e=>{e.addEventListener("click",()=>{t=!0})});const c={toc:n,anchors:u,links:d,scrollOffset:s,collapseInactive:l};window.addEventListener("scroll",()=>e(c),{passive:!0}),window.addEventListener("hashchange",()=>e(c),{passive:!0}),e(c)}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",n):n()})()</script></div></div><div class="min-w-0 min-h-0 max-w-fit"><div class="article-content max-w-prose mb-20"><p>Objective-C 运行时对于刚刚踏入 Cocoa/Objective 世界的人是很容易忽
-略的 Objective-C 语言的特性之一。原因就是尽管 Objective-C 是一门几个小时之内入门的语言，但是投身 Cocoa 的新手们会花费大量时间在 Cocoa 框架中，试图搞清楚他到底是怎么工作的。 我觉得每个开发者都应该对其有深入的了解，明白一些内部的实现细节，而不仅仅只知道代码 <code>[target doMethodWith:var]</code> 会被编译器转换成 <code>objc_msgSend(target,@selector(doMethodWith:),var1);</code> 而已。了解 Objective-C 运行时的原理有助于你对 Objective-C 语言有更深入的理解，清楚你得 App 是怎么运行的。我觉得这对无论是 Mac/iPhone 新手或者老手都会有所帮助。</p><p>[TOC]</p><h4 class="relative group">Objective-C运行时是开源的<div id=objective-c运行时是开源的 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#objective-c%e8%bf%90%e8%a1%8c%e6%97%b6%e6%98%af%e5%bc%80%e6%ba%90%e7%9a%84 aria-label=锚点>#</a></span></h4><p>Objective-C 运行时是开源的，你可以随时从 <a href=http://opensource.apple.com target=_blank rel=noreferrer>Apple</a> 获取到。实际上查看 Objective-C 运行时源码是我搞清楚这个语言是怎么运作的首选方法，而不是去查看和它相关的苹果文档。你可以到<a href=http://opensource.apple.com/tarballs/objc4/objc4-437.1.tar.gz target=_blank rel=noreferrer>这里</a> 下载到运行时的源码（截止到译者翻译的时候，最新版本的文件是objc4-647.tar.gz）。</p><h4 class="relative group">动态 Vs. 静态<div id=动态-vs-静态 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e5%8a%a8%e6%80%81-vs-%e9%9d%99%e6%80%81 aria-label=锚点>#</a></span></h4><p>Objective-C 是一门动态的面向对象语言，这意味着它可以将编译链接时决定的事情推迟到运行时进行。这就给了你很大的灵活性，你可以按照自己的需要重定向消息到适当的对象上，你甚至可以交换方法实现（译者注：method swizzling，方法调配，开发者常用此技术向原有实现中添加新功能）。而运行时可以使对象明白自己可以响应哪些消息，不能响应哪些消息（译者注：introspect 内省），并正确的派发消息。</p><blockquote><p>译者注： 内省（introspection）是面向对象语言和环境的一个强大特性，Objective-C和Cocoa在这个方面尤其的丰富。内省是对象揭示自己作为一个运行时对象的详细信息的一种能力。这些详细信息包括对象在继承树上的位置，对象是否遵循特定的协议，以及是否可以响应特定的消息。NSObject协议和类定义了很多内省方法，用于查询运行时信息，以便根据对象的特征进行识别。</p><p>参考: <a href=https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Introspection/Introspection.html target=_blank rel=noreferrer>Objective-C 的 Introspection</a></p></blockquote><p>我们将这些特征和C语言进行对比来看，在C中，你从<code>main()</code>函数开始，然后按顺序从上往下写你的代码逻辑或者执行函数方法。C结构体是无法将请求转发到其他目标对象来执行方法的。你很可能写了如下类似的代码：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt; stdio.h &gt;</span><span class=cp>
-</span></span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>(</span><span class=kt>int</span> <span class=n>argc</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>**</span><span class=n>argv</span><span class=p>[])</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=n>printf</span><span class=p>(</span><span class=s>&#34;Hello World!&#34;</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div></div><p>编译器解析、优化然后将优化后的代码转换成如下的汇编语言：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=p>.</span><span class=n>text</span>
-</span></span><span class=line><span class=cl> <span class=p>.</span><span class=n>align</span> <span class=mi>4</span><span class=p>,</span><span class=mh>0x90</span>
-</span></span><span class=line><span class=cl> <span class=p>.</span><span class=n>globl</span> <span class=n>_main</span>
-</span></span><span class=line><span class=cl><span class=nl>_main</span><span class=p>:</span>
-</span></span><span class=line><span class=cl><span class=nl>Leh_func_begin1</span><span class=p>:</span>
-</span></span><span class=line><span class=cl> <span class=n>pushq</span> <span class=o>%</span><span class=n>rbp</span>
-</span></span><span class=line><span class=cl><span class=nl>Llabel1</span><span class=p>:</span>
-</span></span><span class=line><span class=cl> <span class=n>movq</span> <span class=o>%</span><span class=n>rsp</span><span class=p>,</span> <span class=o>%</span><span class=n>rbp</span>
-</span></span><span class=line><span class=cl><span class=nl>Llabel2</span><span class=p>:</span>
-</span></span><span class=line><span class=cl> <span class=n>subq</span> <span class=err>$</span><span class=mi>16</span><span class=p>,</span> <span class=o>%</span><span class=n>rsp</span>
-</span></span><span class=line><span class=cl><span class=nl>Llabel3</span><span class=p>:</span>
-</span></span><span class=line><span class=cl> <span class=n>movq</span> <span class=o>%</span><span class=n>rsi</span><span class=p>,</span> <span class=o>%</span><span class=n>rax</span>
-</span></span><span class=line><span class=cl> <span class=n>movl</span> <span class=o>%</span><span class=n>edi</span><span class=p>,</span> <span class=o>%</span><span class=n>ecx</span>
-</span></span><span class=line><span class=cl> <span class=n>movl</span> <span class=o>%</span><span class=n>ecx</span><span class=p>,</span> <span class=o>-</span><span class=mi>8</span><span class=p>(</span><span class=o>%</span><span class=n>rbp</span><span class=p>)</span>
-</span></span><span class=line><span class=cl> <span class=n>movq</span> <span class=o>%</span><span class=n>rax</span><span class=p>,</span> <span class=o>-</span><span class=mi>16</span><span class=p>(</span><span class=o>%</span><span class=n>rbp</span><span class=p>)</span>
-</span></span><span class=line><span class=cl> <span class=n>xorb</span> <span class=o>%</span><span class=n>al</span><span class=p>,</span> <span class=o>%</span><span class=n>al</span>
-</span></span><span class=line><span class=cl> <span class=n>leaq</span> <span class=n>LC</span><span class=p>(</span><span class=o>%</span><span class=n>rip</span><span class=p>),</span> <span class=o>%</span><span class=n>rcx</span>
-</span></span><span class=line><span class=cl> <span class=n>movq</span> <span class=o>%</span><span class=n>rcx</span><span class=p>,</span> <span class=o>%</span><span class=n>rdi</span>
-</span></span><span class=line><span class=cl> <span class=n>call</span> <span class=n>_printf</span>
-</span></span><span class=line><span class=cl> <span class=n>movl</span> <span class=err>$</span><span class=mi>0</span><span class=p>,</span> <span class=o>-</span><span class=mi>4</span><span class=p>(</span><span class=o>%</span><span class=n>rbp</span><span class=p>)</span>
-</span></span><span class=line><span class=cl> <span class=n>movl</span> <span class=o>-</span><span class=mi>4</span><span class=p>(</span><span class=o>%</span><span class=n>rbp</span><span class=p>),</span> <span class=o>%</span><span class=n>eax</span>
-</span></span><span class=line><span class=cl> <span class=n>addq</span> <span class=err>$</span><span class=mi>16</span><span class=p>,</span> <span class=o>%</span><span class=n>rsp</span>
-</span></span><span class=line><span class=cl> <span class=n>popq</span> <span class=o>%</span><span class=n>rbp</span>
-</span></span><span class=line><span class=cl> <span class=n>ret</span>
-</span></span><span class=line><span class=cl><span class=nl>Leh_func_end1</span><span class=p>:</span>
-</span></span><span class=line><span class=cl> <span class=p>.</span><span class=n>cstring</span>
-</span></span><span class=line><span class=cl><span class=nl>LC</span><span class=p>:</span>
-</span></span><span class=line><span class=cl> <span class=p>.</span><span class=n>asciz</span> <span class=s>&#34;Hello World!&#34;</span></span></span></code></pre></div></div><p>然后将其和C库链接生成可执行文件。相比之下，Objective-C语言整个过程和上面类似，不过代码的产生依赖Objective-C运行时的具体表现（译者注：运行时按照不同情况，生成不同的代码吧）。当我们刚接触Objective-C语言的时候，我们可能被告知像如下代码</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=p>[</span><span class=nb>self</span> <span class=nl>doSomethingWithVar</span><span class=p>:</span><span class=n>var1</span><span class=p>];</span></span></span></code></pre></div></div><p>会被转换成</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=n>objc_msgSend</span><span class=p>(</span><span class=nb>self</span><span class=p>,</span><span class=k>@selector</span><span class=p>(</span><span class=nl>doSomethingWithVar</span><span class=p>:),</span><span class=n>var1</span><span class=p>);</span></span></span></code></pre></div></div><p>而除了这些，我们似乎就不清楚运行时还干了什么。</p><h4 class="relative group">什么是 Objective-C 运行时？<div id=什么是-objective-c-运行时 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e4%bb%80%e4%b9%88%e6%98%af-objective-c-%e8%bf%90%e8%a1%8c%e6%97%b6 aria-label=锚点>#</a></span></h4><p>Objective-C Runtime 是一个运行时库，主要是由C语言和汇编语言写成，为 C 语言添加面向对象的能力而创造了 Objective-C（译者注：正是 OC Runtime，才有 OC 这门语言）。这意味着它可以加载类信息，进行方法派发以及方法转发等等。Objective-C 运行时最重要的就是为Objective-C语言的面向对象特性的实现提供了所有的基础支撑。</p><h4 class="relative group">Objective-C 运行时术语<div id=objective-c-运行时术语 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#objective-c-%e8%bf%90%e8%a1%8c%e6%97%b6%e6%9c%af%e8%af%ad aria-label=锚点>#</a></span></h4><p>在我们进一步了解整个运行时之前，需要先了解一些接下来出现的术语。截至目前Mac和iPhone的开发者关心的有两个运行时：Modern Runtime & Legacy Runtime 。前者覆盖所有64位Mac OS X 的app和所有的iOS app，后者覆盖其余的（全部的Mac OS X 32位 App）。关于方法，这里有两种基本类型的方法，一种是实例方法（&rsquo;-&lsquo;开头， 例如<code>-(void)doFoo</code>，作用于对象实例），另一种是类方法（&rsquo;+&lsquo;开头，例如<code>+(id)alloc</code>）。方法就像C语言中的函数类似，一段代码完成一个小的任务，如下：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=p>-</span> <span class=p>(</span><span class=n>NSString</span> <span class=o>*</span><span class=p>)</span><span class=nf>movieTitle</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s>@&#34;Futurama: Into the Wild Green Yonder&#34;</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div></div><p><strong>Selector</strong><br>Objective-C中的Selector（选择子）是一个重要的C数据结构，用以标识你要一个对象执行的Objective-C方法。在运行时中，Selector的定义应该和下面这样类似：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=k>typedef</span> <span class=k>struct</span> <span class=n>objc_selector</span>  <span class=o>*</span><span class=kt>SEL</span><span class=p>;</span> </span></span></code></pre></div></div><p>用法就像下面这样：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=kt>SEL</span> <span class=n>aSel</span> <span class=o>=</span> <span class=k>@selector</span><span class=p>(</span><span class=n>movieTitle</span><span class=p>);</span> </span></span></code></pre></div></div><p><strong>Message</strong></p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=p>[</span><span class=n>target</span> <span class=nl>getMovieTitleForObject</span><span class=p>:</span><span class=n>obj</span><span class=p>];</span></span></span></code></pre></div></div><p>Objective-C中的方法由两个方括号[]组成，括号中间是你将要将消息发往的目标对象和你将要该对象执行的方法以及所需要发送的参数列表。Objective-C中的消息和C函数类似，但是又不同。你向一个对象发送消息并不意味着该对象就一定会执行它。这个对象会检查该消息的发送者，然后基于该发送者要么执行一个不同的方法或者将该消息转发给另外的不同的对象。</p><p><strong>Class</strong>
-如果你看过Runtime中关于类的定义信息，你可能会遇到这样的定义：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=k>typedef</span> <span class=k>struct</span> <span class=n>objc_class</span> <span class=o>*</span><span class=kt>Class</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=k>typedef</span> <span class=k>struct</span> <span class=n>objc_object</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=kt>Class</span> <span class=n>isa</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=p>}</span> <span class=o>*</span><span class=kt>id</span><span class=p>;</span> </span></span></code></pre></div></div><p>这其中有一些事情要注意。
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理解Objective-C运行时 · Chen He</title>
+<meta name="description" content="Objective-C 运行时对于刚刚踏入 Cocoa/Objective 世界的人是很容易忽 略的 Objective-C 语言的特性之一。原因就是尽管 Objective-C 是一门几个小时之内入门的语言，但是投身 Cocoa 的新手们会花费大量时间在 Cocoa 框架中，试图搞清楚他到底是怎么工作的。 我觉得每个开发者都应该对其有深入的了解，明白一些内部的实现细节，而不仅仅只知道代码 [target doMethodWith:var] 会被编译器转换成 objc_msgSend(target,@selector(doMethodWith:),var1); 而已。了解 Objective-C 运行时的原理有助于你对 Objective-C 语言有更深入的理解，清楚你得 App 是怎么运行的。我觉得这对无论是 Mac/iPhone 新手或者老手都会有所帮助。
+">
+<meta property="og:title" content="理解Objective-C运行时 · Chen He">
+<meta property="og:description" content="Objective-C 运行时对于刚刚踏入 Cocoa/Objective 世界的人是很容易忽 略的 Objective-C 语言的特性之一。原因就是尽管 Objective-C 是一门几个小时之内入门的语言，但是投身 Cocoa 的新手们会花费大量时间在 Cocoa 框架中，试图搞清楚他到底是怎么工作的。 我觉得每个开发者都应该对其有深入的了解，明白一些内部的实现细节，而不仅仅只知道代码 [target doMethodWith:var] 会被编译器转换成 objc_msgSend(target,@selector(doMethodWith:),var1); 而已。了解 Objective-C 运行时的原理有助于你对 Objective-C 语言有更深入的理解，清楚你得 App 是怎么运行的。我觉得这对无论是 Mac/iPhone 新手或者老手都会有所帮助。
+">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://hechen.github.io/post/understanding-the-objective-c-runtime/">
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+          mono: ['ui-monospace', 'SFMono-Regular', 'SF Mono', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+        },
+        colors: {
+          accent: { DEFAULT: '#0d9488', dark: '#14b8a6' },
+        },
+      }
+    }
+  }
+</script>
+<!-- highlight.js for syntax highlighting; light + dark themes via media query -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" media="(prefers-color-scheme: dark)">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => { if (window.hljs) hljs.highlightAll(); });</script>
+<style>
+  html { font-feature-settings: 'cv11', 'ss01'; }
+  /* Tag pill */
+  .tag-pill {
+    display: inline-flex; align-items: center;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 500;
+    background: rgba(13, 148, 136, 0.08);
+    color: #0d9488;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+  }
+  .tag-pill:hover {
+    background: rgba(13, 148, 136, 0.16);
+  }
+  @media (prefers-color-scheme: dark) {
+    .tag-pill { background: rgba(20, 184, 166, 0.12); color: #5eead4; }
+    .tag-pill:hover { background: rgba(20, 184, 166, 0.22); }
+  }
+  /* Category pill - amber */
+  .cat-pill {
+    display: inline-flex; align-items: center;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 500;
+    background: rgba(245, 158, 11, 0.12);
+    color: #b45309;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .cat-pill:hover { background: rgba(245, 158, 11, 0.22); }
+  @media (prefers-color-scheme: dark) {
+    .cat-pill { background: rgba(245, 158, 11, 0.16); color: #fbbf24; }
+    .cat-pill:hover { background: rgba(245, 158, 11, 0.26); }
+  }
+  /* Post body styling tweaks (Tailwind typography) */
+  .prose h2 { scroll-margin-top: 5rem; }
+  .prose h3 { scroll-margin-top: 5rem; }
+
+  /* Inline code: subtle teal-tinted background, normal weight */
+  .prose :not(pre) > code {
+    font-size: 0.875em;
+    font-weight: 500;
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    background: rgba(13, 148, 136, 0.08);
+    color: #0f766e;
+    border: 1px solid rgba(13, 148, 136, 0.12);
+  }
+  .prose :not(pre) > code::before,
+  .prose :not(pre) > code::after { content: none; }
+  @media (prefers-color-scheme: dark) {
+    .prose :not(pre) > code {
+      background: rgba(20, 184, 166, 0.12);
+      color: #5eead4;
+      border-color: rgba(20, 184, 166, 0.18);
+    }
+  }
+
+  /* Code blocks: let highlight.js drive colors. We just style the frame. */
+  .prose pre {
+    font-size: 13.5px;
+    line-height: 1.55;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background: #fafafa;
+    padding: 0;
+    margin: 1.25em 0;
+    overflow: hidden;
+  }
+  .prose pre code {
+    display: block;
+    padding: 1em 1.15em;
+    overflow-x: auto;
+    background: transparent !important;
+    color: inherit !important;
+    font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, monospace;
+    font-size: 1em;
+  }
+  @media (prefers-color-scheme: dark) {
+    .prose pre {
+      background: #0f172a;
+      border-color: #1e293b;
+    }
+  }
+
+  /* Hide Hugo theme's anchor sidebar markers (`<div class=anchor>` siblings) */
+  .prose .anchor { display: none; }
+  .prose .group span.absolute { display: none; }
+</style>
+</head>
+<body class="font-sans bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased">
+<nav class="border-b border-slate-200/60 dark:border-slate-800 sticky top-0 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md">
+  <div class="max-w-5xl mx-auto px-6 sm:px-10 h-14 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 font-semibold text-slate-900 dark:text-slate-100 hover:text-accent dark:hover:text-accent-dark transition-colors">
+      <span class="inline-block h-2 w-2 rounded-full bg-accent dark:bg-accent-dark"></span>
+      Chen He
+    </a>
+    <div class="flex items-center gap-1 text-sm">
+      <a href="/apps/" class="px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">Apps</a>
+      <a href="/post/" class="px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100 transition-colors bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100" aria-current="page">Blog</a>
+      <a href="/now/"  class="px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">Now</a>
+      <a href="/tools/" class="px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">Tools</a>
+      <a href="/about/" class="px-3 py-1.5 rounded-md text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100 transition-colors">About</a>
+    </div>
+  </div>
+</nav>
+<main class="max-w-3xl mx-auto px-6 sm:px-10 pt-12 pb-16">
+  <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">
+    <a href="/post/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">← All posts</a>
+  </p>
+  <header class="mb-8 pb-8 border-b border-slate-200 dark:border-slate-800">
+    <h1 class="text-3xl sm:text-4xl font-bold tracking-tight leading-tight">理解Objective-C运行时</h1>
+    <div class="mt-4 flex flex-wrap items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+      <time datetime="2015-09-07T17:55:33\u002b00:00">2015-09-07</time> <span class="text-slate-300 dark:text-slate-600">·</span> <a class="cat-pill" href="/categories/data-structure/">data-structure</a> <a class="cat-pill" href="/categories/ios/">ios</a> <a class="cat-pill" href="/categories/leetcode/">leetcode</a> <a class="cat-pill" href="/categories/translation/">translation</a>
+    </div>
+    <div class="mt-3 flex flex-wrap gap-1.5"><a class="tag-pill" href="/tags/algorithm/">#algorithm</a> <a class="tag-pill" href="/tags/animation/">#animation</a> <a class="tag-pill" href="/tags/ios/">#ios</a> <a class="tag-pill" href="/tags/linked-list/">#linked-list</a> <a class="tag-pill" href="/tags/notification/">#notification</a> <a class="tag-pill" href="/tags/objective-c/">#objective-c</a> <a class="tag-pill" href="/tags/push/">#push</a> <a class="tag-pill" href="/tags/runtime/">#runtime</a> <a class="tag-pill" href="/tags/string/">#string</a> <a class="tag-pill" href="/tags/tree/">#tree</a></div>
+  </header>
+  <article class="prose prose-slate dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-a:text-accent prose-a:no-underline hover:prose-a:underline dark:prose-a:text-accent-dark prose-pre:bg-slate-50 dark:prose-pre:bg-slate-900 prose-pre:border prose-pre:border-slate-200 dark:prose-pre:border-slate-800 prose-code:before:hidden prose-code:after:hidden">
+    <p>Objective-C 运行时对于刚刚踏入 Cocoa/Objective 世界的人是很容易忽
+略的 Objective-C 语言的特性之一。原因就是尽管 Objective-C 是一门几个小时之内入门的语言，但是投身 Cocoa 的新手们会花费大量时间在 Cocoa 框架中，试图搞清楚他到底是怎么工作的。 我觉得每个开发者都应该对其有深入的了解，明白一些内部的实现细节，而不仅仅只知道代码 <code>[target doMethodWith:var]</code> 会被编译器转换成 <code>objc_msgSend(target,@selector(doMethodWith:),var1);</code> 而已。了解 Objective-C 运行时的原理有助于你对 Objective-C 语言有更深入的理解，清楚你得 App 是怎么运行的。我觉得这对无论是 Mac/iPhone 新手或者老手都会有所帮助。</p><p>[TOC]</p><h4 class="relative group">Objective-C运行时是开源的</h4><p>Objective-C 运行时是开源的，你可以随时从 <a href=http://opensource.apple.com target=_blank rel=noreferrer>Apple</a> 获取到。实际上查看 Objective-C 运行时源码是我搞清楚这个语言是怎么运作的首选方法，而不是去查看和它相关的苹果文档。你可以到<a href=http://opensource.apple.com/tarballs/objc4/objc4-437.1.tar.gz target=_blank rel=noreferrer>这里</a> 下载到运行时的源码（截止到译者翻译的时候，最新版本的文件是objc4-647.tar.gz）。</p><h4 class="relative group">动态 Vs. 静态</h4><p>Objective-C 是一门动态的面向对象语言，这意味着它可以将编译链接时决定的事情推迟到运行时进行。这就给了你很大的灵活性，你可以按照自己的需要重定向消息到适当的对象上，你甚至可以交换方法实现（译者注：method swizzling，方法调配，开发者常用此技术向原有实现中添加新功能）。而运行时可以使对象明白自己可以响应哪些消息，不能响应哪些消息（译者注：introspect 内省），并正确的派发消息。</p><blockquote><p>译者注： 内省（introspection）是面向对象语言和环境的一个强大特性，Objective-C和Cocoa在这个方面尤其的丰富。内省是对象揭示自己作为一个运行时对象的详细信息的一种能力。这些详细信息包括对象在继承树上的位置，对象是否遵循特定的协议，以及是否可以响应特定的消息。NSObject协议和类定义了很多内省方法，用于查询运行时信息，以便根据对象的特征进行识别。</p><p>参考: <a href=https://developer.apple.com/library/archive/documentation/General/Conceptual/CocoaEncyclopedia/Introspection/Introspection.html target=_blank rel=noreferrer>Objective-C 的 Introspection</a></p></blockquote><p>我们将这些特征和C语言进行对比来看，在C中，你从<code>main()</code>函数开始，然后按顺序从上往下写你的代码逻辑或者执行函数方法。C结构体是无法将请求转发到其他目标对象来执行方法的。你很可能写了如下类似的代码：</p><div class=highlight-wrapper><pre><code class="language-objectivec">#include &lt; stdio.h &gt;
+ 
+int main(int argc, const char **argv[]) {
+    printf("Hello World!");
+    return 0;
+}</code></pre></div></div><p>编译器解析、优化然后将优化后的代码转换成如下的汇编语言：</p><div class=highlight-wrapper><pre><code class="language-objectivec">.text
+ .align 4,0x90
+ .globl _main
+_main:
+Leh_func_begin1:
+ pushq %rbp
+Llabel1:
+ movq %rsp, %rbp
+Llabel2:
+ subq $16, %rsp
+Llabel3:
+ movq %rsi, %rax
+ movl %edi, %ecx
+ movl %ecx, -8(%rbp)
+ movq %rax, -16(%rbp)
+ xorb %al, %al
+ leaq LC(%rip), %rcx
+ movq %rcx, %rdi
+ call _printf
+ movl $0, -4(%rbp)
+ movl -4(%rbp), %eax
+ addq $16, %rsp
+ popq %rbp
+ ret
+Leh_func_end1:
+ .cstring
+LC:
+ .asciz "Hello World!"</code></pre></div></div><p>然后将其和C库链接生成可执行文件。相比之下，Objective-C语言整个过程和上面类似，不过代码的产生依赖Objective-C运行时的具体表现（译者注：运行时按照不同情况，生成不同的代码吧）。当我们刚接触Objective-C语言的时候，我们可能被告知像如下代码</p><div class=highlight-wrapper><pre><code class="language-objectivec">[self doSomethingWithVar:var1];</code></pre></div></div><p>会被转换成</p><div class=highlight-wrapper><pre><code class="language-objectivec">objc_msgSend(self,@selector(doSomethingWithVar:),var1);</code></pre></div></div><p>而除了这些，我们似乎就不清楚运行时还干了什么。</p><h4 class="relative group">什么是 Objective-C 运行时？</h4><p>Objective-C Runtime 是一个运行时库，主要是由C语言和汇编语言写成，为 C 语言添加面向对象的能力而创造了 Objective-C（译者注：正是 OC Runtime，才有 OC 这门语言）。这意味着它可以加载类信息，进行方法派发以及方法转发等等。Objective-C 运行时最重要的就是为Objective-C语言的面向对象特性的实现提供了所有的基础支撑。</p><h4 class="relative group">Objective-C 运行时术语</h4><p>在我们进一步了解整个运行时之前，需要先了解一些接下来出现的术语。截至目前Mac和iPhone的开发者关心的有两个运行时：Modern Runtime & Legacy Runtime 。前者覆盖所有64位Mac OS X 的app和所有的iOS app，后者覆盖其余的（全部的Mac OS X 32位 App）。关于方法，这里有两种基本类型的方法，一种是实例方法（&rsquo;-&lsquo;开头， 例如<code>-(void)doFoo</code>，作用于对象实例），另一种是类方法（&rsquo;+&lsquo;开头，例如<code>+(id)alloc</code>）。方法就像C语言中的函数类似，一段代码完成一个小的任务，如下：</p><div class=highlight-wrapper><pre><code class="language-objectivec">- (NSString *)movieTitle {
+    return @"Futurama: Into the Wild Green Yonder";
+}</code></pre></div></div><p><strong>Selector</strong><br>Objective-C中的Selector（选择子）是一个重要的C数据结构，用以标识你要一个对象执行的Objective-C方法。在运行时中，Selector的定义应该和下面这样类似：</p><div class=highlight-wrapper><pre><code class="language-objectivec">typedef struct objc_selector  *SEL; </code></pre></div></div><p>用法就像下面这样：</p><div class=highlight-wrapper><pre><code class="language-objectivec">SEL aSel = @selector(movieTitle); </code></pre></div></div><p><strong>Message</strong></p><div class=highlight-wrapper><pre><code class="language-objectivec">[target getMovieTitleForObject:obj];</code></pre></div></div><p>Objective-C中的方法由两个方括号[]组成，括号中间是你将要将消息发往的目标对象和你将要该对象执行的方法以及所需要发送的参数列表。Objective-C中的消息和C函数类似，但是又不同。你向一个对象发送消息并不意味着该对象就一定会执行它。这个对象会检查该消息的发送者，然后基于该发送者要么执行一个不同的方法或者将该消息转发给另外的不同的对象。</p><p><strong>Class</strong>
+如果你看过Runtime中关于类的定义信息，你可能会遇到这样的定义：</p><div class=highlight-wrapper><pre><code class="language-objectivec">typedef struct objc_class *Class;
+typedef struct objc_object {
+    Class isa;
+} *id; </code></pre></div></div><p>这其中有一些事情要注意。
 每一个Objective-C类拥有一个结构体，每一个对象也有一个结构体。所有的对象都包含一个isa指针。所有的Objective-C运行时需要这个isa指针，用以检查一个对象具体的类型是什么，然后判别其是否能够响应你所派发过来的消息。
-最后我们还注意到了id指针，这个id指针仅仅告诉我们其指向的是Objective-C对象，仅此而已。当你拥有一个id指针，你可以查询该对象的类型，然后查看该类型是否可以响应某个方法等等。还有就是当你知道了当前所指向的具体对象的具体类别，你就可以做出更具体的动作。</p><p><strong>Blocks</strong></p><p>你也可以在LLVM/Clang文档中对Blocks 的定义中发现和上面类似的东西。</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=k>struct</span> <span class=n>Block_literal_1</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=kt>void</span> <span class=o>*</span><span class=n>isa</span><span class=p>;</span> <span class=c1>// initialized to &amp;_NSConcreteStackBlock or &amp;_NSConcreteGlobalBlock
-</span></span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>flags</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>reserved</span><span class=p>;</span> 
-</span></span><span class=line><span class=cl>    <span class=kt>void</span> <span class=p>(</span><span class=o>*</span><span class=n>invoke</span><span class=p>)(</span><span class=kt>void</span> <span class=o>*</span><span class=p>,</span> <span class=p>...);</span>
-</span></span><span class=line><span class=cl>    <span class=k>struct</span> <span class=n>Block_descriptor_1</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>         <span class=kt>unsigned</span> <span class=kt>long</span> <span class=kt>int</span> <span class=n>reserved</span><span class=p>;</span> <span class=c1>// NULL
-</span></span></span><span class=line><span class=cl>         <span class=kt>unsigned</span> <span class=kt>long</span> <span class=kt>int</span> <span class=n>size</span><span class=p>;</span>  <span class=c1>// sizeof(struct Block_literal_1)
-</span></span></span><span class=line><span class=cl>         <span class=c1>// optional helper functions
-</span></span></span><span class=line><span class=cl>         <span class=kt>void</span> <span class=p>(</span><span class=o>*</span><span class=n>copy_helper</span><span class=p>)(</span><span class=kt>void</span> <span class=o>*</span><span class=n>dst</span><span class=p>,</span> <span class=kt>void</span> <span class=o>*</span><span class=n>src</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>         <span class=kt>void</span> <span class=p>(</span><span class=o>*</span><span class=n>dispose_helper</span><span class=p>)(</span><span class=kt>void</span> <span class=o>*</span><span class=n>src</span><span class=p>);</span> 
-</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=o>*</span><span class=n>descriptor</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>    <span class=c1>// imported variables
-</span></span></span><span class=line><span class=cl><span class=p>};</span> </span></span></code></pre></div></div><p>Blocks被设计成能够与Objective-C运行时兼容，因此它们可以被当做对象处理，并可以响应消息（像<code>-retain</code>, <code>-release</code>, <code>-copy</code>等）。</p><p><strong>IMP</strong>（Method Implementations）</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=k>typedef</span> <span class=nf>id</span> <span class=p>(</span><span class=o>*</span><span class=kt>IMP</span><span class=p>)(</span><span class=kt>id</span> <span class=nb>self</span><span class=p>,</span><span class=kt>SEL</span> <span class=n>_cmd</span><span class=p>,...);</span> </span></span></code></pre></div></div><p>IMP是编译器生成的函数指针，指向方法执行处。如果你刚接触Objective-C语言，你不需要直接和这些东西打交道，但是慢慢深入之后接触的就多了。后面我们会看到这也是Objective-C运行时唤醒方法的方式。</p><p><strong>Objective-C Classes</strong></p><p>Objective-C 的类内部有些什么东西呢？一个Objective-C的类的样子大体如下：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=k>@interface</span> <span class=nc>MyClass</span> : <span class=nc>NSObject</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=c1>// vars
-</span></span></span><span class=line><span class=cl>    <span class=n>NSInteger</span> <span class=n>counter</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=c1>// methods
-</span></span></span><span class=line><span class=cl><span class=p>-(</span><span class=kt>void</span><span class=p>)</span><span class=nf>doFoo</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=k>@end</span></span></span></code></pre></div></div><p>但是运行时还会追加更多的内容以便跟踪（类每一时刻的状态）。</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=cp>#if !__OBJC2__
-</span></span></span><span class=line><span class=cl>    <span class=kt>Class</span> <span class=n>super_class</span>                                        <span class=n>OBJC2_UNAVAILABLE</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>    <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>name</span>                                         <span class=n>OBJC2_UNAVAILABLE</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>    <span class=kt>long</span> <span class=n>version</span>                                             <span class=n>OBJC2_UNAVAILABLE</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>    <span class=kt>long</span> <span class=n>info</span>                                                <span class=n>OBJC2_UNAVAILABLE</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>    <span class=kt>long</span> <span class=n>instance_size</span>                                       <span class=n>OBJC2_UNAVAILABLE</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>    <span class=k>struct</span> <span class=n>objc_ivar_list</span> <span class=o>*</span><span class=n>ivars</span>                             <span class=n>OBJC2_UNAVAILABLE</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>    <span class=k>struct</span> <span class=n>objc_method_list</span> <span class=o>**</span><span class=n>methodLists</span>                    <span class=n>OBJC2_UNAVAILABLE</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>    <span class=k>struct</span> <span class=n>objc_cache</span> <span class=o>*</span><span class=n>cache</span>                                 <span class=n>OBJC2_UNAVAILABLE</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>    <span class=k>struct</span> <span class=n>objc_protocol_list</span> <span class=o>*</span><span class=n>protocols</span>                     <span class=n>OBJC2_UNAVAILABLE</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=cp>#endif </span></span></span></code></pre></div></div><p>我们可以看到一个类中包含一个指向其父类的引用，该类的名字、实例变量、方法集合、缓存以及该类遵循的协议列表。运行时需要这些信息以便响应那些分发到该类或者类实例对象上得方法。</p><h4 class="relative group">因此类定义了对象而不是对象本身，那这又是如何实现的？<div id=因此类定义了对象而不是对象本身那这又是如何实现的 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e5%9b%a0%e6%ad%a4%e7%b1%bb%e5%ae%9a%e4%b9%89%e4%ba%86%e5%af%b9%e8%b1%a1%e8%80%8c%e4%b8%8d%e6%98%af%e5%af%b9%e8%b1%a1%e6%9c%ac%e8%ba%ab%e9%82%a3%e8%bf%99%e5%8f%88%e6%98%af%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0%e7%9a%84 aria-label=锚点>#</a></span></h4><p>正如我前面说过的，Objective-C类本身也同样是对象（译者注：意味着你可以向一个类发送消息），运行时通过创建元类来处理它们。当你发送类似<code>[NSObject alloc]</code>的消息时，你实际上是向类对象发送了消息，而这个类对象需要是<strong>元类</strong>的实例，而元类本身又是<strong>根元类</strong>的一个实例。
-当你说一个类继承自NSObject，那就意味着你的类指向NSObject作为其父类。而所有的元类指向根元类作为它们的父类，所有的元类都仅包含那些它能够响应的消息中的类方法。所以当你向一个类对象发送消息，例如<code>[NSObject alloc]</code>的时候，<code>objc_msgSend()</code>实际上会查看元类来确定该对象是否能够响应该消息，那如果找到了一个能响应该消息的方法，就在该对象上执行它。</p><blockquote><p>译者注：Objective-C类体系结构图如下所示：<figure><img class="my-0 rounded-md" loading=lazy decoding=async fetchpriority=low alt=ios-runtime-class src=https://i.imgur.com/D7GUGKB.png></figure></p></blockquote><h4 class="relative group">为什么我们都要继承自Apple的类呢？<div id=为什么我们都要继承自apple的类呢 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e4%b8%ba%e4%bb%80%e4%b9%88%e6%88%91%e4%bb%ac%e9%83%bd%e8%a6%81%e7%bb%a7%e6%89%bf%e8%87%aaapple%e7%9a%84%e7%b1%bb%e5%91%a2 aria-label=锚点>#</a></span></h4><p>当你刚踏入Cocoa开发的时候，很多代码例子都告诉你这样做：先继承NSObject类然后再进行其他编码。你也乐在其中，确实享受到了很多继承自Apple类所提供的便利。但是你甚至可能都没有发现实际上你的类在和Objective-C运行时打交道。当你为我们的类实例化的时候，像这样：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=n>MyObject</span> <span class=o>*</span><span class=n>object</span> <span class=o>=</span> <span class=p>[[</span><span class=n>MyObject</span> <span class=n>alloc</span><span class=p>]</span> <span class=n>init</span><span class=p>];</span></span></span></code></pre></div></div><p>第一个你要执行的消息就是<code>+alloc</code>。如果你[查看文档][6]，里面会讲到“一个新生实例的isa实例会被初始化为一个描述该类信息的数据结构，其余的实例变量的内存均被设置为空。”所以通过继承自Apple的类，我们不仅继承了一些很棒的属性，同时也继承了这些在内存上分配空间（大小是我们类的大小），创建对象的能力（就是创建运行时所期望的带有isa指针的数据结构）。</p><h4 class="relative group">类缓存（objc_cache* cache）是什么？<div id=类缓存objc_cache-cache是什么 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e7%b1%bb%e7%bc%93%e5%ad%98objc_cache-cache%e6%98%af%e4%bb%80%e4%b9%88 aria-label=锚点>#</a></span></h4><p>当Objective-C运行时通过一个对象的isa指针检查对象的时候，它会找到能够执行很多方法的类。然后你只需要调用其中很小一部分，所以每次运行时在进行一次查询动作时需要查找类分发表中所有的selectors这个动作是毫无意义的。这就是为什么类会由cache这个东西，当你查询一个类体系中的派发表的时候，一旦找到对应的selector时，就将该selector放到cache中。当<code>objc_msgSend()</code>方法在一个类中查询selector时，会先在cache中查找，这个理论的基础就是如果你曾经调用过一个类的消息，你有很大可能在之后还调用同样的方法。（译者注：CACHE的局部性原理）。所以按照这样考虑，如果我们先在有一个NSObject的子类MyObject如下：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=n>MyObject</span> <span class=o>*</span><span class=n>obj</span> <span class=o>=</span> <span class=p>[[</span><span class=n>MyObject</span> <span class=n>alloc</span><span class=p>]</span> <span class=n>init</span><span class=p>];</span>
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=k>@implementation</span> <span class=nc>MyObject</span>
-</span></span><span class=line><span class=cl><span class=p>-(</span><span class=kt>id</span><span class=p>)</span><span class=nf>init</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=nb>self</span> <span class=o>=</span> <span class=p>[</span><span class=nb>super</span> <span class=n>init</span><span class=p>])</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=p>[</span><span class=nb>self</span> <span class=nl>setVarA</span><span class=p>:@</span><span class=err>”</span><span class=n>blah</span><span class=err>”</span><span class=p>];</span>
-</span></span><span class=line><span class=cl>    <span class=p>}</span>
-</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nb>self</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=k>@end</span></span></span></code></pre></div></div><p>具体发生了以下几点：</p><ol><li><code>[MyObject alloc]</code>首先被执行，MyObject类没有实现该方法，因此在该类中没有找到<code>+alloc</code>方法，接着顺着superclass指针找到其父类<code>NSObject</code>；</li><li>我们询问<code>NSObject</code>类是否能够响应<code>+alloc</code>方法，而它能够响应。<code>+alloc</code>方法检查接受者类（也就是<code>MyObject</code>），分配该类大小的一块内存空间，然后初始化其isa指针指向<code>MyObject</code>类，此时我们拥有一个实例了，同时稍早我们将<code>+alloc</code>方法放置于<code>NSObject</code>的类缓存（cache）中；</li><li>到目前为止，我们都是在发送类方法，此刻我们需要向一个实例对象发送消息，这里简单的调用<code>-init</code>方法或者指定初始化方法（designated initializer），当然我们的类实现了该方法，因此我们将<code>-(id)init</code>方法放置于cache中；</li><li>接下来<code>self = [super init]</code>被调用，<code>super</code>是一个神奇的关键字（<strong>magic keyword</strong>），其指向类的父类，也即<code>NSObject</code>，我们调用<code>NSObject</code>的<code>init</code>方法。这样做的目的是为了确保面向对象编程的集成体系能够正确运行，在你正确初始化自身变量之前需要先初始化该类的所有父类的变量，如果你需要，你还可以覆写父类的方法。在该例中，对于NSObject类来说并没有多少特别重要的操作要进行，不过这并不是常态。有时候初始化中会做非常重要的事情，考虑以下代码：</li></ol><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=cp>#import &lt; Foundation/Foundation.h&gt;
-</span></span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=k>@interface</span> <span class=nc>MyObject</span> : <span class=nc>NSObject</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=n>NSString</span> <span class=o>*</span><span class=n>aString</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=k>@property</span><span class=p>(</span><span class=k>retain</span><span class=p>)</span> <span class=n>NSString</span> <span class=o>*</span><span class=n>aString</span><span class=p>;</span>
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=k>@end</span>
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=k>@implementation</span> <span class=nc>MyObject</span>
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=p>-</span> <span class=p>(</span><span class=kt>id</span><span class=p>)</span><span class=nf>init</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nb>self</span> <span class=o>=</span> <span class=p>[</span><span class=nb>super</span> <span class=n>init</span><span class=p>])</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>      <span class=p>[</span><span class=nb>self</span> <span class=nl>setAString</span><span class=p>:</span><span class=nb>nil</span><span class=p>];</span>
-</span></span><span class=line><span class=cl>    <span class=p>}</span>
-</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nb>self</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=k>@synthesize</span> <span class=n>aString</span><span class=p>;</span>
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=k>@end</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=n>main</span> <span class=p>(</span><span class=kt>int</span> <span class=n>argc</span><span class=p>,</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span> <span class=n>argv</span><span class=p>[])</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=n>NSAutoreleasePool</span> <span class=o>*</span> <span class=n>pool</span> <span class=o>=</span> <span class=p>[[</span><span class=n>NSAutoreleasePool</span> <span class=n>alloc</span><span class=p>]</span> <span class=n>init</span><span class=p>];</span>
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl>    <span class=kt>id</span> <span class=n>obj1</span> <span class=o>=</span> <span class=p>[</span><span class=n>NSMutableArray</span> <span class=n>alloc</span><span class=p>];</span>
-</span></span><span class=line><span class=cl>    <span class=kt>id</span> <span class=n>obj2</span> <span class=o>=</span> <span class=p>[[</span><span class=n>NSMutableArray</span> <span class=n>alloc</span><span class=p>]</span> <span class=n>init</span><span class=p>];</span>
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl>    <span class=kt>id</span> <span class=n>obj3</span> <span class=o>=</span> <span class=p>[</span><span class=n>NSArray</span> <span class=n>alloc</span><span class=p>];</span>
-</span></span><span class=line><span class=cl>    <span class=kt>id</span> <span class=n>obj4</span> <span class=o>=</span> <span class=p>[[</span><span class=n>NSArray</span> <span class=n>alloc</span><span class=p>]</span> <span class=nl>initWithObjects</span><span class=p>:</span><span class=s>@&#34;Hello&#34;</span><span class=p>,</span><span class=nb>nil</span><span class=p>];</span>
-</span></span><span class=line><span class=cl>      
-</span></span><span class=line><span class=cl>    <span class=n>NSLog</span><span class=p>(</span><span class=s>@&#34;obj1 class is %@&#34;</span><span class=p>,</span><span class=n>NSStringFromClass</span><span class=p>([</span><span class=n>obj1</span> <span class=k>class</span><span class=p>]));</span>
-</span></span><span class=line><span class=cl>    <span class=n>NSLog</span><span class=p>(</span><span class=s>@&#34;obj2 class is %@&#34;</span><span class=p>,</span><span class=n>NSStringFromClass</span><span class=p>([</span><span class=n>obj2</span> <span class=k>class</span><span class=p>]));</span>
-</span></span><span class=line><span class=cl>  
-</span></span><span class=line><span class=cl>    <span class=n>NSLog</span><span class=p>(</span><span class=s>@&#34;obj3 class is %@&#34;</span><span class=p>,</span><span class=n>NSStringFromClass</span><span class=p>([</span><span class=n>obj3</span> <span class=k>class</span><span class=p>]));</span>
-</span></span><span class=line><span class=cl>    <span class=n>NSLog</span><span class=p>(</span><span class=s>@&#34;obj4 class is %@&#34;</span><span class=p>,</span><span class=n>NSStringFromClass</span><span class=p>([</span><span class=n>obj4</span> <span class=k>class</span><span class=p>]));</span>
-</span></span><span class=line><span class=cl>  
-</span></span><span class=line><span class=cl>    <span class=kt>id</span> <span class=n>obj5</span> <span class=o>=</span> <span class=p>[</span><span class=n>MyObject</span> <span class=n>alloc</span><span class=p>];</span>
-</span></span><span class=line><span class=cl>    <span class=kt>id</span> <span class=n>obj6</span> <span class=o>=</span> <span class=p>[[</span><span class=n>MyObject</span> <span class=n>alloc</span><span class=p>]</span> <span class=n>init</span><span class=p>];</span>
-</span></span><span class=line><span class=cl>  
-</span></span><span class=line><span class=cl>    <span class=n>NSLog</span><span class=p>(</span><span class=s>@&#34;obj5 class is %@&#34;</span><span class=p>,</span><span class=n>NSStringFromClass</span><span class=p>([</span><span class=n>obj5</span> <span class=k>class</span><span class=p>]));</span>
-</span></span><span class=line><span class=cl>    <span class=n>NSLog</span><span class=p>(</span><span class=s>@&#34;obj6 class is %@&#34;</span><span class=p>,</span><span class=n>NSStringFromClass</span><span class=p>([</span><span class=n>obj6</span> <span class=k>class</span><span class=p>]));</span>
-</span></span><span class=line><span class=cl>          
-</span></span><span class=line><span class=cl>    <span class=p>[</span><span class=n>pool</span> <span class=n>drain</span><span class=p>];</span>
-</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div></div><p>如果你是刚刚接触Cocoa，我让你猜以上代码打印结果是什么，你很可能会给出这样的结果：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=n>NSMutableArray</span>
-</span></span><span class=line><span class=cl><span class=n>NSMutableArray</span> 
-</span></span><span class=line><span class=cl><span class=n>NSArray</span>
-</span></span><span class=line><span class=cl><span class=n>NSArray</span>
-</span></span><span class=line><span class=cl><span class=n>MyObject</span>
-</span></span><span class=line><span class=cl><span class=n>MyObject</span></span></span></code></pre></div></div><p>但实际上是如下结果：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=n>obj1</span> <span class=k>class</span> <span class=n>is</span> <span class=n>__NSPlaceholderArray</span>
-</span></span><span class=line><span class=cl><span class=n>obj2</span> <span class=k>class</span> <span class=n>is</span> <span class=n>NSCFArray</span>
-</span></span><span class=line><span class=cl><span class=n>obj3</span> <span class=k>class</span> <span class=n>is</span> <span class=n>__NSPlaceholderArray</span>
-</span></span><span class=line><span class=cl><span class=n>obj4</span> <span class=k>class</span> <span class=n>is</span> <span class=n>NSCFArray</span>
-</span></span><span class=line><span class=cl><span class=n>obj5</span> <span class=k>class</span> <span class=n>is</span> <span class=n>MyObject</span>
-</span></span><span class=line><span class=cl><span class=n>obj6</span> <span class=k>class</span> <span class=n>is</span> <span class=n>MyObject</span></span></span></code></pre></div></div><blockquote><p>译者注：（本机XCode 7 beta6 运行结果如下：）</p></blockquote><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=mi>2015</span><span class=o>-</span><span class=mi>09</span><span class=o>-</span><span class=mo>07</span> <span class=mi>13</span><span class=o>:</span><span class=mi>43</span><span class=o>:</span><span class=mf>06.922</span> <span class=n>ObjMessage</span><span class=p>[</span><span class=mi>5185</span><span class=o>:</span><span class=mi>1441448</span><span class=p>]</span> <span class=n>obj1</span> <span class=k>class</span> <span class=n>is</span> <span class=n>__NSPlaceholderArray</span>
-</span></span><span class=line><span class=cl><span class=mi>2015</span><span class=o>-</span><span class=mi>09</span><span class=o>-</span><span class=mo>07</span> <span class=mi>13</span><span class=o>:</span><span class=mi>43</span><span class=o>:</span><span class=mf>11.201</span> <span class=n>ObjMessage</span><span class=p>[</span><span class=mi>5185</span><span class=o>:</span><span class=mi>1441448</span><span class=p>]</span> <span class=n>obj2</span> <span class=k>class</span> <span class=n>is</span> <span class=n>__NSArrayM</span>
-</span></span><span class=line><span class=cl><span class=mi>2015</span><span class=o>-</span><span class=mi>09</span><span class=o>-</span><span class=mo>07</span> <span class=mi>13</span><span class=o>:</span><span class=mi>43</span><span class=o>:</span><span class=mf>17.987</span> <span class=n>ObjMessage</span><span class=p>[</span><span class=mi>5185</span><span class=o>:</span><span class=mi>1441448</span><span class=p>]</span> <span class=n>obj3</span> <span class=k>class</span> <span class=n>is</span> <span class=n>__NSPlaceholderArray</span>
-</span></span><span class=line><span class=cl><span class=mi>2015</span><span class=o>-</span><span class=mi>09</span><span class=o>-</span><span class=mo>07</span> <span class=mi>13</span><span class=o>:</span><span class=mi>43</span><span class=o>:</span><span class=mf>18.503</span> <span class=n>ObjMessage</span><span class=p>[</span><span class=mi>5185</span><span class=o>:</span><span class=mi>1441448</span><span class=p>]</span> <span class=n>obj4</span> <span class=k>class</span> <span class=n>is</span> <span class=n>__NSArrayI</span>
-</span></span><span class=line><span class=cl><span class=mi>2015</span><span class=o>-</span><span class=mi>09</span><span class=o>-</span><span class=mo>07</span> <span class=mi>13</span><span class=o>:</span><span class=mi>43</span><span class=o>:</span><span class=mf>32.228</span> <span class=n>ObjMessage</span><span class=p>[</span><span class=mi>5185</span><span class=o>:</span><span class=mi>1441448</span><span class=p>]</span> <span class=n>obj5</span> <span class=k>class</span> <span class=n>is</span> <span class=n>MyObject</span>
-</span></span><span class=line><span class=cl><span class=mi>2015</span><span class=o>-</span><span class=mi>09</span><span class=o>-</span><span class=mo>07</span> <span class=mi>13</span><span class=o>:</span><span class=mi>43</span><span class=o>:</span><span class=mf>33.478</span> <span class=n>ObjMessage</span><span class=p>[</span><span class=mi>5185</span><span class=o>:</span><span class=mi>1441448</span><span class=p>]</span> <span class=n>obj6</span> <span class=k>class</span> <span class=n>is</span> <span class=n>MyObject</span></span></span></code></pre></div></div><p>原因就是Objective-C语言这里使用<code>+alloc</code>方法返回某个类的对象，但随后<code>-init</code>方法又可能返回另一个类的对象。</p><h4 class="relative group">那 objc_msgSend 方法都发生了什么呢？<div id=那-objc_msgsend-方法都发生了什么呢 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e9%82%a3-objc_msgsend-%e6%96%b9%e6%b3%95%e9%83%bd%e5%8f%91%e7%94%9f%e4%ba%86%e4%bb%80%e4%b9%88%e5%91%a2 aria-label=锚点>#</a></span></h4><p>实际上<code>objc_msgSend()</code>方法内部发生了许多事情。如下我们有这样的代码：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=p>[</span><span class=nb>self</span> <span class=nl>printMessageWithString</span><span class=p>:</span><span class=s>@&#34;Hello World!&#34;</span><span class=p>];</span></span></span></code></pre></div></div><p>编译器会把其翻译成如下所示代码：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=n>objc_msgSend</span><span class=p>(</span><span class=nb>self</span><span class=p>,</span> <span class=k>@selector</span><span class=p>(</span><span class=nl>printMessageWithString</span><span class=p>:),</span> <span class=s>@&#34;Hello World!&#34;</span><span class=p>);</span></span></span></code></pre></div></div><p>我们通过目标对象的isa指针来查询该类或者其继承体系中的父类是否能够响应 <code>@selector(printMessageWithString:)</code>。假设我们在类的派发表或者它的cache中找到了该selector，然后我们通过该函数指针来执行该方法。因此我们可以了解<code>objc_msgSend()</code>方法永远不会返回，它从执行开始，通过指针查找到你的方法执行，然后是你的方法执行之后返回，因此看起来好像<code>objc_msgSend()</code>方法返回似的。Bill Bumgarner对此过程有更多的细节探索（<a href=http://www.friday.com/bbum/2009/12/18/objc_msgsend-part-1-the-road-map target=_blank rel=noreferrer>Part 1</a>, <a href=http://www.friday.com/bbum/2009/12/18/objc_msgsend-tour-part-3-the-fast-path target=_blank rel=noreferrer>Part 2</a> & <a href=http://www.friday.com/bbum/2009/12/18/objc_msgsend-tour-part-2-setting-the-stage target=_blank rel=noreferrer>Part 3</a>）。</p><p>我这里总结下他所讲的，也就是你会在运行时代码中看到的：</p><ol><li><p>检查那些忽略掉的Selectors和Short Circut， 很明显如果我们运行在垃圾回收环境下，我们可以忽略掉针对<code>-retain</code>，<code>-release</code>等的调用；</p></li><li><p>检查那些nil的目标。不像其他语言，Objective-C中向nil派发消息是合法的。当然你肯定也有很多理由希望这样。这里假设我们有一个非空的目标；</p></li><li><p>接下来我们需要在该类中找到IMP，我们首先查找该类的缓存（cache），如果找到我们便通过缓存中的指针跳转到该函数执行处；</p></li><li><p>如果缓存中没有找到该IMP，我们便紧接着查找类的派发表（dispatch table），如果找到同样跳转到函数执行处；</p></li><li><p>如果类的派发表中也未找到我们就需要触发消息分发机制了，这意味着最终你得代码会被编译器转换成了C函数。因此一个如下方法：</p></li></ol><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=p>-(</span><span class=kt>int</span><span class=p>)</span><span class=nf>doComputeWithNum:</span><span class=p>(</span><span class=kt>int</span><span class=p>)</span><span class=nv>aNum</span> </span></span></code></pre></div></div><p>会被转换成如下：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=kt>int</span> <span class=n>aClass_doComputeWithNum</span><span class=p>(</span><span class=n>aClass</span> <span class=o>*</span><span class=nb>self</span><span class=p>,</span><span class=kt>SEL</span> <span class=n>_cmd</span><span class=p>,</span><span class=kt>int</span> <span class=n>aNum</span><span class=p>)</span> </span></span></code></pre></div></div><p>Objective-C运行时通过触发指向这些方法的函数指针来调用你的方法。告诉你，你没法直接调用这些转换之后的方法，尽管Cocoa框架确实提供了能够获取这些指针的方法。</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=c1>//declare C function pointer
-</span></span></span><span class=line><span class=cl><span class=kt>int</span> <span class=p>(</span><span class=n>computeNum</span> <span class=o>*</span><span class=p>)(</span><span class=kt>id</span><span class=p>,</span><span class=kt>SEL</span><span class=p>,</span><span class=kt>int</span><span class=p>);</span>
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=c1>//methodForSelector is COCOA &amp; not ObjC Runtime
-</span></span></span><span class=line><span class=cl><span class=c1>//gets the same function pointer objc_msgSend gets
-</span></span></span><span class=line><span class=cl><span class=n>computeNum</span> <span class=o>=</span> <span class=p>(</span><span class=kt>int</span> <span class=p>(</span><span class=o>*</span><span class=p>)(</span><span class=kt>id</span><span class=p>,</span><span class=kt>SEL</span><span class=p>,</span><span class=kt>int</span><span class=p>))[</span><span class=n>target</span> <span class=nl>methodForSelector</span><span class=p>:</span><span class=k>@selector</span><span class=p>(</span><span class=nl>doComputeWithNum</span><span class=p>:)];</span>
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=c1>//execute the C function pointer returned by the runtime
-</span></span></span><span class=line><span class=cl><span class=n>computeNum</span><span class=p>(</span><span class=n>obj</span><span class=p>,</span><span class=k>@selector</span><span class=p>(</span><span class=nl>doComputeWithNum</span><span class=p>:),</span><span class=n>aNum</span><span class=p>);</span> </span></span></code></pre></div></div><p>通过这个方法，你可以获取到在运行时直接获取该方法并调用它。甚至在你确认一个指定的方法需要被执行的时候可以绕过运行时机制。这也是Objective-C运行时如何调用你的方法的，但还是使用<code>objc_msgSend()</code>方法为好。</p><h4 class="relative group">Objective-C 消息转发<div id=objective-c-消息转发 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#objective-c-%e6%b6%88%e6%81%af%e8%bd%ac%e5%8f%91 aria-label=锚点>#</a></span></h4><p>在Objective-C中，向一个根本不知道怎么响应方法的对象发送方法是合法的（也可能是该语言内部设计哲理）。Apple这样做的其中一个原因就是模拟Objective-C语言原生不支持的多重继承。或者你也许想抽象化自己的设计，隐藏该消息响应背后的其他类或者对象。这对于运行时系统也是非常必要的。它的工作流程大体是这样：</p><ol><li><p>运行时在该类或者其继承体系中的缓存中和派发表中查找，然后查找失败；</p></li><li><p>Objective-C运行时在所属对象的类上调用<code>+ (BOOL) resolveInstanceMethod:(SEL)aSEL</code>类方法，该类给予你一次机会来新增一个处理选择子<code>aSEL</code>的方法，然后告诉运行时你已经解决了该方法，消息转发机制会找到该方法。</p></li></ol><p>如下示例，你定义了一个函数：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=kt>void</span> <span class=nf>fooMethod</span><span class=p>(</span><span class=kt>id</span> <span class=n>obj</span><span class=p>,</span> <span class=kt>SEL</span> <span class=n>_cmd</span><span class=p>)</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=n>NSLog</span><span class=p>(</span><span class=s>@&#34;Doing Foo&#34;</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div></div><p>你可以使用<code>class_addMethod()</code>方法类解决它：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=p>+(</span><span class=kt>BOOL</span><span class=p>)</span><span class=nf>resolveInstanceMethod:</span><span class=p>(</span><span class=kt>SEL</span><span class=p>)</span><span class=nv>aSEL</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>aSEL</span> <span class=o>==</span> <span class=k>@selector</span><span class=p>(</span><span class=nl>doFoo</span><span class=p>:))</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=n>class_addMethod</span><span class=p>([</span><span class=nb>self</span> <span class=k>class</span><span class=p>],</span><span class=n>aSEL</span><span class=p>,(</span><span class=kt>IMP</span><span class=p>)</span><span class=n>fooMethod</span><span class=p>,</span><span class=s>&#34;v@:&#34;</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=nb>YES</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>    <span class=p>}</span>
-</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>[</span><span class=nb>super</span> <span class=n>resolveInstanceMethod</span><span class=p>];</span>
-</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div></div><p>其中方法<code>class_addMethod()</code>中的<code>v@:</code>标明了方法的返回类型以及其参数类型。你可以在运行时文档中[Type Encodings][10]分查看到详细的说明。</p><ol start=3><li>如果2中<code>+(BOOL)resolveInstanceMethod:(SEL)aSEL</code>返回NO表示无法解析该方法的话，运行时接着调用<code>- (id)forwardingTargetForSelector:(SEL) aSelector</code>来给你再一次机会是否能够将该消息转发给其他接收者来处理。这要比之后运行完整的消息转发<code>- (void)forwardInvocation:(NSInvocation *)anInvocation</code>要好。你可以这样执行：</li></ol><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=p>-</span> <span class=p>(</span><span class=kt>id</span><span class=p>)</span><span class=nf>forwardingTargetForSelector:</span><span class=p>(</span><span class=kt>SEL</span><span class=p>)</span><span class=nv>aSelector</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>aSelector</span> <span class=o>==</span> <span class=k>@selector</span><span class=p>(</span><span class=nl>mysteriousMethod</span><span class=p>:))</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>alternateObject</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>    <span class=p>}</span>
-</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>[</span><span class=nb>super</span> <span class=nl>forwardingTargetForSelector</span><span class=p>:</span><span class=n>aSelector</span><span class=p>];</span>
-</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div></div><p>很明显，你肯定不想返回 self，否则会引起死循环。</p><ol start=4><li>如果上一步没有找到合适的目标对象来执行上面的消息，接着运行时会尝试最后一步 <code>- (void)forwardInvocation:(NSInvocation *)anInvocation</code>。你可能没见过NSInvocation，它实际上是Objective-C语言中的消息类型。一旦你有一个NSInvocation，你基本上能够改变这个消息的任何东西，包括其目标、选择子以及参数。所以你可以这样做：</li></ol><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=p>-</span> <span class=p>(</span><span class=kt>void</span><span class=p>)</span><span class=nf>forwardInvocation:</span><span class=p>(</span><span class=n>NSInvocation</span> <span class=o>*</span><span class=p>)</span><span class=nv>invocation</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=kt>SEL</span> <span class=n>invSEL</span> <span class=o>=</span> <span class=n>invocation</span><span class=p>.</span><span class=n>selector</span><span class=p>;</span>
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>([</span><span class=n>altObject</span> <span class=nl>respondsToSelector</span><span class=p>:</span><span class=n>invSEL</span><span class=p>])</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=p>[</span><span class=n>invocation</span> <span class=nl>invokeWithTarget</span><span class=p>:</span><span class=n>altObject</span><span class=p>];</span>
-</span></span><span class=line><span class=cl>    <span class=p>}</span> 
-</span></span><span class=line><span class=cl>    <span class=k>else</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=p>[</span><span class=nb>self</span> <span class=nl>doesNotRecognizeSelector</span><span class=p>:</span><span class=n>invSEL</span><span class=p>];</span>
-</span></span><span class=line><span class=cl>    <span class=p>}</span>
-</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></div></div><p>默认情况下，如果你继承自NSObject类，它所实现的<code>- (void)forwardInvocation:(NSInvocation *)anInvocation</code>内部仅仅简单的调用了<code>-doesNotRecognizeSelector:</code>方法，如果你想给自己最后一次机会做一些事情的话，你可以重载该方法。</p><h4 class="relative group">Non Fragile ivars (Modern Runtime)<div id=non-fragile-ivars-modern-runtime class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#non-fragile-ivars-modern-runtime aria-label=锚点>#</a></span></h4><p>一个Modern Runtime新增加的概念就是Non Fragile ivars。当编译器编译我们的类时，编译器会生成一个变量布局来显示每次我们从什么位置去取我们的实例变量，其底层的实现细节是这样的，查看类成员变量和类对象指针指向位置的偏移，读取该变量大小的字节就可以将该变量读取出来。所以你得变量布局可能如下所示，左侧列标明字节偏移量：</p><figure><img class="my-0 rounded-md" loading=lazy decoding=async fetchpriority=low alt="NSObject 布局" src=https://i.imgur.com/35waSjN.png></figure><p>这里我们有NSObject类型的变量布局，然后我们继承NSObject来扩展它，并添加自己的变量，这在Apple发布新版本OSX SDK之前都运行良好。</p><figure><img class="my-0 rounded-md" loading=lazy decoding=async fetchpriority=low alt="NSObject 布局" src=https://i.imgur.com/xPo1FAw.png></figure><p>我们的代码就无法正常运行，我们自定义对象中的内容被擦出了，因为NSObject增加了两个成员变量，而MyObject类成员变量布局在编译时已经确定，有两个成员变量和基类的内存区域重叠。唯一能够阻止这个发生的就是Apple维持它之前的布局策略，但是一旦这样他们的框架就无法再往前发展了，因为它们的变量布局已经固化了。在这种情况下（也就是fragile ivars）你只能通过重新编译这些继承自Apple类的类来使得代码得以兼容。那在 non fragile ivars下会发生什么呢？</p><figure><img class="my-0 rounded-md" loading=lazy decoding=async fetchpriority=low alt="NSObject 布局" src=https://i.imgur.com/w9Fxvpa.png></figure><p>在Non Fragile ivars下编译器虽然生成了和fragile ivars同样的布局，但是运行时会通过计算基类大小，动态调整MyObject类成员布局。结果如上图所示。</p><h4 class="relative group">Objective-C 关联对象<div id=objective-c-关联对象 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#objective-c-%e5%85%b3%e8%81%94%e5%af%b9%e8%b1%a1 aria-label=锚点>#</a></span></h4><p>最近引入Mac OS X 10.6系统有一个特性称作“关联引用”。Objective-C不像其他语言，其原生不支持向对象动态添加变量。所以到目前为止，你都必须要费很大的劲，编译整个体系结构来假装自己向类中添加一个变量。不过在Mac OS X 10.6系统中，Objective-C 运行时原生支持（动态添加变量）。如果我们想向每一个已经存在的类中添加一个变量，例如向NSView类中添加，如下所示：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=cp>#import &lt; Cocoa/Cocoa.h&gt; </span><span class=c1>//Cocoa
-</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt; objc/runtime.h&gt; //objc runtime api’s</span><span class=cp>
-</span></span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=k>@interface</span> <span class=nc>NSView</span> <span class=nl>(CustomAdditions)</span>
-</span></span><span class=line><span class=cl><span class=k>@property</span><span class=p>(</span><span class=k>retain</span><span class=p>)</span> <span class=n>NSImage</span> <span class=o>*</span><span class=n>customImage</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=k>@end</span>
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=k>@implementation</span> <span class=nc>NSView</span> <span class=nl>(CustomAdditions)</span>
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=kt>char</span> <span class=n>img_key</span><span class=p>;</span> <span class=c1>//has a unique address (identifier)
-</span></span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=p>-(</span><span class=n>NSImage</span> <span class=o>*</span><span class=p>)</span><span class=nf>customImage</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>objc_getAssociatedObject</span><span class=p>(</span><span class=nb>self</span><span class=p>,</span><span class=o>&amp;</span><span class=n>img_key</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=p>-(</span><span class=kt>void</span><span class=p>)</span><span class=nf>setCustomImage:</span><span class=p>(</span><span class=n>NSImage</span> <span class=o>*</span><span class=p>)</span><span class=nv>image</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=n>objc_setAssociatedObject</span><span class=p>(</span><span class=nb>self</span><span class=p>,</span><span class=o>&amp;</span><span class=n>img_key</span><span class=p>,</span><span class=n>image</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>                             <span class=n>OBJC_ASSOCIATION_RETAIN</span><span class=p>);</span>
-</span></span><span class=line><span class=cl><span class=p>}</span>
-</span></span><span class=line><span class=cl> 
-</span></span><span class=line><span class=cl><span class=k>@end</span></span></span></code></pre></div></div><p>你可以在[runtime.h][11]，（译者注：最新版 [runtime.h][12]）文件中看到向<code>objc_setAssociatedObject()</code>传递的几个选项：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=cm>/* Associative References */</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=cm>/**
-</span></span></span><span class=line><span class=cl><span class=cm> * Policies related to associative references.
-</span></span></span><span class=line><span class=cl><span class=cm> * These are options to objc_setAssociatedObject()
-</span></span></span><span class=line><span class=cl><span class=cm> */</span>
-</span></span><span class=line><span class=cl><span class=k>enum</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=n>OBJC_ASSOCIATION_ASSIGN</span> <span class=o>=</span> <span class=mi>0</span><span class=p>,</span>           <span class=cm>/**&lt; Specifies a weak reference to the associated object. */</span>
-</span></span><span class=line><span class=cl>    <span class=n>OBJC_ASSOCIATION_RETAIN_NONATOMIC</span> <span class=o>=</span> <span class=mi>1</span><span class=p>,</span> <span class=cm>/**&lt; Specifies a strong reference to the associated object. 
-</span></span></span><span class=line><span class=cl><span class=cm>                                            *   The association is not made atomically. */</span>
-</span></span><span class=line><span class=cl>    <span class=n>OBJC_ASSOCIATION_COPY_NONATOMIC</span> <span class=o>=</span> <span class=mi>3</span><span class=p>,</span>   <span class=cm>/**&lt; Specifies that the associated object is copied. 
-</span></span></span><span class=line><span class=cl><span class=cm>                                            *   The association is not made atomically. */</span>
-</span></span><span class=line><span class=cl>    <span class=n>OBJC_ASSOCIATION_RETAIN</span> <span class=o>=</span> <span class=mo>01401</span><span class=p>,</span>       <span class=cm>/**&lt; Specifies a strong reference to the associated object.
-</span></span></span><span class=line><span class=cl><span class=cm>                                            *   The association is made atomically. */</span>
-</span></span><span class=line><span class=cl>    <span class=n>OBJC_ASSOCIATION_COPY</span> <span class=o>=</span> <span class=mo>01403</span>          <span class=cm>/**&lt; Specifies that the associated object is copied.
-</span></span></span><span class=line><span class=cl><span class=cm>                                            *   The association is made atomically. */</span>
-</span></span><span class=line><span class=cl><span class=p>};</span></span></span></code></pre></div></div><p>这些和你通过<code>@property</code>方式传递的选项相吻合。</p><h4 class="relative group">混合的虚表派生<div id=混合的虚表派生 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e6%b7%b7%e5%90%88%e7%9a%84%e8%99%9a%e8%a1%a8%e6%b4%be%e7%94%9f aria-label=锚点>#</a></span></h4><p>如果你查看Modern runtime 代码，你会在<a href>objc-runtime-new.m</a>（译者注： 最新版objc runtime源码为[objc-runtime-new.mm][14] 已经去掉了这个特性，译者发现从[objc4-551.1][15]版本开始就不支持了，不过读者还是可以借鉴下之前版本的实现方式。）中发现这个：</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=cm>/***********************************************************************
-</span></span></span><span class=line><span class=cl><span class=cm>* vtable dispatch
-</span></span></span><span class=line><span class=cl><span class=cm>* 
-</span></span></span><span class=line><span class=cl><span class=cm>* Every class gets a vtable pointer. The vtable is an array of IMPs.
-</span></span></span><span class=line><span class=cl><span class=cm>* The selectors represented in the vtable are the same for all classes
-</span></span></span><span class=line><span class=cl><span class=cm>*   (i.e. no class has a bigger or smaller vtable).
-</span></span></span><span class=line><span class=cl><span class=cm>* Each vtable index has an associated trampoline which dispatches to 
-</span></span></span><span class=line><span class=cl><span class=cm>*   the IMP at that index for the receiver class&#39;s vtable (after 
-</span></span></span><span class=line><span class=cl><span class=cm>*   checking for NULL). Dispatch fixup uses these trampolines instead 
-</span></span></span><span class=line><span class=cl><span class=cm>*   of objc_msgSend.
-</span></span></span><span class=line><span class=cl><span class=cm>* Fragility: The vtable size and list of selectors is chosen at launch 
-</span></span></span><span class=line><span class=cl><span class=cm>*   time. No compiler-generated code depends on any particular vtable 
-</span></span></span><span class=line><span class=cl><span class=cm>*   configuration, or even the use of vtable dispatch at all.
-</span></span></span><span class=line><span class=cl><span class=cm>* Memory size: If a class&#39;s vtable is identical to its superclass&#39;s 
-</span></span></span><span class=line><span class=cl><span class=cm>*   (i.e. the class overrides none of the vtable selectors), then 
-</span></span></span><span class=line><span class=cl><span class=cm>*   the class points directly to its superclass&#39;s vtable. This means 
-</span></span></span><span class=line><span class=cl><span class=cm>*   selectors to be included in the vtable should be chosen so they are 
-</span></span></span><span class=line><span class=cl><span class=cm>*   (1) frequently called, but (2) not too frequently overridden. In 
-</span></span></span><span class=line><span class=cl><span class=cm>*   particular, -dealloc is a bad choice.
-</span></span></span><span class=line><span class=cl><span class=cm>* Forwarding: If a class doesn&#39;t implement some vtable selector, that 
-</span></span></span><span class=line><span class=cl><span class=cm>*   selector&#39;s IMP is set to objc_msgSend in that class&#39;s vtable.
-</span></span></span><span class=line><span class=cl><span class=cm>* +initialize: Each class keeps the default vtable (which always 
-</span></span></span><span class=line><span class=cl><span class=cm>*   redirects to objc_msgSend) until its +initialize is completed.
-</span></span></span><span class=line><span class=cl><span class=cm>*   Otherwise, the first message to a class could be a vtable dispatch, 
-</span></span></span><span class=line><span class=cl><span class=cm>*   and the vtable trampoline doesn&#39;t include +initialize checking.
-</span></span></span><span class=line><span class=cl><span class=cm>* Changes: Categories, addMethod, and setImplementation all force vtable 
-</span></span></span><span class=line><span class=cl><span class=cm>*   reconstruction for the class and all of its subclasses, if the 
-</span></span></span><span class=line><span class=cl><span class=cm>*   vtable selectors are affected.
-</span></span></span><span class=line><span class=cl><span class=cm>**********************************************************************/</span></span></span></code></pre></div></div><p>这背后的原理就是，运行时试图去存储你最近调用过的选择子（selector）以便能够为你的App加速，因为其比<code>objc_msgSend</code>方法使用更少的指令。这个<code>vTable</code>存储你最近全局调用的16个选择子，实际上，在代码文件往下接着看你就会看到垃圾回收和非垃圾回收类型的App的默认选择子（selectors）。</p><div class=highlight-wrapper><div class=highlight><pre tabindex=0 class=chroma><code class=language-objc data-lang=objc><span class=line><span class=cl><span class=k>static</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span> <span class=k>const</span> <span class=n>defaultVtable</span><span class=p>[]</span> <span class=o>=</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=s>&#34;allocWithZone:&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;alloc&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;class&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;self&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;isKindOfClass:&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;respondsToSelector:&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;isFlipped&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;length&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;objectForKey:&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;count&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;objectAtIndex:&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;isEqualToString:&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;isEqual:&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;retain&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;release&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;autorelease&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl><span class=p>};</span>
-</span></span><span class=line><span class=cl><span class=k>static</span> <span class=k>const</span> <span class=kt>char</span> <span class=o>*</span> <span class=k>const</span> <span class=n>defaultVtableGC</span><span class=p>[]</span> <span class=o>=</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=s>&#34;allocWithZone:&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;alloc&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;class&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;self&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;isKindOfClass:&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;respondsToSelector:&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;isFlipped&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;length&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;objectForKey:&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;count&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;objectAtIndex:&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;isEqualToString:&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;isEqual:&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;hash&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;addObject:&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl>    <span class=s>&#34;countByEnumeratingWithState:objects:count:&#34;</span><span class=p>,</span> 
-</span></span><span class=line><span class=cl><span class=p>};</span></span></span></code></pre></div></div><h4 class="relative group">因此你如何能知道你正在和它打交道呢？<div id=因此你如何能知道你正在和它打交道呢 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e5%9b%a0%e6%ad%a4%e4%bd%a0%e5%a6%82%e4%bd%95%e8%83%bd%e7%9f%a5%e9%81%93%e4%bd%a0%e6%ad%a3%e5%9c%a8%e5%92%8c%e5%ae%83%e6%89%93%e4%ba%a4%e9%81%93%e5%91%a2 aria-label=锚点>#</a></span></h4><p>当你进行调试的时候，你会在你的调试栈中看到稍后讲解到的某些方法的身影。你就把这些方法按照<code>objc_msgSend()</code>方法来对待就行，不过这些方法都是为了调试，具体有如下几个方法。</p><ol><li><p>当运行时正在将你所有调用的这些方法中的其中一个插入到虚表（vTable）中时，会调用<code>objc_msgSend_fixup</code>。</p></li><li><p>而当<code>objc_msgSend_fixedup</code>发生时，表明你当前所调用的一个方法本应该存在于虚表中<code>objc_msgSend_vtable[0-15]</code>的位置，但却并不在</p></li><li><p>你可能会看到<code>objc_msgSend_vtable5</code>类似的东西，其意味着你正在调用虚表中的一个方法。运行时可以根据需要动态调整虚表中的内容。因此你不应该期望这次代码循环调用的<code>objc_msgSend_vtable10</code>对应了<code>-length</code>方法，而之后每次代码循环还依然会这样。（因为vTable也在不断变化中）</p></li></ol><p>译者注：参考<a href=http://www.sealiesoftware.com/blog/archive/2011/06/17/objc%5C_explain%5C_objc%5C_msgSend%5C_vtable.html target=_blank rel=noreferrer>[objc explain]: objc_msgSend_vtable</a></p><h4 class="relative group">总结<div id=总结 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e6%80%bb%e7%bb%93 aria-label=锚点>#</a></span></h4><p>我希望你们能够喜欢以上这些东西，这篇文章主要讲述了我和Des Moines Cocoaheads关于Objective-C runtime的谈话（我们的讨论估计能打包一箩筐）。Objective-C Runtime是一项很了不起的工程，它为我们Cocoa/Objective-C下制作的Apps注入能量，使得我们能够实现很多我们认为理所当然的特性。希望你能够看一看Apple官方文档对Objective-C运行时的讲解，这样能够使你更好的利用Objective-C运行时。谢谢。</p><h4 class="relative group">参考链接<div id=参考链接 class=anchor></div><span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none"><a class="text-primary-300 dark:text-neutral-700 !no-underline" href=#%e5%8f%82%e8%80%83%e9%93%be%e6%8e%a5 aria-label=锚点>#</a></span></h4><p><a href=https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html target=_blank rel=noreferrer>Objective-C Runtime Programming Guide</a>
-<a href=https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ObjCRuntimeRef/index.html target=_blank rel=noreferrer>Objective-C Runtime Reference</a></p></div><section class="flex flex-row flex-wrap justify-center pt-4 text-xl"><a class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" target=_blank href="https://twitter.com/intent/tweet/?url=https://hechen.github.io/post/understanding-the-objective-c-runtime/&amp;text=%e7%90%86%e8%a7%a3Objective-C%e8%bf%90%e8%a1%8c%e6%97%b6" title="分享到 Twitter" aria-label="分享到 Twitter"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg></span>
-</a><a class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" target=_blank href="https://reddit.com/submit/?url=https://hechen.github.io/post/understanding-the-objective-c-runtime/&amp;resubmit=true&amp;title=%e7%90%86%e8%a7%a3Objective-C%e8%bf%90%e8%a1%8c%e6%97%b6" title="提交到 Reddit" aria-label="提交到 Reddit"><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentColor" d="M201.5 305.5c-13.8.0-24.9-11.1-24.9-24.6.0-13.8 11.1-24.9 24.9-24.9 13.6.0 24.6 11.1 24.6 24.9.0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4.0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8.0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7.0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9.0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5.0 52.6 59.2 95.2 132 95.2 73.1.0 132.3-42.6 132.3-95.2.0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6.0-2.2-2.2-6.1-2.2-8.3.0-2.5 2.5-2.5 6.4.0 8.6 22.8 22.8 87.3 22.8 110.2.0 2.5-2.2 2.5-6.1.0-8.6-2.2-2.2-6.1-2.2-8.3.0zm7.7-75c-13.6.0-24.6 11.1-24.6 24.9.0 13.6 11.1 24.6 24.6 24.6 13.8.0 24.9-11.1 24.9-24.6.0-13.8-11-24.9-24.9-24.9z"/></svg>
-</span></a><a class="email-link m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800" target=_blank href=# data-email data-subject="Reply to 理解Objective-C运行时" title=通过电子邮件发送 aria-label=通过电子邮件发送><span class="relative block icon"><svg viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1-27.64 140.9 68.65 266.2 199.1 285.1 19.01 2.888 36.17-12.26 36.17-31.49l1e-4-.6631c0-15.74-11.44-28.88-26.84-31.24-84.35-12.98-149.2-86.13-149.2-174.2.0-102.9 88.61-185.5 193.4-175.4 91.54 8.869 158.6 91.25 158.6 183.2v16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98.0036c-7.299.0-13.2 4.992-15.12 11.68-24.85-12.15-54.24-16.38-86.06-5.106-38.75 13.73-68.12 48.91-73.72 89.64-9.483 69.01 43.81 128 110.9 128 26.44.0 50.43-9.544 69.59-24.88 24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3c0-149.2-133.9-265.632-287.3-235.57zM239.1 304.3c-26.47.0-48-21.56-48-48.05s21.53-48.05 48-48.05 48 21.56 48 48.05-20.6 48.05-48 48.05z"/></svg></span></a></section><h2 class="mt-8 text-2xl font-extrabold mb-10">相关文章</h2><section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3"><article class="article-link--related relative min-h-full min-w-full overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-600"><div class=p-4><header><a href=/post/how-we-created-guillotine-menu-animation-for-ios/ class="not-prose before:absolute before:inset-0 decoration-primary-500 dark:text-neutral text-xl font-bold text-neutral-800 hover:underline hover:underline-offset-2"><h2>我们是如何创建iOS版的Guillotine菜单动画的</h2></a></header><div class="text-sm text-neutral-500 dark:text-neutral-400"><div class="flex flex-row flex-wrap items-center"><time datetime=2015-09-01T15:52:07+00:00>2015-09-01</time><span class="px-2 text-primary-500">&#183;</span><span title=预计阅读>9 分钟</span></div><div class="flex flex-row flex-wrap items-center"><a class="relative mt-[0.5rem] me-2" href=/categories/translation/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">Translation
-</span></span></a><a class="relative mt-[0.5rem] me-2" href=/tags/ios/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">IOS
-</span></span></a><a class="relative mt-[0.5rem] me-2" href=/tags/animation/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">Animation
-</span></span></a><a class="relative mt-[0.5rem] me-2" href=/tags/objective-c/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">Objective-C</span></span></a></div></div><div class="article-link__summary prose dark:prose-invert mt-1 line-clamp-5">原文：How We Created Guillotine Menu Animation for iOS 原作者 @johnsundell
-你是否曾经有过这样的疑问？为什么app中几乎是清一色的侧边栏（sidebar），为什么不把它做成topBar或者bottomBar，甚至cornerBar呢？</div></div><div class="px-6 pt-4 pb-2"></div></article><article class="article-link--related relative min-h-full min-w-full overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-600"><div class=p-4><header><a href=/post/ios-push-notification/ class="not-prose before:absolute before:inset-0 decoration-primary-500 dark:text-neutral text-xl font-bold text-neutral-800 hover:underline hover:underline-offset-2"><h2>iOS 远端推送部署详解</h2></a></header><div class="text-sm text-neutral-500 dark:text-neutral-400"><div class="flex flex-row flex-wrap items-center"><time datetime=2015-07-30T14:30:00+00:00>2015-07-30</time><span class="px-2 text-primary-500">&#183;</span><span title=预计阅读>10 分钟</span></div><div class="flex flex-row flex-wrap items-center"><a class="relative mt-[0.5rem] me-2" href=/categories/ios/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">IOS
-</span></span></a><a class="relative mt-[0.5rem] me-2" href=/tags/ios/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">IOS
-</span></span></a><a class="relative mt-[0.5rem] me-2" href=/tags/push/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">Push
-</span></span></a><a class="relative mt-[0.5rem] me-2" href=/tags/notification/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">Notification</span></span></a></div></div><div class="article-link__summary prose dark:prose-invert mt-1 line-clamp-5">最近几天被iOS的推送部署给搞懵了，现在特地整理下和大家进行分享。
-iOS远端推送机制 # APNS，全称为Apple Push Notification service，是苹果通知推送服务中最重要的一环。它是苹果通知推送服务器，为所有iOS设备以及OS X设备提供强大并且可靠的推送通知服务。每个注册通知服务的设备都会和该服务器进行长连接，从而实时获取推送通知。即使当前APP不在运行状态，当通知到达的时候也会有提示发生，最常见的就是短信服务。</div></div><div class="px-6 pt-4 pb-2"></div></article><article class="article-link--related relative min-h-full min-w-full overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-600"><div class=p-4><header><a href=/post/leetcode-021-implementstrstr/ class="not-prose before:absolute before:inset-0 decoration-primary-500 dark:text-neutral text-xl font-bold text-neutral-800 hover:underline hover:underline-offset-2"><h2>[28] Implement strStr()</h2></a></header><div class="text-sm text-neutral-500 dark:text-neutral-400"><div class="flex flex-row flex-wrap items-center"><time datetime=2015-08-21T09:14:17+00:00>2015-08-21</time><span class="px-2 text-primary-500">&#183;</span><span title=预计阅读>2 分钟</span></div><div class="flex flex-row flex-wrap items-center"><a class="relative mt-[0.5rem] me-2" href=/categories/leetcode/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">LeetCode
-</span></span></a><a class="relative mt-[0.5rem] me-2" href=/tags/algorithm/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">Algorithm
-</span></span></a><a class="relative mt-[0.5rem] me-2" href=/tags/string/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">String</span></span></a></div></div><div class="article-link__summary prose dark:prose-invert mt-1 line-clamp-5">题目：28. Implement strStr() # Implement strStr().</div></div><div class="px-6 pt-4 pb-2"></div></article><article class="article-link--related relative min-h-full min-w-full overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-600"><div class=p-4><header><a href=/post/leetcode-019-binarytreepaths/ class="not-prose before:absolute before:inset-0 decoration-primary-500 dark:text-neutral text-xl font-bold text-neutral-800 hover:underline hover:underline-offset-2"><h2>[257] Binary Tree Paths</h2></a></header><div class="text-sm text-neutral-500 dark:text-neutral-400"><div class="flex flex-row flex-wrap items-center"><time datetime=2015-08-18T16:28:26+00:00>2015-08-18</time><span class="px-2 text-primary-500">&#183;</span><span title=预计阅读>1 分钟</span></div><div class="flex flex-row flex-wrap items-center"><a class="relative mt-[0.5rem] me-2" href=/categories/leetcode/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">LeetCode
-</span></span></a><a class="relative mt-[0.5rem] me-2" href=/tags/algorithm/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">Algorithm
-</span></span></a><a class="relative mt-[0.5rem] me-2" href=/tags/tree/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">Tree</span></span></a></div></div><div class="article-link__summary prose dark:prose-invert mt-1 line-clamp-5">题目：257. Binary Tree Paths # Given a binary tree, return all root-to-leaf paths. For example, given the following binary tree: 1 / 2 3 5 All root-to-leaf paths are: [&ldquo;1->2->5&rdquo;, &ldquo;1->3&rdquo;]</div></div><div class="px-6 pt-4 pb-2"></div></article><article class="article-link--related relative min-h-full min-w-full overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-600"><div class=p-4><header><a href=/post/leetcode-018-lengthoflastword/ class="not-prose before:absolute before:inset-0 decoration-primary-500 dark:text-neutral text-xl font-bold text-neutral-800 hover:underline hover:underline-offset-2"><h2>[018] Length Of Last Word</h2></a></header><div class="text-sm text-neutral-500 dark:text-neutral-400"><div class="flex flex-row flex-wrap items-center"><time datetime=2015-08-18T16:13:44+00:00>2015-08-18</time><span class="px-2 text-primary-500">&#183;</span><span title=预计阅读>1 分钟</span></div><div class="flex flex-row flex-wrap items-center"><a class="relative mt-[0.5rem] me-2" href=/categories/leetcode/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">LeetCode
-</span></span></a><a class="relative mt-[0.5rem] me-2" href=/tags/algorithm/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">Algorithm
-</span></span></a><a class="relative mt-[0.5rem] me-2" href=/tags/string/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">String</span></span></a></div></div><div class="article-link__summary prose dark:prose-invert mt-1 line-clamp-5">题目： # Given a string s consists of upper/lower-case alphabets and empty space characters &rsquo; &lsquo;, return the length of last word in the string. If the last word does not exist, return 0. Note: A word is defined as a character sequence consists of non-space characters only. For example, Given s = &ldquo;Hello World&rdquo;, return 5.</div></div><div class="px-6 pt-4 pb-2"></div></article><article class="article-link--related relative min-h-full min-w-full overflow-hidden rounded-lg border border-neutral-300 dark:border-neutral-600"><div class=p-4><header><a href=/post/%E5%85%B3%E4%BA%8E%E5%8D%95%E9%93%BE%E8%A1%A8%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/ class="not-prose before:absolute before:inset-0 decoration-primary-500 dark:text-neutral text-xl font-bold text-neutral-800 hover:underline hover:underline-offset-2"><h2>关于单链表的那些事儿</h2></a></header><div class="text-sm text-neutral-500 dark:text-neutral-400"><div class="flex flex-row flex-wrap items-center"><time datetime=2015-05-07T13:59:00+00:00>2015-05-07</time><span class="px-2 text-primary-500">&#183;</span><span title=预计阅读>3 分钟</span></div><div class="flex flex-row flex-wrap items-center"><a class="relative mt-[0.5rem] me-2" href=/categories/data-structure/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">Data Structure
-</span></span></a><a class="relative mt-[0.5rem] me-2" href=/tags/linked-list/><span class="flex cursor-pointer"><span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">Linked List</span></span></a></div></div><div class="article-link__summary prose dark:prose-invert mt-1 line-clamp-5">关于有环单链表，即单链表中存在环路，该问题衍生出很多面试题，特在此汇总，方便查阅也帮助自己梳理下思路。</div></div><div class="px-6 pt-4 pb-2"></div></article></section></div></section><footer class="pt-8 max-w-prose print:hidden"><div class=pt-8><hr class="border-dotted border-neutral-300 dark:border-neutral-600"><div class="flex justify-between pt-3"><span class="flex flex-col"><a class="flex text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400" href=/post/how-we-created-guillotine-menu-animation-for-ios/><span class=leading-6><span class="inline-block rtl:rotate-180">&larr;</span>&ensp;我们是如何创建iOS版的Guillotine菜单动画的
-</span></a><span class="ms-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400"><time datetime=2015-09-01T15:52:07+00:00>2015-09-01</time>
-</span></span><span class="flex flex-col items-end"><a class="flex text-right text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400" href=/post/objective-c%E4%B8%ADcategory%E7%9A%84%E4%B8%80%E7%82%B9%E4%B8%9C%E8%A5%BF/><span class=leading-6>Objective-C中Category的一点东西&ensp;<span class="inline-block rtl:rotate-180">&rarr;</span>
-</span></a><span class="me-6 mt-1 text-xs text-neutral-500 dark:text-neutral-400"><time datetime=2015-09-14T15:36:07+00:00>2015-09-14</time></span></span></div></div></footer></article><div id=scroll-to-top class="fixed bottom-6 end-6 z-50 transform translate-y-4 opacity-0 duration-200"><a href=#the-top class="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400" aria-label=返回顶部 title=返回顶部>&uarr;</a></div></main><footer id=site-footer class="py-10 print:hidden"><nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400"><ul class="flex list-none flex-col sm:flex-row"><li class="flex mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0"><a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href=/tags/ title=Tags>Tags</a></li><li class="flex mb-1 text-end sm:mb-0 sm:me-7 sm:last:me-0"><a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href=/categories/ title=Categories>Categories</a></li></ul></nav><div class="flex items-center justify-between"><p class="text-sm text-neutral-500 dark:text-neutral-400">&copy;
-2026
-Chen</p></div><script>mediumZoom(document.querySelectorAll("img:not(.nozoom)"),{margin:24,background:"rgba(0,0,0,0.5)",scrollOffset:0})</script></footer><div id=search-wrapper class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh] z-500" data-url=https://hechen.github.io/><div id=search-modal class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"><header class="relative z-10 flex items-center justify-between flex-none px-2"><form class="flex items-center flex-auto min-w-0"><div class="flex items-center justify-center w-8 h-8 text-neutral-400"><span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7 405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9.0 208 0S0 93.1.0 208s93.1 208 208 208c48.3.0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9.0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7.0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7.0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg></span></div><input type=search id=search-query class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent" placeholder=搜索 tabindex=0></form><button id=close-search-button class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400" title="关闭 (Esc)">
-<span class="relative block icon"><svg viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75.0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3 54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75.0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75.0-45.25s32.75-12.5 45.25.0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25.0s12.5 32.75.0 45.25l-105.4 105.4L310.6 361.4z"/></svg></span></button></header><section class="flex-auto px-2 overflow-auto"><ul id=search-results></ul></section></div></div></div></body></html>
+最后我们还注意到了id指针，这个id指针仅仅告诉我们其指向的是Objective-C对象，仅此而已。当你拥有一个id指针，你可以查询该对象的类型，然后查看该类型是否可以响应某个方法等等。还有就是当你知道了当前所指向的具体对象的具体类别，你就可以做出更具体的动作。</p><p><strong>Blocks</strong></p><p>你也可以在LLVM/Clang文档中对Blocks 的定义中发现和上面类似的东西。</p><div class=highlight-wrapper><pre><code class="language-objectivec">struct Block_literal_1 {
+    void *isa; // initialized to &amp;_NSConcreteStackBlock or &amp;_NSConcreteGlobalBlock
+    int flags;
+    int reserved; 
+    void (*invoke)(void *, ...);
+    struct Block_descriptor_1 {
+         unsigned long int reserved; // NULL
+         unsigned long int size;  // sizeof(struct Block_literal_1)
+         // optional helper functions
+         void (*copy_helper)(void *dst, void *src);
+         void (*dispose_helper)(void *src); 
+    } *descriptor;
+    // imported variables
+}; </code></pre></div></div><p>Blocks被设计成能够与Objective-C运行时兼容，因此它们可以被当做对象处理，并可以响应消息（像<code>-retain</code>, <code>-release</code>, <code>-copy</code>等）。</p><p><strong>IMP</strong>（Method Implementations）</p><div class=highlight-wrapper><pre><code class="language-objectivec">typedef id (*IMP)(id self,SEL _cmd,...); </code></pre></div></div><p>IMP是编译器生成的函数指针，指向方法执行处。如果你刚接触Objective-C语言，你不需要直接和这些东西打交道，但是慢慢深入之后接触的就多了。后面我们会看到这也是Objective-C运行时唤醒方法的方式。</p><p><strong>Objective-C Classes</strong></p><p>Objective-C 的类内部有些什么东西呢？一个Objective-C的类的样子大体如下：</p><div class=highlight-wrapper><pre><code class="language-objectivec">@interface MyClass : NSObject {
+    // vars
+    NSInteger counter;
+}
+// methods
+-(void)doFoo;
+@end</code></pre></div></div><p>但是运行时还会追加更多的内容以便跟踪（类每一时刻的状态）。</p><div class=highlight-wrapper><pre><code class="language-objectivec">#if !__OBJC2__
+    Class super_class                                        OBJC2_UNAVAILABLE;
+    const char *name                                         OBJC2_UNAVAILABLE;
+    long version                                             OBJC2_UNAVAILABLE;
+    long info                                                OBJC2_UNAVAILABLE;
+    long instance_size                                       OBJC2_UNAVAILABLE;
+    struct objc_ivar_list *ivars                             OBJC2_UNAVAILABLE;
+    struct objc_method_list **methodLists                    OBJC2_UNAVAILABLE;
+    struct objc_cache *cache                                 OBJC2_UNAVAILABLE;
+    struct objc_protocol_list *protocols                     OBJC2_UNAVAILABLE;
+#endif </code></pre></div></div><p>我们可以看到一个类中包含一个指向其父类的引用，该类的名字、实例变量、方法集合、缓存以及该类遵循的协议列表。运行时需要这些信息以便响应那些分发到该类或者类实例对象上得方法。</p><h4 class="relative group">因此类定义了对象而不是对象本身，那这又是如何实现的？</h4><p>正如我前面说过的，Objective-C类本身也同样是对象（译者注：意味着你可以向一个类发送消息），运行时通过创建元类来处理它们。当你发送类似<code>[NSObject alloc]</code>的消息时，你实际上是向类对象发送了消息，而这个类对象需要是<strong>元类</strong>的实例，而元类本身又是<strong>根元类</strong>的一个实例。
+当你说一个类继承自NSObject，那就意味着你的类指向NSObject作为其父类。而所有的元类指向根元类作为它们的父类，所有的元类都仅包含那些它能够响应的消息中的类方法。所以当你向一个类对象发送消息，例如<code>[NSObject alloc]</code>的时候，<code>objc_msgSend()</code>实际上会查看元类来确定该对象是否能够响应该消息，那如果找到了一个能响应该消息的方法，就在该对象上执行它。</p><blockquote><p>译者注：Objective-C类体系结构图如下所示：<figure><img class="my-0 rounded-md" loading=lazy decoding=async fetchpriority=low alt=ios-runtime-class src=https://i.imgur.com/D7GUGKB.png></figure></p></blockquote><h4 class="relative group">为什么我们都要继承自Apple的类呢？</h4><p>当你刚踏入Cocoa开发的时候，很多代码例子都告诉你这样做：先继承NSObject类然后再进行其他编码。你也乐在其中，确实享受到了很多继承自Apple类所提供的便利。但是你甚至可能都没有发现实际上你的类在和Objective-C运行时打交道。当你为我们的类实例化的时候，像这样：</p><div class=highlight-wrapper><pre><code class="language-objectivec">MyObject *object = [[MyObject alloc] init];</code></pre></div></div><p>第一个你要执行的消息就是<code>+alloc</code>。如果你[查看文档][6]，里面会讲到“一个新生实例的isa实例会被初始化为一个描述该类信息的数据结构，其余的实例变量的内存均被设置为空。”所以通过继承自Apple的类，我们不仅继承了一些很棒的属性，同时也继承了这些在内存上分配空间（大小是我们类的大小），创建对象的能力（就是创建运行时所期望的带有isa指针的数据结构）。</p><h4 class="relative group">类缓存（objc_cache* cache）是什么？</h4><p>当Objective-C运行时通过一个对象的isa指针检查对象的时候，它会找到能够执行很多方法的类。然后你只需要调用其中很小一部分，所以每次运行时在进行一次查询动作时需要查找类分发表中所有的selectors这个动作是毫无意义的。这就是为什么类会由cache这个东西，当你查询一个类体系中的派发表的时候，一旦找到对应的selector时，就将该selector放到cache中。当<code>objc_msgSend()</code>方法在一个类中查询selector时，会先在cache中查找，这个理论的基础就是如果你曾经调用过一个类的消息，你有很大可能在之后还调用同样的方法。（译者注：CACHE的局部性原理）。所以按照这样考虑，如果我们先在有一个NSObject的子类MyObject如下：</p><div class=highlight-wrapper><pre><code class="language-objectivec">MyObject *obj = [[MyObject alloc] init];
+ 
+@implementation MyObject
+-(id)init {
+    if(self = [super init]) {
+        [self setVarA:@”blah”];
+    }
+    return self;
+}
+@end</code></pre></div></div><p>具体发生了以下几点：</p><ol><li><code>[MyObject alloc]</code>首先被执行，MyObject类没有实现该方法，因此在该类中没有找到<code>+alloc</code>方法，接着顺着superclass指针找到其父类<code>NSObject</code>；</li><li>我们询问<code>NSObject</code>类是否能够响应<code>+alloc</code>方法，而它能够响应。<code>+alloc</code>方法检查接受者类（也就是<code>MyObject</code>），分配该类大小的一块内存空间，然后初始化其isa指针指向<code>MyObject</code>类，此时我们拥有一个实例了，同时稍早我们将<code>+alloc</code>方法放置于<code>NSObject</code>的类缓存（cache）中；</li><li>到目前为止，我们都是在发送类方法，此刻我们需要向一个实例对象发送消息，这里简单的调用<code>-init</code>方法或者指定初始化方法（designated initializer），当然我们的类实现了该方法，因此我们将<code>-(id)init</code>方法放置于cache中；</li><li>接下来<code>self = [super init]</code>被调用，<code>super</code>是一个神奇的关键字（<strong>magic keyword</strong>），其指向类的父类，也即<code>NSObject</code>，我们调用<code>NSObject</code>的<code>init</code>方法。这样做的目的是为了确保面向对象编程的集成体系能够正确运行，在你正确初始化自身变量之前需要先初始化该类的所有父类的变量，如果你需要，你还可以覆写父类的方法。在该例中，对于NSObject类来说并没有多少特别重要的操作要进行，不过这并不是常态。有时候初始化中会做非常重要的事情，考虑以下代码：</li></ol><div class=highlight-wrapper><pre><code class="language-objectivec">#import &lt; Foundation/Foundation.h&gt;
+ 
+@interface MyObject : NSObject {
+    NSString *aString;
+}
+ 
+@property(retain) NSString *aString;
+ 
+@end
+ 
+@implementation MyObject
+ 
+- (id)init {
+    if (self = [super init]) {
+      [self setAString:nil];
+    }
+    return self;
+}
+ 
+@synthesize aString;
+ 
+@end
+
+ 
+int main (int argc, const char * argv[]) {
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+ 
+    id obj1 = [NSMutableArray alloc];
+    id obj2 = [[NSMutableArray alloc] init];
+ 
+    id obj3 = [NSArray alloc];
+    id obj4 = [[NSArray alloc] initWithObjects:@"Hello",nil];
+      
+    NSLog(@"obj1 class is %@",NSStringFromClass([obj1 class]));
+    NSLog(@"obj2 class is %@",NSStringFromClass([obj2 class]));
+  
+    NSLog(@"obj3 class is %@",NSStringFromClass([obj3 class]));
+    NSLog(@"obj4 class is %@",NSStringFromClass([obj4 class]));
+  
+    id obj5 = [MyObject alloc];
+    id obj6 = [[MyObject alloc] init];
+  
+    NSLog(@"obj5 class is %@",NSStringFromClass([obj5 class]));
+    NSLog(@"obj6 class is %@",NSStringFromClass([obj6 class]));
+          
+    [pool drain];
+    return 0;
+}</code></pre></div></div><p>如果你是刚刚接触Cocoa，我让你猜以上代码打印结果是什么，你很可能会给出这样的结果：</p><div class=highlight-wrapper><pre><code class="language-objectivec">NSMutableArray
+NSMutableArray 
+NSArray
+NSArray
+MyObject
+MyObject</code></pre></div></div><p>但实际上是如下结果：</p><div class=highlight-wrapper><pre><code class="language-objectivec">obj1 class is __NSPlaceholderArray
+obj2 class is NSCFArray
+obj3 class is __NSPlaceholderArray
+obj4 class is NSCFArray
+obj5 class is MyObject
+obj6 class is MyObject</code></pre></div></div><blockquote><p>译者注：（本机XCode 7 beta6 运行结果如下：）</p></blockquote><div class=highlight-wrapper><pre><code class="language-objectivec">2015-09-07 13:43:06.922 ObjMessage[5185:1441448] obj1 class is __NSPlaceholderArray
+2015-09-07 13:43:11.201 ObjMessage[5185:1441448] obj2 class is __NSArrayM
+2015-09-07 13:43:17.987 ObjMessage[5185:1441448] obj3 class is __NSPlaceholderArray
+2015-09-07 13:43:18.503 ObjMessage[5185:1441448] obj4 class is __NSArrayI
+2015-09-07 13:43:32.228 ObjMessage[5185:1441448] obj5 class is MyObject
+2015-09-07 13:43:33.478 ObjMessage[5185:1441448] obj6 class is MyObject</code></pre></div></div><p>原因就是Objective-C语言这里使用<code>+alloc</code>方法返回某个类的对象，但随后<code>-init</code>方法又可能返回另一个类的对象。</p><h4 class="relative group">那 objc_msgSend 方法都发生了什么呢？</h4><p>实际上<code>objc_msgSend()</code>方法内部发生了许多事情。如下我们有这样的代码：</p><div class=highlight-wrapper><pre><code class="language-objectivec">[self printMessageWithString:@"Hello World!"];</code></pre></div></div><p>编译器会把其翻译成如下所示代码：</p><div class=highlight-wrapper><pre><code class="language-objectivec">objc_msgSend(self, @selector(printMessageWithString:), @"Hello World!");</code></pre></div></div><p>我们通过目标对象的isa指针来查询该类或者其继承体系中的父类是否能够响应 <code>@selector(printMessageWithString:)</code>。假设我们在类的派发表或者它的cache中找到了该selector，然后我们通过该函数指针来执行该方法。因此我们可以了解<code>objc_msgSend()</code>方法永远不会返回，它从执行开始，通过指针查找到你的方法执行，然后是你的方法执行之后返回，因此看起来好像<code>objc_msgSend()</code>方法返回似的。Bill Bumgarner对此过程有更多的细节探索（<a href=http://www.friday.com/bbum/2009/12/18/objc_msgsend-part-1-the-road-map target=_blank rel=noreferrer>Part 1</a>, <a href=http://www.friday.com/bbum/2009/12/18/objc_msgsend-tour-part-3-the-fast-path target=_blank rel=noreferrer>Part 2</a> & <a href=http://www.friday.com/bbum/2009/12/18/objc_msgsend-tour-part-2-setting-the-stage target=_blank rel=noreferrer>Part 3</a>）。</p><p>我这里总结下他所讲的，也就是你会在运行时代码中看到的：</p><ol><li><p>检查那些忽略掉的Selectors和Short Circut， 很明显如果我们运行在垃圾回收环境下，我们可以忽略掉针对<code>-retain</code>，<code>-release</code>等的调用；</p></li><li><p>检查那些nil的目标。不像其他语言，Objective-C中向nil派发消息是合法的。当然你肯定也有很多理由希望这样。这里假设我们有一个非空的目标；</p></li><li><p>接下来我们需要在该类中找到IMP，我们首先查找该类的缓存（cache），如果找到我们便通过缓存中的指针跳转到该函数执行处；</p></li><li><p>如果缓存中没有找到该IMP，我们便紧接着查找类的派发表（dispatch table），如果找到同样跳转到函数执行处；</p></li><li><p>如果类的派发表中也未找到我们就需要触发消息分发机制了，这意味着最终你得代码会被编译器转换成了C函数。因此一个如下方法：</p></li></ol><div class=highlight-wrapper><pre><code class="language-objectivec">-(int)doComputeWithNum:(int)aNum </code></pre></div></div><p>会被转换成如下：</p><div class=highlight-wrapper><pre><code class="language-objectivec">int aClass_doComputeWithNum(aClass *self,SEL _cmd,int aNum) </code></pre></div></div><p>Objective-C运行时通过触发指向这些方法的函数指针来调用你的方法。告诉你，你没法直接调用这些转换之后的方法，尽管Cocoa框架确实提供了能够获取这些指针的方法。</p><div class=highlight-wrapper><pre><code class="language-objectivec">//declare C function pointer
+int (computeNum *)(id,SEL,int);
+ 
+//methodForSelector is COCOA &amp; not ObjC Runtime
+//gets the same function pointer objc_msgSend gets
+computeNum = (int (*)(id,SEL,int))[target methodForSelector:@selector(doComputeWithNum:)];
+ 
+//execute the C function pointer returned by the runtime
+computeNum(obj,@selector(doComputeWithNum:),aNum); </code></pre></div></div><p>通过这个方法，你可以获取到在运行时直接获取该方法并调用它。甚至在你确认一个指定的方法需要被执行的时候可以绕过运行时机制。这也是Objective-C运行时如何调用你的方法的，但还是使用<code>objc_msgSend()</code>方法为好。</p><h4 class="relative group">Objective-C 消息转发</h4><p>在Objective-C中，向一个根本不知道怎么响应方法的对象发送方法是合法的（也可能是该语言内部设计哲理）。Apple这样做的其中一个原因就是模拟Objective-C语言原生不支持的多重继承。或者你也许想抽象化自己的设计，隐藏该消息响应背后的其他类或者对象。这对于运行时系统也是非常必要的。它的工作流程大体是这样：</p><ol><li><p>运行时在该类或者其继承体系中的缓存中和派发表中查找，然后查找失败；</p></li><li><p>Objective-C运行时在所属对象的类上调用<code>+ (BOOL) resolveInstanceMethod:(SEL)aSEL</code>类方法，该类给予你一次机会来新增一个处理选择子<code>aSEL</code>的方法，然后告诉运行时你已经解决了该方法，消息转发机制会找到该方法。</p></li></ol><p>如下示例，你定义了一个函数：</p><div class=highlight-wrapper><pre><code class="language-objectivec">void fooMethod(id obj, SEL _cmd) {
+    NSLog(@"Doing Foo");
+}</code></pre></div></div><p>你可以使用<code>class_addMethod()</code>方法类解决它：</p><div class=highlight-wrapper><pre><code class="language-objectivec">+(BOOL)resolveInstanceMethod:(SEL)aSEL {
+    if(aSEL == @selector(doFoo:)) {
+        class_addMethod([self class],aSEL,(IMP)fooMethod,"v@:");
+        return YES;
+    }
+    return [super resolveInstanceMethod];
+}</code></pre></div></div><p>其中方法<code>class_addMethod()</code>中的<code>v@:</code>标明了方法的返回类型以及其参数类型。你可以在运行时文档中[Type Encodings][10]分查看到详细的说明。</p><ol start=3><li>如果2中<code>+(BOOL)resolveInstanceMethod:(SEL)aSEL</code>返回NO表示无法解析该方法的话，运行时接着调用<code>- (id)forwardingTargetForSelector:(SEL) aSelector</code>来给你再一次机会是否能够将该消息转发给其他接收者来处理。这要比之后运行完整的消息转发<code>- (void)forwardInvocation:(NSInvocation *)anInvocation</code>要好。你可以这样执行：</li></ol><div class=highlight-wrapper><pre><code class="language-objectivec">- (id)forwardingTargetForSelector:(SEL)aSelector {
+    if(aSelector == @selector(mysteriousMethod:)) {
+        return alternateObject;
+    }
+    return [super forwardingTargetForSelector:aSelector];
+}</code></pre></div></div><p>很明显，你肯定不想返回 self，否则会引起死循环。</p><ol start=4><li>如果上一步没有找到合适的目标对象来执行上面的消息，接着运行时会尝试最后一步 <code>- (void)forwardInvocation:(NSInvocation *)anInvocation</code>。你可能没见过NSInvocation，它实际上是Objective-C语言中的消息类型。一旦你有一个NSInvocation，你基本上能够改变这个消息的任何东西，包括其目标、选择子以及参数。所以你可以这样做：</li></ol><div class=highlight-wrapper><pre><code class="language-objectivec">- (void)forwardInvocation:(NSInvocation *)invocation {
+    SEL invSEL = invocation.selector;
+ 
+    if([altObject respondsToSelector:invSEL]) {
+        [invocation invokeWithTarget:altObject];
+    } 
+    else {
+        [self doesNotRecognizeSelector:invSEL];
+    }
+}</code></pre></div></div><p>默认情况下，如果你继承自NSObject类，它所实现的<code>- (void)forwardInvocation:(NSInvocation *)anInvocation</code>内部仅仅简单的调用了<code>-doesNotRecognizeSelector:</code>方法，如果你想给自己最后一次机会做一些事情的话，你可以重载该方法。</p><h4 class="relative group">Non Fragile ivars (Modern Runtime)</h4><p>一个Modern Runtime新增加的概念就是Non Fragile ivars。当编译器编译我们的类时，编译器会生成一个变量布局来显示每次我们从什么位置去取我们的实例变量，其底层的实现细节是这样的，查看类成员变量和类对象指针指向位置的偏移，读取该变量大小的字节就可以将该变量读取出来。所以你得变量布局可能如下所示，左侧列标明字节偏移量：</p><figure><img class="my-0 rounded-md" loading=lazy decoding=async fetchpriority=low alt="NSObject 布局" src=https://i.imgur.com/35waSjN.png></figure><p>这里我们有NSObject类型的变量布局，然后我们继承NSObject来扩展它，并添加自己的变量，这在Apple发布新版本OSX SDK之前都运行良好。</p><figure><img class="my-0 rounded-md" loading=lazy decoding=async fetchpriority=low alt="NSObject 布局" src=https://i.imgur.com/xPo1FAw.png></figure><p>我们的代码就无法正常运行，我们自定义对象中的内容被擦出了，因为NSObject增加了两个成员变量，而MyObject类成员变量布局在编译时已经确定，有两个成员变量和基类的内存区域重叠。唯一能够阻止这个发生的就是Apple维持它之前的布局策略，但是一旦这样他们的框架就无法再往前发展了，因为它们的变量布局已经固化了。在这种情况下（也就是fragile ivars）你只能通过重新编译这些继承自Apple类的类来使得代码得以兼容。那在 non fragile ivars下会发生什么呢？</p><figure><img class="my-0 rounded-md" loading=lazy decoding=async fetchpriority=low alt="NSObject 布局" src=https://i.imgur.com/w9Fxvpa.png></figure><p>在Non Fragile ivars下编译器虽然生成了和fragile ivars同样的布局，但是运行时会通过计算基类大小，动态调整MyObject类成员布局。结果如上图所示。</p><h4 class="relative group">Objective-C 关联对象</h4><p>最近引入Mac OS X 10.6系统有一个特性称作“关联引用”。Objective-C不像其他语言，其原生不支持向对象动态添加变量。所以到目前为止，你都必须要费很大的劲，编译整个体系结构来假装自己向类中添加一个变量。不过在Mac OS X 10.6系统中，Objective-C 运行时原生支持（动态添加变量）。如果我们想向每一个已经存在的类中添加一个变量，例如向NSView类中添加，如下所示：</p><div class=highlight-wrapper><pre><code class="language-objectivec">#import &lt; Cocoa/Cocoa.h&gt; //Cocoa
+#include &lt; objc/runtime.h&gt; //objc runtime api’s
+ 
+@interface NSView (CustomAdditions)
+@property(retain) NSImage *customImage;
+@end
+ 
+@implementation NSView (CustomAdditions)
+ 
+static char img_key; //has a unique address (identifier)
+ 
+-(NSImage *)customImage {
+    return objc_getAssociatedObject(self,&amp;img_key);
+}
+ 
+-(void)setCustomImage:(NSImage *)image {
+    objc_setAssociatedObject(self,&amp;img_key,image,
+                             OBJC_ASSOCIATION_RETAIN);
+}
+ 
+@end</code></pre></div></div><p>你可以在[runtime.h][11]，（译者注：最新版 [runtime.h][12]）文件中看到向<code>objc_setAssociatedObject()</code>传递的几个选项：</p><div class=highlight-wrapper><pre><code class="language-objectivec">/* Associative References */
+
+/**
+ * Policies related to associative references.
+ * These are options to objc_setAssociatedObject()
+ */
+enum {
+    OBJC_ASSOCIATION_ASSIGN = 0,           /**&lt; Specifies a weak reference to the associated object. */
+    OBJC_ASSOCIATION_RETAIN_NONATOMIC = 1, /**&lt; Specifies a strong reference to the associated object. 
+                                            *   The association is not made atomically. */
+    OBJC_ASSOCIATION_COPY_NONATOMIC = 3,   /**&lt; Specifies that the associated object is copied. 
+                                            *   The association is not made atomically. */
+    OBJC_ASSOCIATION_RETAIN = 01401,       /**&lt; Specifies a strong reference to the associated object.
+                                            *   The association is made atomically. */
+    OBJC_ASSOCIATION_COPY = 01403          /**&lt; Specifies that the associated object is copied.
+                                            *   The association is made atomically. */
+};</code></pre></div></div><p>这些和你通过<code>@property</code>方式传递的选项相吻合。</p><h4 class="relative group">混合的虚表派生</h4><p>如果你查看Modern runtime 代码，你会在<a href>objc-runtime-new.m</a>（译者注： 最新版objc runtime源码为[objc-runtime-new.mm][14] 已经去掉了这个特性，译者发现从[objc4-551.1][15]版本开始就不支持了，不过读者还是可以借鉴下之前版本的实现方式。）中发现这个：</p><div class=highlight-wrapper><pre><code class="language-objectivec">/***********************************************************************
+* vtable dispatch
+* 
+* Every class gets a vtable pointer. The vtable is an array of IMPs.
+* The selectors represented in the vtable are the same for all classes
+*   (i.e. no class has a bigger or smaller vtable).
+* Each vtable index has an associated trampoline which dispatches to 
+*   the IMP at that index for the receiver class's vtable (after 
+*   checking for NULL). Dispatch fixup uses these trampolines instead 
+*   of objc_msgSend.
+* Fragility: The vtable size and list of selectors is chosen at launch 
+*   time. No compiler-generated code depends on any particular vtable 
+*   configuration, or even the use of vtable dispatch at all.
+* Memory size: If a class's vtable is identical to its superclass's 
+*   (i.e. the class overrides none of the vtable selectors), then 
+*   the class points directly to its superclass's vtable. This means 
+*   selectors to be included in the vtable should be chosen so they are 
+*   (1) frequently called, but (2) not too frequently overridden. In 
+*   particular, -dealloc is a bad choice.
+* Forwarding: If a class doesn't implement some vtable selector, that 
+*   selector's IMP is set to objc_msgSend in that class's vtable.
+* +initialize: Each class keeps the default vtable (which always 
+*   redirects to objc_msgSend) until its +initialize is completed.
+*   Otherwise, the first message to a class could be a vtable dispatch, 
+*   and the vtable trampoline doesn't include +initialize checking.
+* Changes: Categories, addMethod, and setImplementation all force vtable 
+*   reconstruction for the class and all of its subclasses, if the 
+*   vtable selectors are affected.
+**********************************************************************/</code></pre></div></div><p>这背后的原理就是，运行时试图去存储你最近调用过的选择子（selector）以便能够为你的App加速，因为其比<code>objc_msgSend</code>方法使用更少的指令。这个<code>vTable</code>存储你最近全局调用的16个选择子，实际上，在代码文件往下接着看你就会看到垃圾回收和非垃圾回收类型的App的默认选择子（selectors）。</p><div class=highlight-wrapper><pre><code class="language-objectivec">static const char * const defaultVtable[] = {
+    "allocWithZone:", 
+    "alloc", 
+    "class", 
+    "self", 
+    "isKindOfClass:", 
+    "respondsToSelector:", 
+    "isFlipped", 
+    "length", 
+    "objectForKey:", 
+    "count", 
+    "objectAtIndex:", 
+    "isEqualToString:", 
+    "isEqual:", 
+    "retain", 
+    "release", 
+    "autorelease", 
+};
+static const char * const defaultVtableGC[] = {
+    "allocWithZone:", 
+    "alloc", 
+    "class", 
+    "self", 
+    "isKindOfClass:", 
+    "respondsToSelector:", 
+    "isFlipped", 
+    "length", 
+    "objectForKey:", 
+    "count", 
+    "objectAtIndex:", 
+    "isEqualToString:", 
+    "isEqual:", 
+    "hash", 
+    "addObject:", 
+    "countByEnumeratingWithState:objects:count:", 
+};</code></pre></div></div><h4 class="relative group">因此你如何能知道你正在和它打交道呢？</h4><p>当你进行调试的时候，你会在你的调试栈中看到稍后讲解到的某些方法的身影。你就把这些方法按照<code>objc_msgSend()</code>方法来对待就行，不过这些方法都是为了调试，具体有如下几个方法。</p><ol><li><p>当运行时正在将你所有调用的这些方法中的其中一个插入到虚表（vTable）中时，会调用<code>objc_msgSend_fixup</code>。</p></li><li><p>而当<code>objc_msgSend_fixedup</code>发生时，表明你当前所调用的一个方法本应该存在于虚表中<code>objc_msgSend_vtable[0-15]</code>的位置，但却并不在</p></li><li><p>你可能会看到<code>objc_msgSend_vtable5</code>类似的东西，其意味着你正在调用虚表中的一个方法。运行时可以根据需要动态调整虚表中的内容。因此你不应该期望这次代码循环调用的<code>objc_msgSend_vtable10</code>对应了<code>-length</code>方法，而之后每次代码循环还依然会这样。（因为vTable也在不断变化中）</p></li></ol><p>译者注：参考<a href=http://www.sealiesoftware.com/blog/archive/2011/06/17/objc%5C_explain%5C_objc%5C_msgSend%5C_vtable.html target=_blank rel=noreferrer>[objc explain]: objc_msgSend_vtable</a></p><h4 class="relative group">总结</h4><p>我希望你们能够喜欢以上这些东西，这篇文章主要讲述了我和Des Moines Cocoaheads关于Objective-C runtime的谈话（我们的讨论估计能打包一箩筐）。Objective-C Runtime是一项很了不起的工程，它为我们Cocoa/Objective-C下制作的Apps注入能量，使得我们能够实现很多我们认为理所当然的特性。希望你能够看一看Apple官方文档对Objective-C运行时的讲解，这样能够使你更好的利用Objective-C运行时。谢谢。</p><h4 class="relative group">参考链接</h4><p><a href=https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html target=_blank rel=noreferrer>Objective-C Runtime Programming Guide</a>
+<a href=https://developer.apple.com/library/mac/documentation/Cocoa/Reference/ObjCRuntimeRef/index.html target=_blank rel=noreferrer>Objective-C Runtime Reference</a></p>
+  </article>
+  <footer class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800">
+    <p class="text-sm text-slate-500 dark:text-slate-400">
+      Written by <a class="text-accent dark:text-accent-dark hover:underline" href="/about/">Chen He</a>.
+      Found a typo? <a class="text-accent dark:text-accent-dark hover:underline" href="mailto:hechen.dream@gmail.com">Email me</a>.
+    </p>
+  </footer>
+</main>
+<footer class="border-t border-slate-200 dark:border-slate-800 mt-16 py-8">
+  <div class="max-w-5xl mx-auto px-6 sm:px-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-sm text-slate-500 dark:text-slate-400">
+    <span>&copy; 2026 Chen He</span>
+    <div class="flex items-center gap-4">
+      <a href="/post/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Blog</a>
+      <a href="/apps/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Apps</a>
+      <a href="/tags/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Tags</a>
+      <a href="/categories/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Categories</a>
+      <a href="https://github.com/hechen" class="hover:text-accent dark:hover:text-accent-dark transition-colors">GitHub</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
