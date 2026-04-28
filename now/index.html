@@ -17,33 +17,23 @@
       extend: {
         fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'] },
         colors: { accent: { DEFAULT: '#0d9488', dark: '#14b8a6' } },
+        boxShadow: {
+          card: '0 1px 2px rgba(15,23,42,0.04), 0 4px 16px rgba(15,23,42,0.06)',
+        }
       }
     }
   }
 </script>
 <style>
   html { font-feature-settings: 'cv11', 'ss01'; }
-  .now-section h2 {
-    @apply text-2xl sm:text-3xl font-bold tracking-tight mb-4 mt-12 first:mt-0;
-  }
-  .now-section h3 {
-    @apply text-base font-semibold text-slate-900 dark:text-slate-100 mt-6 mb-1;
-  }
-  .now-section p {
-    @apply text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-3;
-  }
-  .now-section ul {
-    @apply list-disc pl-5 text-slate-600 dark:text-slate-400 leading-relaxed mb-3;
-  }
-  .now-section li { @apply mb-1; }
-  .now-section a {
-    @apply text-accent dark:text-accent-dark hover:underline;
-  }
+  .pill-shipping  { @apply bg-accent/10 text-accent dark:bg-accent-dark/15 dark:text-accent-dark; }
+  .pill-queued    { @apply bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300; }
+  .pill-holding   { @apply bg-slate-100 text-slate-600 dark:bg-slate-800/60 dark:text-slate-400; }
+  .pill-not-now   { @apply bg-rose-100 text-rose-700 dark:bg-rose-900/40 dark:text-rose-300; }
 </style>
 </head>
 <body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased">
 
-<!-- GLOBAL NAV — same markup on every page I control. -->
 <nav class="border-b border-slate-200/60 dark:border-slate-800 sticky top-0 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md">
   <div class="max-w-5xl mx-auto px-6 sm:px-10 h-14 flex items-center justify-between">
     <a href="/" class="flex items-center gap-2 font-semibold text-slate-900 dark:text-slate-100 hover:text-accent dark:hover:text-accent-dark transition-colors">
@@ -51,7 +41,7 @@
       Chen He
     </a>
     <div class="flex items-center gap-1 text-sm">
-      <a href="/"      class="px-3 py-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Apps</a>
+      <a href="/apps/" class="px-3 py-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Apps</a>
       <a href="/post/" class="px-3 py-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
       <a href="/now/"  class="px-3 py-1.5 rounded-lg font-semibold text-slate-900 dark:text-slate-100 bg-slate-100 dark:bg-slate-800/60 transition-colors" aria-current="page">Now</a>
       <a href="/tools/" class="px-3 py-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Tools</a>
@@ -60,85 +50,206 @@
   </div>
 </nav>
 
-<main class="max-w-3xl mx-auto px-6 sm:px-10 py-16 sm:py-20">
-  <div class="flex items-center gap-2 text-sm font-medium text-accent dark:text-accent-dark mb-4">
-    <span class="inline-block h-2 w-2 rounded-full bg-accent dark:bg-accent-dark animate-pulse"></span>
-    <span>Now</span>
+<!-- HERO -->
+<section class="border-b border-slate-200/60 dark:border-slate-800">
+  <div class="max-w-3xl mx-auto px-6 sm:px-10 pt-16 sm:pt-20 pb-10">
+    <div class="flex items-center gap-2 text-sm font-medium text-accent dark:text-accent-dark mb-4">
+      <span class="inline-block h-2 w-2 rounded-full bg-accent dark:bg-accent-dark animate-pulse"></span>
+      <span>Now · updated weekly</span>
+    </div>
+    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight leading-tight mb-3">What I'm working on</h1>
+    <p class="text-lg text-slate-500 dark:text-slate-400 mb-2">A snapshot of my current focus. Inspired by <a href="https://nownownow.com/about" class="text-accent dark:text-accent-dark hover:underline">/now</a>.</p>
+    <p class="text-sm text-slate-400 dark:text-slate-500">Last updated: 28 April 2026</p>
   </div>
-  <h1 class="text-4xl sm:text-5xl font-bold tracking-tight leading-tight mb-3">What I'm working on</h1>
-  <p class="text-lg text-slate-500 dark:text-slate-400 mb-2">A snapshot of my current focus. Updated weekly-ish.</p>
-  <p class="text-sm text-slate-400 dark:text-slate-500 mb-12">Last updated: 27 April 2026 · Inspired by <a href="https://nownownow.com/about" class="text-accent dark:text-accent-dark hover:underline">/now movement</a></p>
+</section>
 
-  <section class="now-section">
-    <h2>Right now</h2>
-    <p>Polishing <strong>DupeOut</strong> for App Store submission. It's looking like my first public release — currently on TestFlight Build 63, working through Chen-driven UX feedback (cell density, capsule placement, sort menu, App Intents, Bad Photos sensitivity). The marketing site went live last week at <a href="/apps/dupeout/">/apps/dupeout/</a>.</p>
-    <p>In parallel: keeping the <strong>portfolio</strong> in sync with CHSharedKit 2.5.1. Closet, EatWisely, GymLog, SpendWisely, TrainInsight all picked up the unified theme picker + on-device LLM revival in this round.</p>
-  </section>
+<!-- RIGHT NOW -->
+<section class="border-b border-slate-200/60 dark:border-slate-800">
+  <div class="max-w-5xl mx-auto px-6 sm:px-10 py-16 sm:py-20">
+    <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-6">Right now</h2>
 
-  <section class="now-section">
-    <h2>Queued</h2>
-    <h3>Pre-App-Store work</h3>
-    <ul>
-      <li>App Store metadata draft for DupeOut (subtitle / description / keywords / screenshots)</li>
-      <li>Privacy nutrition label review across all live apps</li>
-      <li>App Review notes — explaining the on-device-only architecture to reviewers</li>
-    </ul>
-    <h3>FearIndex</h3>
-    <ul>
-      <li>Crypto + macro fear-and-greed dashboard. In design — Apple Watch complication is the centerpiece.</li>
-    </ul>
-    <h3>Cross-portfolio</h3>
-    <ul>
-      <li>CHSharedKit 2.6: settings-screen consolidation across all apps so I stop maintaining six near-identical Form blocks</li>
-      <li>Per-app icon refresh — the gradient avatar placeholders on the homepage need to be real PNG icons</li>
-    </ul>
-  </section>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-  <section class="now-section">
-    <h2>Tools I'm using</h2>
-    <p>The full list is at <a href="/tools/">/tools</a>. Daily drivers right now:</p>
-    <ul>
-      <li><strong>Xcode 16 + SwiftUI + SwiftData</strong> — the whole stack stays Apple-native. SwiftData is finally stable enough for shipping.</li>
-      <li><strong>Apple MLX</strong> — on-device LLM backend for the AI features in LiftCoach, EatWisely, Closet, TrainInsight. Replaced the dead <code class="font-mono text-sm">eastriverlee/LLM.swift</code> dependency in CHSharedKit 2.5.</li>
-      <li><strong>Claude Code</strong> — most of the boilerplate, scaffolding, and refactors flow through here. I drive the architecture; it executes the keystrokes.</li>
-      <li><strong>Things 3 + Linear</strong> — Things for personal todos, Linear for cross-app issue tracking.</li>
-      <li><strong>GitHub Pages + Tailwind CDN</strong> — this site. No build step, fast iteration.</li>
-    </ul>
-  </section>
+      <!-- DupeOut polish -->
+      <article class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-card">
+        <div class="flex items-start justify-between mb-3">
+          <div class="flex items-center gap-3">
+            <img src="/assets/icons/dupeout.png" alt="" class="w-10 h-10 rounded-[22%] shadow-sm">
+            <h3 class="font-bold text-lg">DupeOut for App Store</h3>
+          </div>
+          <span class="px-2 py-0.5 text-xs font-semibold rounded-full pill-shipping">Shipping</span>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          Polishing my first public release. Currently TestFlight Build 63 — working through Chen-style UX feedback (cell density, capsule placement, sort menu, App Intents, Bad Photos sensitivity). Marketing site went live last week at <a href="/apps/dupeout/" class="text-accent dark:text-accent-dark hover:underline">/apps/dupeout</a>.
+        </p>
+      </article>
 
-  <section class="now-section">
-    <h2>Reading</h2>
-    <ul>
-      <li>Apple's <em>Designing for visionOS</em> docs — not building for Vision Pro yet, but the spatial-design principles are leaking back into iPad layout decisions</li>
-      <li>The <em>App Intents</em> WWDC sessions — DupeOut just shipped Siri Shortcuts in Build 62 (<a href="/apps/dupeout/support.html">support docs</a>) and the affordance is genuinely useful</li>
-      <li><em>Tao Te Ching</em> (Mitchell translation) — re-read every couple of years; resets my pace</li>
-    </ul>
-  </section>
+      <!-- Portfolio sync -->
+      <article class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-card">
+        <div class="flex items-start justify-between mb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-[22%] bg-gradient-to-br from-accent to-blue-500 flex items-center justify-center text-white font-bold text-sm shadow-sm">5</span>
+            <h3 class="font-bold text-lg">Portfolio CHSharedKit 2.5.1 sync</h3>
+          </div>
+          <span class="px-2 py-0.5 text-xs font-semibold rounded-full pill-shipping">Shipping</span>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          Closet, EatWisely, GymLog, SpendWisely, TrainInsight all picked up the unified theme picker + on-device LLM revival in this round. MLX backend now powers the AI features in every app that has them.
+        </p>
+      </article>
 
-  <section class="now-section">
-    <h2>Not working on</h2>
-    <p>Listing the things I've explicitly deprioritized so they don't sneak back in:</p>
-    <ul>
-      <li><strong>Web apps.</strong> The portfolio is iOS / macOS / watchOS. Web is for marketing pages only.</li>
-      <li><strong>Cross-platform frameworks.</strong> Flutter, React Native, etc. Native Apple stack is what I want to ship.</li>
-      <li><strong>Backend services.</strong> Every app is on-device or iCloud-direct. No DupeOut server, no LiftCoach server, no EatWisely server.</li>
-      <li><strong>Subscriptions.</strong> One-time purchases or free. Re-evaluating only if a feature genuinely requires recurring server costs.</li>
-    </ul>
-  </section>
+      <!-- Blog reorganize -->
+      <article class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-card">
+        <div class="flex items-start justify-between mb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-[22%] bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-white font-bold text-sm shadow-sm">~</span>
+            <h3 class="font-bold text-lg">This site, reorganized</h3>
+          </div>
+          <span class="px-2 py-0.5 text-xs font-semibold rounded-full pill-shipping">Shipping</span>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          Three previously-disjoint visual systems collapsed into one unified nav + theme. Hand-coded marketing pages for every app I ship, with real icons and consistent footer chrome. You're reading the result.
+        </p>
+      </article>
 
-  <section class="now-section">
-    <h2>Want to say hi?</h2>
-    <p>Email <a href="mailto:hechen.dream@gmail.com">hechen.dream@gmail.com</a> or open an issue on any of my <a href="https://github.com/hechen">public repos</a>. I read everything; reply rate is high for first-time contact.</p>
-  </section>
-</main>
+      <!-- DupeOut App Store metadata -->
+      <article class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-card">
+        <div class="flex items-start justify-between mb-3">
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-[22%] bg-gradient-to-br from-orange-400 to-amber-500 flex items-center justify-center text-white font-bold text-sm shadow-sm">📝</span>
+            <h3 class="font-bold text-lg">App Store submission</h3>
+          </div>
+          <span class="px-2 py-0.5 text-xs font-semibold rounded-full pill-queued">Queued</span>
+        </div>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          Subtitle / description / keywords / promo text / screenshots for DupeOut. Privacy nutrition label review across all the live apps. App Review notes explaining the on-device-only architecture so the reviewer doesn't get confused.
+        </p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- QUEUED -->
+<section class="border-b border-slate-200/60 dark:border-slate-800">
+  <div class="max-w-5xl mx-auto px-6 sm:px-10 py-16 sm:py-20">
+    <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-6">Next up</h2>
+
+    <ul class="divide-y divide-slate-200 dark:divide-slate-800 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 shadow-card">
+      <li class="p-5 flex items-start gap-4">
+        <span class="px-2 py-0.5 text-xs font-semibold rounded-full pill-queued shrink-0 mt-0.5">Queued</span>
+        <div class="min-w-0">
+          <p class="font-semibold text-sm">FearIndex — design pass</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Crypto + macro fear-and-greed dashboard for the Apple ecosystem. Apple Watch complication is the centerpiece. In design.</p>
+        </div>
+      </li>
+      <li class="p-5 flex items-start gap-4">
+        <span class="px-2 py-0.5 text-xs font-semibold rounded-full pill-queued shrink-0 mt-0.5">Queued</span>
+        <div class="min-w-0">
+          <p class="font-semibold text-sm">CHSharedKit 2.6 — settings consolidation</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Stop maintaining six near-identical Settings Form blocks across the portfolio. One shared SwiftUI section with per-app overrides.</p>
+        </div>
+      </li>
+      <li class="p-5 flex items-start gap-4">
+        <span class="px-2 py-0.5 text-xs font-semibold rounded-full pill-holding shrink-0 mt-0.5">Holding</span>
+        <div class="min-w-0">
+          <p class="font-semibold text-sm">App Store submissions for the rest</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">LiftCoach, Closet, EatWisely, SpendWisely, Distill, TrainInsight — all on TestFlight, all need the same metadata + privacy + screenshot pass DupeOut is going through now. Sequential after DupeOut lands.</p>
+        </div>
+      </li>
+      <li class="p-5 flex items-start gap-4">
+        <span class="px-2 py-0.5 text-xs font-semibold rounded-full pill-holding shrink-0 mt-0.5">Holding</span>
+        <div class="min-w-0">
+          <p class="font-semibold text-sm">visionOS exploration</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Not building for Vision Pro yet, but the spatial-design principles are leaking back into iPad layout decisions. Reading WWDC sessions, not coding.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- READING / TOOLS -->
+<section class="border-b border-slate-200/60 dark:border-slate-800">
+  <div class="max-w-5xl mx-auto px-6 sm:px-10 py-16 sm:py-20 grid grid-cols-1 md:grid-cols-2 gap-10">
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-4">Reading</h2>
+      <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+        <li><strong class="text-slate-900 dark:text-slate-100">WWDC App Intents sessions</strong> — DupeOut just shipped Siri Shortcuts in Build 62 and the affordance is genuinely useful</li>
+        <li><strong class="text-slate-900 dark:text-slate-100">Apple's <em>Designing for visionOS</em> docs</strong> — spatial layout heuristics that apply backward to iPad</li>
+        <li><strong class="text-slate-900 dark:text-slate-100"><em>Tao Te Ching</em></strong> (Mitchell translation) — re-read every couple of years; resets my pace</li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-4">Tools I'm using</h2>
+      <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+        <li><strong class="text-slate-900 dark:text-slate-100">Xcode 16 + SwiftUI + SwiftData</strong> — full Apple-native stack</li>
+        <li><strong class="text-slate-900 dark:text-slate-100">Apple MLX</strong> — replaced the dead llama.cpp Swift fork</li>
+        <li><strong class="text-slate-900 dark:text-slate-100">Claude Code</strong> — most of the keystrokes flow through here now</li>
+      </ul>
+      <p class="mt-4 text-sm">
+        <a href="/tools/" class="text-accent dark:text-accent-dark hover:underline font-semibold">Full stack at /tools →</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- NOT WORKING ON -->
+<section class="border-b border-slate-200/60 dark:border-slate-800">
+  <div class="max-w-5xl mx-auto px-6 sm:px-10 py-16 sm:py-20">
+    <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-3">Not working on</h2>
+    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Things I've explicitly deprioritized so they don't sneak back in.</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex items-start gap-3">
+        <span class="px-2 py-0.5 text-xs font-semibold rounded-full pill-not-now shrink-0">Skip</span>
+        <div>
+          <p class="font-semibold text-sm">Web apps</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Portfolio is iOS / macOS / watchOS. Web is for marketing pages only.</p>
+        </div>
+      </div>
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex items-start gap-3">
+        <span class="px-2 py-0.5 text-xs font-semibold rounded-full pill-not-now shrink-0">Skip</span>
+        <div>
+          <p class="font-semibold text-sm">Cross-platform frameworks</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Flutter, React Native. Native Apple stack is what I want to ship.</p>
+        </div>
+      </div>
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex items-start gap-3">
+        <span class="px-2 py-0.5 text-xs font-semibold rounded-full pill-not-now shrink-0">Skip</span>
+        <div>
+          <p class="font-semibold text-sm">Backend services</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Every app is on-device or iCloud-direct. No DupeOut server, no LiftCoach server, no EatWisely server.</p>
+        </div>
+      </div>
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex items-start gap-3">
+        <span class="px-2 py-0.5 text-xs font-semibold rounded-full pill-not-now shrink-0">Skip</span>
+        <div>
+          <p class="font-semibold text-sm">Subscriptions</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">One-time purchases or free. Re-evaluating only if a feature genuinely requires recurring server costs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section>
+  <div class="max-w-3xl mx-auto px-6 sm:px-10 py-16 sm:py-20 text-center">
+    <h2 class="text-2xl font-bold tracking-tight mb-3">Want to say hi?</h2>
+    <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+      Email <a href="mailto:hechen.dream@gmail.com" class="text-accent dark:text-accent-dark hover:underline">hechen.dream@gmail.com</a> or open an issue on <a href="https://github.com/hechen" class="text-accent dark:text-accent-dark hover:underline">any of my public repos</a>. I read everything; reply rate is high for first-time contact.
+    </p>
+  </div>
+</section>
 
 <footer class="border-t border-slate-200/60 dark:border-slate-800">
-  <div class="max-w-3xl mx-auto px-6 sm:px-10 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-sm text-slate-400 dark:text-slate-500">
+  <div class="max-w-5xl mx-auto px-6 sm:px-10 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-sm text-slate-400 dark:text-slate-500">
     <p>© 2026 Chen He</p>
     <p>
       <a href="/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Home</a> ·
-      <a href="/now/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">/now</a> ·
-      <a href="/tools/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">/tools</a>
+      <a href="/now/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Now</a> ·
+      <a href="/tools/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Tools</a> ·
+      <a href="https://github.com/hechen" class="hover:text-accent dark:hover:text-accent-dark transition-colors">GitHub</a>
     </p>
   </div>
 </footer>
