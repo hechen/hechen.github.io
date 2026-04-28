@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Now — Chen He</title>
+<meta name="description" content="What I'm working on this week — current focus, queued projects, tools, and reading.">
+<meta property="og:title" content="Now — Chen He">
+<meta property="og:description" content="What I'm working on this week — current focus, queued projects, tools, and reading.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://rsms.me/">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'] },
+        colors: { accent: { DEFAULT: '#0d9488', dark: '#14b8a6' } },
+      }
+    }
+  }
+</script>
+<style>
+  html { font-feature-settings: 'cv11', 'ss01'; }
+  .now-section h2 {
+    @apply text-2xl sm:text-3xl font-bold tracking-tight mb-4 mt-12 first:mt-0;
+  }
+  .now-section h3 {
+    @apply text-base font-semibold text-slate-900 dark:text-slate-100 mt-6 mb-1;
+  }
+  .now-section p {
+    @apply text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-3;
+  }
+  .now-section ul {
+    @apply list-disc pl-5 text-slate-600 dark:text-slate-400 leading-relaxed mb-3;
+  }
+  .now-section li { @apply mb-1; }
+  .now-section a {
+    @apply text-accent dark:text-accent-dark hover:underline;
+  }
+</style>
+</head>
+<body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased">
+
+<header class="border-b border-slate-200/60 dark:border-slate-800">
+  <div class="max-w-3xl mx-auto px-6 sm:px-10 py-6 flex items-center justify-between">
+    <a href="/" class="text-sm text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark transition-colors">← Chen He</a>
+    <div class="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
+      <a href="/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Home</a>
+      <a href="/apps/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Apps</a>
+      <a href="/tools/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Tools</a>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-3xl mx-auto px-6 sm:px-10 py-16 sm:py-20">
+  <div class="flex items-center gap-2 text-sm font-medium text-accent dark:text-accent-dark mb-4">
+    <span class="inline-block h-2 w-2 rounded-full bg-accent dark:bg-accent-dark animate-pulse"></span>
+    <span>Now</span>
+  </div>
+  <h1 class="text-4xl sm:text-5xl font-bold tracking-tight leading-tight mb-3">What I'm working on</h1>
+  <p class="text-lg text-slate-500 dark:text-slate-400 mb-2">A snapshot of my current focus. Updated weekly-ish.</p>
+  <p class="text-sm text-slate-400 dark:text-slate-500 mb-12">Last updated: 27 April 2026 · Inspired by <a href="https://nownownow.com/about" class="text-accent dark:text-accent-dark hover:underline">/now movement</a></p>
+
+  <section class="now-section">
+    <h2>Right now</h2>
+    <p>Polishing <strong>DupeOut</strong> for App Store submission. It's looking like my first public release — currently on TestFlight Build 63, working through Chen-driven UX feedback (cell density, capsule placement, sort menu, App Intents, Bad Photos sensitivity). The marketing site went live last week at <a href="/apps/dupeout/">/apps/dupeout/</a>.</p>
+    <p>In parallel: keeping the <strong>portfolio</strong> in sync with CHSharedKit 2.5.1. Closet, EatWisely, GymLog, SpendWisely, TrainInsight all picked up the unified theme picker + on-device LLM revival in this round.</p>
+  </section>
+
+  <section class="now-section">
+    <h2>Queued</h2>
+    <h3>Pre-App-Store work</h3>
+    <ul>
+      <li>App Store metadata draft for DupeOut (subtitle / description / keywords / screenshots)</li>
+      <li>Privacy nutrition label review across all live apps</li>
+      <li>App Review notes — explaining the on-device-only architecture to reviewers</li>
+    </ul>
+    <h3>FearIndex</h3>
+    <ul>
+      <li>Crypto + macro fear-and-greed dashboard. In design — Apple Watch complication is the centerpiece.</li>
+    </ul>
+    <h3>Cross-portfolio</h3>
+    <ul>
+      <li>CHSharedKit 2.6: settings-screen consolidation across all apps so I stop maintaining six near-identical Form blocks</li>
+      <li>Per-app icon refresh — the gradient avatar placeholders on the homepage need to be real PNG icons</li>
+    </ul>
+  </section>
+
+  <section class="now-section">
+    <h2>Tools I'm using</h2>
+    <p>The full list is at <a href="/tools/">/tools</a>. Daily drivers right now:</p>
+    <ul>
+      <li><strong>Xcode 16 + SwiftUI + SwiftData</strong> — the whole stack stays Apple-native. SwiftData is finally stable enough for shipping.</li>
+      <li><strong>Apple MLX</strong> — on-device LLM backend for the AI features in LiftCoach, EatWisely, Closet, TrainInsight. Replaced the dead <code class="font-mono text-sm">eastriverlee/LLM.swift</code> dependency in CHSharedKit 2.5.</li>
+      <li><strong>Claude Code</strong> — most of the boilerplate, scaffolding, and refactors flow through here. I drive the architecture; it executes the keystrokes.</li>
+      <li><strong>Things 3 + Linear</strong> — Things for personal todos, Linear for cross-app issue tracking.</li>
+      <li><strong>GitHub Pages + Tailwind CDN</strong> — this site. No build step, fast iteration.</li>
+    </ul>
+  </section>
+
+  <section class="now-section">
+    <h2>Reading</h2>
+    <ul>
+      <li>Apple's <em>Designing for visionOS</em> docs — not building for Vision Pro yet, but the spatial-design principles are leaking back into iPad layout decisions</li>
+      <li>The <em>App Intents</em> WWDC sessions — DupeOut just shipped Siri Shortcuts in Build 62 (<a href="/apps/dupeout/support.html">support docs</a>) and the affordance is genuinely useful</li>
+      <li><em>Tao Te Ching</em> (Mitchell translation) — re-read every couple of years; resets my pace</li>
+    </ul>
+  </section>
+
+  <section class="now-section">
+    <h2>Not working on</h2>
+    <p>Listing the things I've explicitly deprioritized so they don't sneak back in:</p>
+    <ul>
+      <li><strong>Web apps.</strong> The portfolio is iOS / macOS / watchOS. Web is for marketing pages only.</li>
+      <li><strong>Cross-platform frameworks.</strong> Flutter, React Native, etc. Native Apple stack is what I want to ship.</li>
+      <li><strong>Backend services.</strong> Every app is on-device or iCloud-direct. No DupeOut server, no LiftCoach server, no EatWisely server.</li>
+      <li><strong>Subscriptions.</strong> One-time purchases or free. Re-evaluating only if a feature genuinely requires recurring server costs.</li>
+    </ul>
+  </section>
+
+  <section class="now-section">
+    <h2>Want to say hi?</h2>
+    <p>Email <a href="mailto:hechen.dream@gmail.com">hechen.dream@gmail.com</a> or open an issue on any of my <a href="https://github.com/hechen">public repos</a>. I read everything; reply rate is high for first-time contact.</p>
+  </section>
+</main>
+
+<footer class="border-t border-slate-200/60 dark:border-slate-800">
+  <div class="max-w-3xl mx-auto px-6 sm:px-10 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-sm text-slate-400 dark:text-slate-500">
+    <p>© 2026 Chen He</p>
+    <p>
+      <a href="/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Home</a> ·
+      <a href="/now/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">/now</a> ·
+      <a href="/tools/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">/tools</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
