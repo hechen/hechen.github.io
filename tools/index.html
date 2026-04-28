@@ -43,16 +43,22 @@
 </head>
 <body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased">
 
-<header class="border-b border-slate-200/60 dark:border-slate-800">
-  <div class="max-w-5xl mx-auto px-6 sm:px-10 py-6 flex items-center justify-between">
-    <a href="/" class="text-sm text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark transition-colors">← Chen He</a>
-    <div class="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
-      <a href="/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Home</a>
-      <a href="/apps/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Apps</a>
-      <a href="/now/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Now</a>
+<!-- GLOBAL NAV — same markup on every page I control. -->
+<nav class="border-b border-slate-200/60 dark:border-slate-800 sticky top-0 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md">
+  <div class="max-w-5xl mx-auto px-6 sm:px-10 h-14 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 font-semibold text-slate-900 dark:text-slate-100 hover:text-accent dark:hover:text-accent-dark transition-colors">
+      <span class="inline-block h-2 w-2 rounded-full bg-accent dark:bg-accent-dark"></span>
+      Chen He
+    </a>
+    <div class="flex items-center gap-1 text-sm">
+      <a href="/"       class="px-3 py-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Apps</a>
+      <a href="/post/"  class="px-3 py-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Blog</a>
+      <a href="/now/"   class="px-3 py-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Now</a>
+      <a href="/tools/" class="px-3 py-1.5 rounded-lg font-semibold text-slate-900 dark:text-slate-100 bg-slate-100 dark:bg-slate-800/60 transition-colors" aria-current="page">Tools</a>
+      <a href="/about/" class="hidden sm:inline-block px-3 py-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">About</a>
     </div>
   </div>
-</header>
+</nav>
 
 <main class="max-w-5xl mx-auto px-6 sm:px-10 py-16 sm:py-20">
   <h1 class="text-4xl sm:text-5xl font-bold tracking-tight leading-tight mb-3">Tools I build with</h1>
