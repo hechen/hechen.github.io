@@ -1,0 +1,10 @@
+{{- /*
+  Hugo lookup chain calls PaperMod's themes/PaperMod/layouts/partials/head.html,
+  which in turn calls partials/extend_head.html as a last step in <head>.
+  Override that here to inject the build-time Tailwind CSS bundle on top
+  of PaperMod's own stylesheet pipeline. The order matters: PaperMod's
+  styles ship first (so blog post entry-link / post-meta / Chroma rules
+  cascade in), then Tailwind utilities follow so my apps-page chrome
+  can override at the same specificity if needed.
+*/ -}}
+<link rel="stylesheet" href="/css/tailwind.css">
