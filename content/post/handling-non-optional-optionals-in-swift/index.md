@@ -1,5 +1,6 @@
 ---
 title: '处理 Swift 中非可选的可选值类型'
+slug: 'handling-non-optional-optionals-in-swift'
 date: 2017-11-14T21:53:52+00:00
 draft: false
 categories: ['ios', 'swift', 'translation']

@@ -1,5 +1,6 @@
 ---
 title: '关于 iOS10 Notification 的那些事儿'
+slug: 'ios-notification'
 date: 2017-05-20T10:10:54+00:00
 draft: false
 categories: ['book', 'ios', 'translation']

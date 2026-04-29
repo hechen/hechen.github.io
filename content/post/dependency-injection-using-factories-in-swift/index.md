@@ -1,5 +1,6 @@
 ---
 title: '在 Swift 中使用工厂模式进行依赖注入'
+slug: 'dependency-injection-using-factories-in-swift'
 date: 2017-11-19T18:17:15+00:00
 draft: false
 categories: ['ios', 'swift', 'translation']

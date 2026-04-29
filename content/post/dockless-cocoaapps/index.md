@@ -1,5 +1,6 @@
 ---
 title: 'Mac 平台上那些 Dockless 的 App 都是如何实现的？'
+slug: 'dockless-cocoaapps'
 date: 2019-03-13T17:29:54+08:00
 draft: false
 categories: ['macos', 'productivity', 'rxswift', 'swift']

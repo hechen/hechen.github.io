@@ -1,5 +1,6 @@
 ---
 title: '博客之旅'
+slug: 'myfirstpost'
 date: 2015-04-15T16:14:00+00:00
 draft: false
 ---

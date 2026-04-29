@@ -1,5 +1,6 @@
 ---
 title: 'UserDefaults and Keychain'
+slug: 'userdefaults-and-keychain'
 date: 2018-12-21T14:30:50+00:00
 draft: false
 categories: ['ios', 'productivity']

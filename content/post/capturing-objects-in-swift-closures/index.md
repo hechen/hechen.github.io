@@ -1,5 +1,6 @@
 ---
 title: 'Capturing objects in Swift closures'
+slug: 'capturing-objects-in-swift-closures'
 date: 2017-11-12T20:56:50+00:00
 draft: false
 categories: ['ios', 'swift', 'translation']

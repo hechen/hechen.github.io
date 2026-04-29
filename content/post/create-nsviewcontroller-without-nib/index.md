@@ -1,5 +1,6 @@
 ---
 title: 'How to generate a NSViewController without a Nib?'
+slug: 'create-nsviewcontroller-without-nib'
 date: 2019-06-03T20:55:54+08:00
 draft: false
 categories: ['macos']

@@ -1,5 +1,6 @@
 ---
 title: '[257] Binary Tree Paths'
+slug: 'leetcode-019-binarytreepaths'
 date: 2015-08-18T16:28:26+00:00
 draft: false
 categories: ['ios', 'leetcode']

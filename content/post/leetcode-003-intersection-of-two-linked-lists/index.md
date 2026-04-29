@@ -1,5 +1,6 @@
 ---
 title: '[160] Intersection of Two Linked Lists'
+slug: 'leetcode-003-intersection-of-two-linked-lists'
 date: 2015-04-29T12:28:00+00:00
 draft: false
 categories: ['c++', 'leetcode', 'scala']

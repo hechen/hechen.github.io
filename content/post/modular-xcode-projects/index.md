@@ -1,5 +1,6 @@
 ---
 title: '模块化 Xcode 工程'
+slug: 'modular-xcode-projects'
 date: 2017-11-19T18:17:15+00:00
 draft: false
 categories: ['translation']

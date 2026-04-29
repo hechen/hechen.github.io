@@ -1,5 +1,6 @@
 ---
 title: 'Apple Event Sandboxing'
+slug: 'appleevents-usage-description'
 date: 2019-02-21T23:25:38+08:00
 draft: false
 categories: ['macos', 'swift']

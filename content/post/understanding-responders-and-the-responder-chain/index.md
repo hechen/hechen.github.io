@@ -1,5 +1,6 @@
 ---
 title: '理解响应者和响应链'
+slug: 'understanding-responders-and-the-responder-chain'
 date: 2017-11-13T21:22:44+00:00
 draft: false
 categories: ['book', 'ios', 'swift', 'translation']

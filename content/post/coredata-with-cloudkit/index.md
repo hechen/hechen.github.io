@@ -1,5 +1,6 @@
 ---
 title: 'CoreData With CloudKit'
+slug: 'coredata-with-cloudkit'
 date: 2020-11-27T16:59:37+08:00
 draft: false
 categories: ['coredata', 'macos']

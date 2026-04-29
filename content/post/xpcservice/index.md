@@ -1,5 +1,6 @@
 ---
 title: 'XPC Services'
+slug: 'xpcservice'
 date: 2019-07-04T01:01:10+08:00
 draft: false
 categories: ['macos']

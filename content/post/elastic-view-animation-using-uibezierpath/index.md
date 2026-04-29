@@ -1,5 +1,6 @@
 ---
 title: '如何使用UIBezierPath实现一个弹性视图动画'
+slug: 'elastic-view-animation-using-uibezierpath'
 date: 2015-12-02T18:53:51+00:00
 draft: false
 categories: ['ios', 'leetcode', 'translation']

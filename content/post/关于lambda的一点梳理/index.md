@@ -1,5 +1,6 @@
 ---
 title: '关于Lambda的一点梳理'
+slug: '关于lambda的一点梳理'
 date: 2015-04-29T11:57:00+00:00
 draft: false
 categories: ['c++', 'leetcode', 'scala']

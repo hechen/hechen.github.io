@@ -1,5 +1,6 @@
 ---
 title: 'iOS 远端推送部署详解'
+slug: 'ios-push-notification'
 date: 2015-07-30T14:30:00+00:00
 draft: false
 categories: ['c++', 'data-structure', 'ios', 'leetcode']

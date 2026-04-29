@@ -1,5 +1,6 @@
 ---
 title: '三个简单步骤让你测试使用系统单例的代码'
+slug: 'testing-swift-code-that-uses-system-singletons-in-3-easy-steps'
 date: 2018-07-17T17:09:57+00:00
 draft: false
 categories: ['translation']

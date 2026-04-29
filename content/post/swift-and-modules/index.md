@@ -1,5 +1,6 @@
 ---
 title: '在 Swift Framework 中使用 C 文件的过程探索'
+slug: 'swift-and-modules'
 date: 2019-01-03T21:19:24+00:00
 draft: false
 categories: ['swift', 'translation']

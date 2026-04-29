@@ -1,5 +1,6 @@
 ---
 title: '关于 Mac 应用的自启动是如何做到的'
+slug: 'autostartwhenlogin'
 date: 2019-03-18T17:29:54+08:00
 draft: false
 categories: ['macos', 'productivity', 'rxswift']

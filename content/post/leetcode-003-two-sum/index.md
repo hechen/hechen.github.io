@@ -1,5 +1,6 @@
 ---
 title: 'Two Sum'
+slug: 'leetcode-003-two-sum'
 date: 2015-04-29T13:15:00+00:00
 draft: false
 categories: ['c++', 'leetcode', 'scala']

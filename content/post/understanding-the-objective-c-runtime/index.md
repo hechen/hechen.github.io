@@ -1,5 +1,6 @@
 ---
 title: '理解Objective-C运行时'
+slug: 'understanding-the-objective-c-runtime'
 date: 2015-09-07T17:55:33+00:00
 draft: false
 categories: ['data-structure', 'ios', 'leetcode', 'translation']

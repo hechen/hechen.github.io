@@ -1,5 +1,6 @@
 ---
 title: '关于单链表的那些事儿'
+slug: '关于单链表的那些事儿'
 date: 2015-05-07T13:59:00+00:00
 draft: false
 categories: ['c++', 'data-structure', 'leetcode', 'scala']

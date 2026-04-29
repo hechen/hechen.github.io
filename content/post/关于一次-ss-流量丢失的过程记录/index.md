@@ -1,5 +1,6 @@
 ---
 title: '关于一次 SS 流量丢失的过程记录'
+slug: '关于一次-ss-流量丢失的过程记录'
 date: 2019-01-28T17:51:35+00:00
 draft: false
 categories: ['macos', 'productivity', 'swift']

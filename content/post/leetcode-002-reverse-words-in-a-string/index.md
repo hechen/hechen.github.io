@@ -1,5 +1,6 @@
 ---
 title: '[151] Reverse Words in a String'
+slug: 'leetcode-002-reverse-words-in-a-string'
 date: 2015-05-01T09:29:09+00:00
 draft: false
 categories: ['c++', 'leetcode', 'scala']

@@ -1,5 +1,6 @@
 ---
 title: 'Protocol Extension'
+slug: 'protocol-extension'
 date: 2019-08-08T19:00:20+08:00
 draft: false
 categories: ['swift', 'translation']

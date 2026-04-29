@@ -1,5 +1,6 @@
 ---
 title: '那些我恢复 Mac 系统之后要安装的 Apps'
+slug: 'my-favorite-mac-apps'
 date: 2018-07-11T12:58:37+00:00
 draft: false
 categories: ['ios', 'productivity', 'translation']

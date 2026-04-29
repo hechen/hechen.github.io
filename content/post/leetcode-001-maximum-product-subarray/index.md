@@ -1,5 +1,6 @@
 ---
 title: '[152] Maximum Product Subarray'
+slug: 'leetcode-001-maximum-product-subarray'
 date: 2015-04-29T11:30:00+00:00
 draft: false
 categories: ['leetcode', 'scala']

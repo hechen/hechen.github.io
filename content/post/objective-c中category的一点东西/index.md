@@ -1,5 +1,6 @@
 ---
 title: 'Objective-C中Category的一点东西'
+slug: 'objective-c中category的一点东西'
 date: 2015-09-14T15:36:07+00:00
 draft: false
 categories: ['ios', 'leetcode', 'translation']

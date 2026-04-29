@@ -1,5 +1,6 @@
 ---
 title: 'LetsMove 中的几个点'
+slug: 'letsmove'
 date: 2019-07-04T01:19:10+08:00
 draft: false
 categories: ['macos']

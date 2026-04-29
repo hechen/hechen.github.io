@@ -1,5 +1,6 @@
 ---
 title: '我们是如何创建iOS版的Guillotine菜单动画的'
+slug: 'how-we-created-guillotine-menu-animation-for-ios'
 date: 2015-09-01T15:52:07+00:00
 draft: false
 categories: ['data-structure', 'ios', 'leetcode', 'translation']

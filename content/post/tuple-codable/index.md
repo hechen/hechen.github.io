@@ -1,5 +1,6 @@
 ---
 title: 'Codable && Tuple'
+slug: 'tuple-codable'
 date: 2019-06-10T23:50:54+08:00
 draft: false
 categories: ['macos', 'swift']
