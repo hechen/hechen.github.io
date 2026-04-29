@@ -3,6 +3,8 @@ name: Build and deploy Hugo site to Pages
 on:
   push:
     branches: [master]
+  pull_request:
+    branches: [master]
   workflow_dispatch:
 
 permissions:
@@ -20,6 +22,9 @@ defaults:
 
 jobs:
   build:
+    # Always run on push and PR — gives PR authors a green/red signal that
+    # the Hugo + Tailwind pipeline still compiles before merge. Deploy job
+    # below is gated on push to master so PRs don't deploy to production.
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.160.1
@@ -33,6 +38,13 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install Tailwind deps
+        run: npm ci
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
@@ -50,12 +62,22 @@ jobs:
             --gc \
             --minify \
             --baseURL "https://hechen.github.io/"
+      - name: Build Tailwind CSS bundle
+        # Phase 2: compile assets/css/main.css → public/css/tailwind.css
+        # at build time. The legacy hand-edited HTML pages reference
+        # /css/tailwind.css instead of the cdn.tailwindcss.com runtime
+        # script that fragility-of-Safari was breaking on iPad.
+        # Runs AFTER Hugo so it overlays into the same public/ tree.
+        run: npm run build:css
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
   deploy:
+    # Only deploy on push to master. PR builds upload the artifact for
+    # CI validation but don't replace the live site.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

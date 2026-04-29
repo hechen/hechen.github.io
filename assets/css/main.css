@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ----------------------------------------------------------------
+   Site-wide custom CSS — sweeps up the inline <style> blocks that
+   used to live on each hand-edited page in static/. Lives here so
+   it's emitted once into the build-time Tailwind bundle instead
+   of repeated per page.
+   ---------------------------------------------------------------- */
+
+html { font-feature-settings: 'cv11', 'ss01'; }
+
+/* Animated gradient hero used on the homepage and a few app marketing
+   pages. 200% × 200% bg size lets the keyframe slide instead of jump. */
+@keyframes gradientShift {
+  0%   { background-position:   0%   0%; }
+  25%  { background-position: 100%  20%; }
+  50%  { background-position: 100% 100%; }
+  75%  { background-position:   0%  80%; }
+  100% { background-position:   0%   0%; }
+}
+.gradient-bg-animated {
+  background:
+    radial-gradient(ellipse at 20% 0%,  rgba(20, 184, 166, 0.10), transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(96, 165, 250, 0.07), transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(244, 114, 182, 0.04), transparent 60%);
+  background-size: 200% 200%;
+  animation: gradientShift 30s ease-in-out infinite;
+}
+
+/* The legacy `gradient-bg` (non-animated) on app marketing pages. */
+.gradient-bg {
+  background:
+    radial-gradient(ellipse at 20% 0%,  rgba(20, 184, 166, 0.08), transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(96, 165, 250, 0.05), transparent 50%);
+}
+
+/* Tag pill — used by the blog posts via PaperMod, kept for any apps/
+   pages or homepage cards that reference the same chip styling. */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 500;
+  background: rgba(13, 148, 136, 0.08);
+  color: #0d9488;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+.tag-pill:hover { background: rgba(13, 148, 136, 0.16); }
+@media (prefers-color-scheme: dark) {
+  .tag-pill { background: rgba(20, 184, 166, 0.12); color: #5eead4; }
+  .tag-pill:hover { background: rgba(20, 184, 166, 0.22); }
+}
+
+/* Category pill (amber). */
+.cat-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 500;
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.cat-pill:hover { background: rgba(245, 158, 11, 0.22); }
+@media (prefers-color-scheme: dark) {
+  .cat-pill { background: rgba(245, 158, 11, 0.16); color: #fbbf24; }
+  .cat-pill:hover { background: rgba(245, 158, 11, 0.26); }
+}

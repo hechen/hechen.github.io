@@ -1,0 +1,10 @@
+{{- /*
+  Generic single-page layout. Body is whatever .Content is — pages
+  carry their own marketing-page HTML (apps/<name>/_index.html), the
+  privacy / support copy (apps/<name>/privacy.html etc.), or simple
+  text content (about, now, tools). Theme-shared shell comes from
+  baseof.html.
+*/ -}}
+{{ define "main" }}
+{{ .Content }}
+{{ end }}
