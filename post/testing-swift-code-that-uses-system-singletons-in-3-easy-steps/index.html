@@ -107,6 +107,7 @@
     border-radius: 8px;
     border: 1px solid #d0d7de;
     background: #f6f8fa;
+    color: #24292e;
     padding: 0;
     margin: 1.25em 0;
     overflow: hidden;
@@ -120,9 +121,45 @@
     font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, monospace;
     font-size: 1em;
   }
+  /* WCAG AA token overrides for the #f6f8fa light frame.
+     GitHub theme's red/orange/gray are borderline on this surface; deepen
+     them to hit AA 4.5:1+. Dark-mode tokens on #0d1117 already pass. */
+  .prose pre code .hljs-keyword,
+  .prose pre code .hljs-doctag,
+  .prose pre code .hljs-template-tag,
+  .prose pre code .hljs-template-variable,
+  .prose pre code .hljs-type,
+  .prose pre code .hljs-variable.language_ {
+    color: #b31d28;
+  }
+  .prose pre code .hljs-built_in,
+  .prose pre code .hljs-symbol {
+    color: #a04400;
+  }
+  .prose pre code .hljs-comment,
+  .prose pre code .hljs-code,
+  .prose pre code .hljs-formula {
+    color: #57606a;
+  }
+  @media (prefers-color-scheme: dark) {
+    /* Reset overrides — github-dark tokens already meet AA on #0d1117 */
+    .prose pre code .hljs-keyword,
+    .prose pre code .hljs-doctag,
+    .prose pre code .hljs-template-tag,
+    .prose pre code .hljs-template-variable,
+    .prose pre code .hljs-type,
+    .prose pre code .hljs-variable.language_ { color: #ff7b72; }
+    .prose pre code .hljs-built_in,
+    .prose pre code .hljs-symbol { color: #ffa657; }
+    .prose pre code .hljs-comment,
+    .prose pre code .hljs-code,
+    .prose pre code .hljs-formula { color: #8b949e; }
+  }
+
   @media (prefers-color-scheme: dark) {
     .prose pre {
       background: #0d1117;
+      color: #c9d1d9;
       border-color: #30363d;
     }
   }
