@@ -10,6 +10,11 @@ module.exports = {
     './content/**/*.{html,md}',
     './static/**/*.html',
   ],
+  // Class-based dark mode so the theme toggle in the header can flip
+  // between light/dark by setting/removing the `dark` class on <html>.
+  // Without this, dark: variants only fire from prefers-color-scheme
+  // and the manual toggle has no effect.
+  darkMode: 'class',
   // Inline tailwind.config from the legacy pages so the theme extensions
   // round-trip identically: the same accent teal, the same custom box
   // shadows, the same Inter font stack.
