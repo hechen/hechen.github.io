@@ -1,0 +1,12 @@
+{{- /*
+  Full-width image — breaks out of the 720-px body column up to a
+  1000-px ceiling on ≥lg viewports. Captionable.
+
+    {{< full-width-image src="/img/cloudkit-flow.png" alt="CloudKit sync flow" caption="The full sync round-trip through NSPersistentCloudKitContainer." >}}
+*/ -}}
+<figure class="full-width-image">
+  <img src="{{ .Get "src" }}" alt="{{ .Get "alt" | default "" }}" loading="lazy" decoding="async">
+  {{- with .Get "caption" }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end }}
+</figure>
