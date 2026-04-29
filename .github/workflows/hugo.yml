@@ -3,6 +3,8 @@ name: Build and deploy Hugo site to Pages
 on:
   push:
     branches: [master]
+  pull_request:
+    branches: [master]
   workflow_dispatch:
 
 permissions:
@@ -20,6 +22,9 @@ defaults:
 
 jobs:
   build:
+    # Always run on push and PR — gives PR authors a green/red signal that
+    # the Hugo + Tailwind pipeline still compiles before merge. Deploy job
+    # below is gated on push to master so PRs don't deploy to production.
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.160.1
@@ -70,6 +75,9 @@ jobs:
           path: ./public
 
   deploy:
+    # Only deploy on push to master. PR builds upload the artifact for
+    # CI validation but don't replace the live site.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
