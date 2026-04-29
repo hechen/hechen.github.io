@@ -33,6 +33,13 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install Tailwind deps
+        run: npm ci
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
@@ -50,6 +57,13 @@ jobs:
             --gc \
             --minify \
             --baseURL "https://hechen.github.io/"
+      - name: Build Tailwind CSS bundle
+        # Phase 2: compile assets/css/main.css → public/css/tailwind.css
+        # at build time. The legacy hand-edited HTML pages reference
+        # /css/tailwind.css instead of the cdn.tailwindcss.com runtime
+        # script that fragility-of-Safari was breaking on iPad.
+        # Runs AFTER Hugo so it overlays into the same public/ tree.
+        run: npm run build:css
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

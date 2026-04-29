@@ -3,6 +3,10 @@ public/
 resources/
 .hugo_build.lock
 
+# Node modules — Tailwind CSS build dependencies pulled by `npm ci` in CI.
+# package.json + package-lock.json are committed.
+node_modules/
+
 # OS junk
 .DS_Store
 
