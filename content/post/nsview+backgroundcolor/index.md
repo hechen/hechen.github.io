@@ -1,6 +1,8 @@
 ---
 title: '为 NSView 增加 backgroundColor'
-slug: 'nsview+backgroundcolor'
+slug: 'nsview-backgroundcolor'
+url: '/post/nsview-backgroundcolor/'
+aliases: ['/post/nsview+backgroundcolor/']
 date: 2019-03-11T15:19:49+08:00
 draft: false
 categories: ['macos', 'rxswift', 'swift']
