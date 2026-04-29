@@ -1,5 +1,6 @@
 ---
 title: 'In App Purchase'
+slug: 'in-app-purchase'
 date: 2018-05-24T10:40:39+00:00
 draft: false
 categories: ['ios', 'translation']

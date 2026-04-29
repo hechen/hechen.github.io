@@ -1,5 +1,6 @@
 ---
 title: '获取某个 Mac 应用的 BundleID'
+slug: 'reveal-bundleid-application'
 date: 2020-08-10T12:05:54+08:00
 draft: false
 categories: ['macos']

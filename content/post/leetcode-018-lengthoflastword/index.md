@@ -1,5 +1,6 @@
 ---
 title: '[018] Length Of Last Word'
+slug: 'leetcode-018-lengthoflastword'
 date: 2015-08-18T16:13:44+00:00
 draft: false
 categories: ['data-structure', 'ios', 'leetcode']

@@ -1,5 +1,6 @@
 ---
 title: '一道 Swift Quiz'
+slug: 'a-swift-quiz'
 date: 2019-05-14T16:01:54+08:00
 draft: false
 categories: ['macos', 'swift']

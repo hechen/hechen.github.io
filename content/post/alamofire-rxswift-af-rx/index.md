@@ -1,5 +1,6 @@
 ---
 title: 'Alamofire 和 RxSwift 中的 .af 以及 .rx 扩展是怎么实现的'
+slug: 'alamofire-rxswift-af-rx'
 date: 2019-09-29T10:30:30+08:00
 draft: false
 categories: ['swift']

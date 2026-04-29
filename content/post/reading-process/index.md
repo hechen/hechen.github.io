@@ -1,5 +1,6 @@
 ---
 title: '阅读流程'
+slug: 'reading-process'
 date: 2018-10-16T17:01:44+00:00
 draft: false
 categories: ['ios', 'productivity', 'translation']

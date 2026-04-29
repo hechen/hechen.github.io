@@ -1,5 +1,6 @@
 ---
 title: 'Swift 中的消息派发'
+slug: 'messagedispatchinswift'
 date: 2019-09-15T20:56:50+00:00
 draft: false
 categories: ['swift', 'translation']

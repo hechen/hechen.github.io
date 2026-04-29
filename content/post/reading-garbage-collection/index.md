@@ -1,5 +1,6 @@
 ---
 title: '阅读《垃圾回收的算法与实现》'
+slug: 'reading-garbage-collection'
 date: 2017-02-12T16:38:24+00:00
 draft: false
 categories: ['book']

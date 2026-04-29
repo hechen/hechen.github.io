@@ -1,5 +1,6 @@
 ---
 title: '如何制作 Send to 2Do 的 Safari 书签'
+slug: 'send-to-2do'
 date: 2018-11-26T14:59:50+00:00
 draft: false
 categories: ['productivity', 'translation']

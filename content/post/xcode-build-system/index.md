@@ -1,5 +1,6 @@
 ---
 title: 'Build Process'
+slug: 'xcode-build-system'
 date: 2019-04-25T11:30:30+08:00
 draft: false
 categories: ['macos']

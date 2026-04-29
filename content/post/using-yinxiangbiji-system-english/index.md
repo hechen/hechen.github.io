@@ -1,5 +1,6 @@
 ---
 title: '在英文语言系统的 Safari 中使用印象笔记'
+slug: 'using-yinxiangbiji-system-english'
 date: 2019-03-13T00:30:49+08:00
 draft: false
 categories: ['macos', 'productivity', 'rxswift']

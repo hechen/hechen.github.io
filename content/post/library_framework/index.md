@@ -1,5 +1,6 @@
 ---
 title: '关于 Library 和 Framework'
+slug: 'library_framework'
 date: 2019-04-26T00:35:30+08:00
 draft: false
 categories: ['macos']

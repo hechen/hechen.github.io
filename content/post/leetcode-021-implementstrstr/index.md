@@ -1,5 +1,6 @@
 ---
 title: '[28] Implement strStr()'
+slug: 'leetcode-021-implementstrstr'
 date: 2015-08-21T09:14:17+00:00
 draft: false
 categories: ['leetcode']

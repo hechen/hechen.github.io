@@ -1,5 +1,6 @@
 ---
 title: '@autoclosure && @escape'
+slug: 'autoclosure-escape'
 date: 2017-11-12T20:01:54+00:00
 draft: false
 categories: ['ios', 'swift', 'translation']

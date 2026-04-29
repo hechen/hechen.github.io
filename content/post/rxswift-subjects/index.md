@@ -1,5 +1,6 @@
 ---
 title: 'RxSwift 中的几种 Subject'
+slug: 'rxswift-subjects'
 date: 2019-02-26T10:24:38+08:00
 draft: false
 categories: ['macos', 'rxswift', 'swift']

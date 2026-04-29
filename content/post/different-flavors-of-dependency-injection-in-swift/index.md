@@ -1,5 +1,6 @@
 ---
 title: 'Swift 中几种不同的依赖注入方式'
+slug: 'different-flavors-of-dependency-injection-in-swift'
 date: 2018-07-16T13:57:24+00:00
 draft: false
 categories: ['translation']

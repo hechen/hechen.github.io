@@ -1,5 +1,6 @@
 ---
 title: 'What is LLVM'
+slug: 'what-is-llvm'
 date: 2018-07-10T12:05:58+00:00
 draft: false
 categories: ['swift', 'translation']

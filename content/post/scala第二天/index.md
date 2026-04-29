@@ -1,5 +1,6 @@
 ---
 title: 'scala Day2'
+slug: 'scala第二天'
 date: 2015-04-16T18:43:00+00:00
 draft: false
 categories: ['scala']

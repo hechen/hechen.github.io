@@ -1,5 +1,6 @@
 ---
 title: '避免在 Swift 中使用单例'
+slug: 'avoiding-singletons-in-swift'
 date: 2018-07-16T17:34:36+00:00
 draft: false
 categories: ['translation']

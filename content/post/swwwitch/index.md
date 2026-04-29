@@ -1,5 +1,6 @@
 ---
 title: '写个小工具 Swwwitch'
+slug: 'swwwitch'
 date: 2019-03-30T11:29:54+08:00
 draft: false
 categories: ['macos', 'productivity']
