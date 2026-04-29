@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Chen He personal monogram. Rounded square in the site's accent teal
+  (#0d9488 from tailwind.config.js), white "CH" set in the system rounded
+  sans (matches Inter on macOS, SF Pro on iOS). 32×32 viewBox at 4-px
+  corner radius keeps the bezel readable at favicon scale.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Chen He">
+  <rect width="32" height="32" rx="6" ry="6" fill="#0d9488"/>
+  <text x="16" y="22.5"
+        font-family="-apple-system,BlinkMacSystemFont,'SF Pro Rounded',ui-rounded,'Inter',system-ui,sans-serif"
+        font-size="16"
+        font-weight="700"
+        fill="#ffffff"
+        text-anchor="middle"
+        letter-spacing="-0.5">CH</text>
+</svg>

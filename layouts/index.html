@@ -2,7 +2,33 @@
   Site homepage. Inherits from layouts/page/baseof.html — same nav and
   footer as the apps/about/now/tools pages. Content body lives in
   content/_index.html which carries the bespoke "Chen He" landing.
+
+  Below the bespoke content, a "Recent posts" section pulls the 5 most
+  recent /post/ entries from the site so the blog has front-door
+  discoverability — Chen flagged "the blog is missing on my website"
+  after Phase 2; turns out it was reachable via the nav but had no
+  promotion on the homepage at all.
 */ -}}
 {{ define "main" }}
 {{ .Content }}
+
+{{ $recent := first 5 (where .Site.RegularPages "Section" "post") }}
+{{ if $recent }}
+<section class="border-t border-slate-200/60 dark:border-slate-800">
+  <div class="max-w-3xl mx-auto px-6 sm:px-10 py-12 sm:py-16">
+    <div class="flex items-baseline justify-between mb-6">
+      <h2 class="text-2xl font-bold tracking-tight">From the blog</h2>
+      <a href="/post/" class="text-sm text-accent dark:text-accent-dark hover:underline">All posts →</a>
+    </div>
+    <ul class="divide-y divide-slate-200/60 dark:divide-slate-800">
+      {{ range $recent }}
+      <li class="py-3 flex items-baseline justify-between gap-4">
+        <a href="{{ .RelPermalink }}" class="text-base text-slate-900 dark:text-slate-100 hover:text-accent dark:hover:text-accent-dark transition-colors flex-1 truncate">{{ .Title }}</a>
+        <time class="text-xs text-slate-400 dark:text-slate-500 tabular-nums shrink-0" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+{{ end }}
 {{ end }}
