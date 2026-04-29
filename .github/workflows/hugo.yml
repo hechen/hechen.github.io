@@ -41,10 +41,15 @@ jobs:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
         run: |
+          # Hard-code https://. configure-pages emits http:// until the
+          # Pages cert is provisioned for the apex, which can take hours
+          # after switching from legacy branch-deploy to workflow mode.
+          # GitHub serves both schemes regardless, but canonical / og:url
+          # tags need https for SEO and link previews.
           hugo \
             --gc \
             --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"
+            --baseURL "https://hechen.github.io/"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
