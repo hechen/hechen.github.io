@@ -1,0 +1,120 @@
+baseURL = "https://hechen.github.io/"
+languageCode = "en-us"
+title = "Chen He"
+theme = "PaperMod"
+
+# Blog posts live in content/post/ (singular) so URLs resolve at /post/<slug>/
+# without per-section permalink rewrites — matches the legacy URL structure
+# ASC's Structly listing already references.
+[permalinks]
+  post = "/post/:slug/"
+  tags = "/tags/:slug/"
+  categories = "/categories/:slug/"
+  series = "/series/:slug/"
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  series = "series"
+
+# Hugo-aware enableRobotsTXT so static/robots.txt continues to serve.
+enableRobotsTXT = true
+enableEmoji = true
+
+# Build-time link checks: warn (not fail) on missing internal references so
+# legacy posts that link to /post/<sibling-that-was-renamed> don't block
+# the build. Fail if you want to surface them later.
+[build]
+  noJSConfigInAssets = false
+[build.buildStats]
+  enable = false
+
+# PaperMod ships with Chroma support out of the box; pin to GitHub theme so
+# the rendered code blocks match the manually-applied palette in commit
+# c217d27 (#f6f8fa light bg / #0d1117 dark bg, GitHub token colors).
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true            # allow raw HTML in markdown for posts that
+                             # already contain inline styling (the autoclosure
+                             # post and a couple of others use raw <details>)
+  [markup.highlight]
+    style = "github"           # light mode default
+    lineNos = false
+    codeFences = true
+    guessSyntax = true
+    tabWidth = 4
+    noClasses = false          # emit class names so the CSS swap below works
+                               # for prefers-color-scheme media queries
+
+# Output formats: PaperMod's defaults give us /index.json (search), /sitemap.xml,
+# /index.xml (RSS). Match the existing site's index.json + sitemap.xml.
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+# Menu — mirror the legacy nav. /apps, /now, /tools, /about all served from
+# static/ during the staged migration; /post served by Hugo.
+[menu]
+  [[menu.main]]
+    name = "Apps"
+    url = "/apps/"
+    weight = 10
+  [[menu.main]]
+    name = "Blog"
+    url = "/post/"
+    weight = 20
+  [[menu.main]]
+    name = "Now"
+    url = "/now/"
+    weight = 30
+  [[menu.main]]
+    name = "Tools"
+    url = "/tools/"
+    weight = 40
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 50
+
+[params]
+  description = "iOS developer building thoughtful, polished apps for the Apple ecosystem."
+  keywords = ["iOS", "Swift", "SwiftUI", "Apple", "indie"]
+  author = "Chen He"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = false
+  ShowRssButtonInSectionTermList = true
+  comments = false
+  hideMeta = false
+  disableScrollToTop = false
+  ShowToc = true
+  TocOpen = false
+
+  # Profile-mode-off: the legacy homepage is owned by static/index.html which
+  # has the bespoke app-cards layout. PaperMod's home renders the post list
+  # underneath, but we override with a layouts/index.html when ready. For
+  # now PaperMod's default home stays unused — / is served by static.
+  [params.profileMode]
+    enabled = false
+
+  [params.assets]
+    disableHLJS = true        # we use Chroma server-side, not highlight.js
+    disableFingerprinting = false
+    favicon = "/favicon.ico"
+    favicon16x16 = "/favicon-16x16.png"
+    favicon32x32 = "/favicon-32x32.png"
+    apple_touch_icon = "/apple-touch-icon.png"
+    safari_pinned_tab = "/safari-pinned-tab.svg"
+
+  [params.label]
+    text = "Chen He"
+    icon = "/favicon-32x32.png"
+    iconHeight = 24
+
+  [params.cover]
+    hidden = false
+    hiddenInList = false
+    hiddenInSingle = false
