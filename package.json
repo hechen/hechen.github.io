@@ -1,0 +1,16 @@
+{
+  "name": "hechen-github-io",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Build-time Tailwind CSS bundle for hechen.github.io's Hugo site. Compiled at build time so the rendered pages have no cdn.tailwindcss.com runtime dependency (which was the iPad fragility class of bug Phase 1 only fixed for blog posts).",
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/css/main.css -o ./public/css/tailwind.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17",
+    "@tailwindcss/typography": "^0.5.15",
+    "postcss": "^8.4.49",
+    "postcss-cli": "^11.0.0",
+    "autoprefixer": "^10.4.20"
+  }
+}
