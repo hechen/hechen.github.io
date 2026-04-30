@@ -22,6 +22,10 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+        // Phase 2d: blog post body type. Source Serif 4 (Adobe, free,
+        // open-source, optical sizing) → ui-serif fallback → Charter
+        // (ships on macOS) → Georgia (universally available).
+        serif: ['"Source Serif 4"', 'ui-serif', 'Charter', 'Georgia', 'Cambria', 'serif'],
         mono: ['ui-monospace', 'SFMono-Regular', 'SF Mono', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
       },
       colors: {

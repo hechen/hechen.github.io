@@ -1,0 +1,11 @@
+{{- /*
+  Warning callout — amber-tinted alert box.
+
+    {{< warning >}}
+    Don't bump CHSharedKit past 2.7.2 if you're still on Xcode 16's iOS 18 SDK.
+    {{< /warning >}}
+*/ -}}
+<aside class="callout callout-warning">
+  <span class="callout-icon" aria-hidden="true">!</span>
+  <div>{{ .Inner | markdownify }}</div>
+</aside>

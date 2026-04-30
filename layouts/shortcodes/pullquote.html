@@ -1,0 +1,10 @@
+{{- /*
+  Pull-quote — large italic serif, accent left border, breaks slightly
+  out of the body column. Usage in markdown:
+
+    {{< pullquote >}}
+    Building software is the only field where every senior practitioner
+    spends most of their time forgetting things, on purpose.
+    {{< /pullquote >}}
+*/ -}}
+<aside class="pullquote">{{ .Inner | markdownify }}</aside>

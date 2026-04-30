@@ -1,0 +1,11 @@
+{{- /*
+  Note callout — accent-tinted info box.
+
+    {{< note >}}
+    iOS 26's tab-bar appearance APIs ship without compactAppearance.
+    {{< /note >}}
+*/ -}}
+<aside class="callout callout-note">
+  <span class="callout-icon" aria-hidden="true">i</span>
+  <div>{{ .Inner | markdownify }}</div>
+</aside>
