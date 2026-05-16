@@ -1,22 +1,21 @@
 ---
 title: Marketing / Support / Privacy pages — fleet audit
 date: 2026-05-15
-scope: 8 apps (closet, distill, dupeout, eatwisely, marketmood, spendwisely, structly, traininsight)
-excluded: liftcoach — held back per Chen's direction
+scope: 9 apps (closet, distill, dupeout, eatwisely, liftcoach, marketmood, spendwisely, structly, traininsight)
 ---
 
 # Summary
 
-Fleet audit of public marketing, support, and privacy pages across 8 apps on `hechen.github.io`. LiftCoach is intentionally excluded from this pass.
+Fleet audit of public marketing, support, and privacy pages across all 9 apps on `hechen.github.io`.
 
 Two changes applied:
 
-1. **Email consistency** — every public contact link now uses `chen.he@icloud.com` (the standing in-app feedback recipient) instead of `hechen.dream@gmail.com` (the git-author identity). 15 files, 16 link occurrences.
-2. **DupeOut FAQ restructure** — converted the `<dl><dt><dd>` FAQ to `<h3>` per-question headers, matching the visual hierarchy used by Closet / Distill / EatWisely / etc. Added a `Last updated: 15 May 2026` line that the other support pages already carry.
+1. **Email consistency** — every public contact link now uses `chen.he@icloud.com` (the standing in-app feedback recipient) instead of `hechen.dream@gmail.com` (the git-author identity). 17 files, 19 link occurrences across all 9 apps.
+2. **FAQ structural cleanup on DupeOut + LiftCoach** — both used `<dl><dt><dd>` blocks that read as a wall of run-in text on small viewports. Converted to `<h3>`-per-question inside the existing `<h2>FAQ</h2>` wrapper, matching the visual hierarchy used by the rest of the fleet. Added a `Last updated: 15 May 2026` line on both support pages (the other apps' support pages already carried one). LiftCoach also gets a wording softening on the AI-provider FAQ.
 
 Nothing else changed. The "free" / "premium" scrub was rejected as out-of-scope — those words appear in factual contexts (TestFlight being free, Apple Intelligence being free, the open-source `free-exercise-db` library name) and don't fall under Apple guideline 2.3.7, which targets App Store metadata fields rather than public webpages.
 
-# Files touched (15)
+# Files touched (17)
 
 | App | File | Change |
 |---|---|---|
@@ -28,6 +27,8 @@ Nothing else changed. The "free" / "premium" scrub was rejected as out-of-scope 
 | dupeout | `privacy.html` | email |
 | eatwisely | `support.html` | email |
 | eatwisely | `privacy.html` | email |
+| liftcoach | `support.html` | email × 2 + FAQ `<dl>` → `<h3>` + Last-updated line + "Apple Intelligence is Apple's **built-in** on-device model" (was "free") |
+| liftcoach | `privacy.html` | email |
 | marketmood | `support.html` | email |
 | marketmood | `privacy.html` | email |
 | spendwisely | `support.html` | email |
@@ -35,8 +36,6 @@ Nothing else changed. The "free" / "premium" scrub was rejected as out-of-scope 
 | traininsight | `_index.html` | email (footer mailto) |
 | traininsight | `support.html` | email |
 | traininsight | `privacy.html` | email |
-
-LiftCoach files are deliberately untouched. They retain their existing `hechen.dream@gmail.com` references and `<dl>` FAQ structure; treat as a separate change when ready.
 
 # Audit findings by app
 
@@ -71,12 +70,23 @@ Severity legend: **B** ship-blocker · **H** high polish · **M** medium · **L*
 | ✓ | FAQ uses `<h2>` per-Q. | No action |
 | ✓ | Both pages carry Last-updated. | No action |
 
+## liftcoach — structural + sweep + wording softening
+| Severity | Finding | Status |
+|---|---|---|
+| H | `support.html` lines 21, 54 + `privacy.html` line 55: gmail address. | Fixed |
+| H | `support.html` FAQ uses `<dl><dt><dd>`, an outlier vs. the rest of the fleet. | Fixed → `<h3>` per-Q inside the FAQ section |
+| M | `support.html` had no Last-updated date. | Fixed → `Last updated: 15 May 2026` |
+| L | "Apple Intelligence is Apple's **free** on-device model" — factual but unnecessary; "free" on Support URLs is *not* a guideline 2.3.7 issue, but reviewers do follow Support URLs and the word adds zero info. Softened. | Fixed → "Apple's **built-in** on-device model" |
+| ✓ | Public name matches App Store (LiftCoach, not internal "GymLog"). | No action |
+| ✓ | Contact / FAQ / Known issues / Release notes template is intact. | No action |
+| ✓ | `privacy.html` already carries `Last updated: 26 April 2026`. | No action |
+
 ## marketmood — clean after sweep
 | Severity | Finding | Status |
 |---|---|---|
 | H | `support.html` line 39 + `privacy.html` line 29: gmail address. | Fixed |
 | ✓ | FAQ uses `<h2>` per-Q. | No action |
-| ✓ | Both pages carry Last-updated. | No action |
+| ✓ | Both pages carry Last-updated. App name "Market Mood" matches App Store Connect. | No action |
 
 ## spendwisely — clean after sweep
 | Severity | Finding | Status |
@@ -96,37 +106,34 @@ Severity legend: **B** ship-blocker · **H** high polish · **M** medium · **L*
 | Severity | Finding | Status |
 |---|---|---|
 | H | `_index.html` line 106 (footer mailto) + `support.html` line 42 + `privacy.html` line 29: gmail address. | Fixed (3 files) |
-| L | `_index.html` uses a slightly different hero layout than the other 7 (single CTA + "Coming soon to App Store" status pill, no two-column features grid in the standard form). This is intentional — TrainInsight's _index was redesigned for a different launch beat. | No action |
+| L | `_index.html` uses a slightly different hero layout than the other 7 (single CTA + "Coming soon to App Store" status pill, no two-column features grid in the standard form). Intentional — TrainInsight's _index was redesigned for a different launch beat. | No action |
 | ✓ | FAQ uses `<h2>` per-Q. Last-updated present on privacy + support. | No action |
+| ✓ | No hydration references (per the standing rule: TrainInsight has no hydration tracking). | No action |
 
 # Cross-cutting observations (no edits)
 
-- **Two structural conventions exist**:
+- **Two structural conventions remained until this pass; now harmonized at the Q-header level**:
   - **Convention A** (closet, distill, eatwisely, marketmood, spendwisely, structly, traininsight): support pages use direct topic `<h2>`s, no Contact/FAQ/Known issues/Release notes wrapper. Email link sits at the bottom in an "Anything else" section.
-  - **Convention B** (dupeout, and liftcoach which is out of scope): explicit Contact / FAQ / Known issues / Release notes sections. After this pass, DupeOut's FAQ uses `<h3>` per-Q.
-  - Both read fine. Not consolidating in this pass — would be a UX-template decision, not a defect fix.
-- **"Free" / "Premium" wording** was reviewed and intentionally not touched. Every "free" on the marketing pages is factual (TestFlight is free; Apple Intelligence is free; `free-exercise-db` is a library name). Apple guideline 2.3.7 covers App Store metadata fields (subtitle / description / promo text / keywords / screenshots / what's new / reviewer notes), not public support webpages. Reviewers can follow Support URLs, but factual references to a free Apple system feature aren't a 2.3.7 risk.
-- **Last-updated dates** vary across the fleet (`26 April 2026`, `27 April 2026`, `28 April 2026`). Left as-is — each date reflects the last real content edit on that file. Not bumping them artificially.
-- **TestFlight Public Link codes** are still `REPLACE_<APP>_CODE` placeholders on 6 apps' _index.html. These are tracked separately and out of scope here.
+  - **Convention B** (dupeout, liftcoach): explicit Contact / FAQ / Known issues / Release notes sections. After this pass, both use `<h3>` per-Q inside the FAQ wrapper. Same visual rhythm; just nested one level deeper.
+  - Both read fine. Not consolidating to one convention in this pass — would be a UX-template decision, not a defect fix.
+- **"Free" / "Premium" wording** was reviewed and intentionally not touched outside the LiftCoach AI-provider FAQ. Every other "free" on the marketing pages is factual (TestFlight is free; Apple Intelligence is free; `free-exercise-db` is a library name). Apple guideline 2.3.7 covers App Store metadata fields (subtitle / description / promo text / keywords / screenshots / what's new / reviewer notes), not public support webpages.
+- **Last-updated dates** vary across the fleet (`26 April 2026`, `27 April 2026`, `28 April 2026`). Left as-is on existing pages — each date reflects the last real content edit on that file. New `15 May 2026` lines added to DupeOut + LiftCoach support pages, which previously had none.
+- **TestFlight Public Link codes** are still `REPLACE_<APP>_CODE` placeholders on 7 apps' _index.html (closet, distill, dupeout, eatwisely, liftcoach, marketmood, spendwisely, structly beta, traininsight). Tracked separately; out of scope here.
 - **Mobile chrome / nav weight** was reviewed by inspection; the per-page back-arrow + `<h1>` pattern is consistent and lightweight. No regressions found, no edits.
+- **App-name consistency**: every page's title / breadcrumb matches the App Store name. LiftCoach (not the internal GymLog codename), Market Mood (not the internal FearIndex codename), Structly (not "Structly — JSON Formatter" verbatim, but the trimmed form is fine for marketing).
 
 # Verification
 
 ```
-$ grep -rln "hechen.dream@gmail.com" content/apps/ | grep -v liftcoach
-(empty)
+$ grep -rln "hechen.dream@gmail.com" content/apps/
+(empty — clean across all 9 apps)
 
-$ grep -c "hechen.dream@gmail.com" content/apps/liftcoach/*.html
-content/apps/liftcoach/privacy.html:1
-content/apps/liftcoach/support.html:2
-content/apps/liftcoach/_index.html:0
+$ grep -rln "chen.he@icloud.com" content/apps/ | wc -l
+17
 ```
-
-LiftCoach retains its 3 gmail references — confirmed untouched.
 
 # Deferred / not in scope
 
-- LiftCoach pages — held back per Chen's direction.
 - SpendWisely privacy mailto link (low priority copy change).
 - Structly privacy contact email (very short page, support.html covers it).
 - TestFlight Public Link code placeholders.
