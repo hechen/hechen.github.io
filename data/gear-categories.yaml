@@ -17,9 +17,9 @@
 - slug: phone-watch
   label: Phone & Watch
   icon: "📱"
-- slug: outdoor
-  label: Outdoor
-  icon: "🥾"
+- slug: lifestyle
+  label: Lifestyle
+  icon: "🌿"
 - slug: home
   label: Home
   icon: "🪑"
