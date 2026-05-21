@@ -1,50 +1,24 @@
 {{- /*
-  Site-wide base layout. Every page on hechen.github.io ends up here —
-  apps marketing pages, blog posts, the homepage, /about, /now, /tools,
-  the apps catalog. Section-specific layouts (layouts/page/single.html,
-  layouts/page/list.html, layouts/index.html, themes/PaperMod/layouts/
-  _default/single.html for blog posts) define a `main` block that this
-  baseof slots into.
+  Site-wide base layout. Redesign: samwanng.com-inspired editorial
+  journal — light-mode only, Source Serif 4 + Noto Serif SC body,
+  minimal chrome (brand wordmark + tagline + category nav at top,
+  dot-separated social row at the bottom).
 
-  Phase 2c chrome unification:
-    - <head> is delegated to PaperMod's head.html partial so its CSS
-      pipeline + asset fingerprinting + favicon param handling continues
-      to drive blog post rendering. layouts/partials/extend_head.html
-      adds my Tailwind link on top.
-    - Header/footer are MY Tailwind partials (overriding PaperMod's).
-      Same nav (Apps · Blog · Now · Tools · About + sun/moon toggle),
-      same Tailwind footer, on every page.
-    - Theme toggle wired to a Tailwind `dark` class on <html> via the
-      script at the bottom of body. Persists choice in localStorage.
+  PaperMod's <head> partial still drives meta tags, RSS / sitemap
+  output formats, favicons, and the blog-post Chroma syntax pipeline.
+  layouts/partials/extend_head.html injects our custom CSS + webfont
+  preconnect on top.
 */ -}}
 <!doctype html>
-<html lang="{{ site.Language.Lang | default "en" }}" class="scroll-smooth" data-theme="auto">
+<html lang="{{ site.Language.Lang | default "en" }}">
 <head>
 {{- partial "head.html" . }}
 </head>
-<body class="font-sans bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased min-h-screen flex flex-col" id="top">
+<body class="bg-paper text-ink">
 {{- partial "header.html" . }}
-<main class="flex-1">
+<main>
 {{ block "main" . }}{{ .Content }}{{ end }}
 </main>
 {{- partial "footer.html" . }}
-<script>
-  // Tailwind dark-mode toggle. Reads / writes localStorage 'pref-theme';
-  // first-paint sync runs in <head> via PaperMod's partial (it manages
-  // data-theme); we mirror to the Tailwind `dark` class on <html>.
-  (function () {
-    var saved = localStorage.getItem('pref-theme');
-    var sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    var dark = saved === 'dark' || (!saved && sysDark);
-    document.documentElement.classList.toggle('dark', dark);
-    document.querySelectorAll('#theme-toggle').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var nowDark = document.documentElement.classList.toggle('dark');
-        document.documentElement.dataset.theme = nowDark ? 'dark' : 'light';
-        localStorage.setItem('pref-theme', nowDark ? 'dark' : 'light');
-      });
-    });
-  })();
-</script>
 </body>
 </html>

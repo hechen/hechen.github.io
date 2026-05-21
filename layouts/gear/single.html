@@ -1,0 +1,76 @@
+{{- /*
+  /gear/<slug>/ — single gear entry, samwanng.com-style detail page.
+
+  Back-link to home (the global index), metadata line (Category ·
+  subcategory · price-or-rating), title, hero image, body prose,
+  outbound CTA row (official site + optional affiliate), tags +
+  "Added" timestamp at the foot.
+*/ -}}
+{{- define "main" }}
+<section class="site-container py-8 md:py-10">
+
+  <a class="back-link" href="/gear/" aria-label="Back to gear">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+    Back to gear
+  </a>
+
+  <p class="detail-meta">
+    <span>{{ .Params.category }}</span>
+    {{- with .Params.tags }}
+    {{- if gt (len .) 0 }}
+    <span class="dot" aria-hidden="true">·</span>
+    <span>{{ index . 0 }}</span>
+    {{- end }}
+    {{- end }}
+    {{- if .Params.rating }}
+    <span class="dot" aria-hidden="true">·</span>
+    <span>{{ .Params.rating }}/5</span>
+    {{- end }}
+    {{- with .Params.price }}
+    <span class="dot" aria-hidden="true">·</span>
+    <span>{{ . }}</span>
+    {{- end }}
+  </p>
+
+  <h1 class="detail-title">{{ .Title }}</h1>
+
+  {{- with .Params.image }}
+  <div class="detail-hero">
+    <img src="{{ . }}" alt="{{ $.Params.imageAlt | default $.Title }}" loading="eager" decoding="async">
+  </div>
+  {{- end }}
+
+  <div class="detail-body">
+    {{ .Content }}
+  </div>
+
+  {{- /* CTA row — purchase + optional affiliate. Affiliate gets an
+         honest "(affiliate)" tag inline + the rel="nofollow" SEO
+         hygiene per the proposal's open-question recommendation. */ -}}
+  {{- if or .Params.purchaseURL .Params.affiliateURL }}
+  <div class="detail-cta-row">
+    {{- with .Params.purchaseURL }}
+    <a href="{{ . }}" target="_blank" rel="noopener">Official site →</a>
+    {{- end }}
+    {{- with .Params.affiliateURL }}
+    <a href="{{ . }}" target="_blank" rel="noopener nofollow">Buy on Amazon →</a>
+    <span class="affiliate-note">(affiliate)</span>
+    {{- end }}
+  </div>
+  {{- end }}
+
+  {{- with .Params.tags }}
+  <div class="detail-tags">
+    {{- range . }}
+    <a class="tag" href="/tags/{{ . | urlize }}/">{{ . }}</a>
+    {{- end }}
+  </div>
+  {{- end }}
+
+  <p class="detail-added">
+    Added {{ .Date.Format "January 2, 2006" }}
+    {{- with .Params.purchased }} · Bought {{ . }}{{ end }}
+  </p>
+
+</section>
+{{- end }}

@@ -1,174 +1,45 @@
 {{- /*
-  Premium blog index (Phase 2d). Overrides PaperMod's default list
-  template just for /post/ — Substack / Vercel feel:
+  /post/ — blog index, samwanng.com-style.
 
-    - "Posts" h1 in display serif + RSS icon
-    - Featured (most-recent) post as a hero card with bigger title +
-      excerpt + metadata row
-    - Remaining posts as an elegant list with serif titles, single-line
-      excerpts, thin separators (no card backgrounds)
-    - Optional right sidebar at ≥lg with archive-by-year + popular tags
-
-  Inherits chrome from layouts/_default/baseof.html — same nav, footer,
-  theme toggle, dark-mode behaviour as the rest of the site.
+  One flat list of every post, dated, grouped by year. Year heading
+  is plain weight in the serif. Each row: year on the left (tabular
+  nums, faint), title flush against it. Hover underlines the title.
+  No card chrome, no featured-post hero, no excerpts on the index —
+  the title alone earns the click. The reader can see the entire
+  archive scroll in one column.
 */ -}}
 {{- define "main" }}
+<section class="site-container py-8 md:py-10">
 
-{{- $pages := where site.RegularPages "Section" "post" }}
-{{- $featured := index $pages 0 }}
-{{- $rest := after 1 $pages }}
-
-<div class="max-w-6xl mx-auto px-6 sm:px-10 pt-12 sm:pt-16 pb-16">
-
-  <header class="flex items-baseline justify-between mb-12 sm:mb-16">
-    <h1 class="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
-      Posts
-    </h1>
+  <div class="home-section-header" style="margin-bottom: 1.5rem;">
+    <h1 class="home-section-title">Writing</h1>
     {{- with .OutputFormats.Get "rss" }}
-    <a href="{{ .RelPermalink }}"
-       title="RSS feed"
-       aria-label="RSS feed"
-       class="text-slate-400 dark:text-slate-500 hover:text-accent dark:hover:text-accent-dark transition-colors">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
-        <path d="M4 11a9 9 0 0 1 9 9"/>
-        <path d="M4 4a16 16 0 0 1 16 16"/>
-        <circle cx="5" cy="19" r="1"/>
-      </svg>
-    </a>
+    <a class="home-section-more" href="{{ .RelPermalink }}" title="RSS feed" aria-label="RSS feed">RSS →</a>
     {{- end }}
-  </header>
-
-  <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_240px] lg:gap-16">
-
-    <div>
-      {{- /* Hero: latest post with display-tier treatment. */ -}}
-      {{- if $featured }}
-      {{- $excerpt := $featured.Description }}
-      {{- if not $excerpt }}{{ $excerpt = truncate 200 ($featured.Plain | plainify) }}{{ end }}
-      <article class="mb-14 sm:mb-16 pb-12 sm:pb-14 border-b border-slate-200/70 dark:border-slate-800">
-        <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-5">
-          <span class="text-accent dark:text-accent-dark font-semibold">Latest</span>
-          <span aria-hidden="true">·</span>
-          <time datetime="{{ $featured.Date.Format "2006-01-02" }}">{{ $featured.Date.Format "January 2, 2006" }}</time>
-          {{- if $featured.ReadingTime }}
-          <span aria-hidden="true">·</span>
-          <span>{{ $featured.ReadingTime }} min read</span>
-          {{- end }}
-          {{- with $featured.GetTerms "categories" }}
-          <span aria-hidden="true">·</span>
-          <span class="flex flex-wrap gap-2">
-            {{- range . }}
-            <a href="{{ .Permalink }}" class="hover:text-accent dark:hover:text-accent-dark transition-colors">{{ .LinkTitle | title }}</a>
-            {{- end }}
-          </span>
-          {{- end }}
-        </div>
-        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] mb-4">
-          <a href="{{ $featured.RelPermalink }}" class="text-slate-900 dark:text-slate-100 hover:text-accent dark:hover:text-accent-dark transition-colors">{{ $featured.Title }}</a>
-        </h2>
-        <p class="font-serif text-lg sm:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-prose">{{ $excerpt }}</p>
-      </article>
-      {{- end }}
-
-      {{- /* Subsequent posts: clean list with serif titles, one-line excerpts. */ -}}
-      <div class="space-y-12 sm:space-y-14">
-        {{- range $rest }}
-        {{- $excerpt := .Description }}
-        {{- if not $excerpt }}{{ $excerpt = truncate 140 (.Plain | plainify) }}{{ end }}
-        <article class="group">
-          <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">
-            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
-            {{- if .ReadingTime }}
-            <span aria-hidden="true">·</span>
-            <span>{{ .ReadingTime }} min</span>
-            {{- end }}
-            {{- with .GetTerms "categories" }}
-            <span aria-hidden="true">·</span>
-            <span class="flex flex-wrap gap-2">
-              {{- range . }}
-              <a href="{{ .Permalink }}" class="hover:text-accent dark:hover:text-accent-dark transition-colors">{{ .LinkTitle | title }}</a>
-              {{- end }}
-            </span>
-            {{- end }}
-          </div>
-          <h2 class="font-serif text-2xl sm:text-3xl font-bold tracking-tight leading-snug mb-2">
-            <a href="{{ .RelPermalink }}" class="text-slate-900 dark:text-slate-100 group-hover:text-accent dark:group-hover:text-accent-dark transition-colors">{{ .Title }}</a>
-          </h2>
-          <p class="font-serif text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2 max-w-prose">{{ $excerpt }}</p>
-        </article>
-        {{- end }}
-      </div>
-
-      {{- /* Pagination (Hugo emits standard prev/next). */ -}}
-      {{- $paginator := .Paginate $pages }}
-      {{- if gt $paginator.TotalPages 1 }}
-      <nav class="mt-16 flex items-center justify-between text-sm">
-        {{- if $paginator.HasPrev }}
-        <a href="{{ $paginator.Prev.URL }}" class="text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark transition-colors">← Newer</a>
-        {{- else }}<span></span>{{- end }}
-        <span class="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
-        {{- if $paginator.HasNext }}
-        <a href="{{ $paginator.Next.URL }}" class="text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark transition-colors">Older →</a>
-        {{- else }}<span></span>{{- end }}
-      </nav>
-      {{- end }}
-    </div>
-
-    {{- /* Sidebar at ≥lg — archive-by-year + popular tags. */ -}}
-    <aside class="hidden lg:block">
-      <div class="sticky top-20 space-y-10 text-sm">
-
-        {{- /* Group all posts by year for the archive list. */ -}}
-        {{- $byYear := $pages.GroupByDate "2006" }}
-        {{- if $byYear }}
-        <section>
-          <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4">Archive</h3>
-          <ul class="space-y-2">
-            {{- range $byYear }}
-            <li class="flex items-baseline justify-between text-slate-600 dark:text-slate-400">
-              <span>{{ .Key }}</span>
-              <span class="text-xs text-slate-400 dark:text-slate-500 tabular-nums">{{ len .Pages }}</span>
-            </li>
-            {{- end }}
-          </ul>
-        </section>
-        {{- end }}
-
-        {{- /* Popular tags — top 8 by post count. */ -}}
-        {{- $tags := slice }}
-        {{- range $name, $taxonomy := site.Taxonomies.tags }}
-        {{- $tags = $tags | append (dict "name" $name "count" (len $taxonomy.Pages) "permalink" $taxonomy.Page.RelPermalink) }}
-        {{- end }}
-        {{- $tags = sort $tags "count" "desc" | first 8 }}
-        {{- if $tags }}
-        <section>
-          <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4">Popular tags</h3>
-          <ul class="flex flex-wrap gap-2">
-            {{- range $tags }}
-            <li>
-              <a href="{{ .permalink }}"
-                 class="inline-flex items-center px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent-dark/15 text-accent dark:text-accent-dark text-xs font-medium hover:bg-accent/20 dark:hover:bg-accent-dark/25 transition-colors">
-                #{{ .name }}
-              </a>
-            </li>
-            {{- end }}
-          </ul>
-        </section>
-        {{- end }}
-
-        <section>
-          <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4">Subscribe</h3>
-          <ul class="space-y-2 text-slate-600 dark:text-slate-400">
-            <li>
-              <a href="{{ "/post/index.xml" | relURL }}" class="hover:text-accent dark:hover:text-accent-dark transition-colors">RSS feed</a>
-            </li>
-          </ul>
-        </section>
-
-      </div>
-    </aside>
-
   </div>
-</div>
 
-{{- end }}{{/* end main */}}
+  {{- $posts := where site.RegularPages "Section" "post" }}
+  {{- $posts = $posts.ByDate.Reverse }}
+  <p class="entry-count">{{ len $posts }} posts since 2015.</p>
+
+  {{- /* Group by year. Hugo's `.GroupByDate "2006"` returns sorted
+         groups; default order is most-recent year first. */ -}}
+  {{- $byYear := $posts.GroupByDate "2006" }}
+  {{- range $byYear }}
+  <div class="post-year">
+    <h2 class="post-year-heading">{{ .Key }}</h2>
+    <ol class="post-feed">
+      {{- range .Pages }}
+      <li class="post-feed-row">
+        <a href="{{ .RelPermalink }}">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan" }}</time>
+          <span class="post-feed-title">{{ .Title }}</span>
+        </a>
+      </li>
+      {{- end }}
+    </ol>
+  </div>
+  {{- end }}
+
+</section>
+{{- end }}
