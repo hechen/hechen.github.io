@@ -1,20 +1,21 @@
 {{- /*
-  Hugo lookup chain calls PaperMod's themes/PaperMod/layouts/partials/head.html,
-  which in turn calls partials/extend_head.html as a last step in <head>.
-  Override that here to inject the build-time Tailwind CSS bundle on top
-  of PaperMod's own stylesheet pipeline. The order matters: PaperMod's
-  styles ship first (so blog post entry-link / post-meta / Chroma rules
-  cascade in), then Tailwind utilities follow so my apps-page chrome
-  can override at the same specificity if needed.
+  PaperMod's themes/PaperMod/layouts/partials/head.html invokes
+  partials/extend_head.html as its last <head> step. We use it to
+  layer the redesigned Tailwind bundle + the Source Serif 4 / Noto
+  Serif SC pairing on top of PaperMod's CSS pipeline.
+
+  Source Serif 4 covers Latin glyphs sitewide; Noto Serif SC is
+  brought in conditionally — only surfaces that show substantial
+  CJK content load the ~200 KB Chinese subset. /post and /gear get
+  it (Chinese blog posts are 90 % of the archive; gear entries may
+  use Chinese product names). Home gets it too so a future Chinese
+  homepage paragraph renders correctly. Other surfaces stay Latin
+  only.
 */ -}}
 <link rel="stylesheet" href="/css/tailwind.css">
-{{- /*
-  Source Serif 4 — premium body type for blog posts only (Phase 2d).
-  Loading is gated on the post section so the apps catalog, homepage,
-  /about, /now, /tools don't pay for the ~40 KB they don't use.
-*/ -}}
-{{- if eq .Section "post" }}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&display=swap">
+{{- if or (eq .Section "post") (eq .Section "gear") .IsHome }}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap">
 {{- end }}

@@ -1,25 +1,20 @@
 {{- /*
-  Site-wide footer. Same chrome on every page including blog posts.
-  Shadows themes/PaperMod/layouts/partials/footer.html — note that the
-  PaperMod-specific scripts (theme toggle wiring, scroll-to-top, code
-  copy) are NOT inherited via this override, so anything we still want
-  from PaperMod's set is inlined either here or in baseof.html.
-
-  Currently inlined in baseof: theme toggle.
-  Skipped: scroll-to-top button, code copy buttons (those need the
-  PaperMod CSS pipeline anyway). Add later if Chen wants them.
+  Site-wide footer — samwanng.com-inspired single-row of social links
+  separated by dots, copyright underneath. No grid, no nested chrome.
 */ -}}
-<footer class="border-t border-slate-200/60 dark:border-slate-800">
-  <div class="max-w-5xl mx-auto px-6 sm:px-10 py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-sm text-slate-400 dark:text-slate-500">
-    <p>© {{ now.Year }} Chen He</p>
-    <p class="flex items-center gap-2">
-      <a href="/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Home</a>
-      <span aria-hidden="true">·</span>
-      <a href="/post/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Blog</a>
-      <span aria-hidden="true">·</span>
-      <a href="/post/index.xml" class="hover:text-accent dark:hover:text-accent-dark transition-colors" title="RSS feed">RSS</a>
-      <span aria-hidden="true">·</span>
-      <a href="/about/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">About</a>
-    </p>
+<footer class="site-footer">
+  <div class="site-container">
+    <div class="site-footer-row">
+      <a href="https://github.com/hechen" rel="me">GitHub</a>
+      <span class="dot" aria-hidden="true">·</span>
+      <a href="https://twitter.com/hechen_swift" rel="me">Twitter</a>
+      <span class="dot" aria-hidden="true">·</span>
+      <a href="mailto:hechen.dream@gmail.com">Email</a>
+      <span class="dot" aria-hidden="true">·</span>
+      <a href="/post/">Writing</a>
+      <span class="dot" aria-hidden="true">·</span>
+      <a href="/post/index.xml" title="RSS feed">RSS</a>
+    </div>
+    <p class="site-footer-copyright">© {{ now.Year }} Chen He</p>
   </div>
 </footer>
