@@ -344,7 +344,91 @@ Chinese commentary around it falls under the Phase 3 decision instead.
 
 ---
 
-## Phase 4 — pending
+## Phase 4 — applied
 
-Apply approved fixes commit-by-commit, one commit per post, single PR off
-`master`. Branch already cut at `blog-language-audit`.
+Per Chen's "finish all jobs without waiting" directive, all three English
+posts received the CRITICAL + HIGH + MEDIUM + LOW (typo) fixes from the
+Phase 2 audit, in three commits on this branch:
+
+- `33707417` — `coredata-with-cloudkit` (8 issues)
+- `f8aa32ae` — `create-nsviewcontroller-without-nib` (11 issues)
+- `1adb8d01` — `tuple-codable` (9 issues + alt-text typo)
+
+Voice preserved everywhere (WTF stays casual). Code blocks and verbatim
+Xcode compiler error text untouched.
+
+---
+
+## Phase 3 — Option B applied
+
+Chen picked Option B (English translations as `.en.md` companions).
+Hugo multilingual mode configured in `hugo.toml`:
+
+```toml
+defaultContentLanguage = "zh-cn"
+defaultContentLanguageInSubdir = false
+[languages.zh-cn]
+  languageName = "中文"
+  weight = 1
+[languages.en]
+  languageName = "English"
+  weight = 2
+```
+
+URL stability: every existing `/post/<slug>/` keeps serving its canonical
+content (Chinese for the 49 originally-Chinese posts; English for the 3
+already-English posts). English translations land at `/en/post/<slug>/`.
+The post template gets an inline language switcher in the metadata row,
+populated by `.Translations` with `hreflang` attributes for SEO.
+
+### Translation log
+
+51 Chinese-containing posts (49 pure Chinese + 2 Mixed) get `.en.md`
+companions. Plus 3 `.en.md` clones for the already-English posts so the
+language switcher renders both ways and `<html lang="en">` is correct on
+those URLs. **Total: 54 `.en.md` files.**
+
+Translation approach:
+
+- 10 posts translated by the main session (short posts that doubled as
+  voice-calibration references for the agent prompts): `myfirstpost`,
+  `leetcode-{001,002,018,019}-…`, `reading-garbage-collection`,
+  `reveal-bundleid-application`, `nsview+backgroundcolor`, `send-to-2do`,
+  `swwwitch`, `a-swift-quiz`
+- 40 posts translated in parallel by 8 sub-agents (batches B–I), each
+  with the same quality brief (code blocks unchanged; Apple/Swift API
+  terms verbatim; voice calibrated against the main-session translations
+  and the 3 already-English posts; idiomatic English not literal calques)
+- 3 `.en.md` clones of the already-English posts: `coredata-with-cloudkit`,
+  `create-nsviewcontroller-without-nib`, `tuple-codable`
+
+Quality bar enforced on every translation:
+
+- Code blocks copied verbatim (no translation inside fenced blocks)
+- Swift / Objective-C / iOS / Apple API names preserved exactly
+  (`UIViewController`, `NSView`, `AppDelegate`, `URLSession`, `Combine`,
+  `objc_msgSend`, `isa_t`, `IMP`, `SEL`, etc.)
+- Front matter unchanged except for the `title:` field — `slug`, `date`,
+  `tags`, `categories`, `url`, `aliases` all preserved → URLs do not break
+- Image paths, external URLs, internal post links unchanged
+- Block-quotes of Apple's English documentation kept verbatim (no
+  round-tripping English-Chinese-English)
+- Voice match: first-person, casual-technical — matched against Chen's
+  pre-existing English posts
+- Common Chinese tech-blog idioms rendered idiomatically, not literally
+  (踩过的坑 → "gotchas I've hit", not "pits I've stepped on";
+  那些事儿 → "notes on", not "those things about")
+
+Chen owns the polish step — these are publishable translations, not
+final-author-pass copy. Anywhere the wording feels stiff he should edit
+the `.en.md` file directly; the original Chinese `.md` is untouched.
+
+---
+
+## Phase 5 — what's left
+
+- Verify locally: `hugo --gc --minify` → ~246 English pages render
+  alongside ~328 Chinese pages, language switcher works in both directions
+- Open PR off master for review
+- Chen polishes anywhere voice feels off — those are Markdown edits, not
+  pipeline changes
