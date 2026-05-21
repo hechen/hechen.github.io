@@ -14,10 +14,4 @@ tags: []
 draft: true
 ---
 
-## Why I love it
-
-
-
-## Pros · cons
-
-
+<!-- TODO: Chen writes this in his own voice -->
