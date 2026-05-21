@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redesign previews · Chen He</title>
+<style>
+*, *:before, *:after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { background: #fafafa; color: #111; font: 16px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, system-ui, sans-serif; min-height: 100vh; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 64px 24px 96px; }
+h1 { font-size: 40px; letter-spacing: -0.02em; font-weight: 700; margin: 0 0 8px; }
+.lede { color: #555; font-size: 17px; max-width: 60ch; margin: 0 0 48px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 16px; }
+.card { display: block; padding: 28px; border: 1px solid #e0e0e0; border-radius: 12px; background: #fff; text-decoration: none; color: inherit; transition: border-color 0.15s, box-shadow 0.15s; }
+.card:hover { border-color: #888; box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+.card-key { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #888; font-weight: 600; }
+.card-label { font-size: 24px; font-weight: 700; margin: 4px 0 12px; letter-spacing: -0.01em; }
+.card-desc { color: #555; font-size: 14px; line-height: 1.55; margin: 0 0 16px; }
+.card-row { display: flex; justify-content: space-between; padding-top: 12px; border-top: 1px dashed #e0e0e0; font-size: 14px; color: #111; font-weight: 500; }
+.post-link { color: #111; text-decoration: none; }
+.post-link:hover { text-decoration: underline; }
+.footnote { margin-top: 56px; color: #888; font-size: 13px; max-width: 64ch; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Redesign previews</h1>
+  <p class="lede">Four prototype directions. Each shows the homepage + one sample blog post in that direction's style. Pick the one that fits, or tell me what's still wrong and I'll iterate.</p>
+  <div class="grid">
+    <a class="card" href="a/index.html">
+      <div class="card-key">Direction A</div>
+      <div class="card-label">Editorial Magazine</div>
+      <p class="card-desc">Aeon · Robin Sloan · Pitchfork-like. Big serif, paper background, oxblood accent, asymmetric entry rows, drop caps.</p>
+      <div class="card-row"><span>Home →</span><a href="a/post.html" class="post-link">Sample post →</a></div>
+    </a>
+    <a class="card" href="b/index.html">
+      <div class="card-key">Direction B</div>
+      <div class="card-label">Modern Dark · Tech-product</div>
+      <p class="card-desc">Vercel · Linear · Resend-like. True black, violet accent, frosted-glass nav, card grid with hover glow.</p>
+      <div class="card-row"><span>Home →</span><a href="b/post.html" class="post-link">Sample post →</a></div>
+    </a>
+    <a class="card" href="c/index.html">
+      <div class="card-key">Direction C</div>
+      <div class="card-label">Playful Bold</div>
+      <p class="card-desc">Brad Frost · Lynn Fisher · Josh Comeau-like. Hot pink accent, oversized type, squiggle separators, rotated cards.</p>
+      <div class="card-row"><span>Home →</span><a href="c/post.html" class="post-link">Sample post →</a></div>
+    </a>
+    <a class="card" href="d/index.html">
+      <div class="card-key">Direction D</div>
+      <div class="card-label">Code-Mono · Terminal</div>
+      <p class="card-desc">Antfu · Drew DeVault · Fly.io docs-like. JetBrains Mono throughout, GitHub-dark palette, terminal-green prompts.</p>
+      <div class="card-row"><span>Home →</span><a href="d/post.html" class="post-link">Sample post →</a></div>
+    </a>
+  </div>
+  <p class="footnote">Each preview is a static snapshot — only Home and one Sample post are styled per direction. Other links (Apps, Gear, etc.) are intentionally inert in the preview. After you pick, I'll build the chosen direction out fully on master and delete the preview folder.</p>
+</div>
+</body>
+</html>
