@@ -110,9 +110,12 @@ enableEmoji = true
 [params]
   description = "iOS developer building thoughtful, polished apps for the Apple ecosystem."
   # tagline overrides description on the header partial; description still
-  # drives <meta name="description"> for SEO. Setting both keeps the
-  # site-tagline copy short + editorial while SEO meta stays informational.
-  tagline = "A private index of apps, writing, and gear. Built solo for the Apple ecosystem — on-device AI, no analytics, no tracking. Kept as traces of work, craft, and curiosity."
+  # drives <meta name="description"> for SEO. tagline left intentionally
+  # blank — the previous copy mirrored samwanng.com's "A private index of …
+  # kept as traces of …" framing too closely. Header partial falls back to
+  # description when tagline is empty, which keeps the site sensible until
+  # Chen writes original copy.
+  tagline = ""
   keywords = ["iOS", "Swift", "SwiftUI", "Apple", "indie"]
   author = "Chen He"
   defaultTheme = "light"
