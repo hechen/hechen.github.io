@@ -7,11 +7,11 @@ categories: ['coredata', 'macos']
 tags: ['bundleid', 'cloudkit', 'icloud', 'plist']
 ---
 
-Integrate your codebase with CloudKit is actually a tricky stuff for me since the first impression the CloudKit gave me several years ago is not good.
+Integrating your codebase with CloudKit is actually a tricky thing for me, since the first impression CloudKit gave me several years ago wasn't good.
 
 In recent days, I had to cope with this bad feeling (Never mind, CloudKit) in the development of Sideloader.
 
-CoreData is not an easy-API framework, as we all know. However, CloudKit defeats CoreData. You can imagine how frustrated I felt when I first use CloudKit to synchronize data stored in local CoreData.
+CoreData is not an easy-API framework, as we all know. However, CloudKit defeats CoreData. You can imagine how frustrated I felt when I first used CloudKit to synchronize data stored in local CoreData.
 
 ## Setup your CoreData with CloudKit
 
@@ -44,7 +44,7 @@ container.viewContext.automaticallyMergesChangesFromParent = true
 
 ## Migration from your local store to Cloud-based store
 
-My complete CoreDataStack codes are shown below:
+My complete CoreDataStack code is shown below:
 
 ``` swift
 public final class PersistentManager {
@@ -125,15 +125,15 @@ public final class PersistentManager {
 
 ## Handle Synchronization
 
-CloudKit can do all the synchronizations silently in the background. If you are debugging with Xcode, you can see lots of CloudKit-related logs in the console view. There you can see every model we create using CoreData will be saved in iCloud as CKRecord.
+CloudKit can do all the synchronizations silently in the background. If you are debugging with Xcode, you can see lots of CloudKit-related logs in the console view. There you can see that every model we create using CoreData is saved in iCloud as a CKRecord.
 
 Though CloudKit can do almost everything for you automatically, a problem exists which you should take care of.
 
-Think about a scene our users definitely would encounter. They are using your app on their iPhones, while CloudKit synchronize changes to your local store in the background, say a piece of data on the list has been deleted. When the bad-luck user tap the cell with this piece of data, what would happen? CloudKit documentation tells as below:
+Think about a scenario our users would definitely encounter. They're using your app on their iPhones while CloudKit synchronizes changes to your local store in the background — say a piece of data on the list has been deleted. When the unlucky user taps the cell with this piece of data, what happens? The CloudKit documentation says:
 
 > Isolate the Current View from Store Changes
 
-Yes, we do not have to show the users every change CloudKit fetch. Keep current data view from the remote one is really necessary. You should pin a context
+Yes, we don't have to show the users every change CloudKit fetches. Keeping the current data view isolated from the remote one is necessary. You should pin a context:
 
 ``` swift
 try? persistentContainer.viewContext.setQueryGenerationFrom(.current)
