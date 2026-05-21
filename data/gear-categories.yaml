@@ -1,0 +1,28 @@
+# Single source of truth for /gear categories. Both the front-matter
+# `category:` value on individual gear items and the filter chips on
+# /gear/ read from this list. Order here = display order.
+#
+# Each entry: slug (kebab-case, used in URLs / filter state), label
+# (display string, what visitors see), icon (optional SVG ref or emoji
+# the layout may use). Add a new category by appending a row.
+- slug: camera
+  label: Camera
+  icon: "📷"
+- slug: audio
+  label: Audio
+  icon: "🎧"
+- slug: computer
+  label: Computer
+  icon: "💻"
+- slug: phone-watch
+  label: Phone & Watch
+  icon: "📱"
+- slug: outdoor
+  label: Outdoor
+  icon: "🥾"
+- slug: home
+  label: Home
+  icon: "🪑"
+- slug: other
+  label: Other
+  icon: "🔧"
