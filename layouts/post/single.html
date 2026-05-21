@@ -5,6 +5,11 @@
   sidebar and the reading-progress bar — the reference design
   has neither. Tags appear in a small row at the foot; prev/next
   are two inline links, not boxed cards.
+
+  Multilingual: the metadata row carries an inline language switcher
+  populated by .Translations. Each sibling-language page gets a
+  small link with its languageName + hreflang attr. The switcher
+  hides itself when a post has no translations.
 */ -}}
 {{- define "main" }}
 <article class="site-container py-8 md:py-10">
@@ -24,6 +29,12 @@
     <span class="dot" aria-hidden="true">·</span>
     <span>
       {{- range $i, $c := . }}{{ if gt $i 0 }}, {{ end }}<a href="{{ .Permalink }}">{{ .LinkTitle | title }}</a>{{ end -}}
+    </span>
+    {{- end }}
+    {{- with .Translations }}
+    <span class="dot" aria-hidden="true">·</span>
+    <span>
+      {{- range $i, $t := . }}{{ if gt $i 0 }}, {{ end }}<a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}">{{ .Language.LanguageName }}</a>{{ end -}}
     </span>
     {{- end }}
   </p>
