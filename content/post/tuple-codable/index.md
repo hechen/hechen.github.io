@@ -7,13 +7,13 @@ categories: ['macos', 'swift']
 tags: ['build', 'cocoapods', 'codable', 'compile', 'framework', 'ios', 'library', 'mach-o', 'metatype', 'module', 'nsviewcontroller', 'overload', 'preprocess', 'quiz', 'swift', 'tuple', 'uiviewcontroller', 'xcode']
 ---
 
-During my learning of Swift, many interesting things I will find. Codable is one of them.
+While learning Swift, I keep finding interesting things. Codable is one of them.
 
-Today, I defined a model with a tuple type, then Xcode told me some error. Codes may like as below.
+Today, I defined a model with a tuple type, then Xcode gave me an error. The code might look like this:
 
 ![Codable Person](https://i.imgur.com/c67KrA8.png)
 
-You may want Xcode automatically complete all the codable stuff. However, life is hard. Codes like these can even not be compiled. Xcode will tell you name cannot be synthesize the Person because of the FullName.
+You may want Xcode to automatically complete all the codable stuff. However, life is hard. Code like this cannot even be compiled. Xcode will tell you that it cannot synthesize Codable for Person because of FullName.
 
 ``` text
 error: default.playground:5:8: error: type 'Person' does not conform to protocol 'Decodable'
@@ -41,9 +41,9 @@ default.playground:6:9: note: cannot automatically synthesize 'Encodable' becaus
         ^
 ```
 
-So, We know that if a struct or class is codable implicitly, it must not contain properties which are not codable. Tuple is one of them.
+So we know that if a struct or class is codable implicitly, it must not contain properties which are not codable. A tuple is one of them.
 
-Some people argue that why tuple cannot be designed as a codable type? Yeah, the hope is that tuples could conform to protocols in future. This is covered in the generics manifesto as “Extensions of Structural Types 28”.
+Some people ask why tuples can't be designed as a codable type. Yeah, the hope is that tuples could conform to protocols in the future. This is covered in the Generics Manifesto as “Extensions of Structural Types 28”.
 
 > Extensions of structural types
 > Currently, only nominal types (classes, structs, enums, protocols) can be extended. One could imagine extending structural types–particularly tuple types–to allow them to, e.g., conform to protocols. For example, pulling together variadic generics, parameterized extensions, and conditional conformances, one could express “a tuple type is Equatable if all of its element types are Equatable”:
@@ -67,9 +67,9 @@ extension<T : P> T : Q { // error: neither a structural nor a nominal type
 }
 ```
 
-So for now, you have to synthesize the tuple type by yourself.
+So for now, you have to synthesize the tuple type yourself.
 
-![Synthesize Properties by youself](https://i.imgur.com/CsXtVWP.png)
+![Synthesize properties yourself](https://i.imgur.com/CsXtVWP.png)
 
 ## References
 
