@@ -10,9 +10,7 @@ baseURL = "https://hechen.github.io/"
 # config below. .Translations gives each post template a list of its
 # language companions for the inline switcher.
 languageCode = "en-us"
-defaultContentLanguage = "zh-cn"
-defaultContentLanguageInSubdir = false
-title = "Chen He"
+title = "Chen"
 theme = "PaperMod"
 
 # Per-language overrides. Both languages share the same site title,
@@ -121,8 +119,8 @@ enableEmoji = true
   # Chen writes original copy.
   tagline = ""
   keywords = ["iOS", "Swift", "SwiftUI", "Apple", "indie"]
-  author = "Chen He"
-  defaultTheme = "light"
+  author = "Chen"
+  defaultTheme = "auto"
   ShowReadingTime = true
   ShowShareButtons = false
   ShowPostNavLinks = true
@@ -153,7 +151,7 @@ enableEmoji = true
     safari_pinned_tab = "/safari-pinned-tab.svg"
 
   [params.label]
-    text = "Chen He"
+    text = "Chen"
     icon = "/favicon-32x32.png"
     iconHeight = 24
 
