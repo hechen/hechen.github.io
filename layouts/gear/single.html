@@ -1,76 +1,53 @@
-{{- /*
-  /gear/<slug>/ — single gear entry, samwanng.com-style detail page.
+{{ define "main" }}
+<article class="gradient-bg min-h-[60vh]">
+  <section class="border-b border-slate-200/60 dark:border-slate-800">
+    <div class="max-w-3xl mx-auto px-6 sm:px-10 pt-16 sm:pt-24 pb-12 sm:pb-16">
+      <a href="/gear/" class="inline-flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark transition-colors">
+        <span aria-hidden="true">←</span>
+        Gear
+      </a>
 
-  Back-link to home (the global index), metadata line (Category ·
-  subcategory · price-or-rating), title, hero image, body prose,
-  outbound CTA row (official site + optional affiliate), tags +
-  "Added" timestamp at the foot.
-*/ -}}
-{{- define "main" }}
-<section class="site-container py-8 md:py-10">
+      <div class="mt-6 flex flex-wrap gap-3 text-sm text-slate-500 dark:text-slate-400">
+        {{ with .Params.category }}<span class="rounded-full border border-slate-200 dark:border-slate-700 px-3 py-1">{{ . }}</span>{{ end }}
+        {{ with .Params.subcategory }}<span class="rounded-full border border-slate-200 dark:border-slate-700 px-3 py-1">{{ . }}</span>{{ end }}
+        {{ with .Params.rating }}<span class="rounded-full border border-slate-200 dark:border-slate-700 px-3 py-1">{{ . }}/5</span>{{ end }}
+        {{ with .Params.price }}<span class="rounded-full border border-slate-200 dark:border-slate-700 px-3 py-1">{{ . }}</span>{{ end }}
+      </div>
 
-  <a class="back-link" href="/gear/" aria-label="Back to gear">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-    Back to gear
-  </a>
+      <h1 class="mt-5 text-4xl sm:text-5xl font-bold tracking-tight leading-tight">{{ .Title }}</h1>
+      {{ with .Description }}
+      <p class="mt-5 text-lg leading-relaxed text-slate-600 dark:text-slate-400">{{ . }}</p>
+      {{ end }}
 
-  <p class="detail-meta">
-    <span>{{ .Params.category }}</span>
-    {{- with .Params.tags }}
-    {{- if gt (len .) 0 }}
-    <span class="dot" aria-hidden="true">·</span>
-    <span>{{ index . 0 }}</span>
-    {{- end }}
-    {{- end }}
-    {{- if .Params.rating }}
-    <span class="dot" aria-hidden="true">·</span>
-    <span>{{ .Params.rating }}/5</span>
-    {{- end }}
-    {{- with .Params.price }}
-    <span class="dot" aria-hidden="true">·</span>
-    <span>{{ . }}</span>
-    {{- end }}
-  </p>
+      <div class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-500 dark:text-slate-400">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">Published {{ .Date.Format "January 2, 2006" }}</time>
+        {{ with .Params.purchased }}<span>Bought {{ time.AsTime . | time.Format "January 2, 2006" }}</span>{{ end }}
+      </div>
 
-  <h1 class="detail-title">{{ .Title }}</h1>
+      {{ with .Params.purchaseURL }}
+      <div class="mt-6">
+        <a href="{{ . }}" rel="noopener noreferrer" class="inline-flex items-center rounded-full border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:border-accent/30 dark:hover:border-accent-dark/30 hover:text-accent dark:hover:text-accent-dark transition-colors">
+          Official product page
+        </a>
+      </div>
+      {{ end }}
+    </div>
+  </section>
 
-  {{- with .Params.image }}
-  <div class="detail-hero">
-    <img src="{{ . }}" alt="{{ $.Params.imageAlt | default $.Title }}" loading="eager" decoding="async">
-  </div>
-  {{- end }}
+  <section>
+    <div class="max-w-3xl mx-auto px-6 sm:px-10 py-14 sm:py-18">
+      <div class="prose prose-slate dark:prose-invert max-w-none prose-p:leading-8 prose-li:leading-8 prose-headings:tracking-tight">
+        {{ .Content }}
+      </div>
 
-  <div class="detail-body">
-    {{ .Content }}
-  </div>
-
-  {{- /* CTA row — purchase + optional affiliate. Affiliate gets an
-         honest "(affiliate)" tag inline + the rel="nofollow" SEO
-         hygiene per the proposal's open-question recommendation. */ -}}
-  {{- if or .Params.purchaseURL .Params.affiliateURL }}
-  <div class="detail-cta-row">
-    {{- with .Params.purchaseURL }}
-    <a href="{{ . }}" target="_blank" rel="noopener">Official site →</a>
-    {{- end }}
-    {{- with .Params.affiliateURL }}
-    <a href="{{ . }}" target="_blank" rel="noopener nofollow">Buy on Amazon →</a>
-    <span class="affiliate-note">(affiliate)</span>
-    {{- end }}
-  </div>
-  {{- end }}
-
-  {{- with .Params.tags }}
-  <div class="detail-tags">
-    {{- range . }}
-    <a class="tag" href="/tags/{{ . | urlize }}/">{{ . }}</a>
-    {{- end }}
-  </div>
-  {{- end }}
-
-  <p class="detail-added">
-    Added {{ .Date.Format "January 2, 2006" }}
-    {{- with .Params.purchased }} · Bought {{ . }}{{ end }}
-  </p>
-
-</section>
-{{- end }}
+      {{ with .Params.tags }}
+      <div class="mt-10 flex flex-wrap gap-2">
+        {{ range . }}
+        <span class="inline-flex items-center rounded-full border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 px-2.5 py-1 text-xs font-medium text-slate-600 dark:text-slate-300">#{{ . }}</span>
+        {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </section>
+</article>
+{{ end }}
