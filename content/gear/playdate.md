@@ -11,6 +11,8 @@ rating: 5
 purchaseURL: "https://play.date/"
 tags: ["playdate", "panic", "handheld", "games"]
 description: "I like the Playdate because it feels like someone was allowed to follow through on a strange idea all the way to the end. Tiny screen, weird crank, monochrome display, and zero interest in being the sensible handheld to buy."
+image: "/images/gear/playdate-1.jpg"
+imageAlt: "Playdate handheld photographed by Chen in September 2023"
 draft: false
 ---
 
@@ -19,6 +21,20 @@ I think I was sold on the Playdate the moment I understood it was not trying to 
 What I love about it is that it does not pretend to be versatile. It is narrow on purpose. That constraint gives it personality. A lot of modern gadgets feel like they were rounded down by committee until nothing surprising was left. Playdate feels like the opposite of that.
 
 The crank is the part that sounds like a gimmick when you describe it out loud. In practice, it is the thing that makes the device memorable. Even before talking about games, it gives the hardware its own rhythm. It feels playful in a way most polished consumer tech avoids.
+
+These photos are mine too — taken in **September 2023** — which makes this page feel closer to what I actually wanted the gear section to be: less catalog, more personal record of the objects I keep returning to.
+
+<div class="gear-gallery">
+  <figure>
+    <img src="/images/gear/playdate-2.jpg" alt="Playdate handheld photographed by Chen in September 2023">
+  </figure>
+  <figure>
+    <img src="/images/gear/playdate-3.jpg" alt="Playdate handheld photographed by Chen in September 2023">
+  </figure>
+  <figure>
+    <img src="/images/gear/playdate-4.jpg" alt="Playdate handheld photographed by Chen in September 2023">
+  </figure>
+</div>
 
 ## Why I like it
 

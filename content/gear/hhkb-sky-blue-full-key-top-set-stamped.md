@@ -11,10 +11,12 @@ rating: 5
 purchaseURL: "https://hhkeyboard.us/hhkb/accessories/sky-blue-full-key-top-set"
 tags: ["hhkb", "topre", "keycaps", "keyboard"]
 description: "I bought these knowing full well they were unnecessary. That was part of the appeal. I use an HHKB every day, and changing the keycaps does more for the feeling of my desk than most so-called productivity upgrades ever do."
+image: "/images/gear/hhkb-sky-blue-full-key-top-set-stamped.jpg"
+imageAlt: "HHKB Sky Blue Full Key Top Set installed on an HHKB keyboard"
 draft: false
 ---
 
-This is the **Sky Blue Full Key Top Set** in the **stamped** variant from HHKB. HHKB calls it a limited single run, which makes it feel even more like the kind of purchase I try not to over-justify. It is not sensible. I just liked it.
+This is the **Sky Blue Full Key Top Set** in the **stamped** variant from HHKB. The photo here is mine, and honestly that is part of why I wanted to put this set on the site at all: it changed the whole feel of my desk enough that I kept looking over at it. HHKB calls it a limited single run, which makes it feel even more like the kind of purchase I try not to over-justify. It is not sensible. I just liked it.
 
 My HHKB is one of the few objects on my desk that I never really stop touching. Because of that, even a cosmetic change lands harder than it should. Swapping to this set changed the whole mood of the keyboard for me. The board usually feels a bit severe and utilitarian. This color makes it feel lighter, softer, and honestly more fun.
 
