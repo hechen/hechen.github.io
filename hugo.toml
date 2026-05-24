@@ -22,12 +22,12 @@ theme = "PaperMod"
     languageCode = "zh-cn"
     languageName = "中文"
     weight = 1
-    title = "Chen He"
+    title = "Chen"
   [languages.en]
     languageCode = "en-us"
     languageName = "English"
     weight = 2
-    title = "Chen He"
+    title = "Chen"
 
 # Blog posts live in content/post/ (singular) so URLs resolve at /post/<slug>/
 # without per-section permalink rewrites — matches the legacy URL structure
