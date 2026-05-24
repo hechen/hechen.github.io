@@ -95,6 +95,10 @@ enableEmoji = true
     url = "/gear/"
     weight = 25
   [[menu.main]]
+    name = "Photography"
+    url = "/photography/"
+    weight = 28
+  [[menu.main]]
     name = "Now"
     url = "/now/"
     weight = 30
