@@ -39,7 +39,8 @@ html.dark ::selection {
 }
 
 .blog-index,
-.article-shell {
+.article-shell,
+.app-shell {
   background:
     linear-gradient(180deg, rgba(248, 250, 252, 0.92), rgba(255, 255, 255, 0) 420px),
     repeating-linear-gradient(90deg, rgba(15, 23, 42, 0.035) 0, rgba(15, 23, 42, 0.035) 1px, transparent 1px, transparent 88px);
@@ -47,7 +48,8 @@ html.dark ::selection {
 
 @media (prefers-color-scheme: dark) {
   .blog-index,
-  .article-shell {
+  .article-shell,
+  .app-shell {
     background:
       linear-gradient(180deg, rgba(15, 23, 42, 0.54), rgba(2, 6, 23, 0) 420px),
       repeating-linear-gradient(90deg, rgba(148, 163, 184, 0.06) 0, rgba(148, 163, 184, 0.06) 1px, transparent 1px, transparent 88px);
@@ -55,7 +57,8 @@ html.dark ::selection {
 }
 
 html.dark .blog-index,
-html.dark .article-shell {
+html.dark .article-shell,
+html.dark .app-shell {
   background:
     linear-gradient(180deg, rgba(15, 23, 42, 0.54), rgba(2, 6, 23, 0) 420px),
     repeating-linear-gradient(90deg, rgba(148, 163, 184, 0.06) 0, rgba(148, 163, 184, 0.06) 1px, transparent 1px, transparent 88px);
