@@ -63,17 +63,25 @@ enableEmoji = true
     url = "/post/"
     weight = 20
   [[menu.main]]
+    name = "Gear"
+    url = "/gear/"
+    weight = 30
+  [[menu.main]]
+    name = "Photography"
+    url = "/photography/"
+    weight = 40
+  [[menu.main]]
     name = "Now"
     url = "/now/"
-    weight = 30
+    weight = 50
   [[menu.main]]
     name = "Tools"
     url = "/tools/"
-    weight = 40
+    weight = 60
   [[menu.main]]
     name = "About"
     url = "/about/"
-    weight = 50
+    weight = 70
 
 [params]
   description = "iOS developer building thoughtful, polished apps for the Apple ecosystem."

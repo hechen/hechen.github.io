@@ -1,19 +1,8 @@
 {{- /*
-  Premium blog post layout (Phase 2d). Overrides PaperMod's
-  themes/PaperMod/layouts/_default/single.html for content under
-  /post/<slug>/.
-
-  Anchored on Stripe / Vercel blog visual references — generous
-  whitespace, big serif title, body in Source Serif 4 at 19px /
-  1.75 line-height, sticky right-side TOC on ≥1024 px viewports,
-  3-pixel reading progress bar at the very top, accent-coloured
-  category chips and tag pills, prev/next post cards in a footer
-  card row.
-
-  Inherits from layouts/_default/baseof.html — same nav, footer,
-  theme toggle as the rest of the site (Phase 2c). This template
-  only owns the .post block between header partial and footer
-  partial.
+  Blog post layout. Keeps PaperMod's content helpers, but replaces
+  the default chrome with a focused reading experience: spacious
+  editorial header, sticky TOC, progress indicator, tags, and adjacent
+  posts.
 */ -}}
 {{- define "main" }}
 
@@ -26,58 +15,56 @@
        class="h-full w-0 bg-accent dark:bg-accent-dark transition-[width] duration-75 ease-out"></div>
 </div>
 
-<article class="post">
-  <header class="post-header max-w-3xl mx-auto px-6 sm:px-10 pt-12 sm:pt-16 pb-8 sm:pb-10">
-    {{- /* Metadata row — small caps, slate, separated with bullets. */ -}}
-    <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-6">
-      <a href="/post/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">All posts</a>
-      <span aria-hidden="true">·</span>
-      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
-      {{- if .ReadingTime }}
-      <span aria-hidden="true">·</span>
-      <span>{{ .ReadingTime }} min read</span>
-      {{- end }}
-      {{- with $.GetTerms "categories" }}
-      <span aria-hidden="true">·</span>
-      <span class="flex flex-wrap gap-2">
-        {{- range . }}
-        <a href="{{ .Permalink }}" class="hover:text-accent dark:hover:text-accent-dark transition-colors">{{ .LinkTitle | title }}</a>
+<article class="post article-shell">
+  <header class="post-header max-w-5xl mx-auto px-5 sm:px-8 lg:px-10 pt-10 sm:pt-16 pb-10 sm:pb-14">
+    <a href="/post/" class="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 shadow-sm hover:border-accent/40 dark:hover:border-accent-dark/40 hover:text-accent dark:hover:text-accent-dark transition-colors">
+      <span aria-hidden="true">←</span>
+      All posts
+    </a>
+
+    <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-end">
+      <div>
+        <div class="mb-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+          {{- if .ReadingTime }}
+          <span aria-hidden="true">/</span>
+          <span>{{ .ReadingTime }} min read</span>
+          {{- end }}
+        </div>
+
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-7xl font-bold leading-[0.98] text-slate-950 dark:text-white">
+          {{ .Title }}
+        </h1>
+
+        {{- with .Description }}
+        <p class="mt-5 max-w-2xl font-serif text-xl sm:text-2xl leading-9 text-slate-600 dark:text-slate-400">
+          {{ . }}
+        </p>
         {{- end }}
-      </span>
+      </div>
+
+      {{- with $.GetTerms "categories" }}
+      <div class="flex flex-wrap gap-2 lg:justify-end">
+        {{- range . }}
+        <a href="{{ .RelPermalink }}" class="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-900 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-accent/10 dark:hover:bg-accent-dark/15 hover:text-accent dark:hover:text-accent-dark transition-colors">{{ .LinkTitle | title }}</a>
+        {{- end }}
+      </div>
       {{- end }}
     </div>
-
-    {{- /* Big serif title, tight leading, full bleed of the column. */ -}}
-    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] text-slate-900 dark:text-slate-100">
-      {{ .Title }}
-    </h1>
-
-    {{- with .Description }}
-    <p class="font-serif italic text-xl sm:text-2xl text-slate-500 dark:text-slate-400 leading-snug mt-4 sm:mt-6">
-      {{ . }}
-    </p>
-    {{- end }}
   </header>
 
-  {{- /* Body + sidebar TOC layout. On ≥lg breakpoints the article
-         sits in a fixed-720-px column with a 240-px sticky TOC
-         sidebar on the right. Below lg the TOC collapses into a
-         <details> at the top of the body. */ -}}
-  <div class="post-layout relative max-w-7xl mx-auto px-6 sm:px-10 lg:grid lg:grid-cols-[minmax(0,720px)_240px] lg:gap-16 lg:justify-center">
+  <div class="post-layout relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 lg:grid lg:grid-cols-[minmax(0,720px)_260px] lg:gap-16 lg:justify-center">
 
-    <div class="post-body font-serif text-[19px] leading-[1.75] text-slate-800 dark:text-slate-200 max-w-[720px] mx-auto lg:mx-0">
-      {{- /* Mobile/tablet TOC — collapsed by default. */ -}}
+    <div class="post-body font-serif text-[19px] sm:text-[20px] leading-[1.78] text-slate-800 dark:text-slate-200 max-w-[720px] mx-auto lg:mx-0">
       {{- if .TableOfContents }}
-      <details class="lg:hidden mb-8 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/60 px-5 py-4 text-base font-sans not-prose">
-        <summary class="cursor-pointer text-sm font-semibold text-slate-700 dark:text-slate-300">Table of contents</summary>
+      <details class="lg:hidden mb-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/70 px-5 py-4 text-base font-sans not-prose">
+        <summary class="cursor-pointer text-sm font-semibold text-slate-800 dark:text-slate-200">On this page</summary>
         <div class="mt-4 text-sm leading-relaxed [&_ul]:space-y-1.5 [&_a]:text-slate-600 dark:[&_a]:text-slate-400 [&_a:hover]:text-accent dark:[&_a:hover]:text-accent-dark">
           {{ .TableOfContents }}
         </div>
       </details>
       {{- end }}
 
-      {{- /* Article content — anchored headings give each h2/h3 a
-             permalink #anchor; PaperMod ships the partial. */ -}}
       {{- if not (.Param "disableAnchoredHeadings") }}
       {{ partial "anchored_headings.html" .Content }}
       {{- else }}
@@ -85,14 +72,12 @@
       {{- end }}
     </div>
 
-    {{- /* Desktop sticky TOC sidebar. Hidden under lg, IntersectionObserver
-           highlights the active heading as the reader scrolls. */ -}}
     {{- if .TableOfContents }}
     <aside class="hidden lg:block">
       <nav id="toc-sidebar"
-           class="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto pr-2 text-sm leading-relaxed">
-        <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4">On this page</p>
-        <div class="border-l border-slate-200 dark:border-slate-800 pl-4 [&_ul]:space-y-2 [&_ul_ul]:mt-2 [&_ul_ul]:pl-3 [&_a]:block [&_a]:text-slate-500 dark:[&_a]:text-slate-400 [&_a:hover]:text-accent dark:[&_a:hover]:text-accent-dark [&_a]:py-0.5 [&_a]:transition-colors">
+           class="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 p-5 text-sm leading-relaxed">
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500 mb-4">On this page</p>
+        <div class="[&_ul]:space-y-2 [&_ul_ul]:mt-2 [&_ul_ul]:border-l [&_ul_ul]:border-slate-200 dark:[&_ul_ul]:border-slate-800 [&_ul_ul]:pl-3 [&_a]:block [&_a]:text-slate-500 dark:[&_a]:text-slate-400 [&_a:hover]:text-accent dark:[&_a:hover]:text-accent-dark [&_a]:py-0.5 [&_a]:transition-colors">
           {{ .TableOfContents }}
         </div>
       </nav>
@@ -100,13 +85,12 @@
     {{- end }}
   </div>
 
-  {{- /* Footer block — tags, then prev/next post cards. */ -}}
-  <footer class="post-footer max-w-3xl mx-auto px-6 sm:px-10 mt-16 sm:mt-20 pt-8 border-t border-slate-200/60 dark:border-slate-800">
+  <footer class="post-footer max-w-3xl mx-auto px-5 sm:px-8 lg:px-10 mt-16 sm:mt-20 pt-8 border-t border-slate-200/70 dark:border-slate-800">
     {{- with $.GetTerms "tags" }}
     <div class="flex flex-wrap gap-2 mb-12">
       {{- range . }}
       <a href="{{ .Permalink }}"
-         class="inline-flex items-center px-2.5 py-1 rounded-full bg-accent/10 dark:bg-accent-dark/15 text-accent dark:text-accent-dark text-xs font-medium hover:bg-accent/20 dark:hover:bg-accent-dark/25 transition-colors">
+         class="inline-flex items-center rounded-full border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 px-2.5 py-1 text-xs font-medium text-slate-600 dark:text-slate-300 hover:border-accent/30 dark:hover:border-accent-dark/30 hover:text-accent dark:hover:text-accent-dark transition-colors">
         #{{ .LinkTitle }}
       </a>
       {{- end }}
@@ -119,15 +103,15 @@
     <nav class="grid sm:grid-cols-2 gap-3 sm:gap-4 not-prose">
       {{- if $prev }}
       <a href="{{ $prev.RelPermalink }}"
-         class="group flex flex-col gap-1 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 hover:border-accent/40 dark:hover:border-accent-dark/40 hover:shadow-card transition-all">
-        <span class="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500">← Previous</span>
+         class="group flex flex-col gap-1 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 hover:border-accent/40 dark:hover:border-accent-dark/40 hover:shadow-card transition-all">
+        <span class="text-xs uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">← Previous</span>
         <span class="font-sans font-semibold text-slate-900 dark:text-slate-100 group-hover:text-accent dark:group-hover:text-accent-dark transition-colors line-clamp-2">{{ $prev.Title }}</span>
       </a>
       {{- else }}<span></span>{{- end }}
       {{- if $next }}
       <a href="{{ $next.RelPermalink }}"
-         class="group flex flex-col gap-1 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 hover:border-accent/40 dark:hover:border-accent-dark/40 hover:shadow-card transition-all sm:text-right">
-        <span class="text-xs uppercase tracking-wider text-slate-400 dark:text-slate-500">Next →</span>
+         class="group flex flex-col gap-1 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 hover:border-accent/40 dark:hover:border-accent-dark/40 hover:shadow-card transition-all sm:text-right">
+        <span class="text-xs uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">Next →</span>
         <span class="font-sans font-semibold text-slate-900 dark:text-slate-100 group-hover:text-accent dark:group-hover:text-accent-dark transition-colors line-clamp-2">{{ $next.Title }}</span>
       </a>
       {{- else }}<span></span>{{- end }}

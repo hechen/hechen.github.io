@@ -14,17 +14,25 @@
 
 {{ $recent := first 5 (where .Site.RegularPages "Section" "post") }}
 {{ if $recent }}
-<section class="border-t border-slate-200/60 dark:border-slate-800">
-  <div class="max-w-3xl mx-auto px-6 sm:px-10 py-12 sm:py-16">
-    <div class="flex items-baseline justify-between mb-6">
-      <h2 class="text-2xl font-bold tracking-tight">From the blog</h2>
-      <a href="/post/" class="text-sm text-accent dark:text-accent-dark hover:underline">All posts →</a>
+<section class="border-t border-slate-200/70 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-950">
+  <div class="max-w-5xl mx-auto px-6 sm:px-10 py-14 sm:py-18">
+    <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-accent dark:text-accent-dark">Writing</p>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold leading-tight text-slate-950 dark:text-white">Recent notes from the blog</h2>
+      </div>
+      <a href="/post/" class="inline-flex items-center gap-2 rounded-full border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:border-accent/40 dark:hover:border-accent-dark/40 hover:text-accent dark:hover:text-accent-dark transition-colors">
+        All posts
+        <span aria-hidden="true">→</span>
+      </a>
     </div>
-    <ul class="divide-y divide-slate-200/60 dark:divide-slate-800">
+    <ul class="grid gap-3">
       {{ range $recent }}
-      <li class="py-3 flex items-baseline justify-between gap-4">
-        <a href="{{ .RelPermalink }}" class="text-base text-slate-900 dark:text-slate-100 hover:text-accent dark:hover:text-accent-dark transition-colors flex-1 truncate">{{ .Title }}</a>
-        <time class="text-xs text-slate-400 dark:text-slate-500 tabular-nums shrink-0" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+      <li>
+        <a href="{{ .RelPermalink }}" class="group flex flex-col gap-2 rounded-2xl border border-slate-200/70 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-5 py-4 shadow-sm transition-all hover:border-accent/30 dark:hover:border-accent-dark/30 hover:shadow-card sm:flex-row sm:items-baseline sm:justify-between">
+          <span class="font-serif text-xl font-semibold leading-snug text-slate-950 dark:text-slate-100 group-hover:text-accent dark:group-hover:text-accent-dark transition-colors">{{ .Title }}</span>
+          <time class="text-xs font-medium text-slate-400 dark:text-slate-500 tabular-nums shrink-0" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+        </a>
       </li>
       {{ end }}
     </ul>
