@@ -1,20 +1,16 @@
 {{- /*
-  Homepage — samwanng.com-inspired editorial index, but sectioned
-  because Chen's site is a portfolio + journal hybrid. Each section
-  uses the same .entry list pattern as /gear/ so the home reads as
-  one publication, top to bottom:
+  Site homepage. Inherits from layouts/page/baseof.html — same nav and
+  footer as the apps/about/now/tools pages. Content body lives in
+  content/_index.html which carries the bespoke "Chen He" landing.
 
-    1. Apps         — every app from content/apps/<slug>/_index.html
-    2. Writing      — eight most-recent posts as a dated list
-    3. Gear         — four most-recent gear entries (link to /gear/
-                       for the rest)
-
-  The samwanng look depends on rhythm — generous gaps between
-  sections, hairline rule, section title in plain weight, "View
-  all" small inline link at the right edge.
+  Below the bespoke content, a "Recent posts" section pulls the 5 most
+  recent /post/ entries from the site so the blog has front-door
+  discoverability — Chen flagged "the blog is missing on my website"
+  after Phase 2; turns out it was reachable via the nav but had no
+  promotion on the homepage at all.
 */ -}}
-{{- define "main" }}
-<section class="site-container py-8 md:py-10">
+{{ define "main" }}
+{{ .Content }}
 
 {{ $recent := first 5 (where .Site.RegularPages "Section" "post") }}
 {{ if $recent }}
@@ -41,95 +37,6 @@
       {{ end }}
     </ul>
   </div>
-
-  {{- /* ---- Writing -------------------------------------------- */ -}}
-  <div class="home-section">
-    <div class="home-section-header">
-      <h2 class="home-section-title">Writing</h2>
-      <a class="home-section-more" href="/post/">View all →</a>
-    </div>
-    <ol class="post-feed">
-      {{- $posts := where site.RegularPages "Section" "post" }}
-      {{- $posts = $posts.ByDate.Reverse }}
-      {{- range first 8 $posts }}
-      <li class="post-feed-row">
-        <a href="{{ .RelPermalink }}">
-          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006" }}</time>
-          <span class="post-feed-title">{{ .Title }}</span>
-        </a>
-      </li>
-      {{- end }}
-    </ol>
-  </div>
-
-  {{- /* ---- Gear ----------------------------------------------- */ -}}
-  <div class="home-section">
-    <div class="home-section-header">
-      <h2 class="home-section-title">Gear</h2>
-      <a class="home-section-more" href="/gear/">View all →</a>
-    </div>
-    <div class="entries">
-      {{- $gear := where site.RegularPages "Section" "gear" }}
-      {{- $gear = $gear.ByDate.Reverse }}
-      {{- range first 4 $gear }}
-      <article class="entry">
-        <a class="entry-link" href="{{ .RelPermalink }}">
-          <div class="entry-poster{{ if .Params.image }} is-photo{{ end }}">
-            {{- if .Params.image }}
-            <img src="{{ .Params.image }}" alt="{{ .Params.imageAlt | default .Title }}" loading="lazy" decoding="async">
-            {{- else }}
-            <span style="color: var(--faint); font-size: 13px;">no image yet</span>
-            {{- end }}
-          </div>
-          <div class="entry-body">
-            <h3 class="entry-title">{{ .Title }}</h3>
-            <p class="entry-meta">
-              <span>{{ .Params.category }}</span>
-              {{- if .Params.rating }}
-              <span class="dot" aria-hidden="true">·</span>
-              <span>{{ .Params.rating }}/5</span>
-              {{- end }}
-              {{- with .Params.price }}
-              <span class="dot" aria-hidden="true">·</span>
-              <span>{{ . }}</span>
-              {{- end }}
-            </p>
-            {{- $body := trim .RawContent " \n\t" -}}
-            {{- $body = replaceRE "(?s)^.*?\n##? Why I love it\\s*\n+" "" $body -}}
-            {{- $body = replaceRE "(?s)\n##.*$" "" $body -}}
-            {{- $first := index (split (trim $body " \n\t") "\n\n") 0 -}}
-            <p class="entry-essay">{{ $first | markdownify | plainify }}</p>
-          </div>
-        </a>
-      </article>
-      {{- end }}
-    </div>
-  </div>
-
-
-  {{- /* ---- Photography --------------------------------------- */ -}}
-  <div class="home-section">
-    <div class="home-section-header">
-      <h2 class="home-section-title">Photography</h2>
-      <a class="home-section-more" href="/photography/">Open →</a>
-    </div>
-    <article class="entry">
-      <a class="entry-link" href="/photography/">
-        <div class="entry-poster is-photo" aria-hidden="true">
-          <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #f5f5f5 0%, #ececec 45%, #fafafa 100%);"></div>
-        </div>
-        <div class="entry-body">
-          <h3 class="entry-title">A quieter place for images, when they are ready.</h3>
-          <p class="entry-meta">
-            <span>Photography</span>
-            <span class="dot" aria-hidden="true">·</span>
-            <span>portfolio scaffold</span>
-          </p>
-          <p class="entry-essay">A clean front door for future photo essays, process notes, and selected work. No fake gallery yet — just a polished place ready for real images.</p>
-        </div>
-      </a>
-    </article>
-  </div>
-
 </section>
-{{- end }}
+{{ end }}
+{{ end }}
