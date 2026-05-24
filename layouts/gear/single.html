@@ -19,6 +19,14 @@
       <p class="mt-5 text-lg leading-relaxed text-slate-600 dark:text-slate-400">{{ . }}</p>
       {{ end }}
 
+      {{- $cover := .Params.image | default .Params.cover.image -}}
+      {{- $coverAlt := .Params.imageAlt | default .Params.cover.alt | default .Title -}}
+      {{ with $cover }}
+      <figure class="mt-8 overflow-hidden rounded-[1.6rem] border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 shadow-card">
+        <img src="{{ . }}" alt="{{ $coverAlt }}" class="block w-full object-cover" loading="eager" decoding="async">
+      </figure>
+      {{ end }}
+
       <div class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-500 dark:text-slate-400">
         <time datetime="{{ .Date.Format "2006-01-02" }}">Published {{ .Date.Format "January 2, 2006" }}</time>
         {{ with .Params.purchased }}<span>Bought {{ time.AsTime . | time.Format "January 2, 2006" }}</span>{{ end }}

@@ -1,6 +1,7 @@
 {{- $siteTitle := site.Title -}}
 {{- $title := cond .IsHome $siteTitle (printf "%s | %s" .Title $siteTitle) -}}
 {{- $desc := .Description | default .Params.description | default site.Params.description -}}
+{{- $ogImage := .Params.cover.image | default .Params.image -}}
 <!doctype html>
 <html lang="{{ site.Language.Lang | default "en" }}" class="scroll-smooth" data-theme="auto">
 <head>
@@ -20,9 +21,11 @@
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
   <meta property="og:url" content="{{ .Permalink }}">
   <meta property="og:site_name" content="{{ site.Title }}">
+{{- with $ogImage }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ $title }}">
   <meta name="twitter:description" content="{{ $desc }}">
+{{- with $ogImage }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
   <meta name="theme-color" content="#0f172a">
 
   <link rel="icon" href="/favicon.ico">

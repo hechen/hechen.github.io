@@ -42,8 +42,16 @@
 
       <div class="grid gap-4 md:grid-cols-2" id="gear-entries">
         {{ range $entries }}
-        <article class="gear-card group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/85 dark:bg-slate-900/70 p-6 shadow-card hover:shadow-cardHover transition-all" data-cat="{{ .Params.category }}">
+        {{- $cover := .Params.image | default .Params.cover.image -}}
+        {{- $coverAlt := .Params.imageAlt | default .Params.cover.alt | default .Title -}}
+        <article class="gear-card group overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/85 dark:bg-slate-900/70 shadow-card hover:shadow-cardHover transition-all" data-cat="{{ .Params.category }}">
           <a href="{{ .RelPermalink }}" class="block">
+            {{ with $cover }}
+            <div class="aspect-[16/9] overflow-hidden bg-slate-100 dark:bg-slate-900/80">
+              <img src="{{ . }}" alt="{{ $coverAlt }}" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" loading="lazy" decoding="async">
+            </div>
+            {{ end }}
+            <div class="p-6">
             <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">
               {{ with .Params.category }}<span class="text-accent dark:text-accent-dark">{{ . }}</span>{{ end }}
               {{ with .Params.purchased }}<span>{{ time.AsTime . | time.Format "2006" }}</span>{{ end }}
@@ -57,6 +65,7 @@
               {{ end }}
             </div>
             <p class="mt-4 text-sm font-medium text-slate-900 dark:text-slate-100 group-hover:text-accent dark:group-hover:text-accent-dark">Read note →</p>
+            </div>
           </a>
         </article>
         {{ end }}
