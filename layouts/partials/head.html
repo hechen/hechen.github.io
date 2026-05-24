@@ -2,9 +2,6 @@
 {{- $title := cond .IsHome $siteTitle (printf "%s | %s" .Title $siteTitle) -}}
 {{- $desc := .Description | default .Params.description | default site.Params.description -}}
 {{- $ogImage := .Params.cover.image | default .Params.image -}}
-<!doctype html>
-<html lang="{{ site.Language.Lang | default "en" }}" class="scroll-smooth" data-theme="auto">
-<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -51,4 +48,3 @@
     })();
   </script>
   {{- partial "extend_head.html" . }}
-</head>
