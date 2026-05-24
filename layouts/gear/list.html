@@ -1,122 +1,89 @@
-{{- /*
-  /gear/ — index of all gear entries, samwanng.com-style.
-
-  Header (brand + tagline + main nav) already comes from
-  partials/header.html. This template owns the section title, the
-  category filter chip row, the entry count, and the entry list
-  itself.
-
-  Filtering is server-rendered by reading ?cat=<slug> from a tiny
-  inline JS shim — the chip links use anchor-only hrefs so the page
-  doesn't reload. The "filter" toggles entry display via a data
-  attribute on the section. No JS framework; matches the legacy
-  approach for the GitHub feed on the homepage.
-*/ -}}
-{{- define "main" }}
-<section class="site-container py-8 md:py-10">
-
-  {{- $cats := index site.Data "gear-categories" }}
-  {{- $entries := where site.RegularPages "Section" "gear" }}
-  {{- $entries = $entries.ByDate.Reverse }}
-
-  <h1 class="sr-only">Gear</h1>
-
-  {{- /* Category filter row. "All" first; then one chip per
-         category present in data/gear-categories.yaml. Mid-dot
-         separators. JS below toggles data-cat-active on the section
-         and CSS hides non-matching entries via attribute selector. */ -}}
-  <nav class="nav-chips" aria-label="Gear categories" data-gear-filter>
-    <a href="#" data-cat="all" class="is-active">All</a>
-    {{- range $cats }}
-    <span class="dot" aria-hidden="true">·</span>
-    <a href="#" data-cat="{{ .label }}">{{ .label }}</a>
-    {{- end }}
-  </nav>
-
-  <p class="entry-count" data-gear-count>{{ len $entries }} {{ if eq (len $entries) 1 }}entry{{ else }}entries{{ end }}</p>
-
-  {{- with .Content }}
-  <div class="detail-body" style="margin-top: 1.5rem; max-width: 56ch;">{{ . }}</div>
-  {{- end }}
-
-  <div class="entries" id="gear-entries">
-    {{- range $entries }}
-    <article class="entry" data-cat="{{ .Params.category }}">
-      <a class="entry-link" href="{{ .RelPermalink }}">
-        <div class="entry-poster{{ if .Params.image }} is-photo{{ end }}">
-          {{- if .Params.image }}
-          <img src="{{ .Params.image }}" alt="{{ .Params.imageAlt | default .Title }}" loading="lazy" decoding="async">
-          {{- else }}
-          {{- /* No image: render a quiet placeholder so the grid still aligns. */ -}}
-          <span style="color: var(--faint); font-size: 13px;">no image yet</span>
-          {{- end }}
+{{ define "main" }}
+{{- $entries := where site.RegularPages "Section" "gear" -}}
+{{- $entries = $entries.ByDate.Reverse -}}
+{{- $cats := slice -}}
+{{- range $entries }}
+  {{- with .Params.category }}
+    {{- if not (in $cats .) }}{{- $cats = $cats | append . -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+<div class="gradient-bg min-h-[60vh]">
+  <section class="border-b border-slate-200/60 dark:border-slate-800">
+    <div class="max-w-5xl mx-auto px-6 sm:px-10 pt-16 sm:pt-24 pb-14 sm:pb-18">
+      <div class="grid gap-8 lg:grid-cols-[1fr_18rem] lg:items-end">
+        <div>
+          <p class="mb-4 text-sm font-medium text-accent dark:text-accent-dark">Gear</p>
+          <h1 class="text-4xl sm:text-6xl font-bold tracking-tight leading-tight">{{ .Title }}</h1>
+          <div class="mt-5 max-w-3xl text-lg leading-relaxed text-slate-600 dark:text-slate-400 prose prose-slate dark:prose-invert prose-p:m-0 max-w-none">
+            {{ .Content }}
+          </div>
         </div>
-        <div class="entry-body">
-          <h2 class="entry-title">{{ .Title }}</h2>
-          <p class="entry-meta">
-            <span>{{ .Params.category }}</span>
-            {{- with .Params.tags }}
-            {{- if gt (len .) 0 }}
-            <span class="dot" aria-hidden="true">·</span>
-            <span>{{ index . 0 }}</span>
-            {{- end }}
-            {{- end }}
-            {{- if .Params.rating }}
-            <span class="dot" aria-hidden="true">·</span>
-            <span>{{ .Params.rating }}/5</span>
-            {{- end }}
-            {{- with .Params.price }}
-            <span class="dot" aria-hidden="true">·</span>
-            <span>{{ . }}</span>
-            {{- end }}
+        <aside class="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/70 p-5 shadow-card backdrop-blur">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">Current policy</p>
+          <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            No affiliate list, no invented loadout, no generic buyer's guide. If something is here, it stayed useful or interesting long enough to deserve a real note.
           </p>
-          {{- /* Essay paragraph: pull the first Markdown paragraph
-                 of the body so the index reads like samwanng's
-                 (full prose, no excerpt cut). Hugo's .Summary uses
-                 a hard cut at 70 words; .Plain truncated at the
-                 first double-newline keeps natural paragraph
-                 boundaries. */ -}}
-          {{- $body := trim .RawContent " \n\t" -}}
-          {{- $body = replaceRE "(?s)^.*?\n##? Why I love it\\s*\n+" "" $body -}}
-          {{- $body = replaceRE "(?s)\n##.*$" "" $body -}}
-          {{- $first := index (split (trim $body " \n\t") "\n\n") 0 -}}
-          <p class="entry-essay">{{ $first | markdownify | plainify }}</p>
-        </div>
-      </a>
-    </article>
-    {{- end }}
-  </div>
+        </aside>
+      </div>
+    </div>
+  </section>
 
-</section>
+  <section>
+    <div class="max-w-5xl mx-auto px-6 sm:px-10 py-14 sm:py-18">
+      <div class="mb-8 flex flex-wrap items-center justify-between gap-4">
+        <nav class="flex flex-wrap gap-2" aria-label="Gear categories" data-gear-filter>
+          <button type="button" data-cat="all" class="gear-chip is-active">All</button>
+          {{ range $cats }}
+          <button type="button" data-cat="{{ . }}" class="gear-chip">{{ . }}</button>
+          {{ end }}
+        </nav>
+        <p class="text-sm text-slate-500 dark:text-slate-400" data-gear-count>{{ len $entries }} entries</p>
+      </div>
 
-{{- /* Category filter — vanilla JS, ~25 lines. Click a chip → set
-       the active class on it, then walk .entry children and toggle
-       display based on data-cat. Updates the count line so it
-       reflects the visible set. */ -}}
+      <div class="grid gap-4 md:grid-cols-2" id="gear-entries">
+        {{ range $entries }}
+        <article class="gear-card group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/85 dark:bg-slate-900/70 p-6 shadow-card hover:shadow-cardHover transition-all" data-cat="{{ .Params.category }}">
+          <a href="{{ .RelPermalink }}" class="block">
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">
+              {{ with .Params.category }}<span class="text-accent dark:text-accent-dark">{{ . }}</span>{{ end }}
+              {{ with .Params.purchased }}<span>{{ time.AsTime . | time.Format "2006" }}</span>{{ end }}
+              {{ with .Params.rating }}<span>{{ . }}/5</span>{{ end }}
+            </div>
+            <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-950 dark:text-slate-100 group-hover:text-accent dark:group-hover:text-accent-dark transition-colors">{{ .Title }}</h2>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{{ .Description | default (.Summary | plainify | truncate 180) }}</p>
+            <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-400 dark:text-slate-500">
+              {{ range first 3 (.Params.tags | default (slice)) }}
+              <span class="rounded-full border border-slate-200/80 dark:border-slate-800 px-2 py-1">#{{ . }}</span>
+              {{ end }}
+            </div>
+            <p class="mt-4 text-sm font-medium text-slate-900 dark:text-slate-100 group-hover:text-accent dark:group-hover:text-accent-dark">Read note →</p>
+          </a>
+        </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+</div>
 <script>
 (function () {
   const filter = document.querySelector('[data-gear-filter]');
   if (!filter) return;
-  const entries = Array.from(document.querySelectorAll('#gear-entries .entry'));
+  const entries = Array.from(document.querySelectorAll('#gear-entries .gear-card'));
   const countEl = document.querySelector('[data-gear-count]');
-
   filter.addEventListener('click', function (e) {
-    const target = e.target.closest('a[data-cat]');
-    if (!target) return;
-    e.preventDefault();
-    filter.querySelectorAll('a[data-cat]').forEach(a => a.classList.remove('is-active'));
-    target.classList.add('is-active');
-    const cat = target.dataset.cat;
+    const btn = e.target.closest('[data-cat]');
+    if (!btn) return;
+    filter.querySelectorAll('[data-cat]').forEach(x => x.classList.remove('is-active'));
+    btn.classList.add('is-active');
+    const cat = btn.dataset.cat;
     let visible = 0;
     entries.forEach(entry => {
-      const matches = cat === 'all' || entry.dataset.cat === cat;
-      entry.style.display = matches ? '' : 'none';
-      if (matches) visible += 1;
+      const match = cat === 'all' || entry.dataset.cat === cat;
+      entry.style.display = match ? '' : 'none';
+      if (match) visible += 1;
     });
-    if (countEl) {
-      countEl.textContent = visible + ' ' + (visible === 1 ? 'entry' : 'entries');
-    }
+    if (countEl) countEl.textContent = visible + ' ' + (visible === 1 ? 'entry' : 'entries');
   });
 })();
 </script>
-{{- end }}
+{{ end }}

@@ -1065,3 +1065,14 @@ body {
   text-decoration: none;
 }
 .tag-pill:hover, .cat-pill:hover { border-color: var(--ink); }
+
+
+.gear-chip {
+  @apply inline-flex items-center rounded-full border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 transition-colors;
+}
+.gear-chip:hover {
+  @apply border-accent/30 dark:border-accent-dark/30 text-accent dark:text-accent-dark;
+}
+.gear-chip.is-active {
+  @apply border-accent/40 dark:border-accent-dark/40 text-accent dark:text-accent-dark;
+}
