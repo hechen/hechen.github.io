@@ -1,86 +1,175 @@
 {{- /*
-  /post/<slug>/ — single blog post. samwanng.com-inspired quiet
-  detail layout: back-link, metadata line, big serif title,
-  prose body in a single 720-px column. Drops the sticky-TOC
-  sidebar and the reading-progress bar — the reference design
-  has neither. Tags appear in a small row at the foot; prev/next
-  are two inline links, not boxed cards.
-
-  Multilingual: the metadata row carries an inline language switcher
-  populated by .Translations. Each sibling-language page gets a
-  small link with its languageName + hreflang attr. The switcher
-  hides itself when a post has no translations.
+  Blog post layout. Keeps PaperMod's content helpers, but replaces
+  the default chrome with a focused reading experience: spacious
+  editorial header, sticky TOC, progress indicator, tags, and adjacent
+  posts.
 */ -}}
 {{- define "main" }}
-<article class="site-container py-8 md:py-10">
 
-  <a class="back-link" href="/post/" aria-label="Back to writing">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-    Back to writing
-  </a>
+{{- /* Reading progress bar — 3px-tall accent strip pinned at the
+       very top, fills as the user scrolls through the article. */ -}}
+<div id="reading-progress"
+     class="fixed top-0 left-0 right-0 h-[3px] bg-transparent z-50 pointer-events-none"
+     aria-hidden="true">
+  <div id="reading-progress-bar"
+       class="h-full w-0 bg-accent dark:bg-accent-dark transition-[width] duration-75 ease-out"></div>
+</div>
 
-  <p class="detail-meta">
-    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
-    {{- if .ReadingTime }}
-    <span class="dot" aria-hidden="true">·</span>
-    <span>{{ .ReadingTime }} min read</span>
-    {{- end }}
-    {{- with $.GetTerms "categories" }}
-    <span class="dot" aria-hidden="true">·</span>
-    <span>
-      {{- range $i, $c := . }}{{ if gt $i 0 }}, {{ end }}<a href="{{ .Permalink }}">{{ .LinkTitle | title }}</a>{{ end -}}
-    </span>
-    {{- end }}
-    {{- with .Translations }}
-    <span class="dot" aria-hidden="true">·</span>
-    <span>
-      {{- range $i, $t := . }}{{ if gt $i 0 }}, {{ end }}<a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}">{{ .Language.LanguageName }}</a>{{ end -}}
-    </span>
-    {{- end }}
-  </p>
+<article class="post article-shell">
+  <header class="post-header max-w-5xl mx-auto px-5 sm:px-8 lg:px-10 pt-10 sm:pt-16 pb-10 sm:pb-14">
+    <a href="/post/" class="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 shadow-sm hover:border-accent/40 dark:hover:border-accent-dark/40 hover:text-accent dark:hover:text-accent-dark transition-colors">
+      <span aria-hidden="true">←</span>
+      All posts
+    </a>
 
-  <h1 class="detail-title">{{ .Title }}</h1>
+    <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-end">
+      <div>
+        <div class="mb-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+          {{- if .ReadingTime }}
+          <span aria-hidden="true">/</span>
+          <span>{{ .ReadingTime }} min read</span>
+          {{- end }}
+        </div>
 
-  {{- with .Description }}
-  <p style="font-style: italic; color: var(--muted); font-size: 22px; line-height: 1.4; margin: -1rem 0 2.5rem; max-width: var(--max-prose);">
-    {{ . }}
-  </p>
-  {{- end }}
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-7xl font-bold leading-[0.98] text-slate-950 dark:text-white">
+          {{ .Title }}
+        </h1>
 
-  <div class="post-body detail-body">
-    {{- if not (.Param "disableAnchoredHeadings") }}
-    {{ partial "anchored_headings.html" .Content }}
-    {{- else }}
-    {{ .Content }}
+        {{- with .Description }}
+        <p class="mt-5 max-w-2xl font-serif text-xl sm:text-2xl leading-9 text-slate-600 dark:text-slate-400">
+          {{ . }}
+        </p>
+        {{- end }}
+      </div>
+
+      {{- with $.GetTerms "categories" }}
+      <div class="flex flex-wrap gap-2 lg:justify-end">
+        {{- range . }}
+        <a href="{{ .RelPermalink }}" class="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-900 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-accent/10 dark:hover:bg-accent-dark/15 hover:text-accent dark:hover:text-accent-dark transition-colors">{{ .LinkTitle | title }}</a>
+        {{- end }}
+      </div>
+      {{- end }}
+    </div>
+  </header>
+
+  <div class="post-layout relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 lg:grid lg:grid-cols-[minmax(0,720px)_260px] lg:gap-16 lg:justify-center">
+
+    <div class="post-body font-serif text-[19px] sm:text-[20px] leading-[1.78] text-slate-800 dark:text-slate-200 max-w-[720px] mx-auto lg:mx-0">
+      {{- if .TableOfContents }}
+      <details class="lg:hidden mb-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/70 px-5 py-4 text-base font-sans not-prose">
+        <summary class="cursor-pointer text-sm font-semibold text-slate-800 dark:text-slate-200">On this page</summary>
+        <div class="mt-4 text-sm leading-relaxed [&_ul]:space-y-1.5 [&_a]:text-slate-600 dark:[&_a]:text-slate-400 [&_a:hover]:text-accent dark:[&_a:hover]:text-accent-dark">
+          {{ .TableOfContents }}
+        </div>
+      </details>
+      {{- end }}
+
+      {{- if not (.Param "disableAnchoredHeadings") }}
+      {{ partial "anchored_headings.html" .Content }}
+      {{- else }}
+      {{ .Content }}
+      {{- end }}
+    </div>
+
+    {{- if .TableOfContents }}
+    <aside class="hidden lg:block">
+      <nav id="toc-sidebar"
+           class="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 p-5 text-sm leading-relaxed">
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500 mb-4">On this page</p>
+        <div class="[&_ul]:space-y-2 [&_ul_ul]:mt-2 [&_ul_ul]:border-l [&_ul_ul]:border-slate-200 dark:[&_ul_ul]:border-slate-800 [&_ul_ul]:pl-3 [&_a]:block [&_a]:text-slate-500 dark:[&_a]:text-slate-400 [&_a:hover]:text-accent dark:[&_a:hover]:text-accent-dark [&_a]:py-0.5 [&_a]:transition-colors">
+          {{ .TableOfContents }}
+        </div>
+      </nav>
+    </aside>
     {{- end }}
   </div>
 
-  <div class="detail-tags">
+  <footer class="post-footer max-w-3xl mx-auto px-5 sm:px-8 lg:px-10 mt-16 sm:mt-20 pt-8 border-t border-slate-200/70 dark:border-slate-800">
     {{- with $.GetTerms "tags" }}
-    {{- range . }}
-    <a class="tag" href="{{ .Permalink }}">#{{ .LinkTitle }}</a>
+    <div class="flex flex-wrap gap-2 mb-12">
+      {{- range . }}
+      <a href="{{ .Permalink }}"
+         class="inline-flex items-center rounded-full border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 px-2.5 py-1 text-xs font-medium text-slate-600 dark:text-slate-300 hover:border-accent/30 dark:hover:border-accent-dark/30 hover:text-accent dark:hover:text-accent-dark transition-colors">
+        #{{ .LinkTitle }}
+      </a>
+      {{- end }}
+    </div>
     {{- end }}
+
+    {{- $prev := .PrevInSection }}
+    {{- $next := .NextInSection }}
+    {{- if or $prev $next }}
+    <nav class="grid sm:grid-cols-2 gap-3 sm:gap-4 not-prose">
+      {{- if $prev }}
+      <a href="{{ $prev.RelPermalink }}"
+         class="group flex flex-col gap-1 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 hover:border-accent/40 dark:hover:border-accent-dark/40 hover:shadow-card transition-all">
+        <span class="text-xs uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">← Previous</span>
+        <span class="font-sans font-semibold text-slate-900 dark:text-slate-100 group-hover:text-accent dark:group-hover:text-accent-dark transition-colors line-clamp-2">{{ $prev.Title }}</span>
+      </a>
+      {{- else }}<span></span>{{- end }}
+      {{- if $next }}
+      <a href="{{ $next.RelPermalink }}"
+         class="group flex flex-col gap-1 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 hover:border-accent/40 dark:hover:border-accent-dark/40 hover:shadow-card transition-all sm:text-right">
+        <span class="text-xs uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">Next →</span>
+        <span class="font-sans font-semibold text-slate-900 dark:text-slate-100 group-hover:text-accent dark:group-hover:text-accent-dark transition-colors line-clamp-2">{{ $next.Title }}</span>
+      </a>
+      {{- else }}<span></span>{{- end }}
+    </nav>
     {{- end }}
-  </div>
-
-  {{- $prev := .PrevInSection }}
-  {{- $next := .NextInSection }}
-  {{- if or $prev $next }}
-  <nav class="post-nav">
-    {{- if $prev }}
-    <a class="post-nav-prev" href="{{ $prev.RelPermalink }}">
-      <span class="post-nav-label">← Previous</span>
-      <span class="post-nav-title">{{ $prev.Title }}</span>
-    </a>
-    {{- else }}<span></span>{{- end }}
-    {{- if $next }}
-    <a class="post-nav-next" href="{{ $next.RelPermalink }}">
-      <span class="post-nav-label">Next →</span>
-      <span class="post-nav-title">{{ $next.Title }}</span>
-    </a>
-    {{- else }}<span></span>{{- end }}
-  </nav>
-  {{- end }}
-
+  </footer>
 </article>
-{{- end }}
+
+{{- /* Inline JS: reading progress bar + TOC scroll spy. Small enough
+       that an external file isn't worth the round-trip. */ -}}
+<script>
+(function () {
+  // Reading progress: width of the bar tracks how much of the
+  // article body has scrolled past the viewport top.
+  var bar = document.getElementById('reading-progress-bar');
+  var article = document.querySelector('.post-body');
+  if (bar && article) {
+    var update = function () {
+      var rect = article.getBoundingClientRect();
+      var total = rect.height - window.innerHeight;
+      if (total <= 0) { bar.style.width = '100%'; return; }
+      var scrolled = Math.min(Math.max(-rect.top, 0), total);
+      bar.style.width = (scrolled / total * 100).toFixed(1) + '%';
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  }
+
+  // TOC scroll spy: highlight the entry whose target section is
+  // closest to the viewport top. IntersectionObserver fires when
+  // headings enter / leave the top portion of the viewport.
+  var tocSidebar = document.getElementById('toc-sidebar');
+  if (tocSidebar) {
+    var links = tocSidebar.querySelectorAll('a[href^="#"]');
+    var byHash = {};
+    links.forEach(function (link) {
+      byHash[decodeURIComponent(link.getAttribute('href').slice(1))] = link;
+    });
+    var setActive = function (id) {
+      links.forEach(function (link) {
+        link.classList.remove('text-accent', 'dark:text-accent-dark', 'font-medium');
+      });
+      var active = byHash[id];
+      if (active) active.classList.add('text-accent', 'dark:text-accent-dark', 'font-medium');
+    };
+    var observer = new IntersectionObserver(function (entries) {
+      var visible = entries.filter(function (e) { return e.isIntersecting; });
+      if (visible.length === 0) return;
+      // Pick the heading nearest the top of the viewport.
+      visible.sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+      setActive(visible[0].target.id);
+    }, { rootMargin: '-80px 0px -70% 0px', threshold: 0 });
+    document.querySelectorAll('.post-body h2[id], .post-body h3[id]').forEach(function (h) {
+      observer.observe(h);
+    });
+  }
+})();
+</script>
+
+{{- end }}{{/* end main */}}

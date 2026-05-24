@@ -3,6 +3,447 @@ title: 'Chen He — apps, writing, gear'
 description: 'iOS developer building thoughtful, polished apps for the Apple ecosystem.'
 ---
 
-{{/* This file is intentionally minimal — the homepage layout lives at
-     layouts/index.html so it can iterate Hugo collections (apps,
-     posts, gear) in template logic instead of hand-edited HTML. */}}
+<!-- GLOBAL NAV — same markup on every page I control. -->
+
+
+<!-- HERO -->
+<section class="gradient-bg-animated">
+  <div class="max-w-5xl mx-auto px-6 sm:px-10 pt-24 pb-20 sm:pt-32 sm:pb-28">
+    <div class="flex items-center gap-2 text-sm font-medium text-accent dark:text-accent-dark mb-6">
+      <span class="inline-block h-2 w-2 rounded-full bg-accent dark:bg-accent-dark"></span>
+      <span>Currently shipping</span>
+    </div>
+    <h1 class="text-5xl sm:text-7xl font-bold tracking-tight leading-[1.05] mb-6">Chen He</h1>
+    <p class="text-xl sm:text-2xl text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
+      iOS developer building thoughtful, polished apps for the Apple ecosystem.
+    </p>
+
+    <!-- Stats counter row. Hardcoded — counting builds/LOC across
+         private repos client-side isn't practical, and the values
+         change slowly enough that quarterly manual updates beat a
+         flaky API call. -->
+    <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-10 max-w-2xl">
+      <div>
+        <div class="stat-num text-3xl sm:text-4xl font-bold tracking-tight tabular-nums">9</div>
+        <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">apps in flight</div>
+      </div>
+      <div>
+        <div class="stat-num text-3xl sm:text-4xl font-bold tracking-tight tabular-nums" style="animation-delay: 0.2s">8</div>
+        <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">on TestFlight</div>
+      </div>
+      <div>
+        <div class="stat-num text-3xl sm:text-4xl font-bold tracking-tight tabular-nums" style="animation-delay: 0.3s">1</div>
+        <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">on App Store</div>
+      </div>
+      <div>
+        <div class="stat-num text-3xl sm:text-4xl font-bold tracking-tight tabular-nums" style="animation-delay: 0.4s">~380k</div>
+        <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">lines of Swift</div>
+      </div>
+    </div>
+
+    <a href="#apps" class="mt-12 inline-flex items-center gap-2 text-base text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark transition-colors">
+      View my apps
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- APPS GRID -->
+<section id="apps" class="border-t border-slate-200/60 dark:border-slate-800">
+  <div class="max-w-5xl mx-auto px-6 sm:px-10 py-20 sm:py-28">
+    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-2">Apps</h2>
+    <p class="text-slate-500 dark:text-slate-400 mb-12 sm:mb-14">A collection of apps designed and built for iOS and macOS.</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 [perspective:1200px]">
+
+      <!-- LiftCoach — TestFlight -->
+      <article class="app-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-card hover:shadow-cardTilt">
+        <div class="flex items-start justify-between mb-5">
+          <img src="/assets/icons/liftcoach.png" alt="LiftCoach app icon" class="w-16 h-16 rounded-[22%] shadow-md" loading="lazy" decoding="async">
+          <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-tf">TestFlight</span>
+        </div>
+        <h3 class="text-xl font-bold mb-1">LiftCoach</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">AI strength coach for serious lifters.</p>
+        <div class="flex items-center gap-3 text-slate-400 dark:text-slate-500 icon-link">
+          <a href="https://hechen.github.io/apps/liftcoach/" title="Marketing site" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></a>
+          <a href="https://hechen.github.io/apps/liftcoach/privacy.html" title="Privacy policy" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></a>
+          <a href="https://hechen.github.io/apps/liftcoach/support.html" title="Support" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
+          <a href="https://github.com/hechen/GymLog" title="Source" class="hover:text-accent dark:hover:text-accent-dark transition-colors ml-auto"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 0z"/></svg></a>
+        </div>
+      </article>
+
+      <!-- DupeOut — TestFlight (NEW) -->
+      <article class="app-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-card hover:shadow-cardTilt">
+        <div class="flex items-start justify-between mb-5">
+          <img src="/assets/icons/dupeout.png" alt="DupeOut app icon" class="w-16 h-16 rounded-[22%] shadow-md" loading="lazy" decoding="async">
+          <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-tf">TestFlight</span>
+        </div>
+        <h3 class="text-xl font-bold mb-1">DupeOut</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">Find and clean duplicate photos on iPhone — smart clustering, on-device privacy.</p>
+        <div class="flex items-center gap-3 text-slate-400 dark:text-slate-500 icon-link">
+          <a href="apps/dupeout/" title="Marketing site" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></a>
+          <a href="apps/dupeout/privacy.html" title="Privacy policy" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></a>
+          <a href="apps/dupeout/support.html" title="Support" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
+          <span class="text-slate-300 dark:text-slate-700 ml-auto" title="Private repo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 0z"/></svg></span>
+        </div>
+      </article>
+
+      <!-- TrainInsight — TestFlight (NEW) -->
+      <article class="app-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-card hover:shadow-cardTilt">
+        <div class="flex items-start justify-between mb-5">
+          <img src="/assets/icons/traininsight.png" alt="TrainInsight app icon" class="w-16 h-16 rounded-[22%] shadow-md" loading="lazy" decoding="async">
+          <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-tf">TestFlight</span>
+        </div>
+        <h3 class="text-xl font-bold mb-1">TrainInsight</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">Apple Watch training analytics with on-device AI summaries and readiness signals.</p>
+        <div class="flex items-center gap-3 text-slate-400 dark:text-slate-500 icon-link">
+          <span class="text-slate-300 dark:text-slate-700" title="Marketing site coming soon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></span>
+          <span class="text-slate-300 dark:text-slate-700" title="Privacy page coming soon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></span>
+          <span class="text-slate-300 dark:text-slate-700" title="Support page coming soon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-with="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span>
+          <span class="text-slate-300 dark:text-slate-700 ml-auto" title="Private repo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 0z"/></svg></span>
+        </div>
+      </article>
+
+      <!-- Structly — Live (App Store) -->
+      <article class="app-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-card hover:shadow-cardTilt">
+        <div class="flex items-start justify-between mb-5">
+          <img src="/assets/icons/structly.png" alt="Structly app icon" class="w-16 h-16 rounded-[22%] shadow-md" loading="lazy" decoding="async">
+          <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-live">Live</span>
+        </div>
+        <h3 class="text-xl font-bold mb-1">Structly</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">Beautiful JSON formatting Safari extension for macOS and iOS.</p>
+        <div class="flex items-center gap-3 text-slate-400 dark:text-slate-500 icon-link">
+          <a href="apps/structly/" title="Marketing site" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></a>
+          <a href="apps/structly/privacy.html" title="Privacy policy" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></a>
+          <a href="apps/structly/support.html" title="Support" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
+          <a href="https://apps.apple.com/us/app/structly-json-formatter/id6753774575" title="Get on the App Store" class="hover:text-accent dark:hover:text-accent-dark transition-colors ml-auto"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg></a>
+        </div>
+      </article>
+
+      <!-- SpendWisely — TestFlight -->
+      <article class="app-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-card hover:shadow-cardTilt">
+        <div class="flex items-start justify-between mb-5">
+          <img src="/assets/icons/spendwisely.png" alt="SpendWisely app icon" class="w-16 h-16 rounded-[22%] shadow-md" loading="lazy" decoding="async">
+          <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-tf">TestFlight</span>
+        </div>
+        <h3 class="text-xl font-bold mb-1">SpendWisely</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">Personal finance tracker with AI insights and bank integration.</p>
+        <div class="flex items-center gap-3 text-slate-400 dark:text-slate-500 icon-link">
+          <a href="apps/spendwisely/" title="Marketing site" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></a>
+          <a href="apps/spendwisely/privacy.html" title="Privacy policy" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></a>
+          <a href="apps/spendwisely/support.html" title="Support" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
+          <a href="https://github.com/hechen/spendwisely-website" title="Website source" class="hover:text-accent dark:hover:text-accent-dark transition-colors ml-auto"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 0z"/></svg></a>
+        </div>
+      </article>
+
+      <!-- EatWisely — TestFlight -->
+      <article class="app-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-card hover:shadow-cardTilt">
+        <div class="flex items-start justify-between mb-5">
+          <img src="/assets/icons/eatwisely.png" alt="EatWisely app icon" class="w-16 h-16 rounded-[22%] shadow-md" loading="lazy" decoding="async">
+          <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-tf">TestFlight</span>
+        </div>
+        <h3 class="text-xl font-bold mb-1">EatWisely</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">AI-powered meal tracking — snap, scan, or describe your food.</p>
+        <div class="flex items-center gap-3 text-slate-400 dark:text-slate-500 icon-link">
+          <a href="apps/eatwisely/" title="Marketing site" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></a>
+          <a href="apps/eatwisely/privacy.html" title="Privacy policy" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></a>
+          <a href="apps/eatwisely/support.html" title="Support" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
+          <span class="text-slate-300 dark:text-slate-700 ml-auto" title="Private repo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 0z"/></svg></span>
+        </div>
+      </article>
+
+      <!-- Distill — TestFlight -->
+      <article class="app-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-card hover:shadow-cardTilt">
+        <div class="flex items-start justify-between mb-5">
+          <img src="/assets/icons/distill.png" alt="Distill app icon" class="w-16 h-16 rounded-[22%] shadow-md" loading="lazy" decoding="async">
+          <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-tf">TestFlight</span>
+        </div>
+        <h3 class="text-xl font-bold mb-1">Distill</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">Save, archive, and search your links — across iOS, macOS, and watchOS.</p>
+        <div class="flex items-center gap-3 text-slate-400 dark:text-slate-500 icon-link">
+          <a href="apps/distill/" title="Marketing site" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></a>
+          <a href="apps/distill/privacy.html" title="Privacy policy" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></a>
+          <a href="apps/distill/support.html" title="Support" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
+          <span class="text-slate-300 dark:text-slate-700 ml-auto" title="Private repo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 0z"/></svg></span>
+        </div>
+      </article>
+
+      <!-- Closet — TestFlight -->
+      <article class="app-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-card hover:shadow-cardTilt">
+        <div class="flex items-start justify-between mb-5">
+          <img src="/assets/icons/closet.png" alt="Closet app icon" class="w-16 h-16 rounded-[22%] shadow-md" loading="lazy" decoding="async">
+          <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-tf">TestFlight</span>
+        </div>
+        <h3 class="text-xl font-bold mb-1">Closet</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">Your digital wardrobe — catalog, organize, and plan outfits.</p>
+        <div class="flex items-center gap-3 text-slate-400 dark:text-slate-500 icon-link">
+          <a href="apps/closet/" title="Marketing site" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></a>
+          <a href="apps/closet/privacy.html" title="Privacy policy" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></a>
+          <a href="apps/closet/support.html" title="Support" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
+          <span class="text-slate-300 dark:text-slate-700 ml-auto" title="Private repo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 0z"/></svg></span>
+        </div>
+      </article>
+
+      <!-- Market Mood — TestFlight (formerly FearIndex) -->
+      <article class="app-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-card hover:shadow-cardTilt">
+        <div class="flex items-start justify-between mb-5">
+          <img src="/assets/icons/marketmood.png" alt="Market Mood icon" class="w-16 h-16 rounded-[22%] shadow-md">
+          <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-tf">TestFlight</span>
+        </div>
+        <h3 class="text-xl font-bold mb-1">Market Mood</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">Crypto + macro fear-and-greed dashboard for iPhone, iPad, and Apple Watch.</p>
+        <div class="flex items-center gap-3 text-slate-400 dark:text-slate-500 icon-link">
+          <a href="apps/marketmood/" title="Marketing site" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></a>
+          <a href="apps/marketmood/privacy.html" title="Privacy policy" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></a>
+          <a href="apps/marketmood/support.html" title="Support" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
+          <span class="text-slate-300 dark:text-slate-700 ml-auto" title="Private repo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 0z"/></svg></span>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="mt-12 text-sm text-slate-400 dark:text-slate-500">
+      Status pills: <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-live">Live</span> = on the App Store · <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-tf">TestFlight</span> = beta · <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-coming">Coming Soon</span> = in design.
+    </p>
+  </div>
+</section>
+
+<!-- EXPLORE -->
+<section class="border-t border-slate-200/60 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-950">
+  <div class="max-w-5xl mx-auto px-6 sm:px-10 py-16 sm:py-20">
+    <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-accent dark:text-accent-dark">Explore</p>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">More than the app catalog</h2>
+      </div>
+      <p class="max-w-md text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+        The site now has clearer front doors for writing, tools, gear notes, and photography work as they grow.
+      </p>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <a href="/post/" class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/85 dark:bg-slate-900/70 p-5 shadow-card hover:shadow-cardHover transition-all">
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent dark:text-accent-dark">Blog</p>
+        <h3 class="mt-3 text-xl font-bold tracking-tight group-hover:text-accent dark:group-hover:text-accent-dark transition-colors">Technical writing</h3>
+        <p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">Swift, iOS, macOS, build systems, and older translated posts.</p>
+      </a>
+
+      <a href="/tools/" class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/85 dark:bg-slate-900/70 p-5 shadow-card hover:shadow-cardHover transition-all">
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent dark:text-accent-dark">Tools</p>
+        <h3 class="mt-3 text-xl font-bold tracking-tight group-hover:text-accent dark:group-hover:text-accent-dark transition-colors">Current stack</h3>
+        <p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">The software and hardware currently behind the Apple app work.</p>
+      </a>
+
+      <a href="/gear/" class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/85 dark:bg-slate-900/70 p-5 shadow-card hover:shadow-cardHover transition-all">
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent dark:text-accent-dark">Gear</p>
+        <h3 class="mt-3 text-xl font-bold tracking-tight group-hover:text-accent dark:group-hover:text-accent-dark transition-colors">Setup notes</h3>
+        <p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">A scaffold for real gear notes, with no invented loadout or affiliate catalog.</p>
+      </a>
+
+      <a href="/photography/" class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/85 dark:bg-slate-900/70 p-5 shadow-card hover:shadow-cardHover transition-all">
+        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-accent dark:text-accent-dark">Photography</p>
+        <h3 class="mt-3 text-xl font-bold tracking-tight group-hover:text-accent dark:group-hover:text-accent-dark transition-colors">Future essays</h3>
+        <p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">A prepared home for selected images and process notes once the content exists.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Item 5: Recent Activity. Pulls latest GitHub events client-side. -->
+<section id="activity" class="border-t border-slate-200/60 dark:border-slate-800">
+  <div class="max-w-5xl mx-auto px-6 sm:px-10 py-20 sm:py-28">
+    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-2">Recent activity</h2>
+    <p class="text-slate-500 dark:text-slate-400 mb-10">Latest commits across public repos. Pulled from GitHub on page load.</p>
+
+    <ol id="activity-feed" class="space-y-3">
+      <!-- Skeleton rows. JS replaces them on fetch. -->
+      <li class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 feed-skeleton h-16"></li>
+      <li class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 feed-skeleton h-16"></li>
+      <li class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 feed-skeleton h-16"></li>
+    </ol>
+
+    <p id="activity-fallback" class="hidden mt-6 text-sm text-slate-500 dark:text-slate-400">
+      GitHub API didn't respond — try <a class="text-accent dark:text-accent-dark hover:underline" href="https://github.com/hechen?tab=overview">github.com/hechen</a> directly.
+    </p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="border-t border-slate-200/60 dark:border-slate-800">
+  <div class="max-w-3xl mx-auto px-6 sm:px-10 py-20 sm:py-24">
+    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-6">About</h2>
+    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+      I build iOS and macOS apps focused on craft, polish, and respect for the user's data. Most of my apps run AI fully on-device. None of them have analytics, tracking, or ads.
+    </p>
+    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+      Reach out: <a href="mailto:hechen.dream@gmail.com" class="text-accent dark:text-accent-dark hover:underline">hechen.dream@gmail.com</a> · <a href="https://github.com/hechen" class="text-accent dark:text-accent-dark hover:underline">GitHub</a>
+    </p>
+    <p class="text-sm text-slate-500 dark:text-slate-400">
+      <a href="now/" class="text-accent dark:text-accent-dark hover:underline">/now</a> — what I'm working on this week ·
+      <a href="tools/" class="text-accent dark:text-accent-dark hover:underline">/tools</a> — what I build with
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER + Item 7: condensed activity widget -->
+
+
+<script>
+// Items 5 + 7: shared GitHub activity fetch.
+// One API call powers both the homepage Recent Activity list (top 10)
+// and the footer condensed widget (top 5). Graceful failure: skeleton
+// rows stay if the fetch errors / rate-limits, plus a fallback link.
+//
+// `events/public` returns up to 30 most recent public events; we
+// filter to PushEvent and dedupe by repo+commit-message so a single
+// push of N commits doesn't swamp the list.
+(async function () {
+  const main = document.getElementById('activity-feed');
+  const footer = document.getElementById('footer-feed');
+  const fallback = document.getElementById('activity-fallback');
+
+  function relTime(iso) {
+    const d = new Date(iso);
+    const s = Math.max(0, (Date.now() - d.getTime()) / 1000);
+    if (s < 60)      return 'just now';
+    if (s < 3600)    return Math.floor(s / 60) + 'm ago';
+    if (s < 86400)   return Math.floor(s / 3600) + 'h ago';
+    if (s < 604800)  return Math.floor(s / 86400) + 'd ago';
+    return d.toLocaleDateString();
+  }
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, (c) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[c]);
+  }
+
+  try {
+    const res = await fetch('https://api.github.com/users/hechen/events/public?per_page=30');
+    if (!res.ok) throw new Error('GitHub API ' + res.status);
+    const events = await res.json();
+
+    const rows = [];
+    const seen = new Set();
+    for (const ev of events) {
+      if (ev.type !== 'PushEvent') continue;
+      const repo = ev.repo.name.replace(/^hechen\//, '');
+      const commits = (ev.payload.commits || []).slice().reverse();
+      for (const c of commits) {
+        const key = repo + '|' + c.sha;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        const msg = (c.message || '').split('\n')[0]; // first line only
+        rows.push({
+          repo,
+          msg,
+          time: ev.created_at,
+          url: 'https://github.com/' + ev.repo.name + '/commit/' + c.sha
+        });
+        if (rows.length >= 15) break;
+      }
+      if (rows.length >= 15) break;
+    }
+
+    if (rows.length === 0) throw new Error('No PushEvents in feed');
+
+    // Render top 10 to main feed.
+    if (main) {
+      main.innerHTML = rows.slice(0, 10).map(r => `
+        <li class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 hover:border-accent/40 dark:hover:border-accent-dark/40 transition-colors">
+          <a href="${escapeHtml(r.url)}" class="block group">
+            <div class="flex items-baseline justify-between gap-3 mb-1">
+              <span class="font-mono text-xs font-semibold text-accent dark:text-accent-dark">${escapeHtml(r.repo)}</span>
+              <span class="text-xs text-slate-400 dark:text-slate-500 tabular-nums">${escapeHtml(relTime(r.time))}</span>
+            </div>
+            <div class="text-sm text-slate-700 dark:text-slate-300 truncate group-hover:text-accent dark:group-hover:text-accent-dark transition-colors">
+              ${escapeHtml(r.msg)}
+            </div>
+          </a>
+        </li>
+      `).join('');
+    }
+
+    // Render top 5 to footer (condensed).
+    if (footer) {
+      footer.innerHTML = rows.slice(0, 5).map(r => `
+        <li class="truncate">
+          <a href="${escapeHtml(r.url)}" class="hover:text-accent dark:hover:text-accent-dark transition-colors">
+            <span class="font-mono text-accent dark:text-accent-dark">${escapeHtml(r.repo)}</span>
+            <span class="mx-1 text-slate-400 dark:text-slate-600">·</span>
+            ${escapeHtml(r.msg)}
+          </a>
+        </li>
+      `).join('');
+    }
+  } catch (e) {
+    if (fallback) fallback.classList.remove('hidden');
+    if (main) main.innerHTML = '';
+    if (footer) {
+      footer.innerHTML = '<li class="text-slate-400 dark:text-slate-600">Couldn\'t load feed.</li>';
+    }
+    console.warn('GitHub events fetch failed:', e);
+  }
+})();
+
+// Cursor-aware 3D tilt on app cards. Replaces the static :hover tilt
+// from the CSS (the CSS rule still fires on touch devices and as a
+// fallback for users with JS disabled). Math: cursor position
+// normalised to [-1, 1] across the card's bounding box becomes the
+// rotateY/rotateX angles, capped at ±6° so the effect stays subtle.
+// translateY(-6px) on hover gives the same vertical lift the CSS rule
+// had. Reduced-motion users get a gentle lift but no rotation.
+(function () {
+  const reducedMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) return; // CSS-only :hover lift handles this case.
+
+  const cards = document.querySelectorAll('.app-card');
+  if (!cards.length) return;
+
+  // Touch devices: skip tilt entirely. The static :hover from CSS
+  // doesn't fire here anyway; tilt feels weird on phones because
+  // there's no cursor.
+  const isTouch = window.matchMedia('(hover: none)').matches;
+  if (isTouch) return;
+
+  const MAX_TILT = 6;   // degrees
+  const LIFT     = 6;   // px
+
+  cards.forEach((card) => {
+    let raf = null;
+    let pending = null;
+
+    const apply = () => {
+      raf = null;
+      if (!pending) return;
+      const { x, y } = pending;
+      // x, y are in [-1, 1]. Negative y → cursor above center → tilt
+      // away (rotateX positive, top tips back). Positive x → cursor
+      // right of center → rotateY negative (right edge dips toward
+      // viewer). Matches the CSS :hover defaults.
+      const rotX =  y * MAX_TILT;
+      const rotY = -x * MAX_TILT;
+      card.style.transform =
+        `translateY(-${LIFT}px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+    };
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      // Normalise to [-1, 1] across the card.
+      const x = ((e.clientX - rect.left) / rect.width)  * 2 - 1;
+      const y = ((e.clientY - rect.top)  / rect.height) * 2 - 1;
+      pending = { x, y };
+      if (raf == null) raf = requestAnimationFrame(apply);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      // Reset — let the CSS transition ease back to the resting
+      // transform via the original :hover rule fading out.
+      pending = null;
+      if (raf != null) { cancelAnimationFrame(raf); raf = null; }
+      card.style.transform = '';
+    });
+  });
+})();
+</script>

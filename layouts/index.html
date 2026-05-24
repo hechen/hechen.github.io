@@ -16,82 +16,30 @@
 {{- define "main" }}
 <section class="site-container py-8 md:py-10">
 
-  {{- /* ---- Apps ----------------------------------------------- */ -}}
-  <div class="home-section">
-    <div class="home-section-header">
-      <h2 class="home-section-title">Apps</h2>
-      <a class="home-section-more" href="/apps/">View all →</a>
+{{ $recent := first 5 (where .Site.RegularPages "Section" "post") }}
+{{ if $recent }}
+<section class="border-t border-slate-200/70 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-950">
+  <div class="max-w-5xl mx-auto px-6 sm:px-10 py-14 sm:py-18">
+    <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-accent dark:text-accent-dark">Writing</p>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold leading-tight text-slate-950 dark:text-white">Recent notes from the blog</h2>
+      </div>
+      <a href="/post/" class="inline-flex items-center gap-2 rounded-full border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:border-accent/40 dark:hover:border-accent-dark/40 hover:text-accent dark:hover:text-accent-dark transition-colors">
+        All posts
+        <span aria-hidden="true">→</span>
+      </a>
     </div>
-    <div class="entries">
-      {{- /* Apps live as branch bundles (apps/<slug>/_index.html) with
-             leaf children privacy.html and support.html. We want only
-             the branch-bundle pages — filter by Kind=="section" to
-             skip the privacy / support leaves. */ -}}
-      {{- $apps := where (where site.Pages "Section" "apps") "Kind" "section" }}
-      {{- /* Apps don't carry a status field on their _index pages,
-             so the status pill is keyed off the slug — matches the
-             ordering in the original content/_index.html so live
-             apps surface first. */ -}}
-      {{- $order := slice "structly" "liftcoach" "dupeout" "traininsight" "spendwisely" "eatwisely" "distill" "closet" "marketmood" }}
-      {{- $appsByOrder := slice }}
-      {{- range $order }}
-        {{- $slug := . }}
-        {{- range $apps }}
-          {{- if eq (path.Base (path.Dir .File.Path)) $slug }}
-            {{- $appsByOrder = $appsByOrder | append . }}
-          {{- end }}
-        {{- end }}
-      {{- end }}
-      {{- $statusMap := dict "structly" "live" "liftcoach" "tf" "dupeout" "tf" "traininsight" "tf" "spendwisely" "tf" "eatwisely" "tf" "distill" "tf" "closet" "tf" "marketmood" "tf" }}
-      {{- $blurbMap := dict
-            "structly" "Beautiful JSON formatting Safari extension for macOS and iOS."
-            "liftcoach" "AI strength coach for serious lifters — on-device AI, real coaching context, animated demos, and a polished log."
-            "dupeout" "Find and clean duplicate photos on iPhone. Smart on-device clustering, no cloud upload."
-            "traininsight" "Apple Watch training analytics with on-device AI summaries and readiness signals."
-            "spendwisely" "Personal finance tracker with AI insights and bank integration."
-            "eatwisely" "AI-powered meal tracking — snap, scan, or describe your food."
-            "distill" "Save, archive, and search your links — across iOS, macOS, and watchOS."
-            "closet" "Your digital wardrobe — catalog, organize, and plan outfits."
-            "marketmood" "Crypto + macro fear-and-greed dashboard for iPhone, iPad, and Apple Watch." }}
-      {{- $nameMap := dict
-            "structly" "Structly"
-            "liftcoach" "LiftCoach"
-            "dupeout" "DupeOut"
-            "traininsight" "TrainInsight"
-            "spendwisely" "SpendWisely"
-            "eatwisely" "EatWisely"
-            "distill" "Distill"
-            "closet" "Closet"
-            "marketmood" "Market Mood" }}
-      {{- range $appsByOrder }}
-        {{- $slug := path.Base (path.Dir .File.Path) }}
-        {{- $status := index $statusMap $slug }}
-        {{- $blurb := index $blurbMap $slug }}
-        {{- $name := index $nameMap $slug }}
-      <article class="entry">
-        <a class="entry-link" href="{{ .RelPermalink }}">
-          <div class="entry-poster">
-            <img src="/assets/icons/{{ $slug }}.png" alt="{{ $name }} icon" loading="lazy" decoding="async">
-          </div>
-          <div class="entry-body">
-            <h3 class="entry-title">{{ $name }}</h3>
-            <p class="entry-meta">
-              <span>App</span>
-              <span class="dot" aria-hidden="true">·</span>
-              {{- if eq $status "live" }}
-              <span class="status-pill is-live">live · App Store</span>
-              {{- else if eq $status "tf" }}
-              <span class="status-pill is-tf">TestFlight</span>
-              {{- else }}
-              <span class="status-pill is-coming">coming soon</span>
-              {{- end }}
-            </p>
-            <p class="entry-essay">{{ $blurb }}</p>
-          </div>
+    <ul class="grid gap-3">
+      {{ range $recent }}
+      <li>
+        <a href="{{ .RelPermalink }}" class="group flex flex-col gap-2 rounded-2xl border border-slate-200/70 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 px-5 py-4 shadow-sm transition-all hover:border-accent/30 dark:hover:border-accent-dark/30 hover:shadow-card sm:flex-row sm:items-baseline sm:justify-between">
+          <span class="font-serif text-xl font-semibold leading-snug text-slate-950 dark:text-slate-100 group-hover:text-accent dark:group-hover:text-accent-dark transition-colors">{{ .Title }}</span>
+          <time class="text-xs font-medium text-slate-400 dark:text-slate-500 tabular-nums shrink-0" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
         </a>
-      </article>
-      {{- end }}
-    </div>
+      </li>
+      {{ end }}
+    </ul>
   </div>
 
   {{- /* ---- Writing -------------------------------------------- */ -}}

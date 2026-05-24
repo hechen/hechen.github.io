@@ -1,37 +1,40 @@
 {{- /*
   Site-wide header — samwanng.com-inspired editorial chrome.
 
-  Brand wordmark + tagline at the top of every page, then a dot-
-  separated category chip row. No sticky nav, no dark toggle. The
-  chip row resolves the "active" state by comparing each chip's
-  RelURL against the current page's RelPermalink (with a tolerant
-  prefix check so /apps/liftcoach/ still highlights "Apps").
+    - Logo + "Chen He" wordmark (left)
+    - Apps · Blog · Gear · Photography · Now · Tools · About menu
+    - Sun/moon theme toggle (right) — id="theme-toggle" so the JS in
+      baseof.html wires the click to flip the dark class.
 
   Single source of truth for the chip set is hugo.toml's [menu.main].
 */ -}}
-<header class="site-container pt-12 pb-2 md:pt-14">
-  <a href="/" class="site-brand" aria-label="Chen He">Chen He</a>
-  <p class="site-tagline">
-    {{ site.Params.tagline | default site.Params.description }}
-  </p>
-
-  <nav class="nav-chips" aria-label="Sections">
-    {{- $currentPath := .RelPermalink -}}
-    {{- $items := slice -}}
-    {{- /* "All" sends visitors home — the home is the global index. */ -}}
-    {{- $items = $items | append (dict "name" "All" "url" "/") -}}
-    {{- range site.Menus.main -}}
-      {{- $items = $items | append (dict "name" .Name "url" .URL) -}}
-    {{- end -}}
-    {{- range $i, $item := $items -}}
-      {{- if gt $i 0 -}}<span class="dot" aria-hidden="true">·</span>{{- end -}}
-      {{- $isActive := false -}}
-      {{- if eq $item.url "/" -}}
-        {{- $isActive = eq $currentPath "/" -}}
-      {{- else -}}
-        {{- $isActive = hasPrefix $currentPath $item.url -}}
-      {{- end -}}
-      <a href="{{ $item.url }}"{{ if $isActive }} class="is-active"{{ end }}>{{ $item.name }}</a>
-    {{- end }}
-  </nav>
-</header>
+<nav class="border-b border-slate-200/60 dark:border-slate-800 sticky top-0 z-40 bg-white/85 dark:bg-slate-950/85 backdrop-blur-md">
+  <div class="max-w-6xl mx-auto px-4 sm:px-8 lg:px-10 h-14 flex items-center justify-between gap-3">
+    <a href="/" class="flex shrink-0 items-center gap-2 font-semibold text-slate-900 dark:text-slate-100 hover:text-accent dark:hover:text-accent-dark transition-colors">
+      <span class="inline-block h-2 w-2 rounded-full bg-accent dark:bg-accent-dark"></span>
+      Chen He
+    </a>
+    {{- $current := .RelPermalink -}}
+    <div class="flex min-w-0 items-center gap-1 text-sm">
+      <div class="flex min-w-0 items-center gap-1 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {{- range slice
+          (dict "name" "Apps" "url" "/apps/")
+          (dict "name" "Blog" "url" "/post/")
+          (dict "name" "Gear" "url" "/gear/")
+          (dict "name" "Photography" "url" "/photography/")
+          (dict "name" "Now" "url" "/now/")
+          (dict "name" "Tools" "url" "/tools/")
+          (dict "name" "About" "url" "/about/" "extra" "hidden sm:inline-block")
+        -}}
+          {{- $active := or (eq $current .url) (and (ne .url "/") (hasPrefix $current .url)) -}}
+          <a href="{{ .url }}" class="shrink-0 {{ .extra }} px-2.5 sm:px-3 py-1.5 rounded-lg transition-colors {{ if $active }}bg-slate-100 text-slate-950 dark:bg-slate-800/80 dark:text-slate-100{{ else }}text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark hover:bg-slate-100 dark:hover:bg-slate-800/60{{ end }}">{{ .name }}</a>
+        {{- end }}
+      </div>
+      <button id="theme-toggle" type="button" aria-label="Toggle theme" class="shrink-0 p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">
+        {{- /* moon (shown in light mode), sun (shown in dark mode) */ -}}
+        <svg class="dark:hidden w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="hidden dark:block w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>

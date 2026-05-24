@@ -19,8 +19,11 @@ module.exports = {
       // fallback chain (Songti SC → STSong) targets system fonts for
       // CJK readers when the webfont is slow or blocked.
       fontFamily: {
-        sans: ['"Source Serif 4"', '"Noto Serif SC"', '-apple-system', 'BlinkMacSystemFont', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'serif'],
-        serif: ['"Source Serif 4"', '"Noto Serif SC"', 'ui-serif', 'Songti SC', 'STSong', 'Charter', 'Georgia', 'serif'],
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'sans-serif'],
+        // Phase 2d: blog post body type. Source Serif 4 (Adobe, free,
+        // open-source, optical sizing) → ui-serif fallback → Charter
+        // (ships on macOS) → Georgia (universally available).
+        serif: ['"Source Serif 4"', 'ui-serif', 'Charter', 'Georgia', 'Cambria', 'serif'],
         mono: ['ui-monospace', 'SFMono-Regular', 'SF Mono', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
       },
       // Palette taken straight from samwanng.com's :root custom properties.
