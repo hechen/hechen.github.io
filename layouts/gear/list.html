@@ -1,5 +1,7 @@
 {{ define "main" }}
-{{- $entries := where site.RegularPages "Section" "gear" -}}
+{{- $entries := where site.Pages "Section" "gear" -}}
+{{- $entries = where $entries "RelPermalink" "ne" .RelPermalink -}}
+{{- $entries = where $entries "Kind" "in" (slice "page" "section") -}}
 {{- $entries = $entries.ByDate.Reverse -}}
 {{- $cats := slice -}}
 {{- range $entries }}
