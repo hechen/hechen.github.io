@@ -1,0 +1,50 @@
+{{- $siteTitle := site.Title -}}
+{{- $title := cond .IsHome $siteTitle (printf "%s | %s" .Title $siteTitle) -}}
+{{- $desc := .Description | default .Params.description | default site.Params.description -}}
+{{- $ogImage := .Params.cover.image | default .Params.image -}}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{{ $title }}</title>
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="{{ $desc }}">
+  <meta name="author" content="{{ site.Params.author | default site.Title }}">
+  {{- with site.Params.keywords }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
+  <link rel="canonical" href="{{ .Permalink }}">
+  {{- with .OutputFormats.Get "rss" }}<link rel="alternate" type="application/rss+xml" title="{{ $.Title }}" href="{{ .RelPermalink }}">{{ end }}
+
+  <meta property="og:title" content="{{ $title }}">
+  <meta property="og:description" content="{{ $desc }}">
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:site_name" content="{{ site.Title }}">
+{{- with $ogImage }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ $title }}">
+  <meta name="twitter:description" content="{{ $desc }}">
+{{- with $ogImage }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
+  <meta name="theme-color" content="#0f172a">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/css/tailwind.css" as="style">
+  <link rel="stylesheet" href="/css/tailwind.css">
+
+  {{- if or (eq .Section "post") (eq .Section "gear") }}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&display=swap">
+  {{- end }}
+
+  <script>
+    (function () {
+      var saved = localStorage.getItem('pref-theme');
+      var sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var dark = saved === 'dark' || (!saved && sysDark);
+      document.documentElement.classList.toggle('dark', dark);
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    })();
+  </script>
+  {{- partial "extend_head.html" . }}

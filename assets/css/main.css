@@ -3,10 +3,13 @@
 @tailwind utilities;
 
 /* ----------------------------------------------------------------
-   Site-wide custom CSS — sweeps up the inline <style> blocks that
-   used to live on each hand-edited page in static/. Lives here so
-   it's emitted once into the build-time Tailwind bundle instead
-   of repeated per page.
+   Redesign — samwanng.com-inspired editorial journal.
+
+   Light-mode only (matches the reference). The design tokens live
+   here as CSS custom properties so the rest of the stylesheet and
+   any inline styling stays cheap to refactor. Tailwind utilities
+   (defined in tailwind.config.js) name the same hex values so the
+   two languages stay in sync.
    ---------------------------------------------------------------- */
 
 html {
@@ -36,7 +39,8 @@ html.dark ::selection {
 }
 
 .blog-index,
-.article-shell {
+.article-shell,
+.app-shell {
   background:
     linear-gradient(180deg, rgba(248, 250, 252, 0.92), rgba(255, 255, 255, 0) 420px),
     repeating-linear-gradient(90deg, rgba(15, 23, 42, 0.035) 0, rgba(15, 23, 42, 0.035) 1px, transparent 1px, transparent 88px);
@@ -44,7 +48,8 @@ html.dark ::selection {
 
 @media (prefers-color-scheme: dark) {
   .blog-index,
-  .article-shell {
+  .article-shell,
+  .app-shell {
     background:
       linear-gradient(180deg, rgba(15, 23, 42, 0.54), rgba(2, 6, 23, 0) 420px),
       repeating-linear-gradient(90deg, rgba(148, 163, 184, 0.06) 0, rgba(148, 163, 184, 0.06) 1px, transparent 1px, transparent 88px);
@@ -52,7 +57,8 @@ html.dark ::selection {
 }
 
 html.dark .blog-index,
-html.dark .article-shell {
+html.dark .article-shell,
+html.dark .app-shell {
   background:
     linear-gradient(180deg, rgba(15, 23, 42, 0.54), rgba(2, 6, 23, 0) 420px),
     repeating-linear-gradient(90deg, rgba(148, 163, 184, 0.06) 0, rgba(148, 163, 184, 0.06) 1px, transparent 1px, transparent 88px);
@@ -360,48 +366,754 @@ html.dark .post-body .callout-warning { background: rgba(245, 158, 11, 0.08); bo
   animation: gradientShift 30s ease-in-out infinite;
 }
 
-/* The legacy `gradient-bg` (non-animated) on app marketing pages. */
-.gradient-bg {
-  background:
-    radial-gradient(ellipse at 20% 0%,  rgba(20, 184, 166, 0.08), transparent 50%),
-    radial-gradient(ellipse at 80% 100%, rgba(96, 165, 250, 0.05), transparent 50%);
+html {
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+  /* OpenType features matched to samwanng's body settings — kerning,
+     contextual alternates, common + discretionary ligatures off so
+     code-adjacent runs don't sprout unwanted ligatures. */
+  font-feature-settings: 'kern', 'liga', 'calt';
 }
 
-/* Tag pill — used by the blog posts via PaperMod, kept for any apps/
-   pages or homepage cards that reference the same chip styling. */
-.tag-pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 2px 8px;
-  border-radius: 9999px;
-  font-size: 11px;
-  font-weight: 500;
-  background: rgba(13, 148, 136, 0.08);
-  color: #0d9488;
-  text-decoration: none;
-  transition: background 0.15s, color 0.15s;
-}
-.tag-pill:hover { background: rgba(13, 148, 136, 0.16); }
-@media (prefers-color-scheme: dark) {
-  .tag-pill { background: rgba(20, 184, 166, 0.12); color: #5eead4; }
-  .tag-pill:hover { background: rgba(20, 184, 166, 0.22); }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  /* Default body matches samwanng: 16px / 1.6, weight 400. The body
+     font stack puts Source Serif 4 first (Latin glyphs), Noto Serif SC
+     second (CJK), then the platform fallbacks. unicode-range on the
+     hosted webfonts means Latin uses Source Serif while Chinese uses
+     Noto Serif SC automatically. */
+  font-family: '"Source Serif 4"', '"Noto Serif SC"', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', serif;
+  font-weight: 400;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Category pill (amber). */
-.cat-pill {
+/* Container — matches samwanng's .site-container. 1320px ceiling,
+   responsive horizontal padding. */
+.site-container {
+  width: 100%;
+  max-width: var(--max-content);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+@media (min-width: 768px) {
+  .site-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* ----------------------------------------------------------------
+   Header — minimal chrome. Brand wordmark (link to /) at left,
+   tagline below, category filter chip row underneath. Mirrors
+   samwanng.com top-of-page exactly.
+   ---------------------------------------------------------------- */
+
+.site-brand {
   display: inline-flex;
   align-items: center;
-  padding: 2px 8px;
-  border-radius: 9999px;
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: -0.08em;
+  color: var(--ink);
+  text-decoration: none;
+  outline: none;
+}
+@media (min-width: 768px) {
+  .site-brand { font-size: 36px; }
+}
+.site-brand:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
+
+.site-tagline {
+  margin-top: 0.85rem;
+  max-width: 56ch;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* Category nav — small chips separated by mid-dot. Wraps cleanly on
+   mobile. Active chip is underlined; the dot stays static muted. */
+.nav-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin-top: 2rem;
+  font-size: 14px;
+  color: var(--ink);
+}
+.nav-chips a {
+  display: inline-block;
+  padding: 0.25rem 0;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.nav-chips a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.nav-chips a.is-active { font-weight: 600; }
+.nav-chips .dot {
+  color: var(--faint);
+  padding: 0 0.55rem;
+  user-select: none;
+}
+.entry-count {
+  margin-top: 1rem;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ----------------------------------------------------------------
+   Entry list — the signature samwanng pattern. Each entry is a
+   two-column layout: poster/image left (square aspect), text body
+   right (title + metadata line + full paragraph). On mobile the
+   image stacks above the text.
+   ---------------------------------------------------------------- */
+
+.entries {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  margin-top: 3rem;
+}
+@media (min-width: 768px) {
+  .entries { gap: 4.5rem; }
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 768px) {
+  .entry {
+    grid-template-columns: 280px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+}
+@media (min-width: 1024px) {
+  .entry { grid-template-columns: 320px 1fr; gap: 3rem; }
+}
+
+.entry a.entry-link {
+  display: contents;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Entry poster — square crop, very light background tint behind
+   transparent PNGs (app icons). Hover lifts subtly. */
+.entry-poster {
+  aspect-ratio: 1 / 1;
+  background: var(--surface-muted);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.entry-poster img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  transition: transform 250ms ease;
+}
+.entry-link:hover .entry-poster img { transform: scale(1.03); }
+
+/* When a poster is a full-bleed photo (like gear photos), drop the
+   centred 70% sizing — fill the square. */
+.entry-poster.is-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.entry-body { min-width: 0; }
+.entry-title {
+  font-family: '"Source Serif 4"', '"Noto Serif SC"', ui-serif, Songti SC, STSong, serif;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0 0 0.35rem;
+}
+@media (min-width: 768px) {
+  .entry-title { font-size: 30px; }
+}
+.entry-link:hover .entry-title { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; }
+
+.entry-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0;
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0 0 0.85rem;
+}
+.entry-meta .dot {
+  color: var(--faint);
+  padding: 0 0.5rem;
+  user-select: none;
+}
+.entry-meta a { color: inherit; text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
+.entry-meta a:hover { text-decoration-color: var(--muted); }
+
+.entry-essay {
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ----------------------------------------------------------------
+   Detail page — single entry / single post. Back-link, category
+   metadata line in place of breadcrumb, title, hero image, body
+   prose, tags row, "Added <date>" + outbound link.
+   ---------------------------------------------------------------- */
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted);
+  font-size: 14px;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+}
+.back-link:hover { color: var(--ink); }
+.back-link svg { width: 14px; height: 14px; }
+
+.detail-meta {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+.detail-meta .dot { color: var(--faint); padding: 0 0.5rem; }
+
+.detail-title {
+  font-family: '"Source Serif 4"', '"Noto Serif SC"', ui-serif, Songti SC, STSong, serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin: 0 0 2rem;
+}
+@media (min-width: 768px) {
+  .detail-title { font-size: 56px; }
+}
+
+.detail-hero {
+  margin: 2rem 0 2.5rem;
+  background: var(--surface-muted);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.detail-hero img { width: 100%; display: block; }
+
+.detail-body {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--ink);
+  max-width: var(--max-prose);
+}
+.detail-body p { margin: 0 0 1.2em; }
+.detail-body p:last-child { margin-bottom: 0; }
+.detail-body h2 {
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  margin: 2.2em 0 0.6em;
+}
+.detail-body h3 {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.35;
+  margin: 1.8em 0 0.5em;
+}
+.detail-body a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s;
+}
+.detail-body a:hover { text-decoration-color: var(--muted); }
+.detail-body strong { font-weight: 600; }
+.detail-body em { font-style: italic; }
+.detail-body blockquote {
+  margin: 1.5em 0;
+  padding: 0.2em 0 0.2em 1.25em;
+  border-left: 2px solid var(--line-strong);
+  color: var(--muted);
+  font-style: italic;
+}
+.detail-body ul, .detail-body ol { margin: 1em 0 1.2em; padding-left: 1.6em; }
+.detail-body ul { list-style: disc; }
+.detail-body ol { list-style: decimal; }
+.detail-body li { margin: 0.4em 0; }
+.detail-body :not(pre) > code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+  font-size: 0.88em;
+  padding: 0.12em 0.4em;
+  border-radius: 4px;
+  background: var(--surface-muted);
+  border: 1px solid var(--line);
+}
+.detail-body pre {
+  margin: 1.5em 0;
+  padding: 1.1em 1.3em;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.55;
+  background: var(--surface-muted);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+.detail-body pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+}
+.detail-body img, .detail-body figure {
+  margin: 1.5em auto;
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+/* Outbound link / CTA row at the foot of a detail page. */
+.detail-cta-row {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-size: 15px;
+  color: var(--muted);
+}
+.detail-cta-row a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--line-strong);
+}
+.detail-cta-row a:hover { text-decoration-color: var(--ink); }
+.detail-cta-row .affiliate-note {
+  color: var(--faint);
+  font-size: 13px;
+}
+
+/* Tags row + "Added" line — small, muted, sits at the bottom. */
+.detail-tags {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 13px;
+  color: var(--muted);
+}
+.detail-tags .tag {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-strong);
+  padding-bottom: 1px;
+}
+.detail-tags .tag:hover { border-bottom-color: var(--ink); }
+.detail-added {
+  margin-top: 1rem;
+  font-size: 13px;
+  color: var(--faint);
+}
+
+/* ----------------------------------------------------------------
+   Status pills — only chromatic punctuation on the site. Match the
+   muted character of the rest of the chrome; rectangles, not
+   capsules, with thin borders.
+   ---------------------------------------------------------------- */
+
+.status-pill {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 3px;
   font-size: 11px;
   font-weight: 500;
-  background: rgba(245, 158, 11, 0.12);
-  color: #b45309;
-  text-decoration: none;
-  transition: background 0.15s;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  border: 1px solid currentColor;
+  white-space: nowrap;
 }
-.cat-pill:hover { background: rgba(245, 158, 11, 0.22); }
+.status-pill.is-live   { color: #15803d; }
+.status-pill.is-tf     { color: #b45309; }
+.status-pill.is-coming { color: var(--muted); }
+
+/* ----------------------------------------------------------------
+   Footer — minimal social links separated by mid-dots, copyright.
+   ---------------------------------------------------------------- */
+
+.site-footer {
+  margin-top: 6rem;
+  padding: 3rem 0 4rem;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--muted);
+}
+.site-footer a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.site-footer a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.site-footer .dot { color: var(--faint); padding: 0 0.55rem; }
+.site-footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.site-footer-copyright {
+  margin-top: 1rem;
+  color: var(--faint);
+  font-size: 13px;
+}
+
+/* ----------------------------------------------------------------
+   Legacy compatibility — most app marketing pages still use the
+   old Tailwind utility classes (slate-*, accent, dark:*, shadow-card,
+   gradient-bg). Provide a narrow compatibility shim so those pages
+   render acceptably until they're individually restyled in a follow-up
+   commit. The shim makes slate-900 → ink, slate-500/600 → muted,
+   accent → ink (link styling), and drops gradient-bg to a flat paper.
+   ---------------------------------------------------------------- */
+
+/* Gradient hero on legacy app pages becomes flat paper. */
+.gradient-bg, .gradient-bg-animated {
+  background: var(--paper);
+  animation: none;
+}
+
+/* Legacy card chrome — flat paper background, hairline border, no
+   3D tilt. The .app-card class survives but renders calmly. */
+.app-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: none;
+  transform: none !important;
+  transition: border-color 0.15s;
+}
+.app-card:hover {
+  border-color: var(--ink);
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Legacy "feed-skeleton" placeholder on the homepage GitHub feed —
+   keep a subtle paper-muted background so the loading state still
+   communicates. */
+.feed-skeleton {
+  background: linear-gradient(90deg, var(--surface-muted) 0%, var(--paper) 50%, var(--surface-muted) 100%);
+  background-size: 200% 100%;
+  animation: skel 1.6s ease-in-out infinite;
+}
+@keyframes skel { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* ----------------------------------------------------------------
+   Blog post premium typography (carried from Phase 2d) — now scoped
+   to .post-body and aligned with the new palette. Drops the teal
+   accent in favour of ink-only links; preserves Source Serif 4 body.
+   ---------------------------------------------------------------- */
+
+.post-body { font-feature-settings: 'kern', 'liga', 'clig', 'calt'; }
+.post-body > p { margin: 0 0 1.2em; }
+.post-body > p + p { margin-top: 0; }
+.post-body h2 {
+  font-weight: 600;
+  font-size: 1.7em;
+  line-height: 1.25;
+  margin: 2.5em 0 0.6em;
+  letter-spacing: -0.015em;
+  scroll-margin-top: 4rem;
+}
+.post-body h3 {
+  font-weight: 600;
+  font-size: 1.3em;
+  line-height: 1.35;
+  margin: 2em 0 0.5em;
+  scroll-margin-top: 4rem;
+}
+.post-body h2:first-child, .post-body h3:first-child { margin-top: 0; }
+.post-body a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.post-body a:hover { text-decoration-color: var(--ink); }
+.post-body strong { font-weight: 600; }
+.post-body em { font-style: italic; }
+.post-body blockquote {
+  margin: 1.5em 0;
+  padding: 0.3em 0 0.3em 1.25em;
+  border-left: 2px solid var(--line-strong);
+  color: var(--muted);
+  font-style: italic;
+}
+.post-body ul, .post-body ol { margin: 1em 0 1.2em; padding-left: 1.6em; }
+.post-body ul { list-style: disc; }
+.post-body ol { list-style: decimal; }
+.post-body li { margin: 0.4em 0; }
+.post-body img, .post-body figure { margin: 1.5em auto; max-width: 100%; border-radius: 6px; }
+.post-body figure figcaption {
+  text-align: center;
+  font-size: 0.85em;
+  color: var(--muted);
+  margin-top: 0.6em;
+  font-style: italic;
+}
+.post-body table {
+  width: 100%;
+  margin: 1.5em 0;
+  border-collapse: collapse;
+  font-size: 0.95em;
+}
+.post-body table th, .post-body table td {
+  text-align: left;
+  padding: 0.6em 0.8em;
+  border-bottom: 1px solid var(--line);
+}
+.post-body table th { font-weight: 600; background: var(--surface-muted); }
+.post-body :not(pre) > code {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+  font-size: 0.88em;
+  padding: 0.12em 0.4em;
+  border-radius: 4px;
+  background: var(--surface-muted);
+  border: 1px solid var(--line);
+}
+.post-body pre {
+  margin: 1.5em 0;
+  padding: 1.1em 1.3em;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.55;
+  background: var(--surface-muted);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+}
+.post-body pre code { background: transparent; border: 0; padding: 0; font-size: inherit; }
+.post-body .pullquote {
+  margin: 1.6em 0;
+  padding: 0.6em 0 0.6em 1.5em;
+  border-left: 2px solid var(--ink);
+  font-style: italic;
+  font-size: 1.25em;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.post-body .callout {
+  display: flex;
+  gap: 0.85em;
+  margin: 1.5em 0;
+  padding: 0.95em 1.15em;
+  border-radius: 6px;
+  font-size: 0.97em;
+  line-height: 1.55;
+}
+.post-body .callout > .callout-icon { flex-shrink: 0; width: 1.25em; text-align: center; font-weight: 700; }
+.post-body .callout-note    { background: var(--surface-muted); border: 1px solid var(--line); }
+.post-body .callout-warning { background: #fff7ed; border: 1px solid #fed7aa; color: #b45309; }
+.post-body .full-width-image { margin: 2em calc(50% - 50vw); max-width: 100vw; }
+@media (min-width: 1024px) {
+  .post-body .full-width-image {
+    margin-left: calc((720px - 1000px) / 2);
+    margin-right: calc((720px - 1000px) / 2);
+    max-width: 1000px;
+  }
+}
+.post-body .full-width-image img { width: 100%; border-radius: 8px; }
+
+/* ----------------------------------------------------------------
+   Homepage section blocks — used by layouts/index.html. Three
+   sections (Apps · Writing · Gear) stack with generous gaps and a
+   hairline rule between them. Each section has a header row with
+   a plain-weight title at left and a small "View all" link at right.
+   ---------------------------------------------------------------- */
+
+.home-section {
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--line);
+}
+.home-section:first-of-type {
+  margin-top: 2rem;
+  padding-top: 0;
+  border-top: 0;
+}
+.home-section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+.home-section-title {
+  font-family: '"Source Serif 4"', '"Noto Serif SC"', ui-serif, Songti SC, STSong, serif;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .home-section-title { font-size: 30px; }
+}
+.home-section-more {
+  font-size: 14px;
+  color: var(--muted);
+  text-decoration: none;
+}
+.home-section-more:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+
+/* Post feed — dated list used on the homepage Writing section.
+   Year on the left in faint tabular nums, title flush against it,
+   underline on hover. One row per post, no card chrome. */
+.post-feed {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.post-feed-row {
+  border-top: 1px solid var(--line);
+}
+.post-feed-row:last-child { border-bottom: 1px solid var(--line); }
+.post-feed-row a {
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.85rem 0;
+  color: inherit;
+  text-decoration: none;
+}
+.post-feed-row time {
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+}
+.post-feed-row .post-feed-title {
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.4;
+}
+.post-feed-row a:hover .post-feed-title {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--ink);
+}
+
+/* Prev/next nav at the foot of a blog post — two inline links,
+   not boxed cards. Wraps to a single column on mobile. */
+.post-nav {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .post-nav { grid-template-columns: 1fr 1fr; gap: 3rem; }
+}
+.post-nav a { display: flex; flex-direction: column; gap: 0.25rem; color: inherit; text-decoration: none; }
+.post-nav-next { text-align: right; }
+.post-nav-label { color: var(--faint); font-size: 13px; }
+.post-nav-title { color: var(--ink); font-size: 16px; line-height: 1.4; }
+.post-nav a:hover .post-nav-title { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Year-grouped post list — used by /post/. Year heading is plain
+   weight, sits above the post-feed rows for that year. */
+.post-year { margin-top: 3rem; }
+.post-year:first-of-type { margin-top: 2.5rem; }
+.post-year-heading {
+  font-family: '"Source Serif 4"', '"Noto Serif SC"', ui-serif, Songti SC, STSong, serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+}
+
+/* Tag/category pills used on /post/ index — flat, hairline border. */
+.tag-pill, .cat-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 7px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  text-decoration: none;
+}
+.tag-pill:hover, .cat-pill:hover { border-color: var(--ink); }
+
+
+.gear-chip {
+  @apply inline-flex items-center rounded-full border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 transition-colors;
+}
+.gear-chip:hover {
+  @apply border-accent/30 dark:border-accent-dark/30 text-accent dark:text-accent-dark;
+}
+.gear-chip.is-active {
+  @apply border-accent/40 dark:border-accent-dark/40 text-accent dark:text-accent-dark;
+}
+
+
+.gear-gallery {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+@media (min-width: 768px) {
+  .gear-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.gear-gallery figure {
+  margin: 0;
+}
+
+.gear-gallery img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+}
+
 @media (prefers-color-scheme: dark) {
-  .cat-pill { background: rgba(245, 158, 11, 0.16); color: #fbbf24; }
-  .cat-pill:hover { background: rgba(245, 158, 11, 0.26); }
+  .gear-gallery img {
+    border-color: rgba(30, 41, 59, 0.9);
+  }
+}
+
+html.dark .gear-gallery img {
+  border-color: rgba(30, 41, 59, 0.9);
 }

@@ -1,7 +1,33 @@
 baseURL = "https://hechen.github.io/"
+# Default language follows the bulk of the existing archive: 49 of 54
+# posts at content/post/<slug>/index.md are written in Chinese, so
+# zh-cn is the canonical content language. defaultContentLanguageInSubdir
+# stays false so /post/<slug>/ continues to serve the canonical (Chinese)
+# version — every existing URL keeps resolving.
+#
+# English translations live alongside as content/post/<slug>/index.en.md
+# files; Hugo routes them to /en/post/<slug>/ under the [languages.en]
+# config below. .Translations gives each post template a list of its
+# language companions for the inline switcher.
 languageCode = "en-us"
 title = "Chen"
 theme = "PaperMod"
+
+# Per-language overrides. Both languages share the same site title,
+# permalink scheme, and menu — only the languageCode and the content
+# files differ. weight orders them in the language switcher (Chinese
+# first because it's the default and the larger corpus).
+[languages]
+  [languages.zh-cn]
+    languageCode = "zh-cn"
+    languageName = "中文"
+    weight = 1
+    title = "Chen"
+  [languages.en]
+    languageCode = "en-us"
+    languageName = "English"
+    weight = 2
+    title = "Chen"
 
 # Blog posts live in content/post/ (singular) so URLs resolve at /post/<slug>/
 # without per-section permalink rewrites — matches the legacy URL structure
@@ -85,6 +111,13 @@ enableEmoji = true
 
 [params]
   description = "iOS developer building thoughtful, polished apps for the Apple ecosystem."
+  # tagline overrides description on the header partial; description still
+  # drives <meta name="description"> for SEO. tagline left intentionally
+  # blank — the previous copy mirrored samwanng.com's "A private index of …
+  # kept as traces of …" framing too closely. Header partial falls back to
+  # description when tagline is empty, which keeps the site sensible until
+  # Chen writes original copy.
+  tagline = ""
   keywords = ["iOS", "Swift", "SwiftUI", "Apple", "indie"]
   author = "Chen"
   defaultTheme = "auto"
