@@ -8,15 +8,15 @@ description: 'The full app catalog — every iOS / macOS / watchOS app I''ve shi
 
 
 <!-- APPS CATALOG HERO -->
-<section class="border-b border-slate-200/60 dark:border-slate-800">
-  <div class="max-w-5xl mx-auto px-6 sm:px-10 pt-16 sm:pt-20 pb-10">
+<section class="border-b border-slate-200/60 bg-[radial-gradient(circle_at_top_left,rgba(14,165,233,0.08),transparent_38%),radial-gradient(circle_at_top_right,rgba(99,102,241,0.06),transparent_32%)] dark:border-slate-800 dark:bg-[radial-gradient(circle_at_top_left,rgba(14,165,233,0.12),transparent_36%),radial-gradient(circle_at_top_right,rgba(99,102,241,0.12),transparent_34%)]">
+  <div class="max-w-5xl mx-auto px-6 sm:px-10 pt-[4.5rem] sm:pt-24 pb-12 sm:pb-14">
     <div class="flex items-center gap-2 text-sm font-medium text-accent dark:text-accent-dark mb-4">
       <span class="inline-block h-2 w-2 rounded-full bg-accent dark:bg-accent-dark"></span>
-      <span>App catalog</span>
+      <span>Product work</span>
     </div>
-    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight leading-tight mb-3">Apps</h1>
+    <h1 class="max-w-3xl text-4xl sm:text-5xl font-bold tracking-tight leading-tight mb-4">Apps that feel native, fast, and a little obsessive.</h1>
     <p class="text-lg text-slate-500 dark:text-slate-400 max-w-2xl leading-relaxed">
-      Every app I've shipped to the App Store or TestFlight. Native iOS / macOS / watchOS, on-device AI where it makes sense, no analytics, no tracking.
+      A tighter look at the portfolio: shipped apps, current TestFlight work, and the little details that make each thing feel intentional instead of template-made.
     </p>
   </div>
 </section>
@@ -24,157 +24,202 @@ description: 'The full app catalog — every iOS / macOS / watchOS app I''ve shi
 <!-- APPS GRID -->
 <section id="apps">
   <div class="max-w-5xl mx-auto px-6 sm:px-10 py-14 sm:py-20">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 [perspective:1200px]">
-
-      <!-- LiftCoach — TestFlight -->
-      <article class="app-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-card hover:shadow-cardTilt">
-        <div class="flex items-start justify-between mb-5">
-          <img src="/assets/icons/liftcoach.png" alt="LiftCoach app icon" class="w-16 h-16 rounded-[22%] shadow-md" loading="lazy" decoding="async">
-          <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-tf">TestFlight</span>
-        </div>
-        <h3 class="text-xl font-bold mb-1">LiftCoach</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">AI strength coach for serious lifters.</p>
-        <div class="flex items-center gap-3 text-slate-400 dark:text-slate-500 icon-link">
-          <a href="https://hechen.github.io/apps/liftcoach/" title="Marketing site" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></a>
-          <a href="https://hechen.github.io/apps/liftcoach/privacy.html" title="Privacy policy" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></a>
-          <a href="https://hechen.github.io/apps/liftcoach/support.html" title="Support" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
-          <a href="https://github.com/hechen/GymLog" title="Source" class="hover:text-accent dark:hover:text-accent-dark transition-colors ml-auto"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 0z"/></svg></a>
-        </div>
-      </article>
-
-      <!-- DupeOut — TestFlight (NEW) -->
-      <article class="app-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-card hover:shadow-cardTilt">
-        <div class="flex items-start justify-between mb-5">
-          <img src="/assets/icons/dupeout.png" alt="DupeOut app icon" class="w-16 h-16 rounded-[22%] shadow-md" loading="lazy" decoding="async">
-          <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-tf">TestFlight</span>
-        </div>
-        <h3 class="text-xl font-bold mb-1">DupeOut</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">Find and clean duplicate photos on iPhone — smart clustering, on-device privacy.</p>
-        <div class="flex items-center gap-3 text-slate-400 dark:text-slate-500 icon-link">
-          <a href="/apps/dupeout/" title="Marketing site" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></a>
-          <a href="/apps/dupeout/privacy.html" title="Privacy policy" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></a>
-          <a href="/apps/dupeout/support.html" title="Support" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
-          <span class="text-slate-300 dark:text-slate-700 ml-auto" title="Private repo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 0z"/></svg></span>
-        </div>
-      </article>
-
-      <!-- TrainInsight — TestFlight (NEW) -->
-      <article class="app-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-card hover:shadow-cardTilt">
-        <div class="flex items-start justify-between mb-5">
-          <img src="/assets/icons/traininsight.png" alt="TrainInsight app icon" class="w-16 h-16 rounded-[22%] shadow-md" loading="lazy" decoding="async">
-          <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-tf">TestFlight</span>
-        </div>
-        <h3 class="text-xl font-bold mb-1">TrainInsight</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">Apple Watch training analytics with on-device AI summaries and readiness signals.</p>
-        <div class="flex items-center gap-3 text-slate-400 dark:text-slate-500 icon-link">
-          <span class="text-slate-300 dark:text-slate-700" title="Marketing site coming soon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></span>
-          <span class="text-slate-300 dark:text-slate-700" title="Privacy page coming soon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></span>
-          <span class="text-slate-300 dark:text-slate-700" title="Support page coming soon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-with="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span>
-          <span class="text-slate-300 dark:text-slate-700 ml-auto" title="Private repo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 0z"/></svg></span>
-        </div>
-      </article>
-
-      <!-- Structly — Live (App Store) -->
-      <article class="app-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-card hover:shadow-cardTilt">
-        <div class="flex items-start justify-between mb-5">
-          <img src="/assets/icons/structly.png" alt="Structly app icon" class="w-16 h-16 rounded-[22%] shadow-md" loading="lazy" decoding="async">
-          <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-live">Live</span>
-        </div>
-        <h3 class="text-xl font-bold mb-1">Structly</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">Beautiful JSON formatting Safari extension for macOS and iOS.</p>
-        <div class="flex items-center gap-3 text-slate-400 dark:text-slate-500 icon-link">
-          <a href="/apps/structly/" title="Marketing site" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></a>
-          <a href="/apps/structly/privacy.html" title="Privacy policy" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></a>
-          <a href="/apps/structly/support.html" title="Support" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
-          <a href="https://apps.apple.com/us/app/structly-json-formatter/id6753774575" title="Get on the App Store" class="hover:text-accent dark:hover:text-accent-dark transition-colors ml-auto"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg></a>
-        </div>
-      </article>
-
-      <!-- SpendWisely — TestFlight -->
-      <article class="app-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-card hover:shadow-cardTilt">
-        <div class="flex items-start justify-between mb-5">
-          <img src="/assets/icons/spendwisely.png" alt="SpendWisely app icon" class="w-16 h-16 rounded-[22%] shadow-md" loading="lazy" decoding="async">
-          <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-tf">TestFlight</span>
-        </div>
-        <h3 class="text-xl font-bold mb-1">SpendWisely</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">Personal finance tracker with AI insights and bank integration.</p>
-        <div class="flex items-center gap-3 text-slate-400 dark:text-slate-500 icon-link">
-          <a href="/apps/spendwisely/" title="Marketing site" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></a>
-          <a href="/apps/spendwisely/privacy.html" title="Privacy policy" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></a>
-          <a href="/apps/spendwisely/support.html" title="Support" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
-          <a href="https://github.com/hechen/spendwisely-website" title="Website source" class="hover:text-accent dark:hover:text-accent-dark transition-colors ml-auto"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 0z"/></svg></a>
-        </div>
-      </article>
-
-      <!-- EatWisely — TestFlight -->
-      <article class="app-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-card hover:shadow-cardTilt">
-        <div class="flex items-start justify-between mb-5">
-          <img src="/assets/icons/eatwisely.png" alt="EatWisely app icon" class="w-16 h-16 rounded-[22%] shadow-md" loading="lazy" decoding="async">
-          <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-tf">TestFlight</span>
-        </div>
-        <h3 class="text-xl font-bold mb-1">EatWisely</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">AI-powered meal tracking — snap, scan, or describe your food.</p>
-        <div class="flex items-center gap-3 text-slate-400 dark:text-slate-500 icon-link">
-          <a href="/apps/eatwisely/" title="Marketing site" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></a>
-          <a href="/apps/eatwisely/privacy.html" title="Privacy policy" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></a>
-          <a href="/apps/eatwisely/support.html" title="Support" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
-          <span class="text-slate-300 dark:text-slate-700 ml-auto" title="Private repo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 0z"/></svg></span>
-        </div>
-      </article>
-
-      <!-- Distill — TestFlight -->
-      <article class="app-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-card hover:shadow-cardTilt">
-        <div class="flex items-start justify-between mb-5">
-          <img src="/assets/icons/distill.png" alt="Distill app icon" class="w-16 h-16 rounded-[22%] shadow-md" loading="lazy" decoding="async">
-          <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-tf">TestFlight</span>
-        </div>
-        <h3 class="text-xl font-bold mb-1">Distill</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">Save, archive, and search your links — across iOS, macOS, and watchOS.</p>
-        <div class="flex items-center gap-3 text-slate-400 dark:text-slate-500 icon-link">
-          <a href="/apps/distill/" title="Marketing site" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></a>
-          <a href="/apps/distill/privacy.html" title="Privacy policy" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></a>
-          <a href="/apps/distill/support.html" title="Support" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
-          <span class="text-slate-300 dark:text-slate-700 ml-auto" title="Private repo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 0z"/></svg></span>
-        </div>
-      </article>
-
-      <!-- Closet — TestFlight -->
-      <article class="app-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-card hover:shadow-cardTilt">
-        <div class="flex items-start justify-between mb-5">
-          <img src="/assets/icons/closet.png" alt="Closet app icon" class="w-16 h-16 rounded-[22%] shadow-md" loading="lazy" decoding="async">
-          <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-tf">TestFlight</span>
-        </div>
-        <h3 class="text-xl font-bold mb-1">Closet</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">Your digital wardrobe — catalog, organize, and plan outfits.</p>
-        <div class="flex items-center gap-3 text-slate-400 dark:text-slate-500 icon-link">
-          <a href="/apps/closet/" title="Marketing site" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></a>
-          <a href="/apps/closet/privacy.html" title="Privacy policy" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></a>
-          <a href="/apps/closet/support.html" title="Support" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
-          <span class="text-slate-300 dark:text-slate-700 ml-auto" title="Private repo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 0z"/></svg></span>
-        </div>
-      </article>
-
-      <!-- Market Mood — TestFlight (formerly FearIndex) -->
-      <article class="app-card group relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 shadow-card hover:shadow-cardTilt">
-        <div class="flex items-start justify-between mb-5">
-          <img src="/assets/icons/marketmood.png" alt="Market Mood icon" class="w-16 h-16 rounded-[22%] shadow-md">
-          <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-tf">TestFlight</span>
-        </div>
-        <h3 class="text-xl font-bold mb-1">Market Mood</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">Crypto + macro fear-and-greed dashboard for iPhone, iPad, and Apple Watch.</p>
-        <div class="flex items-center gap-3 text-slate-400 dark:text-slate-500 icon-link">
-          <a href="/apps/marketmood/" title="Marketing site" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></a>
-          <a href="/apps/marketmood/privacy.html" title="Privacy policy" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg></a>
-          <a href="/apps/marketmood/support.html" title="Support" class="hover:text-accent dark:hover:text-accent-dark transition-colors"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></a>
-          <span class="text-slate-300 dark:text-slate-700 ml-auto" title="Private repo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.04c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.11-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 0z"/></svg></span>
-        </div>
-      </article>
-
+    <div class="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p class="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">Selected catalog</p>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-950 dark:text-white">Start with the best two. Then browse the rest.</h2>
+      </div>
+      <p class="max-w-xl text-sm leading-6 text-slate-500 dark:text-slate-400">Not every app needs the same visual weight. The page now reads like a portfolio, not a component test.</p>
     </div>
-
-    <p class="mt-12 text-sm text-slate-400 dark:text-slate-500">
-      Status pills: <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-live">Live</span> = on the App Store · <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-tf">TestFlight</span> = beta · <span class="px-2 py-0.5 text-xs font-semibold rounded-full status-coming">Coming Soon</span> = in design.
-    </p>
+    <div class="grid gap-6">
+      
+      <article class="app-card group relative overflow-hidden rounded-[36px] border border-slate-200/80 bg-white p-7 sm:p-8 shadow-[0_16px_48px_rgba(15,23,42,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_24px_60px_rgba(15,23,42,0.09)] dark:border-slate-800 dark:bg-slate-900 dark:shadow-none dark:hover:border-slate-700">
+        <div class="absolute inset-x-0 top-0 h-px bg-emerald-500/80"></div>
+        <div class="absolute -right-8 -top-8 h-36 w-36 rounded-full blur-3xl bg-emerald-200/45 dark:bg-emerald-500/10"></div>
+        <div class="relative grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_19rem] lg:items-start">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">Featured release</p>
+            <div class="mt-4 flex items-start gap-4">
+              <img src="/assets/icons/structly.png" alt="Structly app icon" class="h-20 w-20 rounded-[24%] shadow-lg ring-1 ring-black/5" loading="lazy" decoding="async">
+              <div class="min-w-0">
+                <div class="flex flex-wrap items-center gap-2">
+                  <h3 class="text-3xl sm:text-[2rem] font-bold tracking-tight text-slate-950 dark:text-white">Structly</h3>
+                  <span class="rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-200/70 dark:bg-emerald-500/12 dark:text-emerald-300 dark:ring-emerald-400/20">Live</span>
+                </div>
+                <p class="mt-3 text-sm font-medium uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">iPhone · iPad · Mac</p>
+              </div>
+            </div>
+            <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">Turns ugly raw JSON into something readable, collapsible, and actually pleasant across Safari on every Apple device.</p>
+            <div class="mt-6 flex flex-wrap gap-2.5">
+              <a href="https://apps.apple.com/us/app/structly-json-formatter/id6753774575" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">App Store</a> <a href="/apps/structly/" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">View app</a> <a href="/apps/structly/privacy.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Privacy</a> <a href="/apps/structly/support.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Support</a>
+            </div>
+          </div>
+          <aside class="rounded-[28px] border border-slate-200/80 bg-slate-50/80 p-5 dark:border-slate-800 dark:bg-slate-950/60">
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">Why it stands out</p>
+            <ul class="mt-4 space-y-3 text-sm leading-6 text-slate-600 dark:text-slate-300"><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500"></span><span>Safari extension for raw JSON pages</span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500"></span><span>Collapsible nodes, search, proper syntax highlighting</span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500"></span><span>Same experience on iPhone, iPad, and Mac</span></li></ul>
+            <div class="mt-6 rounded-2xl border border-slate-200/80 bg-white/90 p-4 dark:border-slate-800 dark:bg-slate-900/80">
+              <p class="text-sm font-medium text-slate-900 dark:text-slate-100">Live on the App Store now</p>
+              <p class="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">This is the kind of product page slot that should feel earned, not filler.</p>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <article class="app-card group relative overflow-hidden rounded-[36px] border border-slate-200/80 bg-white p-7 sm:p-8 shadow-[0_16px_48px_rgba(15,23,42,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_24px_60px_rgba(15,23,42,0.09)] dark:border-slate-800 dark:bg-slate-900 dark:shadow-none dark:hover:border-slate-700">
+        <div class="absolute inset-x-0 top-0 h-px bg-sky-500/80"></div>
+        <div class="absolute -right-8 -top-8 h-36 w-36 rounded-full blur-3xl bg-sky-200/45 dark:bg-sky-500/10"></div>
+        <div class="relative grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_19rem] lg:items-start">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">Featured beta</p>
+            <div class="mt-4 flex items-start gap-4">
+              <img src="/assets/icons/liftcoach.png" alt="LiftCoach app icon" class="h-20 w-20 rounded-[24%] shadow-lg ring-1 ring-black/5" loading="lazy" decoding="async">
+              <div class="min-w-0">
+                <div class="flex flex-wrap items-center gap-2">
+                  <h3 class="text-3xl sm:text-[2rem] font-bold tracking-tight text-slate-950 dark:text-white">LiftCoach</h3>
+                  <span class="rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200/70 dark:bg-sky-500/12 dark:text-sky-300 dark:ring-sky-400/20">TestFlight</span>
+                </div>
+                <p class="mt-3 text-sm font-medium uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">iPhone · Apple Watch</p>
+              </div>
+            </div>
+            <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">Adaptive strength programming, recovery-aware suggestions, and a serious training UI without the usual gym-app sludge.</p>
+            <div class="mt-6 flex flex-wrap gap-2.5">
+              <a href="https://hechen.github.io/apps/liftcoach/" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">View app</a> <a href="https://hechen.github.io/apps/liftcoach/privacy.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Privacy</a> <a href="https://hechen.github.io/apps/liftcoach/support.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Support</a> <a href="https://github.com/hechen/GymLog" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Source</a>
+            </div>
+          </div>
+          <aside class="rounded-[28px] border border-slate-200/80 bg-slate-50/80 p-5 dark:border-slate-800 dark:bg-slate-950/60">
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">Why it stands out</p>
+            <ul class="mt-4 space-y-3 text-sm leading-6 text-slate-600 dark:text-slate-300"><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500"></span><span>Plans workouts around actual training context</span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500"></span><span>Designed for lifters, not step-counter vibes</span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500"></span><span>Companion Apple Watch support</span></li></ul>
+            <div class="mt-6 rounded-2xl border border-slate-200/80 bg-white/90 p-4 dark:border-slate-800 dark:bg-slate-900/80">
+              <p class="text-sm font-medium text-slate-900 dark:text-slate-100">Active TestFlight build</p>
+              <p class="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">This is the kind of product page slot that should feel earned, not filler.</p>
+            </div>
+          </aside>
+        </div>
+      </article>
+    </div>
+    <div class="mt-10">
+      <div class="mb-5 flex items-center justify-between gap-4">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">Full catalog</p>
+          <h3 class="mt-2 text-2xl font-bold tracking-tight text-slate-950 dark:text-white">Everything else still shipping.</h3>
+        </div>
+        <p class="max-w-md text-sm leading-6 text-slate-500 dark:text-slate-400">Compact cards, cleaner copy, obvious links. Enough detail to scan fast; no mystery-icon nonsense.</p>
+      </div>
+      <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        
+        <article class="app-card group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
+          <div class="absolute inset-x-0 top-0 h-px bg-sky-500/80"></div>
+          <div class="flex items-start gap-4">
+            <img src="/assets/icons/dupeout.png" alt="DupeOut app icon" class="h-14 w-14 rounded-[22%] shadow-md ring-1 ring-black/5" loading="lazy" decoding="async">
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <h3 class="text-xl font-bold tracking-tight text-slate-950 dark:text-white">DupeOut</h3>
+                <span class="rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200/70 dark:bg-sky-500/12 dark:text-sky-300 dark:ring-sky-400/20">TestFlight</span>
+              </div>
+              <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">iPhone</p>
+              <p class="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">On-device duplicate and bad-photo cleanup that stays private.</p>
+            </div>
+          </div>
+          <div class="mt-5 flex flex-wrap gap-2.5"><a href="/apps/dupeout/" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">View app</a> <a href="/apps/dupeout/privacy.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Privacy</a> <a href="/apps/dupeout/support.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Support</a></div>
+          <p class="mt-4 text-sm text-slate-400 dark:text-slate-500">Photo cleanup</p>
+        </article>
+        <article class="app-card group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
+          <div class="absolute inset-x-0 top-0 h-px bg-sky-500/80"></div>
+          <div class="flex items-start gap-4">
+            <img src="/assets/icons/distill.png" alt="Distill app icon" class="h-14 w-14 rounded-[22%] shadow-md ring-1 ring-black/5" loading="lazy" decoding="async">
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <h3 class="text-xl font-bold tracking-tight text-slate-950 dark:text-white">Distill</h3>
+                <span class="rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200/70 dark:bg-sky-500/12 dark:text-sky-300 dark:ring-sky-400/20">TestFlight</span>
+              </div>
+              <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">iPhone · iPad · Mac · Watch</p>
+              <p class="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">Save links, archive full articles, and pull them back later without losing the text.</p>
+            </div>
+          </div>
+          <div class="mt-5 flex flex-wrap gap-2.5"><a href="/apps/distill/" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">View app</a> <a href="/apps/distill/privacy.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Privacy</a> <a href="/apps/distill/support.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Support</a></div>
+          <p class="mt-4 text-sm text-slate-400 dark:text-slate-500">Read-later, but searchable</p>
+        </article>
+        <article class="app-card group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
+          <div class="absolute inset-x-0 top-0 h-px bg-sky-500/80"></div>
+          <div class="flex items-start gap-4">
+            <img src="/assets/icons/closet.png" alt="Closet app icon" class="h-14 w-14 rounded-[22%] shadow-md ring-1 ring-black/5" loading="lazy" decoding="async">
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <h3 class="text-xl font-bold tracking-tight text-slate-950 dark:text-white">Closet</h3>
+                <span class="rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200/70 dark:bg-sky-500/12 dark:text-sky-300 dark:ring-sky-400/20">TestFlight</span>
+              </div>
+              <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">iPhone · iPad</p>
+              <p class="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">Wardrobe tracking with total value, wear history, and cost-per-wear.</p>
+            </div>
+          </div>
+          <div class="mt-5 flex flex-wrap gap-2.5"><a href="/apps/closet/" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">View app</a> <a href="/apps/closet/privacy.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Privacy</a> <a href="/apps/closet/support.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Support</a></div>
+          <p class="mt-4 text-sm text-slate-400 dark:text-slate-500">Personal inventory</p>
+        </article>
+        <article class="app-card group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
+          <div class="absolute inset-x-0 top-0 h-px bg-sky-500/80"></div>
+          <div class="flex items-start gap-4">
+            <img src="/assets/icons/spendwisely.png" alt="SpendWisely app icon" class="h-14 w-14 rounded-[22%] shadow-md ring-1 ring-black/5" loading="lazy" decoding="async">
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <h3 class="text-xl font-bold tracking-tight text-slate-950 dark:text-white">SpendWisely</h3>
+                <span class="rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200/70 dark:bg-sky-500/12 dark:text-sky-300 dark:ring-sky-400/20">TestFlight</span>
+              </div>
+              <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">iPhone · iPad</p>
+              <p class="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">A finance tracker built around clear spending views, not bank-app sludge.</p>
+            </div>
+          </div>
+          <div class="mt-5 flex flex-wrap gap-2.5"><a href="/apps/spendwisely/" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">View app</a> <a href="/apps/spendwisely/privacy.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Privacy</a> <a href="/apps/spendwisely/support.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Support</a></div>
+          <p class="mt-4 text-sm text-slate-400 dark:text-slate-500">Money, less mess</p>
+        </article>
+        <article class="app-card group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
+          <div class="absolute inset-x-0 top-0 h-px bg-sky-500/80"></div>
+          <div class="flex items-start gap-4">
+            <img src="/assets/icons/eatwisely.png" alt="EatWisely app icon" class="h-14 w-14 rounded-[22%] shadow-md ring-1 ring-black/5" loading="lazy" decoding="async">
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <h3 class="text-xl font-bold tracking-tight text-slate-950 dark:text-white">EatWisely</h3>
+                <span class="rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200/70 dark:bg-sky-500/12 dark:text-sky-300 dark:ring-sky-400/20">TestFlight</span>
+              </div>
+              <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">iPhone</p>
+              <p class="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">Meal logging that works whether you snap a photo, scan a label, or just type it.</p>
+            </div>
+          </div>
+          <div class="mt-5 flex flex-wrap gap-2.5"><a href="/apps/eatwisely/" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">View app</a> <a href="/apps/eatwisely/privacy.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Privacy</a> <a href="/apps/eatwisely/support.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Support</a></div>
+          <p class="mt-4 text-sm text-slate-400 dark:text-slate-500">Food tracking</p>
+        </article>
+        <article class="app-card group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
+          <div class="absolute inset-x-0 top-0 h-px bg-sky-500/80"></div>
+          <div class="flex items-start gap-4">
+            <img src="/assets/icons/traininsight.png" alt="TrainInsight app icon" class="h-14 w-14 rounded-[22%] shadow-md ring-1 ring-black/5" loading="lazy" decoding="async">
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <h3 class="text-xl font-bold tracking-tight text-slate-950 dark:text-white">TrainInsight</h3>
+                <span class="rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200/70 dark:bg-sky-500/12 dark:text-sky-300 dark:ring-sky-400/20">TestFlight</span>
+              </div>
+              <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">iPhone · Apple Watch</p>
+              <p class="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">Training analytics and readiness signals built around Apple Watch data.</p>
+            </div>
+          </div>
+          <div class="mt-5 flex flex-wrap gap-2.5"><span class="inline-flex items-center justify-center rounded-full border border-dashed border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-400 dark:border-slate-700 dark:text-slate-500 cursor-default">Coming soon</span></div>
+          <p class="mt-4 text-sm text-slate-400 dark:text-slate-500">Coming to the site soon</p>
+        </article>
+        <article class="app-card group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
+          <div class="absolute inset-x-0 top-0 h-px bg-sky-500/80"></div>
+          <div class="flex items-start gap-4">
+            <img src="/assets/icons/marketmood.png" alt="Market Mood app icon" class="h-14 w-14 rounded-[22%] shadow-md ring-1 ring-black/5" loading="lazy" decoding="async">
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <h3 class="text-xl font-bold tracking-tight text-slate-950 dark:text-white">Market Mood</h3>
+                <span class="rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200/70 dark:bg-sky-500/12 dark:text-sky-300 dark:ring-sky-400/20">TestFlight</span>
+              </div>
+              <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">iPhone · iPad · Watch</p>
+              <p class="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">A compact macro and crypto sentiment dashboard without the doomscroll.</p>
+            </div>
+          </div>
+          <div class="mt-5 flex flex-wrap gap-2.5"><a href="/apps/marketmood/" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">View app</a> <a href="/apps/marketmood/privacy.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Privacy</a> <a href="/apps/marketmood/support.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Support</a></div>
+          <p class="mt-4 text-sm text-slate-400 dark:text-slate-500">Market pulse</p>
+        </article>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -297,64 +342,4 @@ description: 'The full app catalog — every iOS / macOS / watchOS app I''ve shi
   }
 })();
 
-// Cursor-aware 3D tilt on app cards. Replaces the static :hover tilt
-// from the CSS (the CSS rule still fires on touch devices and as a
-// fallback for users with JS disabled). Math: cursor position
-// normalised to [-1, 1] across the card's bounding box becomes the
-// rotateY/rotateX angles, capped at ±6° so the effect stays subtle.
-// translateY(-6px) on hover gives the same vertical lift the CSS rule
-// had. Reduced-motion users get a gentle lift but no rotation.
-(function () {
-  const reducedMotion = window.matchMedia &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reducedMotion) return; // CSS-only :hover lift handles this case.
-
-  const cards = document.querySelectorAll('.app-card');
-  if (!cards.length) return;
-
-  // Touch devices: skip tilt entirely. The static :hover from CSS
-  // doesn't fire here anyway; tilt feels weird on phones because
-  // there's no cursor.
-  const isTouch = window.matchMedia('(hover: none)').matches;
-  if (isTouch) return;
-
-  const MAX_TILT = 6;   // degrees
-  const LIFT     = 6;   // px
-
-  cards.forEach((card) => {
-    let raf = null;
-    let pending = null;
-
-    const apply = () => {
-      raf = null;
-      if (!pending) return;
-      const { x, y } = pending;
-      // x, y are in [-1, 1]. Negative y → cursor above center → tilt
-      // away (rotateX positive, top tips back). Positive x → cursor
-      // right of center → rotateY negative (right edge dips toward
-      // viewer). Matches the CSS :hover defaults.
-      const rotX =  y * MAX_TILT;
-      const rotY = -x * MAX_TILT;
-      card.style.transform =
-        `translateY(-${LIFT}px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
-    };
-
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      // Normalise to [-1, 1] across the card.
-      const x = ((e.clientX - rect.left) / rect.width)  * 2 - 1;
-      const y = ((e.clientY - rect.top)  / rect.height) * 2 - 1;
-      pending = { x, y };
-      if (raf == null) raf = requestAnimationFrame(apply);
-    });
-
-    card.addEventListener('mouseleave', () => {
-      // Reset — let the CSS transition ease back to the resting
-      // transform via the original :hover rule fading out.
-      pending = null;
-      if (raf != null) { cancelAnimationFrame(raf); raf = null; }
-      card.style.transform = '';
-    });
-  });
-})();
 </script>
