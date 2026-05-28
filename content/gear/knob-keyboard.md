@@ -11,8 +11,6 @@ rating: 5
 purchaseURL: "https://knob.design/"
 tags: ["knob", "keyboard", "work-louder", "low-profile", "preorder"]
 description: "The Knob Keyboard is exactly the kind of desk object that makes no sense if you only judge it by utility. I ordered it nearly eight months before it arrived, and the box still made the whole delay feel like part of the story."
-image: "/images/gear/knob-keyboard/06.jpg"
-imageAlt: "Knob Keyboard held in hand after unboxing"
 draft: false
 ---
 
@@ -21,24 +19,6 @@ I received the **Knob Keyboard** on **September 2, 2025**, after ordering it alm
 The product is officially the **Knob / k.no.b.1**, a low-profile mechanical keyboard from Work Louder with two programmable knobs and a narrow full-color screen on the right side. It is not trying to disappear into the setup. The orange accents, the industrial packaging, and the "No, not that kind of knob" line all make it feel more like a designed object than another anonymous rectangle of keys.
 
 I like that it commits to being specific. A lot of keyboards use "custom" to mean a different case color or a slightly stranger layout. This one has a point of view: low-profile switches, chunky retro keycaps, two knobs, and a little screen that makes the whole thing feel half keyboard, half control surface.
-
-<div class="gear-gallery">
-  <figure>
-    <img src="/images/gear/knob-keyboard/01.jpg" alt="Knob Keyboard retail box photographed by Chen after delivery">
-  </figure>
-  <figure>
-    <img src="/images/gear/knob-keyboard/04.jpg" alt="Knob Keyboard box opened to the quick start insert">
-  </figure>
-  <figure>
-    <img src="/images/gear/knob-keyboard/05.jpg" alt="Knob Keyboard sitting inside its orange retail box">
-  </figure>
-  <figure>
-    <img src="/images/gear/knob-keyboard/02.jpg" alt="Back of the Knob Keyboard box showing included accessories and specs">
-  </figure>
-  <figure>
-    <img src="/images/gear/knob-keyboard/03.jpg" alt="Shipping box for the Knob Keyboard after delivery">
-  </figure>
-</div>
 
 ## Why I wanted it
 
