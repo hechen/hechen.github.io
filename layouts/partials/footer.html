@@ -1,7 +1,19 @@
-{{- /*
-  Site-wide footer — samwanng.com-inspired single-row of social links
-  separated by dots, copyright underneath. No grid, no nested chrome.
-*/ -}}
+{{- if .IsHome -}}
+<footer class="portfolio-footer">
+  <div class="portfolio-footer-inner">
+    <a class="portfolio-footer-cta" href="mailto:hechen.dream@gmail.com">
+      <span>Have a thoughtful project?</span>
+      <strong>Let’s make it real.</strong>
+      <i aria-hidden="true">↗</i>
+    </a>
+    <div class="portfolio-footer-meta">
+      <p>© {{ now.Year }} Chen He</p>
+      <p>Designed &amp; built in Seattle</p>
+      <a href="#top">Back to surface ↑</a>
+    </div>
+  </div>
+</footer>
+{{- else -}}
 <footer class="border-t border-slate-200/60 dark:border-slate-800">
   <div class="max-w-5xl mx-auto px-6 sm:px-10 py-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 text-sm text-slate-400 dark:text-slate-500">
     <p>© {{ now.Year }} Chen</p>
@@ -26,3 +38,4 @@
     </p>
   </div>
 </footer>
+{{- end -}}

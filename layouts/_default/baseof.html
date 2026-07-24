@@ -14,7 +14,7 @@
 <head>
 {{- partial "head.html" . }}
 </head>
-<body class="bg-paper text-ink">
+<body class="bg-paper text-ink{{ if .IsHome }} home-body{{ end }}">
 {{- partial "header.html" . }}
 <main>
 {{ block "main" . }}{{ .Content }}{{ end }}

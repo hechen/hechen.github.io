@@ -1,368 +1,192 @@
 ---
-title: 'Chen — iOS apps'
-description: 'iOS developer building thoughtful, polished apps for the Apple ecosystem.'
+title: 'Chen — Apple-platform engineer'
+description: 'Chen is an Apple-platform engineer in Seattle, building thoughtful software with privacy, craft, and feeling.'
 ---
 
-<!-- GLOBAL NAV — same markup on every page I control. -->
+<section class="portfolio-hero" id="top" aria-label="Introduction">
+  <canvas id="home-water-canvas" class="home-water-canvas" aria-hidden="true"></canvas>
+  <div class="home-water-atmosphere" aria-hidden="true"></div>
 
-
-<!-- HERO -->
-<section class="gradient-bg-animated">
-  <div class="max-w-5xl mx-auto px-6 sm:px-10 pt-24 pb-20 sm:pt-32 sm:pb-28">
-    <div class="flex items-center gap-2 text-sm font-medium text-accent dark:text-accent-dark mb-6">
-      <span class="inline-block h-2 w-2 rounded-full bg-accent dark:bg-accent-dark"></span>
-      <span>Currently shipping</span>
-    </div>
-    <h1 class="text-5xl sm:text-7xl font-bold tracking-tight leading-[1.05] mb-6">Chen</h1>
-    <p class="text-xl sm:text-2xl text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
-      iOS developer building thoughtful, polished apps for the Apple ecosystem.
+  <div class="portfolio-hero-inner">
+    <p class="home-eyebrow">
+      <span class="home-live-dot" aria-hidden="true"></span>
+      Apple-platform engineer · Seattle
     </p>
 
-    <!-- Stats counter row. Hardcoded — counting builds/LOC across
-         private repos client-side isn't practical, and the values
-         change slowly enough that quarterly manual updates beat a
-         flaky API call. -->
-    <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-10 max-w-2xl">
-      <div>
-        <div class="stat-num text-3xl sm:text-4xl font-bold tracking-tight tabular-nums">9</div>
-        <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">apps in flight</div>
-      </div>
-      <div>
-        <div class="stat-num text-3xl sm:text-4xl font-bold tracking-tight tabular-nums" style="animation-delay: 0.2s">8</div>
-        <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">on TestFlight</div>
-      </div>
-      <div>
-        <div class="stat-num text-3xl sm:text-4xl font-bold tracking-tight tabular-nums" style="animation-delay: 0.3s">1</div>
-        <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">on App Store</div>
-      </div>
-      <div>
-        <div class="stat-num text-3xl sm:text-4xl font-bold tracking-tight tabular-nums" style="animation-delay: 0.4s">~380k</div>
-        <div class="text-sm text-slate-500 dark:text-slate-400 mt-1">lines of Swift</div>
-      </div>
+    <h1 class="portfolio-title">
+      Software,
+      <em>with feeling.</em>
+    </h1>
+
+    <div class="portfolio-intro">
+      <p>
+        I’m Chen. I design and build focused apps for the Apple ecosystem—
+        native, private, and considered down to the last interaction.
+      </p>
+      <a class="home-text-link" href="#work">
+        Explore selected work
+        <span aria-hidden="true">↘</span>
+      </a>
     </div>
 
-    <a href="#apps" class="mt-12 inline-flex items-center gap-2 text-base text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark transition-colors">
-      View my apps
-      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    <div class="home-surface-guide" aria-label="Interactive surface">
+      <span class="home-guide-index">I / O</span>
+      <span>Move to shift the water · Press to send a ripple</span>
+    </div>
+
+    <button
+      id="home-motion-toggle"
+      class="home-motion-toggle"
+      type="button"
+      aria-pressed="false"
+      aria-label="Pause water motion"
+    >
+      <span class="home-motion-icon" aria-hidden="true"></span>
+      <span class="home-motion-label">Pause motion</span>
+    </button>
+  </div>
+
+  <a class="home-scroll-cue" href="#work" aria-label="Scroll to selected work">
+    <span>Selected work</span>
+    <i aria-hidden="true"></i>
+  </a>
+</section>
+
+<div class="portfolio-body">
+  <section class="portfolio-work" id="work" aria-labelledby="work-title">
+    <div class="portfolio-section-heading">
+      <p class="portfolio-kicker">01 / Selected work</p>
+      <h2 id="work-title">Useful things,<br>carefully made.</h2>
+      <p class="portfolio-section-note">
+        A selection of independent products built from first principles for
+        iPhone, iPad, Mac, and Apple Watch.
+      </p>
+    </div>
+
+    <div class="portfolio-projects">
+      <article class="portfolio-project project-structly">
+        <a class="project-visual" href="/apps/structly/" aria-label="View Structly">
+          <span class="project-orbit orbit-one" aria-hidden="true"></span>
+          <span class="project-orbit orbit-two" aria-hidden="true"></span>
+          <img src="/assets/icons/structly.png" alt="" width="160" height="160" loading="lazy" decoding="async">
+          <span class="project-number" aria-hidden="true">01</span>
+        </a>
+        <div class="project-copy">
+          <div class="project-meta">
+            <span>Safari extension</span>
+            <span>iPhone · iPad · Mac</span>
+          </div>
+          <h3><a href="/apps/structly/">Structly</a></h3>
+          <p>
+            Raw JSON, made human. A fast Safari extension with collapsible
+            trees, search, and syntax that feels native on every screen.
+          </p>
+          <div class="project-links">
+            <a href="/apps/structly/">View case study <span aria-hidden="true">↗</span></a>
+            <a href="https://apps.apple.com/us/app/structly-json-formatter/id6753774575">App Store <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-project project-liftcoach">
+        <a class="project-visual" href="/apps/liftcoach/" aria-label="View LiftCoach">
+          <span class="project-rings" aria-hidden="true"></span>
+          <img src="/assets/icons/liftcoach.png" alt="" width="160" height="160" loading="lazy" decoding="async">
+          <span class="project-number" aria-hidden="true">02</span>
+        </a>
+        <div class="project-copy">
+          <div class="project-meta">
+            <span>Health &amp; fitness</span>
+            <span>iPhone · Apple Watch</span>
+          </div>
+          <h3><a href="/apps/liftcoach/">LiftCoach</a></h3>
+          <p>
+            Adaptive strength programming shaped by your training context,
+            recovery, and goals—without the noise of a generic gym app.
+          </p>
+          <div class="project-links">
+            <a href="/apps/liftcoach/">View project <span aria-hidden="true">↗</span></a>
+            <a href="https://github.com/hechen/GymLog">Source <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-project project-dupeout">
+        <a class="project-visual" href="/apps/dupeout/" aria-label="View DupeOut">
+          <span class="project-grid" aria-hidden="true"></span>
+          <img src="/assets/icons/dupeout.png" alt="" width="160" height="160" loading="lazy" decoding="async">
+          <span class="project-number" aria-hidden="true">03</span>
+        </a>
+        <div class="project-copy">
+          <div class="project-meta">
+            <span>Photos &amp; privacy</span>
+            <span>iPhone</span>
+          </div>
+          <h3><a href="/apps/dupeout/">DupeOut</a></h3>
+          <p>
+            On-device photo cleanup that finds duplicates and weak shots while
+            keeping your library exactly where it belongs: with you.
+          </p>
+          <div class="project-links">
+            <a href="/apps/dupeout/">View project <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <a class="portfolio-wide-link" href="/apps/">
+      <span>Explore the full app catalog</span>
+      <span aria-hidden="true">09 products&nbsp;&nbsp;→</span>
     </a>
-  </div>
-</section>
+  </section>
 
-<!-- APPS GRID -->
-<section id="apps" class="border-t border-slate-200/60 dark:border-slate-800">
-  <div class="max-w-5xl mx-auto px-6 sm:px-10 py-20 sm:py-28">
-    <p class="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">Selected apps</p>
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-      <div>
-        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-2">Apps</h2>
-        <p class="max-w-2xl text-slate-500 dark:text-slate-400">The strongest work first: two flagship products up top, then the rest of the catalog without the fake-equal-weight card wall.</p>
-      </div>
-      <a href="/apps/" class="inline-flex items-center gap-2 text-sm font-medium text-slate-900 transition-colors hover:text-accent dark:text-slate-100 dark:hover:text-accent-dark">Full catalog <span aria-hidden="true">→</span></a>
+  <section class="portfolio-principles" aria-labelledby="principles-title">
+    <div class="portfolio-section-heading">
+      <p class="portfolio-kicker">02 / How I work</p>
+      <h2 id="principles-title">Built on a few<br>quiet convictions.</h2>
     </div>
-
-    <div class="mt-12 grid gap-6">
-      
-      <article class="app-card group relative overflow-hidden rounded-[36px] border border-slate-200/80 bg-white p-7 sm:p-8 shadow-[0_16px_48px_rgba(15,23,42,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_24px_60px_rgba(15,23,42,0.09)] dark:border-slate-800 dark:bg-slate-900 dark:shadow-none dark:hover:border-slate-700">
-        <div class="absolute inset-x-0 top-0 h-px bg-emerald-500/80"></div>
-        <div class="absolute -right-8 -top-8 h-36 w-36 rounded-full blur-3xl bg-emerald-200/45 dark:bg-emerald-500/10"></div>
-        <div class="relative grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_19rem] lg:items-start">
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">Featured release</p>
-            <div class="mt-4 flex items-start gap-4">
-              <img src="/assets/icons/structly.png" alt="Structly app icon" class="h-20 w-20 rounded-[24%] shadow-lg ring-1 ring-black/5" loading="lazy" decoding="async">
-              <div class="min-w-0">
-                <div class="flex flex-wrap items-center gap-2">
-                  <h3 class="text-3xl sm:text-[2rem] font-bold tracking-tight text-slate-950 dark:text-white">Structly</h3>
-                  <span class="rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-200/70 dark:bg-emerald-500/12 dark:text-emerald-300 dark:ring-emerald-400/20">Live</span>
-                </div>
-                <p class="mt-3 text-sm font-medium uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">iPhone · iPad · Mac</p>
-              </div>
-            </div>
-            <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">Turns ugly raw JSON into something readable, collapsible, and actually pleasant across Safari on every Apple device.</p>
-            <div class="mt-6 flex flex-wrap gap-2.5">
-              <a href="https://apps.apple.com/us/app/structly-json-formatter/id6753774575" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">App Store</a> <a href="/apps/structly/" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">View app</a> <a href="/apps/structly/privacy.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Privacy</a> <a href="/apps/structly/support.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Support</a>
-            </div>
-          </div>
-          <aside class="rounded-[28px] border border-slate-200/80 bg-slate-50/80 p-5 dark:border-slate-800 dark:bg-slate-950/60">
-            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">Why it stands out</p>
-            <ul class="mt-4 space-y-3 text-sm leading-6 text-slate-600 dark:text-slate-300"><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500"></span><span>Safari extension for raw JSON pages</span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500"></span><span>Collapsible nodes, search, proper syntax highlighting</span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500"></span><span>Same experience on iPhone, iPad, and Mac</span></li></ul>
-            <div class="mt-6 rounded-2xl border border-slate-200/80 bg-white/90 p-4 dark:border-slate-800 dark:bg-slate-900/80">
-              <p class="text-sm font-medium text-slate-900 dark:text-slate-100">Live on the App Store now</p>
-              <p class="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">This is the kind of product page slot that should feel earned, not filler.</p>
-            </div>
-          </aside>
-        </div>
-      </article>
-      <article class="app-card group relative overflow-hidden rounded-[36px] border border-slate-200/80 bg-white p-7 sm:p-8 shadow-[0_16px_48px_rgba(15,23,42,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_24px_60px_rgba(15,23,42,0.09)] dark:border-slate-800 dark:bg-slate-900 dark:shadow-none dark:hover:border-slate-700">
-        <div class="absolute inset-x-0 top-0 h-px bg-sky-500/80"></div>
-        <div class="absolute -right-8 -top-8 h-36 w-36 rounded-full blur-3xl bg-sky-200/45 dark:bg-sky-500/10"></div>
-        <div class="relative grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_19rem] lg:items-start">
-          <div>
-            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">Featured beta</p>
-            <div class="mt-4 flex items-start gap-4">
-              <img src="/assets/icons/liftcoach.png" alt="LiftCoach app icon" class="h-20 w-20 rounded-[24%] shadow-lg ring-1 ring-black/5" loading="lazy" decoding="async">
-              <div class="min-w-0">
-                <div class="flex flex-wrap items-center gap-2">
-                  <h3 class="text-3xl sm:text-[2rem] font-bold tracking-tight text-slate-950 dark:text-white">LiftCoach</h3>
-                  <span class="rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200/70 dark:bg-sky-500/12 dark:text-sky-300 dark:ring-sky-400/20">TestFlight</span>
-                </div>
-                <p class="mt-3 text-sm font-medium uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">iPhone · Apple Watch</p>
-              </div>
-            </div>
-            <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">Adaptive strength programming, recovery-aware suggestions, and a serious training UI without the usual gym-app sludge.</p>
-            <div class="mt-6 flex flex-wrap gap-2.5">
-              <a href="https://hechen.github.io/apps/liftcoach/" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">View app</a> <a href="https://hechen.github.io/apps/liftcoach/privacy.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Privacy</a> <a href="https://hechen.github.io/apps/liftcoach/support.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Support</a> <a href="https://github.com/hechen/GymLog" class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white/80 px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Source</a>
-            </div>
-          </div>
-          <aside class="rounded-[28px] border border-slate-200/80 bg-slate-50/80 p-5 dark:border-slate-800 dark:bg-slate-950/60">
-            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">Why it stands out</p>
-            <ul class="mt-4 space-y-3 text-sm leading-6 text-slate-600 dark:text-slate-300"><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500"></span><span>Plans workouts around actual training context</span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500"></span><span>Designed for lifters, not step-counter vibes</span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400 dark:bg-slate-500"></span><span>Companion Apple Watch support</span></li></ul>
-            <div class="mt-6 rounded-2xl border border-slate-200/80 bg-white/90 p-4 dark:border-slate-800 dark:bg-slate-900/80">
-              <p class="text-sm font-medium text-slate-900 dark:text-slate-100">Active TestFlight build</p>
-              <p class="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-400">This is the kind of product page slot that should feel earned, not filler.</p>
-            </div>
-          </aside>
-        </div>
-      </article>
-    </div>
-
-    <div class="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-      
-        <article class="app-card group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
-          <div class="absolute inset-x-0 top-0 h-px bg-sky-500/80"></div>
-          <div class="flex items-start gap-4">
-            <img src="/assets/icons/dupeout.png" alt="DupeOut app icon" class="h-14 w-14 rounded-[22%] shadow-md ring-1 ring-black/5" loading="lazy" decoding="async">
-            <div class="min-w-0 flex-1">
-              <div class="flex flex-wrap items-center gap-2">
-                <h3 class="text-xl font-bold tracking-tight text-slate-950 dark:text-white">DupeOut</h3>
-                <span class="rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200/70 dark:bg-sky-500/12 dark:text-sky-300 dark:ring-sky-400/20">TestFlight</span>
-              </div>
-              <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">iPhone</p>
-              <p class="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">On-device duplicate and bad-photo cleanup that stays private.</p>
-            </div>
-          </div>
-          <div class="mt-5 flex flex-wrap gap-2.5"><a href="/apps/dupeout/" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">View app</a> <a href="/apps/dupeout/privacy.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Privacy</a> <a href="/apps/dupeout/support.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Support</a></div>
-          <p class="mt-4 text-sm text-slate-400 dark:text-slate-500">Photo cleanup</p>
-        </article>
-        <article class="app-card group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
-          <div class="absolute inset-x-0 top-0 h-px bg-sky-500/80"></div>
-          <div class="flex items-start gap-4">
-            <img src="/assets/icons/distill.png" alt="Distill app icon" class="h-14 w-14 rounded-[22%] shadow-md ring-1 ring-black/5" loading="lazy" decoding="async">
-            <div class="min-w-0 flex-1">
-              <div class="flex flex-wrap items-center gap-2">
-                <h3 class="text-xl font-bold tracking-tight text-slate-950 dark:text-white">Distill</h3>
-                <span class="rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200/70 dark:bg-sky-500/12 dark:text-sky-300 dark:ring-sky-400/20">TestFlight</span>
-              </div>
-              <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">iPhone · iPad · Mac · Watch</p>
-              <p class="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">Save links, archive full articles, and pull them back later without losing the text.</p>
-            </div>
-          </div>
-          <div class="mt-5 flex flex-wrap gap-2.5"><a href="/apps/distill/" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">View app</a> <a href="/apps/distill/privacy.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Privacy</a> <a href="/apps/distill/support.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Support</a></div>
-          <p class="mt-4 text-sm text-slate-400 dark:text-slate-500">Read-later, but searchable</p>
-        </article>
-        <article class="app-card group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
-          <div class="absolute inset-x-0 top-0 h-px bg-sky-500/80"></div>
-          <div class="flex items-start gap-4">
-            <img src="/assets/icons/closet.png" alt="Closet app icon" class="h-14 w-14 rounded-[22%] shadow-md ring-1 ring-black/5" loading="lazy" decoding="async">
-            <div class="min-w-0 flex-1">
-              <div class="flex flex-wrap items-center gap-2">
-                <h3 class="text-xl font-bold tracking-tight text-slate-950 dark:text-white">Closet</h3>
-                <span class="rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200/70 dark:bg-sky-500/12 dark:text-sky-300 dark:ring-sky-400/20">TestFlight</span>
-              </div>
-              <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">iPhone · iPad</p>
-              <p class="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">Wardrobe tracking with total value, wear history, and cost-per-wear.</p>
-            </div>
-          </div>
-          <div class="mt-5 flex flex-wrap gap-2.5"><a href="/apps/closet/" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">View app</a> <a href="/apps/closet/privacy.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Privacy</a> <a href="/apps/closet/support.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Support</a></div>
-          <p class="mt-4 text-sm text-slate-400 dark:text-slate-500">Personal inventory</p>
-        </article>
-        <article class="app-card group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
-          <div class="absolute inset-x-0 top-0 h-px bg-sky-500/80"></div>
-          <div class="flex items-start gap-4">
-            <img src="/assets/icons/spendwisely.png" alt="SpendWisely app icon" class="h-14 w-14 rounded-[22%] shadow-md ring-1 ring-black/5" loading="lazy" decoding="async">
-            <div class="min-w-0 flex-1">
-              <div class="flex flex-wrap items-center gap-2">
-                <h3 class="text-xl font-bold tracking-tight text-slate-950 dark:text-white">SpendWisely</h3>
-                <span class="rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200/70 dark:bg-sky-500/12 dark:text-sky-300 dark:ring-sky-400/20">TestFlight</span>
-              </div>
-              <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">iPhone · iPad</p>
-              <p class="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">A finance tracker built around clear spending views, not bank-app sludge.</p>
-            </div>
-          </div>
-          <div class="mt-5 flex flex-wrap gap-2.5"><a href="/apps/spendwisely/" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">View app</a> <a href="/apps/spendwisely/privacy.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Privacy</a> <a href="/apps/spendwisely/support.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Support</a></div>
-          <p class="mt-4 text-sm text-slate-400 dark:text-slate-500">Money, less mess</p>
-        </article>
-        <article class="app-card group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
-          <div class="absolute inset-x-0 top-0 h-px bg-sky-500/80"></div>
-          <div class="flex items-start gap-4">
-            <img src="/assets/icons/eatwisely.png" alt="EatWisely app icon" class="h-14 w-14 rounded-[22%] shadow-md ring-1 ring-black/5" loading="lazy" decoding="async">
-            <div class="min-w-0 flex-1">
-              <div class="flex flex-wrap items-center gap-2">
-                <h3 class="text-xl font-bold tracking-tight text-slate-950 dark:text-white">EatWisely</h3>
-                <span class="rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200/70 dark:bg-sky-500/12 dark:text-sky-300 dark:ring-sky-400/20">TestFlight</span>
-              </div>
-              <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">iPhone</p>
-              <p class="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">Meal logging that works whether you snap a photo, scan a label, or just type it.</p>
-            </div>
-          </div>
-          <div class="mt-5 flex flex-wrap gap-2.5"><a href="/apps/eatwisely/" class="inline-flex items-center justify-center rounded-full bg-slate-950 px-3.5 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200">View app</a> <a href="/apps/eatwisely/privacy.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Privacy</a> <a href="/apps/eatwisely/support.html" class="inline-flex items-center justify-center rounded-full border border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-600 transition-colors hover:border-slate-300 hover:text-slate-950 dark:border-slate-700 dark:text-slate-300 dark:hover:border-slate-500 dark:hover:text-white">Support</a></div>
-          <p class="mt-4 text-sm text-slate-400 dark:text-slate-500">Food tracking</p>
-        </article>
-        <article class="app-card group relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-slate-700">
-          <div class="absolute inset-x-0 top-0 h-px bg-sky-500/80"></div>
-          <div class="flex items-start gap-4">
-            <img src="/assets/icons/traininsight.png" alt="TrainInsight app icon" class="h-14 w-14 rounded-[22%] shadow-md ring-1 ring-black/5" loading="lazy" decoding="async">
-            <div class="min-w-0 flex-1">
-              <div class="flex flex-wrap items-center gap-2">
-                <h3 class="text-xl font-bold tracking-tight text-slate-950 dark:text-white">TrainInsight</h3>
-                <span class="rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200/70 dark:bg-sky-500/12 dark:text-sky-300 dark:ring-sky-400/20">TestFlight</span>
-              </div>
-              <p class="mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">iPhone · Apple Watch</p>
-              <p class="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-300">Training analytics and readiness signals built around Apple Watch data.</p>
-            </div>
-          </div>
-          <div class="mt-5 flex flex-wrap gap-2.5"><span class="inline-flex items-center justify-center rounded-full border border-dashed border-slate-200 px-3.5 py-2 text-sm font-medium text-slate-400 dark:border-slate-700 dark:text-slate-500 cursor-default">Coming soon</span></div>
-          <p class="mt-4 text-sm text-slate-400 dark:text-slate-500">Coming to the site soon</p>
-        </article>
-    </div>
-  </div>
-</section>
-
-<!-- Item 5: Recent Activity. Pulls latest GitHub events client-side. -->
-<section id="activity" class="border-t border-slate-200/60 dark:border-slate-800">
-  <div class="max-w-5xl mx-auto px-6 sm:px-10 py-20 sm:py-28">
-    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-2">Recent activity</h2>
-    <p class="text-slate-500 dark:text-slate-400 mb-10">Latest commits across public repos. Pulled from GitHub on page load.</p>
-
-    <ol id="activity-feed" class="space-y-3">
-      <!-- Skeleton rows. JS replaces them on fetch. -->
-      <li class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 feed-skeleton h-16"></li>
-      <li class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 feed-skeleton h-16"></li>
-      <li class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 feed-skeleton h-16"></li>
+    <ol class="principle-list">
+      <li>
+        <span>01</span>
+        <h3>Native by nature</h3>
+        <p>Platform conventions are a creative constraint, not something to route around.</p>
+      </li>
+      <li>
+        <span>02</span>
+        <h3>Private by default</h3>
+        <p>On-device intelligence when possible. No analytics, trackers, or attention traps.</p>
+      </li>
+      <li>
+        <span>03</span>
+        <h3>Details are the product</h3>
+        <p>The interface, the edge cases, and the invisible engineering all shape the feeling.</p>
+      </li>
     </ol>
+  </section>
 
-    <p id="activity-fallback" class="hidden mt-6 text-sm text-slate-500 dark:text-slate-400">
-      GitHub API didn't respond — try <a class="text-accent dark:text-accent-dark hover:underline" href="https://github.com/hechen?tab=overview">github.com/hechen</a> directly.
-    </p>
-  </div>
-</section>
+  <section class="portfolio-about" id="about" aria-labelledby="about-title">
+    <p class="portfolio-kicker">04 / About</p>
+    <div class="portfolio-about-grid">
+      <h2 id="about-title">Engineer.<br>Designer.<br>Builder.</h2>
+      <div class="portfolio-about-copy">
+        <p>
+          I’m an Apple-platform engineer based in Seattle. I work across
+          SwiftUI, watchOS, HealthKit, CloudKit, on-device AI, and the systems
+          that make products reliable beyond the happy path.
+        </p>
+        <p>
+          Away from Xcode, I’m usually photographing a city, trying a new
+          training block, or finding a better tool for an everyday ritual.
+        </p>
+        <div class="portfolio-contact-links">
+          <a href="mailto:hechen.dream@gmail.com">Email <span aria-hidden="true">↗</span></a>
+          <a href="https://github.com/hechen">GitHub <span aria-hidden="true">↗</span></a>
+          <a href="/now/">Now <span aria-hidden="true">↗</span></a>
+          <a href="/tools/">Tools <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 
-<!-- ABOUT -->
-<section class="border-t border-slate-200/60 dark:border-slate-800">
-  <div class="max-w-3xl mx-auto px-6 sm:px-10 py-20 sm:py-24">
-    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-6">About</h2>
-    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-      I build iOS and macOS apps focused on craft, polish, and respect for the user's data. Most of my apps run AI fully on-device. None of them have analytics, tracking, or ads.
-    </p>
-    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-      Reach out: <a href="mailto:hechen.dream@gmail.com" class="text-accent dark:text-accent-dark hover:underline">hechen.dream@gmail.com</a> · <a href="https://github.com/hechen" class="text-accent dark:text-accent-dark hover:underline">GitHub</a>
-    </p>
-    <p class="text-sm text-slate-500 dark:text-slate-400">
-      <a href="now/" class="text-accent dark:text-accent-dark hover:underline">/now</a> — what I'm working on this week ·
-      <a href="tools/" class="text-accent dark:text-accent-dark hover:underline">/tools</a> — what I build with
-    </p>
-  </div>
-</section>
-
-<!-- FOOTER + Item 7: condensed activity widget -->
-
-
-<script>
-// Items 5 + 7: shared GitHub activity fetch.
-// One API call powers both the homepage Recent Activity list (top 10)
-// and the footer condensed widget (top 5). Graceful failure: skeleton
-// rows stay if the fetch errors / rate-limits, plus a fallback link.
-//
-// `events/public` returns up to 30 most recent public events; we
-// filter to PushEvent and dedupe by repo+commit-message so a single
-// push of N commits doesn't swamp the list.
-(async function () {
-  const main = document.getElementById('activity-feed');
-  const footer = document.getElementById('footer-feed');
-  const fallback = document.getElementById('activity-fallback');
-
-  function relTime(iso) {
-    const d = new Date(iso);
-    const s = Math.max(0, (Date.now() - d.getTime()) / 1000);
-    if (s < 60)      return 'just now';
-    if (s < 3600)    return Math.floor(s / 60) + 'm ago';
-    if (s < 86400)   return Math.floor(s / 3600) + 'h ago';
-    if (s < 604800)  return Math.floor(s / 86400) + 'd ago';
-    return d.toLocaleDateString();
-  }
-
-  function escapeHtml(str) {
-    return String(str).replace(/[&<>"']/g, (c) => ({
-      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-    })[c]);
-  }
-
-  try {
-    const res = await fetch('https://api.github.com/users/hechen/events/public?per_page=30');
-    if (!res.ok) throw new Error('GitHub API ' + res.status);
-    const events = await res.json();
-
-    const rows = [];
-    const seen = new Set();
-    for (const ev of events) {
-      if (ev.type !== 'PushEvent') continue;
-      const repo = ev.repo.name.replace(/^hechen\//, '');
-      const commits = (ev.payload.commits || []).slice().reverse();
-      for (const c of commits) {
-        const key = repo + '|' + c.sha;
-        if (seen.has(key)) continue;
-        seen.add(key);
-        const msg = (c.message || '').split('\n')[0]; // first line only
-        rows.push({
-          repo,
-          msg,
-          time: ev.created_at,
-          url: 'https://github.com/' + ev.repo.name + '/commit/' + c.sha
-        });
-        if (rows.length >= 15) break;
-      }
-      if (rows.length >= 15) break;
-    }
-
-    if (rows.length === 0) throw new Error('No PushEvents in feed');
-
-    // Render top 10 to main feed.
-    if (main) {
-      main.innerHTML = rows.slice(0, 10).map(r => `
-        <li class="rounded-xl border border-slate-200 dark:border-slate-800 p-4 hover:border-accent/40 dark:hover:border-accent-dark/40 transition-colors">
-          <a href="${escapeHtml(r.url)}" class="block group">
-            <div class="flex items-baseline justify-between gap-3 mb-1">
-              <span class="font-mono text-xs font-semibold text-accent dark:text-accent-dark">${escapeHtml(r.repo)}</span>
-              <span class="text-xs text-slate-400 dark:text-slate-500 tabular-nums">${escapeHtml(relTime(r.time))}</span>
-            </div>
-            <div class="text-sm text-slate-700 dark:text-slate-300 truncate group-hover:text-accent dark:group-hover:text-accent-dark transition-colors">
-              ${escapeHtml(r.msg)}
-            </div>
-          </a>
-        </li>
-      `).join('');
-    }
-
-    // Render top 5 to footer (condensed).
-    if (footer) {
-      footer.innerHTML = rows.slice(0, 5).map(r => `
-        <li class="truncate">
-          <a href="${escapeHtml(r.url)}" class="hover:text-accent dark:hover:text-accent-dark transition-colors">
-            <span class="font-mono text-accent dark:text-accent-dark">${escapeHtml(r.repo)}</span>
-            <span class="mx-1 text-slate-400 dark:text-slate-600">·</span>
-            ${escapeHtml(r.msg)}
-          </a>
-        </li>
-      `).join('');
-    }
-  } catch (e) {
-    if (fallback) fallback.classList.remove('hidden');
-    if (main) main.innerHTML = '';
-    if (footer) {
-      footer.innerHTML = '<li class="text-slate-400 dark:text-slate-600">Couldn\'t load feed.</li>';
-    }
-    console.warn('GitHub events fetch failed:', e);
-  }
-})();
-
-</script>
+<script src="/js/home-water.js" defer></script>

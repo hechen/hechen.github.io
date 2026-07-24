@@ -23,7 +23,7 @@
   <meta name="twitter:title" content="{{ $title }}">
   <meta name="twitter:description" content="{{ $desc }}">
 {{- with $ogImage }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
-  <meta name="theme-color" content="#0f172a">
+  <meta name="theme-color" content="{{ if .IsHome }}#031216{{ else }}#0f172a{{ end }}">
 
   <link rel="icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
