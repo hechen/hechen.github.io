@@ -18,7 +18,7 @@ I saw something making the rounds in the dev community recently, so I built a sm
 3.  Pure menu-bar-only app (no Dock icon)
 4.  Launch on login
 
-I covered the implementation of point 3 in [another post](https://hechen.xyz/post/dockless-cocoaapps/), and point 4 in [this one](https://hechen.xyz/post/autostartwhenlogin/).
+I covered the implementation of point 3 in [another post](https://hechen.github.io/post/dockless-cocoaapps/), and point 4 in [this one](https://hechen.github.io/post/autostartwhenlogin/).
 
 ### Toggling the system theme
 

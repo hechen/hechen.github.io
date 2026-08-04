@@ -18,7 +18,7 @@ tags: ['agent', 'applescript', 'backgroundcolor', 'cocoa', 'dock', 'dockless', '
 3.  完全的 Menu Only 应用
 4.  开机自启动
 
-关于第三点的实现在[另外一篇文章](https://hechen.xyz/post/dockless-cocoaapps/)有讲过，第四点的实现在 [这一篇](https://hechen.xyz/post/autostartwhenlogin/) 中有讲。
+关于第三点的实现在[另外一篇文章](https://hechen.github.io/post/dockless-cocoaapps/)有讲过，第四点的实现在 [这一篇](https://hechen.github.io/post/autostartwhenlogin/) 中有讲。
 
 ### 系统主题切换
 

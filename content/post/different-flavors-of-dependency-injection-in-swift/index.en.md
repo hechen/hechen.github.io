@@ -11,7 +11,7 @@ tags: ['animation', 'carthage', 'closure', 'cocoapods', 'compiler', 'ios', 'ir',
 >
 > Original author & copyright: [@johnsundell](https://twitter.com/johnsundell)
 
-In previous posts we've looked at several ways of using dependency injection to give a Swift app a more decoupled, testable architecture — for instance, pairing it with the factory pattern in [Dependency injection using factories in Swift](https://hechen.xyz/2017/11/19/Dependency-injection-using-factories-in-Swift/), or using it to replace singletons in [Avoiding singletons in Swift](http://hechen.xyz/2018/07/16/Avoiding-singletons-in-Swift/).
+In previous posts we've looked at several ways of using dependency injection to give a Swift app a more decoupled, testable architecture — for instance, pairing it with the factory pattern in [Dependency injection using factories in Swift](https://hechen.github.io/2017/11/19/Dependency-injection-using-factories-in-Swift/), or using it to replace singletons in [Avoiding singletons in Swift](https://hechen.github.io/2018/07/16/Avoiding-singletons-in-Swift/).
 
 Up to this point, most of my posts and examples have used initializer-based dependency injection. But like most programming techniques, dependency injection comes in different *flavors* — each with its own pros and cons. This week, let's look at three of them and how to use them in Swift.
 

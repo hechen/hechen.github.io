@@ -7,7 +7,7 @@ categories: ['macos']
 tags: ['agent', 'applescript', 'backgroundcolor', 'build', 'cocoa', 'compile', 'dock', 'dockless', 'framework', 'library', 'login', 'mach-o', 'menu', 'nstask', 'nsview', 'preprocess', 'process', 'sandbox', 'xcode']
 ---
 
-Library 和 Framework 的概念大家应该脑海里都有一些，本文旨在讲述下基本概念，没有对每个字节都了如指掌。关于基本的编译过程在 [Build Process](https://hechen.xyz/post/xcode-build-system/) 一文中也大概讲述了一些。
+Library 和 Framework 的概念大家应该脑海里都有一些，本文旨在讲述下基本概念，没有对每个字节都了如指掌。关于基本的编译过程在 [Build Process](https://hechen.github.io/post/xcode-build-system/) 一文中也大概讲述了一些。
 
 在链接 Library 以及 Framework 之前，我们需要先了解一下 Mach—O。
 
@@ -66,7 +66,7 @@ clang main.o -Wl,`xcrun --show-sdk-path`/usr/lib/libSystem.B.tbd
 
 ### Library
 
-在 [这篇文章](https://hechen.xyz/post/xcode-build-system/) 中说明了，每个源文件最终都会生成对应的目标文件，当工程项目变大之后，我们希望能够将具体协同工作的单一组件内的目标文件一起进行交付，对于功能稳定的代码无需参与再次编译的过程，我们需要将同一个组件内部的所有目标文件归拢到一起，这也是初期库（Library） 出现的由来。简单而言，库就是一堆目标文件的集合。
+在 [这篇文章](https://hechen.github.io/post/xcode-build-system/) 中说明了，每个源文件最终都会生成对应的目标文件，当工程项目变大之后，我们希望能够将具体协同工作的单一组件内的目标文件一起进行交付，对于功能稳定的代码无需参与再次编译的过程，我们需要将同一个组件内部的所有目标文件归拢到一起，这也是初期库（Library） 出现的由来。简单而言，库就是一堆目标文件的集合。
 
 通过简单的 ar 命令即可将多个 .o 文件整合成一个 .a 文件，同时使用 ranlib 命令更新静态库 .a 的符号索引。
 

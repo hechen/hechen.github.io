@@ -7,7 +7,7 @@ categories: ['macos']
 tags: ['agent', 'applescript', 'backgroundcolor', 'build', 'cocoa', 'compile', 'dock', 'dockless', 'framework', 'library', 'login', 'mach-o', 'menu', 'nstask', 'nsview', 'preprocess', 'process', 'sandbox', 'xcode']
 ---
 
-Most of us have a rough mental model of what a library and a framework are. This post lays out the basics — not every byte, just enough to be useful. I covered the broader compile process in [Build Process](https://hechen.xyz/post/xcode-build-system/) already.
+Most of us have a rough mental model of what a library and a framework are. This post lays out the basics — not every byte, just enough to be useful. I covered the broader compile process in [Build Process](https://hechen.github.io/post/xcode-build-system/) already.
 
 Before getting into how libraries and frameworks get linked, it helps to understand Mach-O.
 
@@ -66,7 +66,7 @@ And here's what the `main.o` object file looks like.
 
 ### Library
 
-In [this post](https://hechen.xyz/post/xcode-build-system/), I described how every source file ends up as a corresponding object file. As a project grows, you want to ship the object files for a stable component together — code that's stable shouldn't have to be recompiled every time. So you bundle all the object files of a single component into one artefact. That's the origin story of the library: a library is, at heart, a bag of object files.
+In [this post](https://hechen.github.io/post/xcode-build-system/), I described how every source file ends up as a corresponding object file. As a project grows, you want to ship the object files for a stable component together — code that's stable shouldn't have to be recompiled every time. So you bundle all the object files of a single component into one artefact. That's the origin story of the library: a library is, at heart, a bag of object files.
 
 A simple `ar` invocation glues `.o` files into a `.a`, and `ranlib` updates the static library's symbol index.
 
