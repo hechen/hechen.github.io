@@ -1,0 +1,46 @@
+---
+title: 'Stock Price for Stream Deck'
+type: 'page'
+description: 'Live stock prices and daily or weekly changes on your Stream Deck.'
+---
+
+<section class="gradient-bg">
+  <div class="max-w-3xl mx-auto px-6 sm:px-10 pt-16 sm:pt-24 pb-14">
+    <div class="flex items-center gap-4 mb-8">
+      <img src="/assets/icons/stock-price.png" alt="Stock Price plugin icon" class="w-20 h-20 rounded-[22%] shadow-md" loading="lazy" decoding="async">
+      <span class="px-2 py-0.5 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300">Free · Open source</span>
+    </div>
+    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight leading-tight mb-4">Stock Price for Stream Deck</h1>
+    <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mb-3">Live market prices and changes, visible at a glance on a Stream Deck key.</p>
+    <p class="text-base text-slate-500 dark:text-slate-400 leading-relaxed max-w-2xl mb-8">Choose a symbol, connect Alpha Vantage or Finnhub with your own API key, and keep the latest price on your desk. Configure daily and weekly change, refresh limits, and color-coded backgrounds for rising, falling, or neutral prices.</p>
+    <p class="flex flex-wrap gap-3 items-center">
+      <a class="inline-flex items-center gap-2 bg-accent text-white px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-accent-dark transition-colors" href="https://github.com/hechen/streamdeck-stock-price">
+        View on GitHub
+      </a>
+      <a class="inline-block text-sm text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark transition-colors px-3 py-2" href="privacy.html">Privacy</a>
+      <a class="inline-block text-sm text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark transition-colors px-3 py-2" href="support.html">Support</a>
+    </p>
+  </div>
+</section>
+
+<section class="border-t border-slate-200/60 dark:border-slate-800">
+  <div class="max-w-5xl mx-auto px-6 sm:px-10 py-16 sm:py-20">
+    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-8">What you get</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-card"><div class="text-2xl mb-2">📈</div><h3 class="font-bold mb-1">Price at a glance</h3><p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Show the symbol, latest price, and daily or weekly percentage change directly on a Stream Deck key.</p></div>
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-card"><div class="text-2xl mb-2">🎨</div><h3 class="font-bold mb-1">Flexible backgrounds</h3><p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Use the stock icon, solid colors, or custom colors for up, down, and neutral price movement.</p></div>
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-card"><div class="text-2xl mb-2">🔌</div><h3 class="font-bold mb-1">Two market-data providers</h3><p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Choose Alpha Vantage or Finnhub. Credentials are shared across the plugin's keys, so setup happens once.</p></div>
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-card"><div class="text-2xl mb-2">🛡️</div><h3 class="font-bold mb-1">Rate-limit aware</h3><p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Configure refresh behavior and a shared request cap designed to stay within provider limits.</p></div>
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-card"><div class="text-2xl mb-2">⚡</div><h3 class="font-bold mb-1">Efficient updates</h3><p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">Finnhub uses a shared live connection for visible symbols and derives weekly movement locally as history becomes available.</p></div>
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-card"><div class="text-2xl mb-2">🆓</div><h3 class="font-bold mb-1">Free and open source</h3><p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">The plugin is free to download and inspect. Market-data providers may impose their own plan and usage limits.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="border-t border-slate-200/60 dark:border-slate-800">
+  <div class="max-w-3xl mx-auto px-6 sm:px-10 py-12 sm:py-16">
+    <h2 class="text-2xl font-bold tracking-tight mb-3">Bring your own market-data key</h2>
+    <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-3">Stock Price connects directly to the provider you select. Your API credentials are stored by Stream Deck as plugin settings and are sent only to that provider when requesting market data. The plugin does not operate an account system, analytics service, or developer-controlled data server.</p>
+    <p><a href="privacy.html" class="text-accent dark:text-accent-dark hover:underline text-sm font-semibold">Read the privacy policy →</a></p>
+  </div>
+</section>
