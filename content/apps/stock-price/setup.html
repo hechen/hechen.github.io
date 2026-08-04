@@ -1,0 +1,86 @@
+---
+title: 'Stock Price — Setup Guide'
+type: 'page'
+description: 'Install and configure the Stock Price plugin for Stream Deck.'
+---
+
+<section class="gradient-bg">
+  <div class="max-w-3xl mx-auto px-6 sm:px-10 pt-16 sm:pt-24 pb-12">
+    <div class="flex items-center gap-4 mb-8">
+      <img src="/assets/icons/stock-price.png" alt="Stock Price plugin icon" class="w-16 h-16 rounded-[22%] shadow-md" loading="lazy" decoding="async">
+      <span class="px-2 py-0.5 text-xs font-semibold rounded-full bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-300">Setup guide</span>
+    </div>
+    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4">Set up Stock Price</h1>
+    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">Go from installation to a live market quote on your Stream Deck in a few minutes.</p>
+  </div>
+</section>
+
+<section class="border-t border-slate-200/60 dark:border-slate-800">
+  <div class="max-w-3xl mx-auto px-6 sm:px-10 py-12 sm:py-16 space-y-12 text-slate-600 dark:text-slate-400 leading-relaxed">
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-accent dark:text-accent-dark mb-2">Step 1</p>
+      <h2 class="text-2xl font-bold text-slate-950 dark:text-white mb-3">Install the plugin</h2>
+      <ol class="list-decimal pl-5 space-y-2">
+        <li>Install Stock Price from Elgato Marketplace, or download the <code class="rounded bg-slate-100 px-1.5 py-0.5 text-sm text-slate-800 dark:bg-slate-800 dark:text-slate-200">.streamDeckPlugin</code> file from the <a class="text-accent dark:text-accent-dark hover:underline" href="https://github.com/hechen/streamdeck-stock-price">GitHub project</a>.</li>
+        <li>If you downloaded the installer, double-click it and approve installation in the Stream Deck App.</li>
+        <li>In the actions list, find <strong class="text-slate-900 dark:text-white">Stock Price</strong> and drag <strong class="text-slate-900 dark:text-white">Stock Quote</strong> onto a key.</li>
+      </ol>
+    </div>
+
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-accent dark:text-accent-dark mb-2">Step 2</p>
+      <h2 class="text-2xl font-bold text-slate-950 dark:text-white mb-3">Choose a market-data provider</h2>
+      <p class="mb-4">The plugin supports Alpha Vantage and Finnhub. You only need one provider, although you can configure both and choose a different provider for each key.</p>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900"><h3 class="font-bold text-slate-950 dark:text-white mb-2">Alpha Vantage</h3><p class="text-sm leading-6 mb-3">Simple REST quotes with daily change. Weekly history is fetched and cached separately.</p><a class="text-sm font-semibold text-accent dark:text-accent-dark hover:underline" href="https://www.alphavantage.co/support/#api-key">Get an Alpha Vantage API key →</a></div>
+        <div class="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900"><h3 class="font-bold text-slate-950 dark:text-white mb-2">Finnhub</h3><p class="text-sm leading-6 mb-3">Live visible-price updates through one shared connection. Weekly change builds from locally saved history.</p><a class="text-sm font-semibold text-accent dark:text-accent-dark hover:underline" href="https://finnhub.io/register">Get a Finnhub API key →</a></div>
+      </div>
+    </div>
+
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-accent dark:text-accent-dark mb-2">Step 3</p>
+      <h2 class="text-2xl font-bold text-slate-950 dark:text-white mb-3">Save the API key once</h2>
+      <ol class="list-decimal pl-5 space-y-2">
+        <li>Select the Stock Quote key in the Stream Deck App.</li>
+        <li>Open <strong class="text-slate-900 dark:text-white">Shared plugin settings</strong> in the property inspector.</li>
+        <li>Paste the API key for your chosen provider.</li>
+        <li>Keep the suggested request cap unless your provider plan permits a different limit, then save the shared settings.</li>
+      </ol>
+      <div class="mt-4 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900 dark:border-emerald-900/60 dark:bg-emerald-950/30 dark:text-emerald-200"><strong>One-time setup:</strong> provider credentials and safety limits are shared across every Stock Price key on this computer. Never post an API key in screenshots, support requests, or GitHub issues.</div>
+    </div>
+
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-accent dark:text-accent-dark mb-2">Step 4</p>
+      <h2 class="text-2xl font-bold text-slate-950 dark:text-white mb-3">Configure a stock key</h2>
+      <ul class="space-y-3">
+        <li><strong class="text-slate-900 dark:text-white">Data provider:</strong> Select Alpha Vantage or Finnhub.</li>
+        <li><strong class="text-slate-900 dark:text-white">Ticker:</strong> Enter a provider-compatible symbol such as <code class="rounded bg-slate-100 px-1.5 py-0.5 text-sm text-slate-800 dark:bg-slate-800 dark:text-slate-200">AAPL</code>, <code class="rounded bg-slate-100 px-1.5 py-0.5 text-sm text-slate-800 dark:bg-slate-800 dark:text-slate-200">MSFT</code>, or <code class="rounded bg-slate-100 px-1.5 py-0.5 text-sm text-slate-800 dark:bg-slate-800 dark:text-slate-200">TSLA</code>.</li>
+        <li><strong class="text-slate-900 dark:text-white">Auto refresh:</strong> Choose the reference-quote interval or manual-only mode.</li>
+        <li><strong class="text-slate-900 dark:text-white">Daily and weekly change:</strong> Show or hide either change row.</li>
+        <li><strong class="text-slate-900 dark:text-white">Background:</strong> Choose market color, stock watermark, or a fixed custom color. Market mode supports separate up, down, and neutral colors.</li>
+      </ul>
+      <p class="mt-4">Press the Stream Deck key whenever you want to request a manual refresh.</p>
+    </div>
+
+    <div>
+      <h2 class="text-2xl font-bold text-slate-950 dark:text-white mb-4">Free-tier-friendly defaults</h2>
+      <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-white"><tr><th class="px-4 py-3 font-semibold">Provider</th><th class="px-4 py-3 font-semibold">Default protection</th><th class="px-4 py-3 font-semibold">Weekly behavior</th></tr></thead>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800"><tr><td class="px-4 py-3 font-medium text-slate-900 dark:text-white">Alpha Vantage</td><td class="px-4 py-3">24 requests per rolling 24 hours</td><td class="px-4 py-3">Fetched at most once per symbol per day and cached</td></tr><tr><td class="px-4 py-3 font-medium text-slate-900 dark:text-white">Finnhub</td><td class="px-4 py-3">50 REST requests per rolling minute; reference refresh at least hourly</td><td class="px-4 py-3">Calculated locally after about seven days of saved history</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-2xl font-bold text-slate-950 dark:text-white mb-4">Status messages</h2>
+      <dl class="grid gap-3 sm:grid-cols-[8rem_1fr] text-sm"><dt class="font-bold text-slate-950 dark:text-white">Cached</dt><dd>The latest request failed, so the last successful quote is shown.</dd><dt class="font-bold text-slate-950 dark:text-white">Set API key</dt><dd>The selected provider does not have a saved shared credential.</dd><dt class="font-bold text-slate-950 dark:text-white">API limit</dt><dd>The configured safety cap or provider limit blocked the request.</dd><dt class="font-bold text-slate-950 dark:text-white">W WAIT</dt><dd>Finnhub needs approximately seven days of local reference history.</dd><dt class="font-bold text-slate-950 dark:text-white">W CAP / W ERR</dt><dd>The weekly request was capped or failed.</dd><dt class="font-bold text-slate-950 dark:text-white">Check symbol</dt><dd>The provider did not recognize or return the ticker.</dd></dl>
+    </div>
+
+    <div class="rounded-3xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900/70">
+      <h2 class="text-xl font-bold text-slate-950 dark:text-white mb-2">Still need help?</h2>
+      <p class="mb-4">Visit the support page or report a reproducible issue. Include your operating system, Stream Deck version, provider, ticker, and visible status—but never your API key.</p>
+      <div class="flex flex-wrap gap-3"><a class="inline-flex items-center justify-center rounded-lg bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white dark:bg-white dark:text-slate-950" href="../support/">Open support</a><a class="inline-flex items-center justify-center rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 dark:border-slate-700 dark:text-slate-200" href="https://github.com/hechen/streamdeck-stock-price/issues">GitHub Issues</a></div>
+    </div>
+  </div>
+</section>
