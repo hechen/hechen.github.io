@@ -3,47 +3,144 @@ title: 'Closet — Support'
 url: '/apps/closet/support.html'
 ---
 
-<div class="gradient-bg">
-  <div class="max-w-2xl mx-auto px-6 sm:px-8 pt-12 sm:pt-20 pb-6">
-    <a href="../" class="inline-flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark transition-colors mb-8">
-      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+<section class="gradient-bg border-b border-line">
+  <div class="max-w-5xl mx-auto px-6 sm:px-8 pt-12 sm:pt-20 pb-12 sm:pb-16">
+    <a href="../" class="inline-flex items-center gap-2 text-sm text-muted hover:text-ink transition-colors mb-10">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       Closet
     </a>
-    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Support</h1>
-    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 8 August 2026</p>
+
+    <div class="max-w-3xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.16em] text-faint mb-4">Support</p>
+      <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-ink">How can we help?</h1>
+      <p class="mt-5 text-lg sm:text-xl leading-relaxed text-muted">Choose a topic below or contact us directly. Most questions take less than a minute to answer.</p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3">
+        <a href="mailto:chen.he@icloud.com?subject=Closet%20Support" class="inline-flex min-h-11 items-center justify-center rounded-full bg-ink px-6 py-3 text-sm font-semibold text-white hover:opacity-80 transition-opacity">Email support</a>
+        <a href="./privacy.html" class="inline-flex min-h-11 items-center justify-center rounded-full bg-surface-muted px-6 py-3 text-sm font-semibold text-ink hover:bg-line transition-colors">Privacy policy</a>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<main class="max-w-2xl mx-auto px-6 sm:px-8 py-10 sm:py-16 text-lg leading-[1.7] text-slate-700 dark:text-slate-300">
+<section class="max-w-5xl mx-auto px-6 sm:px-8 py-12 sm:py-16" aria-labelledby="support-topics">
+  <h2 id="support-topics" class="sr-only">Support topics</h2>
 
-  <h2>System requirements</h2>
-  <p>Closet supports iPhone and iPad on iOS or iPadOS 18 and later, plus a native Mac app on macOS 15 and later. Some features, including Apple Intelligence and Visual Intelligence, require compatible hardware and system software.</p>
+  <nav class="grid gap-4 md:grid-cols-3" aria-label="Support categories">
+    <a href="#getting-started" class="group rounded-2xl bg-surface-muted p-6 hover:bg-line transition-colors">
+      <h3 class="text-lg font-semibold text-ink">Getting started</h3>
+      <p class="mt-2 text-sm leading-6 text-muted">Requirements, adding items, photos, and web import.</p>
+      <span class="mt-5 inline-flex text-sm font-semibold text-ink group-hover:translate-x-1 transition-transform">View answers →</span>
+    </a>
+    <a href="#ai-purchases" class="group rounded-2xl bg-surface-muted p-6 hover:bg-line transition-colors">
+      <h3 class="text-lg font-semibold text-ink">AI &amp; purchases</h3>
+      <p class="mt-2 text-sm leading-6 text-muted">AI providers, premium unlock, suggestions, and restoration.</p>
+      <span class="mt-5 inline-flex text-sm font-semibold text-ink group-hover:translate-x-1 transition-transform">View answers →</span>
+    </a>
+    <a href="#sync-data" class="group rounded-2xl bg-surface-muted p-6 hover:bg-line transition-colors">
+      <h3 class="text-lg font-semibold text-ink">Sync &amp; data</h3>
+      <p class="mt-2 text-sm leading-6 text-muted">iCloud sync, backups, exports, and privacy.</p>
+      <span class="mt-5 inline-flex text-sm font-semibold text-ink group-hover:translate-x-1 transition-transform">View answers →</span>
+    </a>
+  </nav>
 
-  <h2>Adding an item</h2>
-  <p>Choose Add Item, then add an item manually, from a photo, by scanning, or from a supported webpage. Manual entry requires only a title. You can add categories, tags, colors, purchase details, and other information before or after saving.</p>
+  <div class="mt-14 sm:mt-20 max-w-3xl">
+    <section id="getting-started" class="scroll-mt-8" aria-labelledby="getting-started-title">
+      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-faint">Basics</p>
+      <h2 id="getting-started-title" class="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight text-ink">Getting started</h2>
+      <div class="mt-6 divide-y divide-line border-y border-line">
+        <details class="group py-1">
+          <summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-6 py-4 text-base font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+            What are the system requirements?
+            <span class="text-xl font-normal text-faint transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="max-w-[65ch] pb-5 text-base leading-7 text-muted">Closet supports iPhone and iPad on iOS or iPadOS 18 and later, plus a native Mac app on macOS 15 and later. Some features, including Apple Intelligence and Visual Intelligence, require compatible hardware and system software.</p>
+        </details>
+        <details class="group py-1">
+          <summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-6 py-4 text-base font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+            How do I add an item?
+            <span class="text-xl font-normal text-faint transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="max-w-[65ch] pb-5 text-base leading-7 text-muted">Choose Add Item, then add an item manually, from a photo, by scanning, or from a supported webpage. Manual entry requires only a title. You can add categories, tags, colors, purchase details, and other information before or after saving.</p>
+        </details>
+        <details class="group py-1">
+          <summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-6 py-4 text-base font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+            Why does background removal look wrong?
+            <span class="text-xl font-normal text-faint transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="max-w-[65ch] pb-5 text-base leading-7 text-muted">Automatic background removal can occasionally clip dark, reflective, or transparent fabric. Open the item photo and choose the available reprocessing or photo-editing controls to try again. Keeping the subject well lit and separated from the background usually improves the result.</p>
+        </details>
+        <details class="group py-1">
+          <summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-6 py-4 text-base font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+            How does Web Import work?
+            <span class="text-xl font-normal text-faint transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="max-w-[65ch] pb-5 text-base leading-7 text-muted">Choose Add Item and use the web import option, or share a supported product page to Closet. Some websites block automated requests or omit usable product metadata. If import fails, add the item manually or from a saved photo.</p>
+        </details>
+      </div>
+    </section>
 
-  <h2>Background removal looks weird</h2>
-  <p>Automatic background removal can occasionally clip dark, reflective, or transparent fabric. Open the item photo and choose the available reprocessing or photo-editing controls to try again. Keeping the subject well lit and separated from the background usually improves the result.</p>
+    <section id="ai-purchases" class="scroll-mt-8 mt-14 sm:mt-20" aria-labelledby="ai-purchases-title">
+      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-faint">Optional features</p>
+      <h2 id="ai-purchases-title" class="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight text-ink">AI &amp; purchases</h2>
+      <div class="mt-6 divide-y divide-line border-y border-line">
+        <details class="group py-1">
+          <summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-6 py-4 text-base font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+            Which AI features and providers are available?
+            <span class="text-xl font-normal text-faint transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="max-w-[65ch] pb-5 text-base leading-7 text-muted">Open Settings → AI Features to enable or disable individual AI tools. Apple Intelligence is available without an additional purchase on supported devices. OpenAI, Claude, custom endpoints, and supported local providers require the one-time Premium AI Providers purchase. Some providers also require credentials or configuration supplied by you.</p>
+        </details>
+        <details class="group py-1">
+          <summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-6 py-4 text-base font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+            How do I purchase or restore Premium AI Providers?
+            <span class="text-xl font-normal text-faint transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="max-w-[65ch] pb-5 text-base leading-7 text-muted">Premium AI Providers is a non-consumable, one-time purchase. Open Settings → AI Features to purchase it or choose Restore Purchases. Make sure the device is signed into the Apple ID that originally completed the purchase.</p>
+        </details>
+        <details class="group py-1">
+          <summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-6 py-4 text-base font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+            Why do outfit suggestions feel repetitive?
+            <span class="text-xl font-normal text-faint transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="max-w-[65ch] pb-5 text-base leading-7 text-muted">AI suggestions use the wardrobe context available for the request. Logging wears and maintaining accurate item details gives the stylist better information to work with, but generated suggestions can still vary.</p>
+        </details>
+      </div>
+    </section>
 
-  <h2>AI features and providers</h2>
-  <p>Open Settings → AI Features to enable or disable individual AI tools. Apple Intelligence is available without an additional purchase on supported devices. OpenAI, Claude, custom endpoints, and supported local providers require the one-time Premium AI Providers purchase. Some providers also require credentials or configuration supplied by you.</p>
+    <section id="sync-data" class="scroll-mt-8 mt-14 sm:mt-20" aria-labelledby="sync-data-title">
+      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-faint">Your information</p>
+      <h2 id="sync-data-title" class="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight text-ink">Sync &amp; data</h2>
+      <div class="mt-6 divide-y divide-line border-y border-line">
+        <details class="group py-1">
+          <summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-6 py-4 text-base font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+            Why are items not syncing to my other device?
+            <span class="text-xl font-normal text-faint transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="max-w-[65ch] pb-5 text-base leading-7 text-muted">Make sure both devices use the same Apple ID, iCloud Drive is enabled, and Closet is allowed to use iCloud. Initial synchronization can take a few minutes. Keep Closet open briefly on both devices and check the sync status shown in Settings.</p>
+        </details>
+        <details class="group py-1">
+          <summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-6 py-4 text-base font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+            How do backup and export work?
+            <span class="text-xl font-normal text-faint transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="max-w-[65ch] pb-5 text-base leading-7 text-muted">Use the backup controls in Settings to create or restore a Closet backup file. CSV export is available for portable wardrobe records. Keep backup files somewhere secure because they can contain wardrobe details and photos.</p>
+        </details>
+        <details class="group py-1">
+          <summary class="flex min-h-14 cursor-pointer list-none items-center justify-between gap-6 py-4 text-base font-semibold text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+            How does Closet handle my data?
+            <span class="text-xl font-normal text-faint transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="max-w-[65ch] pb-5 text-base leading-7 text-muted">Closet is local-first and does not require a Closet account. Optional iCloud sync stores your data in your private iCloud account. AI providers receive information only when you choose to use the corresponding feature. Read the <a href="./privacy.html" class="font-medium text-ink underline decoration-line-strong underline-offset-4 hover:decoration-ink">privacy policy</a> for complete details.</p>
+        </details>
+      </div>
+    </section>
 
-  <h2>Web Import</h2>
-  <p>Choose Add Item and use the web import option, or share a supported product page to Closet. Some websites block automated requests or omit usable product metadata. If import fails, add the item manually or from a saved photo.</p>
+    <aside class="mt-14 sm:mt-20 rounded-2xl bg-ink p-7 sm:p-9 text-white" aria-labelledby="still-need-help">
+      <h2 id="still-need-help" class="text-2xl font-semibold tracking-tight">Still need help?</h2>
+      <p class="mt-3 max-w-xl text-base leading-7 text-white/70">Send us an email with what you were trying to do, what happened, and the device you are using.</p>
+      <a href="mailto:chen.he@icloud.com?subject=Closet%20Support" class="mt-6 inline-flex min-h-11 items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-ink hover:bg-line transition-colors">Email chen.he@icloud.com</a>
+    </aside>
 
-  <h2>Purchases and restoration</h2>
-  <p>Premium AI Providers is a non-consumable, one-time purchase. Open Settings → AI Features to purchase it or choose Restore Purchases. Make sure the device is signed into the Apple ID that originally completed the purchase.</p>
-
-  <h2>Outfit suggestions feel repetitive</h2>
-  <p>AI suggestions use the wardrobe context available for the request. Logging wears and maintaining accurate item details gives the stylist better information to work with, but generated suggestions can still vary.</p>
-
-  <h2>Items not syncing to my other device</h2>
-  <p>Make sure both devices use the same Apple ID, iCloud Drive is enabled, and Closet is allowed to use iCloud. Initial synchronization can take a few minutes. Keep Closet open briefly on both devices and check the sync status shown in Settings.</p>
-
-  <h2>Backup and export</h2>
-  <p>Use the backup controls in Settings to create or restore a Closet backup file. CSV export is available for portable wardrobe records. Keep backup files somewhere secure because they can contain wardrobe details and photos.</p>
-
-  <h2>Anything else</h2>
-  <p>Email me at <a href="mailto:chen.he@icloud.com" class="text-accent dark:text-accent-dark hover:underline">chen.he@icloud.com</a>.</p>
-
-</main>
+    <p class="mt-8 text-sm text-faint">Last updated: 8 August 2026</p>
+  </div>
+</section>
