@@ -10,20 +10,34 @@ url: '/apps/closet/privacy.html'
       Closet
     </a>
     <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Privacy</h1>
-    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 26 April 2026</p>
+    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 8 August 2026</p>
   </div>
 </div>
 
 <main class="max-w-2xl mx-auto px-6 sm:px-8 py-10 sm:py-16 text-lg leading-[1.7] text-slate-700 dark:text-slate-300">
-  <p><strong>The photos you take of your clothes never leave your device.</strong> Background removal runs on the device, frame by frame, using Apple's Vision framework. The app needs the photo to do its job, and the job stays local.</p>
+  <p><strong>Closet is local-first and does not require a Closet account.</strong> Wardrobe records, photos, outfits, wear logs, wishlist entries, and settings are stored on your device unless you choose a feature that uses iCloud or another external service.</p>
 
-  <p>Your wardrobe — items, tags, outfits, wear log — sits in a private iCloud database tied to your Apple ID. Apple's CloudKit handles the sync. I cannot read it. Apple cannot read it either, except in the aggregate ways CloudKit needs to do its server-side work.</p>
+  <h2>iCloud sync</h2>
+  <p>If you enable iCloud, wardrobe records and related data sync through a private CloudKit database associated with your Apple ID. Selected preferences may sync through Apple's iCloud key-value storage. Closet does not operate a separate account system or first-party sync server.</p>
 
-  <p>AI Stylist and Outfit Suggestions ask whichever AI provider you've configured. Apple Intelligence runs on-device. The on-device LLM (the one-time MLX-backed unlock) also runs on-device. If you've picked a cloud provider with your own API key, your prompt — a description of items, not the photos themselves — goes to that provider under their terms. The cloud providers don't get your closet photos.</p>
+  <h2>Photos and on-device processing</h2>
+  <p>Photo selection, camera capture, background removal, color extraction, receipt scanning, and other supported image operations can run on the device. Closet requests photo or camera access only when you choose a related workflow.</p>
 
-  <p>Web Import: when you paste a product URL, Closet fetches that URL directly from the public web and parses the page locally. No part of that fetch goes through me. The product images that get saved are stored on your device, same as photos you take.</p>
+  <h2>Optional AI features</h2>
+  <p>AI features are optional and run only when you choose to use them. Apple Intelligence requests use Apple's system frameworks. Supported local models process requests on the device.</p>
+  <p>If you select OpenAI, Anthropic Claude, or a custom endpoint, the text, wardrobe context, or images needed for your requested action are sent directly from your device to that provider. The provider processes the request under its own terms and privacy policy. Closet does not proxy AI requests through a Closet-operated server. Provider credentials are stored in Keychain.</p>
 
-  <p>No analytics. No third-party SDKs. No tracking. No sign-in.</p>
+  <h2>Web import and price checks</h2>
+  <p>When you import a product URL or check a saved wishlist price, your device contacts that website directly. The website may receive standard request information such as your IP address, request headers, cookies, and the requested URL under its own privacy policy. Parsed product information is stored with your wardrobe.</p>
 
-  <p>If you want to dig into any of this, email <a href="mailto:chen.he@icloud.com" class="text-accent dark:text-accent-dark hover:underline">chen.he@icloud.com</a>.</p>
+  <h2>Purchases</h2>
+  <p>Premium AI Providers is an optional one-time purchase processed by Apple through StoreKit. Closet receives product and entitlement status needed to present, unlock, and restore the purchase. Closet does not receive your full payment-card details or operate a payment server.</p>
+
+  <h2>Tracking and advertising</h2>
+  <p>Closet does not contain advertising, does not use your data for third-party advertising, and does not track you across apps or websites. The current app does not upload first-party analytics or crash reports to a Closet-operated service.</p>
+
+  <h2>Your choices</h2>
+  <p>You can use Closet without enabling iCloud or third-party AI providers. You can export a backup, delete individual records, or delete the app's local data by removing the app. Data already synchronized through iCloud is managed through your Apple ID and iCloud settings.</p>
+
+  <p>For privacy questions, email <a href="mailto:chen.he@icloud.com" class="text-accent dark:text-accent-dark hover:underline">chen.he@icloud.com</a>.</p>
 </main>
