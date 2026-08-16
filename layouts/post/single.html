@@ -1,131 +1,64 @@
-{{- /*
-  Blog post layout. Keeps PaperMod's content helpers, but replaces
-  the default chrome with a focused reading experience: spacious
-  editorial header, sticky TOC, progress indicator, tags, and adjacent
-  posts.
-*/ -}}
-{{- define "main" }}
+{{ define "main" }}
+<div id="reading-progress" class="reading-progress" aria-hidden="true"><div id="reading-progress-bar"></div></div>
 
-{{- /* Reading progress bar — 3px-tall accent strip pinned at the
-       very top, fills as the user scrolls through the article. */ -}}
-<div id="reading-progress"
-     class="fixed top-0 left-0 right-0 h-[3px] bg-transparent z-50 pointer-events-none"
-     aria-hidden="true">
-  <div id="reading-progress-bar"
-       class="h-full w-0 bg-accent dark:bg-accent-dark transition-[width] duration-75 ease-out"></div>
-</div>
-
-<article class="post article-shell">
-  <header class="post-header max-w-5xl mx-auto px-5 sm:px-8 lg:px-10 pt-10 sm:pt-16 pb-10 sm:pb-14">
-    <a href="/post/" class="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 shadow-sm hover:border-accent/40 dark:hover:border-accent-dark/40 hover:text-accent dark:hover:text-accent-dark transition-colors">
-      <span aria-hidden="true">←</span>
-      All posts
-    </a>
-
-    <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_220px] lg:items-end">
-      <div>
-        <div class="mb-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
-          {{- if .ReadingTime }}
-          <span aria-hidden="true">/</span>
-          <span>{{ .ReadingTime }} min read</span>
-          {{- end }}
-        </div>
-
-        <h1 class="font-serif text-4xl sm:text-5xl lg:text-7xl font-bold leading-[0.98] text-slate-950 dark:text-white">
-          {{ .Title }}
-        </h1>
-
-        {{- with .Description }}
-        <p class="mt-5 max-w-2xl font-serif text-xl sm:text-2xl leading-9 text-slate-600 dark:text-slate-400">
-          {{ . }}
-        </p>
-        {{- end }}
-      </div>
-
-      {{- with $.GetTerms "categories" }}
-      <div class="flex flex-wrap gap-2 lg:justify-end">
-        {{- range . }}
-        <a href="{{ .RelPermalink }}" class="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-900 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-accent/10 dark:hover:bg-accent-dark/15 hover:text-accent dark:hover:text-accent-dark transition-colors">{{ .LinkTitle | title }}</a>
-        {{- end }}
-      </div>
-      {{- end }}
+<article class="site-page writing-detail-page">
+  <header class="reading-hero site-shell">
+    <a class="site-back-link" href="/post/"><span aria-hidden="true">←</span> All writing</a>
+    <div class="site-meta-row">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      {{- if .ReadingTime }}<span>{{ .ReadingTime }} min read</span>{{ end }}
     </div>
+    <h1>{{ .Title }}</h1>
+    {{- with .Description }}<p>{{ . }}</p>{{ end }}
   </header>
 
-  <div class="post-layout relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 lg:grid lg:grid-cols-[minmax(0,720px)_260px] lg:gap-16 lg:justify-center">
-
-    <div class="post-body font-serif text-[19px] sm:text-[20px] leading-[1.78] text-slate-800 dark:text-slate-200 max-w-[720px] mx-auto lg:mx-0">
+  <div class="site-surface is-light">
+    <div class="reading-layout site-shell">
+      <div class="post-body">
       {{- if .TableOfContents }}
-      <details class="lg:hidden mb-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/70 px-5 py-4 text-base font-sans not-prose">
-        <summary class="cursor-pointer text-sm font-semibold text-slate-800 dark:text-slate-200">On this page</summary>
-        <div class="mt-4 text-sm leading-relaxed [&_ul]:space-y-1.5 [&_a]:text-slate-600 dark:[&_a]:text-slate-400 [&_a:hover]:text-accent dark:[&_a:hover]:text-accent-dark">
-          {{ .TableOfContents }}
-        </div>
+      <details class="reading-toc-mobile">
+        <summary>On this page</summary>
+        <div>{{ .TableOfContents }}</div>
       </details>
       {{- end }}
-
       {{- if not (.Param "disableAnchoredHeadings") }}
       {{ partial "anchored_headings.html" .Content }}
       {{- else }}
       {{ .Content }}
       {{- end }}
-    </div>
+      </div>
 
-    {{- if .TableOfContents }}
-    <aside class="hidden lg:block">
-      <nav id="toc-sidebar"
-           class="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 p-5 text-sm leading-relaxed">
-        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500 mb-4">On this page</p>
-        <div class="[&_ul]:space-y-2 [&_ul_ul]:mt-2 [&_ul_ul]:border-l [&_ul_ul]:border-slate-200 dark:[&_ul_ul]:border-slate-800 [&_ul_ul]:pl-3 [&_a]:block [&_a]:text-slate-500 dark:[&_a]:text-slate-400 [&_a:hover]:text-accent dark:[&_a:hover]:text-accent-dark [&_a]:py-0.5 [&_a]:transition-colors">
+      {{- if .TableOfContents }}
+      <aside class="reading-sidebar">
+        <nav id="toc-sidebar">
+          <p class="site-kicker">On this page</p>
           {{ .TableOfContents }}
-        </div>
-      </nav>
-    </aside>
-    {{- end }}
-  </div>
-
-  <footer class="post-footer max-w-3xl mx-auto px-5 sm:px-8 lg:px-10 mt-16 sm:mt-20 pt-8 border-t border-slate-200/70 dark:border-slate-800">
-    {{- with $.GetTerms "tags" }}
-    <div class="flex flex-wrap gap-2 mb-12">
-      {{- range . }}
-      <a href="{{ .Permalink }}"
-         class="inline-flex items-center rounded-full border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 px-2.5 py-1 text-xs font-medium text-slate-600 dark:text-slate-300 hover:border-accent/30 dark:hover:border-accent-dark/30 hover:text-accent dark:hover:text-accent-dark transition-colors">
-        #{{ .LinkTitle }}
-      </a>
+        </nav>
+      </aside>
       {{- end }}
     </div>
-    {{- end }}
 
-    {{- $prev := .PrevInSection }}
-    {{- $next := .NextInSection }}
-    {{- if or $prev $next }}
-    <nav class="grid sm:grid-cols-2 gap-3 sm:gap-4 not-prose">
-      {{- if $prev }}
-      <a href="{{ $prev.RelPermalink }}"
-         class="group flex flex-col gap-1 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 hover:border-accent/40 dark:hover:border-accent-dark/40 hover:shadow-card transition-all">
-        <span class="text-xs uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">← Previous</span>
-        <span class="font-sans font-semibold text-slate-900 dark:text-slate-100 group-hover:text-accent dark:group-hover:text-accent-dark transition-colors line-clamp-2">{{ $prev.Title }}</span>
-      </a>
-      {{- else }}<span></span>{{- end }}
-      {{- if $next }}
-      <a href="{{ $next.RelPermalink }}"
-         class="group flex flex-col gap-1 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-5 hover:border-accent/40 dark:hover:border-accent-dark/40 hover:shadow-card transition-all sm:text-right">
-        <span class="text-xs uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">Next →</span>
-        <span class="font-sans font-semibold text-slate-900 dark:text-slate-100 group-hover:text-accent dark:group-hover:text-accent-dark transition-colors line-clamp-2">{{ $next.Title }}</span>
-      </a>
-      {{- else }}<span></span>{{- end }}
-    </nav>
-    {{- end }}
-  </footer>
+    <footer class="reading-footer site-shell">
+      {{- with $.GetTerms "tags" }}
+      <div class="reading-tags">
+        {{- range . }}<a href="{{ .Permalink }}">#{{ .LinkTitle }}</a>{{ end }}
+      </div>
+      {{- end }}
+
+      {{- $prev := .PrevInSection -}}
+      {{- $next := .NextInSection -}}
+      {{- if or $prev $next }}
+      <nav class="reading-post-nav" aria-label="Adjacent writing">
+        {{- if $prev }}<a href="{{ $prev.RelPermalink }}"><span>← Previous</span><strong>{{ $prev.Title }}</strong></a>{{ else }}<span></span>{{ end }}
+        {{- if $next }}<a href="{{ $next.RelPermalink }}"><span>Next →</span><strong>{{ $next.Title }}</strong></a>{{ else }}<span></span>{{ end }}
+      </nav>
+      {{- end }}
+    </footer>
+  </div>
 </article>
 
-{{- /* Inline JS: reading progress bar + TOC scroll spy. Small enough
-       that an external file isn't worth the round-trip. */ -}}
 <script>
 (function () {
-  // Reading progress: width of the bar tracks how much of the
-  // article body has scrolled past the viewport top.
   var bar = document.getElementById('reading-progress-bar');
   var article = document.querySelector('.post-body');
   if (bar && article) {
@@ -141,35 +74,20 @@
     update();
   }
 
-  // TOC scroll spy: highlight the entry whose target section is
-  // closest to the viewport top. IntersectionObserver fires when
-  // headings enter / leave the top portion of the viewport.
-  var tocSidebar = document.getElementById('toc-sidebar');
-  if (tocSidebar) {
-    var links = tocSidebar.querySelectorAll('a[href^="#"]');
-    var byHash = {};
-    links.forEach(function (link) {
-      byHash[decodeURIComponent(link.getAttribute('href').slice(1))] = link;
-    });
-    var setActive = function (id) {
-      links.forEach(function (link) {
-        link.classList.remove('text-accent', 'dark:text-accent-dark', 'font-medium');
-      });
-      var active = byHash[id];
-      if (active) active.classList.add('text-accent', 'dark:text-accent-dark', 'font-medium');
-    };
-    var observer = new IntersectionObserver(function (entries) {
-      var visible = entries.filter(function (e) { return e.isIntersecting; });
-      if (visible.length === 0) return;
-      // Pick the heading nearest the top of the viewport.
-      visible.sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
-      setActive(visible[0].target.id);
-    }, { rootMargin: '-80px 0px -70% 0px', threshold: 0 });
-    document.querySelectorAll('.post-body h2[id], .post-body h3[id]').forEach(function (h) {
-      observer.observe(h);
-    });
-  }
+  var toc = document.getElementById('toc-sidebar');
+  if (!toc) return;
+  var links = toc.querySelectorAll('a[href^="#"]');
+  var byHash = {};
+  links.forEach(function (link) { byHash[decodeURIComponent(link.getAttribute('href').slice(1))] = link; });
+  var observer = new IntersectionObserver(function (entries) {
+    var visible = entries.filter(function (entry) { return entry.isIntersecting; });
+    if (!visible.length) return;
+    visible.sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+    links.forEach(function (link) { link.classList.remove('is-active'); });
+    var active = byHash[visible[0].target.id];
+    if (active) active.classList.add('is-active');
+  }, { rootMargin: '-90px 0px -70% 0px', threshold: 0 });
+  document.querySelectorAll('.post-body h2[id], .post-body h3[id]').forEach(function (heading) { observer.observe(heading); });
 })();
 </script>
-
-{{- end }}{{/* end main */}}
+{{ end }}

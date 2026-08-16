@@ -1,0 +1,91 @@
+- name: Structly
+  eyebrow: Safari extension
+  status: Live
+  tone: live
+  platforms: iPhone · iPad · Mac
+  icon: /assets/icons/structly.png
+  url: /apps/structly/
+  store: https://apps.apple.com/us/app/structly-json-formatter/id6753774575
+  privacy: /apps/structly/privacy.html
+  support: /apps/structly/support.html
+  summary: Raw JSON, made human—collapsible trees, fast search, and native-feeling syntax across Safari on every Apple device.
+  featured: true
+- name: LiftCoach
+  eyebrow: Health & fitness
+  status: TestFlight
+  tone: beta
+  platforms: iPhone · Apple Watch
+  icon: /assets/icons/liftcoach.png
+  url: /apps/liftcoach/
+  source: https://github.com/hechen/GymLog
+  privacy: /apps/liftcoach/privacy.html
+  support: /apps/liftcoach/support.html
+  summary: Adaptive strength programming shaped by training context, recovery, and goals—without the noise of a generic gym app.
+  featured: true
+- name: Distill
+  eyebrow: Read later
+  status: TestFlight
+  tone: beta
+  platforms: iPhone · iPad · Mac · Watch
+  icon: /assets/icons/distill.png
+  url: /apps/distill/
+  privacy: /apps/distill/privacy.html
+  support: /apps/distill/support.html
+  summary: Save links, archive full articles, and pull them back later without losing the text.
+- name: Closet
+  eyebrow: Personal inventory
+  status: TestFlight
+  tone: beta
+  platforms: iPhone · iPad
+  icon: /assets/icons/closet.png
+  url: /apps/closet/
+  privacy: /apps/closet/privacy.html
+  support: /apps/closet/support.html
+  summary: Wardrobe tracking with total value, wear history, and cost-per-wear.
+- name: SpendWisely
+  eyebrow: Personal finance
+  status: TestFlight
+  tone: beta
+  platforms: iPhone · iPad
+  icon: /assets/icons/spendwisely.png
+  url: /apps/spendwisely/
+  privacy: /apps/spendwisely/privacy.html
+  support: /apps/spendwisely/support.html
+  summary: Clear spending views and deliberate money tracking without bank-app clutter.
+- name: EatWisely
+  eyebrow: Nutrition
+  status: TestFlight
+  tone: beta
+  platforms: iPhone
+  icon: /assets/icons/eatwisely.png
+  url: /apps/eatwisely/
+  privacy: /apps/eatwisely/privacy.html
+  support: /apps/eatwisely/support.html
+  summary: Meal logging that works whether you snap a photo, scan a label, or just type it.
+- name: TrainInsight
+  eyebrow: Training analytics
+  status: In progress
+  tone: progress
+  platforms: iPhone · Apple Watch
+  icon: /assets/icons/traininsight.png
+  summary: Readiness signals and training analytics built around Apple Watch data.
+- name: Market Mood
+  eyebrow: Market pulse
+  status: TestFlight
+  tone: beta
+  platforms: iPhone · iPad · Watch
+  icon: /assets/icons/marketmood.png
+  url: /apps/marketmood/
+  privacy: /apps/marketmood/privacy.html
+  support: /apps/marketmood/support.html
+  summary: A compact macro and crypto sentiment dashboard without the doomscroll.
+- name: Stock Price
+  eyebrow: Stream Deck plugin
+  status: Free
+  tone: live
+  platforms: macOS · Windows
+  icon: /assets/icons/stock-price.png
+  url: /apps/stock-price/
+  privacy: /apps/stock-price/privacy/
+  support: /apps/stock-price/support/
+  summary: Live prices, daily and weekly change, and customizable market colors on a Stream Deck key.

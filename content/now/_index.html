@@ -1,6 +1,7 @@
 ---
 title: 'Now — Chen'
 type: 'page'
+legacySurface: true
 description: 'What I''m working on this week — current focus, queued projects, tools, and reading.'
 ---
 
@@ -23,20 +24,6 @@ description: 'What I''m working on this week — current focus, queued projects,
     <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-6">Right now</h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-      <!-- DupeOut polish -->
-      <article class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-card">
-        <div class="flex items-start justify-between mb-3">
-          <div class="flex items-center gap-3">
-            <img src="/assets/icons/dupeout.png" alt="" class="w-10 h-10 rounded-[22%] shadow-sm">
-            <h3 class="font-bold text-lg">DupeOut for App Store</h3>
-          </div>
-          <span class="px-2 py-0.5 text-xs font-semibold rounded-full pill-shipping">Shipping</span>
-        </div>
-        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-          Polishing my first public release. Currently TestFlight Build 63 — working through Chen-style UX feedback (cell density, capsule placement, sort menu, App Intents, Bad Photos sensitivity). Marketing site went live last week at <a href="/apps/dupeout/" class="text-accent dark:text-accent-dark hover:underline">/apps/dupeout</a>.
-        </p>
-      </article>
 
       <!-- Portfolio sync -->
       <article class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-card">
@@ -63,20 +50,6 @@ description: 'What I''m working on this week — current focus, queued projects,
         </div>
         <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
           Three previously-disjoint visual systems collapsed into one unified nav + theme. Hand-coded marketing pages for every app I ship, with real icons and consistent footer chrome. You're reading the result.
-        </p>
-      </article>
-
-      <!-- DupeOut App Store metadata -->
-      <article class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-card">
-        <div class="flex items-start justify-between mb-3">
-          <div class="flex items-center gap-3">
-            <span class="w-10 h-10 rounded-[22%] bg-gradient-to-br from-orange-400 to-amber-500 flex items-center justify-center text-white font-bold text-sm shadow-sm">📝</span>
-            <h3 class="font-bold text-lg">App Store submission</h3>
-          </div>
-          <span class="px-2 py-0.5 text-xs font-semibold rounded-full pill-queued">Queued</span>
-        </div>
-        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-          Subtitle / description / keywords / promo text / screenshots for DupeOut. Privacy nutrition label review across all the live apps. App Review notes explaining the on-device-only architecture so the reviewer doesn't get confused.
         </p>
       </article>
 
@@ -108,7 +81,7 @@ description: 'What I''m working on this week — current focus, queued projects,
         <span class="px-2 py-0.5 text-xs font-semibold rounded-full pill-holding shrink-0 mt-0.5">Holding</span>
         <div class="min-w-0">
           <p class="font-semibold text-sm">App Store submissions for the rest</p>
-          <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">LiftCoach, Closet, EatWisely, SpendWisely, Distill, TrainInsight — all on TestFlight, all need the same metadata + privacy + screenshot pass DupeOut is going through now. Sequential after DupeOut lands.</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">LiftCoach, Closet, EatWisely, SpendWisely, Distill, and TrainInsight are all on TestFlight and each still needs its own metadata, privacy, and screenshot pass.</p>
         </div>
       </li>
       <li class="p-5 flex items-start gap-4">
@@ -128,7 +101,6 @@ description: 'What I''m working on this week — current focus, queued projects,
     <div>
       <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-4">Reading</h2>
       <ul class="space-y-3 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-        <li><strong class="text-slate-900 dark:text-slate-100">WWDC App Intents sessions</strong> — DupeOut just shipped Siri Shortcuts in Build 62 and the affordance is genuinely useful</li>
         <li><strong class="text-slate-900 dark:text-slate-100">Apple's <em>Designing for visionOS</em> docs</strong> — spatial layout heuristics that apply backward to iPad</li>
         <li><strong class="text-slate-900 dark:text-slate-100"><em>Tao Te Ching</em></strong> (Mitchell translation) — re-read every couple of years; resets my pace</li>
       </ul>
@@ -172,7 +144,7 @@ description: 'What I''m working on this week — current focus, queued projects,
         <span class="px-2 py-0.5 text-xs font-semibold rounded-full pill-not-now shrink-0">Skip</span>
         <div>
           <p class="font-semibold text-sm">Backend services</p>
-          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Every app is on-device or iCloud-direct. No DupeOut server, no LiftCoach server, no EatWisely server.</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Every app is on-device or iCloud-direct. No LiftCoach server, no EatWisely server, and no shared backend to maintain.</p>
         </div>
       </div>
       <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex items-start gap-3">

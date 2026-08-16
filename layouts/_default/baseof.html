@@ -10,13 +10,13 @@
   preconnect on top.
 */ -}}
 <!doctype html>
-<html lang="{{ site.Language.Lang | default "en" }}">
+<html lang="{{ site.Language.Lang | default "en" }}"{{ if not .IsHome }} class="dark" data-theme="dark"{{ end }}>
 <head>
 {{- partial "head.html" . }}
 </head>
-<body class="bg-paper text-ink dark:bg-slate-950 dark:text-slate-100{{ if .IsHome }} home-body{{ end }}">
+<body class="{{ if .IsHome }}home-body{{ else }}site-body{{ end }}">
 {{- partial "header.html" . }}
-<main>
+<main{{ if not .IsHome }} class="site-main"{{ end }}>
 {{ block "main" . }}{{ .Content }}{{ end }}
 </main>
 {{- partial "footer.html" . }}

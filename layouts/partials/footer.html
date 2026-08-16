@@ -14,42 +14,24 @@
   </div>
 </footer>
 {{- else -}}
-<footer class="border-t border-slate-200/60 dark:border-slate-800">
-  <div class="max-w-5xl mx-auto px-6 sm:px-10 py-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 text-sm text-slate-400 dark:text-slate-500">
-    <p>© {{ now.Year }} Chen</p>
-    <p class="flex flex-wrap items-center gap-x-2 gap-y-1">
-      <a href="/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Home</a>
-      <span aria-hidden="true">·</span>
-      <a href="/apps/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Apps</a>
-      <span aria-hidden="true">·</span>
-      <a href="/post/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Blog</a>
-      <span aria-hidden="true">·</span>
-      <a href="/gear/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Gear</a>
-      <span aria-hidden="true">·</span>
-      <a href="/photography/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Photography</a>
-      <span aria-hidden="true">·</span>
-      <a href="/now/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Now</a>
-      <span aria-hidden="true">·</span>
-      <a href="/tools/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">Tools</a>
-      <span aria-hidden="true">·</span>
-      <a href="/post/index.xml" class="hover:text-accent dark:hover:text-accent-dark transition-colors" title="RSS feed">RSS</a>
-      <span aria-hidden="true">·</span>
-      <a href="/about/" class="hover:text-accent dark:hover:text-accent-dark transition-colors">About</a>
-    </p>
+<footer class="site-footer-unified">
+  <div class="site-footer-unified-inner">
+    <a class="site-footer-cta" href="mailto:hechen.dream@gmail.com">
+      <span>Have a thoughtful project?</span>
+      <strong>Let’s make it real.</strong>
+      <i aria-hidden="true">↗</i>
+    </a>
+    <div class="site-footer-meta">
+      <p>© {{ now.Year }} Chen He</p>
+      <p>Designed &amp; built in Seattle</p>
+      <p class="site-footer-links">
+        <a href="/">Home</a>
+        <a href="/apps/">Apps</a>
+        <a href="/post/">Writing</a>
+        <a href="/gear/">Gear</a>
+        <a href="/post/index.xml" title="RSS feed">RSS</a>
+      </p>
+    </div>
   </div>
 </footer>
-<script>
-  (function () {
-    var toggle = document.getElementById('theme-toggle');
-    if (!toggle) return;
-
-    toggle.addEventListener('click', function () {
-      var html = document.documentElement;
-      var dark = !html.classList.contains('dark');
-      html.classList.toggle('dark', dark);
-      html.dataset.theme = dark ? 'dark' : 'light';
-      localStorage.setItem('pref-theme', dark ? 'dark' : 'light');
-    });
-  })();
-</script>
 {{- end -}}

@@ -1,186 +1,97 @@
-{{- /*
-  Blog index. Overrides PaperMod's default list template for /post/.
-  The page keeps Hugo/PaperMod's data model, but presents it as a
-  modern editorial archive: a clear publication intro, a featured
-  latest post, compact essays below, and a useful sidebar.
-*/ -}}
-{{- define "main" }}
+{{ define "main" }}
+{{- $pages := where site.RegularPages "Section" "post" -}}
+{{- $paginator := .Paginate $pages 10 -}}
+{{- $visiblePages := $paginator.Pages -}}
+{{- $featured := index $visiblePages 0 -}}
+{{- $rest := after 1 $visiblePages -}}
 
-{{- $pages := where site.RegularPages "Section" "post" }}
-{{- $paginator := .Paginate $pages 10 }}
-{{- $visiblePages := $paginator.Pages }}
-{{- $featured := index $visiblePages 0 }}
-{{- $rest := after 1 $visiblePages }}
-
-<div class="blog-index">
-<div class="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 pt-10 sm:pt-16 pb-16 sm:pb-20">
-
-  <header class="mb-10 sm:mb-14">
-    <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
-      <a href="/" class="inline-flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark transition-colors">
-        <span aria-hidden="true">←</span>
-        Home
-      </a>
-    {{- with .OutputFormats.Get "rss" }}
-      <a href="{{ .RelPermalink }}"
-         title="RSS feed"
-         aria-label="RSS feed"
-         class="inline-flex items-center gap-2 rounded-full border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-300 shadow-sm hover:border-accent/40 dark:hover:border-accent-dark/40 hover:text-accent dark:hover:text-accent-dark transition-colors">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
-          <path d="M4 11a9 9 0 0 1 9 9"/>
-          <path d="M4 4a16 16 0 0 1 16 16"/>
-          <circle cx="5" cy="19" r="1"/>
-        </svg>
-        RSS
-      </a>
-    {{- end }}
+<div class="site-page writing-page">
+  <header class="site-hero site-shell">
+    <div>
+      <p class="site-kicker"><span>01</span> Field notes</p>
+      <h1>Thinking,<br><em>made visible.</em></h1>
     </div>
-
-    <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-end">
-      <div>
-        <p class="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-accent dark:text-accent-dark">Chen's blog</p>
-        <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold leading-[0.98] text-slate-950 dark:text-white">
-          Notes on building polished Apple apps.
-        </h1>
-      </div>
-      <p class="max-w-sm text-base sm:text-lg leading-8 text-slate-600 dark:text-slate-400">
-        Swift, SwiftUI, tooling, app architecture, and the small product details that make software feel considered.
-      </p>
+    <div class="site-hero-copy">
+      <p>Swift, architecture, Apple-platform internals, and the small product decisions that make software feel considered.</p>
+      {{- with .OutputFormats.Get "rss" }}
+      <a class="site-text-link" href="{{ .RelPermalink }}">Follow via RSS <span aria-hidden="true">↗</span></a>
+      {{- end }}
     </div>
   </header>
 
-  <div class="lg:grid lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-14">
-
-    <div>
+  <div class="site-surface is-light">
+    <section class="site-section site-shell writing-layout" aria-labelledby="latest-writing-title">
+      <div class="writing-main">
       {{- if $featured }}
-      {{- $excerpt := $featured.Description }}
-      {{- if not $excerpt }}{{ $excerpt = truncate 210 ($featured.Plain | plainify) }}{{ end }}
-      <article class="feature-post group mb-12 overflow-hidden rounded-[1.6rem] border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/70 shadow-[0_24px_80px_rgba(15,23,42,0.08)] dark:shadow-none">
-        <a href="{{ $featured.RelPermalink }}" class="block p-6 sm:p-8 lg:p-10">
-          <div class="mb-8 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
-            <span class="text-accent dark:text-accent-dark">Latest essay</span>
-            <span aria-hidden="true">/</span>
+      {{- $excerpt := $featured.Description -}}
+      {{- if not $excerpt }}{{ $excerpt = truncate 210 ($featured.Plain | plainify) }}{{ end -}}
+      <article class="writing-feature">
+        <p class="site-kicker"><span>02</span> Latest essay</p>
+        <div class="site-meta-row">
           <time datetime="{{ $featured.Date.Format "2006-01-02" }}">{{ $featured.Date.Format "January 2, 2006" }}</time>
-          {{- if $featured.ReadingTime }}
-            <span aria-hidden="true">/</span>
           <span>{{ $featured.ReadingTime }} min read</span>
-          {{- end }}
         </div>
-          <h2 class="max-w-3xl font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.05] text-slate-950 dark:text-white group-hover:text-accent dark:group-hover:text-accent-dark transition-colors">
-            {{ $featured.Title }}
-        </h2>
-          <p class="mt-5 max-w-2xl font-serif text-lg sm:text-xl leading-8 text-slate-600 dark:text-slate-400">{{ $excerpt }}</p>
-          <div class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-900 dark:text-slate-100">
-            Read essay
-            <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">→</span>
-          </div>
-        </a>
+        <h2 id="latest-writing-title"><a href="{{ $featured.RelPermalink }}">{{ $featured.Title }}</a></h2>
+        <p>{{ $excerpt }}</p>
+        <a class="site-text-link" href="{{ $featured.RelPermalink }}">Read essay <span aria-hidden="true">↗</span></a>
       </article>
       {{- end }}
 
-      <div class="space-y-4">
-        {{- range $rest }}
-        {{- $excerpt := .Description }}
-        {{- if not $excerpt }}{{ $excerpt = truncate 155 (.Plain | plainify) }}{{ end }}
-        <article class="group rounded-2xl border border-transparent px-0 py-5 sm:grid sm:grid-cols-[120px_minmax(0,1fr)] sm:gap-8 sm:px-5 hover:border-slate-200/80 dark:hover:border-slate-800 hover:bg-white/70 dark:hover:bg-slate-900/50 transition-colors">
-          <time class="mb-2 block text-sm tabular-nums text-slate-400 dark:text-slate-500 sm:mb-0 sm:pt-1" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
-          <div>
-            <h2 class="font-serif text-2xl sm:text-[1.75rem] font-semibold leading-tight">
-              <a href="{{ .RelPermalink }}" class="text-slate-950 dark:text-slate-100 group-hover:text-accent dark:group-hover:text-accent-dark transition-colors">{{ .Title }}</a>
-          </h2>
-            <p class="mt-2 max-w-2xl text-[15px] leading-7 text-slate-600 dark:text-slate-400">{{ $excerpt }}</p>
-            <div class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-medium text-slate-400 dark:text-slate-500">
-              {{- if .ReadingTime }}<span>{{ .ReadingTime }} min read</span>{{- end }}
-              {{- with .GetTerms "tags" }}
-              {{- range first 2 . }}
-              <a href="{{ .RelPermalink }}" class="hover:text-accent dark:hover:text-accent-dark transition-colors">#{{ .LinkTitle }}</a>
-              {{- end }}
-              {{- end }}
-            </div>
-          </div>
-        </article>
+      <ol class="writing-list">
+        {{- range $index, $post := $rest }}
+        {{- $excerpt := $post.Description -}}
+        {{- if not $excerpt }}{{ $excerpt = truncate 150 ($post.Plain | plainify) }}{{ end -}}
+        <li>
+          <a href="{{ $post.RelPermalink }}">
+            <span class="writing-index">{{ printf "%02d" (add $index 3) }}</span>
+            <span class="writing-list-copy">
+              <span class="writing-list-title">{{ $post.Title }}</span>
+              <span class="writing-list-excerpt">{{ $excerpt }}</span>
+            </span>
+            <span class="writing-list-meta">
+              <time datetime="{{ $post.Date.Format "2006-01-02" }}">{{ $post.Date.Format "Jan 2006" }}</time>
+              <span aria-hidden="true">↗</span>
+            </span>
+          </a>
+        </li>
         {{- end }}
-      </div>
+      </ol>
 
       {{- if gt $paginator.TotalPages 1 }}
-      <nav class="mt-12 flex items-center justify-between border-t border-slate-200/70 dark:border-slate-800 pt-6 text-sm">
-        {{- if $paginator.HasPrev }}
-        <a href="{{ $paginator.Prev.URL }}" class="font-medium text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark transition-colors">← Newer</a>
-        {{- else }}<span></span>{{- end }}
-        <span class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}</span>
-        {{- if $paginator.HasNext }}
-        <a href="{{ $paginator.Next.URL }}" class="font-medium text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark transition-colors">Older →</a>
-        {{- else }}<span></span>{{- end }}
+      <nav class="site-pagination" aria-label="Writing pages">
+        {{- if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}">← Newer</a>{{ else }}<span></span>{{ end -}}
+        <span>{{ printf "%02d" $paginator.PageNumber }} / {{ printf "%02d" $paginator.TotalPages }}</span>
+        {{- if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}">Older →</a>{{ else }}<span></span>{{ end -}}
       </nav>
       {{- end }}
-    </div>
-
-    <aside class="hidden lg:block">
-      <div class="sticky top-24 space-y-8 text-sm">
-        <section class="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 p-5">
-          <h3 class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500 mb-4">At a glance</h3>
-          <dl class="grid grid-cols-2 gap-4">
-            <div>
-              <dt class="text-xs text-slate-400 dark:text-slate-500">Essays</dt>
-              <dd class="mt-1 text-2xl font-semibold text-slate-950 dark:text-white">{{ len $pages }}</dd>
-            </div>
-            <div>
-              <dt class="text-xs text-slate-400 dark:text-slate-500">Years</dt>
-              <dd class="mt-1 text-2xl font-semibold text-slate-950 dark:text-white">{{ len ($pages.GroupByDate "2006") }}</dd>
-            </div>
-          </dl>
-        </section>
-
-        {{- $byYear := $pages.GroupByDate "2006" }}
-        {{- if $byYear }}
-        <section>
-          <h3 class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500 mb-4">Archive</h3>
-          <ul class="space-y-2">
-            {{- range $byYear }}
-            <li class="flex items-baseline justify-between rounded-lg px-2 py-1 text-slate-600 dark:text-slate-400">
-              <span>{{ .Key }}</span>
-              <span class="text-xs text-slate-400 dark:text-slate-500 tabular-nums">{{ len .Pages }}</span>
-            </li>
-            {{- end }}
-          </ul>
-        </section>
-        {{- end }}
-
-        {{- $tags := slice }}
-        {{- range $name, $taxonomy := site.Taxonomies.tags }}
-        {{- $tags = $tags | append (dict "name" $name "count" (len $taxonomy.Pages) "permalink" $taxonomy.Page.RelPermalink) }}
-        {{- end }}
-        {{- $tags = sort $tags "count" "desc" | first 8 }}
-        {{- if $tags }}
-        <section>
-          <h3 class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500 mb-4">Popular tags</h3>
-          <ul class="flex flex-wrap gap-2">
-            {{- range $tags }}
-            <li>
-              <a href="{{ .permalink }}"
-                 class="inline-flex items-center rounded-full border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 px-2.5 py-1 text-xs font-medium text-slate-600 dark:text-slate-300 hover:border-accent/30 dark:hover:border-accent-dark/30 hover:text-accent dark:hover:text-accent-dark transition-colors">
-                #{{ .name }}
-              </a>
-            </li>
-            {{- end }}
-          </ul>
-        </section>
-        {{- end }}
-
-        <section>
-          <h3 class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500 mb-4">Subscribe</h3>
-          <ul class="space-y-2 text-slate-600 dark:text-slate-400">
-            <li>
-              <a href="{{ "/post/index.xml" | relURL }}" class="hover:text-accent dark:hover:text-accent-dark transition-colors">RSS feed</a>
-            </li>
-          </ul>
-        </section>
-
       </div>
-    </aside>
 
+      <aside class="writing-sidebar">
+      <section>
+        <p class="site-kicker">Archive</p>
+        <dl>
+          <div><dt>Essays</dt><dd>{{ len $pages }}</dd></div>
+          <div><dt>Years</dt><dd>{{ len ($pages.GroupByDate "2006") }}</dd></div>
+        </dl>
+      </section>
+      <section>
+        <p class="site-kicker">By year</p>
+        <ol>
+          {{- range $pages.GroupByDate "2006" }}
+          <li><span>{{ .Key }}</span><span>{{ printf "%02d" (len .Pages) }}</span></li>
+          {{- end }}
+        </ol>
+      </section>
+      <section>
+        <p class="site-kicker">Popular themes</p>
+        <div class="writing-tags">
+          {{- range first 8 (site.Taxonomies.tags.ByCount) }}
+          <a href="{{ .Page.RelPermalink }}">#{{ .Page.LinkTitle }}</a>
+          {{- end }}
+        </div>
+      </section>
+      </aside>
+    </section>
   </div>
 </div>
-</div>
-
-{{- end }}{{/* end main */}}
+{{ end }}

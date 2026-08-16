@@ -6,5 +6,11 @@
   baseof.html.
 */ -}}
 {{ define "main" }}
+{{- if .Params.legacySurface }}
+<div class="legacy-page site-surface is-light">
+  {{ .Content }}
+</div>
+{{- else }}
 {{ .Content }}
+{{- end }}
 {{ end }}

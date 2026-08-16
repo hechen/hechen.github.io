@@ -9,7 +9,7 @@ baseURL = "https://hechen.github.io/"
 # files; Hugo routes them to /en/post/<slug>/ under the [languages.en]
 # config below. .Translations gives each post template a list of its
 # language companions for the inline switcher.
-languageCode = "en-us"
+locale = "en-us"
 title = "Chen"
 theme = "PaperMod"
 
@@ -19,13 +19,13 @@ theme = "PaperMod"
 # first because it's the default and the larger corpus).
 [languages]
   [languages.zh-cn]
-    languageCode = "zh-cn"
-    languageName = "中文"
+    locale = "zh-cn"
+    label = "中文"
     weight = 1
     title = "Chen"
   [languages.en]
-    languageCode = "en-us"
-    languageName = "English"
+    locale = "en-us"
+    label = "English"
     weight = 2
     title = "Chen"
 
@@ -54,6 +54,12 @@ enableEmoji = true
   noJSConfigInAssets = false
 [build.buildStats]
   enable = false
+
+# This repository intentionally authors trusted first-party page surfaces as
+# content/*.html. Hugo 0.162+ denies the HTML content format by default, so
+# explicitly allow the format while keeping the rest of Hugo's security policy.
+[security]
+  allowContent = ["^text/html$", "^text/markdown$"]
 
 # PaperMod ships with Chroma support out of the box; pin to GitHub theme so
 # the rendered code blocks match the manually-applied palette in commit

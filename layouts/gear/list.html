@@ -5,95 +5,86 @@
 {{- $entries = $entries.ByDate.Reverse -}}
 {{- $cats := slice -}}
 {{- range $entries }}
-  {{- with .Params.category }}
-    {{- if not (in $cats .) }}{{- $cats = $cats | append . -}}{{- end -}}
-  {{- end -}}
+  {{- with .Params.category }}{{- if not (in $cats .) }}{{- $cats = $cats | append . -}}{{- end }}{{- end -}}
 {{- end -}}
-<div class="gradient-bg min-h-[60vh]">
-  <section class="border-b border-slate-200/60 dark:border-slate-800">
-    <div class="max-w-5xl mx-auto px-6 sm:px-10 pt-16 sm:pt-24 pb-14 sm:pb-18">
-      <div class="grid gap-8 lg:grid-cols-[1fr_18rem] lg:items-end">
-        <div>
-          <p class="mb-4 text-sm font-medium text-accent dark:text-accent-dark">Gear</p>
-          <h1 class="text-4xl sm:text-6xl font-bold tracking-tight leading-tight">{{ .Title }}</h1>
-          <div class="mt-5 max-w-3xl text-lg leading-relaxed text-slate-600 dark:text-slate-400 prose prose-slate dark:prose-invert prose-p:m-0 max-w-none">
-            {{ .Content }}
-          </div>
-        </div>
-        <aside class="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/70 p-5 shadow-card backdrop-blur">
-          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">Current policy</p>
-          <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-            No affiliate list, no invented loadout, no generic buyer's guide. If something is here, it stayed useful or interesting long enough to deserve a real note.
-          </p>
-        </aside>
-      </div>
+
+<div class="site-page gear-page">
+  <header class="site-hero site-shell">
+    <div>
+      <p class="site-kicker"><span>01</span> Field equipment</p>
+      <h1>Objects that<br><em>earn their place.</em></h1>
     </div>
-  </section>
+    <div class="site-hero-copy">
+      <div>{{ .Content }}</div>
+      <p class="site-hero-note">No affiliate list. No launch-day verdicts. Just notes from living with the object.</p>
+    </div>
+  </header>
 
-  <section>
-    <div class="max-w-5xl mx-auto px-6 sm:px-10 py-14 sm:py-18">
-      <div class="mb-8 flex flex-wrap items-center justify-between gap-4">
-        <nav class="flex flex-wrap gap-2" aria-label="Gear categories" data-gear-filter>
-          <button type="button" data-cat="all" class="gear-chip is-active">All</button>
-          {{ range $cats }}
-          <button type="button" data-cat="{{ . }}" class="gear-chip">{{ . }}</button>
-          {{ end }}
-        </nav>
-        <p class="text-sm text-slate-500 dark:text-slate-400" data-gear-count>{{ len $entries }} entries</p>
+  <div class="site-surface is-light">
+    <section class="site-section site-shell" aria-labelledby="gear-collection-title">
+      <div class="site-section-heading is-compact gear-heading">
+        <p class="site-kicker"><span>02</span> The collection</p>
+        <h2 id="gear-collection-title">Tools, toys,<br>and daily rituals.</h2>
+        <div class="gear-filter-bar">
+          <nav aria-label="Gear categories" data-gear-filter>
+            <button type="button" data-cat="all" class="gear-filter is-active">All</button>
+            {{ range $cats }}<button type="button" data-cat="{{ . }}" class="gear-filter">{{ . }}</button>{{ end }}
+          </nav>
+          <p data-gear-count>{{ len $entries }} entries</p>
+        </div>
       </div>
 
-      <div class="grid gap-4 md:grid-cols-2" id="gear-entries">
-        {{ range $entries }}
-        {{- $cover := .Params.image | default .Params.cover.image -}}
-        {{- $coverAlt := .Params.imageAlt | default .Params.cover.alt | default .Title -}}
-        <article class="gear-card group overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/85 dark:bg-slate-900/70 shadow-card hover:shadow-cardHover transition-all" data-cat="{{ .Params.category }}">
-          <a href="{{ .RelPermalink }}" class="block">
-            {{ with $cover }}
-            <div class="aspect-[16/9] overflow-hidden bg-slate-100 dark:bg-slate-900/80">
-              <img src="{{ . }}" alt="{{ $coverAlt }}" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" loading="lazy" decoding="async">
+      <div class="gear-grid" id="gear-entries">
+        {{ range $index, $entry := $entries }}
+        {{- $cover := $entry.Params.image | default $entry.Params.cover.image -}}
+        {{- $coverAlt := $entry.Params.imageAlt | default $entry.Params.cover.alt | default $entry.Title -}}
+        <article class="gear-card {{ if $cover }}has-image{{ else }}is-text-only{{ end }}" data-cat="{{ $entry.Params.category }}">
+          <a href="{{ $entry.RelPermalink }}">
+            {{- with $cover }}
+            <div class="gear-card-visual">
+              <img src="{{ . }}" alt="{{ $coverAlt }}" loading="lazy" decoding="async">
             </div>
-            {{ end }}
-            <div class="p-6">
-            <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">
-              {{ with .Params.category }}<span class="text-accent dark:text-accent-dark">{{ . }}</span>{{ end }}
-              {{ with .Params.purchased }}<span>{{ time.AsTime . | time.Format "2006" }}</span>{{ end }}
-              {{ with .Params.rating }}<span>{{ . }}/5</span>{{ end }}
-            </div>
-            <h2 class="mt-3 text-2xl font-bold tracking-tight text-slate-950 dark:text-slate-100 group-hover:text-accent dark:group-hover:text-accent-dark transition-colors">{{ .Title }}</h2>
-            <p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{{ .Description | default (.Summary | plainify | truncate 180) }}</p>
-            <div class="mt-4 flex flex-wrap gap-2 text-xs text-slate-400 dark:text-slate-500">
-              {{ range first 3 (.Params.tags | default (slice)) }}
-              <span class="rounded-full border border-slate-200/80 dark:border-slate-800 px-2 py-1">#{{ . }}</span>
-              {{ end }}
-            </div>
-            <p class="mt-4 text-sm font-medium text-slate-900 dark:text-slate-100 group-hover:text-accent dark:group-hover:text-accent-dark">Read note →</p>
+            {{- end }}
+            <div class="gear-card-copy">
+              <div class="gear-card-topline">
+                <span class="gear-card-index" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span>
+                <div class="site-meta-row">
+                  {{ with $entry.Params.category }}<span>{{ . }}</span>{{ end }}
+                  {{ with $entry.Params.purchased }}<span>{{ time.AsTime . | time.Format "2006" }}</span>{{ end }}
+                  {{ with $entry.Params.rating }}<span>{{ . }}/5</span>{{ end }}
+                </div>
+              </div>
+              <h3>{{ $entry.Title }}</h3>
+              <p>{{ $entry.Description | default ($entry.Summary | plainify | truncate 170) }}</p>
+              <span class="site-text-link">Read note <span aria-hidden="true">↗</span></span>
             </div>
           </a>
         </article>
         {{ end }}
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </div>
+
 <script>
 (function () {
-  const filter = document.querySelector('[data-gear-filter]');
+  var filter = document.querySelector('[data-gear-filter]');
   if (!filter) return;
-  const entries = Array.from(document.querySelectorAll('#gear-entries .gear-card'));
-  const countEl = document.querySelector('[data-gear-count]');
-  filter.addEventListener('click', function (e) {
-    const btn = e.target.closest('[data-cat]');
-    if (!btn) return;
-    filter.querySelectorAll('[data-cat]').forEach(x => x.classList.remove('is-active'));
-    btn.classList.add('is-active');
-    const cat = btn.dataset.cat;
-    let visible = 0;
-    entries.forEach(entry => {
-      const match = cat === 'all' || entry.dataset.cat === cat;
-      entry.style.display = match ? '' : 'none';
-      if (match) visible += 1;
+  var entries = Array.from(document.querySelectorAll('#gear-entries .gear-card'));
+  var count = document.querySelector('[data-gear-count]');
+  filter.addEventListener('click', function (event) {
+    var button = event.target.closest('[data-cat]');
+    if (!button) return;
+    filter.querySelectorAll('[data-cat]').forEach(function (item) { item.classList.remove('is-active'); });
+    button.classList.add('is-active');
+    var category = button.dataset.cat;
+    var visible = 0;
+    entries.forEach(function (entry) {
+      var matches = category === 'all' || entry.dataset.cat === category;
+      entry.hidden = !matches;
+      if (matches) visible += 1;
     });
-    if (countEl) countEl.textContent = visible + ' ' + (visible === 1 ? 'entry' : 'entries');
+    if (count) count.textContent = visible + ' ' + (visible === 1 ? 'entry' : 'entries');
   });
 })();
 </script>

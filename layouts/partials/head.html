@@ -29,8 +29,9 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="preload" href="/css/tailwind.css" as="style">
-  <link rel="stylesheet" href="/css/tailwind.css">
+  {{- $cssVersion := now.Unix -}}
+  <link rel="preload" href="/css/tailwind.css?v={{ $cssVersion }}" as="style">
+  <link rel="stylesheet" href="/css/tailwind.css?v={{ $cssVersion }}">
 
   {{- if or (eq .Section "post") (eq .Section "gear") }}
   <link rel="preconnect" href="https://fonts.googleapis.com">

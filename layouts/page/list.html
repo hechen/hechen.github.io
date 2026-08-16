@@ -3,5 +3,11 @@
   _index.html in content/apps/ carries gets rendered as the body.
 */ -}}
 {{ define "main" }}
+{{- if .Params.legacySurface }}
+<div class="legacy-page site-surface is-light">
+  {{ .Content }}
+</div>
+{{- else }}
 {{ .Content }}
+{{- end }}
 {{ end }}

@@ -27,7 +27,7 @@ jobs:
     # below is gated on push to master so PRs don't deploy to production.
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.160.1
+      HUGO_VERSION: 0.165.0
     steps:
       - name: Install Hugo CLI
         run: |

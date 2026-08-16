@@ -54,7 +54,13 @@
   </section>
 </div>
 {{- else if .Content }}
+  {{- if .Params.legacySurface }}
+  <div class="legacy-page site-surface is-light">
+    {{ .Content }}
+  </div>
+  {{- else }}
   {{ .Content }}
+  {{- end }}
 {{- else }}
 <div class="gradient-bg min-h-[60vh]">
   <section>
