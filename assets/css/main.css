@@ -3742,6 +3742,117 @@ html.dark {
   font-family: "Helvetica Neue", Inter, -apple-system, sans-serif;
 }
 
+/* App marketing pages still carry their original Tailwind utility
+   markup. Give those pages the same hybrid surface model as the rest
+   of the site: dark product hero, warm readable content chapters. */
+
+.site-body .app-detail-page > section:first-child {
+  color: var(--site-ink);
+}
+
+.site-body .app-detail-page > section:first-child h1,
+.site-body .app-detail-page > section:first-child h2,
+.site-body .app-detail-page > section:first-child h3 {
+  color: var(--site-ink);
+}
+
+.site-body .app-detail-page > section:first-child p:not(.flex) {
+  color: var(--site-muted);
+}
+
+.site-body .app-detail-page > section:first-child a.text-accent,
+.site-body .app-detail-page > section:first-child a.text-accent-dark {
+  color: var(--site-accent);
+}
+
+.site-body .app-detail-page > section:first-child a.text-slate-400,
+.site-body .app-detail-page > section:first-child a.text-slate-500,
+.site-body .app-detail-page > section:first-child a.text-slate-600 {
+  color: var(--site-muted);
+}
+
+.site-body .app-detail-page > section:first-child a.bg-accent {
+  background: var(--site-accent);
+  color: #052019;
+}
+
+.site-body .app-detail-page > section:first-child a.bg-white {
+  border-color: var(--site-line-strong);
+  background: transparent;
+  color: var(--site-accent);
+}
+
+.site-body .app-detail-page > section:not(:first-child) {
+  --paper: #ecece4;
+  --surface: #f8f8f4;
+  --surface-muted: #dedfd7;
+  --ink: #111a18;
+  --muted: rgba(17, 26, 24, 0.67);
+  --faint: rgba(17, 26, 24, 0.43);
+  --line: rgba(17, 26, 24, 0.16);
+  --line-strong: rgba(17, 26, 24, 0.28);
+  --site-bg-soft: #dedfd7;
+  --site-ink: #111a18;
+  --site-muted: rgba(17, 26, 24, 0.67);
+  --site-faint: rgba(17, 26, 24, 0.43);
+  --site-line: rgba(17, 26, 24, 0.16);
+  --site-line-strong: rgba(17, 26, 24, 0.28);
+  --site-accent: #0b7059;
+  border-color: var(--site-line);
+  background: #ecece4;
+  color: var(--site-ink);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.58);
+}
+
+.site-body .app-detail-page > section:not(:first-child) h1,
+.site-body .app-detail-page > section:not(:first-child) h2,
+.site-body .app-detail-page > section:not(:first-child) h3,
+.site-body .app-detail-page > section:not(:first-child) strong,
+.site-body .app-detail-page > section:not(:first-child) dt,
+.site-body .app-detail-page > section:not(:first-child) th {
+  color: var(--site-ink);
+}
+
+.site-body .app-detail-page > section:not(:first-child) p,
+.site-body .app-detail-page > section:not(:first-child) li,
+.site-body .app-detail-page > section:not(:first-child) dd,
+.site-body .app-detail-page > section:not(:first-child) td {
+  color: var(--site-muted);
+}
+
+.site-body .app-detail-page > section:not(:first-child) a {
+  color: var(--site-accent);
+}
+
+.site-body .app-detail-page > section:not(:first-child) .shadow-card,
+.site-body .app-detail-page > section:not(:first-child) .shadow-cardHover,
+.site-body .app-detail-page > section:not(:first-child) .bg-white,
+.site-body .app-detail-page > section:not(:first-child) .bg-slate-50 {
+  border-color: var(--site-line);
+  background: #f8f8f4;
+  color: var(--site-ink);
+}
+
+.site-body .app-detail-page > section:not(:first-child) .bg-emerald-50 {
+  border-color: #97c8ae;
+  background: #e5f3eb;
+  color: #164e3b;
+}
+
+.site-body .app-detail-page > section:not(:first-child) code {
+  background: rgba(11, 112, 89, 0.08);
+  color: #075340;
+}
+
+.site-body .app-detail-page > section:not(:first-child) table,
+.site-body .app-detail-page > section:not(:first-child) thead,
+.site-body .app-detail-page > section:not(:first-child) tbody,
+.site-body .app-detail-page > section:not(:first-child) tr,
+.site-body .app-detail-page > section:not(:first-child) th,
+.site-body .app-detail-page > section:not(:first-child) td {
+  border-color: var(--site-line);
+}
+
 .site-body .app-detail-page > section:first-child,
 .site-body .app-detail-page > main:first-child,
 .site-body .app-detail-page > div:first-child {

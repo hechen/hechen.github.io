@@ -81,11 +81,14 @@
   summary: A compact macro and crypto sentiment dashboard without the doomscroll.
 - name: Stock Price
   eyebrow: Stream Deck plugin
-  status: Free
+  status: Marketplace
   tone: live
   platforms: macOS · Windows
   icon: /assets/icons/stock-price.png
   url: /apps/stock-price/
+  store: https://marketplace.elgato.com/product/stock-price-c8878f24-2a1b-448b-b6fa-060118d0c0b1
+  storeLabel: Marketplace
+  source: https://github.com/hechen/streamdeck-stock-price
   privacy: /apps/stock-price/privacy/
   support: /apps/stock-price/support/
   summary: Live prices, daily and weekly change, and customizable market colors on a Stream Deck key.

@@ -40,7 +40,7 @@
           <p>{{ $app.summary }}</p>
           <div class="site-link-row">
             <a href="{{ $app.url }}">View project <span aria-hidden="true">↗</span></a>
-            {{ with $app.store }}<a href="{{ . }}">App Store <span aria-hidden="true">↗</span></a>{{ end }}
+            {{ with $app.store }}<a href="{{ . }}">{{ $app.storeLabel | default "App Store" }} <span aria-hidden="true">↗</span></a>{{ end }}
             {{ with $app.source }}<a href="{{ . }}">Source <span aria-hidden="true">↗</span></a>{{ end }}
           </div>
         </div>
@@ -75,6 +75,7 @@
           <p class="app-catalog-platforms">{{ $app.platforms }}</p>
           <div class="site-link-row">
             {{ with $app.url }}<a href="{{ . }}">View <span aria-hidden="true">↗</span></a>{{ else }}<span>Page coming soon</span>{{ end }}
+            {{ with $app.store }}<a href="{{ . }}">{{ $app.storeLabel | default "App Store" }} <span aria-hidden="true">↗</span></a>{{ end }}
             {{ with $app.support }}<a href="{{ . }}">Support</a>{{ end }}
             {{ with $app.privacy }}<a href="{{ . }}">Privacy</a>{{ end }}
           </div>
