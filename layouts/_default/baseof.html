@@ -1,6 +1,6 @@
 {{- /*
   Site-wide base layout. Redesign: samwanng.com-inspired editorial
-  journal — light-mode only, Source Serif 4 + Noto Serif SC body,
+  journal with light and dark themes, Source Serif 4 + Noto Serif SC body,
   minimal chrome (brand wordmark + tagline + category nav at top,
   dot-separated social row at the bottom).
 
@@ -14,7 +14,7 @@
 <head>
 {{- partial "head.html" . }}
 </head>
-<body class="bg-paper text-ink{{ if .IsHome }} home-body{{ end }}">
+<body class="bg-paper text-ink dark:bg-slate-950 dark:text-slate-100{{ if .IsHome }} home-body{{ end }}">
 {{- partial "header.html" . }}
 <main>
 {{ block "main" . }}{{ .Content }}{{ end }}

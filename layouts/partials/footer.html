@@ -38,4 +38,18 @@
     </p>
   </div>
 </footer>
+<script>
+  (function () {
+    var toggle = document.getElementById('theme-toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', function () {
+      var html = document.documentElement;
+      var dark = !html.classList.contains('dark');
+      html.classList.toggle('dark', dark);
+      html.dataset.theme = dark ? 'dark' : 'light';
+      localStorage.setItem('pref-theme', dark ? 'dark' : 'light');
+    });
+  })();
+</script>
 {{- end -}}

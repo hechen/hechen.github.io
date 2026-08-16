@@ -5,7 +5,8 @@
 /* ----------------------------------------------------------------
    Redesign — samwanng.com-inspired editorial journal.
 
-   Light-mode only (matches the reference). The design tokens live
+   The light palette matches the reference; dark-mode overrides keep
+   the same restrained hierarchy. The design tokens live
    here as CSS custom properties so the rest of the stylesheet and
    any inline styling stays cheap to refactor. Tailwind utilities
    (defined in tailwind.config.js) name the same hex values so the

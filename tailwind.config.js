@@ -5,11 +5,8 @@ module.exports = {
     './content/**/*.{html,md}',
     './static/**/*.html',
   ],
-  // Samwanng-inspired redesign: light mode only. Drop the `dark:` variants;
-  // the theme toggle is removed from the header. If a Tailwind `dark:` class
-  // survives from the legacy pages, it stays inert (no `dark` class on
-  // <html>), which is the desired behaviour during the transitional period
-  // before legacy markup is restyled.
+  // Class-based dark mode keeps the explicit theme toggle and the saved
+  // preference in sync with Tailwind's `dark:` variants.
   darkMode: 'class',
   theme: {
     extend: {
