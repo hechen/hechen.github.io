@@ -1,4 +1,5 @@
 {{ define "main" }}
+{{- if eq .RelPermalink "/apps/" -}}
 {{- $featured := where hugo.Data.apps "featured" true -}}
 {{- $catalog := where hugo.Data.apps "featured" "ne" true -}}
 <div class="site-page apps-page">
@@ -85,4 +86,9 @@
     </section>
   </div>
 </div>
+{{- else -}}
+<div class="app-shell site-page app-detail-page">
+  {{ .Content }}
+</div>
+{{- end -}}
 {{ end }}

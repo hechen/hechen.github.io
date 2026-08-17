@@ -1037,6 +1037,7 @@ body {
 
 .portfolio-brand {
   display: inline-flex;
+  min-height: 44px;
   gap: 12px;
   align-items: center;
   color: inherit;
@@ -1085,10 +1086,13 @@ body {
 
 .portfolio-nav-links a {
   position: relative;
-  padding-block: 8px;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  padding-block: 0;
   color: rgba(237, 248, 244, 0.7);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.17em;
   text-decoration: none;
   text-transform: uppercase;
@@ -1194,7 +1198,7 @@ body {
   margin: 0 0 clamp(26px, 4vh, 46px);
   color: rgba(233, 247, 242, 0.6);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.19em;
   text-transform: uppercase;
 }
@@ -1244,6 +1248,7 @@ body {
 
 .home-text-link {
   display: inline-flex;
+  min-height: 44px;
   gap: 18px;
   align-items: center;
   width: max-content;
@@ -1251,7 +1256,7 @@ body {
   border-bottom: 1px solid rgba(159, 255, 216, 0.44);
   color: inherit;
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.16em;
   text-decoration: none;
   text-transform: uppercase;
@@ -1280,7 +1285,7 @@ body {
   border-bottom: 1px solid var(--home-line);
   color: rgba(232, 246, 241, 0.52);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -1294,6 +1299,7 @@ body {
   right: clamp(22px, 3.8vw, 64px);
   bottom: 38px;
   display: inline-flex;
+  min-height: 44px;
   gap: 10px;
   align-items: center;
   padding: 9px 12px;
@@ -1301,7 +1307,7 @@ body {
   background: transparent;
   color: rgba(235, 248, 243, 0.58);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.16em;
   cursor: pointer;
   text-transform: uppercase;
@@ -1342,6 +1348,7 @@ body {
   bottom: 31px;
   left: clamp(22px, 3.8vw, 64px);
   display: flex;
+  min-height: 44px;
   gap: 13px;
   align-items: center;
   color: rgba(231, 244, 239, 0.56);
@@ -1517,7 +1524,7 @@ body {
   background: rgba(3, 18, 22, 0.82);
   color: #ffffff;
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.18em;
 }
 
@@ -1620,6 +1627,9 @@ body {
 }
 
 .project-links a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   padding-bottom: 4px;
   border-bottom: 1px solid #aeb7b3;
   color: #15201e;
@@ -1962,6 +1972,9 @@ body {
 }
 
 .portfolio-footer-meta a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   color: inherit;
   text-decoration: none;
 }
@@ -2020,7 +2033,7 @@ body {
   }
 
   .portfolio-nav-links a {
-    font-size: 8px;
+    font-size: 10px;
     letter-spacing: 0.12em;
   }
 
@@ -2064,7 +2077,7 @@ body {
     bottom: 92px;
     left: 22px;
     justify-content: space-between;
-    font-size: 7px;
+    font-size: 10px;
   }
 
   .home-motion-toggle {
@@ -2455,7 +2468,7 @@ html.dark {
 }
 
 .site-surface.is-light .site-section h2 em {
-  color: rgba(17, 26, 24, 0.38);
+  color: rgba(17, 26, 24, 0.6);
 }
 
 .site-surface.is-light .site-text-link {
@@ -2503,6 +2516,25 @@ html.dark {
   background-color: #e4e5dd !important;
 }
 
+/* Legacy utility pages sit on a warm light surface. Their original muted
+   utility colors were too pale for update notes and compact status labels. */
+.legacy-page :is(
+  .text-slate-400,
+  .text-slate-500,
+  .dark\:text-slate-400,
+  .dark\:text-slate-500
+) {
+  color: #40504a !important;
+}
+
+.legacy-page .now-card-mark {
+  background-color: #0b7059;
+}
+
+.legacy-page .now-card-mark--violet {
+  background-color: #6d3fc0;
+}
+
 .legacy-page .photography-grid {
   background:
     linear-gradient(180deg, rgba(236, 236, 228, 0.2), rgba(236, 236, 228, 0.78)),
@@ -2544,7 +2576,10 @@ html.dark {
 
 .site-nav-links a {
   position: relative;
-  padding: 8px 0;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  padding: 0;
   color: rgba(225, 241, 236, 0.52);
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 10px;
@@ -2582,7 +2617,7 @@ html.dark {
 }
 
 .site-nav-links .site-nav-github {
-  padding: 10px 14px;
+  padding: 0 14px;
   border: 1px solid var(--site-line);
 }
 
@@ -2671,7 +2706,7 @@ html.dark {
   border-top: 1px solid var(--site-line);
   color: var(--site-faint) !important;
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 9px !important;
+  font-size: 10px !important;
   letter-spacing: 0.12em;
   line-height: 1.7 !important;
   text-transform: uppercase;
@@ -2679,15 +2714,16 @@ html.dark {
 
 .site-text-link {
   display: inline-flex;
+  min-height: 44px;
   align-items: center;
   justify-content: space-between;
   min-width: 176px;
   margin-top: 30px;
-  padding-bottom: 9px;
+  padding-bottom: 0;
   border-bottom: 1px solid rgba(159, 255, 216, 0.54);
   color: var(--site-ink);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.13em;
   text-decoration: none;
   text-transform: uppercase;
@@ -2773,6 +2809,12 @@ html.dark {
   text-decoration: none;
   text-transform: uppercase;
   transition: color 160ms ease;
+}
+
+.site-link-row a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
 }
 
 .site-link-row a:hover,
@@ -2888,7 +2930,7 @@ html.dark {
   bottom: 20px;
   color: var(--site-faint);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.16em;
 }
 
@@ -2958,7 +3000,7 @@ html.dark {
   justify-content: space-between;
   color: var(--site-faint);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.14em;
 }
 
@@ -2980,7 +3022,7 @@ html.dark {
   margin: 0 0 4px;
   color: var(--site-faint);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 7px;
+  font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -3006,7 +3048,7 @@ html.dark {
   padding-top: 28px;
   color: var(--site-faint);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 7px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -3089,7 +3131,7 @@ html.dark {
 .writing-list-meta {
   color: var(--site-faint);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -3159,7 +3201,7 @@ html.dark {
   justify-content: space-between;
   color: var(--site-muted);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.1em;
 }
 
@@ -3174,11 +3216,14 @@ html.dark {
 .writing-tags a,
 .reading-tags a,
 .reading-tags span {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   padding: 6px 9px;
   border: 1px solid var(--site-line);
   color: var(--site-muted);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 7px;
+  font-size: 10px;
   letter-spacing: 0.09em;
   text-decoration: none;
   text-transform: uppercase;
@@ -3193,12 +3238,18 @@ html.dark {
   margin-top: 56px;
   color: var(--site-faint);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-.site-pagination a { color: var(--site-muted); text-decoration: none; }
+.site-pagination a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: var(--site-muted);
+  text-decoration: none;
+}
 .site-pagination a:last-child { text-align: right; }
 .site-pagination a:hover { color: var(--site-accent); }
 
@@ -3223,12 +3274,13 @@ html.dark {
 
 .site-back-link {
   display: inline-flex;
+  min-height: 44px;
   gap: 10px;
   align-items: center;
   margin-bottom: 70px;
   color: var(--site-muted);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.13em;
   text-decoration: none;
   text-transform: uppercase;
@@ -3336,7 +3388,9 @@ html.dark {
 }
 
 .reading-sidebar a {
-  display: block;
+  display: flex;
+  min-height: 44px;
+  align-items: center;
   color: var(--site-faint);
   font-size: 11px;
   line-height: 1.5;
@@ -3373,7 +3427,7 @@ html.dark {
 }
 
 .reading-post-nav > a:last-child { text-align: right; }
-.reading-post-nav span { color: var(--site-faint); font-family: "SFMono-Regular", Consolas, monospace; font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; }
+.reading-post-nav span { color: var(--site-faint); font-family: "SFMono-Regular", Consolas, monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
 .reading-post-nav strong { color: var(--site-ink); font-family: "Iowan Old Style", "Baskerville", Georgia, serif; font-size: 22px; font-weight: 400; }
 .reading-post-nav a:hover strong { color: var(--site-accent); }
 
@@ -3391,13 +3445,16 @@ html.dark {
 }
 
 .gear-filter {
-  padding: 8px 12px;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  padding: 8px 14px;
   border: 1px solid var(--site-line);
   border-radius: 0;
   background: transparent;
   color: var(--site-muted);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 7px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
@@ -3411,7 +3468,7 @@ html.dark {
   margin: 0;
   color: var(--site-faint);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -3466,7 +3523,7 @@ html.dark {
 .gear-card-index {
   color: var(--site-faint);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.14em;
 }
 
@@ -3531,9 +3588,15 @@ html.dark {
 .gear-detail-body > aside { padding-top: 20px; border-top: 1px solid var(--site-line); }
 .gear-detail-body dl { display: grid; gap: 18px; margin: 28px 0 0; }
 .gear-detail-body dl div { display: grid; grid-template-columns: 1fr 1.2fr; gap: 15px; }
-.gear-detail-body dt { color: var(--site-faint); font-family: "SFMono-Regular", Consolas, monospace; font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; }
+.gear-detail-body dt { color: var(--site-faint); font-family: "SFMono-Regular", Consolas, monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
 .gear-detail-body dd { margin: 0; color: var(--site-muted); font-size: 12px; }
-.gear-detail-body dd a { color: var(--site-accent); text-decoration: none; }
+.gear-detail-body dd a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: var(--site-accent);
+  text-decoration: none;
+}
 
 /* About */
 
@@ -3583,7 +3646,7 @@ html.dark {
 .about-principles li > span {
   color: var(--site-faint);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.12em;
 }
 
@@ -3649,12 +3712,14 @@ html.dark {
 
 .about-contact-links a {
   display: flex;
+  min-height: 44px;
+  align-items: center;
   justify-content: space-between;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--site-line);
   color: var(--site-muted);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-decoration: none;
   text-transform: uppercase;
@@ -3735,7 +3800,13 @@ html.dark {
 
 .site-footer-meta p { margin: 0; }
 .site-footer-links { display: flex; gap: 18px; }
-.site-footer-links a { color: inherit; text-decoration: none; }
+.site-footer-links a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
 .site-footer-links a:hover { color: var(--site-accent); }
 
 /* Existing app detail pages inherit the new shell without losing their
@@ -3752,6 +3823,11 @@ html.dark {
 
 .site-body .app-detail-page > section:first-child {
   color: var(--site-ink);
+}
+
+.site-body .app-detail-page > .gradient-bg:first-child > div {
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(2.75rem, 5vw, 4rem);
 }
 
 .site-body .app-detail-page > section:first-child h1,
@@ -3784,6 +3860,12 @@ html.dark {
   border-color: var(--site-line-strong);
   background: transparent;
   color: var(--site-accent);
+}
+
+.site-body .app-detail-page > .gradient-bg:first-child a:is(.inline-flex, .inline-block) {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
 }
 
 .site-body .app-detail-page > section:not(:first-child) {
@@ -4127,6 +4209,103 @@ html.dark {
   text-transform: uppercase;
 }
 
+.closet-support-topics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--site-line);
+  border-bottom: 1px solid var(--site-line);
+}
+
+.site-body .app-detail-page > .closet-support-content .closet-support-topics > a {
+  display: block;
+  min-width: 0;
+  padding: 1.7rem clamp(1.25rem, 3vw, 2rem);
+  color: #111a18;
+  text-decoration: none;
+  transition: background 160ms ease;
+}
+
+.site-body .app-detail-page > .closet-support-content .closet-support-topics > a:first-child {
+  padding-left: 0;
+}
+
+.site-body .app-detail-page > .closet-support-content .closet-support-topics > a:last-child {
+  padding-right: 0;
+}
+
+.site-body .app-detail-page > .closet-support-content .closet-support-topics > a + a {
+  border-left: 1px solid var(--site-line);
+}
+
+.site-body .app-detail-page > .closet-support-content .closet-support-topics > a:focus-visible {
+  outline: 2px solid #0b7059;
+  outline-offset: 4px;
+}
+
+.site-body .app-detail-page > .closet-support-content .closet-support-topics p {
+  max-width: 30ch;
+  color: #40504a;
+}
+
+.closet-support-topics span {
+  display: inline-flex;
+  margin-top: 1.15rem;
+  color: #0b7059;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.closet-support-body {
+  width: min(100%, 46rem);
+  margin-top: clamp(4rem, 8vw, 7rem);
+  margin-left: auto;
+}
+
+.site-body .app-detail-page > .closet-support-content .closet-support-body > section + section {
+  margin-top: clamp(3.75rem, 7vw, 5.5rem);
+  padding-top: clamp(3rem, 5vw, 4.25rem);
+  border-top: 1px solid var(--site-line);
+}
+
+.site-body .app-detail-page > .closet-support-content .closet-support-body > section > p:first-child {
+  color: #55625d;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+}
+
+.site-body .app-detail-page > .closet-support-content .closet-support-body h2 {
+  margin-top: 0.75rem;
+  font-size: clamp(1.85rem, 4vw, 2.5rem);
+  font-weight: 550;
+  letter-spacing: -0.038em;
+  line-height: 1.08;
+}
+
+.site-body .app-detail-page > .closet-support-content .closet-support-body details {
+  border-color: var(--site-line);
+}
+
+.site-body .app-detail-page > .closet-support-content .closet-support-body summary {
+  min-height: 64px;
+  color: #111a18;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+.site-body .app-detail-page > .closet-support-content .closet-support-body summary:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid #0b7059;
+  outline-offset: 4px;
+}
+
+.site-body .app-detail-page > .closet-support-content .closet-support-body details > p {
+  color: #31403b;
+  font-family: "Iowan Old Style", "Baskerville", Georgia, serif;
+  font-size: clamp(1.05rem, 1.35vw, 1.14rem);
+  line-height: 1.72;
+}
+
 @media (max-width: 52rem) {
   .closet-privacy-hero-grid { grid-template-columns: 1fr; }
   .closet-privacy-intro { max-width: 38rem; }
@@ -4143,6 +4322,7 @@ html.dark {
     padding-left: 0.75rem;
     background: #dedfd7;
   }
+  .closet-support-body { margin-left: 0; }
 }
 
 @media (max-width: 42rem) {
@@ -4173,6 +4353,16 @@ html.dark {
   }
   .closet-privacy-fact:first-child { padding-top: 0; }
   .closet-privacy-fact:last-child { padding-bottom: 0; }
+  .closet-support-topics { grid-template-columns: 1fr; }
+  .site-body .app-detail-page > .closet-support-content .closet-support-topics > a,
+  .site-body .app-detail-page > .closet-support-content .closet-support-topics > a:first-child,
+  .site-body .app-detail-page > .closet-support-content .closet-support-topics > a:last-child {
+    padding: 1.5rem 0;
+  }
+  .site-body .app-detail-page > .closet-support-content .closet-support-topics > a + a {
+    border-top: 1px solid var(--site-line);
+    border-left: 0;
+  }
 }
 
 /* Privacy and support pages that predate the unified portfolio shell use a
@@ -4384,7 +4574,13 @@ html.dark .site-body .structly-support [class~="dark:text-slate-500"] {
   .gear-detail-body { grid-template-columns: minmax(0, 760px); }
   .reading-sidebar { display: none; }
   .reading-toc-mobile { display: block; margin-bottom: 45px; padding: 18px; border: 1px solid var(--site-line); color: var(--site-muted); font-family: "Helvetica Neue", sans-serif; font-size: 13px; }
-  .reading-toc-mobile summary { color: var(--site-ink); cursor: pointer; }
+  .reading-toc-mobile summary {
+    display: flex;
+    min-height: 44px;
+    align-items: center;
+    color: var(--site-ink);
+    cursor: pointer;
+  }
   .reading-toc-mobile ul { margin: 15px 0 0; padding-left: 18px; }
   .gear-detail-body > aside { display: none; }
   .about-story { grid-template-columns: 1fr; }
@@ -4401,7 +4597,7 @@ html.dark .site-body .structly-support [class~="dark:text-slate-500"] {
 @media (max-width: 620px) {
   .site-nav { padding: 0 20px; }
   .site-nav-links { gap: 13px; }
-  .site-nav-links a { font-size: 9px; letter-spacing: 0.08em; }
+  .site-nav-links a { font-size: 10px; letter-spacing: 0.08em; }
   .site-shell { width: calc(100% - 40px); }
   .site-hero { padding-top: 74px; padding-bottom: 82px; }
   .site-hero h1 { font-size: clamp(52px, 17vw, 78px); }
@@ -4413,6 +4609,10 @@ html.dark .site-body .structly-support [class~="dark:text-slate-500"] {
   .about-beyond h2,
   .about-contact h2 { font-size: 45px; }
   .featured-app-visual { min-height: min(108vw, 460px); }
+  .site-body .app-detail-page > .gradient-bg:first-child > div {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
   .featured-app-copy { margin-left: 20px; }
   .app-catalog-grid { grid-template-columns: 1fr; }
   .app-catalog-card { min-height: 380px; }
