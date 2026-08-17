@@ -1220,7 +1220,7 @@ body {
 .portfolio-title em {
   display: block;
   margin-left: clamp(24px, 8vw, 132px);
-  color: rgba(230, 246, 240, 0.28);
+  color: rgba(230, 246, 240, 0.42);
   font-family: Iowan Old Style, Baskerville, "Times New Roman", serif;
   font-weight: 400;
   letter-spacing: -0.065em;
@@ -1344,9 +1344,9 @@ body {
   display: flex;
   gap: 13px;
   align-items: center;
-  color: rgba(231, 244, 239, 0.47);
+  color: rgba(231, 244, 239, 0.56);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.17em;
   text-decoration: none;
   text-transform: uppercase;
@@ -1399,9 +1399,9 @@ body {
 
 .portfolio-kicker {
   margin: 12px 0 0;
-  color: #68716e;
+  color: #4f5a56;
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -1513,7 +1513,9 @@ body {
   position: absolute;
   right: 24px;
   bottom: 19px;
-  color: rgba(255,255,255,0.5);
+  padding: 4px 6px;
+  background: rgba(3, 18, 22, 0.82);
+  color: #ffffff;
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 9px;
   letter-spacing: 0.18em;
@@ -1568,9 +1570,9 @@ body {
   flex-wrap: wrap;
   gap: 8px 18px;
   margin-bottom: 27px;
-  color: #6a7370;
+  color: #4f5a56;
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -1622,7 +1624,7 @@ body {
   border-bottom: 1px solid #aeb7b3;
   color: #15201e;
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.13em;
   text-decoration: none;
   text-transform: uppercase;
@@ -1649,9 +1651,9 @@ body {
 }
 
 .portfolio-wide-link span:last-child {
-  color: #68716e;
+  color: #4f5a56;
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -1692,9 +1694,9 @@ body {
 }
 
 .principle-list li > span {
-  color: #77807d;
+  color: #59645f;
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.15em;
 }
 
@@ -1737,7 +1739,7 @@ body {
 
 .portfolio-writing .portfolio-kicker {
   margin-top: 0;
-  color: rgba(221, 239, 233, 0.48);
+  color: rgba(221, 239, 233, 0.54);
 }
 
 .portfolio-writing h2 {
@@ -1772,9 +1774,9 @@ body {
 
 .note-index,
 .portfolio-note-list time {
-  color: rgba(225, 241, 236, 0.42);
+  color: rgba(225, 241, 236, 0.62);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
 }
@@ -1864,7 +1866,7 @@ body {
   border-bottom: 1px solid #bbc1be;
   color: #15201e;
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.14em;
   text-decoration: none;
   text-transform: uppercase;
@@ -1902,9 +1904,9 @@ body {
 .portfolio-footer-cta > span {
   display: block;
   margin-bottom: 16px;
-  color: rgba(225, 241, 236, 0.45);
+  color: rgba(225, 241, 236, 0.62);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: 0.17em;
   text-transform: uppercase;
 }
@@ -1948,9 +1950,9 @@ body {
   align-items: center;
   justify-content: space-between;
   padding-top: 28px;
-  color: rgba(225, 241, 236, 0.4);
+  color: rgba(225, 241, 236, 0.62);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
 }
@@ -2365,7 +2367,7 @@ html.dark {
   --site-bg-soft: #071b1d;
   --site-ink: #eff9f5;
   --site-muted: rgba(227, 241, 236, 0.62);
-  --site-faint: rgba(225, 241, 236, 0.38);
+  --site-faint: rgba(225, 241, 236, 0.55);
   --site-line: rgba(222, 242, 235, 0.17);
   --site-line-strong: rgba(222, 242, 235, 0.28);
   --site-accent: #9fffd8;
@@ -2434,7 +2436,7 @@ html.dark {
   --site-bg-soft: #dedfd7;
   --site-ink: #111a18;
   --site-muted: rgba(17, 26, 24, 0.67);
-  --site-faint: rgba(17, 26, 24, 0.43);
+  --site-faint: rgba(17, 26, 24, 0.62);
   --site-line: rgba(17, 26, 24, 0.16);
   --site-line-strong: rgba(17, 26, 24, 0.28);
   --site-accent: #0b7059;
@@ -2463,11 +2465,11 @@ html.dark {
 
 .site-surface.is-light .site-link-row a,
 .site-surface.is-light .site-link-row > span {
-  color: rgba(17, 26, 24, 0.58);
+  color: var(--site-muted);
 }
 
 .site-surface.is-light .site-status.is-beta { color: #356f9f; }
-.site-surface.is-light .site-status.is-progress { color: #9a6115; }
+.site-surface.is-light .site-status.is-progress { color: #7e4f10; }
 
 /* Legacy content pages still use Tailwind utility markup. Give them an
    explicit light-surface boundary so they never inherit the dark shell's
@@ -2545,7 +2547,7 @@ html.dark {
   padding: 8px 0;
   color: rgba(225, 241, 236, 0.52);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.15em;
   text-decoration: none;
   text-transform: uppercase;
@@ -2612,9 +2614,9 @@ html.dark {
 
 .site-kicker {
   margin: 0;
-  color: rgba(225, 241, 236, 0.42);
+  color: var(--site-faint);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.2em;
   line-height: 1.5;
   text-transform: uppercase;
@@ -2743,7 +2745,7 @@ html.dark {
   gap: 9px 22px;
   color: var(--site-faint);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -2766,7 +2768,7 @@ html.dark {
 .site-link-row > span {
   color: rgba(226, 241, 236, 0.55);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-decoration: none;
   text-transform: uppercase;
@@ -2785,7 +2787,7 @@ html.dark {
   gap: 7px;
   color: var(--site-faint);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 7px;
+  font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -2884,7 +2886,7 @@ html.dark {
   position: absolute;
   right: 24px;
   bottom: 20px;
-  color: rgba(230, 244, 239, 0.36);
+  color: var(--site-faint);
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 8px;
   letter-spacing: 0.16em;
@@ -3303,6 +3305,8 @@ html.dark {
 
 .site-surface.is-light .post-body pre {
   border-color: rgba(17, 26, 24, 0.22);
+  background: #071b1d;
+  color: #e7f2ee;
 }
 
 .reading-sidebar {
@@ -3685,9 +3689,9 @@ html.dark {
 
 .site-footer-cta > span {
   margin-bottom: 12px;
-  color: rgba(225, 241, 236, 0.42);
+  color: var(--site-faint);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 8px;
+  font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -3722,9 +3726,9 @@ html.dark {
   margin-top: clamp(74px, 9vw, 125px);
   padding-top: 27px;
   border-top: 1px solid var(--site-line);
-  color: rgba(225, 241, 236, 0.34);
+  color: rgba(225, 241, 236, 0.62);
   font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 7px;
+  font-size: 10px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
 }
@@ -3788,13 +3792,13 @@ html.dark {
   --surface-muted: #dedfd7;
   --ink: #111a18;
   --muted: rgba(17, 26, 24, 0.67);
-  --faint: rgba(17, 26, 24, 0.43);
+  --faint: rgba(17, 26, 24, 0.62);
   --line: rgba(17, 26, 24, 0.16);
   --line-strong: rgba(17, 26, 24, 0.28);
   --site-bg-soft: #dedfd7;
   --site-ink: #111a18;
   --site-muted: rgba(17, 26, 24, 0.67);
-  --site-faint: rgba(17, 26, 24, 0.43);
+  --site-faint: rgba(17, 26, 24, 0.62);
   --site-line: rgba(17, 26, 24, 0.16);
   --site-line-strong: rgba(17, 26, 24, 0.28);
   --site-accent: #0b7059;
@@ -3822,6 +3826,10 @@ html.dark {
 
 .site-body .app-detail-page > section:not(:first-child) a {
   color: var(--site-accent);
+}
+
+.site-body .app-detail-page > section:not(:first-child) .text-faint {
+  color: #55625d;
 }
 
 .site-body .app-detail-page > section:not(:first-child) .shadow-card,
@@ -3862,6 +3870,179 @@ html.dark {
 .site-body .app-detail-page .shadow-card,
 .site-body .app-detail-page .shadow-cardHover {
   box-shadow: none;
+}
+
+/* Privacy and support pages that predate the unified portfolio shell use a
+   simple top-level <main> rather than chapter <section>s. Give those documents
+   the same warm reading surface and editorial hierarchy as blog posts. This is
+   deliberately independent of the saved/system theme: the site shell remains
+   deep water while long-form copy always keeps predictable AA contrast. */
+.site-body .app-shell.app-detail-page > main {
+  --paper: #ecece4;
+  --surface: #f8f8f4;
+  --surface-muted: #dedfd7;
+  --ink: #111a18;
+  --muted: #55625d;
+  --line: rgba(17, 26, 24, 0.16);
+  --line-strong: rgba(17, 26, 24, 0.28);
+  --site-accent: #0b7059;
+  width: 100%;
+  max-width: 46rem;
+  padding-top: clamp(3.5rem, 7vw, 6rem);
+  padding-bottom: clamp(4.5rem, 9vw, 8rem);
+  background: var(--paper);
+  box-shadow: 0 0 0 100vmax var(--paper);
+  clip-path: inset(0 -100vmax);
+  color: #31403b;
+  font-family: "Iowan Old Style", "Baskerville", Georgia, serif;
+  font-size: clamp(1.0625rem, 1.35vw, 1.1875rem);
+  line-height: 1.76;
+  text-rendering: optimizeLegibility;
+}
+
+.site-body .app-shell.app-detail-page > main > :first-child {
+  margin-top: 0;
+}
+
+.site-body .app-shell.app-detail-page > main > p {
+  margin: 0 0 1.3em;
+}
+
+.site-body .app-shell.app-detail-page > main > p:first-of-type {
+  color: var(--ink);
+  font-size: 1.08em;
+  line-height: 1.7;
+}
+
+.site-body .app-shell.app-detail-page > main > h2 {
+  margin: clamp(3rem, 7vw, 4.75rem) 0 0.8rem;
+  padding-top: clamp(1.75rem, 4vw, 2.75rem);
+  border-top: 1px solid var(--line);
+  color: var(--ink);
+  font-family: "Helvetica Neue", Inter, -apple-system, sans-serif;
+  font-size: clamp(1.45rem, 3vw, 1.8rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.24;
+}
+
+.site-body .app-shell.app-detail-page > main > h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.site-body .app-shell.app-detail-page > main > h3 {
+  margin: 2.4rem 0 0.65rem;
+  color: var(--ink);
+  font-family: "Helvetica Neue", Inter, -apple-system, sans-serif;
+  font-size: clamp(1.08rem, 2vw, 1.22rem);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: 1.38;
+}
+
+.site-body .app-shell.app-detail-page > main :is(strong, dt, th) {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.site-body .app-shell.app-detail-page > main :is(ul, ol) {
+  margin: 1.15rem 0 1.55rem;
+  padding-left: 1.45em;
+}
+
+.site-body .app-shell.app-detail-page > main ul { list-style: disc; }
+.site-body .app-shell.app-detail-page > main ol { list-style: decimal; }
+.site-body .app-shell.app-detail-page > main li + li { margin-top: 0.65rem; }
+
+.site-body .app-shell.app-detail-page > main a {
+  color: var(--site-accent);
+  font-weight: 550;
+  text-decoration: underline;
+  text-decoration-color: rgba(11, 112, 89, 0.42);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.site-body .app-shell.app-detail-page > main a:hover {
+  text-decoration-color: currentColor;
+}
+
+.site-body .app-shell.app-detail-page > main a:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid var(--site-accent);
+  outline-offset: 4px;
+}
+
+.site-body .app-shell.app-detail-page > .gradient-bg:first-child > div {
+  padding-bottom: clamp(2.75rem, 6vw, 4.5rem);
+}
+
+.site-body .app-shell.app-detail-page > .gradient-bg:first-child a:first-child {
+  min-height: 44px;
+  margin-left: -0.5rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  color: var(--site-muted);
+}
+
+.site-body .app-shell.app-detail-page > .gradient-bg:first-child p {
+  color: var(--site-muted);
+}
+
+/* Preserve readable inverse callouts inside warm app-content sections. The
+   light-surface compatibility rules intentionally normalize ordinary copy,
+   but dark contact cards need their own foreground palette. */
+.site-body .app-detail-page > section:not(:first-child) :is(.bg-ink, .bg-slate-950) {
+  background: #071b1d;
+  color: #f4fbf8;
+}
+
+.site-body .app-detail-page > section:not(:first-child) :is(.bg-ink, .bg-slate-950) :is(h1, h2, h3, strong) {
+  color: #f4fbf8;
+}
+
+.site-body .app-detail-page > section:not(:first-child) :is(.bg-ink, .bg-slate-950) p {
+  color: rgba(235, 246, 241, 0.78);
+}
+
+.site-body .app-detail-page > section:not(:first-child) :is(.bg-ink, .bg-slate-950) a:not(.bg-white) {
+  color: #9fffd8;
+}
+
+/* Structly's setup guide owns a richer nested layout, so it is not part of
+   the generic document selector above. Strengthen its small editorial labels
+   in both themes without flattening its cards, video, or troubleshooting UI. */
+.site-body .structly-support [class~="text-slate-400"] {
+  color: #55625d;
+}
+
+html.dark .site-body .structly-support [class~="dark:text-slate-500"] {
+  color: #a7b7b1;
+}
+
+/* Small monospace metadata carries useful information, not decoration. Keep
+   the compact voice while avoiding the 7–9 px labels that disappeared on
+   high-density displays. */
+.app-catalog-topline,
+.featured-app-index,
+.writing-index,
+.writing-list-meta,
+.site-pagination,
+.site-back-link,
+.reading-post-nav span,
+.gear-detail-meta,
+.about-contact-links a {
+  font-size: 10px;
+}
+
+.app-catalog-title p,
+.app-catalog-platforms,
+.writing-tags a,
+.reading-tags a,
+.reading-tags span {
+  font-size: 10px;
 }
 
 .site-body .app-detail-page a:focus-visible,
@@ -3917,7 +4098,7 @@ html.dark {
 @media (max-width: 620px) {
   .site-nav { padding: 0 20px; }
   .site-nav-links { gap: 13px; }
-  .site-nav-links a { font-size: 7px; letter-spacing: 0.1em; }
+  .site-nav-links a { font-size: 9px; letter-spacing: 0.08em; }
   .site-shell { width: calc(100% - 40px); }
   .site-hero { padding-top: 74px; padding-bottom: 82px; }
   .site-hero h1 { font-size: clamp(52px, 17vw, 78px); }
