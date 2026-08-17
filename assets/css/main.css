@@ -4306,6 +4306,227 @@ html.dark {
   line-height: 1.72;
 }
 
+/* Structly setup guide — same editorial shell as the product privacy and
+   support documents, with a denser instructional rhythm for video and steps. */
+.structly-support-hero h1 {
+  max-width: 13ch;
+}
+
+.structly-support-platforms {
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(225, 241, 236, 0.18);
+}
+
+.structly-support-platforms img {
+  width: 2.65rem;
+  height: 2.65rem;
+  border-radius: 22%;
+  box-shadow: 0 0.8rem 1.6rem rgba(0, 0, 0, 0.24);
+}
+
+.site-body .app-detail-page > .structly-support-hero .structly-support-platforms p {
+  margin: 0 0 0.22rem;
+  color: rgba(225, 241, 236, 0.58);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.structly-support-platforms strong {
+  color: #eff9f5;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.structly-guide-inner {
+  padding-top: clamp(3.5rem, 7vw, 6rem);
+}
+
+.structly-guide-content section[id] {
+  scroll-margin-top: 7rem;
+}
+
+.structly-guide-heading {
+  max-width: 48rem;
+}
+
+.site-body .app-detail-page > .structly-guide-content .structly-guide-heading > p {
+  margin: 0;
+  color: #55625d;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.site-body .app-detail-page > .structly-guide-content .structly-guide-heading h2 {
+  margin: 0.75rem 0 0;
+  color: #111a18;
+  font-size: clamp(2rem, 4.2vw, 3.15rem);
+  font-weight: 550;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+}
+
+.site-body .app-detail-page > .structly-guide-content .structly-guide-heading > div {
+  max-width: 42rem;
+  margin-top: 1.1rem;
+  color: #40504a;
+  font-family: "Iowan Old Style", "Baskerville", Georgia, serif;
+  font-size: clamp(1.08rem, 1.55vw, 1.22rem);
+  line-height: 1.7;
+}
+
+.structly-guide-primary {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+  margin-top: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.structly-guide-media {
+  margin: 0;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  border: 1px solid var(--site-line);
+  border-radius: 1.4rem;
+  background: #e2e4dc;
+}
+
+.site-body .app-detail-page > .structly-guide-content .structly-guide-media figcaption {
+  margin-top: 1.15rem;
+  color: #55625d;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.structly-guide-steps {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--site-line);
+  list-style: none;
+}
+
+.structly-guide-steps > li {
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: clamp(1.25rem, 2.8vw, 1.7rem) 0;
+  border-bottom: 1px solid var(--site-line);
+}
+
+.structly-guide-steps > li > span {
+  background: #0b7059 !important;
+  color: #f4fbf8 !important;
+}
+
+.site-body .app-detail-page > .structly-guide-content .structly-guide-steps h3 {
+  margin: 0;
+  color: #111a18;
+  font-size: 1.08rem;
+  font-weight: 650;
+  letter-spacing: -0.014em;
+}
+
+.site-body .app-detail-page > .structly-guide-content .structly-guide-steps p {
+  color: #40504a;
+}
+
+.site-body .app-detail-page > .structly-guide-content .structly-guide-status {
+  border: 1px solid #a9cdbd;
+  background: #dcece5 !important;
+  color: #075340 !important;
+}
+
+.structly-guide-section {
+  margin-top: clamp(4.25rem, 8vw, 7rem);
+  padding-top: clamp(3.5rem, 6vw, 5rem);
+  border-top: 1px solid var(--site-line);
+}
+
+.structly-guide-platforms {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 2.25rem;
+  border-top: 1px solid var(--site-line);
+  border-bottom: 1px solid var(--site-line);
+}
+
+.structly-guide-platforms article {
+  min-width: 0;
+  padding: 1.7rem clamp(1.2rem, 3vw, 2rem);
+}
+
+.structly-guide-platforms article:first-child { padding-left: 0; }
+.structly-guide-platforms article:last-child { padding-right: 0; }
+.structly-guide-platforms article + article { border-left: 1px solid var(--site-line); }
+
+.site-body .app-detail-page > .structly-guide-content .structly-guide-platforms article > p:first-child {
+  color: #55625d;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.site-body .app-detail-page > .structly-guide-content .structly-guide-platforms h3 {
+  color: #111a18;
+}
+
+.site-body .app-detail-page > .structly-guide-content .structly-guide-platforms article > p:last-child {
+  color: #40504a;
+}
+
+.structly-guide-faqs {
+  margin-top: 2rem;
+  border-top: 1px solid var(--site-line);
+  border-bottom: 1px solid var(--site-line);
+}
+
+.structly-guide-faqs details + details { border-top: 1px solid var(--site-line); }
+
+.site-body .app-detail-page > .structly-guide-content .structly-guide-faqs summary {
+  min-height: 68px;
+  color: #111a18;
+}
+
+.site-body .app-detail-page > .structly-guide-content .structly-guide-faqs summary span {
+  color: #55625d !important;
+}
+
+.site-body .app-detail-page > .structly-guide-content .structly-guide-faqs summary:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid #0b7059;
+  outline-offset: 4px;
+}
+
+.site-body .app-detail-page > .structly-guide-content .structly-guide-faqs details > p {
+  color: #31403b;
+  font-family: "Iowan Old Style", "Baskerville", Georgia, serif;
+  font-size: clamp(1.05rem, 1.35vw, 1.14rem);
+  line-height: 1.72;
+}
+
+.structly-guide-contact {
+  max-width: 48rem;
+}
+
+.site-body .app-detail-page > .structly-guide-content .structly-guide-contact h2 {
+  color: #111a18;
+}
+
 @media (max-width: 52rem) {
   .closet-privacy-hero-grid { grid-template-columns: 1fr; }
   .closet-privacy-intro { max-width: 38rem; }
@@ -4323,6 +4544,8 @@ html.dark {
     background: #dedfd7;
   }
   .closet-support-body { margin-left: 0; }
+  .structly-guide-primary { grid-template-columns: 1fr; }
+  .structly-guide-media { max-width: 32rem; }
 }
 
 @media (max-width: 42rem) {
@@ -4360,6 +4583,15 @@ html.dark {
     padding: 1.5rem 0;
   }
   .site-body .app-detail-page > .closet-support-content .closet-support-topics > a + a {
+    border-top: 1px solid var(--site-line);
+    border-left: 0;
+  }
+  .structly-support-platforms { margin-top: 1.15rem; }
+  .structly-guide-platforms { grid-template-columns: 1fr; }
+  .structly-guide-platforms article,
+  .structly-guide-platforms article:first-child,
+  .structly-guide-platforms article:last-child { padding: 1.45rem 0; }
+  .structly-guide-platforms article + article {
     border-top: 1px solid var(--site-line);
     border-left: 0;
   }
@@ -4502,17 +4734,6 @@ html.dark {
 
 .site-body .app-detail-page > section:not(:first-child) :is(.bg-ink, .bg-slate-950) a:not(.bg-white) {
   color: #9fffd8;
-}
-
-/* Structly's setup guide owns a richer nested layout, so it is not part of
-   the generic document selector above. Strengthen its small editorial labels
-   in both themes without flattening its cards, video, or troubleshooting UI. */
-.site-body .structly-support [class~="text-slate-400"] {
-  color: #55625d;
-}
-
-html.dark .site-body .structly-support [class~="dark:text-slate-500"] {
-  color: #a7b7b1;
 }
 
 /* Small monospace metadata carries useful information, not decoration. Keep
