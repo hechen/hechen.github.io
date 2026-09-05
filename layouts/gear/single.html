@@ -25,8 +25,8 @@
       <aside>
         <p class="site-kicker">Object record</p>
         <dl>
-          <div><dt>Published</dt><dd>{{ .Date.Format "Jan 2006" }}</dd></div>
-          {{ with .Params.purchased }}<div><dt>Purchased</dt><dd>{{ time.AsTime . | time.Format "Jan 2006" }}</dd></div>{{ end }}
+          <div><dt>Date</dt><dd><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time></dd></div>
+          {{ with .Params.purchased }}<div><dt>Purchased</dt><dd>{{ time.AsTime . | time.Format "Jan 2, 2006" }}</dd></div>{{ end }}
           {{ with .Params.purchaseURL }}<div><dt>Source</dt><dd><a href="{{ . }}">Product page ↗</a></dd></div>{{ end }}
         </dl>
       </aside>

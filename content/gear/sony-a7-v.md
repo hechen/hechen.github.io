@@ -3,7 +3,7 @@ title: "Sony α7 V"
 slug: sony-a7-v
 category: "Camera"
 subcategory: mirrorless
-date: 2026-09-05
+date: 2026-05-18
 image: "/gear/sony-a7-v/front.jpg"
 imageAlt: "Sony α7 V (A7M5), body only"
 purchaseURL: "https://electronics.sony.com/imaging/interchangeable-lens-cameras/full-frame/p/ilce7m5"

@@ -3,7 +3,7 @@ title: "Oura Ring 4"
 slug: oura-ring-4
 category: "Lifestyle"
 subcategory: wearable
-date: 2026-09-05
+date: 2026-05-20
 purchased: 2026-05-15
 image: "/gear/oura-ring-4/on-charger.jpg"
 imageAlt: "My Oura Ring 4 on its charger in the open box"

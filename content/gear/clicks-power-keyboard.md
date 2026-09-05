@@ -2,7 +2,7 @@
 title: "Clicks Power Keyboard"
 slug: clicks-power-keyboard
 category: "Keyboard"
-date: 2026-09-05
+date: 2026-08-06
 purchased: 2026-01-02
 image: "/gear/clicks-power-keyboard/keyboard.jpg"
 imageAlt: "Clicks Power Keyboard with its magnetic phone mount and physical keys"
