@@ -2,7 +2,7 @@
 title: "National Geographic AirPods Case"
 slug: national-geographic-airpods-case
 category: "Audio"
-date: 2026-09-05
+date: 2026-04-30
 image: "/gear/national-geographic-airpods-case/yellow-case.jpg"
 imageAlt: "Yellow National Geographic AirPods case with its carabiner"
 description: "I found these on eBay after seeing them recommended on 大耳朵TV. I use the green one; my wife prefers yellow."
