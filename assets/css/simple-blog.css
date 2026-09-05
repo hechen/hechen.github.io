@@ -1,0 +1,68 @@
+/* Shared navigation and a quiet reading surface for the personal blog. */
+.simple-nav,.simple-footer{max-width:1000px;margin:auto;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;color:inherit;font-family:system-ui,sans-serif}
+.simple-nav a,.simple-footer a{text-decoration:none;color:inherit}
+.simple-brand{font-size:22px;font-weight:700;letter-spacing:-.04em}
+.simple-nav>div,.simple-footer nav{display:flex;align-items:center;flex-wrap:wrap;gap:24px}
+.simple-nav>div a{font-size:15px;padding:10px 0}
+.simple-nav a[aria-current]{text-decoration:underline;text-underline-offset:7px}
+.simple-footer{border-top:1px solid #8884;margin-top:64px;padding-top:28px;padding-bottom:28px;font-size:13px;flex-wrap:wrap}
+.simple-footer nav{gap:18px}
+.simple-skip{position:fixed;left:16px;top:-100px;padding:12px;background:white;color:black;z-index:1000}
+.simple-skip:focus{top:12px}
+a:focus-visible,button:focus-visible{outline:2px solid #248573;outline-offset:5px}
+body.simple-blog{--site-bg:#fafaf8;--site-bg-soft:#f1f1ec;--site-ink:#222824;--site-muted:#58615b;--site-faint:#646d66;--site-line:#dddfd9;--site-line-strong:#c3c8bf;--site-accent:#166854;--site-paper:#fafaf8;--site-paper-ink:#222824;background:#fafaf8;color:#222824}
+.simple-blog .site-surface.is-light{background:transparent}
+.simple-home{max-width:900px;margin:auto;padding:0 24px}
+.simple-intro{padding-top:52px;padding-bottom:40px}
+.simple-intro h1{font:650 clamp(30px,5vw,42px)/1.2 system-ui,sans-serif;letter-spacing:-.035em;margin:0 0 16px}
+.simple-intro p{font:400 18px/1.7 system-ui,sans-serif;max-width:610px;color:#58615b}
+.simple-home section{margin-bottom:44px}
+.simple-heading{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:14px}
+.simple-home h2{font:600 22px/1.4 system-ui,sans-serif;letter-spacing:-.02em}
+.simple-heading>a,.simple-apps>a{font-size:14px;color:#166854}
+.simple-posts{list-style:none;padding:0;margin:0}
+.simple-posts li{display:flex;align-items:baseline;justify-content:space-between;gap:28px;padding:18px 0;border-bottom:1px solid #dddfd9}
+.simple-posts a{font:500 18px/1.5 system-ui,sans-serif;color:#222824;text-decoration:none}
+.simple-posts a:hover,.simple-gear a:hover h3{text-decoration:underline;text-underline-offset:4px}
+.simple-posts time,.simple-gear time{color:#646d66;font:400 13px/1.6 system-ui,sans-serif;white-space:nowrap}
+.simple-posts p{font:400 15px/1.6 system-ui,sans-serif;color:#58615b;margin:6px 0 0}
+.simple-gear{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.simple-gear a{color:inherit;text-decoration:none}
+.simple-gear img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;background:#eee}
+.simple-gear h3{font:600 16px/1.4 system-ui,sans-serif;margin:12px 0 4px}
+.simple-apps p{margin:10px 0;color:#58615b}
+.simple-blog .site-shell{max-width:900px;width:calc(100% - 48px)}
+.simple-blog .site-section{padding-top:0;padding-bottom:24px}
+.simple-blog .gear-heading{display:block;margin-bottom:24px}
+.simple-blog .gear-filter-bar{margin:0;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.simple-blog .gear-grid{gap:24px;border:0;grid-template-columns:repeat(3,minmax(0,1fr))}
+.simple-blog .gear-card{border:0}
+.simple-blog .gear-card>a{min-height:0}
+.simple-blog .gear-card-visual{height:auto;aspect-ratio:4/3;border:0;border-radius:8px}
+.simple-blog .gear-card-copy{padding:16px 0 24px;min-height:0}
+.simple-blog .gear-card h3{font:600 20px/1.35 system-ui,sans-serif;margin:12px 0}
+.simple-blog .gear-card-copy>p{font:400 15px/1.6 system-ui,sans-serif}
+.simple-blog .gear-card .site-text-link{display:none}
+.simple-blog .reading-hero{padding-top:40px;padding-bottom:28px}
+.simple-blog .reading-hero h1{font-size:clamp(30px,5vw,46px);line-height:1.2;max-width:760px;letter-spacing:-.03em;margin-top:20px}
+.simple-blog .reading-layout,.simple-blog .gear-detail-body{display:block;max-width:760px;padding-top:24px;padding-bottom:24px}
+.simple-blog .reading-sidebar{display:none}
+.simple-blog .reading-toc-mobile{display:block;margin-bottom:28px}
+.simple-blog .gear-detail-body>aside{display:block;margin-top:32px;padding-top:24px;border-top:1px solid #dddfd9}
+.simple-blog .gear-detail-body>aside .site-kicker{display:none}
+.simple-blog .gear-detail-body>aside dl{display:flex;flex-wrap:wrap;gap:24px}
+.simple-blog .gear-detail-body>aside dl>div{border:0;padding:0}
+.simple-blog .reading-footer{padding-top:16px;padding-bottom:24px}
+@media(max-width:650px){.simple-nav{gap:16px}.simple-nav>div{gap:16px}.simple-nav>div a{font-size:14px}.simple-intro{padding-top:30px;padding-bottom:28px}.simple-posts li{display:block}.simple-posts time{display:block;margin-top:6px}.simple-gear{grid-template-columns:1fr}.simple-gear img{max-height:240px}.simple-blog .gear-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.simple-blog .gear-filter-bar{display:block}.simple-blog .gear-card.is-text-only .gear-card-copy{min-height:0}.simple-blog .gear-card h3{font-size:18px}.simple-blog .gear-card-copy>p{font-size:14px}.simple-blog .reading-hero{padding-top:28px}.simple-heading>a{white-space:nowrap}}
+@media(max-width:370px){.simple-nav{padding-left:18px;padding-right:18px}.simple-nav>div{gap:12px}.simple-blog .gear-grid{grid-template-columns:1fr}}
+.simple-blog .site-page{background:transparent}
+.simple-blog .gear-filter{font:400 14px/1.4 system-ui,sans-serif;letter-spacing:0;text-transform:none;border-radius:5px;padding:10px 14px}
+.simple-blog .gear-filter-bar nav{gap:8px;flex-wrap:wrap}
+.simple-blog .site-meta-row{font-size:12px;letter-spacing:0;text-transform:none}
+.simple-blog .site-main{background:transparent;min-height:60vh}
+.simple-blog .site-main::before{display:none}
+.simple-blog ::selection{background:#cae6db;color:#222824}
+.simple-blog .gear-card-copy>p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+@media(max-width:650px){.simple-blog .gear-card-copy>p{display:none}.simple-blog .gear-card .site-meta-row{display:block}.simple-blog .gear-card .site-meta-row time{display:block;margin-top:4px}}
+.simple-blog .reading-hero{max-width:760px}
+.simple-blog .site-back-link{margin-bottom:28px}

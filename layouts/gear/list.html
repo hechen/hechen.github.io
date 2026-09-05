@@ -9,26 +9,15 @@
 {{- end -}}
 
 <div class="site-page gear-page">
-  <header class="site-hero site-shell">
-    <div>
-      <p class="site-kicker"><span>01</span> Field equipment</p>
-      <h1>Objects that<br><em>earn their place.</em></h1>
-    </div>
-    <div class="site-hero-copy">
-      <div>{{ .Content }}</div>
-      <p class="site-hero-note">No affiliate list. No launch-day verdicts. Just notes from living with the object.</p>
-    </div>
-  </header>
-
+  <header class="simple-intro site-shell"><h1>Gear</h1><p>Things I use, with my own photos and notes.</p></header>
   <div class="site-surface is-light">
     <section class="site-section site-shell" aria-labelledby="gear-collection-title">
       <div class="site-section-heading is-compact gear-heading">
-        <p class="site-kicker"><span>02</span> The collection</p>
-        <h2 id="gear-collection-title">Tools, toys,<br>and daily rituals.</h2>
+        <h2 id="gear-collection-title" class="sr-only">All gear</h2>
         <div class="gear-filter-bar">
           <nav aria-label="Gear categories" data-gear-filter>
-            <button type="button" data-cat="all" class="gear-filter is-active">All</button>
-            {{ range $cats }}<button type="button" data-cat="{{ . }}" class="gear-filter">{{ . }}</button>{{ end }}
+            <button type="button" data-cat="all" class="gear-filter is-active" aria-pressed="true">All</button>
+            {{ range $cats }}<button type="button" data-cat="{{ . }}" class="gear-filter" aria-pressed="false">{{ . }}</button>{{ end }}
           </nav>
           <p data-gear-count>{{ len $entries }} entries</p>
         </div>
@@ -47,11 +36,11 @@
             {{- end }}
             <div class="gear-card-copy">
               <div class="gear-card-topline">
-                <span class="gear-card-index" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span>
+
                 <div class="site-meta-row">
                   {{ with $entry.Params.category }}<span>{{ . }}</span>{{ end }}
-                  {{ with $entry.Params.purchased }}<span>{{ time.AsTime . | time.Format "2006" }}</span>{{ end }}
-                  {{ with $entry.Params.rating }}<span>{{ . }}/5</span>{{ end }}
+                  <time datetime="{{ $entry.Date.Format "2006-01-02" }}">{{ $entry.Date.Format "Jan 2, 2006" }}</time>
+
                 </div>
               </div>
               <h3>{{ $entry.Title }}</h3>
@@ -75,8 +64,8 @@
   filter.addEventListener('click', function (event) {
     var button = event.target.closest('[data-cat]');
     if (!button) return;
-    filter.querySelectorAll('[data-cat]').forEach(function (item) { item.classList.remove('is-active'); });
-    button.classList.add('is-active');
+    filter.querySelectorAll('[data-cat]').forEach(function (item) { item.classList.remove('is-active'); item.setAttribute('aria-pressed', 'false'); });
+    button.classList.add('is-active'); button.setAttribute('aria-pressed', 'true');
     var category = button.dataset.cat;
     var visible = 0;
     entries.forEach(function (entry) {

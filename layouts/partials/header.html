@@ -1,36 +1,6 @@
-{{- if .IsHome -}}
-<nav class="portfolio-nav" aria-label="Primary navigation">
-  <a class="portfolio-brand" href="#top" aria-label="Chen, home">
-    <span class="portfolio-brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-    <span>Chen</span>
-  </a>
-  <div class="portfolio-nav-links">
-    <a href="#work">Work</a>
-    <a href="#writing">Writing</a>
-    <a href="#about">About</a>
-    <a class="portfolio-nav-github" href="https://github.com/hechen">GitHub <span aria-hidden="true">↗</span></a>
-  </div>
+<a class="simple-skip" href="#main-content">Skip to content</a>
+<nav class="simple-nav" aria-label="Primary navigation">
+<a class="simple-brand" href="/">Chen</a>
+<div>{{ $current := .RelPermalink }}{{ range slice (dict "name" "Writing" "url" "/post/") (dict "name" "Gear" "url" "/gear/") (dict "name" "Apps" "url" "/apps/") (dict "name" "About" "url" "/about/") }}
+<a href="{{ .url }}"{{ if hasPrefix $current .url }} aria-current="page"{{ end }}>{{ .name }}</a>{{ end }}</div>
 </nav>
-{{- else -}}
-<nav class="site-nav" aria-label="Primary navigation">
-  <div class="site-nav-inner">
-    <a class="portfolio-brand" href="/" aria-label="Chen, home">
-      <span class="portfolio-brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-      <span>Chen</span>
-    </a>
-    {{- $current := .RelPermalink -}}
-    <div class="site-nav-links">
-      {{- range slice
-        (dict "name" "Apps" "url" "/apps/")
-        (dict "name" "Writing" "url" "/post/")
-        (dict "name" "Gear" "url" "/gear/")
-        (dict "name" "About" "url" "/about/")
-      -}}
-        {{- $active := or (eq $current .url) (and (ne .url "/") (hasPrefix $current .url)) -}}
-        <a href="{{ .url }}"{{ if $active }} class="is-active" aria-current="page"{{ end }}>{{ .name }}</a>
-      {{- end }}
-      <a class="site-nav-github" href="https://github.com/hechen">GitHub <span aria-hidden="true">↗</span></a>
-    </div>
-  </div>
-</nav>
-{{- end -}}

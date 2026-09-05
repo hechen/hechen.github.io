@@ -3,12 +3,13 @@
   <header class="reading-hero site-shell">
     <a class="site-back-link" href="/gear/"><span aria-hidden="true">←</span> All gear</a>
     <div class="site-meta-row">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
       {{ with .Params.category }}<span>{{ . }}</span>{{ end }}
       {{ with .Params.rating }}<span>{{ . }}/5</span>{{ end }}
       {{ with .Params.price }}<span>{{ . }}</span>{{ end }}
     </div>
     <h1>{{ .Title }}</h1>
-    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+
 
     {{- $cover := .Params.image | default .Params.cover.image -}}
     {{- $coverAlt := .Params.imageAlt | default .Params.cover.alt | default .Title -}}
@@ -22,14 +23,15 @@
   <div class="site-surface is-light">
     <div class="gear-detail-body site-shell">
       <div class="detail-body">{{ .Content }}</div>
+      {{ if or .Params.purchased .Params.purchaseURL }}
       <aside>
         <p class="site-kicker">Object record</p>
         <dl>
-          <div><dt>Date</dt><dd><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time></dd></div>
           {{ with .Params.purchased }}<div><dt>Purchased</dt><dd>{{ time.AsTime . | time.Format "Jan 2, 2006" }}</dd></div>{{ end }}
           {{ with .Params.purchaseURL }}<div><dt>Source</dt><dd><a href="{{ . }}">Product page ↗</a></dd></div>{{ end }}
         </dl>
       </aside>
+      {{ end }}
     </div>
 
     {{ with .Params.tags }}

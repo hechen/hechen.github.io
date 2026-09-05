@@ -1,28 +1,8 @@
 {{ define "main" }}
-{{ .Content }}
-
-{{ $recent := first 4 (where .Site.RegularPages "Section" "post") }}
-{{ if $recent }}
-<section class="portfolio-writing" id="writing" aria-labelledby="writing-title">
-  <div class="portfolio-writing-inner">
-    <div class="portfolio-section-heading">
-      <p class="portfolio-kicker">03 / Field notes</p>
-      <h2 id="writing-title">Thinking,<br>made visible.</h2>
-      <a class="home-text-link" href="/post/">Browse all writing <span aria-hidden="true">↗</span></a>
-    </div>
-    <ol class="portfolio-note-list">
-      {{ range $index, $post := $recent }}
-      <li>
-        <a href="{{ $post.RelPermalink }}">
-          <span class="note-index">0{{ add $index 1 }}</span>
-          <span class="note-title">{{ $post.Title }}</span>
-          <time datetime="{{ $post.Date.Format "2006-01-02" }}">{{ $post.Date.Format "Jan 2006" }}</time>
-          <span class="note-arrow" aria-hidden="true">↗</span>
-        </a>
-      </li>
-      {{ end }}
-    </ol>
-  </div>
-</section>
-{{ end }}
-{{ end }}
+<div class="simple-home">
+<header class="simple-intro"><h1>Hi, I’m Chen.</h1><p>I’m an Apple-platform engineer in Seattle. This is where I share what I’m building, learning, and using.</p></header>
+<section><div class="simple-heading"><h2>Recent writing</h2><a href="/post/">All writing →</a></div>
+<ul class="simple-posts">{{ range first 5 (where site.RegularPages "Section" "post").ByDate.Reverse }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time></li>{{ end }}</ul></section>
+<section><div class="simple-heading"><h2>Gear</h2><a href="/gear/">All gear →</a></div><div class="simple-gear">{{ $gear := where (where (where site.Pages "Section" "gear") "RelPermalink" "ne" "/gear/") "Kind" "in" (slice "page" "section") }}{{ range first 3 $gear.ByDate.Reverse }}<a href="{{ .RelPermalink }}">{{ with (.Params.image | default .Params.cover.image) }}<img src="{{ . }}" alt="" loading="lazy">{{ end }}<h3>{{ .Title }}</h3><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time></a>{{ end }}</div></section>
+<section class="simple-apps"><h2>Apps</h2><p>I also build apps for iPhone, iPad, and Mac.</p><a href="/apps/">See my apps →</a></section>
+</div>{{ end }}

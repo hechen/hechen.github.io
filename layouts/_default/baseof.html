@@ -15,9 +15,9 @@
 <head>
 {{- partial "head.html" . }}
 </head>
-<body class="{{ if .IsHome }}home-body{{ else }}site-body{{ end }}">
+<body class="{{ if .IsHome }}site-body simple-blog{{ else }}site-body{{ if or (eq .Section "post") (eq .Section "gear") }} simple-blog{{ end }}{{ end }}">
 {{- partial "header.html" . }}
-<main{{ if not .IsHome }} class="site-main{{ if $isAppDetail }} app-detail-page{{ end }}"{{ end }}>
+<main id="main-content"{{ if not .IsHome }} class="site-main{{ if $isAppDetail }} app-detail-page{{ end }}"{{ end }}>
 {{ block "main" . }}{{ .Content }}{{ end }}
 </main>
 {{- partial "footer.html" . }}
