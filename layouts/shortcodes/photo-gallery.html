@@ -1,0 +1,27 @@
+{{ with .Page.Params.gallery }}
+{{ $first := index . 0 }}
+{{ $css := resources.Get "css/photo-gallery.css" | minify | fingerprint }}
+{{ $js := resources.Get "js/photo-gallery.js" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">
+<section class="photo-gallery" data-photo-gallery aria-label="Photo gallery">
+  <div class="photo-gallery-heading"><span>In pictures</span><span>{{ len . }} photos</span></div>
+  <a class="photo-gallery-stage" data-gallery-open href="{{ $first.src }}" aria-label="Open full-screen photo">
+    <img src="{{ $first.src }}" alt="{{ $first.alt }}" decoding="async">
+    <span class="photo-gallery-expand" aria-hidden="true">View full size ↗</span>
+  </a>
+  <div class="photo-gallery-meta"><p data-gallery-caption aria-live="polite">{{ $first.alt }}</p><span data-gallery-count>1 / {{ len . }}</span></div>
+  <nav class="photo-gallery-thumbs" aria-label="Choose a photo">
+    {{ range $i, $photo := . }}
+    <a href="{{ .src }}" data-gallery-thumb aria-label="Photo {{ add $i 1 }}: {{ .alt }}"{{ if eq $i 0 }} aria-current="true"{{ end }}>
+      <img src="{{ .src }}" alt="{{ .alt }}" loading="lazy" decoding="async">
+    </a>
+    {{ end }}
+  </nav>
+  <dialog class="photo-viewer" aria-label="Full-screen photo viewer">
+    <div class="photo-viewer-toolbar"><span data-viewer-count>1 / {{ len . }}</span><button type="button" data-gallery-close aria-label="Close photo viewer">Close ×</button></div>
+    <div class="photo-viewer-stage"><img data-viewer-image alt=""></div>
+    <div class="photo-viewer-footer"><button type="button" data-gallery-prev aria-label="Previous photo">←</button><p data-viewer-caption aria-live="polite"></p><button type="button" data-gallery-next aria-label="Next photo">→</button></div>
+  </dialog>
+</section>
+<script src="{{ $js.RelPermalink }}" defer></script>
+{{ end }}

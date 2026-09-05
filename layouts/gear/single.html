@@ -12,8 +12,10 @@
 
     {{- $cover := .Params.image | default .Params.cover.image -}}
     {{- $coverAlt := .Params.imageAlt | default .Params.cover.alt | default .Title -}}
+    {{ if not .Params.gallery }}
     {{ with $cover }}
     <figure class="gear-detail-cover"{{ with $.Params.imageWidth }} style="max-width: min(100%, {{ . }}px);"{{ end }}><img src="{{ . }}" alt="{{ $coverAlt }}" loading="eager" decoding="async"></figure>
+    {{ end }}
     {{ end }}
   </header>
 
