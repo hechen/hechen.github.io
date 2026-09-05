@@ -17,6 +17,8 @@ draft: false
 
 I bought my Oura Ring 4 on May 15, 2026, and it arrived on May 20. I've been using it since then.
 
+I used an Amex credit, which saved me $200.
+
 Here are a few photos from unboxing it and trying it on, plus a closer look at the ring itself.
 
 ![Oura Ring 4 box on my desk, with size 9 marked in the corner](/gear/oura-ring-4/box.jpg)
