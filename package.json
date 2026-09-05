@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "description": "Build-time Tailwind CSS bundle for hechen.github.io's Hugo site. Compiled at build time so the rendered pages have no cdn.tailwindcss.com runtime dependency (which was the iPad fragility class of bug Phase 1 only fixed for blog posts).",
   "scripts": {
-    "build:css": "tailwindcss -i ./assets/css/main.css -o ./public/css/tailwind.css --minify"
+    "build:css": "npm run check:photos && tailwindcss -i ./assets/css/main.css -o ./public/css/tailwind.css --minify",
+    "check:photos": "python3 scripts/test_photo_privacy.py && python3 scripts/photo_privacy.py --check static/gear static/images/gear"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.17",
