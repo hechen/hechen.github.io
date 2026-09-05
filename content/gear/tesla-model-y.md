@@ -5,7 +5,7 @@ category: "Car"
 date: 2025-08-12
 image: "/gear/tesla-model-y/front.png"
 imageAlt: "My silver Tesla Model Y at Tesla"
-description: "A few photos of my Model Y at Tesla, taken on August 12, 2025."
+description: "I traded in my Model 3, which I bought in April 2024, for this Model Y."
 tags: ["tesla", "model-y", "car"]
 gallery:
   - src: "/gear/tesla-model-y/front.png"
@@ -17,6 +17,8 @@ gallery:
 draft: false
 ---
 
-A few photos of my Model Y at Tesla, taken on August 12, 2025.
+I traded in my Model 3, which I bought in April 2024, for this Model Y.
+
+These photos were taken at Tesla on August 12, 2025.
 
 {{< photo-gallery >}}
