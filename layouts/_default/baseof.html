@@ -11,13 +11,13 @@
 */ -}}
 {{- $isAppDetail := and (eq .Section "apps") (ne .RelPermalink "/apps/") -}}
 <!doctype html>
-<html lang="{{ site.Language.Lang | default "en" }}"{{ if not .IsHome }} class="dark" data-theme="dark"{{ end }}>
+<html lang="{{ site.Language.Lang | default "en" }}" data-theme="light">
 <head>
 {{- partial "head.html" . }}
 </head>
-<body class="{{ if .IsHome }}site-body simple-blog{{ else }}site-body{{ if or (eq .Section "post") (eq .Section "gear") }} simple-blog{{ end }}{{ end }}">
+<body class="site-body simple-blog">
 {{- partial "header.html" . }}
-<main id="main-content"{{ if not .IsHome }} class="site-main{{ if $isAppDetail }} app-detail-page{{ end }}"{{ end }}>
+<main id="main-content"{{ if not .IsHome }} class="site-main"{{ end }}>
 {{ block "main" . }}{{ .Content }}{{ end }}
 </main>
 {{- partial "footer.html" . }}

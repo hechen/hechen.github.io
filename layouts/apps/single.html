@@ -1,11 +1,1 @@
-{{- /*
-  Shared shell for /apps/<slug>/ pages, including marketing pages,
-  privacy pages, and support pages. App content is still authored in
-  content/apps/**, but the section now has its own layout identity
-  instead of falling back to the generic page template.
-*/ -}}
-{{ define "main" }}
-<div class="app-shell site-page app-detail-page">
-  {{ .Content }}
-</div>
-{{ end }}
+{{ define "main" }}<div class="simple-content">{{ .Content }}</div>{{ end }}

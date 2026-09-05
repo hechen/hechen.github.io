@@ -1,13 +1,1 @@
-{{- /*
-  Section index layout for /apps/. Whatever section content the
-  _index.html in content/apps/ carries gets rendered as the body.
-*/ -}}
-{{ define "main" }}
-{{- if .Params.legacySurface }}
-<div class="legacy-page site-surface is-light">
-  {{ .Content }}
-</div>
-{{- else }}
-{{ .Content }}
-{{- end }}
-{{ end }}
+{{ define "main" }}<div class="simple-content">{{ .Content }}</div>{{ end }}

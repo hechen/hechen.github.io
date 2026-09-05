@@ -1,0 +1,7 @@
+<div class="simple-app-grid">
+{{ range hugo.Data.apps }}
+<article class="simple-app-card">
+<div class="simple-app-title"><img src="{{ .icon }}" alt="" width="48" height="48" loading="lazy" decoding="async"><div><h3>{{ with .url }}<a href="{{ . }}">{{ end }}{{ .name }}{{ if .url }}</a>{{ end }}</h3><span>{{ .status }} · {{ .platforms }}</span></div></div>
+<p>{{ .summary }}</p>
+<div class="simple-app-links">{{ with .url }}<a href="{{ . }}">Details</a>{{ end }}{{ with .store }}<a href="{{ . }}">Get app</a>{{ end }}{{ with .source }}<a href="{{ . }}">Source</a>{{ end }}{{ with .support }}<a href="{{ . }}">Support</a>{{ end }}{{ with .privacy }}<a href="{{ . }}">Privacy</a>{{ end }}</div>
+</article>{{ end }}</div>

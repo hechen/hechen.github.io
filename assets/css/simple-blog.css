@@ -66,3 +66,58 @@ body.simple-blog{--site-bg:#fafaf8;--site-bg-soft:#f1f1ec;--site-ink:#222824;--s
 @media(max-width:650px){.simple-blog .gear-card-copy>p{display:none}.simple-blog .gear-card .site-meta-row{display:block}.simple-blog .gear-card .site-meta-row time{display:block;margin-top:4px}}
 .simple-blog .reading-hero{max-width:760px}
 .simple-blog .site-back-link{margin-bottom:28px}
+/* One presentation for catalogs, authored app pages, and reference pages. */
+.simple-app-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px}
+.simple-app-card{padding:22px 0;border-bottom:1px solid #dddfd9;min-width:0}
+.simple-app-title{display:flex;align-items:center;gap:14px}
+.simple-app-title img{width:48px;height:48px;border-radius:11px;flex-shrink:0}
+.simple-app-title h3{font:600 18px/1.4 system-ui,sans-serif;margin:0 0 4px}
+.simple-app-title h3 a{color:inherit;text-decoration:none}
+.simple-app-title span{font:400 12px/1.5 system-ui,sans-serif;color:#58615b}
+.simple-app-card>p{font:400 15px/1.65 system-ui,sans-serif;margin:14px 0;color:#58615b}
+.simple-app-links{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:#166854}
+.simple-app-links a{padding:5px 0}
+.simple-home>section>p{line-height:1.8;margin:14px 0;color:#58615b}
+.simple-home>section>p a{color:#166854}
+.simple-content{max-width:900px;margin:auto;padding:36px 24px;color:#222824;font:400 16px/1.75 system-ui,sans-serif}
+.simple-content :is(h1,h2,h3,h4,strong,summary){color:#222824}
+.simple-content h1{font:650 clamp(30px,5vw,42px)/1.2 system-ui,sans-serif;letter-spacing:-.035em;margin:0 0 20px}
+.simple-content h2{font:600 24px/1.4 system-ui,sans-serif;letter-spacing:-.02em;margin:28px 0 16px;text-transform:none}
+.simple-content h3{font-size:18px;line-height:1.45}
+.simple-content p{color:#58615b}
+.simple-content a{color:#166854}
+.simple-content :is(.gradient-bg,.gradient-bg-animated,main,section){background:transparent}
+.simple-content>section,.simple-content>div,.simple-content>main{padding:0;border:0}
+.simple-content>section+section,.simple-content>div+main{margin-top:32px;padding-top:24px;border-top:1px solid #dddfd9}
+.simple-content>section>div,.simple-content>.gradient-bg>div{max-width:none;margin:0;padding:0}
+.simple-content [class*="shadow"]{box-shadow:none}
+.simple-content [class*="rounded-2xl"],.simple-content [class*="rounded-3xl"]{border-radius:8px}
+.simple-content :is(.bg-white,.bg-slate-50){background:#fafaf8}
+.simple-content a.bg-accent{background:#166854;color:white}
+.simple-content :is(.bg-ink,.bg-slate-950){background:#eff2ec;color:#222824}
+.simple-content [class*="text-white"]{color:#222824}
+.simple-content .animate-pulse{animation:none}
+.simple-content>main>p{margin:0 0 20px}
+.simple-content>main>h2{margin-top:32px}
+.simple-content>main :is(ul,ol){padding-left:24px;margin:16px 0}
+.simple-content>main ul{list-style:disc}
+.simple-content>main ol{list-style:decimal}
+.simple-content .closet-privacy-shell,.simple-content .closet-privacy-content-inner{width:100%;max-width:none;padding:0}
+.simple-content .closet-privacy-hero-grid{display:block;margin-top:24px}
+.simple-content .closet-privacy-intro{padding:0;margin-top:16px;max-width:680px}
+.simple-content .closet-privacy-actions{margin:16px 0;gap:16px;flex-wrap:wrap}
+.simple-content .closet-privacy-actions a{display:inline-block;padding:8px 0}
+.simple-content .closet-privacy-layout{display:block}
+.simple-content .closet-privacy-nav{position:static;margin:24px 0;padding:16px;border:1px solid #dddfd9;border-radius:8px}
+.simple-content .closet-privacy-nav ul{display:flex;flex-wrap:wrap;gap:8px;margin:0}
+.simple-content .closet-privacy-policy{max-width:none}
+.simple-content .closet-privacy-policy section{margin-top:32px}
+.simple-content .closet-privacy-policy p{margin:14px 0}
+.simple-content .closet-privacy-contact,.simple-content .closet-support-topics{margin:24px 0}
+.simple-content .closet-support-topics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.simple-content .closet-support-topics>a{padding:16px;border:1px solid #dddfd9;border-radius:8px}
+.simple-content details{border-color:#dddfd9}
+.simple-content summary{cursor:pointer}
+.simple-content .simple-home{padding:0}
+.simple-content .simple-intro{padding-top:0}
+@media(max-width:650px){.simple-app-grid{grid-template-columns:1fr}.simple-content{padding-top:28px}.simple-content .grid{grid-template-columns:1fr}.simple-content .closet-privacy-facts{display:block}.simple-content .closet-privacy-fact{padding:16px 0;border:0}.simple-content .closet-support-topics{grid-template-columns:1fr}.simple-content .closet-privacy-nav ul{display:block}.simple-content .closet-privacy-nav a{padding:8px 0}}

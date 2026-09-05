@@ -73,6 +73,7 @@
   support: /apps/eatwisely/support.html
   summary: Meal logging that works whether you snap a photo, scan a label, or just type it.
 - name: TrainInsight
+  url: /apps/traininsight/
   eyebrow: Training analytics
   status: In progress
   tone: progress

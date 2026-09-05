@@ -1,16 +1,1 @@
-{{- /*
-  Generic single-page layout. Body is whatever .Content is — pages
-  carry their own marketing-page HTML (apps/<name>/_index.html), the
-  privacy / support copy (apps/<name>/privacy.html etc.), or simple
-  text content (about, now, tools). Theme-shared shell comes from
-  baseof.html.
-*/ -}}
-{{ define "main" }}
-{{- if .Params.legacySurface }}
-<div class="legacy-page site-surface is-light">
-  {{ .Content }}
-</div>
-{{- else }}
-{{ .Content }}
-{{- end }}
-{{ end }}
+{{ define "main" }}<div class="simple-content">{{ .Content }}</div>{{ end }}
