@@ -4704,7 +4704,8 @@ html.dark {
   padding-bottom: clamp(2.75rem, 6vw, 4.5rem);
 }
 
-.site-body .app-shell.app-detail-page > .gradient-bg:first-child a:first-child {
+/* Only direct hero back links: nested primary CTAs keep their inverse text. */
+.site-body .app-shell.app-detail-page > .gradient-bg:first-child > div > a:first-child:not(.bg-accent) {
   min-height: 44px;
   margin-left: -0.5rem;
   padding-right: 0.5rem;
