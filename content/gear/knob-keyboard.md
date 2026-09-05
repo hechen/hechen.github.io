@@ -3,7 +3,16 @@ title: "Knob Keyboard"
 slug: knob-keyboard
 category: "Keyboard"
 subcategory: "low-profile mechanical keyboard"
-date: 2026-05-27
+date: 2025-09-02
+image: "/gear/knob-keyboard/unboxed.jpg"
+imageAlt: "The unboxed Knob Keyboard with white keycaps, orange accents, and two black knobs"
+gallery:
+  - src: "/gear/knob-keyboard/unboxed.jpg"
+    alt: "The keyboard out of the box"
+  - src: "/gear/knob-keyboard/in-box.jpg"
+    alt: "The keyboard in its orange packaging"
+  - src: "/gear/knob-keyboard/packaging.jpg"
+    alt: "The box and quick-start insert"
 purchased: 2025-09-02
 price: "$439"
 currency: USD
@@ -15,6 +24,8 @@ draft: false
 ---
 
 I received the **Knob Keyboard** on **September 2, 2025**, after ordering it almost eight months earlier. That is a long enough wait for a keyboard to stop feeling like a normal purchase and start feeling like a tiny artifact from some earlier version of your desk plans.
+
+{{< photo-gallery >}}
 
 The product is officially the **Knob / k.no.b.1**, a low-profile mechanical keyboard from Work Louder with two programmable knobs and a narrow full-color screen on the right side. It is not trying to disappear into the setup. The orange accents, the industrial packaging, and the "No, not that kind of knob" line all make it feel more like a designed object than another anonymous rectangle of keys.
 
