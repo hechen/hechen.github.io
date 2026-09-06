@@ -1,9 +1,9 @@
 {{ define "main" }}
-<div class="simple-home">
-<header class="simple-intro"><h1>Hi, I’m Chen.</h1><p>I’m an Apple-platform engineer in Seattle. This is where I share what I’m building, learning, and using.</p></header>
-<section id="apps"><div class="simple-heading"><h2>Apps</h2><a href="/apps/">App catalog →</a></div>{{ partial "app-catalog.html" . }}</section>
+<div class="simple-home home-journal">
+<header class="simple-intro home-intro"><p class="intro-label">Seattle · Apple-platform engineer</p><h1>Hi, I’m Chen.</h1><p>I build apps and write about the things I’m learning and using.</p><a class="intro-about" href="/about/">A little about me <span aria-hidden="true">↗</span></a></header>
+<section id="apps"><div class="simple-heading"><h2>Apps</h2><a href="/apps/">Explore apps →</a></div>{{ partial "app-shelf.html" . }}</section>
 <section><div class="simple-heading"><h2>Recent writing</h2><a href="/post/">All writing →</a></div>
 <ul class="simple-posts">{{ range first 5 (where site.RegularPages "Section" "post").ByDate.Reverse }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time></li>{{ end }}</ul></section>
-<section><div class="simple-heading"><h2>Gear</h2><a href="/gear/">All gear →</a></div><div class="simple-gear">{{ $gear := where (where (where site.Pages "Section" "gear") "RelPermalink" "ne" "/gear/") "Kind" "in" (slice "page" "section") }}{{ range first 3 $gear.ByDate.Reverse }}<a href="{{ .RelPermalink }}">{{ with (.Params.image | default .Params.cover.image) }}<img src="{{ . }}" alt="" loading="lazy">{{ end }}<h3>{{ .Title }}</h3><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time></a>{{ end }}</div></section>
+<section><div class="simple-heading"><h2>Gear</h2><a href="/gear/">All gear →</a></div><div class="simple-gear">{{ $gear := where (where (where site.Pages "Section" "gear") "RelPermalink" "ne" "/gear/") "Kind" "in" (slice "page" "section") }}{{ range first 4 $gear.ByDate.Reverse }}<a href="{{ .RelPermalink }}">{{ with (.Params.image | default .Params.cover.image) }}<img src="{{ . }}" alt="" loading="lazy">{{ end }}<h3>{{ .Title }}</h3><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time></a>{{ end }}</div></section>
 
 </div>{{ end }}

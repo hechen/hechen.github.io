@@ -1,0 +1,5 @@
+<ul class="app-shelf" aria-label="My apps">
+{{ range hugo.Data.apps }}
+<li><a href="{{ .url }}"><img src="{{ .icon }}" alt="" width="48" height="48" loading="lazy" decoding="async"><span>{{ .name }}</span></a></li>
+{{ end }}
+</ul>
