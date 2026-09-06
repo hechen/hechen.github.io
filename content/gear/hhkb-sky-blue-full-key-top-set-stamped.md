@@ -28,6 +28,11 @@ I picked **stamped legends** on purpose. Blank caps look cool for about five min
 - The sky blue color feels playful without becoming loud or tacky.
 - Stamped legends keep it usable and honest.
 
+## Check the keyboard before the color
+
+<p><a href="https://hhkeyboard.us/hhkb/accessories/sky-blue-full-key-top-set/sku/cg01000-399213">HHKB lists</a> a full set of 60 Topre keycaps, with a keycap puller and instructions. The stamped version has visible legends; the blank version does not. The keyboard itself is not included.</p>
+<p>The compatibility list covers HHKB Professional models, including Professional2, Classic, HYBRID, and HYBRID Type-S. It is worth checking the exact board before ordering: these are not a universal keycap set for every mechanical keyboard. The change here is mainly visual. It keeps the existing keyboard and switches while giving the keys a different color.</p>
+
 ## Tradeoff
 
 This solves no real problem. It will not make me type faster, think better, or write cleaner code. It is just one of those rare desk purchases where I know I will enjoy seeing it every day, and sometimes that is enough.

@@ -42,6 +42,11 @@ These photos are mine too — taken in **September 2023** — which makes this p
 - The limitations are part of the charm, not something to apologize for.
 - It feels more like a tiny creative object than a generic gadget.
 
+## The crank is a control, not a charger
+
+<p>The side crank is an analog input for games. It does not charge the battery, and not every game needs it. That distinction is worth making: the interesting part is how a game uses rotation, rather than simply having a moving part on the case.</p>
+<p><a href="https://play.date/">Panic's product page</a> also describes the reflective, non-backlit black-and-white screen and the 24 games in Season One. A screen that relies on outside light changes where the handheld is comfortable to use. This is a device to judge by its games and controls, not by how closely it resembles a tiny phone.</p>
+
 ## Tradeoff
 
 This is obviously not the rational handheld to buy. The screen is tiny, the display is 1-bit, and the whole device is intentionally specific. But that specificity is what makes it memorable to me. I do not want every piece of gear to be practical first.
