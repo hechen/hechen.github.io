@@ -2,8 +2,8 @@
 title: "Creator Micro 2"
 slug: creator-micro-2
 category: "Keyboard"
-date: 2026-08-13
-purchased: 2026-08-05
+date: 2026-08-02
+purchased: 2026-07-22
 image: "/gear/creator-micro-2/on-desk.jpg"
 imageAlt: "My Creator Micro 2 on my desk"
 description: "I've been using it every day, and it's been really useful with Codex."
@@ -18,6 +18,6 @@ gallery:
 draft: false
 ---
 
-I bought the Creator Micro 2 on August 5, 2026, and it arrived on August 13. I've been using it every day since then. It's been really useful with Codex.
+I bought the Creator Micro 2 on July 22, 2026, and it arrived on August 1. I've been using it every day since then. It's been really useful with Codex.
 
 {{< photo-gallery >}}
