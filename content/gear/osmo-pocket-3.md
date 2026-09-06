@@ -2,7 +2,8 @@
 title: "DJI Osmo Pocket 3"
 slug: osmo-pocket-3
 category: "Camera"
-date: 2026-08-03
+date: 2026-03-03
+purchased: 2026-03-03
 image: "/gear/osmo-pocket-3/front.jpg"
 imageAlt: "My DJI Osmo Pocket 3 on my desk"
 description: "Bought on Taobao during my March trip back to China, and later sold on eBay."
@@ -23,7 +24,7 @@ gallery:
 draft: false
 ---
 
-I bought the Osmo Pocket 3 on Taobao when I went back to China for a holiday in March 2026.
+I bought the Osmo Pocket 3 on March 3, 2026, during my holiday trip back to China. I ordered it from Taobao, a Chinese online marketplace, for about RMB 3,500. It arrived on March 9.
 
 I later sold it on eBay and bought the [Pocket 4P](/gear/osmo-pocket-4p/). These are the photos I took when I was selling it.
 
