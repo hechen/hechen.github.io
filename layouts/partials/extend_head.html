@@ -1,3 +1,4 @@
 {{/* Shared editorial typography and presentation for every page. */}}
 {{ $simpleCSS := resources.Get "css/simple-blog.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $simpleCSS.RelPermalink }}" integrity="{{ $simpleCSS.Data.Integrity }}">
+{{ partialCached "code-themes.html" . }}

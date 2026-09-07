@@ -61,22 +61,20 @@ enableEmoji = true
 [security]
   allowContent = ["^text/html$", "^text/markdown$"]
 
-# PaperMod ships with Chroma support out of the box; pin to GitHub theme so
-# the rendered code blocks match the manually-applied palette in commit
-# c217d27 (#f6f8fa light bg / #0d1117 dark bg, GitHub token colors).
+# Highlight at build time. layouts/partials/code-themes.html generates the
+# GitHub Light, GitHub Dark, and Dracula palettes for these token classes.
 [markup]
   [markup.goldmark.renderer]
     unsafe = true            # allow raw HTML in markdown for posts that
                              # already contain inline styling (the autoclosure
                              # post and a couple of others use raw <details>)
   [markup.highlight]
-    style = "github"           # light mode default
+    style = "github"
     lineNos = false
     codeFences = true
     guessSyntax = true
     tabWidth = 4
-    noClasses = false          # emit class names so the CSS swap below works
-                               # for prefers-color-scheme media queries
+    noClasses = false          # class-based colors allow switching code themes
 
 # Output formats: PaperMod's defaults give us /index.json (search), /sitemap.xml,
 # /index.xml (RSS). Match the existing site's index.json + sitemap.xml.

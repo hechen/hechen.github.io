@@ -1,0 +1,18 @@
+{{- /* Generate token colors with the same Chroma version that highlights the code. */ -}}
+{{- $light := css.ChromaStyles (dict "style" "github" "mode" "light" "modeSelector" true "classLight" "code-theme-github-light" "targetPath" "css/code-github-light.css") -}}
+{{- $dark := css.ChromaStyles (dict "style" "github" "mode" "dark" "modeSelector" true "classDark" "code-theme-github-dark" "targetPath" "css/code-github-dark.css") -}}
+{{- $dracula := css.ChromaStyles (dict "style" "dracula" "mode" "dark" "modeSelector" true "classDark" "code-theme-dracula" "targetPath" "css/code-dracula.css") -}}
+{{- $css := slice $light $dark $dracula (resources.Get "css/code-themes.css") | resources.Concat "css/code-themes.css" | minify | fingerprint -}}
+<script>
+  (function () {
+    try {
+      var theme = localStorage.getItem('chen-code-theme');
+      if (['github-light', 'github-dark', 'dracula'].indexOf(theme) !== -1) {
+        document.documentElement.classList.replace('code-theme-github-light', 'code-theme-' + theme);
+      }
+    } catch (_) {}
+  })();
+</script>
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- $js := resources.Get "js/code-themes.js" | minify | fingerprint -}}
+<script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>

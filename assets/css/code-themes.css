@@ -1,0 +1,102 @@
+/* Code palettes are independent of the page's editorial colors. */
+:root,
+html.code-theme-github-light {
+  --code-bg: #f7f7f7;
+  --code-fg: #24292f;
+  --code-muted: #57606a;
+  --code-border: #d0d7de;
+  --code-focus: #0969da;
+  --code-scheme: light;
+}
+html.code-theme-github-dark {
+  --code-bg: #0d1117;
+  --code-fg: #e6edf3;
+  --code-muted: #8b949e;
+  --code-border: #30363d;
+  --code-focus: #79c0ff;
+  --code-scheme: dark;
+}
+html.code-theme-dracula {
+  --code-bg: #282a36;
+  --code-fg: #f8f8f2;
+  --code-muted: #b3b8d4;
+  --code-border: #55596e;
+  --code-focus: #bd93f9;
+  --code-scheme: dark;
+}
+
+/* Override the older page-specific pre backgrounds, including plain-text fences. */
+html body.simple-blog #main-content pre {
+  background: var(--code-bg);
+  color: var(--code-fg);
+  border: 1px solid var(--code-border);
+  border-radius: 6px;
+  box-shadow: none;
+  padding: 18px 20px;
+  overflow-x: auto;
+  max-width: 100%;
+  font: 400 14px/1.65 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  tab-size: 4;
+  color-scheme: var(--code-scheme);
+}
+html body.simple-blog #main-content pre code {
+  background: transparent;
+  color: inherit;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  white-space: pre;
+}
+.code-example {
+  margin: 28px 0;
+  min-width: 0;
+  max-width: 100%;
+  border: 1px solid var(--code-border);
+  border-radius: 6px;
+  background: var(--code-bg);
+  color: var(--code-fg);
+  overflow: hidden;
+  color-scheme: var(--code-scheme);
+}
+.code-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  padding: 6px 12px 6px 20px;
+  border-bottom: 1px solid var(--code-border);
+  font: 400 12px/1.5 system-ui, sans-serif;
+  color: var(--code-muted);
+}
+.code-language { overflow-wrap: anywhere; }
+.code-theme-label { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.code-theme-select {
+  min-height: 36px;
+  max-width: 100%;
+  padding: 4px 8px;
+  border: 1px solid var(--code-border);
+  border-radius: 4px;
+  background: var(--code-bg);
+  color: var(--code-fg);
+  font: inherit;
+  cursor: pointer;
+}
+.code-theme-select:focus-visible { outline: 2px solid var(--code-focus); outline-offset: 2px; }
+html body.simple-blog #main-content .code-example pre {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+.code-example .highlight { margin: 0; }
+/* Line-number tables remain one example and scroll as a unit. */
+.code-example .highlight:has(.lntable) { overflow-x: auto; }
+html body.simple-blog #main-content .code-example .lntd pre { padding: 18px 8px; overflow: visible; }
+@media (max-width: 650px) {
+  .code-toolbar { padding-left: 14px; }
+  .code-theme-select { min-height: 44px; font-size: 16px; }
+  html body.simple-blog #main-content pre { padding: 16px 14px; }
+}
+
+/* Keep comments readable at the same text size as the code. */
+html #main-content .chroma :is(.c, .ch, .cm, .c1, .cs, .ln, .lnt) { color: var(--code-muted); }
