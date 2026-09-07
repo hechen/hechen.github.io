@@ -1,0 +1,39 @@
+{{- /* Include once from baseof: older gear notes use page/list instead of gear/single. */ -}}
+{{- $isArticle := and (eq .Section "post") .IsPage -}}
+{{- $isGear := and (eq .Section "gear") (ne .RelPermalink .FirstSection.RelPermalink) -}}
+{{- if and (or $isArticle $isGear) (.Param "comments") -}}
+  {{- $config := site.Params.giscus -}}
+  {{- if not (and $config.repo $config.repoId $config.category $config.categoryId) -}}
+    {{- errorf "Comments are enabled but params.giscus is incomplete. See docs/comments.md." -}}
+  {{- else -}}
+    {{- /* Share a thread across translations; an explicit ID preserves it after a URL change. */ -}}
+    {{- $canonical := . -}}
+    {{- range .AllTranslations -}}
+      {{- if eq .Language.Lang "zh-cn" }}{{ $canonical = . }}{{ end -}}
+    {{- end -}}
+    {{- $term := $canonical.Params.commentId | default $canonical.RelPermalink -}}
+    {{- $chinese := and $isArticle (eq .Language.Lang "zh-cn") -}}
+    <section id="comments" class="article-comments" aria-labelledby="comments-title">
+      <h2 id="comments-title">{{ if $chinese }}评论{{ else }}Comments{{ end }}</h2>
+      <p class="comments-intro">{{ if $chinese }}欢迎分享想法或提问。使用 GitHub 账号登录后即可评论，评论将公开显示。{{ else }}Questions or thoughts? Join the conversation with your GitHub account. Comments are public.{{ end }}</p>
+      <script src="https://giscus.app/client.js"
+              data-repo="{{ $config.repo }}"
+              data-repo-id="{{ $config.repoId }}"
+              data-category="{{ $config.category }}"
+              data-category-id="{{ $config.categoryId }}"
+              data-mapping="specific"
+              data-term="{{ $term }}"
+              data-strict="1"
+              data-reactions-enabled="1"
+              data-emit-metadata="0"
+              data-input-position="top"
+              data-theme="light"
+              data-lang="{{ if $chinese }}zh-CN{{ else }}en{{ end }}"
+              data-loading="lazy"
+              crossorigin="anonymous"
+              async></script>
+      <p class="comments-fallback"><a href="https://github.com/{{ $config.repo }}/discussions">{{ if $chinese }}也可以在 GitHub Discussions 中查看和参与讨论 ↗{{ else }}You can also read and join discussions on GitHub ↗{{ end }}</a></p>
+      <noscript><p>{{ if $chinese }}启用 JavaScript 可在此处查看评论。{{ else }}Enable JavaScript to view comments here.{{ end }}</p></noscript>
+    </section>
+  {{- end -}}
+{{- end -}}

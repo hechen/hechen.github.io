@@ -19,6 +19,7 @@
 {{- partial "header.html" . }}
 <main id="main-content"{{ if not .IsHome }} class="site-main"{{ end }}>
 {{ block "main" . }}{{ .Content }}{{ end }}
+{{- partial "comments.html" . }}
 </main>
 {{- partial "footer.html" . }}
 </body>

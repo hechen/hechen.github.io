@@ -134,11 +134,17 @@ enableEmoji = true
   ShowCodeCopyButtons = true
   ShowWordCount = false
   ShowRssButtonInSectionTermList = true
-  comments = false
+  comments = true
   hideMeta = false
   disableScrollToTop = false
   ShowToc = true
   TocOpen = false
+
+  [params.giscus]
+    repo = "hechen/hechen.github.io"
+    repoId = "MDEwOlJlcG9zaXRvcnkzMjg1MzEyOQ=="
+    category = "Announcements"
+    categoryId = "DIC_kwDOAfVMic4DFGZa"
 
   # Profile-mode-off: the legacy homepage is owned by static/index.html which
   # has the bespoke app-cards layout. PaperMod's home renders the post list
