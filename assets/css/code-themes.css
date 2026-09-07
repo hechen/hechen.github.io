@@ -1,10 +1,12 @@
 /* Code palettes are independent of the page's editorial colors. */
 :root,
 html.code-theme-github-light {
-  --code-bg: #f7f7f7;
-  --code-fg: #24292f;
-  --code-muted: #57606a;
-  --code-border: #d0d7de;
+  --code-bg: #ffffff;
+  --code-fg: #1f2328;
+  --code-muted: #424a53;
+  --code-border: #8c959f;
+  --code-toolbar-bg: #eef1f4;
+  --code-control-border: #68717c;
   --code-focus: #0969da;
   --code-scheme: light;
 }
@@ -15,6 +17,8 @@ html.code-theme-github-dark {
   --code-border: #30363d;
   --code-focus: #79c0ff;
   --code-scheme: dark;
+  --code-toolbar-bg: var(--code-bg);
+  --code-control-border: var(--code-border);
 }
 html.code-theme-dracula {
   --code-bg: #282a36;
@@ -23,6 +27,8 @@ html.code-theme-dracula {
   --code-border: #55596e;
   --code-focus: #bd93f9;
   --code-scheme: dark;
+  --code-toolbar-bg: var(--code-bg);
+  --code-control-border: var(--code-border);
 }
 
 /* Override the older page-specific pre backgrounds, including plain-text fences. */
@@ -68,6 +74,7 @@ html body.simple-blog #main-content pre code {
   border-bottom: 1px solid var(--code-border);
   font: 400 12px/1.5 system-ui, sans-serif;
   color: var(--code-muted);
+  background: var(--code-toolbar-bg);
 }
 .code-language { overflow-wrap: anywhere; }
 .code-theme-label { display: flex; align-items: center; gap: 8px; margin-left: auto; }
@@ -81,6 +88,7 @@ html body.simple-blog #main-content pre code {
   color: var(--code-fg);
   font: inherit;
   cursor: pointer;
+  border-color: var(--code-control-border);
 }
 .code-theme-select:focus-visible { outline: 2px solid var(--code-focus); outline-offset: 2px; }
 html body.simple-blog #main-content .code-example pre {
@@ -100,3 +108,30 @@ html body.simple-blog #main-content .code-example .lntd pre { padding: 18px 8px;
 
 /* Keep comments readable at the same text size as the code. */
 html #main-content .chroma :is(.c, .ch, .cm, .c1, .cs, .ln, .lnt) { color: var(--code-muted); }
+
+/* A stronger GitHub Light palette for small, long-form code examples. */
+html.code-theme-github-light {
+  --code-keyword: #9d1522;
+  --code-function: #51258f;
+  --code-number: #03428e;
+  --code-variable: #783000;
+}
+html.code-theme-github-light body.simple-blog #main-content pre {
+  font-size: 15px;
+  font-weight: 500;
+}
+html.code-theme-github-light #main-content .chroma :is(.k, .kc, .kd, .kn, .kp, .kr, .kt) {
+  color: var(--code-keyword);
+}
+html.code-theme-github-light #main-content .chroma :is(.nb, .ni, .nf, .fm) {
+  color: var(--code-function);
+}
+html.code-theme-github-light #main-content .chroma :is(.no, .nd, .nt, .m, .mb, .mf, .mh, .mi, .il, .mo, .o, .ow, .or) {
+  color: var(--code-number);
+}
+html.code-theme-github-light #main-content .chroma :is(.nv, .vc, .vg, .vi, .vm) {
+  color: var(--code-variable);
+}
+html.code-theme-github-light #main-content .chroma :is(.bp, .cp, .cpf) {
+  color: var(--code-muted);
+}

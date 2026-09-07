@@ -6,7 +6,8 @@ generates GitHub Light, GitHub Dark, and Dracula CSS with `css.ChromaStyles`
 
 Each code block gets a native **Code theme** selector. A choice applies to all
 blocks, persists in `chen-code-theme` local storage, and follows the reader across
-pages and tabs. GitHub Light is the default. If JavaScript or storage is unavailable,
+pages and tabs. GitHub Light is the default, with a darker syntax palette, 15px medium-weight
+code, and distinct toolbar and control borders for readability. If JavaScript or storage is unavailable,
 the default syntax colors remain readable; storage failures do not prevent switching
 within the page. Inline code and the page theme are independent.
 
