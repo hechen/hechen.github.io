@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Privacy policy for Open in Tower (Unofficial), an independent Chrome extension by Chen He.">
+  <meta name="referrer" content="no-referrer">
+  <title>Privacy — Open in Tower (Unofficial)</title>
+  <link rel="canonical" href="https://hechen.github.io/apps/open-in-tower/privacy.html">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell policy">
+    <header class="topline"><a class="brand" href="./">Open in Tower (Unofficial)</a><nav aria-label="Product navigation"><a href="./#support">Support</a></nav></header>
+    <main id="main">
+      <div class="hero prose">
+        <p class="eyebrow">Last updated September 7, 2026</p>
+        <h1>Privacy policy</h1>
+        <p class="lead">A local shortcut. No account, tracking, or saved browsing history.</p>
+        <p>This policy covers <strong>Open in Tower (Unofficial)</strong>, the browser extension developed by Chen He, and support messages you choose to send to its developer. The extension is independent of Tower and GitHub.</p>
+      </div>
+      <section class="prose" aria-labelledby="local-title">
+        <h2 id="local-title">What the extension reads locally</h2>
+        <p>On GitHub.com, the extension reads the current page URL, repository-name metadata, and the page structure needed to identify a loaded repository and place its action. Its toolbar popup checks the active tab and asks the GitHub content script to confirm the repository.</p>
+        <p>This processing occurs in your browser. The extension does not collect or store browsing history, page content, source code, cookies, credentials, or authentication tokens. It has no extension account, analytics, advertising, telemetry, cloud service, or developer-operated data server.</p>
+      </section>
+      <section class="prose" aria-labelledby="handoff-title">
+        <h2 id="handoff-title">What happens when you click</h2>
+        <p>When you deliberately choose <strong>Open in Tower</strong>, the extension constructs a canonical HTTPS repository URL such as <code>https://github.com/owner/repository.git</code> and passes it to the installed Tower app through the local <code>gittower://</code> URL scheme. File and branch paths, query parameters, and URL fragments are not included.</p>
+        <p>The repository address can identify a private repository if that is the page you choose to open. It is passed to Tower, not sent to Chen He. Your browser or operating system may ask permission before opening the app.</p>
+        <p>Tower is separate software. Its authentication, network connections, repository operations, storage, and privacy practices are governed by Tower and the services you use with it. The extension does not clone repositories or receive Tower credentials. Your ordinary use of GitHub is also governed by GitHub’s own policies.</p>
+      </section>
+      <section class="prose" aria-labelledby="permissions-title">
+        <h2 id="permissions-title">Permissions and limits</h2>
+        <ul>
+          <li><strong>GitHub.com page access:</strong> the content script identifies repository pages and adds the independent action. It is not enabled on other websites.</li>
+          <li><strong>Active tab:</strong> the toolbar popup checks the current page when you invoke the extension. The extension does not request access to your browsing-history database.</li>
+          <li><strong>No persistent library:</strong> the extension does not save repository addresses or other user data in extension storage.</li>
+          <li><strong>No incognito support:</strong> the extension is disabled in incognito windows.</li>
+        </ul>
+        <p>The extension does not sell user data, use it for advertising, or use it to determine creditworthiness or lending eligibility.</p>
+      </section>
+      <section class="prose" aria-labelledby="email-title">
+        <h2 id="email-title">Support email is optional</h2>
+        <p>You can contact <a href="mailto:chen.dev@icloud.com">chen.dev@icloud.com</a> for help. The extension and product pages do not automatically fill in or send reports. You choose the message and whether to send it using your email provider.</p>
+        <p>A message includes your email address and any information you choose to provide. Please include only what is needed, such as your browser and extension versions and a description of the problem. Repository URLs are optional; use a public or redacted example. Do not include passwords, tokens, private repository details, source code, or other sensitive information.</p>
+        <p>Support messages are used only to provide support and fix extension issues, including repository-page parsing problems. They are kept only as long as needed for that work. They are handled through email providers, which process messages under their own terms and privacy policies. You can request deletion of support messages by emailing <a href="mailto:chen.dev@icloud.com">chen.dev@icloud.com</a>.</p>
+      </section>
+      <section class="prose" aria-labelledby="website-title">
+        <h2 id="website-title">This product website</h2>
+        <p>These product and privacy pages contain no analytics, tracking scripts, third-party fonts, embedded media, or forms. They are hosted on GitHub Pages; the hosting provider may process standard connection information when serving them. Following an external link takes you to that provider’s website and privacy practices.</p>
+      </section>
+      <section class="prose" aria-labelledby="changes-title">
+        <h2 id="changes-title">Changes and contact</h2>
+        <p>If the extension’s data practices change, this policy will be updated with a new date. For privacy questions or deletion requests, contact Chen He at <a href="mailto:chen.dev@icloud.com">chen.dev@icloud.com</a>.</p>
+      </section>
+    </main>
+    <footer><nav aria-label="Footer navigation"><a href="./">Product page</a><a href="./#support">Contact &amp; support</a></nav><p>Open in Tower (Unofficial) is not affiliated with or endorsed by Tower or GitHub.</p></footer>
+  </div>
+</body>
+</html>

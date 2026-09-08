@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An independent Chrome extension by Chen He. Open the current GitHub repository in your installed Tower Git client, with no tracking or stored history.">
+  <meta name="referrer" content="no-referrer">
+  <title>Open in Tower (Unofficial) — Chen He</title>
+  <link rel="canonical" href="https://hechen.github.io/apps/open-in-tower/">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <header class="topline">
+      <a class="brand" href="/">Chen He</a>
+      <nav aria-label="Product navigation"><a href="#support">Support</a><a href="privacy.html">Privacy</a></nav>
+    </header>
+    <main id="main">
+      <div class="hero">
+        <p class="eyebrow">A small shortcut for GitHub.com</p>
+        <h1>Open in Tower <span>Unofficial Chrome extension</span></h1>
+        <p class="lead">From a repository in your browser to the Tower Git client on your computer.</p>
+        <p class="prose muted">Adds an independent <strong>Open in Tower</strong> action to GitHub repository pages, with a toolbar popup as another way to open it. GitHub Desktop and GitHub’s other actions stay in place.</p>
+        <div class="actions"><a class="button" href="#how-it-works">How it works</a><a href="https://www.git-tower.com/">Get the Tower desktop app</a></div>
+        <p class="status">Chrome Web Store update in preparation. <a href="https://chromewebstore.google.com/detail/amkfflhhjlihielfjkiibchiogknjmlh">Check the existing listing’s status</a>.</p>
+      </div>
+      <section id="how-it-works" aria-labelledby="how-title">
+        <div class="prose">
+          <h2 id="how-title">One deliberate handoff.</h2>
+          <ol>
+            <li>Install the official <a href="https://www.git-tower.com/">Tower desktop app</a>. This extension is only a shortcut; it does not include Tower or a Tower license.</li>
+            <li>Open a repository on <strong>GitHub.com</strong>. After installing or updating the extension, reload any GitHub tabs that were already open.</li>
+            <li>Choose <strong>Open in Tower</strong> on the page, or open the extension’s toolbar popup and choose the same action. Your browser may ask permission to open the desktop app.</li>
+            <li>Continue in Tower. Tower handles authentication, any network requests, and the choice to clone or open the repository.</li>
+          </ol>
+          <p class="note">The shortcut passes a repository address, not a file, branch, or commit. It removes the page’s extra path, query parameters, and fragment before handing off the canonical HTTPS repository URL.</p>
+        </div>
+        <div class="grid">
+          <div class="card"><h3>Just the repository address</h3><p>The extension checks the current GitHub page locally. Only a deliberate click sends its repository URL to Tower on your computer. It does not save browsing history, page content, source code, cookies, or tokens, and it has no analytics.</p></div>
+          <div class="card"><h3>A focused scope</h3><p>Supports repository pages on GitHub.com. GitHub Enterprise domains, other Git hosting sites, and incognito browsing are not supported. Tower must be installed and able to handle <code>gittower://</code> links.</p></div>
+        </div>
+      </section>
+      <section id="support" aria-labelledby="support-title">
+        <div class="prose">
+          <h2 id="support-title">Something not opening?</h2>
+          <p>First, reload the GitHub page and try the toolbar popup. Confirm that Tower is installed and that your browser allows this site to open Tower. If you see an authentication or clone error after Tower opens, check Tower’s account and repository access settings.</p>
+          <p>For extension issues, write to <a href="mailto:chen.dev@icloud.com">chen.dev@icloud.com</a>. Include your browser and extension versions, what you clicked, what you expected, and what happened.</p>
+          <p>A public or redacted example repository URL is optional. Please do not send passwords, access tokens, source code, private repository details, or unredacted screenshots containing sensitive information.</p>
+          <p>No report is filled in or sent automatically. The email link opens your mail app; you decide what to write and whether to send it. Reports are used only for support and extension fixes, kept only as long as needed for that work, and can be deleted on request. <a href="privacy.html">Read the privacy policy</a>.</p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <nav aria-label="Footer navigation"><a href="privacy.html">Privacy policy</a><a href="#support">Contact &amp; support</a><a href="https://www.git-tower.com/help/guides/integration/url-scheme/mac">Tower URL scheme documentation</a></nav>
+      <p>Independent software by Chen He. Not affiliated with or endorsed by Tower or GitHub. Tower and GitHub are trademarks of their respective owners.</p>
+    </footer>
+  </div>
+</body>
+</html>
