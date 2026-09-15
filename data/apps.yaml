@@ -44,7 +44,7 @@
   summary: Collect selected articles and course pages into a local reading library, then export a book with chapters and a table of contents.
 - name: Keeps
   eyebrow: Personal belongings
-  status: Private beta
+  status: Public beta
   tone: beta
   platforms: iPhone · iPad · Mac
   icon: /assets/icons/keeps.png
