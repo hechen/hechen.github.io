@@ -42,6 +42,16 @@
   privacy: /apps/course-book-builder/privacy.html
   support: /apps/course-book-builder/support.html
   summary: Collect selected articles and course pages into a local reading library, then export a book with chapters and a table of contents.
+- name: Keeps
+  eyebrow: Personal belongings
+  status: Private beta
+  tone: beta
+  platforms: iPhone · iPad · Mac
+  icon: /assets/icons/keeps.png
+  url: /apps/keeps/
+  privacy: /apps/keeps/privacy.html
+  support: /apps/keeps/support.html
+  summary: A home for your belongings, with purchase details, use history, and a clearer view of ownership costs.
 - name: Closet
   eyebrow: Personal inventory
   status: TestFlight

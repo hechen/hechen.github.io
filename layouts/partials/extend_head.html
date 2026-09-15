@@ -2,3 +2,8 @@
 {{ $simpleCSS := resources.Get "css/simple-blog.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $simpleCSS.RelPermalink }}" integrity="{{ $simpleCSS.Data.Integrity }}">
 {{ partialCached "code-themes.html" . }}
+
+{{ if .Params.keeps }}
+{{ $keepsCSS := resources.Get "css/keeps.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $keepsCSS.RelPermalink }}" integrity="{{ $keepsCSS.Data.Integrity }}">
+{{ end }}
