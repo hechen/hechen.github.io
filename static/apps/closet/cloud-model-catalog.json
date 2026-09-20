@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "2026-08-14.1",
+  "revision": "2026-09-20.1",
   "providers": [
     {
       "id": "openai",
@@ -11,7 +11,8 @@
         "gpt-4.1-nano", "o4-mini", "gpt-5-instant", "gpt-5-thinking"
       ],
       "models": [
-        { "id": "gpt-5.6-sol", "name": "GPT-5.6 Sol (frontier)", "inputPerMillion": 5.0, "outputPerMillion": 30.0, "imageInputPerMillion": 5.0 },
+        { "id": "gpt-6-astra", "name": "GPT-6 Astra (highest capability)", "inputPerMillion": 10.0, "outputPerMillion": 50.0, "imageInputPerMillion": 10.0 },
+        { "id": "gpt-5.6-sol", "name": "GPT-5.6 Sol (advanced reasoning)", "inputPerMillion": 4.0, "outputPerMillion": 20.0, "imageInputPerMillion": 4.0 },
         { "id": "gpt-5.6-terra", "name": "GPT-5.6 Terra (recommended)", "inputPerMillion": 2.0, "outputPerMillion": 12.0, "imageInputPerMillion": 2.0 },
         { "id": "gpt-5.6-luna", "name": "GPT-5.6 Luna (fastest, lowest cost)", "inputPerMillion": 0.2, "outputPerMillion": 1.2, "imageInputPerMillion": 0.2 },
         { "id": "gpt-5.5", "name": "GPT-5.5", "inputPerMillion": 5.0, "outputPerMillion": 30.0, "imageInputPerMillion": 5.0 },
