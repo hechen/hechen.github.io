@@ -7,6 +7,9 @@ resources/
 # package.json + package-lock.json are committed.
 node_modules/
 
+# Generated compatibility copy from hechen/ai-model-catalog in the Pages build.
+static/apps/closet/cloud-model-catalog.json
+
 # OS junk
 .DS_Store
 

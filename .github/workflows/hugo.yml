@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [master]
   workflow_dispatch:
+  schedule:
+    # Keep the old catalog URL current for shipped apps. Unchanged catalogs
+    # skip the Hugo build and deployment.
+    - cron: '17 * * * *'
 
 permissions:
   contents: read
@@ -21,10 +25,56 @@ defaults:
     shell: bash
 
 jobs:
+  catalog:
+    runs-on: ubuntu-latest
+    outputs:
+      deploy: ${{ steps.compare.outputs.deploy }}
+    steps:
+      - name: Fetch the authoritative catalog
+        uses: actions/checkout@v4
+        with:
+          repository: hechen/ai-model-catalog
+          ref: main
+          persist-credentials: false
+      - name: Validate catalog
+        run: python3 validate.py
+      - name: Check the compatibility endpoint
+        id: compare
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          python3 - <<'PY'
+          import os
+          import urllib.error
+          import urllib.request
+          from pathlib import Path
+
+          changed = True
+          if os.environ['EVENT_NAME'] == 'schedule':
+              url = 'https://hechen.github.io/apps/closet/cloud-model-catalog.json'
+              try:
+                  with urllib.request.urlopen(url, timeout=30) as response:
+                      changed = response.read() != Path('cloud-model-catalog.json').read_bytes()
+              except urllib.error.HTTPError as error:
+                  if error.code != 404:
+                      raise
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f'deploy={str(changed).lower()}\n')
+          PY
+      - name: Save validated catalog for the site build
+        if: steps.compare.outputs.deploy == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: cloud-model-catalog
+          path: cloud-model-catalog.json
+          retention-days: 1
+
   build:
     # Always run on push and PR — gives PR authors a green/red signal that
     # the Hugo + Tailwind pipeline still compiles before merge. Deploy job
-    # below is gated on push to master so PRs don't deploy to production.
+    # below excludes PRs. Scheduled runs build only when the catalog changed.
+    needs: catalog
+    if: needs.catalog.outputs.deploy == 'true'
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.165.0
@@ -43,6 +93,11 @@ jobs:
         with:
           node-version: 20
           cache: npm
+      - name: Restore the catalog at its legacy URL
+        uses: actions/download-artifact@v4
+        with:
+          name: cloud-model-catalog
+          path: static/apps/closet
       - name: Install Tailwind deps
         run: npm ci
       - name: Setup Pages
@@ -75,9 +130,8 @@ jobs:
           path: ./public
 
   deploy:
-    # Only deploy on push to master. PR builds upload the artifact for
-    # CI validation but don't replace the live site.
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    # Pushes, manual runs and catalog checks publish from master. PRs don't.
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
