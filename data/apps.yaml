@@ -44,11 +44,12 @@
   summary: Collect selected articles and course pages into a local reading library, then export a book with chapters and a table of contents.
 - name: Keeps
   eyebrow: Personal belongings
-  status: Public beta
-  tone: beta
-  platforms: iPhone · iPad · Mac
+  status: App Store
+  tone: live
+  platforms: iPhone · iPad · Mac in review
   icon: /assets/icons/keeps.png
   url: /apps/keeps/
+  store: https://apps.apple.com/app/id6811795155
   privacy: /apps/keeps/privacy.html
   support: /apps/keeps/support.html
   summary: A home for your belongings, with purchase details, use history, and a clearer view of ownership costs.
