@@ -1,0 +1,76 @@
+---
+title: 'Stash — Privacy Policy'
+type: 'apps'
+url: '/apps/stash/privacy.html'
+description: 'How Stash handles saved text, local processing, private iCloud sync, keyboard access, website requests, backups, and optional support reports.'
+comments: false
+---
+
+<article lang="en" class="max-w-3xl space-y-8">
+  <header class="space-y-5">
+    <nav class="flex flex-wrap gap-x-6 gap-y-2" aria-label="Stash pages">
+      <a class="inline-block py-2 underline underline-offset-4" href="/apps/stash/">Stash</a>
+      <a class="inline-block py-2 underline underline-offset-4" href="/apps/stash/support.html">Support</a>
+    </nav>
+    <h1>Stash privacy policy.</h1>
+    <p class="text-sm">Effective date: 20 September 2026</p>
+    <p class="text-lg">Stash is developed by Chen. Your text is stored on your device and, when available, in your private iCloud database. Stash does not operate a server that receives your saved collection.</p>
+  </header>
+
+  <section id="saved-content" class="space-y-4" aria-labelledby="content-title">
+    <h2 id="content-title">What Stash stores</h2>
+    <p>Stash stores content you add, including text, links, images, file references, and related information such as dates, favorites, source-app details, and collections. Text Studio also keeps its current draft locally on your device. Stash stores preferences and caches, such as link-preview images, to make the app work.</p>
+    <p>Text splitting, selecting and joining fragments, text actions, and image text recognition run on your device. Optional Intelligence tools use Apple’s on-device model when it is available; Stash does not send their prompts or your text to a developer-operated AI service.</p>
+  </section>
+
+  <section id="clipboard" class="space-y-4" aria-labelledby="clipboard-title">
+    <h2 id="clipboard-title">Clipboard and files</h2>
+    <p>Stash reads content when you paste, share, import, or capture it. If you enable <strong>Capture on Open</strong>, Stash can also read the clipboard when the app becomes active, subject to the operating system’s paste permissions. You can turn this off in Stash Settings.</p>
+    <p>The share extension receives the content you choose to share. File and photo pickers provide the files or images you select. Saving an image or video to Photos uses the permission requested by the system. Stash does not continuously read other apps’ clipboards in the iOS background.</p>
+  </section>
+
+  <section id="icloud" class="space-y-4" aria-labelledby="icloud-title">
+    <h2 id="icloud-title">Private iCloud sync</h2>
+    <p>Stash uses Apple’s CloudKit to synchronize saved clips and collections through your private iCloud account. This transfers saved content and its associated information to Apple’s iCloud service. The developer does not have access to your private CloudKit database.</p>
+    <p>When iCloud storage is unavailable, Stash may use local storage instead. A local-only collection does not establish that its contents have synced. The Text Studio draft and some preferences remain local. Apple’s handling of iCloud is governed by <a class="underline underline-offset-4" href="https://www.apple.com/legal/privacy/">Apple’s privacy policy</a> and your account settings.</p>
+  </section>
+
+  <section id="keyboard" class="space-y-4" aria-labelledby="keyboard-title">
+    <h2 id="keyboard-title">Keyboard, widgets, and extensions</h2>
+    <p>The main app, share extension, widgets, and Stash keyboard use a shared storage area on your device. It holds the saved content and preferences needed by these features.</p>
+    <p>The Stash keyboard requires <strong>Allow Full Access</strong> to read saved Stash clips from that shared storage. The keyboard inserts the text you select into the current app. Its typing and insertion controls do not upload keystrokes or surrounding text to a server. The keyboard itself does not make network requests.</p>
+    <p>You can disable Full Access or remove the keyboard in iOS or iPadOS Settings. Text you insert into another app is then handled by that app and its privacy policy.</p>
+  </section>
+
+  <section id="websites" class="space-y-4" aria-labelledby="websites-title">
+    <h2 id="websites-title">Website and media requests</h2>
+    <p>Link previews are enabled by default. When loading a preview, Stash contacts the linked website and related image hosts to request titles, images, or icons. Explicit link-preview refreshes, media checks, and downloads also contact the relevant website. Those services receive the requested URL and normal connection information, such as your IP address, and may log those requests under their own policies.</p>
+    <p>Turn off <strong>Settings → Clipboard → Link Previews</strong> to stop automatic preview loading. This does not prevent requests you explicitly make by opening a link, refreshing its metadata, or downloading media.</p>
+    <p>When displaying a source-app icon, Stash may send that app’s bundle identifier to Apple’s app lookup service and download its icon from the returned image host. Your saved text is not included in this request.</p>
+  </section>
+
+  <section id="support-reports" class="space-y-4" aria-labelledby="reports-title">
+    <h2 id="reports-title">Support and diagnostics you choose to send</h2>
+    <p>Stash does not automatically send your saved clips or support logs to the developer. <strong>Send Feedback</strong> prepares an email to <a class="underline underline-offset-4" href="mailto:chen.he@icloud.com?subject=Stash%20Privacy">chen.he@icloud.com</a>. The report can include the app version and build, device and operating-system details, locale, iCloud account availability, and recent diagnostic logs. You decide whether to send it.</p>
+    <p>If you send a message, the developer receives your email address, message, diagnostic report, and any attachments you include, and uses them to investigate and respond. Review reports and attachments before sending and remove information you do not want to disclose. Support correspondence is kept as needed to resolve the request and maintain support records; you can request deletion by email.</p>
+    <p><strong>Copy Debug Info</strong> puts a report on your clipboard. It does not send the report by itself. Sharing it through another app is your choice.</p>
+  </section>
+
+  <section id="tracking" class="space-y-4" aria-labelledby="tracking-title">
+    <h2 id="tracking-title">No advertising or tracking</h2>
+    <p>Stash does not include advertising, sell your personal information, or use your saved collection for third-party tracking. It does not require a separate Stash account. Apple may provide the developer with App Store and diagnostic reports under Apple’s services and your device settings; those services are covered by Apple’s privacy policy.</p>
+  </section>
+
+  <section id="deletion" class="space-y-4" aria-labelledby="deletion-title">
+    <h2 id="deletion-title">Retention, backups, and deletion</h2>
+    <p>Saved content remains in Stash until you delete it or a configured history limit removes older items. You can delete clips and collections in the app. Deletions are synchronized when iCloud sync is available and working. Clearing the Text Studio workspace clears its local draft, not saved clips.</p>
+    <p>Removing the app does not guarantee that its iCloud data or exported backups are deleted. Manage Stash’s iCloud storage through your Apple account settings where available. Local caches are managed by the app and operating system.</p>
+    <p>Backups can contain your saved text, images, links, and collections. They are stored where you choose, including an iCloud Drive location if you select one. Backups and copies shared or saved outside Stash must be deleted separately. The developer cannot retrieve or delete your private iCloud collection on your behalf.</p>
+  </section>
+
+  <section id="contact" class="space-y-4" aria-labelledby="contact-title">
+    <h2 id="contact-title">Questions and policy changes</h2>
+    <p>For privacy questions or a request concerning information you sent to support, email <a class="underline underline-offset-4" href="mailto:chen.he@icloud.com?subject=Stash%20Privacy">chen.he@icloud.com</a>.</p>
+    <p>Changes to this policy will be published here with an updated effective date.</p>
+  </section>
+</article>
