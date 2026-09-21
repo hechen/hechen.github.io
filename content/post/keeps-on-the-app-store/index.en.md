@@ -14,7 +14,7 @@ Keeps gives the things you own a place to keep their history: a photo, the origi
 
 You can start with a few everyday belongings, import purchases for review, or explore the separate demo collection. Optional private iCloud sync and photo-inclusive backups help you keep the records. There is no Keeps account, advertising, or third-party analytics.
 
-The native Mac version is still in App Review. We are preparing 1.1.0 for its first App Store release, with the updated editor, editable AI suggestions, emoji category filters, and warranty reminders. The widgets described below are for iPhone and iPad. The current public release is for iPhone and iPad, on iOS or iPadOS 18 and later.
+Native Mac 1.1.0 has also been submitted for App Review as its first App Store release, with the updated editor, editable AI suggestions, emoji category filters, and warranty reminders. Mac availability is pending approval. The widgets described below are for iPhone and iPad. The current public release is for iPhone and iPad, on iOS or iPadOS 18 and later.
 
 ## 1.1.0 submitted for App Review
 
