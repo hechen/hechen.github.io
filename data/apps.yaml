@@ -20,7 +20,7 @@
   source: https://github.com/hechen/GymLog
   privacy: /apps/liftcoach/privacy.html
   support: /apps/liftcoach/support.html
-  summary: Strength programming and a focused workout log. Upcoming beta 1.0.0 (318) adds an optional US$2.99 one-time iCloud Sync unlock; local logging and backups remain free.
+  summary: Strength programming and a focused workout log. Build 1.0.0 (318) is available in Family internal TestFlight on iOS and macOS, adding an optional US$2.99 one-time iCloud Sync unlock. Public App Store release is pending; local logging and backups remain free.
   featured: true
 - name: Distill
   eyebrow: Read later
