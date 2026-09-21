@@ -26,3 +26,9 @@ Two widgets are now being tested for the 1.1.0 update:
 Both will offer Home Screen and Lock Screen layouts. Cost estimates and missing currency conversions will stay visible as such, following the same rules as the app. Widgets are upcoming; they are not included in the 1.0.0 App Store release.
 
 [Explore Keeps](/apps/keeps/) or [follow the getting-started guide](/apps/keeps/guide.html).
+
+## Also being prepared for 1.1.0
+
+Feedback from the first release is shaping the item editor. You will be able to change an AI-suggested name, category, and tags before applying them, with better category handling for phone accessories. Cost-per-use estimates will become an explicit optional setting, and warranty dates will have a dedicated section.
+
+Optional local warranty reminders are also being tested. They will be configured per device, with clear notification-permission status and automatic updates when saved warranty details change. These improvements are not yet part of the public 1.0.0 release.
