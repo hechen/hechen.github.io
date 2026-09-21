@@ -14,7 +14,7 @@ comments: false
     </nav>
     <h1>Stash support.</h1>
     <p class="text-lg">Select, collect &amp; reuse text. Split a passage into words, sentences, lines, or characters, then copy, share, or save the fragments you choose.</p>
-    <p class="text-sm">The new Text Studio experience is being tested in an internal TestFlight beta. Public availability is coming later.</p>
+    <p class="text-sm">The new Text Studio experience is available in version 1.0.0 (128) to internal TestFlight testers. Public availability is coming later.</p>
     <p><a class="inline-block py-2 underline underline-offset-4" href="mailto:chen.he@icloud.com?subject=Stash%20Support">Email chen.he@icloud.com</a></p>
   </header>
 
@@ -22,24 +22,42 @@ comments: false
     <h2 id="studio-title">Tokenize text, then select and reuse</h2>
     <ol class="list-decimal space-y-3 pl-6">
       <li>Open <strong>Studio</strong>, then choose <strong>Paste</strong> or <strong>Write text</strong>. <strong>Try an example</strong> gives you a passage to practice with.</li>
-      <li>Split the passage into <strong>Words</strong>, <strong>Sentences</strong>, <strong>Lines</strong>, or <strong>Characters</strong>.</li>
+      <li>Choose <strong>Select text</strong> and split the passage into <strong>Words</strong>, <strong>Sentences</strong>, <strong>Lines</strong>, or <strong>Characters</strong>.</li>
       <li>Tap the pieces you want. Tap a selected piece again to remove it. The <strong>Select</strong> menu can select all pieces, invert your selection, or clear it.</li>
       <li>Tap the result to preview it and choose how the pieces join. Use <strong>Copy</strong>, the share button, or the <strong>Stash</strong> menu to save one combined clip or separate clips.</li>
     </ol>
-    <p>To work with text you already saved, open it from your Stash and choose <strong>Select &amp; reuse</strong>. Selection creates new clips; it does not rewrite the source clip.</p>
+    <p>In build 128, open a saved clip and choose <strong>Open in Studio</strong> to work on a copy. Stash asks before replacing an existing Studio draft. The original clip stays unchanged.</p>
   </section>
 
   <section id="workspace" class="space-y-4" aria-labelledby="workspace-title">
     <h2 id="workspace-title">Your draft and saved clips</h2>
-    <p>Text Studio keeps a draft on this device. Saving a selection adds it to your Stash. Editing or clearing the workspace does not delete saved clips. In <strong>Workspace options</strong>, you can edit the source, use text actions, save the full text, or undo the last text change.</p>
+    <p>Text Studio keeps a draft on this device. Saving a selection adds it to your Stash. Editing or clearing the workspace does not delete saved clips. In <strong>Workspace options</strong>, you can edit the source, save the full text, or undo the last text change.</p>
     <p>To open a text file, choose <strong>Workspace options → Import text file</strong>. Use a UTF-8 text file smaller than 2 MB. If there is already text in the workspace, Stash asks before replacing it.</p>
     <p>For a long passage, use Lines or choose <strong>Show more pieces</strong> as you go. Select all includes pieces that have not yet been displayed.</p>
+  </section>
+
+  <section id="text-tools" class="space-y-4" aria-labelledby="tools-title">
+    <h2 id="tools-title">Clean up, transform, and write in Studio</h2>
+    <p>Switch from <strong>Select text</strong> to <strong>Text tools</strong>. Choose a cleanup or case-change action for your <strong>Full text</strong>, or select fragments first and choose <strong>Selected pieces</strong>. On-device writing tools appear here when available on your device.</p>
+    <p>All tools send their output to Studio’s result area. Review it before copying, sharing, saving, or choosing <strong>Use result as source</strong>. A result does not replace the source or change saved clips on its own.</p>
+  </section>
+
+  <section id="ipad-workspace" class="space-y-4" aria-labelledby="ipad-title">
+    <h2 id="ipad-title">How the iPad workspace adapts</h2>
+    <p>In a wide window, Text Studio shows your source, selectable fragments, and result in three areas that scroll independently. At a medium width, the source stays on the left while the result sits below the fragment picker on the right. Narrow windows and larger accessibility text sizes use a compact layout.</p>
+    <p>In your Stash, a wider window keeps the saved-clip browser beside the selected clip’s detail. Choose another clip to update the detail without leaving the browser. In a narrow window, open a clip and return to the list as usual.</p>
+  </section>
+
+  <section id="appearance" class="space-y-4" aria-labelledby="appearance-title">
+    <h2 id="appearance-title">Appearance and redesigned Settings</h2>
+    <p>Build 128 groups workspace, capture, storage, and help controls into dedicated Settings pages. Choose <strong>Settings → Appearance → System, Light, or Dark</strong>. System follows your device’s appearance.</p>
+    <p>The redesign uses one Stash icon and a forest accent throughout. The previous alternate icons and rainbow color choices are no longer available.</p>
   </section>
 
   <section id="capture" class="space-y-4" aria-labelledby="capture-title">
     <h2 id="capture-title">Save from another app</h2>
     <p>Copy text and paste it into Stash, or choose Stash in another app’s share sheet. If Stash is missing from the share sheet, open its app list and add Stash to your favorites.</p>
-    <p><strong>Capture on Open</strong> in Stash Settings is optional. When enabled, Stash checks the clipboard as the app becomes active, subject to iOS paste permissions. iOS does not let Stash continuously monitor other apps’ clipboards in the background.</p>
+    <p><strong>Capture when Stash opens</strong> in <strong>Settings → Capture &amp; privacy</strong> is optional. When enabled, Stash checks the clipboard as the app becomes active, subject to iOS paste permissions. iOS does not let Stash continuously monitor other apps’ clipboards in the background.</p>
   </section>
 
   <section id="keyboard" class="space-y-4" aria-labelledby="keyboard-title">
@@ -60,13 +78,13 @@ comments: false
 
   <section id="backup" class="space-y-4" aria-labelledby="backup-title">
     <h2 id="backup-title">Backups and deletion</h2>
-    <p>Use the backup controls in Stash Settings to export your collection before a major change. A Stash backup can contain the full text, images, links, and collection details you saved. Keep it somewhere you trust.</p>
+    <p>Use <strong>Settings → iCloud &amp; backups</strong> to export your collection before a major change. A Stash backup can contain the full text, images, links, and collection details you saved. Keep it somewhere you trust.</p>
     <p>Delete saved clips in Stash while iCloud is working if you want the deletion to reach your other devices. Exported backups, text copied to other apps, and files saved outside Stash are separate copies and must be removed separately. Clearing the Text Studio workspace only clears that device’s draft.</p>
   </section>
 
   <section id="network" class="space-y-4" aria-labelledby="network-title">
     <h2 id="network-title">Link previews and on-device intelligence</h2>
-    <p>Link previews load titles and images from a saved link’s website. They may fail if a site blocks requests or requires sign-in. Turn off <strong>Settings → Clipboard → Link Previews</strong> to stop automatic preview loading. Explicitly opening a link or requesting a media download still contacts that website.</p>
+    <p>Link previews load titles and images from a saved link’s website. They may fail if a site blocks requests or requires sign-in. Turn off <strong>Settings → Capture &amp; privacy → Load link previews</strong> to stop automatic preview loading. Explicitly opening a link or requesting a media download still contacts that website.</p>
     <p>Text selection and text actions work without Apple Intelligence. Optional Intelligence tools require a supported device and an available Apple on-device model. Review generated text before reusing it.</p>
   </section>
 
