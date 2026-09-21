@@ -34,8 +34,8 @@ Feedback from the first release is shaping the item editor. You will be able to 
 The upcoming update also includes optional local warranty reminders. They will be configured per device, with clear notification-permission status and automatic updates when saved warranty details change. The latest test build fixes a crash when opening a notification and improves foreground test delivery. Timing now offers 1 day, 1 week, 30 days, or a custom number of days before expiry, with a chosen time of day. The next scheduled reminder is visible in Settings. The setup test appears after five seconds; real warranty reminders open the relevant item. Collection on iPad is also being updated to keep its title fixed in the toolbar during scrolling and rotation. A category-filter fix will also keep emoji icons visible beside category names. These improvements are not yet part of the public 1.0.0 release.
 
 
-## Free download, optional collection sync
+## One purchase, with iCloud sync included
 
-With 1.1.0, Keeps will become free to download. Collection Sync will be an optional one-time US$0.99 purchase, with regional pricing. Customers who already paid for Keeps will keep sync. The purchase enables Keeps’ collection-sync feature using your own iCloud storage; it does not include extra storage. These changes will take effect with the replacement release, not the current public 1.0.0 build.
+Keeps remains a one-time US$0.99 app purchase, with regional pricing. iCloud collection sync is included, with no subscription or in-app purchase. This remains the same in 1.1.0. Sync uses your own private iCloud storage.
 
 Feedback will replace Share diagnostics and open your default email app directly with a short template. The draft will include the hardware model, OS version, and Keeps version/build, all editable before sending. It will not attach a log or automatically include item names or collection data. The old plaintext log will also be removed.
