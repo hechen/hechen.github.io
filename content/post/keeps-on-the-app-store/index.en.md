@@ -38,4 +38,4 @@ The upcoming update also includes optional local warranty reminders. They will b
 
 With 1.1.0, Keeps will become free to download. Collection Sync will be an optional one-time US$0.99 purchase, with regional pricing. Customers who already paid for Keeps will keep sync. The purchase enables Keeps’ collection-sync feature using your own iCloud storage; it does not include extra storage. These changes will take effect with the replacement release, not the current public 1.0.0 build.
 
-Feedback will replace Share diagnostics. The email draft will include the hardware model, OS version, and Keeps version/build, all editable before sending. It will not attach a log or automatically include item names or collection data. The old plaintext log will also be removed.
+Feedback will replace Share diagnostics and open your default email app directly with a short template. The draft will include the hardware model, OS version, and Keeps version/build, all editable before sending. It will not attach a log or automatically include item names or collection data. The old plaintext log will also be removed.
