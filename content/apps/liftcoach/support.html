@@ -26,10 +26,10 @@ url: '/apps/liftcoach/support.html'
   <p>By default, LiftCoach reads your workout history from Apple Health so it can give accurate suggestions. If you ran in Apple Fitness yesterday, the coach knows. Toggle Settings → Apple Health → "Sync from Other Apps" off if you'd rather it only see LiftCoach sessions. Cloud AI providers only receive any of this history if you also turn on Settings → AI → Share Training History, which is off by default.</p>
 
   <h3>What's included, and what does AI Pro add?</h3>
-  <p>Version 1.0.0 (320), available in TestFlight and waiting for App Review, includes workout logging, Apple Intelligence on supported devices, backups, and iCloud sync with the app purchase. AI Pro is a separate optional one-time purchase for OpenAI, Claude, Grok, and downloadable on-device models. Cloud providers also require your own API key and may charge for usage. Apple Intelligence and downloaded models run inference on your device without an API key.</p>
+  <p>Version 1.0.0 (321), available in TestFlight and waiting for App Review, includes workout logging, Apple Intelligence on supported devices, backups, and iCloud sync with the app purchase. AI Pro is a separate optional one-time purchase for OpenAI, Claude, Grok, and downloadable on-device models. Cloud providers also require your own API key and may charge for usage. Apple Intelligence and downloaded models run inference on your device without an API key.</p>
 
   <h3>Will switching tabs restart my weekly AI recap?</h3>
-  <p>In build 320, a recap keeps generating when you switch tabs. Returning to Progress shows the same request rather than starting another one. A completed recap is saved locally and reused for the day, including after reopening the app, while your completed workouts and AI settings are unchanged. It refreshes when that context changes or a new day starts; you can also choose Refresh.</p>
+  <p>In build 320 and later, a recap keeps generating when you switch tabs. Returning to Progress shows the same request rather than starting another one. A completed recap is saved locally and reused for the day, including after reopening the app, while your completed workouts and AI settings are unchanged. It refreshes when that context changes or a new day starts; you can also choose Refresh.</p>
 
   <h3>Where does the on-device model list come from?</h3>
   <p>The catalog is maintained in <a href="https://github.com/hechen/ai-model-catalog" class="text-accent dark:text-accent-dark hover:underline">hechen/ai-model-catalog</a> and can refresh independently of an app update. The picker shows compatibility and installation status. A catalog refresh changes the list; it does not download weights or switch your selected model. Choose a download or update explicitly. Catalog installations verify the downloaded files and run a local inference check; that check does not guarantee the quality of every coaching response.</p>
@@ -74,13 +74,20 @@ url: '/apps/liftcoach/support.html'
   <p>A pending AI Pro purchase does not unlock its providers until Apple approves it. If the product or price is unavailable, check your connection and retry. Model availability depends on your device, OS, memory, and the app’s supported model formats.</p>
 
   <h2 id="release-notes">Release notes</h2>
-  <h3>1.0.0 (320) — TestFlight; waiting for App Review</h3>
+  <h3>1.0.0 (321) — TestFlight; waiting for App Review</h3>
+  <ul>
+    <li>Corrects Apple Watch Discard handling so discarding a workout ends the Health session without saving a workout to Apple Health and Fitness.</li>
+    <li>Prevents a pending save or a delayed message from saving a discarded workout or affecting a newer workout session.</li>
+  </ul>
+  <p>Build 321 is available to the Family internal TestFlight group for iOS and iPadOS with the Apple Watch companion, and for native macOS. Both versions were submitted on 21 September 2026 and are waiting for App Review. Public App Store release is still pending. The discard fix has automated regression coverage; verification on a physical Apple Watch and in Fitness is still pending.</p>
+
+  <h3>1.0.0 (320) — Previous TestFlight build</h3>
   <ul>
     <li>Keeps weekly AI recaps running across tab switches without starting duplicate requests when you return.</li>
     <li>Saves completed recaps locally for the day and reuses them after app relaunch. Changes to completed workouts or AI settings refresh the recap.</li>
     <li>Simplifies iPhone, iPad, and Mac Settings while keeping functional sync and backup controls available.</li>
   </ul>
-  <p>Build 320 is available to the Family internal TestFlight group for iOS and iPadOS with the Apple Watch companion, and for native macOS. Both versions were submitted on 21 September 2026 and are waiting for App Review. Public App Store release is still pending. Check TestFlight for availability in your tester group.</p>
+  <p>Build 320 was distributed through TestFlight for iOS and iPadOS with the Apple Watch companion, and for native macOS. Build 321 supersedes it for App Review and adds the Apple Watch discard fix described above.</p>
 
   <h3>1.0.0 (319) — Previous TestFlight build</h3>
   <ul>
