@@ -18,9 +18,9 @@ description: 'Get started with Course Book Builder and report missing text, imag
   <div class="max-w-3xl mx-auto px-6 sm:px-10 py-12 sm:py-16 space-y-10">
     <div>
       <h2 class="text-2xl font-bold mb-4">Getting started</h2>
-      <p class="text-base leading-relaxed mb-4">Course Book Builder is currently a preview and has not been released on the Chrome Web Store. This page will link to the official listing when it is available.</p>
+      <p class="text-base leading-relaxed mb-4">Course Book Builder 1.0.0 is available on the <a class="underline" href="https://chromewebstore.google.com/detail/course-book-builder/kalbioiplchbbekfphaobmkcekoliklb">Chrome Web Store</a>. Start with one article to check the result before saving a larger collection.</p>
       <ol class="list-decimal pl-6 space-y-3 text-base leading-relaxed">
-        <li>If you already have the preview, open a normal webpage and click the extension icon.</li>
+        <li>Install from the Chrome Web Store and pin Course Book Builder in Chrome's Extensions menu for easy access. Open a normal webpage, then click the extension icon to open the side panel.</li>
         <li>Use <strong>Add current page</strong> for an article, <strong>Find linked pages</strong> to review candidates, or <strong>Scan current tab</strong> for a supported course outline.</li>
         <li>Select your pages, edit the reading order, and choose <strong>Export EPUB</strong>. Unsaved selected pages are captured automatically.</li>
         <li>For PDF, use the PDF export action and save from your browser's print dialog. Keep the builder open while work is running.</li>
@@ -37,8 +37,11 @@ description: 'Get started with Course Book Builder and report missing text, imag
       <ul class="list-disc pl-6 space-y-3 text-base leading-relaxed">
         <li><strong>Missing sections or images:</strong> confirm the original page fully loads while signed in, check its capture warnings, and refresh one saved page before exporting again. A saved counter is not a completeness check.</li>
         <li><strong>Only one page found:</strong> that is expected for ordinary articles. Find linked pages lists candidates for manual selection. Course-outline discovery varies by website.</li>
-        <li><strong>Toolbar does not open:</strong> reload the extension when it is idle and retry on an ordinary HTTP/HTTPS webpage. The compact-window fallback is intended for browsers without reliable native side-panel opening; Arc validation is still in progress.</li>
+        <li><strong>Toolbar does not open:</strong> reload the extension when it is idle and retry on an ordinary HTTP/HTTPS webpage. Chrome is the supported browser; other Chromium-based browsers, including Arc, may behave differently. A compact-window fallback is available when the native side panel cannot open.</li>
         <li><strong>Stopping a long capture:</strong> Cancel keeps completed pages. Start capture or export again to collect the remaining selected pages; keep the active builder view open while it works.</li>
+        <li><strong>An old EPUB still looks wrong:</strong> extension updates do not change files already exported or imported into Apple Books. Refresh the affected saved page, export a new EPUB, and import the new file.</li>
+        <li><strong>EPUB page numbers change:</strong> reflowable books paginate according to your reader, window size and font settings. Use the linked contents for navigation rather than expecting fixed PDF-style page numbers.</li>
+        <li><strong>Interactive content is incomplete:</strong> videos and exercises may link back to the source. Supported code editors capture rendered lines only; hidden files, unloaded lines, background-only images and some embedded widgets may be missing.</li>
       </ul>
     </div>
     <p class="text-base leading-relaxed">Emailed reports are used only for support and parser fixes, retained only as long as needed for that work, and can be requested for deletion at chen.dev@icloud.com. <a class="underline" href="/apps/course-book-builder/privacy.html">Privacy policy →</a></p>

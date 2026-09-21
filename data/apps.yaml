@@ -34,11 +34,12 @@
   summary: Save links, archive full articles, and pull them back later without losing the text.
 - name: Course Book Builder
   eyebrow: Offline reading
-  status: Preview
-  tone: beta
+  status: Chrome Web Store
+  tone: live
   platforms: Desktop Chrome · EPUB · PDF
   icon: /assets/icons/course-book-builder.png
   url: /apps/course-book-builder/
+  store: https://chromewebstore.google.com/detail/course-book-builder/kalbioiplchbbekfphaobmkcekoliklb
   privacy: /apps/course-book-builder/privacy.html
   support: /apps/course-book-builder/support.html
   summary: Collect selected articles and course pages into a local reading library, then export a book with chapters and a table of contents.
