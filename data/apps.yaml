@@ -14,13 +14,13 @@
   eyebrow: Health & fitness
   status: TestFlight
   tone: beta
-  platforms: iPhone · Apple Watch
+  platforms: iPhone · iPad · Apple Watch · Mac
   icon: /assets/icons/liftcoach.png
   url: /apps/liftcoach/
   source: https://github.com/hechen/GymLog
   privacy: /apps/liftcoach/privacy.html
   support: /apps/liftcoach/support.html
-  summary: Strength programming and a focused workout log. Build 1.0.0 (318) is available in Family internal TestFlight on iOS and macOS, adding an optional US$0.99 one-time iCloud Sync unlock. Public App Store release is pending; local logging and backups remain free.
+  summary: Strength programming and a focused workout log. Build 1.0.0 (319) is available in TestFlight and preparing for App Review. Buy once for US$0.99 across iPhone, iPad, Apple Watch, and Mac with the same Apple Account. iCloud sync is included; AI Pro is optional. Public release is pending.
   featured: true
 - name: Distill
   eyebrow: Read later
