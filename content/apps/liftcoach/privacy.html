@@ -10,17 +10,17 @@ url: '/apps/liftcoach/privacy.html'
       LiftCoach
     </a>
     <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Privacy</h1>
-    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 17 September 2026</p>
+    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 20 September 2026</p>
   </div>
 </div>
 
 <main class="max-w-2xl mx-auto px-6 sm:px-8 py-10 sm:py-16 text-lg leading-[1.7] text-slate-700 dark:text-slate-300">
 
   <h2>The short version</h2>
-  <p>LiftCoach is built to keep your training data on your device. Nothing is sent to a LiftCoach server because there is no LiftCoach server. iCloud sync is direct between your devices and Apple's CloudKit. AI features use whichever provider you choose; on-device options never make a network request for inference.</p>
+  <p>LiftCoach is built to keep your training data on your device. Nothing is sent to a LiftCoach server because there is no LiftCoach server. Optional iCloud sync is direct between your devices and Apple's CloudKit. The upcoming 1.0.0 (318) TestFlight beta makes workout and managed-backup sync a separate one-time unlock. Local logging and backups remain available without it. AI features use whichever provider you choose; on-device options never make a network request for inference.</p>
 
   <h2>What data is collected</h2>
-  <p>LiftCoach has no developer-operated analytics or training-data server, no advertising, and no tracking. Workouts, exercises, body measurements, and preferences are stored locally and (if you enable iCloud sync) in your private iCloud account. Apple controls that storage; we never see it.</p>
+  <p>LiftCoach has no developer-operated analytics or training-data server, no advertising, and no tracking. Workouts, exercises, templates, programs, and measurements entered in LiftCoach are stored locally and, when iCloud Sync is unlocked and active, in your private iCloud account. Apple controls that storage; we never see it. Weight-unit preferences can continue to coordinate through iCloud independently of this purchase so existing weights keep their meaning across devices. Communication with your paired Apple Watch also remains independent of the unlock.</p>
   <p>If you choose a cloud AI provider, the text you submit is sent directly to that provider. Your LiftCoach and Apple Health training history is attached only when you separately enable Share Training History. Features you run on a specific workout or exercise (for example a weekly recap or a plateau analysis) send the figures needed for that analysis. Cloud providers may process or retain submitted content according to their own terms and account settings.</p>
 
   <h2>HealthKit data</h2>
@@ -34,20 +34,20 @@ url: '/apps/liftcoach/privacy.html'
     <li><strong>On-Device LLM</strong> (one-time purchase) — runs entirely on your device via Apple MLX. Model weights are downloaded once from Hugging Face (huggingface.co) when you choose a model; after that, inference makes no network requests.</li>
     <li><strong>OpenAI / Claude / custom endpoint</strong> — bring-your-own-key. The provider receives your prompt directly under their privacy terms; LiftCoach proxies nothing.</li>
   </ul>
-  <p>API keys are stored in the Apple Keychain, encrypted at rest by Apple, and never transmitted to LiftCoach or anyone but the provider you configured. Keys are stored as synchronizable Keychain items, so if iCloud Keychain is enabled they are also available to LiftCoach on your other devices signed in to the same Apple Account.</p>
+  <p>API keys are stored in the Apple Keychain, encrypted at rest by Apple, and never transmitted to a LiftCoach server or anyone but the provider you configured. The separate Sync AI Provider and Key setting controls whether your provider choice and key are available on your other devices through iCloud Keychain. This setting does not require the iCloud Sync purchase.</p>
   <p>OpenAI and Anthropic process requests under their own privacy policies. A custom endpoint is controlled by its operator; use one only if you trust that operator's retention and security practices. If you enter a custom endpoint that uses plain http:// rather than https://, your key and prompts travel unencrypted on that network.</p>
 
   <h2>In-app purchases</h2>
-  <p>The AI Pro unlock is a one-time non-consumable purchase processed by Apple's StoreKit. LiftCoach receives only the receipt necessary to unlock the feature locally; Apple handles billing and identity. We never see your payment details.</p>
+  <p>AI Pro and iCloud Sync are separate one-time, non-consumable purchases processed by Apple's StoreKit. LiftCoach verifies Apple's transaction information to determine which features you own and caches that access on the device. Apple handles billing and payment details; the developer never receives them. The iCloud Sync unlock does not provide additional iCloud storage.</p>
 
   <h2>Third-party services</h2>
   <p>LiftCoach uses Apple services including the App Store, iCloud, HealthKit, StoreKit, and Apple Intelligence. Optional cloud AI connects directly to OpenAI, Anthropic, or a custom endpoint selected by you. Exercise form demo images are loaded on demand from the open-source free-exercise-db project hosted on GitHub (raw.githubusercontent.com); GitHub sees your IP address and which image was requested, but no account or workout data. Optional on-device models are downloaded from Hugging Face. CHSharedKit, a library by the same developer, supplies shared AI and theme functionality and contacts no server of its own. None of these integrations are used for advertising or cross-app tracking.</p>
 
   <h2>Backups</h2>
-  <p>If you turn on automatic backups, or export a backup manually, LiftCoach writes a plain JSON file containing your workouts, templates, custom exercises, and body measurements to the LiftCoach folder in iCloud Drive (or to the app's Documents folder when iCloud Drive is unavailable). Backups never include API keys or settings. Treat backup files as personal data if you share them.</p>
+  <p>Managed backups contain your workouts, templates, programs, custom exercises, measurements entered in LiftCoach, and the weight unit needed to interpret them. In build 318, backups are saved locally unless iCloud Sync is unlocked and active; with the unlock, they use your iCloud Drive when available. Existing cloud backups remain accessible for recovery, sharing, or deletion. Manual export lets you choose where to save or share a portable JSON file without buying the unlock. Backups do not include API keys. Treat backup files as personal data if you share them.</p>
 
   <h2>Data retention</h2>
-  <p>Your data persists on your device and in your iCloud account until you delete it from Settings → General → iPhone Storage → LiftCoach, or by deleting individual workouts inside the app. Uninstalling LiftCoach removes the local store but iCloud data survives until you delete it from iCloud Drive or sign out of iCloud.</p>
+  <p>Changing sync access does not erase local workouts or existing backups. Deleting a workout in the app removes it from the local store and can propagate to your other devices when sync is active. Backup files are separate copies and must be deleted separately. Uninstalling LiftCoach removes its local app data but does not delete cloud data or exported files. Signing out of iCloud stops access on that device; it does not erase the data in your iCloud account. Manage cloud data through your Apple Account's iCloud storage settings and backup files through iCloud Drive or the location where you saved them.</p>
 
   <h2>Children's privacy</h2>
   <p>LiftCoach is not directed at children under 13. We do not knowingly collect data from children.</p>
