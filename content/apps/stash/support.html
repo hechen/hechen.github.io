@@ -15,7 +15,7 @@ comments: false
     </nav>
     <h1>Stash support.</h1>
     <p class="text-lg">Select, collect &amp; reuse text. Split a passage into words, sentences, lines, or characters, then copy, share, or save the fragments you choose.</p>
-    <p class="text-sm">Version 1.0.0 (130) is available to existing internal TestFlight testers. Public availability is coming later.</p>
+    <p class="text-sm">Version 1.0.0 (131) is available to existing internal TestFlight testers. Public availability is coming later.</p>
     <p><a class="inline-block py-2 underline underline-offset-4" href="mailto:chen.he@icloud.com?subject=Stash%20Support">Email chen.he@icloud.com</a></p>
   </header>
 
@@ -28,6 +28,7 @@ comments: false
       <li>Review <strong>Your selection</strong> and choose <strong>Original spacing</strong>, <strong>Spaces</strong>, or <strong>Line breaks</strong> above the text to set how the pieces join. Use <strong>Copy</strong>, <strong>Share</strong>, or <strong>Save</strong> to reuse one combined clip or save separate clips.</li>
     </ol>
     <p>Open a saved clip and choose <strong>Open in Studio</strong> to work on a copy. Stash asks before replacing an existing Studio draft. The original clip stays unchanged.</p>
+    <p>A successful save in Studio gives one confirmation haptic on supported devices, including when saving separate fragments together. If saving fails, Stash shows an error and does not give success feedback.</p>
   </section>
 
   <section id="selection-update" class="space-y-4" aria-labelledby="selection-update-title">
@@ -57,10 +58,23 @@ comments: false
   </section>
 
   <section id="appearance" class="space-y-4" aria-labelledby="appearance-title">
-    <h2 id="appearance-title">Choose an accent and display mode</h2>
+    <h2 id="appearance-title">Choose an accent, display mode, and icon</h2>
     <p>Open <strong>Settings → Appearance</strong>. Under <strong>Accent color</strong>, choose <strong>Cobalt</strong> (the default), <strong>Violet</strong>, <strong>Teal</strong>, <strong>Rose</strong>, <strong>Amber</strong>, or <strong>Graphite</strong>. The preview shows the selected color, which applies to text selections, buttons, and controls.</p>
     <p>Under <strong>Display</strong>, choose <strong>System</strong>, <strong>Light</strong>, or <strong>Dark</strong>. System follows your device. Neutral gray surfaces and sans-serif text keep the workspace readable across appearances.</p>
-    <p>Accent colors do not change the app icon. Stash uses one fixed cobalt icon with selection brackets and text fragments.</p>
+    <p>Under <strong>App icon</strong>, choose <strong>Teal</strong> (the default), <strong>Cobalt</strong>, <strong>Violet</strong>, <strong>Rose</strong>, <strong>Amber</strong>, or <strong>Graphite</strong>. Each uses cream text fragments and a gold caret. The Home Screen icon and the accent color inside Stash are independent.</p>
+  </section>
+
+  <section id="library-selection" class="space-y-4" aria-labelledby="library-selection-title">
+    <h2 id="library-selection-title">Select saved clips and browse images</h2>
+    <p>Enter <strong>Select</strong> mode in your Stash, then swipe sideways across clips or briefly hold before dragging vertically. Starting on a selected clip deselects the range; moving back reduces it. Normal vertical swipes scroll. Keep your finger near an edge to extend selection as more rows appear.</p>
+    <p>The selection count and action bar stay visible. <strong>Copy</strong>, <strong>Share</strong>, <strong>Pin</strong>, and <strong>Delete</strong> use the complete selection, including selected clips outside the current search or filter. Select All and Deselect All apply to the currently filtered clips.</p>
+    <p>List and grid views let you scroll the last row fully above the tab bar. In the image viewer, swipe between fitted images, pinch or double-tap to zoom, and drag to pan while zoomed. Return to the fitted view to resume paging. The share control opens the system share sheet.</p>
+  </section>
+
+  <section id="auto-purge" class="space-y-4" aria-labelledby="auto-purge-title">
+    <h2 id="auto-purge-title">Keep history for as long as you need</h2>
+    <p>Open <strong>Settings → Library &amp; storage → Keep history</strong>. <strong>Forever</strong> is the default and turns auto-purge off. Choose <strong>1 day</strong>, <strong>1 week</strong>, <strong>1 month</strong>, or <strong>1 year</strong> to review a cleanup preview, then confirm <strong>Apply &amp; purge</strong> or cancel.</p>
+    <p>Auto-purge keeps pinned clips, clips in Collections, and clips that are open. Recapturing a clip restarts its age. Cleanup runs when Stash opens, after captures, and while you use it; <strong>Purge expired clips now</strong> offers a manual check. Deletions sync when iCloud Sync is enabled. Exported backups are kept separately.</p>
   </section>
 
   <section id="capture" class="space-y-4" aria-labelledby="capture-title">
@@ -80,8 +94,10 @@ comments: false
   </section>
 
   <section id="sync" class="space-y-4" aria-labelledby="sync-title">
-    <h2 id="sync-title">A saved clip is missing on another device</h2>
-    <p>Check that both devices are signed in to the same iCloud account, have an internet connection, and allow Stash to use iCloud. Open Stash on both devices and check the iCloud status in Settings. Images and an initial collection may take longer to sync.</p>
+    <h2 id="sync-title">Optional iCloud Sync and restoring a purchase</h2>
+    <p>This beta includes a one-time <strong>iCloud Sync</strong> purchase. The planned US price is <strong>$0.99</strong>, with regional pricing shown by the App Store. There is no subscription. Public purchase availability is subject to App Review. Capture, text tools, local Collections, extensions, and backup export and restore remain free.</p>
+    <p>Open <strong>Settings → iCloud &amp; backups</strong> and choose <strong>Unlock iCloud Sync</strong> at the displayed price. If you already own it, choose <strong>Restore Purchases</strong> using the same App Store account. A pending, cancelled, or unverified purchase does not enable sync. If the price is unavailable, choose <strong>Reload purchase</strong>. Your local collection remains accessible.</p>
+    <p>If a saved clip is missing on another device, check that iCloud Sync is unlocked on both devices. Both also need the same iCloud account, an internet connection, and permission to use iCloud. Open Stash on both devices and check the iCloud status in Settings. Images and an initial collection may take longer to sync. This purchase uses your existing iCloud storage and does not add storage.</p>
     <p>If Settings reports local-only storage or an error, keep the existing app and data in place and contact support. Signing in alone does not confirm that a particular clip has synced. The Text Studio draft is local to each device; save it as a clip to put it in your synced collection.</p>
   </section>
 
