@@ -18,12 +18,13 @@ Native Mac 1.1.0 has also been submitted for App Review as its first App Store r
 
 ## Coming in 1.1.0
 
-The iPhone and iPad update has been submitted for App Review. It includes two widgets:
+The iPhone and iPad update has been submitted for App Review. It includes three widget experiences:
 
 - **Overview:** the number of items you own and their recorded purchase cost, with a tap through to Overview.
 - **Item:** choose a belonging and see its photo, cost per day, and cost per use, with a tap through to its details.
+- **Item Suggestion:** choose Automatic, Least Used, Best Value, or Most Expensive. Automatic considers ownership age, logged use, and price, then rotates among useful insights from your collection.
 
-Both will offer Home Screen and Lock Screen layouts. Cost estimates and missing currency conversions will stay visible as such, following the same rules as the app. Widgets are upcoming; they are not included in the 1.0.0 App Store release.
+You can add Item Suggestion more than once to keep several perspectives visible. All three will offer Home Screen and Lock Screen layouts. Cost estimates and missing currency conversions will stay visible as such, following the same rules as the app. Widgets are upcoming; they are not included in the 1.0.0 App Store release.
 
 [Explore Keeps](/apps/keeps/) or [follow the getting-started guide](/apps/keeps/guide.html).
 
