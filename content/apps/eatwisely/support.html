@@ -10,7 +10,7 @@ url: '/apps/eatwisely/support.html'
       EatWisely
     </a>
     <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Support</h1>
-    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 26 April 2026</p>
+    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 20 September 2026</p>
   </div>
 </div>
 
@@ -31,8 +31,22 @@ url: '/apps/eatwisely/support.html'
   <h2>Macros look wrong on a logged meal</h2>
   <p>Tap and hold the meal → Edit. Manual edits override the AI's estimate and stick. The AI does not learn from your edits — that's deliberate; food estimation is hard, and one user's wrong-but-confident edit shouldn't shape anyone else's results.</p>
 
-  <h2>Water tracking on iOS 17+</h2>
-  <p>Settings → Water → enable HealthKit Water Sync. Logged glasses round-trip to the Health app. Below iOS 17, water lives only in EatWisely.</p>
+  <h2>Water tracking and Apple Health</h2>
+  <p>EatWisely requires iOS or iPadOS 18 or later. Grant EatWisely permission to read and write Water in Apple Health. Logged water is saved to Apple Health when permitted, and daily water totals read from Apple Health.</p>
+
+  <h2 id="release-notes">Release notes</h2>
+  <h3>1.0.0 (403) — internal TestFlight beta</h3>
+  <ul>
+    <li>Introduces warm paper backgrounds, terracotta accents, an earthy dark palette, and consistent nutrient and meal-time colors.</li>
+    <li>Adds Bricolage Grotesque headings and numbers on iPhone and iPad, with Dynamic Type support. Choose Settings → Appearance → Text → Use System Typeface to use the system font.</li>
+    <li>Keeps your local food log available without an iCloud account. Settings reports when sync is unavailable.</li>
+    <li>Moves progress photos and diagnostic logs out of the Files app's browsable Documents folder.</li>
+    <li>Improves barcode-camera handling and logging reliability, and makes the AI unlock available to purchase on Mac.</li>
+  </ul>
+  <p>Build 403 is available to invited internal TestFlight testers on iPhone, iPad, and Mac, with the Apple Watch companion included in the iOS build. Open TestFlight to update. Public signup is closed.</p>
+
+  <h3>What to test in build 403</h3>
+  <p>Check light and dark appearances, larger text sizes, and the system-typeface switch. If you previously used Forest, Ocean, or Midnight, confirm the replacement Herb, Indigo, or Plum theme looks right. Check that existing progress photos are still present, try barcode scanning on a real device, and confirm that local logging remains available when iCloud is signed out.</p>
 
   <h2>Anything else</h2>
   <p>Email me at <a href="mailto:chen.he@icloud.com" class="text-accent dark:text-accent-dark hover:underline">chen.he@icloud.com</a>.</p>

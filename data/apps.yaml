@@ -78,12 +78,12 @@
   eyebrow: Nutrition
   status: TestFlight
   tone: beta
-  platforms: iPhone
+  platforms: iPhone · iPad · Apple Watch · Mac
   icon: /assets/icons/eatwisely.png
   url: /apps/eatwisely/
   privacy: /apps/eatwisely/privacy.html
   support: /apps/eatwisely/support.html
-  summary: Meal logging that works whether you snap a photo, scan a label, or just type it.
+  summary: Meal logging by photo, barcode, or text. Build 403 brings a warmer design and local access without iCloud, available to invited internal TestFlight testers.
 - name: TrainInsight
   url: /apps/traininsight/
   eyebrow: Training analytics
