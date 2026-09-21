@@ -3,7 +3,7 @@ title: 'Keeps is on the App Store'
 slug: 'keeps-on-the-app-store'
 date: 2026-09-20T00:00:00-07:00
 draft: false
-description: 'Keeps 1.0.0 is available for iPhone and iPad. The 1.1.0 update with widgets is being prepared for App Review.'
+description: 'Keeps 1.0.0 is available for iPhone and iPad. The 1.1.0 update with widgets has been submitted for App Review.'
 categories: ['apps']
 tags: ['Keeps', 'iOS', 'iPadOS']
 ---
@@ -14,11 +14,11 @@ Keeps gives the things you own a place to keep their history: a photo, the origi
 
 You can start with a few everyday belongings, import purchases for review, or explore the separate demo collection. Optional private iCloud sync and photo-inclusive backups help you keep the records. There is no Keeps account, advertising, or third-party analytics.
 
-Native Mac 1.1.0 is also being prepared for App Review as its first App Store release, with the updated editor, editable AI suggestions, emoji category filters, and warranty reminders. Mac availability is pending approval. The widgets described below are for iPhone and iPad. The current public release is for iPhone and iPad, on iOS or iPadOS 18 and later.
+Native Mac 1.1.0 has also been submitted for App Review as its first App Store release, with the updated editor, editable AI suggestions, emoji category filters, and warranty reminders. Mac availability is pending approval. The widgets described below are for iPhone and iPad. The current public release is for iPhone and iPad, on iOS or iPadOS 18 and later.
 
 ## Coming in 1.1.0
 
-The iPhone and iPad update is being prepared for App Review. It includes two widgets:
+The iPhone and iPad update has been submitted for App Review. It includes two widgets:
 
 - **Overview:** the number of items you own and their recorded purchase cost, with a tap through to Overview.
 - **Item:** choose a belonging and see its photo, cost per day, and cost per use, with a tap through to its details.

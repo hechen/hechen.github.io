@@ -3,7 +3,7 @@ title: 'Keeps 已上架 App Store'
 slug: 'keeps-on-the-app-store'
 date: 2026-09-20T00:00:00-07:00
 draft: false
-description: 'Keeps 1.0.0 已在 iPhone 和 iPad 上架，支持小组件的 1.1.0 更新正在准备提交 App Review 审核。'
+description: 'Keeps 1.0.0 已在 iPhone 和 iPad 上架，支持小组件的 1.1.0 更新已提交 App Review 审核。'
 categories: ['apps']
 tags: ['Keeps', 'iOS', 'iPadOS']
 ---
@@ -14,11 +14,11 @@ Keeps 用来记录你拥有的物品：照片、购买日期、原始价格与�
 
 不必一开始就整理家中所有物品。可以从几件常用的东西开始，也可以先体验独立的演示收藏，或导入购买记录并逐项核对。Keeps 支持可选的私有 iCloud 同步，以及包含照片的备份导出，不需要 Keeps 账号，没有广告或第三方分析。
 
-原生 Mac 1.1.0 也正在作为首个 Mac 上架版本准备提交 App Review 审核，包含改进的物品编辑页、可编辑的 AI 建议、表情分类筛选和保修提醒。审核通过后即可上架。下文介绍的小组件仅适用于 iPhone 和 iPad。目前公开上架的是 iPhone 和 iPad 版本，需要 iOS 或 iPadOS 18 及以上。
+原生 Mac 1.1.0 也已作为首个 Mac 上架版本提交 App Review 审核，包含改进的物品编辑页、可编辑的 AI 建议、表情分类筛选和保修提醒。审核通过后即可上架。下文介绍的小组件仅适用于 iPhone 和 iPad。目前公开上架的是 iPhone 和 iPad 版本，需要 iOS 或 iPadOS 18 及以上。
 
-## 1.1.0 正在准备提交 App Review 审核
+## 1.1.0 已提交 App Review 审核
 
-iPhone 和 iPad 的 1.1.0 更新正在准备提交审核，包含两类小组件：
+iPhone 和 iPad 的 1.1.0 更新已提交审核，包含两类小组件：
 
 - **概览**：查看持有物品的数量和购买成本，点击进入应用内概览。
 - **物品**：选择一件物品，查看照片、每天成本和每次使用成本，点击打开物品详情。
