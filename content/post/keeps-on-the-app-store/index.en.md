@@ -3,7 +3,7 @@ title: 'Keeps is on the App Store'
 slug: 'keeps-on-the-app-store'
 date: 2026-09-20T00:00:00-07:00
 draft: false
-description: 'Keeps 1.0.0 is available for iPhone and iPad. Next up: Home Screen and Lock Screen widgets in 1.1.0.'
+description: 'Keeps 1.0.0 is available for iPhone and iPad. The 1.1.0 update with widgets is submitted for App Review.'
 categories: ['apps']
 tags: ['Keeps', 'iOS', 'iPadOS']
 ---
@@ -16,9 +16,9 @@ You can start with a few everyday belongings, import purchases for review, or ex
 
 The native Mac version is still in App Review. The current public release is for iPhone and iPad, on iOS or iPadOS 18 and later.
 
-## Next: widgets in 1.1.0
+## 1.1.0 submitted for App Review
 
-Two widgets are now being tested for the 1.1.0 update:
+The iPhone and iPad update has been submitted for App Review. It includes two widgets:
 
 - **Overview:** the number of items you own and their recorded purchase cost, with a tap through to Overview.
 - **Item:** choose a belonging and see its photo, cost per day, and cost per use, with a tap through to its details.
@@ -27,8 +27,8 @@ Both will offer Home Screen and Lock Screen layouts. Cost estimates and missing 
 
 [Explore Keeps](/apps/keeps/) or [follow the getting-started guide](/apps/keeps/guide.html).
 
-## Also being prepared for 1.1.0
+## Also included in the submitted update
 
 Feedback from the first release is shaping the item editor. You will be able to change an AI-suggested name, category, and tags before applying them, with better category handling for phone accessories. Naming is also being improved so an accessory keeps its identity: a charging dock for Kindle should remain a charging dock, with the Kindle model shown as compatibility information. Cost-per-use estimates will become an explicit optional setting, and warranty dates will have a dedicated section.
 
-Optional local warranty reminders are also being tested. They will be configured per device, with clear notification-permission status and automatic updates when saved warranty details change. The latest test build fixes a crash when opening a notification and improves foreground test delivery. Timing now offers 1 day, 1 week, 30 days, or a custom number of days before expiry, with a chosen time of day. The next scheduled reminder is visible in Settings. The setup test appears after five seconds; real warranty reminders open the relevant item. Collection on iPad is also being updated to keep its title fixed in the toolbar during scrolling and rotation. A category-filter fix will also keep emoji icons visible beside category names. These improvements are not yet part of the public 1.0.0 release.
+The submitted update also includes optional local warranty reminders. They will be configured per device, with clear notification-permission status and automatic updates when saved warranty details change. The latest test build fixes a crash when opening a notification and improves foreground test delivery. Timing now offers 1 day, 1 week, 30 days, or a custom number of days before expiry, with a chosen time of day. The next scheduled reminder is visible in Settings. The setup test appears after five seconds; real warranty reminders open the relevant item. Collection on iPad is also being updated to keep its title fixed in the toolbar during scrolling and rotation. A category-filter fix will also keep emoji icons visible beside category names. These improvements are not yet part of the public 1.0.0 release.
