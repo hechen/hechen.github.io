@@ -18,7 +18,7 @@ The native Mac version is still in App Review. The current public release is for
 
 ## Next: widgets in 1.1.0
 
-The next update is being prepared with two widgets:
+Two widgets are now being tested for the 1.1.0 update:
 
 - **Overview:** the number of items you own and their recorded purchase cost, with a tap through to Overview.
 - **Item:** choose a belonging and see its photo, cost per day, and cost per use, with a tap through to its details.
