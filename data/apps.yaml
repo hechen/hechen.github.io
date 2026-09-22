@@ -84,6 +84,16 @@
   privacy: /apps/eatwisely/privacy.html
   support: /apps/eatwisely/support.html
   summary: Meal logging by photo, barcode, or text. Build 403 brings a warmer design and local access without iCloud, available to invited internal TestFlight testers.
+- name: TensionRadar
+  eyebrow: Stress & HRV
+  status: In review
+  tone: beta
+  platforms: iPhone · Apple Watch
+  icon: /assets/icons/tensionradar.png
+  url: /apps/tensionradar/
+  privacy: /apps/tensionradar/privacy.html
+  support: /apps/tensionradar/support.html
+  summary: A real-time HRV stress radar with a cartoon character that feels what your heart feels, a personal baseline, coherence breathing and watch complications. Nothing leaves your device.
 - name: TrainInsight
   url: /apps/traininsight/
   eyebrow: Training analytics
