@@ -10,14 +10,14 @@ url: '/apps/liftcoach/privacy.html'
       LiftCoach
     </a>
     <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Privacy</h1>
-    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 21 September 2026</p>
+    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 22 September 2026</p>
   </div>
 </div>
 
 <main class="max-w-2xl mx-auto px-6 sm:px-8 py-10 sm:py-16 text-lg leading-[1.7] text-slate-700 dark:text-slate-300">
 
   <h2>The short version</h2>
-  <p>This policy describes LiftCoach 1.0.0 (iOS build 322 and Mac build 322), available in TestFlight and submitted for App Review. Public App Store release is still pending. Training data is stored on your device and syncs directly through Apple's private CloudKit storage when iCloud is available. iCloud sync is included with the app purchase; there is no separate sync unlock. AI features use the provider you choose. Apple Intelligence and downloaded on-device models run inference locally, while catalog refreshes and model downloads use the network as described below.</p>
+  <p>This policy describes LiftCoach 1.0.0. iOS build 323 and Mac build 322 are available in TestFlight and waiting for App Review. Public App Store release is still pending. Training data is stored on your device and syncs directly through Apple's private CloudKit storage when iCloud is available. iCloud sync is included with the app purchase; there is no separate sync unlock. AI features use the provider you choose. Apple Intelligence and downloaded on-device models run inference locally, while catalog refreshes and model downloads use the network as described below.</p>
 
   <h2>What data is collected</h2>
   <p>LiftCoach has no developer-operated analytics or training-data server, no advertising, and no tracking. Workouts, exercises, templates, programs, and measurements entered in LiftCoach are stored locally and, when iCloud sync is active, in your private iCloud account. Apple controls that storage; we never see it. Weight-unit preferences can coordinate through iCloud so existing weights keep their meaning across devices. Communication with your paired Apple Watch works independently of iCloud sync.</p>
@@ -26,6 +26,9 @@ url: '/apps/liftcoach/privacy.html'
   <h2>HealthKit data</h2>
   <p>If you grant Apple Health permission, LiftCoach reads your workout history, heart rate, active and resting energy, and body measurements (weight, body fat, lean mass, waist, height) to show live stats during a workout, chart your progress, and build context for the AI coach. It also writes finished strength workouts and their active energy back to Apple Health so they show up in the Activity and Fitness apps. Body measurements logged in early versions of LiftCoach can be saved to Apple Health once so they are not lost.</p>
   <p>HealthKit data stays on the device unless you select a cloud AI provider and explicitly enable Settings → AI → Share Training History. That toggle is off by default. When enabled, a compact recent-training summary can be included with requests sent directly to the selected provider. Disable it at any time to stop attaching future training history. HealthKit data is never stored in iCloud by LiftCoach.</p>
+
+  <h2>Widgets</h2>
+  <p>The Muscles Trained widgets in iOS build 323 use your recorded completed workouts to show workout names and dates, muscle groups, and workout and working-set counts on your Home Screen. These widgets do not make AI requests or send workout information to an AI provider.</p>
 
   <h2>AI providers</h2>
   <p>LiftCoach lets you pick where AI requests go:</p>
@@ -38,7 +41,7 @@ url: '/apps/liftcoach/privacy.html'
   <p>OpenAI, Anthropic, and xAI process requests under their own privacy policies and your account settings.</p>
 
   <h2>Purchases</h2>
-  <p>LiftCoach is a one-time universal app purchase for iPhone, iPad, Apple Watch, and Mac using the same Apple Account. iCloud sync is included and uses your existing iCloud storage. AI Pro is the only optional in-app purchase: a one-time, non-consumable unlock processed by Apple’s StoreKit. LiftCoach verifies Apple’s transaction information and caches AI Pro access on the device. Apple handles billing and payment details; the developer never receives them.</p>
+  <p>LiftCoach is a one-time US$2.99 universal app purchase for iPhone, iPad, Apple Watch, and Mac using the same Apple Account. iCloud sync is included and uses your existing iCloud storage. AI Pro is the only optional in-app purchase: a separate one-time US$2.99, non-consumable unlock processed by Apple’s StoreKit. The App Store shows local prices for the app and AI Pro. LiftCoach verifies Apple’s transaction information and caches AI Pro access on the device. Apple handles billing and payment details; the developer never receives them.</p>
 
   <h2>Third-party services</h2>
   <p>LiftCoach uses Apple services including the App Store, iCloud, HealthKit, StoreKit, and Apple Intelligence. Optional cloud AI connects directly to OpenAI, Anthropic, or xAI, depending on your selection. Exercise form demo images are loaded on demand from the open-source free-exercise-db project hosted on GitHub (raw.githubusercontent.com); GitHub sees your IP address and which image was requested, but no account or workout data.</p>

@@ -10,7 +10,7 @@ url: '/apps/liftcoach/support.html'
       LiftCoach
     </a>
     <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Support</h1>
-    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 21 September 2026 · Built and maintained by one person. Email gets you a real reply, usually within a day.</p>
+    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 22 September 2026 · Built and maintained by one person. Email gets you a real reply, usually within a day.</p>
   </div>
 </div>
 
@@ -26,13 +26,17 @@ url: '/apps/liftcoach/support.html'
   <p>By default, LiftCoach reads your workout history from Apple Health so it can give accurate suggestions. If you ran in Apple Fitness yesterday, the coach knows. Toggle Settings → Apple Health → "Sync from Other Apps" off if you'd rather it only see LiftCoach sessions. Cloud AI providers only receive any of this history if you also turn on Settings → AI → Share Training History, which is off by default.</p>
 
   <h3>What's included, and what does AI Pro add?</h3>
-  <p>Version 1.0.0 (iOS build 322 and Mac build 322), available in TestFlight and waiting for App Review, includes workout logging, Apple Intelligence on supported devices, backups, and iCloud sync with the app purchase. AI Pro is a separate optional one-time purchase for OpenAI, Claude, Grok, and downloadable on-device models. Cloud providers also require your own API key and may charge for usage. Apple Intelligence and downloaded models run inference on your device without an API key.</p>
+  <p>Version 1.0.0 includes workout logging, Apple Intelligence on supported devices, backups, and iCloud sync with the one-time US$2.99 universal app purchase. AI Pro is a separate optional one-time US$2.99 purchase for OpenAI, Claude, Grok, and downloadable on-device models. The App Store shows your local prices. iOS build 323 and Mac build 322 are available in TestFlight and waiting for App Review. Public App Store release is pending. Cloud providers also require your own API key and may charge for usage. Apple Intelligence and downloaded models run inference on your device without an API key.</p>
 
   <h3>Will switching tabs restart my weekly AI recap?</h3>
   <p>In build 320 and later, a recap keeps generating when you switch tabs. Returning to Progress shows the same request rather than starting another one. A completed recap is saved locally and reused for the day, including after reopening the app, while your completed workouts and AI settings are unchanged. It refreshes when that context changes or a new day starts; you can also choose Refresh.</p>
 
+  <h3>What do the Muscles Trained widgets show?</h3>
+  <p>iOS build 323 adds two sizes, available in TestFlight. The medium widget shows your latest completed workout’s name and date with front and back muscle maps; tap it to open that workout. The large widget shows the current calendar week’s muscle map, completed-workout count, and logged working-set total; tap it to open Progress. Its week follows your Sunday or Monday first-day setting.</p>
+  <p>Primary muscles use stronger shading and secondary muscles use lighter shading. Warm-up sets, empty placeholders, and discarded workouts are excluded, and duplicate Watch and phone copies are counted once. The widgets make no AI requests and are included with the base app; AI Pro is not required. The existing Weekly Streak widget remains available. Build 323 is waiting for App Review; public App Store release is pending.</p>
+
   <h3>How does the Weekly Streak widget count workouts?</h3>
-  <p>iOS build 322 makes the weekly view follow your Sunday or Monday first-day-of-week setting and outlines today in its correct position. Totals count every workout on the displayed dates, including multiple workouts on one day, while avoiding duplicate Watch and phone copies consistently with the app. Changing the week-start setting requests a widget update. The one-month view is labeled “Last 30 days” to make its rolling date range clear.</p>
+  <p>In iOS build 322 and later, the weekly view follows your Sunday or Monday first-day-of-week setting and outlines today in its correct position. Totals count every workout on the displayed dates, including multiple workouts on one day, while avoiding duplicate Watch and phone copies consistently with the app. Changing the week-start setting requests a widget update. The one-month view is labeled “Last 30 days” to make its rolling date range clear.</p>
 
   <h3>Where does the on-device model list come from?</h3>
   <p>The catalog is maintained in <a href="https://github.com/hechen/ai-model-catalog" class="text-accent dark:text-accent-dark hover:underline">hechen/ai-model-catalog</a> and can refresh independently of an app update. The picker shows compatibility and installation status. A catalog refresh changes the list; it does not download weights or switch your selected model. Choose a download or update explicitly. Catalog installations verify the downloaded files and run a local inference check; that check does not guarantee the quality of every coaching response.</p>
@@ -53,7 +57,7 @@ url: '/apps/liftcoach/support.html'
   <p>On your device, with sync through your private iCloud account when available. There is no LiftCoach training-data server. Syncing workouts, templates, programs, and managed backups is included with the app purchase. <a href="privacy.html" class="text-accent dark:text-accent-dark hover:underline">Read the privacy policy →</a></p>
 
   <h3>Do I buy LiftCoach again for each device?</h3>
-  <p>No. The upcoming app release is a one-time US$2.99 universal purchase for iPhone, iPad, Apple Watch, and native Mac using the same Apple Account. The App Store shows your local price. iCloud sync is included, with no separate sync purchase. AI Pro is an optional additional one-time purchase.</p>
+  <p>No. The upcoming app release is a one-time US$2.99 universal purchase for iPhone, iPad, Apple Watch, and native Mac using the same Apple Account. The App Store shows your local price. iCloud sync is included, with no separate sync purchase. AI Pro is an optional additional one-time US$2.99 purchase, with local pricing shown by the App Store.</p>
 
   <h3>What do I need for iCloud sync?</h3>
   <p>Use the same iCloud account on your devices, enable iCloud for LiftCoach, and have available iCloud storage and a network connection. Sync uses your existing storage; the app purchase does not add an iCloud storage plan. If iCloud is unavailable, you can continue logging locally. Paired Apple Watch communication also works independently of iCloud sync.</p>
@@ -77,17 +81,26 @@ url: '/apps/liftcoach/support.html'
   <p>A pending AI Pro purchase does not unlock its providers until Apple approves it. If the product or price is unavailable, check your connection and retry. Model availability depends on your device, OS, memory, and the app’s supported model formats.</p>
 
   <h2 id="release-notes">Release notes</h2>
-  <h3>1.0.0 (322) — iPhone and iPad TestFlight; waiting for App Review</h3>
+  <h3>1.0.0 (323) — iPhone and iPad TestFlight; waiting for App Review</h3>
+  <ul>
+    <li>Adds a medium Muscles Trained widget with the latest completed workout’s name, date, and front and back muscle maps. Tapping opens that workout.</li>
+    <li>Adds a large Muscles Trained widget for this calendar week, with muscle maps, completed-workout count, and logged working-set total. Tapping opens Progress.</li>
+    <li>Follows your first-day-of-week setting, shades primary muscles more strongly than secondary muscles, and excludes warm-ups, placeholders, discarded workouts, and duplicate Watch and phone copies.</li>
+    <li>Includes the new widgets with the base app without AI requests or an AI Pro requirement. The existing Weekly Streak widget remains available.</li>
+  </ul>
+  <p>iOS build 323 is available to the Family internal TestFlight group for iPhone and iPad with the Apple Watch companion, and is waiting for App Review. It replaces iOS build 322. The existing Mac build 322 is also available in TestFlight and waiting for App Review; it does not include the new widgets. The optional AI Pro unlock is a separate one-time US$2.99 purchase. Public App Store release is still pending.</p>
+
+  <h3>1.0.0 (322) — Previous iPhone and iPad TestFlight build</h3>
   <ul>
     <li>Makes the Weekly Streak widget follow your Sunday or Monday week-start setting, with today in the correct position and marked by a square outline.</li>
     <li>Requests a widget update when the first day of the week changes.</li>
     <li>Counts workouts that belong to the displayed dates, including all sessions on days with multiple workouts, and avoids duplicate Watch and phone copies consistently with the app.</li>
     <li>Labels the rolling one-month range “Last 30 days.”</li>
   </ul>
-  <p>iOS build 322 is available to the Family internal TestFlight group for iPhone and iPad with the Apple Watch companion, and is waiting for App Review. It replaces iOS build 321. The existing Mac build 322 remains submitted separately with its network-permission fix. Physical Home Screen validation has not been completed. The Apple Watch discard fix from build 321 is retained; its physical Watch and Fitness verification remains pending. Public App Store release is still pending.</p>
+  <p>iOS build 322 was distributed to the Family internal TestFlight group for iPhone and iPad with the Apple Watch companion. iOS build 323 supersedes it for App Review and adds the Muscles Trained widgets described above. The existing Mac build 322 remains submitted separately with its network-permission fix. Physical Home Screen validation has not been completed. The Apple Watch discard fix from build 321 is retained; its physical Watch and Fitness verification remains pending. Public App Store release is still pending.</p>
 
   <h3>1.0.0 (322) — Mac TestFlight; waiting for App Review</h3>
-  <p>Mac build 322 removes an unused incoming-network permission to address App Review feedback. The local MCP server is unavailable in this release. iCloud, AI requests, and downloads retain outgoing network access. Build 322 is available to the Family internal TestFlight group and has been resubmitted for Mac App Review. Public release is still pending.</p>
+  <p>Mac build 322 removes an unused incoming-network permission to address App Review feedback. The local MCP server is unavailable in this release. iCloud, AI requests, and downloads retain outgoing network access. Build 322 is available to the Family internal TestFlight group and has been resubmitted for Mac App Review, where it is waiting for review. Public release is still pending.</p>
 
   <h3>1.0.0 (321) — Previous TestFlight build</h3>
   <ul>
