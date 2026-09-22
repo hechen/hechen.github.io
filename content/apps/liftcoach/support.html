@@ -74,12 +74,15 @@ url: '/apps/liftcoach/support.html'
   <p>A pending AI Pro purchase does not unlock its providers until Apple approves it. If the product or price is unavailable, check your connection and retry. Model availability depends on your device, OS, memory, and the app’s supported model formats.</p>
 
   <h2 id="release-notes">Release notes</h2>
-  <h3>1.0.0 (321) — TestFlight; waiting for App Review</h3>
+  <h3>1.0.0 (322) — Mac TestFlight; waiting for App Review</h3>
+  <p>Mac build 322 removes an unused incoming-network permission to address App Review feedback. The local MCP server is unavailable in this release. iCloud, AI requests, and downloads retain outgoing network access. Build 322 is available to the Family internal TestFlight group and has been resubmitted for Mac App Review. Public release is still pending.</p>
+
+  <h3>1.0.0 (321) — iPhone, iPad, and Apple Watch candidate</h3>
   <ul>
     <li>Corrects Apple Watch Discard handling so discarding a workout ends the Health session without saving a workout to Apple Health and Fitness.</li>
     <li>Prevents a pending save or a delayed message from saving a discarded workout or affecting a newer workout session.</li>
   </ul>
-  <p>Build 321 is available to the Family internal TestFlight group for iOS and iPadOS with the Apple Watch companion, and for native macOS. Both versions were submitted on 21 September 2026 and are waiting for App Review. Public App Store release is still pending. The discard fix has automated regression coverage; verification on a physical Apple Watch and in Fitness is still pending.</p>
+  <p>Build 321 is available to the Family internal TestFlight group for iOS and iPadOS with the Apple Watch companion, and for native macOS. The iOS version was submitted on 21 September 2026 and remains waiting for App Review. Mac build 322 replaces Mac build 321 after entitlement feedback. Public App Store release is still pending. The discard fix has automated regression coverage; verification on a physical Apple Watch and in Fitness is still pending.</p>
 
   <h3>1.0.0 (320) — Previous TestFlight build</h3>
   <ul>
