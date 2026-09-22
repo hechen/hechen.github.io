@@ -20,7 +20,7 @@
   source: https://github.com/hechen/GymLog
   privacy: /apps/liftcoach/privacy.html
   support: /apps/liftcoach/support.html
-  summary: Strength programming and a focused workout log. Build 1.0.0 (321) is available in TestFlight and waiting for App Review, with a fix for Apple Watch workout discard handling. Buy once for US$2.99 across iPhone, iPad, Apple Watch, and Mac with the same Apple Account. iCloud sync is included; AI Pro is optional. Public release is pending.
+  summary: Plan strength routines, log sets, and follow your progress with AI coaching. iOS build 321 and Mac build 322 are available in TestFlight and waiting for App Review. The Mac update removes an unused network permission; the Apple Watch discard fix remains in build 321. Buy once for US$2.99 across iPhone, iPad, Apple Watch, and Mac. iCloud sync is included; AI Pro is optional. Public release is pending.
   featured: true
 - name: Distill
   eyebrow: Read later
