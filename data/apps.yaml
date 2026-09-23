@@ -17,10 +17,9 @@
   platforms: iPhone · iPad · Apple Watch · Mac
   icon: /assets/icons/liftcoach.png
   url: /apps/liftcoach/
-  source: https://github.com/hechen/GymLog
   privacy: /apps/liftcoach/privacy.html
   support: /apps/liftcoach/support.html
-  summary: Plan strength routines, log sets, and follow your progress with AI coaching. Build 325 is available in TestFlight for iPhone, iPad, Apple Watch, and native Mac. Focus shows live heart rate and active calories, and finished workouts follow the exercise order actually performed. Muscles Trained and Streak widgets are included. Buy once for US$2.99 across all four platforms; iCloud sync and Apple Intelligence on supported devices are included. AI Pro is a separate optional one-time US$2.99 purchase for cloud AI providers. Downloadable models are hidden while installation reliability improves. Public release is pending.
+  summary: Plan strength routines, log sets, and follow your progress across iPhone, iPad, Apple Watch, and Mac. See live workout stats, muscle maps, and AI coaching. Buy once for US$2.99 with iCloud sync included; optional AI Pro is a separate one-time US$2.99 purchase for cloud AI providers.
   featured: true
 - name: Distill
   eyebrow: Read later

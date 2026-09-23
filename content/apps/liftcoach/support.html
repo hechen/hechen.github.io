@@ -17,8 +17,7 @@ url: '/apps/liftcoach/support.html'
 <main class="max-w-2xl mx-auto px-6 sm:px-8 py-10 sm:py-16 text-lg leading-[1.7] text-slate-700 dark:text-slate-300">
 
   <h2>Contact</h2>
-  <p><strong>Email:</strong> <a href="mailto:chen.he@icloud.com" class="text-accent dark:text-accent-dark hover:underline">chen.he@icloud.com</a><br>
-  <strong>TestFlight feedback:</strong> use the in-app "Send Beta Feedback" option in TestFlight — it routes attachments and device logs.</p>
+  <p><strong>Email:</strong> <a href="mailto:chen.he@icloud.com" class="text-accent dark:text-accent-dark hover:underline">chen.he@icloud.com</a></p>
 
   <h2>FAQ</h2>
 
@@ -26,29 +25,29 @@ url: '/apps/liftcoach/support.html'
   <p>By default, LiftCoach reads your workout history from Apple Health so it can give accurate suggestions. If you ran in Apple Fitness yesterday, the coach knows. Toggle Settings → Apple Health → "Sync from Other Apps" off if you'd rather it only see LiftCoach sessions. Cloud AI providers only receive any of this history if you also turn on Settings → AI → Share Training History, which is off by default.</p>
 
   <h3>What's included, and what does AI Pro add?</h3>
-  <p>Version 1.0.0 includes workout logging, Apple Intelligence on supported devices, backups, and iCloud sync with the one-time US$2.99 universal app purchase. AI Pro is a separate optional one-time US$2.99 purchase for OpenAI, Claude, and Grok. The App Store shows your local prices. Build 325 is available in TestFlight for iPhone, iPad, Apple Watch, and Mac; public App Store release is pending. Cloud providers require your own API key and may charge for usage. Apple Intelligence needs no API key. Downloadable models are hidden while installation reliability is improved.</p>
+  <p>LiftCoach includes workout logging, Apple Intelligence on supported devices, backups, and iCloud sync with one US$2.99 purchase across iPhone, iPad, Apple Watch, and Mac. AI Pro is a separate optional one-time US$2.99 purchase for OpenAI, Claude, and Grok. Cloud providers require your own API key and may charge for usage; Apple Intelligence needs no API key. The App Store shows prices in your region.</p>
 
   <h3>Will switching tabs restart my weekly AI recap?</h3>
-  <p>In build 320 and later, a recap keeps generating when you switch tabs. Returning to Progress shows the same request rather than starting another one. A completed recap is saved locally and reused for the day, including after reopening the app, while your completed workouts and AI settings are unchanged. It refreshes when that context changes or a new day starts; you can also choose Refresh.</p>
+  <p>No. The recap continues if you switch tabs, and Progress shows the same request when you return. A completed recap is saved locally and reused for the day, including after reopening the app. It refreshes when your completed workouts or AI settings change, when a new day starts, or when you choose Refresh.</p>
 
   <h3>What do the Muscles Trained widgets show?</h3>
   <p>The medium widget shows your latest completed workout’s name and date with front and back muscle maps; tap it to open that workout. The large widget shows the current calendar week’s muscle map, completed-workout count, and logged working-set total; tap it to open Progress. Its week follows your Sunday or Monday first-day setting.</p>
-  <p>Primary muscles use stronger shading and secondary muscles use lighter shading. Warm-up sets, empty placeholders, and discarded workouts are excluded, and duplicate Watch and phone copies are counted once. The widgets make no AI requests and are included with the base app; AI Pro is not required. The existing Weekly Streak widget remains available. Public App Store release is pending.</p>
+  <p>Primary muscles use stronger shading and secondary muscles use lighter shading. Warm-up sets, empty placeholders, and discarded workouts are excluded, and duplicate Watch and phone copies are counted once. The widgets make no AI requests and are included with LiftCoach; AI Pro is not required. The Weekly Streak widget is also available.</p>
 
   <h3>How does the Weekly Streak widget count workouts?</h3>
-  <p>In iOS build 322 and later, the weekly view follows your Sunday or Monday first-day-of-week setting and outlines today in its correct position. Totals count every workout on the displayed dates, including multiple workouts on one day, while avoiding duplicate Watch and phone copies consistently with the app. Changing the week-start setting requests a widget update. The one-month view is labeled “Last 30 days” to make its rolling date range clear.</p>
+  <p>The weekly view follows your Sunday or Monday first-day-of-week setting and outlines today. Totals count every workout on the displayed dates, including multiple workouts on one day, while avoiding duplicate Watch and phone copies. The one-month view covers the last 30 days.</p>
 
   <h3>How do I get my workouts and templates onto Apple Watch?</h3>
-  <p>After installing the Watch app, open LiftCoach on your iPhone and keep the phone app open and nearby for the first transfer of workouts and templates. Build 325 shows this guidance when the Watch has no workouts or templates. If content is still missing, reopen LiftCoach on both devices while they are connected.</p>
+  <p>After installing the Watch app, open LiftCoach on your iPhone and keep the phone app open and nearby for the first transfer of workouts and templates. If content is still missing, reopen LiftCoach on both devices while they are connected.</p>
 
   <h3>Does the iPhone follow the exercise I select on Watch?</h3>
-  <p>In build 325, switching exercises or finishing a set on Apple Watch updates the iPhone’s active workout page when the devices are connected. Exercises added on iPhone also appear in the Watch plan before the first set.</p>
+  <p>Yes. Switching exercises or finishing a set on Apple Watch updates the iPhone’s active workout page when the devices are connected. Exercises added on iPhone also appear in the Watch plan before the first set.</p>
 
-  <h3>Can I download an on-device model?</h3>
-  <p>Build 325 keeps Apple Intelligence on supported devices and hides the separate model picker because model installation has been unreliable. AI Pro unlocks the third-party cloud providers listed above and does not require a model download.</p>
+  <h3>Can I use AI without an API key?</h3>
+  <p>Yes. Apple Intelligence works on supported devices without an API key. AI Pro connects to third-party cloud providers using your own key.</p>
 
   <h3>Do I need to bring my own API key?</h3>
-  <p>Only if you choose OpenAI, Claude, or Grok through AI Pro. Apple Intelligence needs no API key. Custom cloud endpoints and MCP are not included in the first release.</p>
+  <p>Only if you choose OpenAI, Claude, or Grok through AI Pro. Apple Intelligence needs no API key.</p>
 
   <h3>Why are the demo animations static for some exercises?</h3>
   <p>Demos come from the open-source <a href="https://github.com/yuhonas/free-exercise-db" class="text-accent dark:text-accent-dark hover:underline">free-exercise-db</a>. Where there's no GIF, LiftCoach falls back to an anatomical diagram showing the muscles trained, or to an SF Symbol for cardio movements that don't translate to a body silhouette.</p>
@@ -60,13 +59,10 @@ url: '/apps/liftcoach/support.html'
   <p>On your device, with sync through your private iCloud account when available. There is no LiftCoach training-data server. Syncing workouts, templates, programs, and managed backups is included with the app purchase. <a href="privacy.html" class="text-accent dark:text-accent-dark hover:underline">Read the privacy policy →</a></p>
 
   <h3>Do I buy LiftCoach again for each device?</h3>
-  <p>No. The upcoming app release is a one-time US$2.99 universal purchase for iPhone, iPad, Apple Watch, and native Mac using the same Apple Account. The App Store shows your local price. iCloud sync is included, with no separate sync purchase. AI Pro is an optional additional one-time US$2.99 purchase, with local pricing shown by the App Store.</p>
+  <p>No. One US$2.99 purchase covers iPhone, iPad, Apple Watch, and Mac when you use the same Apple Account. iCloud sync is included. AI Pro is an optional separate one-time US$2.99 purchase. The App Store shows prices in your region.</p>
 
   <h3>What do I need for iCloud sync?</h3>
   <p>Use the same iCloud account on your devices, enable iCloud for LiftCoach, and have available iCloud storage and a network connection. Sync uses your existing storage; the app purchase does not add an iCloud storage plan. If iCloud is unavailable, you can continue logging locally. Paired Apple Watch communication also works independently of iCloud sync.</p>
-
-  <h3>What happens to my existing data when updating from build 318?</h3>
-  <p>Your local workouts and existing backups are preserved. Build 319 and later remove the separate iCloud purchase requirement. Managed backups use iCloud Drive when available and local storage otherwise; existing backups remain available for recovery, sharing, or deletion.</p>
 
   <h3>Will LiftCoach work without internet?</h3>
   <p>Logging, history, charts, local backups, and Apple Intelligence when ready on your device work offline. iCloud sync, purchases and restoration, cloud AI providers, and new exercise demo downloads need a network connection.</p>
@@ -75,77 +71,12 @@ url: '/apps/liftcoach/support.html'
   <p>Yes. Settings → Backup &amp; Restore → Export. You'll get a portable backup file you can save to Files, share, or restore from later. CSV export of working sets is available from the Today tab.</p>
 
   <h3>How do I restore my purchase on a new device?</h3>
-  <p>Download LiftCoach from your App Store purchases using the same Apple Account. To restore the optional AI Pro unlock, open Settings → AI Provider → Restore Purchases with the account that bought it. iCloud sync requires no separate purchase or restore action in build 319 or later. AI Pro Family Sharing is off.</p>
+  <p>Download LiftCoach from your App Store purchases using the same Apple Account. To restore the optional AI Pro unlock, open Settings → AI Provider → Restore Purchases with the account that bought it. AI Pro Family Sharing is off.</p>
 
   <h3>Something is broken / I have an idea</h3>
   <p>Email <a href="mailto:chen.he@icloud.com" class="text-accent dark:text-accent-dark hover:underline">chen.he@icloud.com</a>. Bug reports with screenshots and the device + iOS version get fastest turnaround.</p>
 
   <h2>Purchase help</h2>
-  <p>A pending AI Pro purchase does not unlock its providers until Apple approves it. If the product or price is unavailable, check your connection and retry. Apple Intelligence availability depends on your device, system software, and Apple Intelligence settings.</p>
-
-  <h2 id="release-notes">Release notes</h2>
-  <h3>1.0.0 (325) — Current TestFlight build</h3>
-  <ul>
-    <li>Shows live heart rate and active calories in Focus above the current set or rest countdown.</li>
-    <li>Orders completed workouts, repeats, templates cloned from them, and CSV exports by when exercises were actually performed.</li>
-    <li>Guides the first Apple Watch sync and keeps the iPhone workout page aligned with exercise selections and completed sets on Watch.</li>
-    <li>Keeps Apple Intelligence on supported devices while hiding unreliable downloadable-model controls.</li>
-  </ul>
-  <p>Build 325 is available to the Family internal TestFlight group for iPhone, iPad, Apple Watch, and native Mac. App Store release is pending. The base app and optional AI Pro unlock are each US$2.99 in the US App Store; local pricing may differ.</p>
-
-  <h3>1.0.0 (323) — Previous iPhone and iPad TestFlight build</h3>
-  <ul>
-    <li>Adds a medium Muscles Trained widget with the latest completed workout’s name, date, and front and back muscle maps. Tapping opens that workout.</li>
-    <li>Adds a large Muscles Trained widget for this calendar week, with muscle maps, completed-workout count, and logged working-set total. Tapping opens Progress.</li>
-    <li>Follows your first-day-of-week setting, shades primary muscles more strongly than secondary muscles, and excludes warm-ups, placeholders, discarded workouts, and duplicate Watch and phone copies.</li>
-    <li>Includes the new widgets with the base app without AI requests or an AI Pro requirement. The existing Weekly Streak widget remains available.</li>
-  </ul>
-  <p>iOS build 323 introduced Muscles Trained widgets and is superseded by build 325. Mac build 322 introduced the network-permission fix and is also superseded. Public App Store release is pending.</p>
-
-  <h3>1.0.0 (322) — Previous iPhone and iPad TestFlight build</h3>
-  <ul>
-    <li>Makes the Weekly Streak widget follow your Sunday or Monday week-start setting, with today in the correct position and marked by a square outline.</li>
-    <li>Requests a widget update when the first day of the week changes.</li>
-    <li>Counts workouts that belong to the displayed dates, including all sessions on days with multiple workouts, and avoids duplicate Watch and phone copies consistently with the app.</li>
-    <li>Labels the rolling one-month range “Last 30 days.”</li>
-  </ul>
-  <p>iOS build 322 was distributed to the Family internal TestFlight group for iPhone and iPad with the Apple Watch companion. Build 325 supersedes it. Physical Home Screen and paired Watch verification remain separate checks.</p>
-
-  <h3>1.0.0 (322) — Previous Mac TestFlight build</h3>
-  <p>Mac build 322 removed an unused incoming-network permission to address App Review feedback. The local MCP server is unavailable in this release. iCloud and AI requests retain outgoing network access. Build 325 supersedes it; public release is pending.</p>
-
-  <h3>1.0.0 (321) — Previous TestFlight build</h3>
-  <ul>
-    <li>Corrects Apple Watch Discard handling so discarding a workout ends the Health session without saving a workout to Apple Health and Fitness.</li>
-    <li>Prevents a pending save or a delayed message from saving a discarded workout or affecting a newer workout session.</li>
-  </ul>
-  <p>Build 321 was distributed to the Family internal TestFlight group for iOS and iPadOS with the Apple Watch companion, and for native macOS. iOS build 322 replaces the iOS submission with the widget fixes above. Mac build 322 replaces Mac build 321 after entitlement feedback. Public App Store release is still pending. The discard fix has automated regression coverage; verification on a physical Apple Watch and in Fitness is still pending.</p>
-
-  <h3>1.0.0 (320) — Previous TestFlight build</h3>
-  <ul>
-    <li>Keeps weekly AI recaps running across tab switches without starting duplicate requests when you return.</li>
-    <li>Saves completed recaps locally for the day and reuses them after app relaunch. Changes to completed workouts or AI settings refresh the recap.</li>
-    <li>Simplifies iPhone, iPad, and Mac Settings while keeping functional sync and backup controls available.</li>
-  </ul>
-  <p>Build 320 was distributed through TestFlight for iOS and iPadOS with the Apple Watch companion, and for native macOS. Build 321 supersedes it for App Review and adds the Apple Watch discard fix described above.</p>
-
-  <h3>1.0.0 (319) — Previous TestFlight build</h3>
-  <ul>
-    <li>Includes iCloud sync with one app purchase across iPhone, iPad, Apple Watch, and native Mac. AI Pro remains the only optional in-app purchase.</li>
-    <li>Adds a refreshable on-device model catalog with explicit downloads and updates, compatibility checks, and verified catalog installations.</li>
-    <li>Fixes Mac Settings navigation and makes Change Model open immediately without scrolling.</li>
-    <li>Preserves generated program sets and saves the exact workout plan shown in the conversation when you confirm it.</li>
-    <li>Requires Share Training History consent for cloud workout naming and plateau analysis, as well as recaps and coaching context.</li>
-    <li>Hides MCP and custom cloud endpoints for the first release.</li>
-  </ul>
-  <p>Build 319 was distributed through TestFlight for iOS and iPadOS with the Apple Watch companion, and for native macOS. Build 320 supersedes it for App Review and adds the recap and Settings changes described above.</p>
-  <h3>1.0.0 (318) — Previous internal TestFlight beta</h3>
-  <ul>
-    <li>Adds a separate one-time iCloud Sync unlock with purchase and restore controls on iPhone, iPad, Mac, and Apple Watch.</li>
-    <li>Keeps local logging, local backups, export and import, and paired Apple Watch communication available without the unlock.</li>
-    <li>Explains when reopening is required to activate sync and preserves existing local data and backups when access changes.</li>
-    <li>Updates the privacy information for optional sync, local backup storage, and separate AI Pro purchases.</li>
-  </ul>
-  <p>Build 318 was distributed to the Family internal TestFlight group on iOS and macOS. Its separate iCloud unlock was a beta design; build 319 supersedes it by including iCloud sync with the app purchase.</p>
+  <p>If the AI Pro product or price is unavailable, check your connection and retry. To restore an earlier purchase, use Settings → AI Provider → Restore Purchases. Apple Intelligence availability depends on your device, system software, and Apple Intelligence settings.</p>
 
 </main>
