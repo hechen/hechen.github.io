@@ -7,9 +7,12 @@
     <div class="page-head-row">
       <div>
         <h1 class="rise rise-2">Notes from the <em>workbench</em>.</h1>
-        <p class="lede rise rise-3">Swift, Apple platforms, and whatever I was figuring out at the time.</p>
+        <p class="lede rise rise-3">Swift, Apple platforms, and whatever I was figuring out at the time. {{ if eq site.Language.Lang "zh-cn" }}These are the original Chinese notes; English translations are one click away.{{ else }}Most were first written in Chinese; the originals are one click away.{{ end }}</p>
       </div>
       <div class="page-head-aside rise rise-4">
+        {{- range .AllTranslations }}
+        <a class="chip{{ if eq .Language.Lang site.Language.Lang }} is-active{{ end }}" href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" lang="{{ .Language.Lang }}"{{ if eq .Language.Lang site.Language.Lang }} aria-current="page"{{ end }}>{{ .Language.Label }}</a>
+        {{- end }}
         <a class="chip" href="/tags/">Topics</a>
       </div>
     </div>

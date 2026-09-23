@@ -1,12 +1,27 @@
 baseURL = "https://hechen.github.io/"
-# The blog is English-only. Posts keep their original Chinese source
-# (content/post/<slug>/index.md, index.zh-cn.md) beside the English
-# index.en.md, but the Chinese files are excluded from the build.
+# Bilingual blog. Posts were originally written in Chinese and later
+# translated to English. English is the default language and keeps the
+# existing /post/<slug>/ URLs; the Chinese originals are served under
+# /zh-cn/post/<slug>/. Each post bundle holds index.en.md and
+# index.zh-cn.md, and .Translations links the two in the post header.
+# Apps, Gear, and the other pages exist in English only.
 locale = "en-us"
 defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
 title = "Chen"
 theme = "PaperMod"
-ignoreFiles = ['content/post/[^/]+/index\.md$', '\.zh-cn\.md$']
+
+[languages]
+  [languages.en]
+    locale = "en-us"
+    label = "English"
+    weight = 1
+    title = "Chen"
+  [languages.zh-cn]
+    locale = "zh-cn"
+    label = "中文"
+    weight = 2
+    title = "Chen"
 
 # Blog posts live in content/post/ (singular) so URLs resolve at /post/<slug>/
 # without per-section permalink rewrites — matches the legacy URL structure

@@ -6,10 +6,11 @@
   {{- if not (and $config.repo $config.repoId $config.category $config.categoryId) -}}
     {{- errorf "Comments are enabled but params.giscus is incomplete. See docs/comments.md." -}}
   {{- else -}}
-    {{- /* Share a thread across translations; an explicit ID preserves it after a URL change. */ -}}
+    {{- /* Both languages share one thread keyed to the English (default) page,
+           where existing discussions were started; an explicit commentId wins. */ -}}
     {{- $canonical := . -}}
     {{- range .AllTranslations -}}
-      {{- if eq .Language.Lang "zh-cn" }}{{ $canonical = . }}{{ end -}}
+      {{- if eq .Language.Lang "en" }}{{ $canonical = . }}{{ end -}}
     {{- end -}}
     {{- $term := $canonical.Params.commentId | default $canonical.RelPermalink -}}
     {{- $chinese := and $isArticle (eq .Language.Lang "zh-cn") -}}

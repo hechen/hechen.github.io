@@ -1,6 +1,6 @@
 {{ define "main" }}
-{{- /* The blog is English, but detect CJK text so any Chinese post still gets
-       the right type, justification, and lang attribute. */ -}}
+{{- /* Detect CJK from the text, not the site language, so type, justification,
+       and lang follow what the post actually contains. */ -}}
 {{- $han := len (findRE `\p{Han}` .Plain) -}}
 {{- $cjk := gt $han 150 -}}
 {{- $hasToc := ge (len (findRE `<li>` .TableOfContents)) 3 -}}
@@ -13,6 +13,7 @@
       <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
       {{- if .ReadingTime }}<span>{{ .ReadingTime }} min read</span>{{ end }}
       {{- if and .Lastmod (gt (.Lastmod.Sub .Date).Hours 720.0) }}<span>Updated {{ .Lastmod.Format "Jan 2006" }}</span>{{ end }}
+      {{- range .Translations }}<a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" lang="{{ .Language.Lang }}">{{ if eq .Language.Lang "zh-cn" }}阅读中文原文{{ else }}Read in English{{ end }} →</a>{{ end }}
     </p>
     <h1>{{ .Title }}</h1>
     {{- with .Description }}<p class="dek">{{ . }}</p>{{ end }}
