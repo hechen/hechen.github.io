@@ -17,7 +17,7 @@ url: '/apps/liftcoach/privacy.html'
 <main class="max-w-2xl mx-auto px-6 sm:px-8 py-10 sm:py-16 text-lg leading-[1.7] text-slate-700 dark:text-slate-300">
 
   <h2>The short version</h2>
-  <p>This policy describes LiftCoach 1.0.0. iOS build 323 and Mac build 322 are available in TestFlight and waiting for App Review. Public App Store release is still pending. Training data is stored on your device and syncs directly through Apple's private CloudKit storage when iCloud is available. iCloud sync is included with the app purchase; there is no separate sync unlock. AI features use the provider you choose. Apple Intelligence and downloaded on-device models run inference locally, while catalog refreshes and model downloads use the network as described below.</p>
+  <p>This policy describes LiftCoach 1.0.0 and the planned first public release. Build 325 is available in TestFlight for iPhone, iPad, Apple Watch, and Mac. Public App Store release is pending. Training data is stored on your device and syncs directly through Apple's private CloudKit storage when iCloud is available. iCloud sync is included with the app purchase; there is no separate sync unlock. AI features use the provider you choose. Apple Intelligence runs locally on supported devices; optional cloud AI sends requests directly to the provider you select. Build 325 hides downloadable models while installation reliability is improved.</p>
 
   <h2>What data is collected</h2>
   <p>LiftCoach has no developer-operated analytics or training-data server, no advertising, and no tracking. Workouts, exercises, templates, programs, and measurements entered in LiftCoach are stored locally and, when iCloud sync is active, in your private iCloud account. Apple controls that storage; we never see it. Weight-unit preferences can coordinate through iCloud so existing weights keep their meaning across devices. Communication with your paired Apple Watch works independently of iCloud sync.</p>
@@ -28,13 +28,12 @@ url: '/apps/liftcoach/privacy.html'
   <p>HealthKit data stays on the device unless you select a cloud AI provider and explicitly enable Settings → AI → Share Training History. That toggle is off by default. When enabled, a compact recent-training summary can be included with requests sent directly to the selected provider. Disable it at any time to stop attaching future training history. HealthKit data is never stored in iCloud by LiftCoach.</p>
 
   <h2>Widgets</h2>
-  <p>The Muscles Trained widgets in iOS build 323 use your recorded completed workouts to show workout names and dates, muscle groups, and workout and working-set counts on your Home Screen. These widgets do not make AI requests or send workout information to an AI provider.</p>
+  <p>The Muscles Trained widgets use your recorded completed workouts to show workout names and dates, muscle groups, and workout and working-set counts on your Home Screen. These widgets do not make AI requests or send workout information to an AI provider.</p>
 
   <h2>AI providers</h2>
   <p>LiftCoach lets you pick where AI requests go:</p>
   <ul>
     <li><strong>Apple Intelligence</strong> — runs entirely on your device. Apple's privacy terms apply.</li>
-    <li><strong>On-Device LLM</strong> (optional AI Pro purchase) — runs inference on your device via Apple MLX. You explicitly choose model downloads or updates from Hugging Face; inference after installation makes no network requests.</li>
     <li><strong>OpenAI / Claude (Anthropic) / Grok (xAI)</strong> (optional AI Pro purchase) — bring-your-own-key. The provider receives your prompt directly under its privacy terms; LiftCoach does not proxy requests. Custom cloud endpoints and MCP are not included in the first release.</li>
   </ul>
   <p>API keys are stored in the Apple Keychain, encrypted at rest by Apple, and never transmitted to a LiftCoach server or anyone but the provider you configured. The separate Sync AI Provider and Key setting controls whether your provider choice and key are available on your other devices through iCloud Keychain. It is separate from workout and backup sync.</p>
@@ -45,9 +44,9 @@ url: '/apps/liftcoach/privacy.html'
 
   <h2>Third-party services</h2>
   <p>LiftCoach uses Apple services including the App Store, iCloud, HealthKit, StoreKit, and Apple Intelligence. Optional cloud AI connects directly to OpenAI, Anthropic, or xAI, depending on your selection. Exercise form demo images are loaded on demand from the open-source free-exercise-db project hosted on GitHub (raw.githubusercontent.com); GitHub sees your IP address and which image was requested, but no account or workout data.</p>
-  <p>The cloud provider and on-device model catalogs are maintained in the public hechen/ai-model-catalog repository. The app checks for catalog metadata updates on GitHub, including at launch and when opening model settings; a bundled or cached catalog remains available offline. GitHub receives standard connection information, such as your IP address and the requested catalog URL, but no prompts, API keys, or training history. Refreshing a catalog never downloads model weights or changes the selected installed model.</p>
-  <p>When you check a custom model repository or choose a download or update, the app contacts Hugging Face and its download infrastructure, which receive connection information and the requested repository or files. These requests do not include prompts, API keys for cloud AI providers, or training history.</p>
-  <p>CHSharedKit, a library by the same developer, implements these catalog, download, AI, and theme features. None of these integrations are used for advertising or cross-app tracking.</p>
+  <p>The cloud provider catalog is maintained in the public hechen/ai-model-catalog repository. The app can check for catalog metadata updates on GitHub; GitHub receives standard connection information, such as your IP address and the requested catalog URL, but no prompts, API keys, or training history. A bundled or cached catalog remains available offline.</p>
+  <p>Earlier TestFlight builds may still expose the separate on-device model picker. In those builds, a model catalog refresh contacts GitHub, and checking or downloading a custom model contacts Hugging Face and its download infrastructure. These services receive connection information and the requested repository or files, but no prompts, cloud AI keys, or training history. The planned first public release hides those model download controls.</p>
+  <p>CHSharedKit, a library by the same developer, implements catalog, AI, and theme features. None of these integrations are used for advertising or cross-app tracking.</p>
 
   <h2>Backups</h2>
   <p>Managed backups contain your workouts, templates, programs, custom exercises, measurements entered in LiftCoach, and the weight unit needed to interpret them. Managed backups use your iCloud Drive when available and local storage otherwise. Existing cloud backups remain accessible for recovery, sharing, or deletion. Manual export lets you choose where to save or share a portable JSON file without an additional purchase. Backups do not include API keys. Treat backup files as personal data if you share them.</p>

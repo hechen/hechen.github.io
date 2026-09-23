@@ -20,7 +20,7 @@
   source: https://github.com/hechen/GymLog
   privacy: /apps/liftcoach/privacy.html
   support: /apps/liftcoach/support.html
-  summary: Plan strength routines, log sets, and follow your progress with AI coaching. iOS build 323 and Mac build 322 are available in TestFlight and waiting for App Review. iOS build 323 adds Muscles Trained widgets for the latest workout and this calendar week, included with the base app without AI requests. The existing Streak widget and Apple Watch discard fixes remain. Mac build 322 retains the network-permission fix and is submitted separately; it does not include the new widgets. Buy once for US$2.99 across iPhone, iPad, Apple Watch, and Mac. iCloud sync is included; AI Pro is a separate optional one-time US$2.99 purchase. Public release is pending.
+  summary: Plan strength routines, log sets, and follow your progress with AI coaching. Build 325 is available in TestFlight for iPhone, iPad, Apple Watch, and native Mac. Focus shows live heart rate and active calories, and finished workouts follow the exercise order actually performed. Muscles Trained and Streak widgets are included. Buy once for US$2.99 across all four platforms; iCloud sync and Apple Intelligence on supported devices are included. AI Pro is a separate optional one-time US$2.99 purchase for cloud AI providers. Downloadable models are hidden while installation reliability improves. Public release is pending.
   featured: true
 - name: Distill
   eyebrow: Read later
