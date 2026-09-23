@@ -26,27 +26,17 @@ url: '/apps/eatwisely/support.html'
   <p>EatWisely reads HealthKit on app foreground. If you logged a workout in another app and it hasn't appeared, force-close EatWisely and reopen, or pull-to-refresh on the Today screen. If a specific app's workouts never sync, check Settings → Privacy & Security → Health → EatWisely → make sure that source is granted read access.</p>
 
   <h2>Switching AI providers</h2>
-  <p>Settings → AI → Provider. Apple Intelligence is the default. Cloud providers need your own API key (BYOK) and live on the same screen. The on-device LLM is a separate one-time purchase under "AI Add-Ons".</p>
+  <p>Settings → AI → Provider. Apple Intelligence is the default. Cloud providers need your own API key (BYOK) and live on the same screen. Find supported downloadable models under "AI Add-Ons".</p>
 
   <h2>Macros look wrong on a logged meal</h2>
-  <p>Tap and hold the meal → Edit. Manual edits override the AI's estimate and stick. The AI does not learn from your edits — that's deliberate; food estimation is hard, and one user's wrong-but-confident edit shouldn't shape anyone else's results.</p>
+  <p>Tap and hold the meal → Edit. Manual edits override the AI's estimate and stick. Your changes apply to the saved meal; they do not train the AI model.</p>
 
   <h2>Water tracking and Apple Health</h2>
   <p>EatWisely requires iOS or iPadOS 18 or later. Grant EatWisely permission to read and write Water in Apple Health. Logged water is saved to Apple Health when permitted, and daily water totals read from Apple Health.</p>
 
-  <h2 id="release-notes">Release notes</h2>
-  <h3>1.0.0 (403) — internal TestFlight beta</h3>
-  <ul>
-    <li>Introduces warm paper backgrounds, terracotta accents, an earthy dark palette, and consistent nutrient and meal-time colors.</li>
-    <li>Adds Bricolage Grotesque headings and numbers on iPhone and iPad, with Dynamic Type support. Choose Settings → Appearance → Text → Use System Typeface to use the system font.</li>
-    <li>Keeps your local food log available without an iCloud account. Settings reports when sync is unavailable.</li>
-    <li>Moves progress photos and diagnostic logs out of the Files app's browsable Documents folder.</li>
-    <li>Improves barcode-camera handling and logging reliability, and makes the AI unlock available to purchase on Mac.</li>
-  </ul>
-  <p>Build 403 is available to invited internal TestFlight testers on iPhone, iPad, and Mac, with the Apple Watch companion included in the iOS build. Open TestFlight to update. Public signup is closed.</p>
-
-  <h3>What to test in build 403</h3>
-  <p>Check light and dark appearances, larger text sizes, and the system-typeface switch. If you previously used Forest, Ocean, or Midnight, confirm the replacement Herb, Indigo, or Plum theme looks right. Check that existing progress photos are still present, try barcode scanning on a real device, and confirm that local logging remains available when iCloud is signed out.</p>
+  <h2 id="release-notes">Appearance and local access</h2>
+  <p>Use Settings → Appearance to choose a theme. On iPhone and iPad, text follows your system text-size setting. Choose Appearance → Text → Use System Typeface if you prefer the system font.</p>
+  <p>Your local food log remains available without an iCloud account. Check Settings for sync status if meals are not appearing on another device.</p>
 
   <h2>Anything else</h2>
   <p>Email me at <a href="mailto:chen.he@icloud.com" class="text-accent dark:text-accent-dark hover:underline">chen.he@icloud.com</a>.</p>

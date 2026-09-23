@@ -1,7 +1,7 @@
+# Keep catalog copy focused on product benefits and features.
+# Do not publish app prices, internal build numbers, or review/development status.
 - name: Structly
   eyebrow: Safari extension
-  status: Live
-  tone: live
   platforms: iPhone · iPad · Mac
   icon: /assets/icons/structly.png
   url: /apps/structly/
@@ -12,19 +12,15 @@
   featured: true
 - name: LiftCoach
   eyebrow: Health & fitness
-  status: TestFlight
-  tone: beta
   platforms: iPhone · iPad · Apple Watch · Mac
   icon: /assets/icons/liftcoach.png
   url: /apps/liftcoach/
   privacy: /apps/liftcoach/privacy.html
   support: /apps/liftcoach/support.html
-  summary: Plan strength routines, log sets, and follow your progress across iPhone, iPad, Apple Watch, and Mac. See live workout stats, muscle maps, and AI coaching. Buy once for US$2.99 with iCloud sync included; optional AI Pro is a separate one-time US$2.99 purchase for cloud AI providers.
+  summary: Plan strength routines, log every set, and see how your training adds up. Live workout stats, muscle maps, exercise demos, and AI coaching help you train with purpose.
   featured: true
 - name: Distill
   eyebrow: Read later
-  status: TestFlight
-  tone: beta
   platforms: iPhone · iPad · Mac · Watch
   icon: /assets/icons/distill.png
   url: /apps/distill/
@@ -33,8 +29,6 @@
   summary: Save links, archive full articles, and pull them back later without losing the text.
 - name: Course Book Builder
   eyebrow: Offline reading
-  status: Chrome Web Store
-  tone: live
   platforms: Desktop Chrome · EPUB · PDF
   icon: /assets/icons/course-book-builder.png
   url: /apps/course-book-builder/
@@ -44,9 +38,7 @@
   summary: Collect selected articles and course pages into a local reading library, then export a book with chapters and a table of contents.
 - name: Keeps
   eyebrow: Personal belongings
-  status: App Store
-  tone: live
-  platforms: iPhone · iPad · Mac in review
+  platforms: iPhone · iPad · Mac
   icon: /assets/icons/keeps.png
   url: /apps/keeps/
   store: https://apps.apple.com/app/id6811795155
@@ -55,8 +47,6 @@
   summary: A home for your belongings, with purchase details, use history, and a clearer view of ownership costs.
 - name: Closet
   eyebrow: Personal inventory
-  status: TestFlight
-  tone: beta
   platforms: iPhone · iPad
   icon: /assets/icons/closet.png
   url: /apps/closet/
@@ -65,8 +55,6 @@
   summary: Wardrobe tracking with total value, wear history, and cost-per-wear.
 - name: SpendWisely
   eyebrow: Personal finance
-  status: TestFlight
-  tone: beta
   platforms: iPhone · iPad
   icon: /assets/icons/spendwisely.png
   url: /apps/spendwisely/
@@ -75,18 +63,14 @@
   summary: Clear spending views and deliberate money tracking without bank-app clutter.
 - name: EatWisely
   eyebrow: Nutrition
-  status: TestFlight
-  tone: beta
   platforms: iPhone · iPad · Apple Watch · Mac
   icon: /assets/icons/eatwisely.png
   url: /apps/eatwisely/
   privacy: /apps/eatwisely/privacy.html
   support: /apps/eatwisely/support.html
-  summary: Meal logging by photo, barcode, or text. Build 403 brings a warmer design and local access without iCloud, available to invited internal TestFlight testers.
+  summary: Log meals with a photo, barcode, or description. Review calories and macros, reuse favorite meals, and follow your nutrition trends.
 - name: TensionRadar
   eyebrow: Stress & HRV
-  status: In review
-  tone: beta
   platforms: iPhone · Apple Watch
   icon: /assets/icons/tensionradar.png
   url: /apps/tensionradar/
@@ -96,15 +80,11 @@
 - name: TrainInsight
   url: /apps/traininsight/
   eyebrow: Training analytics
-  status: In progress
-  tone: progress
   platforms: iPhone · Apple Watch
   icon: /assets/icons/traininsight.png
   summary: Readiness signals and training analytics built around Apple Watch data.
 - name: Market Mood
   eyebrow: Market pulse
-  status: TestFlight
-  tone: beta
   platforms: iPhone · iPad · Watch
   icon: /assets/icons/marketmood.png
   url: /apps/marketmood/
@@ -113,8 +93,6 @@
   summary: A compact macro and crypto sentiment dashboard without the doomscroll.
 - name: Stock Price
   eyebrow: Stream Deck plugin
-  status: Marketplace
-  tone: live
   platforms: macOS · Windows
   icon: /assets/icons/stock-price.png
   url: /apps/stock-price/

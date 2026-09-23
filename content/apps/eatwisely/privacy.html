@@ -19,7 +19,7 @@ url: '/apps/eatwisely/privacy.html'
 
   <p><strong>HealthKit.</strong> With your permission, EatWisely reads your body weight, workouts, dietary water (iOS 17+), and active energy so the AI coach can give recommendations that match what you actually did and weighed. It writes meals back as dietary entries — calories, protein, carbs, fat, water — so the Health app reflects your nutrition. HealthKit data never leaves the iOS HealthKit boundary; the app reads and writes within it but doesn't copy that data into a separate cloud.</p>
 
-  <p><strong>Photo meal scans.</strong> When you take a photo to log a meal, the photo goes to the AI provider you've selected. By default that's Apple Intelligence, on-device. If you've configured a cloud provider with your own API key, the photo goes to that provider directly under their privacy terms. The on-device LLM (the one-time MLX-backed unlock) keeps the photo on the device. EatWisely never holds copies of your meal photos on a server.</p>
+  <p><strong>Photo meal scans.</strong> When you take a photo to log a meal, the photo goes to the AI provider you've selected. By default that's Apple Intelligence, on-device. If you've configured a cloud provider with your own API key, the photo goes to that provider directly under their privacy terms. The on-device LLM (a downloaded local model) keeps the photo on the device. EatWisely never holds copies of your meal photos on a server.</p>
 
   <p><strong>The AI Request Log</strong> in the developer menu shows the last 200 prompts and responses for debugging. It lives in memory only, clears on app quit, and is purely local. Nothing in it is transmitted anywhere.</p>
 
