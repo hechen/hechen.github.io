@@ -1,1 +1,8 @@
-{{ define "main" }}<div class="simple-home"><header class="simple-intro"><h1>Page not found</h1><p>This link may have moved.</p></header><p><a href="/">Go home →</a> · <a href="/post/">Browse writing</a></p></div>{{ end }}
+{{ define "main" }}
+<section class="not-found frame">
+  <strong aria-hidden="true">404</strong>
+  <h1>This page wandered off.</h1>
+  <p class="lede">The link may have moved when the site was reorganized. The archive and the app catalog are good places to look.</p>
+  <div class="hero-actions"><a class="btn btn-solid" href="/">Go home <span aria-hidden="true">→</span></a><a class="btn btn-ghost" href="/post/">Browse writing</a><a class="btn btn-ghost" href="/apps/">See apps</a></div>
+</section>
+{{ end }}

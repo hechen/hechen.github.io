@@ -1,26 +1,23 @@
 {{- /*
-  Site-wide base layout. Redesign: samwanng.com-inspired editorial
-  journal with light and dark themes, Source Serif 4 + Noto Serif SC body,
-  minimal chrome (brand wordmark + tagline + category nav at top,
-  dot-separated social row at the bottom).
-
-  PaperMod's <head> partial still drives meta tags, RSS / sitemap
-  output formats, favicons, and the blog-post Chroma syntax pipeline.
-  layouts/partials/extend_head.html injects our custom CSS + webfont
-  preconnect on top.
+  Site-wide base layout — "Workbench" redesign (September 2026).
+  Warm paper and ink with a single signal-orange accent; tokens and
+  components live in assets/css/site.css. The legacy Tailwind bundle
+  (/css/tailwind.css, built from assets/css/main.css) still loads for the
+  hand-authored app pages, which render inside the .legacy wrapper.
 */ -}}
-{{- $isAppDetail := and (eq .Section "apps") (ne .RelPermalink "/apps/") -}}
 <!doctype html>
-<html lang="{{ site.Language.Lang | default "en" }}" data-theme="light" class="code-theme-github-light">
+<html lang="{{ site.Language.Lang | default "en" }}" class="code-theme-github-light" id="top">
 <head>
 {{- partial "head.html" . }}
 </head>
-<body class="site-body simple-blog">
+<body class="chen">
 {{- partial "header.html" . }}
-<main id="main-content"{{ if not .IsHome }} class="site-main"{{ end }}>
+<main id="main-content" class="page">
 {{ block "main" . }}{{ .Content }}{{ end }}
 {{- partial "comments.html" . }}
 </main>
 {{- partial "footer.html" . }}
+{{- $js := resources.Get "js/site.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
 </body>
 </html>

@@ -1,1 +1,19 @@
-{{ define "main" }}{{ if and .Content (eq .Kind "section") }}<div class="simple-content">{{ .Content }}</div>{{ else }}<div class="simple-home"><header class="simple-intro"><h1>{{ .Title }}</h1>{{ with .Content }}{{ . }}{{ end }}</header><ul class="simple-posts">{{ range .Pages.ByDate.Reverse }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ if .IsPage }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>{{ else }}<span>{{ len .Pages }} entries</span>{{ end }}</li>{{ end }}</ul></div>{{ end }}{{ end }}
+{{ define "main" }}{{ if and .Content (eq .Kind "section") }}<div class="legacy">{{ .Content }}</div>{{ else }}
+<div class="frame">
+  <header class="page-head">
+    <p class="eyebrow rise"><span>{{ if eq .Kind "term" }}Topic{{ else }}Section{{ end }}</span><span>{{ len .Pages }} {{ if eq (len .Pages) 1 }}entry{{ else }}entries{{ end }}</span></p>
+    <h1 class="rise rise-2">{{ if eq .Kind "term" }}#{{ end }}{{ .Title }}</h1>
+    {{ with .Content }}<div class="lede">{{ . }}</div>{{ end }}
+  </header>
+  <ol class="note-list">
+    {{- range .Pages.ByDate.Reverse }}
+    <li><a class="note-row" href="{{ .RelPermalink }}">
+      {{ if .IsPage }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time>{{ else }}<span class="note-aside">{{ len .Pages }}</span>{{ end }}
+      <span class="note-title">{{ .LinkTitle }}</span>
+      <span class="note-aside">{{ if .IsPage }}{{ .ReadingTime }} min{{ end }}</span>
+    </a></li>
+    {{- end }}
+  </ol>
+  <p class="pager"><a class="text-link" href="/tags/">← All topics</a><a class="text-link" href="{{ "post/" | relLangURL }}">Writing archive →</a></p>
+</div>
+{{ end }}{{ end }}

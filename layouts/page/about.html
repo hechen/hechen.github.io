@@ -1,0 +1,30 @@
+{{ define "main" }}
+{{- $posts := where site.RegularPages "Section" "post" -}}
+<div class="frame">
+  <header class="page-head">
+    <p class="eyebrow rise"><span class="pulse" aria-hidden="true"></span><span>About</span><span>Seattle</span></p>
+    <p class="about-statement rise rise-2">I’m Chen, an Apple‑platform engineer who builds <em>useful</em> apps and writes down what I learn.</p>
+    <ul class="stack-list rise rise-3" aria-label="Tools I work with">
+      <li>Swift</li><li>SwiftUI</li><li>watchOS</li><li>HealthKit</li><li>CloudKit</li><li>On-device AI</li>
+    </ul>
+  </header>
+
+  <div class="about-grid reveal">
+    <section aria-labelledby="about-work">
+      <h2 id="about-work">What I do</h2>
+      <p>I build apps for the Apple ecosystem, from strength training on Apple Watch to a JSON viewer for Safari. I care about useful software, privacy, and getting the details right.</p>
+      <ul><li><a href="/apps/">Browse {{ len hugo.Data.apps }} apps</a></li><li><a href="/now/">What I’m working on now</a></li></ul>
+    </section>
+    <section aria-labelledby="about-notes">
+      <h2 id="about-notes">Notes &amp; interests</h2>
+      <p>I’ve kept notes on Swift and Apple platforms since {{ (index $posts.ByDate 0).Date.Year }}. Outside of code I’m into photography, fitness, and the tools I use every day.</p>
+      <ul><li><a href="/post/">Writing archive</a></li><li><a href="/gear/">Gear</a></li><li><a href="/tools/">Tools</a></li></ul>
+    </section>
+    <section aria-labelledby="about-find">
+      <h2 id="about-find">Find me</h2>
+      <p>The best way to reach me is by email. Code lives on GitHub.</p>
+      <ul><li><a href="mailto:hechen.dream@gmail.com">Email</a></li><li><a href="https://github.com/hechen">GitHub</a></li><li><a href="https://stackoverflow.com/users/4388089/chen">Stack Overflow</a></li></ul>
+    </section>
+  </div>
+</div>
+{{ end }}

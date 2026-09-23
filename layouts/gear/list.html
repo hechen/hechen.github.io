@@ -4,68 +4,58 @@
 {{- $entries = where $entries "Kind" "in" (slice "page" "section") -}}
 {{- $entries = $entries.ByDate.Reverse -}}
 {{- $cats := slice -}}
-{{- range $entries }}
-  {{- with .Params.category }}{{- if not (in $cats .) }}{{- $cats = $cats | append . -}}{{- end }}{{- end -}}
-{{- end -}}
+{{- range $entries }}{{ with .Params.category }}{{ if not (in $cats .) }}{{ $cats = $cats | append . }}{{ end }}{{ end }}{{ end -}}
+<div class="frame">
+  <header class="page-head">
+    <p class="eyebrow rise"><span>Gear</span><span>{{ len $entries }} objects</span></p>
+    <h1 class="rise rise-2">Things I <em>use</em>.</h1>
+    <p class="lede rise rise-3">My own photos and notes on the hardware that earns a place on the desk, in the bag, or on the wrist.</p>
+  </header>
 
-<div class="site-page gear-page">
-  <header class="simple-intro site-shell"><h1>Gear</h1><p>Things I use, with my own photos and notes.</p></header>
-  <div class="site-surface is-light">
-    <section class="site-section site-shell" aria-labelledby="gear-collection-title">
-      <div class="site-section-heading is-compact gear-heading">
-        <h2 id="gear-collection-title" class="sr-only">All gear</h2>
-        <div class="gear-filter-bar">
-          <nav aria-label="Gear categories" data-gear-filter>
-            <button type="button" data-cat="all" class="gear-filter is-active" aria-pressed="true">All</button>
-            {{ range $cats }}<button type="button" data-cat="{{ . }}" class="gear-filter" aria-pressed="false">{{ . }}</button>{{ end }}
-          </nav>
-          <p data-gear-count>{{ len $entries }} entries</p>
-        </div>
-      </div>
+  <section aria-labelledby="gear-collection-title">
+    <h2 id="gear-collection-title" class="sr-only">All gear</h2>
+    <div class="kit-filter">
+      <nav aria-label="Gear categories" data-gear-filter>
+        <button type="button" data-cat="all" class="chip" aria-pressed="true">All <small>{{ len $entries }}</small></button>
+        {{- range $cats }}{{ $c := . }}
+        <button type="button" data-cat="{{ . }}" class="chip" aria-pressed="false">{{ . }} <small>{{ len (where $entries "Params.category" $c) }}</small></button>
+        {{- end }}
+      </nav>
+      <p data-gear-count aria-live="polite">{{ len $entries }} entries</p>
+    </div>
 
-      <div class="gear-grid" id="gear-entries">
-        {{ range $index, $entry := $entries }}
-        {{- $cover := $entry.Params.image | default $entry.Params.cover.image -}}
-        {{- $coverAlt := $entry.Params.imageAlt | default $entry.Params.cover.alt | default $entry.Title -}}
-        <article class="gear-card {{ if $cover }}has-image{{ else }}is-text-only{{ end }}" data-cat="{{ $entry.Params.category }}">
-          <a href="{{ $entry.RelPermalink }}">
-            {{- with $cover }}
-            <div class="gear-card-visual">
-              <img src="{{ . }}" alt="{{ $coverAlt }}" loading="lazy" decoding="async">
-            </div>
-            {{- end }}
-            <div class="gear-card-copy">
-              <div class="gear-card-topline">
-
-                <div class="site-meta-row">
-                  {{ with $entry.Params.category }}<span>{{ . }}</span>{{ end }}
-                  <time datetime="{{ $entry.Date.Format "2006-01-02" }}">{{ $entry.Date.Format "Jan 2, 2006" }}</time>
-
-                </div>
-              </div>
-              <h3>{{ $entry.Title }}</h3>
-              <p>{{ $entry.Description | default ($entry.Summary | plainify | truncate 170) }}</p>
-              <span class="site-text-link">Read note <span aria-hidden="true">↗</span></span>
-            </div>
-          </a>
-        </article>
-        {{ end }}
-      </div>
-    </section>
-  </div>
+    <div class="kit-grid" id="gear-entries">
+      {{- range $index, $entry := $entries }}
+      {{- $cover := $entry.Params.image | default $entry.Params.cover.image -}}
+      {{- $coverAlt := $entry.Params.imageAlt | default $entry.Params.cover.alt | default $entry.Title }}
+      <article class="kit-card{{ if not $cover }} is-text-only{{ end }}" data-cat="{{ $entry.Params.category }}">
+        <a href="{{ $entry.RelPermalink }}">
+          {{- with $cover }}
+          <div class="kit-photo"><img src="{{ . }}" alt="{{ $coverAlt }}" loading="lazy" decoding="async"><span class="kit-no">No. {{ printf "%02d" (sub (len $entries) $index) }}</span></div>
+          {{- end }}
+          <div class="kit-label">
+            <span class="tag-mono">{{ if not $cover }}No. {{ printf "%02d" (sub (len $entries) $index) }} · {{ end }}{{ $entry.Params.category }}</span>
+            <h3>{{ $entry.Title }}</h3>
+            {{- if $cover }}<time datetime="{{ $entry.Date.Format "2006-01-02" }}">{{ $entry.Date.Format "Jan 2006" }}</time>{{ end }}
+            <p>{{ $entry.Description | default ($entry.Summary | plainify | truncate 170) }}</p>
+          </div>
+        </a>
+      </article>
+      {{- end }}
+    </div>
+  </section>
 </div>
 
 <script>
 (function () {
   var filter = document.querySelector('[data-gear-filter]');
   if (!filter) return;
-  var entries = Array.from(document.querySelectorAll('#gear-entries .gear-card'));
+  var entries = Array.from(document.querySelectorAll('#gear-entries .kit-card'));
   var count = document.querySelector('[data-gear-count]');
   filter.addEventListener('click', function (event) {
     var button = event.target.closest('[data-cat]');
     if (!button) return;
-    filter.querySelectorAll('[data-cat]').forEach(function (item) { item.classList.remove('is-active'); item.setAttribute('aria-pressed', 'false'); });
-    button.classList.add('is-active'); button.setAttribute('aria-pressed', 'true');
+    filter.querySelectorAll('[data-cat]').forEach(function (item) { item.setAttribute('aria-pressed', String(item === button)); });
     var category = button.dataset.cat;
     var visible = 0;
     entries.forEach(function (entry) {

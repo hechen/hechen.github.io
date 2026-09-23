@@ -32,7 +32,7 @@ html.code-theme-dracula {
 }
 
 /* Override the older page-specific pre backgrounds, including plain-text fences. */
-html body.simple-blog #main-content pre {
+html body.chen #main-content pre {
   background: var(--code-bg);
   color: var(--code-fg);
   border: 1px solid var(--code-border);
@@ -45,7 +45,7 @@ html body.simple-blog #main-content pre {
   tab-size: 4;
   color-scheme: var(--code-scheme);
 }
-html body.simple-blog #main-content pre code {
+html body.chen #main-content pre code {
   background: transparent;
   color: inherit;
   border: 0;
@@ -91,7 +91,7 @@ html body.simple-blog #main-content pre code {
   border-color: var(--code-control-border);
 }
 .code-theme-select:focus-visible { outline: 2px solid var(--code-focus); outline-offset: 2px; }
-html body.simple-blog #main-content .code-example pre {
+html body.chen #main-content .code-example pre {
   margin: 0;
   border: 0;
   border-radius: 0;
@@ -99,11 +99,11 @@ html body.simple-blog #main-content .code-example pre {
 .code-example .highlight { margin: 0; }
 /* Line-number tables remain one example and scroll as a unit. */
 .code-example .highlight:has(.lntable) { overflow-x: auto; }
-html body.simple-blog #main-content .code-example .lntd pre { padding: 18px 8px; overflow: visible; }
+html body.chen #main-content .code-example .lntd pre { padding: 18px 8px; overflow: visible; }
 @media (max-width: 650px) {
   .code-toolbar { padding-left: 14px; }
   .code-theme-select { min-height: 44px; font-size: 16px; }
-  html body.simple-blog #main-content pre { padding: 16px 14px; }
+  html body.chen #main-content pre { padding: 16px 14px; }
 }
 
 /* Keep comments readable at the same text size as the code. */
@@ -116,7 +116,7 @@ html.code-theme-github-light {
   --code-number: #03428e;
   --code-variable: #783000;
 }
-html.code-theme-github-light body.simple-blog #main-content pre {
+html.code-theme-github-light body.chen #main-content pre {
   font-size: 15px;
   font-weight: 500;
 }

@@ -1,3 +1,10 @@
 {{ define "main" }}{{ if eq .RelPermalink "/apps/" }}
-<div class="simple-home"><header class="simple-intro"><h1>Apps</h1><p>Thoughtful apps for your everyday life.</p></header>{{ partial "app-catalog.html" . }}</div>
-{{ else }}<div class="simple-content">{{ .Content }}</div>{{ end }}{{ end }}
+<div class="frame">
+  <header class="page-head">
+    <p class="eyebrow rise"><span>Apps</span><span>{{ len hugo.Data.apps }} in the catalog</span></p>
+    <h1 class="rise rise-2">Useful things, <em>carefully</em> made.</h1>
+    <p class="lede rise rise-3">Apps for training, reading, collecting, and everyday tools. Native on iPhone, iPad, Mac, and Apple Watch, and private by default.</p>
+  </header>
+  {{ partial "app-catalog.html" . }}
+</div>
+{{ else }}<div class="legacy">{{ .Content }}</div>{{ end }}{{ end }}

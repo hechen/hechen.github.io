@@ -1,4 +1,42 @@
-{{ define "main" }}{{ $pages := (where site.RegularPages "Section" "post").ByDate.Reverse }}{{ $paginator := .Paginate $pages 10 }}
-<div class="simple-home"><header class="simple-intro"><h1>Writing</h1><p>Notes on Swift, building apps, and things I’ve learned.</p></header>
-<ul class="simple-posts">{{ range $paginator.Pages }}<li><div><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ with .Description }}<p>{{ . | plainify | truncate 160 }}</p>{{ end }}</div><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time></li>{{ end }}</ul>
-{{ if gt $paginator.TotalPages 1 }}<nav class="site-pagination" aria-label="Writing pages">{{ if $paginator.HasPrev }}<a href="{{ $paginator.Prev.URL }}">← Newer</a>{{ else }}<span></span>{{ end }}<span>{{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}</span>{{ if $paginator.HasNext }}<a href="{{ $paginator.Next.URL }}">Older →</a>{{ end }}</nav>{{ end }}</div>{{ end }}
+{{ define "main" }}
+{{- $pages := (where site.RegularPages "Section" "post").ByDate.Reverse -}}
+{{- $years := $pages.GroupByDate "2006" -}}
+<div class="frame">
+  <header class="page-head">
+    <p class="eyebrow rise"><span>Writing</span><span>{{ len $pages }} notes</span><span>{{ (index $pages.Reverse 0).Date.Year }}–{{ (index $pages 0).Date.Year }}</span></p>
+    <div class="page-head-row">
+      <div>
+        <h1 class="rise rise-2">Notes from the <em>workbench</em>.</h1>
+        <p class="lede rise rise-3">Swift, Apple platforms, and whatever I was figuring out at the time. Written in Chinese and English since {{ (index $pages.Reverse 0).Date.Year }}.</p>
+      </div>
+      <div class="page-head-aside rise rise-4">
+        {{- range .AllTranslations }}
+        <a class="chip{{ if eq .Language.Lang site.Language.Lang }} is-active{{ end }}" href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}"{{ if eq .Language.Lang site.Language.Lang }} aria-current="page"{{ end }}>{{ .Language.Label }}</a>
+        {{- end }}
+        <a class="chip" href="/tags/">Topics</a>
+      </div>
+    </div>
+    <div class="archive-stats rise rise-4" aria-label="Archive at a glance">
+      <div><strong>{{ len $pages }}</strong><span>Notes</span></div>
+      <div><strong>{{ len $years }}</strong><span>Years active</span></div>
+      <div><strong>{{ len site.Taxonomies.tags }}</strong><span>Topics</span></div>
+    </div>
+  </header>
+
+  {{- range $years }}
+  <section class="year-group" aria-labelledby="y{{ .Key }}">
+    <h2 class="year-label" id="y{{ .Key }}"><strong>{{ .Key }}</strong><span>{{ len .Pages }} {{ if eq (len .Pages) 1 }}note{{ else }}notes{{ end }}</span></h2>
+    <ol class="note-list">
+      {{- range .Pages }}
+      <li><a class="note-row" href="{{ .RelPermalink }}">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 02" }}</time>
+        <span class="note-title">{{ .Title }}</span>
+        <span class="note-aside">{{ .ReadingTime }} min</span>
+        {{- with .Description }}<p class="note-desc">{{ . | plainify }}</p>{{ end }}
+      </a></li>
+      {{- end }}
+    </ol>
+  </section>
+  {{- end }}
+</div>
+{{ end }}

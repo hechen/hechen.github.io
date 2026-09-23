@@ -1,6 +1,17 @@
-<a class="simple-skip" href="#main-content">Skip to content</a>
-<nav class="simple-nav" aria-label="Primary navigation">
-<a class="simple-brand" href="/">Chen</a>
-<div>{{ $current := .RelPermalink }}{{ range slice (dict "name" "Writing" "url" "/post/") (dict "name" "Gear" "url" "/gear/") (dict "name" "Apps" "url" "/apps/") (dict "name" "About" "url" "/about/") }}
-<a href="{{ .url }}"{{ if hasPrefix $current .url }} aria-current="page"{{ end }}>{{ .name }}</a>{{ end }}</div>
-</nav>
+{{- $current := .RelPermalink -}}
+{{- $writing := "post/" | relLangURL -}}
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="masthead" data-masthead>
+  <div class="masthead-inner frame">
+    <a class="wordmark" href="/" aria-label="Chen, home">Chen<span class="wordmark-dot" aria-hidden="true"></span></a>
+    <nav class="primary-nav" aria-label="Primary">
+      {{- range $i, $item := slice (dict "name" "Writing" "url" $writing "match" "/post/") (dict "name" "Apps" "url" "/apps/" "match" "/apps/") (dict "name" "Gear" "url" "/gear/" "match" "/gear/") (dict "name" "About" "url" "/about/" "match" "/about/") }}
+      <a href="{{ $item.url }}"{{ if in $current $item.match }} aria-current="page"{{ end }}>{{ $item.name }}<sup aria-hidden="true">0{{ add $i 1 }}</sup></a>
+      {{- end }}
+    </nav>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark theme" aria-pressed="false">
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+    </button>
+  </div>
+</header>

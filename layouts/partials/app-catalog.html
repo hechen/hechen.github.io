@@ -1,7 +1,10 @@
-<div class="simple-app-grid">
-{{ range hugo.Data.apps }}
-<article class="simple-app-card">
-<div class="simple-app-title"><img src="{{ .icon }}" alt="" width="48" height="48" loading="lazy" decoding="async"><div><h3>{{ with .url }}<a href="{{ . }}">{{ end }}{{ .name }}{{ if .url }}</a>{{ end }}</h3><span>{{ .platforms }}</span></div></div>
-<p>{{ .summary }}</p>
-<div class="simple-app-links">{{ with .url }}<a href="{{ . }}">Details</a>{{ end }}{{ with .store }}<a href="{{ . }}">Get app</a>{{ end }}{{ with .source }}<a href="{{ . }}">Source</a>{{ end }}{{ with .support }}<a href="{{ . }}">Support</a>{{ end }}{{ with .privacy }}<a href="{{ . }}">Privacy</a>{{ end }}</div>
-</article>{{ end }}</div>
+<div class="app-catalog">
+{{- range hugo.Data.apps }}
+<article class="app-card">
+  <div class="app-card-top"><img src="{{ .icon }}" alt="" width="60" height="60" loading="lazy" decoding="async"><div><span class="tag-mono">{{ .eyebrow }}</span><h3>{{ with .url }}<a href="{{ . }}">{{ end }}{{ .name }}{{ if .url }}</a>{{ end }}</h3></div></div>
+  <p>{{ .summary }}</p>
+  <span class="app-card-platforms">{{ .platforms }}</span>
+  <div class="app-card-links">{{ with .store }}<a class="is-primary" href="{{ . }}">Get the app</a>{{ end }}{{ with .url }}<a href="{{ . }}">Details</a>{{ end }}{{ with .source }}<a href="{{ . }}">Source</a>{{ end }}{{ with .support }}<a href="{{ . }}">Support</a>{{ end }}{{ with .privacy }}<a href="{{ . }}">Privacy</a>{{ end }}</div>
+</article>
+{{- end }}
+</div>

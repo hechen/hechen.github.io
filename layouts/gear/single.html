@@ -1,42 +1,40 @@
 {{ define "main" }}
-<article class="site-page gear-detail-page">
-  <header class="reading-hero site-shell">
-    <a class="site-back-link" href="/gear/"><span aria-hidden="true">←</span> All gear</a>
-    <div class="site-meta-row">
-      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
-      {{ with .Params.category }}<span>{{ . }}</span>{{ end }}
-      {{ with .Params.rating }}<span>{{ . }}/5</span>{{ end }}
-      {{ with .Params.price }}<span>{{ . }}</span>{{ end }}
+{{- $cover := .Params.image | default .Params.cover.image -}}
+{{- $coverAlt := .Params.imageAlt | default .Params.cover.alt | default .Title -}}
+<article class="kit-detail">
+  <header class="kit-detail-head frame">
+    <div>
+      <a class="crumb" href="/gear/"><span aria-hidden="true">←</span> Gear</a>
+      <p class="article-meta">
+        {{- with .Params.category }}<span>{{ . }}</span>{{ end }}
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      </p>
+      <h1>{{ .Title }}</h1>
     </div>
-    <h1>{{ .Title }}</h1>
-
-
-    {{- $cover := .Params.image | default .Params.cover.image -}}
-    {{- $coverAlt := .Params.imageAlt | default .Params.cover.alt | default .Title -}}
-    {{ if not .Params.gallery }}
-    {{ with $cover }}
-    <figure class="gear-detail-cover"{{ with $.Params.imageWidth }} style="max-width: min(100%, {{ . }}px);"{{ end }}><img src="{{ . }}" alt="{{ $coverAlt }}" loading="eager" decoding="async"></figure>
-    {{ end }}
-    {{ end }}
+    {{- with .Description }}<p class="dek">{{ . }}</p>{{ end }}
   </header>
 
-  <div class="site-surface is-light">
-    <div class="gear-detail-body site-shell">
-      <div class="detail-body">{{ .Content }}</div>
-      {{ if or .Params.purchased .Params.purchaseURL }}
-      <aside>
-        <p class="site-kicker">Object record</p>
-        <dl>
-          {{ with .Params.purchased }}<div><dt>Purchased</dt><dd>{{ time.AsTime . | time.Format "Jan 2, 2006" }}</dd></div>{{ end }}
-          {{ with .Params.purchaseURL }}<div><dt>Source</dt><dd><a href="{{ . }}">Product page ↗</a></dd></div>{{ end }}
-        </dl>
-      </aside>
-      {{ end }}
-    </div>
+  {{- if and $cover (not .Params.gallery) }}
+  <div class="frame"><figure class="kit-cover"{{ with .Params.imageWidth }} style="max-width: min(100%, {{ . }}px); margin-inline: auto;"{{ end }}><img src="{{ $cover }}" alt="{{ $coverAlt }}" loading="eager" decoding="async"></figure></div>
+  {{- else }}
+  <div class="frame"><hr class="article-rule" style="margin-bottom: clamp(32px, 5vw, 56px)"></div>
+  {{- end }}
 
-    {{ with .Params.tags }}
-    <footer class="reading-footer site-shell"><div class="reading-tags">{{ range . }}<span>#{{ . }}</span>{{ end }}</div></footer>
-    {{ end }}
+  <div class="kit-detail-body frame">
+    <div class="article-body">{{ .Content }}</div>
+    <aside class="kit-record" aria-label="Object record">
+      <dl>
+        {{- with .Params.category }}<div><dt>Category</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{- with .Params.subcategory }}<div><dt>Type</dt><dd>{{ . | humanize }}</dd></div>{{ end }}
+        {{- with .Params.purchased }}<div><dt>Purchased</dt><dd>{{ time.AsTime . | time.Format "Jan 2006" }}</dd></div>{{ end }}
+        <div><dt>Noted</dt><dd>{{ .Date.Format "Jan 2, 2006" }}</dd></div>
+        {{- with .Params.purchaseURL }}<div><dt>Maker</dt><dd><a href="{{ . }}" rel="noopener">Product page ↗</a></dd></div>{{ end }}
+      </dl>
+    </aside>
   </div>
+
+  {{- with .Params.tags }}
+  <footer class="article-foot frame"><div class="tag-row">{{ range . }}<span class="chip">#{{ . }}</span>{{ end }}</div></footer>
+  {{- end }}
 </article>
 {{ end }}

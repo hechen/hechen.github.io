@@ -1,9 +1,97 @@
 {{ define "main" }}
-<div class="simple-home home-journal">
-<header class="simple-intro home-intro"><p class="intro-label">Seattle · Apple-platform engineer</p><h1>Hi, I’m Chen.</h1><p>I build apps and write about the things I’m learning and using.</p><a class="intro-about" href="/about/">A little about me <span aria-hidden="true">↗</span></a></header>
-<section id="apps"><div class="simple-heading"><h2>Apps</h2><a href="/apps/">Explore apps →</a></div>{{ partial "app-shelf.html" . }}</section>
-<section><div class="simple-heading"><h2>Recent writing</h2><a href="/post/">All writing →</a></div>
-<ul class="simple-posts">{{ range first 5 (where site.RegularPages "Section" "post").ByDate.Reverse }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time></li>{{ end }}</ul></section>
-<section><div class="simple-heading"><h2>Gear</h2><a href="/gear/">All gear →</a></div><div class="simple-gear">{{ $gear := where (where (where site.Pages "Section" "gear") "RelPermalink" "ne" "/gear/") "Kind" "in" (slice "page" "section") }}{{ range first 4 $gear.ByDate.Reverse }}<a href="{{ .RelPermalink }}">{{ with (.Params.image | default .Params.cover.image) }}<img src="{{ . }}" alt="" loading="lazy">{{ end }}<h3>{{ .Title }}</h3><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time></a>{{ end }}</div></section>
+{{- $posts := (where site.RegularPages "Section" "post").ByDate.Reverse -}}
+{{- $gear := where (where (where site.Pages "Section" "gear") "RelPermalink" "ne" "/gear/") "Kind" "in" (slice "page" "section") -}}
+{{- $gear = $gear.ByDate.Reverse -}}
+{{- $apps := hugo.Data.apps -}}
+{{- $featured := where $apps "featured" true -}}
+{{- $rest := slice -}}{{- range $apps }}{{ if not .featured }}{{ $rest = $rest | append . }}{{ end }}{{ end -}}
+{{- $latestPost := index $posts 0 -}}
+{{- $latestGear := index $gear 0 -}}
+{{- $firstYear := (index $posts.Reverse 0).Date.Year -}}
 
-</div>{{ end }}
+<section class="hero frame" aria-labelledby="hero-title">
+  <p class="eyebrow rise"><span class="pulse" aria-hidden="true"></span><span>Chen</span><span>Apple-platform engineer</span><span>Seattle</span></p>
+  <h1 id="hero-title" class="hero-title rise rise-2">I build small, <em>careful</em> apps for Apple platforms <span class="hero-soft">and keep notes along the way.</span></h1>
+  <div class="hero-foot">
+    <div class="rise rise-3">
+      <p class="lede">I work in SwiftUI, watchOS, HealthKit, CloudKit, and on-device AI. I care about useful software, privacy, and getting the details right.</p>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="/apps/">See the apps <span aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="{{ "post/" | relLangURL }}">Read the notes</a>
+      </div>
+    </div>
+    <dl class="status-board rise rise-4" aria-label="Recently">
+      <div class="status-board-head"><span>On the bench</span><span><span class="pulse" aria-hidden="true"></span>{{ now.Format "Jan 2006" }}</span></div>
+      {{- with $latestPost }}
+      <a class="status-row" href="{{ .RelPermalink }}"><dt>Latest note</dt><dd>{{ .Title }}</dd><span class="status-when">{{ .Date.Format "Jan 2" }}</span></a>
+      {{- end }}
+      {{- with $latestGear }}
+      <a class="status-row" href="{{ .RelPermalink }}"><dt>On the desk</dt><dd>{{ .Title }}</dd><span class="status-when">{{ .Date.Format "Jan 2" }}</span></a>
+      {{- end }}
+      <a class="status-row" href="/apps/"><dt>Apps</dt><dd>{{ len $apps }} apps for iPhone, iPad, Mac and Watch</dd><span class="status-when">All</span></a>
+      <a class="status-row" href="{{ "post/" | relLangURL }}"><dt>Writing</dt><dd>{{ len $posts }} notes since {{ $firstYear }}</dd><span class="status-when">Archive</span></a>
+    </dl>
+  </div>
+</section>
+
+<section class="band frame reveal" id="apps" aria-labelledby="apps-title">
+  <header class="band-head">
+    <span class="band-index">01</span>
+    <h2 id="apps-title">Apps</h2>
+    <p>Native, private-by-default apps. Built one at a time, looked after for the long run.</p>
+    <a class="text-link" href="/apps/">All {{ len $apps }} apps →</a>
+  </header>
+  <div class="app-feature-grid">
+    {{- range $featured }}
+    <a class="app-feature" href="{{ .url }}">
+      <div class="app-feature-top"><img src="{{ .icon }}" alt="" width="88" height="88" loading="lazy" decoding="async"><span class="tag-mono">{{ .eyebrow }}</span></div>
+      <div><h3>{{ .name }}</h3><p>{{ .summary }}</p></div>
+      <div class="app-feature-foot"><span>{{ .platforms }}</span><span>Explore</span></div>
+    </a>
+    {{- end }}
+  </div>
+  <ul class="app-index" aria-label="More apps">
+    {{- range $rest }}
+    <li><a class="app-tile" href="{{ .url | default .store }}"><img src="{{ .icon }}" alt="" width="48" height="48" loading="lazy" decoding="async"><div><strong>{{ .name }}</strong><span>{{ .eyebrow }}</span></div></a></li>
+    {{- end }}
+  </ul>
+</section>
+
+<section class="band frame reveal" aria-labelledby="writing-title">
+  <header class="band-head">
+    <span class="band-index">02</span>
+    <h2 id="writing-title">Writing</h2>
+    <p>Notes on Swift, Apple platforms, and what I learn while building, in Chinese and English.</p>
+    <a class="text-link" href="{{ "post/" | relLangURL }}">Archive →</a>
+  </header>
+  <ol class="note-list">
+    {{- range first 6 $posts }}
+    <li><a class="note-row" href="{{ .RelPermalink }}">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time>
+      <span class="note-title">{{ .Title }}</span>
+      <span class="note-aside">{{ .ReadingTime }} min</span>
+      {{- with .Description }}<p class="note-desc">{{ . | plainify }}</p>{{ end }}
+    </a></li>
+    {{- end }}
+  </ol>
+</section>
+
+<section class="band frame reveal" aria-labelledby="gear-title">
+  <header class="band-head">
+    <span class="band-index">03</span>
+    <h2 id="gear-title">Gear</h2>
+    <p>Things I use, photographed on my desk, with notes on why they stay.</p>
+    <a class="text-link" href="/gear/">All gear →</a>
+  </header>
+  <div class="kit-grid is-home">
+    {{- $withPhotos := slice -}}{{- range $gear }}{{ if (.Params.image | default .Params.cover.image) }}{{ $withPhotos = $withPhotos | append . }}{{ end }}{{ end -}}
+    {{- range first 3 $withPhotos }}
+    {{- $cover := .Params.image | default .Params.cover.image }}
+    <article class="kit-card"><a href="{{ .RelPermalink }}">
+      <div class="kit-photo"><img src="{{ $cover }}" alt="{{ .Params.imageAlt | default .Params.cover.alt | default .Title }}" loading="lazy" decoding="async"></div>
+      <div class="kit-label">{{ with .Params.category }}<span class="tag-mono">{{ . }}</span>{{ end }}<h3>{{ .Title }}</h3><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time></div>
+    </a></article>
+    {{- end }}
+  </div>
+</section>
+{{ end }}

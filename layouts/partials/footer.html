@@ -1,1 +1,22 @@
-<footer class="simple-footer"><span>© {{ now.Year }} Chen</span><nav aria-label="More links"><a href="/photography/">Photography</a><a href="/now/">Now</a><a href="/tools/">Tools</a><a href="https://github.com/hechen">GitHub</a><a href="/post/index.xml">RSS</a></nav></footer>
+{{- $posts := where site.RegularPages "Section" "post" -}}
+<footer class="colophon">
+  <div class="frame">
+    <div class="colophon-top">
+      <p class="colophon-sign" aria-hidden="true">Chen<span>.</span></p>
+      <p class="colophon-line">Apple-platform engineer in Seattle. Apps, notes, and the things I use every day.</p>
+    </div>
+    <div class="colophon-grid">
+      <nav aria-labelledby="colophon-site"><h2 id="colophon-site">Site</h2><ul>
+        <li><a href="{{ "post/" | relLangURL }}">Writing</a></li><li><a href="/apps/">Apps</a></li><li><a href="/gear/">Gear</a></li><li><a href="/about/">About</a></li>
+      </ul></nav>
+      <nav aria-labelledby="colophon-more"><h2 id="colophon-more">More</h2><ul>
+        <li><a href="/now/">Now</a></li><li><a href="/tools/">Tools</a></li><li><a href="/photography/">Photography</a></li><li><a href="/tags/">Topics</a></li>
+      </ul></nav>
+      <nav aria-labelledby="colophon-elsewhere"><h2 id="colophon-elsewhere">Elsewhere</h2><ul>
+        <li><a href="https://github.com/hechen">GitHub</a></li><li><a href="https://stackoverflow.com/users/4388089/chen">Stack Overflow</a></li><li><a href="mailto:hechen.dream@gmail.com">Email</a></li><li><a href="{{ "post/index.xml" | relLangURL }}">RSS</a></li>
+      </ul></nav>
+      <div><h2>Colophon</h2><p class="colophon-note">Built with Hugo. Set in Instrument Serif, Geist and Newsreader. {{ len $posts }} notes since 2015.</p></div>
+    </div>
+    <div class="colophon-base"><span>© 2015–{{ now.Year }} Chen</span><a href="#top">Back to top ↑</a></div>
+  </div>
+</footer>

@@ -1,23 +1,31 @@
 {{ define "main" }}
+{{- /* Most of the archive is Chinese, but some default-language posts are English.
+       Detect CJK from the text so type, justification, and lang follow the content. */ -}}
+{{- $han := len (findRE `\p{Han}` .Plain) -}}
+{{- $cjk := gt $han 150 -}}
+{{- $hasToc := ge (len (findRE `<li>` .TableOfContents)) 3 -}}
 <div id="reading-progress" class="reading-progress" aria-hidden="true"><div id="reading-progress-bar"></div></div>
 
-<article class="site-page writing-detail-page">
-  <header class="reading-hero site-shell">
-    <a class="site-back-link" href="/post/"><span aria-hidden="true">←</span> All writing</a>
-    <div class="site-meta-row">
+<article class="article{{ if $cjk }} is-cjk{{ end }}" lang="{{ if $cjk }}zh-CN{{ else }}en{{ end }}">
+  <header class="article-head frame">
+    <a class="crumb" href="{{ "post/" | relLangURL }}" lang="en"><span aria-hidden="true">←</span> Writing</a>
+    <p class="article-meta">
       <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
       {{- if .ReadingTime }}<span>{{ .ReadingTime }} min read</span>{{ end }}
-    </div>
+      {{- if and .Lastmod (gt (.Lastmod.Sub .Date).Hours 720.0) }}<span>Updated {{ .Lastmod.Format "Jan 2006" }}</span>{{ end }}
+      {{- range .Translations }}<a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" lang="{{ .Language.Lang }}">{{ if eq .Language.Lang "en" }}Read in English{{ else }}阅读中文版{{ end }} →</a>{{ end }}
+    </p>
     <h1>{{ .Title }}</h1>
-    {{- with .Description }}<p>{{ . }}</p>{{ end }}
+    {{- with .Description }}<p class="dek">{{ . }}</p>{{ end }}
   </header>
 
-  <div class="site-surface is-light">
-    <div class="reading-layout site-shell">
-      <div class="post-body">
-      {{- if .TableOfContents }}
-      <details class="reading-toc-mobile">
-        <summary>On this page</summary>
+  <div class="frame"><hr class="article-rule"></div>
+
+  <div class="article-grid frame">
+    <div class="article-body" id="article-body">
+      {{- if $hasToc }}
+      <details class="toc-inline">
+        <summary>{{ if $cjk }}目录{{ else }}On this page{{ end }}</summary>
         <div>{{ .TableOfContents }}</div>
       </details>
       {{- end }}
@@ -26,41 +34,38 @@
       {{- else }}
       {{ .Content }}
       {{- end }}
-      </div>
-
-      {{- if .TableOfContents }}
-      <aside class="reading-sidebar">
-        <nav id="toc-sidebar">
-          <p class="site-kicker">On this page</p>
-          {{ .TableOfContents }}
-        </nav>
-      </aside>
-      {{- end }}
     </div>
-
-    <footer class="reading-footer site-shell">
-      {{- with $.GetTerms "tags" }}
-      <div class="reading-tags">
-        {{- range . }}<a href="{{ .Permalink }}">#{{ .LinkTitle }}</a>{{ end }}
-      </div>
-      {{- end }}
-
-      {{- $prev := .PrevInSection -}}
-      {{- $next := .NextInSection -}}
-      {{- if or $prev $next }}
-      <nav class="reading-post-nav" aria-label="Adjacent writing">
-        {{- if $prev }}<a href="{{ $prev.RelPermalink }}"><span>← Previous</span><strong>{{ $prev.Title }}</strong></a>{{ else }}<span></span>{{ end }}
-        {{- if $next }}<a href="{{ $next.RelPermalink }}"><span>Next →</span><strong>{{ $next.Title }}</strong></a>{{ else }}<span></span>{{ end }}
+    {{- if $hasToc }}
+    <aside class="toc-rail" aria-label="{{ if $cjk }}目录{{ else }}On this page{{ end }}">
+      <nav id="toc-sidebar">
+        <p class="toc-title">{{ if $cjk }}目录{{ else }}On this page{{ end }}</p>
+        {{ .TableOfContents }}
       </nav>
-      {{- end }}
-    </footer>
+    </aside>
+    {{- end }}
   </div>
+
+  <footer class="article-foot frame">
+    {{- with $.GetTerms "tags" }}
+    <div class="tag-row" aria-label="Topics">
+      {{- range . }}<a class="chip" href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a>{{ end }}
+    </div>
+    {{- end }}
+    {{- $newer := .PrevInSection -}}
+    {{- $older := .NextInSection -}}
+    {{- if or $newer $older }}
+    <nav class="adjacent" aria-label="More writing" lang="{{ site.Language.Lang }}">
+      {{- with $older }}<a href="{{ .RelPermalink }}"><span lang="en">← Older</span><strong>{{ .Title }}</strong></a>{{ end }}
+      {{- with $newer }}<a class="is-next" href="{{ .RelPermalink }}"><span lang="en">Newer →</span><strong>{{ .Title }}</strong></a>{{ end }}
+    </nav>
+    {{- end }}
+  </footer>
 </article>
 
 <script>
 (function () {
   var bar = document.getElementById('reading-progress-bar');
-  var article = document.querySelector('.post-body');
+  var article = document.getElementById('article-body');
   if (bar && article) {
     var update = function () {
       var rect = article.getBoundingClientRect();
@@ -75,7 +80,7 @@
   }
 
   var toc = document.getElementById('toc-sidebar');
-  if (!toc) return;
+  if (!toc || !('IntersectionObserver' in window)) return;
   var links = toc.querySelectorAll('a[href^="#"]');
   var byHash = {};
   links.forEach(function (link) { byHash[decodeURIComponent(link.getAttribute('href').slice(1))] = link; });
@@ -87,7 +92,7 @@
     var active = byHash[visible[0].target.id];
     if (active) active.classList.add('is-active');
   }, { rootMargin: '-90px 0px -70% 0px', threshold: 0 });
-  document.querySelectorAll('.post-body h2[id], .post-body h3[id]').forEach(function (heading) { observer.observe(heading); });
+  document.querySelectorAll('#article-body :is(h2, h3)[id]').forEach(function (heading) { observer.observe(heading); });
 })();
 </script>
 {{ end }}

@@ -1,1 +1,14 @@
-{{ define "main" }}<div class="simple-home"><header class="simple-intro"><h1>{{ .Title }}</h1>{{ with .Content }}{{ . }}{{ end }}</header><ul class="simple-posts">{{ range .Pages.ByDate.Reverse }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ if .IsPage }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>{{ else }}<span>{{ len .Pages }} entries</span>{{ end }}</li>{{ end }}</ul></div>{{ end }}
+{{ define "main" }}
+<div class="frame">
+  <header class="page-head">
+    <p class="eyebrow rise"><span>Writing</span><span>{{ len .Data.Terms }} {{ .Data.Plural }}</span></p>
+    <h1 class="rise rise-2">Browse by <em>{{ .Data.Singular }}</em>.</h1>
+    <p class="lede rise rise-3">Every note is filed under a few {{ .Data.Plural }}. Larger numbers mean more notes.</p>
+  </header>
+  <div class="term-cloud">
+    {{- range .Data.Terms.ByCount }}
+    <a class="chip" href="{{ .Page.RelPermalink }}">{{ .Page.Title }} <small>{{ .Count }}</small></a>
+    {{- end }}
+  </div>
+</div>
+{{ end }}
