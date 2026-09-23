@@ -1,4 +1,6 @@
 ---
+# Keeps the Giscus thread that started on the retired Chinese URL.
+commentId: /zh-cn/post/keeps-on-the-app-store/
 title: 'Keeps is on the App Store'
 slug: 'keeps-on-the-app-store'
 date: 2026-09-20T00:00:00-07:00
