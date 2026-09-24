@@ -20,7 +20,7 @@ Train from Apple Watch, then review your progress on a larger screen. During a w
 
 - **Programs:** follow a ready-made program or create one with AI, then build on your previous sessions.
 - **Fractional weights:** 12.5 lb micro-loads and 0.25 kg jumps both work.
-- **Animated demos:** a curated GIF library for the lifts you train, with anatomical muscle diagrams as a fallback. You can add your own video for niche moves and form references.
+- **Animated demos:** follow exercise demos for the lifts you train, and explore anatomical diagrams of the muscles they work.
 - **Widgets:** see the muscles you trained right on the Home Screen.
 - **Apple Health:** sync goes both ways. Workouts count toward your Activity rings and appear in the Workouts app, and body weight reads back automatically for bodyweight lifts.
 

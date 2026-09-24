@@ -12,7 +12,7 @@
   featured: true
 - name: LiftCoach
   eyebrow: Health & fitness
-  platforms: iPhone · iPad · Apple Watch · Mac
+  platforms: iPhone · iPad · Apple Watch
   icon: /assets/icons/liftcoach.png
   url: /apps/liftcoach/
   store: https://apps.apple.com/app/id6812929269
