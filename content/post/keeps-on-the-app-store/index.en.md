@@ -16,7 +16,7 @@ Keeps gives the things you own a place to keep their history: a photo, the origi
 
 You can start with a few everyday belongings, import purchases for review, or explore the separate demo collection. Optional private iCloud sync and photo-inclusive backups help you keep the records. There is no Keeps account, advertising, or third-party analytics.
 
-**September 24 update:** Mac 1.2.0 and iOS 1.1.0 are available. Version 1.2.1 has been submitted for Apple review on both platforms, with a lighter Overview, more reliable use logging and corrected cost rankings in Shortcuts. It is not yet available on the store. The widgets described below are for iPhone and iPad.
+**September 24 update:** Mac 1.2.0 and iOS 1.1.0 are available. Version 1.2.1 is awaiting Apple review on Mac, while its iPhone and iPad submission is being prepared. The update brings a lighter Overview, richer on-device collection briefings on Apple Intelligence-compatible devices, more reliable use logging and corrected cost rankings in Shortcuts. Briefings now explain up to three useful observations about saved warranties, recorded-use goals, and purchase spending. It is not yet available on the store. The widgets described below are for iPhone and iPad.
 
 ## Widgets introduced in 1.1.0
 
