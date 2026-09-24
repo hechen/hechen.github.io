@@ -5,22 +5,22 @@ title: 'Keeps is on the App Store'
 slug: 'keeps-on-the-app-store'
 date: 2026-09-20T00:00:00-07:00
 draft: false
-description: 'Keeps 1.0.0 is available for iPhone and iPad. The 1.1.0 update with widgets has been submitted for App Review.'
+description: 'Keeps is available for iPhone, iPad, and Mac. Version 1.2.1 brings a lighter Overview and reliability fixes.'
 categories: ['apps']
 tags: ['Keeps', 'iOS', 'iPadOS']
 ---
 
-Keeps 1.0.0 is now [available on the App Store for iPhone and iPad](https://apps.apple.com/app/id6811795155).
+Keeps is [available on the App Store for iPhone, iPad, and Mac](https://apps.apple.com/app/id6811795155).
 
 Keeps gives the things you own a place to keep their history: a photo, the original purchase price and currency, a purchase date, and the occasions when you use them. Cost per day updates with time. Cost per use follows your logged uses, or an optional usage-frequency estimate. When something is sold, its sale proceeds become part of the ownership cost.
 
 You can start with a few everyday belongings, import purchases for review, or explore the separate demo collection. Optional private iCloud sync and photo-inclusive backups help you keep the records. There is no Keeps account, advertising, or third-party analytics.
 
-Native Mac 1.1.0 has also been submitted for App Review as its first App Store release, with the updated editor, editable AI suggestions, emoji category filters, and warranty reminders. Mac availability is pending approval. The widgets described below are for iPhone and iPad. The current public release is for iPhone and iPad, on iOS or iPadOS 18 and later.
+**September 24 update:** Mac 1.2.0 and iOS 1.1.0 are available. Version 1.2.1 has been submitted for Apple review on both platforms, with a lighter Overview, more reliable use logging and corrected cost rankings in Shortcuts. It is not yet available on the store. The widgets described below are for iPhone and iPad.
 
-## Coming in 1.1.0
+## Widgets introduced in 1.1.0
 
-The iPhone and iPad update has been submitted for App Review. It includes three widget experiences:
+The released iPhone and iPad update includes three widget experiences:
 
 - **Overview:** the number of items you own and their recorded purchase cost, with a tap through to Overview.
 - **Item:** choose a belonging and see its photo, cost per day, and cost per use, with a tap through to its details.
@@ -39,6 +39,6 @@ The upcoming update also includes optional local warranty reminders. They will b
 
 ## One purchase, with iCloud sync included
 
-Keeps remains a one-time US$0.99 app purchase, with regional pricing. iCloud collection sync is included, with no subscription or in-app purchase. This remains the same in 1.1.0. Sync uses your own private iCloud storage.
+Keeps remains a one-time US$0.99 app purchase, with regional pricing. iCloud collection sync is included, with no subscription or in-app purchase. Sync uses your own private iCloud storage.
 
 Feedback will replace Share diagnostics and open your default email app directly with a short template. The draft will include the hardware model, OS version, and Keeps version/build, all editable before sending. It will not attach a log or automatically include item names or collection data. The old plaintext log will also be removed.
