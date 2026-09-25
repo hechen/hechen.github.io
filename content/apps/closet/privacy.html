@@ -5,7 +5,7 @@ url: '/apps/closet/privacy.html'
 
 <section class="closet-privacy-hero border-b border-line">
   <div class="closet-privacy-shell">
-    <a href="../" class="closet-privacy-back">
+    <a href="/apps/closet/" class="closet-privacy-back">
       <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       Closet
     </a>
@@ -66,7 +66,7 @@ url: '/apps/closet/privacy.html'
         <h2 id="storage-sync-title" class="mt-3 text-2xl sm:text-3xl font-semibold tracking-tight text-ink">Storage &amp; sync</h2>
         <div class="mt-5 space-y-5 text-base leading-7 text-muted">
           <p><strong class="font-semibold text-ink">Closet is local-first and does not require a Closet account.</strong> Wardrobe records, photos, outfits, wear logs, wishlist entries, and settings are stored on your device unless you choose a feature that uses iCloud or another external service.</p>
-          <p>If you enable iCloud, wardrobe records and related data sync through a private CloudKit database associated with your Apple ID. Selected preferences may sync through Apple's iCloud key-value storage. Closet does not operate a separate account system or first-party sync server.</p>
+          <p>If you enable iCloud, wardrobe records and related data sync through a private CloudKit database associated with your Apple ID. Appearance, layout, filters, and other app preferences stay on each device. With Sync AI Provider and Key enabled (the default), the selected provider ID syncs through Apple's iCloud key-value storage and provider API keys sync through iCloud Keychain. Turning this option off keeps credentials local and stops publishing the provider selection. Closet does not operate a separate account system or first-party sync server.</p>
         </div>
       </section>
 
@@ -84,8 +84,8 @@ url: '/apps/closet/privacy.html'
         <div class="mt-5 space-y-8 text-base leading-7 text-muted">
           <div>
             <h3 class="text-lg font-semibold text-ink">AI features</h3>
-            <p class="mt-3">Apple Intelligence uses Apple's system frameworks. Supported downloaded models process requests on the device; downloading a selected model contacts its model host, which receives ordinary network request information but not wardrobe content merely because a model is downloaded.</p>
-            <p class="mt-4">If you select OpenAI, Anthropic Claude, or a custom endpoint, the text, wardrobe context, purchase details, prices, or images needed for the request are sent directly from your device to that provider. Closet does not proxy AI requests through a Closet-operated server. Provider credentials are stored in Keychain.</p>
+            <p class="mt-3">Apple Intelligence uses Apple's system frameworks. Downloadable on-device models are not available in the current version.</p>
+            <p class="mt-4">If you select a supported cloud AI provider such as OpenAI or Anthropic Claude, or a custom endpoint on macOS, the text, wardrobe context, purchase details, prices, or images needed for the request are sent directly from your device to that provider. Closet does not proxy AI requests through a Closet-operated server. Provider credentials are stored in Keychain. Custom endpoints are not available in the iPhone or iPad app.</p>
             <p class="mt-4">Before the first text or image transfer, Closet names the destination and data categories and asks you to choose <strong class="font-semibold text-ink">Allow &amp; Continue</strong> or <strong class="font-semibold text-ink">Don't Allow</strong>. Consent is scoped to that provider or custom endpoint. Declining sends nothing; changing the destination requires a new decision. You can review or revoke future sharing under Settings → AI Features → Cloud AI Privacy. Revocation cannot delete copies already retained by a provider.</p>
             <p class="mt-4">An enabled photo feature may request cloud enhancement after you select or scan an image, but the same consent check runs before transfer. OpenAI, Anthropic, and a custom endpoint operator control their own security, logging, retention, and deletion practices.</p>
           </div>
@@ -96,7 +96,12 @@ url: '/apps/closet/privacy.html'
           <div>
             <h3 class="text-lg font-semibold text-ink">Web import and price checks</h3>
             <p class="mt-3">When you import a product URL or check a saved wishlist price, your device contacts that website directly. The website may receive standard request information such as your IP address, request headers, cookies, and the requested URL under its own privacy policy. Parsed product information is stored with your wardrobe.</p>
+            <p class="mt-4">Amazon order import uses an isolated local browser profile. You sign in directly with Amazon; Closet does not read your password. Sign-in cookies stay in that profile until you choose Clear Amazon Sign-in in Settings. Closet extracts order details from pages you open and asks you to review them before saving. Product images are downloaded without Amazon session cookies. Order pages are not sent to a Closet-operated server.</p>
             <p class="mt-4">The optional Safari and Chrome extensions read only the active page after you activate them. They extract product details locally and open a Closet review screen only after you choose Review in Closet. They do not upload browsing data to a Closet server or save an item without native review.</p>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold text-ink">Currency conversion</h3>
+            <p class="mt-3">Closet retrieves public exchange rates from Frankfurter to display totals across currencies. This request does not include your wardrobe records or item prices; the service receives ordinary network request information.</p>
           </div>
         </div>
       </section>
@@ -130,7 +135,7 @@ url: '/apps/closet/privacy.html'
         <a href="mailto:chen.he@icloud.com?subject=Closet%20Privacy">Email chen.he@icloud.com</a>
       </aside>
 
-      <p class="closet-privacy-updated">Last updated: 11 August 2026</p>
+      <p class="closet-privacy-updated">Last updated: 25 September 2026</p>
     </div>
   </div>
   </div>
