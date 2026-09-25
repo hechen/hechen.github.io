@@ -384,6 +384,10 @@ a.status-row .status-when::after { content: " →"; color: var(--signal); }
 .article-body .image-pair-small img { width: auto; max-width: 100%; max-height: 220px; margin-inline: auto; }
 .article-body .full-width-image img.screen { border: 1px solid var(--line); border-radius: 14px; }
 
+/* App Store Connect promo videos on release posts; often portrait. */
+.article-body .release-video { margin: 0 0 1.8em; }
+.article-body .release-video video { display: block; width: auto; max-width: 100%; max-height: 72vh; margin-inline: auto; border-radius: var(--radius); background: #000; }
+
 /* Code blocks: palette comes from code-themes.css, frame comes from here. */
 .article-body .code-example { margin: 1.8em 0; border-radius: var(--radius); }
 .article-body .code-toolbar { font-family: var(--mono); letter-spacing: .02em; }

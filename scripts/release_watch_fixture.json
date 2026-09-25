@@ -1,0 +1,26 @@
+{
+  "versions": {
+    "6812929269": [
+      {"id": "lc-100", "platform": "IOS", "versionString": "1.0.0", "appVersionState": "READY_FOR_DISTRIBUTION"},
+      {"id": "lc-101-ios", "platform": "IOS", "versionString": "1.0.1", "appVersionState": "READY_FOR_DISTRIBUTION"},
+      {"id": "lc-101-mac", "platform": "MAC_OS", "versionString": "1.0.1", "appVersionState": "READY_FOR_DISTRIBUTION"},
+      {"id": "lc-110", "platform": "IOS", "versionString": "1.1.0", "appVersionState": "WAITING_FOR_REVIEW"}
+    ],
+    "6758357191": [
+      {"id": "closet-100", "platform": "IOS", "versionString": "1.0.0", "appStoreState": "READY_FOR_SALE"}
+    ],
+    "6753774575": [
+      {"id": "structly-100", "platform": "IOS", "versionString": "1.0.0", "appVersionState": "READY_FOR_DISTRIBUTION"},
+      {"id": "structly-200", "platform": "IOS", "versionString": "2.0.0", "appVersionState": "READY_FOR_DISTRIBUTION"}
+    ]
+  },
+  "localizations": {
+    "lc-101-ios": [
+      {"locale": "en-US", "whatsNew": "• Rest timer keeps counting after the alert\n• Fixed a sync issue with Apple Health\nThanks for all the feedback!", "promotionalText": "Train with purpose.", "description": "LiftCoach helps you plan and log strength training."},
+      {"locale": "zh-Hans", "whatsNew": "• 休息计时器在提醒后继续计时\n• 修复了与 Apple 健康同步的问题\n感谢大家的反馈！", "promotionalText": "有目标地训练。", "description": "LiftCoach 帮你规划和记录力量训练。"}
+    ],
+    "closet-100": [
+      {"locale": "en-US", "whatsNew": null, "promotionalText": "Your wardrobe, organized and private.", "description": "Organize your wardrobe and plan outfits.\nTrack every wear.\n\nPro unlock: $4.99 one time."}
+    ]
+  }
+}

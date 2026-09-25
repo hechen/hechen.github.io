@@ -1,0 +1,55 @@
+name: Watch App Store releases
+
+# Opens a blog-post pull request when an app in data/apps.yaml (with an
+# appStoreId) gets a new App Store release. See scripts/release_watch.py
+# and docs/release-watch.md.
+
+on:
+  schedule:
+    - cron: '41 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: release-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    env:
+      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+      ASC_PRIVATE_KEY: ${{ secrets.ASC_PRIVATE_KEY }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Check for App Store Connect credentials
+        id: creds
+        run: |
+          if [ -z "$ASC_KEY_ID" ] || [ -z "$ASC_ISSUER_ID" ] || [ -z "$ASC_PRIVATE_KEY" ]; then
+            echo "::notice::App Store Connect secrets are not set yet; see docs/release-watch.md."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@v4
+        if: steps.creds.outputs.ready == 'true'
+        with:
+          ref: master
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        if: steps.creds.outputs.ready == 'true'
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        if: steps.creds.outputs.ready == 'true'
+        run: pip install 'pyjwt[crypto]==2.10.1'
+      - name: Open pull requests for new releases
+        if: steps.creds.outputs.ready == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          python3 scripts/release_watch.py --create-prs

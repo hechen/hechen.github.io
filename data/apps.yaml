@@ -1,6 +1,9 @@
 # Keep catalog copy focused on product benefits and features.
 # Do not publish app prices, internal build numbers, or review/development status.
+# appStoreId is the App Store Connect Apple ID; scripts/release_watch.py watches
+# those apps and opens a blog-post PR for each new App Store release.
 - name: Structly
+  appStoreId: '6753774575'
   eyebrow: Safari extension
   platforms: iPhone · iPad · Mac
   icon: /assets/icons/structly.png
@@ -11,6 +14,7 @@
   summary: Raw JSON, made human—collapsible trees, fast search, and native-feeling syntax across Safari on every Apple device.
   featured: true
 - name: LiftCoach
+  appStoreId: '6812929269'
   eyebrow: Health & fitness
   platforms: iPhone · iPad · Apple Watch
   icon: /assets/icons/liftcoach.png
@@ -21,6 +25,7 @@
   summary: Plan strength routines, log every set, and see how your training adds up. Live workout stats, muscle maps, exercise demos, and AI coaching help you train with purpose.
   featured: true
 - name: Distill
+  appStoreId: '6759821801'
   eyebrow: Read later
   platforms: iPhone · iPad · Mac · Watch
   icon: /assets/icons/distill.png
@@ -38,6 +43,7 @@
   support: /apps/course-book-builder/support.html
   summary: Collect selected articles and course pages into a local reading library, then export a book with chapters and a table of contents.
 - name: Keeps
+  appStoreId: '6811795155'
   eyebrow: Personal belongings
   platforms: iPhone · iPad · Mac
   icon: /assets/icons/keeps.png
@@ -47,6 +53,7 @@
   support: /apps/keeps/support.html
   summary: A home for your belongings, with purchase details, use history, and a clearer view of ownership costs.
 - name: Closet
+  appStoreId: '6758357191'
   eyebrow: Personal inventory
   platforms: iPhone · iPad
   icon: /assets/icons/closet.png
@@ -55,6 +62,7 @@
   support: /apps/closet/support.html
   summary: Wardrobe tracking with total value, wear history, and cost-per-wear.
 - name: SpendWisely
+  appStoreId: '6761079192'
   eyebrow: Personal finance
   platforms: iPhone · iPad
   icon: /assets/icons/spendwisely.png
@@ -63,6 +71,7 @@
   support: /apps/spendwisely/support.html
   summary: Clear spending views and deliberate money tracking without bank-app clutter.
 - name: EatWisely
+  appStoreId: '6759225918'
   eyebrow: Nutrition
   platforms: iPhone · iPad · Apple Watch · Mac
   icon: /assets/icons/eatwisely.png
@@ -71,6 +80,7 @@
   support: /apps/eatwisely/support.html
   summary: Log meals with a photo, barcode, or description. Review calories and macros, reuse favorite meals, and follow your nutrition trends.
 - name: TensionRadar
+  appStoreId: '6753273426'
   eyebrow: Stress & HRV
   platforms: iPhone · Apple Watch
   icon: /assets/icons/tensionradar.png
@@ -79,12 +89,14 @@
   support: /apps/tensionradar/support.html
   summary: A real-time HRV stress radar with a cartoon character that feels what your heart feels, a personal baseline, coherence breathing and watch complications. Nothing leaves your device.
 - name: TrainInsight
+  appStoreId: '6759210309'
   url: /apps/traininsight/
   eyebrow: Training analytics
   platforms: iPhone · Apple Watch
   icon: /assets/icons/traininsight.png
   summary: Readiness signals and training analytics built around Apple Watch data.
 - name: Market Mood
+  appStoreId: '6761278234'
   eyebrow: Market pulse
   platforms: iPhone · iPad · Watch
   icon: /assets/icons/marketmood.png

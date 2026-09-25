@@ -2,7 +2,7 @@
 {{- /* Detect CJK from the text, not the site language, so type, justification,
        and lang follow what the post actually contains. */ -}}
 {{- $han := len (findRE `\p{Han}` .Plain) -}}
-{{- $cjk := gt $han 150 -}}
+{{- $cjk := or (eq .Language.Lang "zh-cn") (gt $han 150) -}}
 {{- $hasToc := ge (len (findRE `<li>` .TableOfContents)) 3 -}}
 <div id="reading-progress" class="reading-progress" aria-hidden="true"><div id="reading-progress-bar"></div></div>
 
@@ -23,6 +23,9 @@
 
   <div class="article-grid frame">
     <div class="article-body" id="article-body">
+      {{- with .Params.video }}{{ with $.Resources.GetMatch . }}
+      <figure class="release-video"><video src="{{ .RelPermalink }}" controls playsinline preload="metadata"></video></figure>
+      {{- end }}{{ end }}
       {{- if $hasToc }}
       <details class="toc-inline">
         <summary>{{ if $cjk }}目录{{ else }}On this page{{ end }}</summary>
