@@ -1,0 +1,18 @@
+{{- /*
+  Two images side by side, for portrait app screenshots that would be too
+  tall in the text column. Stays two-up on phones. Captionable.
+
+    {{< image-pair a="/post/x/one.jpg" a-alt="…" b="/post/x/two.jpg" b-alt="…" caption="…" >}}
+
+  size="small" keeps small crops (status-bar details, for example) at a
+  modest height instead of stretching them to the column width.
+*/ -}}
+<figure class="image-pair{{ if eq (.Get "size") "small" }} image-pair-small{{ end }}">
+  <div class="image-pair-row">
+    <img src="{{ .Get "a" }}" alt="{{ .Get "a-alt" | default "" }}" loading="lazy" decoding="async">
+    <img src="{{ .Get "b" }}" alt="{{ .Get "b-alt" | default "" }}" loading="lazy" decoding="async">
+  </div>
+  {{- with .Get "caption" }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end }}
+</figure>

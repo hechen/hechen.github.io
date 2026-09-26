@@ -379,6 +379,10 @@ a.status-row .status-when::after { content: " →"; color: var(--signal); }
 .article-body .callout > div > :last-child { margin-bottom: 0; }
 .article-body .full-width-image { margin-inline: min(0px, calc((var(--measure) - min(1000px, 100vw - 2 * var(--gutter))) / 2)); }
 .article-body .full-width-image img { width: 100%; }
+.article-body .image-pair-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: center; }
+.article-body .image-pair img { width: 100%; margin: 0; border: 1px solid var(--line); border-radius: 14px; }
+.article-body .image-pair-small img { width: auto; max-width: 100%; max-height: 220px; margin-inline: auto; }
+.article-body .full-width-image img.screen { border: 1px solid var(--line); border-radius: 14px; }
 
 /* Code blocks: palette comes from code-themes.css, frame comes from here. */
 .article-body .code-example { margin: 1.8em 0; border-radius: var(--radius); }
