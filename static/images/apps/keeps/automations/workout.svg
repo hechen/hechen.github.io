@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-labelledby="t"><title id="t">When an Apple Watch workout ends, Keeps logs a use of the running shoes</title>
+<rect width="480" height="320" rx="24" fill="#eef1e9"/>
+<g fill="none" stroke="#22302a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M64 222c0-12 6-22 18-26l22-8c8-3 14-10 16-18l8-30c2-8 10-12 18-8l14 8c10 6 18 16 30 22 30 14 70 18 110 26 14 3 22 14 22 28v6H82c-10 0-18-8-18-18z" fill="#ffffff"/>
+  <path d="M64 236h258" stroke="#22302a"/>
+  <path d="M150 168l26 12M162 146l26 12M176 126l24 12" stroke="#305d4e"/>
+  <path d="M104 188c30 0 46 8 60 24" stroke="#8fa197"/>
+</g>
+<g transform="translate(376 150)" fill="none" stroke="#22302a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="-36" y="-46" width="72" height="92" rx="18" fill="#ffffff"/>
+  <rect x="-24" y="-64" width="48" height="18" rx="6" fill="#cfdfd5"/><rect x="-24" y="46" width="48" height="18" rx="6" fill="#cfdfd5"/>
+  <circle r="24" stroke="#cfdfd5" stroke-width="6"/>
+  <path d="M0 -24a24 24 0 1 1 -22 10" stroke="#305d4e" stroke-width="6"/>
+</g>
+<g transform="translate(404 60)">
+  <circle r="30" fill="#305d4e"/>
+  <path d="M-12 1l8 8 16-17" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

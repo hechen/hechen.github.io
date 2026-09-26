@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-labelledby="t"><title id="t">An NFC tag on a water bottle: hold an iPhone near it and Keeps logs a use</title>
+<rect width="480" height="320" rx="24" fill="#eef1e9"/>
+<g fill="none" stroke="#22302a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M150 62h50v22c14 6 22 20 22 36v120c0 12-10 22-22 22h-50c-12 0-22-10-22-22V120c0-16 8-30 22-36z" fill="#ffffff"/>
+  <rect x="146" y="46" width="58" height="18" rx="6" fill="#305d4e"/>
+  <path d="M136 150h78" stroke="#cfdfd5"/><path d="M136 176h78" stroke="#cfdfd5"/>
+</g>
+<g transform="translate(175 208)">
+  <circle r="26" fill="#ffffff" stroke="#22302a" stroke-width="3"/>
+  <g fill="none" stroke="#305d4e" stroke-width="3" stroke-linecap="round">
+    <path d="M-9 -8a12 12 0 0 1 0 16"/><path d="M-3 -13a19 19 0 0 1 0 26"/><path d="M3 -18a26 26 0 0 1 0 36"/>
+  </g>
+</g>
+<g fill="none" stroke="#22302a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" transform="rotate(-18 330 200)">
+  <rect x="290" y="120" width="110" height="200" rx="20" fill="#ffffff"/>
+  <rect x="300" y="132" width="90" height="176" rx="12" fill="#f6f7f3" stroke="none"/>
+  <rect x="330" y="124" width="30" height="7" rx="3.5" fill="#22302a" stroke="none"/>
+</g>
+<g fill="none" stroke="#305d4e" stroke-width="3" stroke-linecap="round"><path d="M216 190a40 40 0 0 1 0 36" opacity=".9"/><path d="M228 180a56 56 0 0 1 0 56" opacity=".6"/><path d="M240 170a72 72 0 0 1 0 76" opacity=".3"/></g>
+<g transform="translate(404 78)">
+  <circle r="30" fill="#305d4e"/>
+  <path d="M-12 1l8 8 16-17" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

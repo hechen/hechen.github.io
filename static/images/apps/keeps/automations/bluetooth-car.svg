@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-labelledby="t"><title id="t">When the car's Bluetooth connects, Keeps logs a use of the car charger</title>
+<rect width="480" height="320" rx="24" fill="#eef1e9"/>
+<g fill="none" stroke="#22302a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M70 214v-40c0-8 4-14 10-18l32-40c6-8 14-12 24-12h110c10 0 18 4 24 12l32 40c6 4 10 10 10 18v40c0 8-6 14-14 14H84c-8 0-14-6-14-14z" fill="#ffffff"/>
+  <path d="M118 156l24-32c3-4 8-6 12-6h60l12 38z" fill="#cfdfd5"/>
+  <path d="M232 118h44c4 0 8 2 11 5l26 33h-70z" fill="#cfdfd5"/>
+  <circle cx="128" cy="232" r="22" fill="#ffffff"/><circle cx="128" cy="232" r="8" fill="#22302a"/>
+  <circle cx="284" cy="232" r="22" fill="#ffffff"/><circle cx="284" cy="232" r="8" fill="#22302a"/>
+  <path d="M70 190h30" /><path d="M282 190h30"/>
+</g>
+<g transform="translate(206 92)" fill="none" stroke="#305d4e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M-11 12L11 -8 0 -19V19L11 8-11 -12"/>
+</g>
+<g fill="none" stroke="#305d4e" stroke-width="3" stroke-linecap="round"><path d="M236 62a34 34 0 0 1 0 48" opacity=".7"/><path d="M250 50a50 50 0 0 1 0 72" opacity=".4"/></g>
+<g transform="translate(372 176)" fill="none" stroke="#22302a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M-22 -40h44v30c0 12-10 22-22 22s-22-10-22-22z" fill="#ffffff"/>
+  <path d="M-10 -40v-18M10 -40v-18"/>
+  <path d="M0 12v22c0 12-12 20-28 20h-16" />
+  <path d="M-8 -20h16" stroke="#305d4e"/><path d="M0 -28v16" stroke="#305d4e"/>
+</g>
+<g transform="translate(404 78)">
+  <circle r="30" fill="#305d4e"/>
+  <path d="M-12 1l8 8 16-17" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

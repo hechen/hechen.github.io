@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-labelledby="t"><title id="t">When you arrive at the gym, Keeps logs a use of the gym bag</title>
+<rect width="480" height="320" rx="24" fill="#eef1e9"/>
+<g fill="none" stroke="#22302a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M70 250V140l70-40 70 40v110z" fill="#ffffff"/>
+  <path d="M70 140h140" stroke="#cfdfd5"/>
+  <rect x="122" y="196" width="36" height="54" rx="4" fill="#cfdfd5"/>
+  <rect x="88" y="160" width="24" height="20" rx="3" fill="#cfdfd5"/><rect x="168" y="160" width="24" height="20" rx="3" fill="#cfdfd5"/>
+  <path d="M40 250h410" stroke="#8fa197"/>
+</g>
+<g transform="translate(140 60)" fill="none" stroke="#305d4e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M0 40c-16-18-24-30-24-40a24 24 0 0 1 48 0c0 10-8 22-24 40z" fill="#ffffff"/><circle r="9" fill="#305d4e" stroke="none"/>
+</g>
+<g transform="translate(318 214)" fill="none" stroke="#22302a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="-70" y="-40" width="140" height="76" rx="18" fill="#ffffff"/>
+  <path d="M-30 -40v-14c0-8 6-14 14-14h32c8 0 14 6 14 14v14"/>
+  <path d="M-70 -8h140" stroke="#cfdfd5"/>
+  <path d="M-10 -8v44M10 -8v44" stroke="#305d4e"/>
+</g>
+<g transform="translate(404 78)">
+  <circle r="30" fill="#305d4e"/>
+  <path d="M-12 1l8 8 16-17" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>
