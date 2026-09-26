@@ -3,7 +3,7 @@ title: 'LiftCoach 适配 iPhone Duo'
 slug: 'liftcoach-on-iphone-duo'
 date: 2026-09-25T16:30:00-07:00
 draft: false
-description: '抢先看 LiftCoach 在 iPhone Duo 上的样子：展开后分成两页，半折放在训练凳上免手操作，控件放进侧边栏，实时活动也适配了新的灵动岛。'
+description: '抢先看 LiftCoach 在 iPhone Duo 上的样子：展开后分成两页，半折后上半部分变成训练凳旁的一块屏幕，控件放进侧边栏，实时活动也适配了新的灵动岛。'
 categories: ['apps']
 tags: ['LiftCoach', 'iOS', 'iPhone Duo']
 ---
@@ -30,11 +30,15 @@ iPhone Duo 不只是一块屏幕。合上时，它是一部屏幕比其他 iPhon
 
 <figure class="full-width-image"><img class="screen" src="/post/liftcoach-on-iphone-duo/wide-overview.jpg" alt="展开的 iPhone Duo 上的训练页面：左边是三个动作及完成的组数，右边是选中的动作和它的组表格。" loading="lazy" decoding="async"><figcaption>一页是整场训练，另一页是当前动作。</figcaption></figure>
 
-## 半折立起：放在训练凳上免手操作
+## 立式模式：训练凳旁的一块屏幕
 
-把它折到一半放下。上半部分像一块小屏幕立起来，在训练的位置就能看清动作演示，或者组间的倒计时。需要点按的内容都平放在下半部分：重量和次数、记录按钮、休息时间调整、跳过休息，以及下一个动作。
+竖着拿，像小笔记本电脑一样折到一半，放下。LiftCoach 会切换到立式模式：立起的上半部分变成一块屏幕，深色、铺满边缘，上面没有需要点按的东西。
 
-{{< image-pair a="/post/liftcoach-on-iphone-duo/seated-focus.jpg" a-alt="半折立起：立起的上半部分显示动作演示和说明，平放的下半部分是重量、次数和记录按钮。" b="/post/liftcoach-on-iphone-duo/seated-rest.jpg" b-alt="半折立起、组间休息时：上半部分是大号倒计时，下半部分是休息时间调整和跳过休息。" caption="半折立起：训练时看演示，休息时看倒计时。" >}}
+训练时，它显示动作演示，旁边用大字写着这一组的信息：第几组、重量和次数。休息时，整个上半部分变成一个隔着健身房也看得清的倒计时，下面是下一组的内容，底部的进度条随休息结束慢慢走完。
+
+需要点按的内容都平放在下半部分：重量和次数、记录按钮、休息时间调整、跳过休息，以及下一个动作。只要它立在那里，屏幕就一直亮着。把它完全展开，上半部分会回到动作演示和说明，这一组的输入和计时都不会丢。
+
+{{< image-pair a="/post/liftcoach-on-iphone-duo/seated-mode-lift.jpg" a-alt="立式模式训练时：深色的上半部分显示卧推演示，旁边大字写着第 2 组（共 4 组）、185 lb × 5；平放的下半部分是重量、次数和记录按钮。" b="/post/liftcoach-on-iphone-duo/seated-mode-rest.jpg" b-alt="立式模式休息时：深色的上半部分是大号 1:58 倒计时和下一组内容；平放的下半部分是休息时间调整和跳过休息。" caption="立式模式：训练时看这一组，休息时看倒计时。" >}}
 
 像书一样半折时，两页会分别停在折痕两侧，需要点按的内容都不会落在折痕上。
 
