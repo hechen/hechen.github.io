@@ -3,7 +3,7 @@ title: 'Keeps 已上架 App Store'
 slug: 'keeps-on-the-app-store'
 date: 2026-09-20T00:00:00-07:00
 draft: false
-description: 'Keeps 已在 iPhone、iPad 和 Mac 上架。1.2.1 将带来更简洁的概览与可靠性修复。'
+description: 'Keeps 已在 iPhone、iPad 和 Mac 上架。1.3.0 可以把 App 和订阅加入收藏。'
 categories: ['apps']
 tags: ['Keeps', 'iOS', 'iPadOS']
 ---
@@ -14,7 +14,7 @@ Keeps 用来记录你拥有的物品：照片、购买日期、原始价格与�
 
 不必一开始就整理家中所有物品。可以从几件常用的东西开始，也可以先体验独立的演示收藏，或导入购买记录并逐项核对。Keeps 支持可选的私有 iCloud 同步，以及包含照片的备份导出，不需要 Keeps 账号，没有广告或第三方分析。
 
-**9 月 27 日更新：**Keeps 1.3.0 已在 Mac App Store 上架。iPhone 和 iPad 版 1.2.1 已上架，1.3.0 正在等待 Apple 审核。1.3.0 可以把 App 和订阅加入收藏，支持导入 Apple 购买记录、续订提醒，并在概览中显示订阅的周期性花费；还新增了用物品照片制作贴纸，以及可一次管理多件物品的“管理物品”页面。1.2.1 现已在所有设备上架，带来更简洁的概览、在支持 Apple Intelligence 的设备上更有参考价值的端侧物品简报，以及更可靠的使用记录。下文介绍的小组件仅适用于 iPhone 和 iPad。
+**9 月 28 日更新：**Keeps 1.3.0 已在 App Store 上架，支持 iPhone、iPad 和 Mac。1.3.0 可以把 App 和订阅加入收藏，支持导入 Apple 购买记录、续订提醒，并在概览中显示订阅的周期性花费；还新增了用物品照片制作贴纸，以及可一次管理多件物品的“管理物品”页面。1.3.1 正在等待 Apple 审核：订阅可以使用任意计费周期（例如每 30 天），可以从 CSV 文件导入订阅，并新增紧凑网格布局。下文介绍的小组件仅适用于 iPhone 和 iPad。
 
 ## 1.1.0 新增的小组件
 

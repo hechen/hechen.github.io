@@ -5,7 +5,7 @@ title: 'Keeps is on the App Store'
 slug: 'keeps-on-the-app-store'
 date: 2026-09-20T00:00:00-07:00
 draft: false
-description: 'Keeps is available for iPhone, iPad, and Mac. Version 1.2.1 brings a lighter Overview and reliability fixes.'
+description: 'Keeps is available for iPhone, iPad, and Mac. Version 1.3.0 adds apps and subscriptions to your collection.'
 categories: ['apps']
 tags: ['Keeps', 'iOS', 'iPadOS']
 ---
@@ -16,7 +16,7 @@ Keeps gives the things you own a place to keep their history: a photo, the origi
 
 You can start with a few everyday belongings, import purchases for review, or explore the separate demo collection. Optional private iCloud sync and photo-inclusive backups help you keep the records. There is no Keeps account, advertising, or third-party analytics.
 
-**September 27 update:** Keeps 1.3.0 is available on the Mac App Store. On iPhone and iPad, 1.2.1 is available and 1.3.0 is waiting for Apple review. Version 1.3.0 adds apps and subscriptions to your collection, with Apple purchase history import, renewal reminders, and an Overview of recurring costs, plus stickers made from item photos and a Manage items page for changing many items at once. Version 1.2.1, now on every device, brought a lighter Overview, richer on-device collection briefings on Apple Intelligence-compatible devices, and more reliable use logging. The widgets described below are for iPhone and iPad.
+**September 28 update:** Keeps 1.3.0 is available on the App Store for iPhone, iPad, and Mac. It adds apps and subscriptions to your collection, with Apple purchase history import, renewal reminders, and an Overview of recurring costs, plus stickers made from item photos and a Manage items page for changing many items at once. Version 1.3.1 is waiting for Apple review: it bills a subscription on any cycle, such as every 30 days, imports subscriptions from a CSV file, and adds a Dense grid layout. The widgets described below are for iPhone and iPad.
 
 ## Widgets introduced in 1.1.0
 
