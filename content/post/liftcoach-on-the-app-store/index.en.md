@@ -30,6 +30,8 @@ On supported devices, Apple Intelligence runs coaching requests on-device, witho
 
 Optional AI Pro connects OpenAI, Claude, and Grok using your own API key. Sending your training history to a cloud provider is a separate setting that stays off until you turn it on.
 
+**Regional availability update — September 28, 2026:** LiftCoach is not available in the China mainland App Store. AI Pro is not available for purchase in China mainland, Hong Kong, Macau, Russia, Belarus, or Venezuela. Version 1.0.1, pending App Review, will also hide cloud providers, the AI Pro offer, and provider/key sync in those storefronts. That change is not yet publicly released. Apple Intelligence will be the only AI option there, where supported by your device, language, and region.
+
 ## Private by default
 
 Workout data lives on your device. Optional iCloud sync uses your own private iCloud account, so your history follows you across your Apple devices. There is no advertising or tracking. The [privacy policy](/apps/liftcoach/privacy.html) has the details.
