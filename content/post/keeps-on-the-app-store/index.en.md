@@ -18,6 +18,8 @@ You can start with a few everyday belongings, import purchases for review, or ex
 
 **September 28 update:** Keeps 1.3.0 is available on the App Store for iPhone, iPad, and Mac. It adds apps and subscriptions to your collection, with Apple purchase history import, renewal reminders, and an Overview of recurring costs, plus stickers made from item photos and a Manage items page for changing many items at once. Version 1.3.1 is waiting for Apple review: it bills a subscription on any cycle, such as every 30 days, imports subscriptions from a CSV file, and adds a Dense grid layout. The widgets described below are for iPhone and iPad.
 
+**In internal testing:** A new type filter lets you show physical items alone, apps and subscriptions together, or any combination. It works with category, tag, and status filters in Collection and Manage items. This feature is not yet in the App Store version.
+
 ## Widgets introduced in 1.1.0
 
 The released iPhone and iPad update includes three widget experiences:
