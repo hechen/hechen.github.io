@@ -42,3 +42,6 @@
 .keeps-page :target{scroll-margin-top:24px}
 @media(max-width:900px){.keeps-scenarios{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.keeps-scenarios{grid-template-columns:1fr}.keeps-page .keeps-nav{gap:4px 20px;margin-bottom:28px}.keeps-page .keeps-hero,.keeps-page .keeps-report{grid-template-columns:1fr;gap:28px}.keeps-phone{max-width:250px;margin:0 auto}.keeps-features{grid-template-columns:1fr;gap:26px}.keeps-page .keeps-report>figure{order:2}.keeps-page .keeps-section{margin-top:40px;padding-top:28px}.keeps-page h2{font-size:25px}.keeps-page .keeps-identity{gap:12px}.keeps-identity span{max-width:190px}}
+/* Keeps preview notes follow the redesign's Forest dark paper and ink. */
+html.dark .keeps-page .keeps-note{background:#1c231f;color:#edeae0}
+html.dark .keeps-page .keeps-note a{color:#9ccbb0}
