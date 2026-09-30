@@ -48,6 +48,11 @@ url: '/apps/tensionradar/support.html'
   <h2>Alerts</h2>
   <p>Two optional alerts exist: a morning summary once a day, and a "tension rising" alert at most every three hours when a fresh reading lands in the Tense or Overloaded band. Both require eligible readings and notification permission; a morning summary is not guaranteed every day. Delivery may be affected by Focus and system notification settings. Turn either alert off in Settings → Alerts, where you can also check permission and send a test notification.</p>
 
+  <h2>In testing: alert diagnostics and Watch-local delivery</h2>
+  <p>The TestFlight update adds Settings → Alerts → Alert policy and diagnostics. It records the latest 50 alert decisions on your device, including why a reading did not produce an alert. It also shows notification presentation settings and the last background-read attempt. A notification accepted by the system is not proof it was seen.</p>
+  <p>iPhone remains the default source of tension alerts. To test Watch-local alerts, update and open TensionRadar on both devices, allow Watch notifications, choose Apple Watch under Notify from, and save. Morning summaries remain on iPhone. Switching back waits for the Watch to acknowledge the change; keep the Watch app open while switching. An offline Watch does not automatically transfer responsibility to the phone.</p>
+  <p>The test update offers score thresholds, alert hours, and one-, two-, or three-hour intervals. A new Overloaded reading can bypass the cooldown 30 minutes after a Tense alert if escalation is enabled. Readings at least two hours old and insufficient-confidence estimates remain ineligible. These changes are in testing, not the public release; Apple still controls sampling and background execution.</p>
+
   <h2>Changing the character</h2>
   <p>Settings → Your character. Nimbus is the default character. The optional Character Pack adds Bloop, Mochi, and Sprout with matching app icons. Each character has all five moods, and your choice syncs to the watch app when the devices can communicate. Widgets and complications reflect it when the system refreshes them.</p>
 
