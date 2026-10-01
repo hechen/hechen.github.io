@@ -11,7 +11,7 @@ categories: ['apps']
 tags: ['Keeps', 'iOS', 'iPadOS', 'macOS']
 ---
 
-**Updated October 1, 2026:** Keeps 1.4.0 is [available on the App Store for iPhone, iPad, and Mac](https://apps.apple.com/app/id6811795155).
+**Updated October 1, 2026:** Keeps 1.4.0 is [available on the App Store for iPhone, iPad, and Mac](https://apps.apple.com/app/id6811795155). [Read the 1.4.0 launch post](/post/keeps-1-4-every-use-counts/) for the new design, search, and automatic backups.
 
 Keeps gives the things you own a place to keep their history: a photo, the original purchase price and currency, a purchase date, and the occasions when you use them. Apps and subscriptions belong here too, with billing cycles, renewal dates, and recurring costs alongside your everyday belongings.
 
