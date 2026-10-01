@@ -9,7 +9,7 @@ categories: ['apps']
 tags: ['Keeps', 'iOS', 'iPadOS', 'macOS']
 ---
 
-**2026 年 10 月 1 日更新**：Keeps 1.4.0 已在 [App Store 上架](https://apps.apple.com/app/id6811795155)，支持 iPhone、iPad 和 Mac。
+**2026 年 10 月 1 日更新**：Keeps 1.4.0 已在 [App Store 上架](https://apps.apple.com/app/id6811795155)，支持 iPhone、iPad 和 Mac。[阅读 1.4.0 发布文章](/zh-cn/post/keeps-1-4-every-use-counts/)，了解新设计、搜索和自动备份。
 
 Keeps 给你拥有的东西一个记录故事的地方：照片、原始购买价格与币种、购买日期，以及每一次使用。App 和订阅也可以放在一起，记录计费周期、下次续订日期和周期性花费。
 
