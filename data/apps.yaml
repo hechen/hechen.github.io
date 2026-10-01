@@ -44,14 +44,14 @@
   summary: Collect selected articles and course pages into a local reading library, then export a book with chapters and a table of contents.
 - name: Keeps
   appStoreId: '6811795155'
-  eyebrow: Personal belongings
+  eyebrow: Belongings, apps & subscriptions
   platforms: iPhone · iPad · Mac
   icon: /assets/icons/keeps.png
   url: /apps/keeps/
   store: https://apps.apple.com/app/id6811795155
   privacy: /apps/keeps/privacy.html
   support: /apps/keeps/support.html
-  summary: A home for your belongings, with purchase details, use history, and a clearer view of ownership costs.
+  summary: A home for belongings, apps, and subscriptions, with paper price tags, punch-card goals, and a clearer view of what every item costs.
 - name: Closet
   appStoreId: '6758357191'
   eyebrow: Personal inventory
