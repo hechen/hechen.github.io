@@ -4,6 +4,7 @@ slug: apple-studio-display
 category: "Computer"
 subcategory: "desktop display"
 date: 2026-10-06
+purchased: 2023-04-15
 image: "/gear/apple-studio-display/product.jpg"
 imageAlt: "Apple Studio Display shown from the front with a colorful screen"
 imageWidth: 758
@@ -16,6 +17,6 @@ tags: ["apple", "display", "desk"]
 draft: false
 ---
 
-Studio Display is part of my desk setup. I picked up a Studio Display on October 1, 2026.
+I've owned my Studio Display since April 15, 2023. It's part of my current desk setup.
 
 [Apple's Studio Display page](https://www.apple.com/studio-display/) is the product reference.
