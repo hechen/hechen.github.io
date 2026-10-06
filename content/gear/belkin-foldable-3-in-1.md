@@ -4,6 +4,12 @@ slug: belkin-foldable-3-in-1
 category: "Phone & Watch"
 subcategory: "foldable charging stand"
 date: 2026-10-06
+image: "/gear/belkin-foldable-3-in-1/product.jpg"
+imageAlt: "White Belkin BBB009-WH foldable charger shown with a phone, Apple Watch, and AirPods"
+imageWidth: 700
+productImage: true
+imageCredit: "Belkin"
+imageSourceURL: "https://www.belkin.com/p/3-in-1-foldable-magnetic-charger-with-qi2-25w/BBB009-WH.html"
 purchased: 2026-10-05
 description: "The white BBB009-WH foldable charger, bought alongside my Sand Belkin desk dock."
 tags: ["belkin", "charging", "qi2", "foldable"]

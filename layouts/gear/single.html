@@ -15,7 +15,14 @@
   </header>
 
   {{- if and $cover (not .Params.gallery) }}
-  <div class="frame"><figure class="kit-cover"{{ with .Params.imageWidth }} style="max-width: min(100%, {{ . }}px); margin-inline: auto;"{{ end }}><img src="{{ $cover }}" alt="{{ $coverAlt }}" loading="eager" decoding="async"></figure></div>
+  <div class="frame">
+    <figure class="kit-cover{{ if .Params.productImage }} is-product{{ end }}"{{ with .Params.imageWidth }} style="max-width: min(100%, {{ . }}px); margin-inline: auto;"{{ end }}>
+      <img src="{{ $cover }}" alt="{{ $coverAlt }}" loading="eager" decoding="async">
+      {{- with .Params.imageCredit }}
+      <figcaption>Product photo: <a href="{{ $.Params.imageSourceURL }}" rel="noopener">{{ . }}</a></figcaption>
+      {{- end }}
+    </figure>
+  </div>
   {{- else }}
   <div class="frame"><hr class="article-rule" style="margin-bottom: clamp(32px, 5vw, 56px)"></div>
   {{- end }}

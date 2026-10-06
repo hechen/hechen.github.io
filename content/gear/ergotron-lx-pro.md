@@ -4,6 +4,12 @@ slug: ergotron-lx-pro
 category: "Computer"
 subcategory: "single-monitor desk mount"
 date: 2026-10-06
+image: "/gear/ergotron-lx-pro/product.jpg"
+imageAlt: "Black Ergotron LX Pro desk arm supporting an example monitor, viewed from behind"
+imageWidth: 800
+productImage: true
+imageCredit: "Ergotron (black finish shown)"
+imageSourceURL: "https://www.ergotron.com/en-us/products/product-details/45-682"
 purchaseURL: "https://www.ergotron.com/en-us/products/product-details/45-682"
 description: "The LX Pro single-monitor desk arm I installed in October."
 tags: ["ergotron", "monitor-arm", "desk"]
