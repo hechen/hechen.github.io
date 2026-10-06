@@ -16,6 +16,6 @@ tags: ["apple", "display", "desk"]
 draft: false
 ---
 
-Studio Display is part of my desk setup. I picked up a Studio Display on October 1, 2026.
+I've owned my Studio Display since 2023. It's part of my current desk setup.
 
 [Apple's Studio Display page](https://www.apple.com/studio-display/) is the product reference.
