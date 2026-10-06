@@ -4,18 +4,18 @@ slug: ergotron-lx-pro
 category: "Computer"
 subcategory: "single-monitor desk mount"
 date: 2026-10-06
-image: "/gear/ergotron-lx-pro/product.jpg"
-imageAlt: "Black Ergotron LX Pro desk arm supporting an example monitor, viewed from behind"
-imageWidth: 800
+image: "/gear/ergotron-lx-pro/product-white.jpg"
+imageAlt: "White Ergotron LX Pro desk arm supporting an example monitor, viewed from behind"
+imageWidth: 500
 productImage: true
-imageCredit: "Ergotron (black finish shown)"
-imageSourceURL: "https://www.ergotron.com/en-us/products/product-details/45-682"
-purchaseURL: "https://www.ergotron.com/en-us/products/product-details/45-682"
-description: "The LX Pro single-monitor desk arm I installed in October."
+imageCredit: "Ergotron"
+imageSourceURL: "https://www.ergotron.com/en-us/products/product-details/45-682#?color=white"
+purchaseURL: "https://www.ergotron.com/en-us/products/product-details/45-682#?color=white"
+description: "I own two white LX Pro single-monitor desk arms."
 tags: ["ergotron", "monitor-arm", "desk"]
 draft: false
 ---
 
-I installed the Ergotron LX Pro single-monitor desk arm on October 2, 2026. After installation, I went through the manual's adjustments for lift tension, tilt, rotation, and counterbalance.
+I own two white Ergotron LX Pro single-monitor desk arms. I installed the LX Pro on October 2, 2026. After installation, I went through the manual's adjustments for lift tension, tilt, rotation, and counterbalance.
 
-The [LX Pro desk-arm product page](https://www.ergotron.com/en-us/products/product-details/45-682) describes an adjustable mount for one monitor. This entry is for the single-display desk version.
+The [LX Pro desk-arm product page](https://www.ergotron.com/en-us/products/product-details/45-682#?color=white) describes an adjustable mount for one monitor. This entry covers my two arms of that single-display desk model.
