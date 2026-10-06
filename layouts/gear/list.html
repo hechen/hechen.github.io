@@ -9,7 +9,7 @@
   <header class="page-head">
     <p class="eyebrow rise"><span>Gear</span><span>{{ len $entries }} objects</span></p>
     <h1 class="rise rise-2">Things I <em>use</em>.</h1>
-    <p class="lede rise rise-3">My own photos and notes on the hardware that earns a place on the desk, in the bag, or on the wrist.</p>
+    <p class="lede rise rise-3">Photos and notes on the hardware that earns a place on the desk, in the bag, or on the wrist.</p>
   </header>
 
   <section aria-labelledby="gear-collection-title">
@@ -31,7 +31,7 @@
       <article class="kit-card{{ if not $cover }} is-text-only{{ end }}" data-cat="{{ $entry.Params.category }}">
         <a href="{{ $entry.RelPermalink }}">
           {{- with $cover }}
-          <div class="kit-photo"><img src="{{ . }}" alt="{{ $coverAlt }}" loading="lazy" decoding="async"><span class="kit-no">No. {{ printf "%02d" (sub (len $entries) $index) }}</span></div>
+          <div class="kit-photo{{ if $entry.Params.productImage }} is-product{{ end }}"><img src="{{ . }}" alt="{{ $coverAlt }}" loading="lazy" decoding="async"><span class="kit-no">No. {{ printf "%02d" (sub (len $entries) $index) }}</span></div>
           {{- end }}
           <div class="kit-label">
             <span class="tag-mono">{{ if not $cover }}No. {{ printf "%02d" (sub (len $entries) $index) }} · {{ end }}{{ $entry.Params.category }}</span>

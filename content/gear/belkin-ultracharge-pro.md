@@ -4,6 +4,12 @@ slug: belkin-ultracharge-pro
 category: "Phone & Watch"
 subcategory: "3-in-1 charging dock"
 date: 2026-10-06
+image: "/gear/belkin-ultracharge-pro/product.jpg"
+imageAlt: "Sand Belkin UltraCharge Pro dock shown with a phone, Apple Watch, and AirPods"
+imageWidth: 700
+productImage: true
+imageCredit: "Belkin"
+imageSourceURL: "https://www.belkin.com/p/3-in-1-magnetic-charging-dock-with-qi2-25w/WIZ040ttSD.html"
 purchased: 2026-10-05
 purchaseURL: "https://www.belkin.com/p/3-in-1-magnetic-charging-dock-with-qi2-25w/WIZ040ttSD.html"
 description: "The Sand UltraCharge Pro WIZ040ttSD, a recent addition to my desk charging setup."

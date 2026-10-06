@@ -4,6 +4,12 @@ slug: ulanzi-tc002
 category: "Lifestyle"
 subcategory: "pixel clock"
 date: 2026-10-06
+image: "/gear/ulanzi-tc002/product.jpg"
+imageAlt: "Ulanzi TC002 pixel clock on its dock, with an orange knob and Ulanzi displayed on the screen"
+imageWidth: 800
+productImage: true
+imageCredit: "Ulanzi"
+imageSourceURL: "https://www.ulanzi.com/collections/clock/products/tc002-pixbar-smart-pixel-clock-ii"
 purchaseURL: "https://www.ulanzi.com/collections/clock/products/tc002-pixbar-smart-pixel-clock-ii"
 description: "A small pixel clock and desk display that I've added to my setup."
 tags: ["ulanzi", "clock", "pixel-display", "desk"]

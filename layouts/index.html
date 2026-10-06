@@ -85,7 +85,7 @@
   <header class="band-head">
     <span class="band-index">03</span>
     <h2 id="gear-title">Gear</h2>
-    <p>Things I use, photographed on my desk, with notes on why they stay.</p>
+    <p>Things I use, with photos and notes on why they stay.</p>
     <a class="text-link" href="/gear/">All gear →</a>
   </header>
   <div class="kit-grid is-home">
@@ -93,7 +93,7 @@
     {{- range first 3 $withPhotos }}
     {{- $cover := .Params.image | default .Params.cover.image }}
     <article class="kit-card"><a href="{{ .RelPermalink }}">
-      <div class="kit-photo"><img src="{{ $cover }}" alt="{{ .Params.imageAlt | default .Params.cover.alt | default .Title }}" loading="lazy" decoding="async"></div>
+      <div class="kit-photo{{ if .Params.productImage }} is-product{{ end }}"><img src="{{ $cover }}" alt="{{ .Params.imageAlt | default .Params.cover.alt | default .Title }}" loading="lazy" decoding="async"></div>
       <div class="kit-label">{{ with .Params.category }}<span class="tag-mono">{{ . }}</span>{{ end }}<h3>{{ .Title }}</h3><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time></div>
     </a></article>
     {{- end }}
