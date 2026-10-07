@@ -54,13 +54,13 @@
   summary: A home for belongings, apps, and subscriptions, with paper price tags, punch-card goals, and a clearer view of what every item costs.
 - name: Closet
   appStoreId: '6758357191'
-  eyebrow: Personal inventory
-  platforms: iPhone · iPad
+  eyebrow: Wardrobe & outfits
+  platforms: iPhone · iPad · Mac
   icon: /assets/icons/closet.png
-  url: /apps/closet/
+  url: https://closet-app.heavyriver.chatgpt.site/
   privacy: /apps/closet/privacy.html
   support: /apps/closet/support.html
-  summary: Wardrobe tracking with total value, wear history, and cost-per-wear.
+  summary: See what you own, build outfits, track every wear, and make more of your wardrobe with private iCloud sync and optional AI assistance.
 - name: SpendWisely
   appStoreId: '6761079192'
   eyebrow: Personal finance
