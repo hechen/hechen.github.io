@@ -5,8 +5,7 @@
 <script>location.replace({{ "post/" | relLangURL }});</script>
 {{- else }}
 {{- $posts := (where site.RegularPages "Section" "post").ByDate.Reverse -}}
-{{- $gear := where (where (where site.Pages "Section" "gear") "RelPermalink" "ne" "/gear/") "Kind" "in" (slice "page" "section") -}}
-{{- $gear = $gear.ByDate.Reverse -}}
+{{- $gear := partial "gear/entries.html" . -}}
 {{- $apps := hugo.Data.apps -}}
 {{- $featured := where $apps "featured" true -}}
 {{- $rest := slice -}}{{- range $apps }}{{ if not .featured }}{{ $rest = $rest | append . }}{{ end }}{{ end -}}

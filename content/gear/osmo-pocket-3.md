@@ -2,6 +2,7 @@
 title: "DJI Osmo Pocket 3"
 slug: osmo-pocket-3
 category: "Camera"
+ownershipStatus: "sold"
 date: 2026-03-03
 purchased: 2026-03-03
 image: "/gear/osmo-pocket-3/front.jpg"

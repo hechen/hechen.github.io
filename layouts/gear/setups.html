@@ -1,0 +1,17 @@
+{{ define "main" }}
+{{- $model := partial "gear/public-collection.html" . -}}
+<div class="frame">
+  <header class="page-head gear-head"><p class="eyebrow"><span>Gear</span><span>Chen’s setups</span></p><h1>My <em>setups</em>.</h1><p class="lede">A few groups from my collection, with the notes behind the things in each one.</p></header>
+  {{ partial "gear/views.html" (dict "view" "setups") }}
+  <section class="gear-setups" aria-label="Setups">
+    {{- range $model.setups }}
+    <article class="gear-setup-card"><a href="{{ .url }}">
+      <div class="gear-setup-photos" data-count="{{ len (first 3 .itemIDs) }}">
+        {{- range first 3 .itemIDs }}{{ $id := . }}{{ range where $model.items "id" $id }}<div class="kit-photo{{ if eq .image.presentation "product" }} is-product{{ end }}"><img src="{{ .image.url }}" alt="{{ .image.alt }}" loading="lazy" decoding="async"></div>{{ end }}{{ end -}}
+      </div>
+      <div class="gear-setup-label"><span class="tag-mono">{{ len .itemIDs }} entries</span><h2>{{ .name }}</h2><p>{{ .summary }}</p><span class="text-link">Explore setup <span aria-hidden="true">→</span></span></div>
+    </a></article>
+    {{- end }}
+  </section>
+</div>
+{{ end }}

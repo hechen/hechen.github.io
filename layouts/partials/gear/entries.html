@@ -1,0 +1,7 @@
+{{- $entries := slice -}}
+{{- range (where site.Pages "Section" "gear").ByDate.Reverse -}}
+  {{- if and .Params.category (in (slice "page" "section") .Kind) -}}
+    {{- $entries = $entries | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- return $entries -}}

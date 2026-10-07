@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hechen.github.io/schemas/keeps-public-collection.v1.json",
+  "title": "Keeps public collection v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schemaVersion", "collection", "items", "setups"],
+  "properties": {
+    "$schema": {"type": "string", "format": "uri"},
+    "schemaVersion": {"const": 1},
+    "collection": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "name", "url"],
+      "properties": {"id": {"type": "string"}, "name": {"type": "string"}, "url": {"type": "string", "format": "uri-reference"}}
+    },
+    "items": {"type": "array", "items": {"$ref": "#/$defs/item"}},
+    "setups": {"type": "array", "items": {"$ref": "#/$defs/setup"}}
+  },
+  "$defs": {
+    "item": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "name", "category", "summary", "tags", "status", "quantity", "image", "noteURL", "notedAt"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+        "name": {"type": "string", "minLength": 1},
+        "category": {"type": "string", "minLength": 1},
+        "summary": {"type": "string"},
+        "tags": {"type": "array", "items": {"type": "string"}},
+        "status": {"enum": ["in-use", "retired", "sold"]},
+        "quantity": {"type": "integer", "minimum": 1},
+        "image": {
+          "type": "object", "additionalProperties": false,
+          "required": ["url", "alt", "presentation"],
+          "properties": {
+            "url": {"type": "string", "format": "uri-reference"},
+            "alt": {"type": "string", "minLength": 1},
+            "presentation": {"enum": ["photo", "product"]},
+            "credit": {"type": "string"},
+            "sourceURL": {"type": "string", "format": "uri"}
+          }
+        },
+        "noteURL": {"type": "string", "format": "uri-reference"},
+        "productURL": {"type": "string", "format": "uri"},
+        "notedAt": {"type": "string", "format": "date"},
+        "purchased": {"type": "string", "format": "date"}
+      }
+    },
+    "setup": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "name", "summary", "itemIDs", "url"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+        "name": {"type": "string", "minLength": 1},
+        "summary": {"type": "string"},
+        "itemIDs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+        "url": {"type": "string", "format": "uri-reference"}
+      }
+    }
+  }
+}

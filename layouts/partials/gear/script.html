@@ -1,0 +1,2 @@
+{{- $script := resources.Get "js/gear-collection.js" | js.Build (dict "target" "es2019") | minify | fingerprint -}}
+<script src="{{ $script.RelPermalink }}" defer></script>

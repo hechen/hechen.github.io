@@ -1,0 +1,11 @@
+{{ define "main" }}
+{{- $model := partial "gear/public-collection.html" . -}}
+{{- $setup := index (where $model.setups "id" .Params.setupID) 0 -}}
+<div class="frame">
+  <header class="page-head gear-head"><a class="crumb" href="/gear/setups/">← Setups</a><p class="eyebrow"><span>Gear</span><span>{{ len $setup.itemIDs }} entries</span></p><h1>{{ $setup.name }}</h1><p class="lede">{{ $setup.summary }}</p></header>
+  {{ partial "gear/views.html" (dict "view" "setups") }}
+  <section aria-label="Items in {{ $setup.name }}"><div class="kit-grid gear-collection-grid">
+    {{- range $setup.itemIDs }}{{ $id := . }}{{ range where $model.items "id" $id }}{{ partial "gear/card.html" . }}{{ end }}{{ end -}}
+  </div></section>
+</div>
+{{ end }}
