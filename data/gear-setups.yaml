@@ -1,0 +1,16 @@
+- id: desk
+  name: At my desk
+  summary: The display, monitor arms, charging dock, clock, and controls in my desk notes.
+  itemIDs:
+    - apple-studio-display
+    - creator-micro-2
+    - ulanzi-tc002
+    - ergotron-lx-pro
+    - belkin-ultracharge-pro
+    - hhkb-sky-blue-full-key-top-set-stamped
+- id: photography
+  name: Photography & video
+  summary: My Sony α7 V and Pocket 4P, with a closer look at each camera.
+  itemIDs:
+    - sony-a7-v
+    - osmo-pocket-4p

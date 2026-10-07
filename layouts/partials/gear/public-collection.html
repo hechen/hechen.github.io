@@ -1,0 +1,23 @@
+{{- /* An explicit public projection; never serialize a Page or a Keeps backup. */ -}}
+{{- $items := slice -}}
+{{- $itemIDs := slice -}}
+{{- range partial "gear/entries.html" . -}}
+  {{- $id := .RelPermalink | strings.TrimPrefix "/gear/" | strings.TrimSuffix "/" -}}
+  {{- $status := .Params.ownershipStatus | default "in-use" -}}
+  {{- if not (in (slice "in-use" "sold" "retired") $status) -}}{{ errorf "Invalid public gear status for %s" $id }}{{- end -}}
+  {{- $presentation := "photo" -}}{{- if .Params.productImage -}}{{- $presentation = "product" -}}{{- end -}}
+  {{- $image := dict "url" (.Params.image | default .Params.cover.image) "alt" (.Params.imageAlt | default .Params.cover.alt | default .Title) "presentation" $presentation -}}
+  {{- with .Params.imageCredit -}}{{- $image = merge $image (dict "credit" .) -}}{{- end -}}
+  {{- with .Params.imageSourceURL -}}{{- $image = merge $image (dict "sourceURL" .) -}}{{- end -}}
+  {{- $item := dict "id" $id "name" .Title "category" .Params.category "summary" (.Description | default (.Summary | plainify | truncate 170)) "tags" (.Params.tags | default slice) "status" $status "quantity" (.Params.quantity | default 1 | int) "image" $image "noteURL" .RelPermalink "notedAt" (.Date.Format "2006-01-02") -}}
+  {{- with .Params.purchased -}}{{- $item = merge $item (dict "purchased" (time.AsTime . | time.Format "2006-01-02")) -}}{{- end -}}
+  {{- with .Params.purchaseURL -}}{{- $item = merge $item (dict "productURL" .) -}}{{- end -}}
+  {{- $items = $items | append $item -}}
+  {{- $itemIDs = $itemIDs | append $id -}}
+{{- end -}}
+{{- $setups := slice -}}
+{{- range index hugo.Data "gear-setups" -}}
+  {{- range .itemIDs -}}{{- if not (in $itemIDs .) -}}{{ errorf "Setup references unpublished gear: %s" . }}{{- end -}}{{- end -}}
+  {{- $setups = $setups | append (dict "id" .id "name" .name "summary" .summary "itemIDs" .itemIDs "url" (printf "/gear/setups/%s/" .id)) -}}
+{{- end -}}
+{{- return (dict "$schema" ("/schemas/keeps-public-collection.v1.json" | absURL) "schemaVersion" 1 "collection" (dict "id" "chen-gear" "name" "Chen’s collection" "url" "/gear/") "items" $items "setups" $setups) -}}

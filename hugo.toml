@@ -75,6 +75,12 @@ enableEmoji = true
 [outputs]
   home = ["HTML", "RSS", "JSON"]
 
+[outputFormats.Collection]
+  mediaType = "application/json"
+  baseName = "collection.v1"
+  isPlainText = true
+  notAlternative = true
+
 # Menu — mirror the legacy nav. /apps, /now, /tools, /about all served from
 # static/ during the staged migration; /post served by Hugo.
 [menu]

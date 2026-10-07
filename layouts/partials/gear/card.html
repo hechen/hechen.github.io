@@ -1,0 +1,15 @@
+{{- $statusLabels := dict "in-use" "In use" "sold" "Sold" "retired" "Retired" -}}
+<article class="kit-card keeps-card" data-gear-id="{{ .id }}">
+  <a href="{{ .noteURL }}">
+    <div class="kit-photo{{ if eq .image.presentation "product" }} is-product{{ end }}"><img src="{{ .image.url }}" alt="{{ .image.alt }}" loading="lazy" decoding="async"></div>
+    <div class="keeps-label">
+      <div class="keeps-card-meta"><span class="tag-mono">{{ .category }}</span><span class="gear-status{{ if ne .status "in-use" }} is-past{{ end }}">{{ index $statusLabels .status }}</span></div>
+      <h3>{{ .name }}{{ if gt .quantity 1 }} <span class="gear-quantity">×{{ .quantity }}</span>{{ end }}</h3>
+      <p>{{ .summary }}</p>
+      <div class="keeps-card-foot">
+        {{- if .purchased }}<time datetime="{{ .purchased }}">Bought {{ time.AsTime .purchased | time.Format "Jan 2006" }}</time>{{ else }}<time datetime="{{ .notedAt }}">Noted {{ time.AsTime .notedAt | time.Format "Jan 2006" }}</time>{{ end }}
+        <span>Read note <span aria-hidden="true">→</span></span>
+      </div>
+    </div>
+  </a>
+</article>

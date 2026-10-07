@@ -2,6 +2,7 @@
 title: "Ergotron LX Pro Desk Monitor Arm"
 slug: ergotron-lx-pro
 category: "Computer"
+quantity: 2
 subcategory: "single-monitor desk mount"
 date: 2026-10-06
 image: "/gear/ergotron-lx-pro/product-white.jpg"

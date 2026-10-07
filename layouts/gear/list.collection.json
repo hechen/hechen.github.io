@@ -1,0 +1,1 @@
+{{- partial "gear/public-collection.html" . | jsonify -}}

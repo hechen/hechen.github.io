@@ -4,7 +4,7 @@
 <article class="kit-detail">
   <header class="kit-detail-head frame">
     <div>
-      <a class="crumb" href="/gear/"><span aria-hidden="true">←</span> Gear</a>
+      <a class="crumb" data-gear-return href="/gear/"><span aria-hidden="true">←</span> <span data-gear-return-label>Collection</span></a>
       <p class="article-meta">
         {{- with .Params.category }}<span>{{ . }}</span>{{ end }}
         <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
@@ -33,10 +33,15 @@
       <dl>
         {{- with .Params.category }}<div><dt>Category</dt><dd>{{ . }}</dd></div>{{ end }}
         {{- with .Params.subcategory }}<div><dt>Type</dt><dd>{{ . | humanize }}</dd></div>{{ end }}
+        {{- with .Params.ownershipStatus }}<div><dt>Status</dt><dd>{{ . | humanize }}</dd></div>{{ end }}
+        {{- with .Params.quantity }}<div><dt>Quantity</dt><dd>{{ . }}</dd></div>{{ end }}
         {{- with .Params.purchased }}<div><dt>Purchased</dt><dd>{{ time.AsTime . | time.Format "Jan 2006" }}</dd></div>{{ end }}
         <div><dt>Noted</dt><dd>{{ .Date.Format "Jan 2, 2006" }}</dd></div>
         {{- with .Params.purchaseURL }}<div><dt>Maker</dt><dd><a href="{{ . }}" rel="noopener">Product page ↗</a></dd></div>{{ end }}
       </dl>
+      {{- $id := .RelPermalink | strings.TrimPrefix "/gear/" | strings.TrimSuffix "/" -}}
+      {{- $related := slice -}}{{- range (partial "gear/public-collection.html" .).setups }}{{ if in .itemIDs $id }}{{ $related = $related | append . }}{{ end }}{{ end -}}
+      {{- with $related }}<div class="gear-membership"><h2>In these setups</h2><ul>{{ range . }}<li><a href="{{ .url }}">{{ .name }} →</a></li>{{ end }}</ul></div>{{ end }}
     </aside>
   </div>
 
@@ -44,4 +49,5 @@
   <footer class="article-foot frame"><div class="tag-row">{{ range . }}<span class="chip">#{{ . }}</span>{{ end }}</div></footer>
   {{- end }}
 </article>
+{{ partial "gear/script.html" . }}
 {{ end }}
