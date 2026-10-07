@@ -6,7 +6,7 @@
   appStoreId: '6753774575'
   eyebrow: Safari extension
   platforms: iPhone · iPad · Mac
-  icon: /assets/icons/structly.png
+  icon: /assets/icons/structly.png?v=6c9a24b893bb
   url: /apps/structly/
   store: https://apps.apple.com/us/app/structly-json-formatter/id6753774575
   privacy: /apps/structly/privacy.html
@@ -17,7 +17,7 @@
   appStoreId: '6812929269'
   eyebrow: Health & fitness
   platforms: iPhone · iPad · Apple Watch
-  icon: /assets/icons/liftcoach.png
+  icon: /assets/icons/liftcoach.png?v=595ce44668e7
   url: /apps/liftcoach/
   store: https://apps.apple.com/app/id6812929269
   privacy: /apps/liftcoach/privacy.html
@@ -28,7 +28,7 @@
   appStoreId: '6759821801'
   eyebrow: Read later
   platforms: iPhone · iPad · Mac · Watch
-  icon: /assets/icons/distill.png
+  icon: /assets/icons/distill.png?v=bbaaf69382e0
   url: /apps/distill/
   privacy: /apps/distill/privacy.html
   support: /apps/distill/support.html
@@ -36,7 +36,7 @@
 - name: Course Book Builder
   eyebrow: Offline reading
   platforms: Desktop Chrome · EPUB · PDF
-  icon: /assets/icons/course-book-builder.png
+  icon: /assets/icons/course-book-builder.png?v=8bb38ab219f6
   url: /apps/course-book-builder/
   store: https://chromewebstore.google.com/detail/course-book-builder/kalbioiplchbbekfphaobmkcekoliklb
   privacy: /apps/course-book-builder/privacy.html
@@ -46,8 +46,8 @@
   appStoreId: '6811795155'
   eyebrow: Belongings, apps & subscriptions
   platforms: iPhone · iPad · Mac
-  icon: /assets/icons/keeps.png
-  url: /apps/keeps/
+  icon: /assets/icons/keeps.png?v=d33995a67701
+  url: https://getkeepsapp.com/
   store: https://apps.apple.com/app/id6811795155
   privacy: /apps/keeps/privacy.html
   support: /apps/keeps/support.html
@@ -56,7 +56,7 @@
   appStoreId: '6758357191'
   eyebrow: Wardrobe & outfits
   platforms: iPhone · iPad · Mac
-  icon: /assets/icons/closet.png
+  icon: /assets/icons/closet.png?v=f3444de55c1c
   url: https://closet-app.heavyriver.chatgpt.site/
   privacy: /apps/closet/privacy.html
   support: /apps/closet/support.html
@@ -65,7 +65,7 @@
   appStoreId: '6761079192'
   eyebrow: Personal finance
   platforms: iPhone · iPad
-  icon: /assets/icons/spendwisely.png
+  icon: /assets/icons/spendwisely.png?v=f8692e52ac3f
   url: /apps/spendwisely/
   privacy: /apps/spendwisely/privacy.html
   support: /apps/spendwisely/support.html
@@ -74,7 +74,7 @@
   appStoreId: '6759225918'
   eyebrow: Nutrition
   platforms: iPhone · iPad · Apple Watch · Mac
-  icon: /assets/icons/eatwisely.png
+  icon: /assets/icons/eatwisely.png?v=7eb1d7178d79
   url: /apps/eatwisely/
   privacy: /apps/eatwisely/privacy.html
   support: /apps/eatwisely/support.html
@@ -83,7 +83,7 @@
   appStoreId: '6753273426'
   eyebrow: Stress & HRV
   platforms: iPhone · Apple Watch
-  icon: /assets/icons/tensionradar.png
+  icon: /assets/icons/tensionradar.png?v=22bd46451a21
   url: /apps/tensionradar/
   privacy: /apps/tensionradar/privacy.html
   support: /apps/tensionradar/support.html
@@ -93,13 +93,13 @@
   url: /apps/traininsight/
   eyebrow: Training analytics
   platforms: iPhone · Apple Watch
-  icon: /assets/icons/traininsight.png
+  icon: /assets/icons/traininsight.png?v=acfc6224e6db
   summary: Readiness signals and training analytics built around Apple Watch data.
 - name: Market Mood
   appStoreId: '6761278234'
   eyebrow: Market pulse
   platforms: iPhone · iPad · Watch
-  icon: /assets/icons/marketmood.png
+  icon: /assets/icons/marketmood.png?v=c7ac91995276
   url: /apps/marketmood/
   privacy: /apps/marketmood/privacy.html
   support: /apps/marketmood/support.html
@@ -107,7 +107,7 @@
 - name: Stock Price
   eyebrow: Stream Deck plugin
   platforms: macOS · Windows
-  icon: /assets/icons/stock-price.png
+  icon: /assets/icons/stock-price.png?v=e6891ac42b04
   url: /apps/stock-price/
   store: https://marketplace.elgato.com/product/stock-price-c8878f24-2a1b-448b-b6fa-060118d0c0b1
   storeLabel: Marketplace
