@@ -32,7 +32,7 @@
       {{- with $latestGear }}
       <a class="status-row" href="{{ .RelPermalink }}"><dt>On the desk</dt><dd>{{ .Title }}</dd><span class="status-when">{{ .Date.Format "Jan 2" }}</span></a>
       {{- end }}
-      <a class="status-row" href="/apps/"><dt>Apps</dt><dd>{{ len $apps }} apps for iPhone, iPad, Mac and Watch</dd><span class="status-when">All</span></a>
+      <a class="status-row" href="/apps/"><dt>Apps</dt><dd>{{ len $apps }} apps, extensions and plugins</dd><span class="status-when">All</span></a>
       <a class="status-row" href="{{ "post/" | relLangURL }}"><dt>Writing</dt><dd>{{ len $posts }} notes since {{ $firstYear }}</dd><span class="status-when">Archive</span></a>
     </dl>
   </div>

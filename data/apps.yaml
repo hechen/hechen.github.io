@@ -4,20 +4,20 @@
 # those apps and opens a blog-post PR for each new App Store release.
 - name: Structly
   appStoreId: '6753774575'
-  eyebrow: Safari extension
+  eyebrow: JSON viewer & Safari
   platforms: iPhone · iPad · Mac
   icon: /assets/icons/structly.png?v=6c9a24b893bb
   url: /apps/structly/
   store: https://apps.apple.com/us/app/structly-json-formatter/id6753774575
   privacy: /apps/structly/privacy.html
   support: /apps/structly/support.html
-  summary: Raw JSON, made human—collapsible trees, fast search, and native-feeling syntax across Safari on every Apple device.
+  summary: Browse JSON as a tree, sortable table or formatted source, search keys and values, and format JSON pages in Safari on iPhone, iPad and Mac.
   featured: true
 - name: LiftCoach
   appStoreId: '6812929269'
   eyebrow: Health & fitness
   platforms: iPhone · iPad · Apple Watch
-  icon: /assets/icons/liftcoach.png?v=595ce44668e7
+  icon: /assets/icons/liftcoach.png?v=191cb94845ba
   url: /apps/liftcoach/
   store: https://apps.apple.com/app/id6812929269
   privacy: /apps/liftcoach/privacy.html
@@ -39,6 +39,7 @@
   icon: /assets/icons/course-book-builder.png?v=8bb38ab219f6
   url: /apps/course-book-builder/
   store: https://chromewebstore.google.com/detail/course-book-builder/kalbioiplchbbekfphaobmkcekoliklb
+  storeLabel: Chrome Web Store
   privacy: /apps/course-book-builder/privacy.html
   support: /apps/course-book-builder/support.html
   summary: Collect selected articles and course pages into a local reading library, then export a book with chapters and a table of contents.
@@ -51,7 +52,7 @@
   store: https://apps.apple.com/app/id6811795155
   privacy: /apps/keeps/privacy.html
   support: /apps/keeps/support.html
-  summary: A home for belongings, apps, and subscriptions, with paper price tags, punch-card goals, and a clearer view of what every item costs.
+  summary: Keep belongings, apps and subscriptions together, track what each item costs per use, and share illustrated everyday-object stickers in Messages.
 - name: Closet
   appStoreId: '6758357191'
   eyebrow: Wardrobe & outfits
@@ -85,15 +86,18 @@
   platforms: iPhone · Apple Watch
   icon: /assets/icons/tensionradar.png?v=22bd46451a21
   url: /apps/tensionradar/
+  store: https://apps.apple.com/us/app/tensionradar/id6753273426
   privacy: /apps/tensionradar/privacy.html
   support: /apps/tensionradar/support.html
-  summary: A real-time HRV stress radar with a cartoon character that feels what your heart feels, a personal baseline, coherence breathing and watch complications. Nothing leaves your device.
+  summary: Explore Apple Watch HRV readings with a character radar, a personal baseline, breathing sessions, daily trends and watch complications. Readings update as Health data becomes available.
 - name: TrainInsight
   appStoreId: '6759210309'
   url: /apps/traininsight/
   eyebrow: Training analytics
   platforms: iPhone · Apple Watch
   icon: /assets/icons/traininsight.png?v=acfc6224e6db
+  privacy: /apps/traininsight/privacy.html
+  support: /apps/traininsight/support.html
   summary: Readiness signals and training analytics built around Apple Watch data.
 - name: Market Mood
   appStoreId: '6761278234'
@@ -115,3 +119,13 @@
   privacy: /apps/stock-price/privacy/
   support: /apps/stock-price/support/
   summary: Live prices, daily and weekly change, and customizable market colors on a Stream Deck key.
+- name: Open in Tower
+  eyebrow: GitHub shortcut
+  platforms: Desktop Chrome · Tower
+  icon: /assets/icons/open-in-tower.jpg
+  url: /apps/open-in-tower/
+  store: https://chromewebstore.google.com/detail/open-in-tower-unofficial/amkfflhhjlihielfjkiibchiogknjmlh
+  storeLabel: Chrome Web Store
+  privacy: /apps/open-in-tower/privacy.html
+  support: /apps/open-in-tower/#support
+  summary: Open the GitHub repository you are viewing in your installed Tower Git client. An unofficial shortcut with no tracking.
