@@ -12,8 +12,10 @@ Keeps 1.4.3 is **in testing**. It is not yet available on the public App Store.
 
 Changing the default currency can trigger historical exchange-rate updates for many items. In a large collection, those updates could make Collection, Overview and item details slow to scroll.
 
-This update prepares and saves exchange-rate batches in the background. Original purchase amounts, currencies, photos and use records stay intact.
+The updated build prepares all required conversions in the background before activating the new currency. It saves the completed result once, so scrolling reuses prepared amounts. You can cancel preparation or choose a different currency without changing the current collection. Original purchase amounts, currencies, photos and use records stay intact.
 
-Validation uses an isolated copy of a real collection with 792 items and 679 photos. The currency-switch and scrolling checks passed in the iPhone simulator; physical iPhone smoothness still needs verification.
+Latest reference rates refresh automatically once a day, or when you tap Refresh. Saved historical purchase and sale rates are reused. The currency controls explain this schedule.
+
+Validation uses an isolated copy of a real collection with 792 items and 679 photos. Release-build checks passed in the iPhone simulator, including cancellation, switching currencies, scrolling, manual refresh and cache reuse after restarting. Each new currency produced one completed collection update, and browsing produced none. Physical iPhone smoothness still needs verification.
 
 [Explore Keeps](https://getkeepsapp.com/) or see the [current App Store version](https://apps.apple.com/app/id6811795155).
