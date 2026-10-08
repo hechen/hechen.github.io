@@ -14,8 +14,10 @@ Changing the default currency can trigger historical exchange-rate updates for m
 
 The updated build prepares all required conversions in the background before activating the new currency. It saves the completed result once, so scrolling reuses prepared amounts. You can cancel preparation or choose a different currency without changing the current collection. Original purchase amounts, currencies, photos and use records stay intact.
 
+Build 111 shortens preparation by fetching historical rates in date ranges. If rates are unavailable, it keeps the current currency and clears preparation so you can retry. The progress and Cancel controls have their own space below the currency list.
+
 Latest reference rates refresh automatically once a day, or when you tap Refresh. Saved historical purchase and sale rates are reused. The currency controls explain this schedule.
 
-Validation uses an isolated copy of a real collection with 792 items and 679 photos. Release-build checks passed in the iPhone simulator, including cancellation, switching currencies, scrolling, manual refresh and cache reuse after restarting. Each new currency produced one completed collection update, and browsing produced none. Physical iPhone smoothness still needs verification.
+Validation uses an isolated copy of a real collection with 792 items and 679 photos. Device feedback exposed a stuck preparation state and overlapping controls in the previous build. Build 111 passed Release checks in the iPhone simulator for complete currency switching, cancellation, scrolling, manual refresh, restart and cache reuse. A companion collection with unavailable historical dates passed failure recovery without changing the selected currency or saved items. Physical iPhone smoothness still needs verification.
 
 [Explore Keeps](https://getkeepsapp.com/) or see the [current App Store version](https://apps.apple.com/app/id6811795155).
