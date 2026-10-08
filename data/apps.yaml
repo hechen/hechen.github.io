@@ -62,6 +62,15 @@
   privacy: /apps/closet/privacy.html
   support: /apps/closet/support.html
   summary: See what you own, build outfits, track every wear, and make more of your wardrobe with private iCloud sync and optional AI assistance.
+- name: Stash
+  appStoreId: '6759069165'
+  eyebrow: Clipboard tape
+  platforms: iPhone · iPad
+  icon: /assets/icons/stash-tape.png
+  url: https://stash-app.heavyriver.chatgpt.site/
+  privacy: /apps/stash/privacy.html
+  support: /apps/stash/support.html
+  summary: Save text, links and images on one tape. Lift just the words or details you need, and keep reusable clips in stacks.
 - name: SpendWisely
   appStoreId: '6761079192'
   eyebrow: Personal finance
