@@ -28,9 +28,9 @@ Train from Apple Watch, then review your progress on a larger screen. During a w
 
 On supported devices, Apple Intelligence runs coaching requests on-device, without an API key. The coach can use your LiftCoach history and, with your permission, workouts from Apple Health as context.
 
-Optional AI Pro connects OpenAI, Claude, and Grok using your own API key. Sending your training history to a cloud provider is a separate setting that stays off until you turn it on.
+Optional lifetime LiftCoach Pro connects OpenAI, Claude, and Grok using your own API key. Sending your training history to a cloud provider is a separate setting that stays off until you turn it on.
 
-**Regional availability update — September 28, 2026:** LiftCoach is not available in the China mainland App Store. AI Pro is not available for purchase in China mainland, Hong Kong, Macau, Russia, Belarus, or Venezuela. Version 1.0.1, pending App Review, will also hide cloud providers, the AI Pro offer, and provider/key sync in those storefronts. That change is not yet publicly released. Apple Intelligence will be the only AI option there, where supported by your device, language, and region.
+**Availability update — October 9, 2026:** LiftCoach is free to download, and the optional lifetime LiftCoach Pro purchase is available in all 175 App Store territories, including mainland China. Cloud AI providers remain unavailable in mainland China, Hong Kong, Macau, Russia, Belarus and Venezuela. Non-AI Pro benefits remain available there; Apple Intelligence depends on your device, language, region and system readiness.
 
 ## Private by default
 
