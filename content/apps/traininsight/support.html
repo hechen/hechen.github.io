@@ -10,34 +10,62 @@ url: '/apps/traininsight/support.html'
       TrainInsight
     </a>
     <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Support</h1>
-    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 28 April 2026</p>
+    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 11 October 2026</p>
   </div>
 </div>
 
 <main class="max-w-2xl mx-auto px-6 sm:px-8 py-10 sm:py-16 text-lg leading-[1.7] text-slate-700 dark:text-slate-300">
 
-  <h2>Granting HealthKit access</h2>
-  <p>The first launch walks you through HealthKit permissions. If you skipped or denied one of them, open Settings → Privacy &amp; Security → Health → TrainInsight and toggle on Heart Rate Variability, Resting Heart Rate, Sleep, Workouts, VO₂ Max, Active Energy, Body Mass, and Time in Daylight (iOS 17+). The app reads everything; it doesn't write back, so the toggles you grant only affect what shows up in the dashboard.</p>
+  <h2>Granting or changing Health access</h2>
+  <p>The first launch asks for access to Apple Health. TrainInsight only reads; it never writes to Health. To change what it can read, open the Health app and go to your profile › Apps › TrainInsight, or open Settings › Privacy &amp; Security › Health › TrainInsight. In TrainInsight, tap the profile button at the top of Today to open Settings; Health and data lists what each type is used for and opens the Health app.</p>
+  <p>Apple doesn't tell apps which types you declined, so a declined type just looks like missing data. If something stays empty, check that list in the Health app first. If you used an earlier version, Today may show a card asking you to allow the newer types (wrist temperature, breathing rate, blood oxygen and date of birth) for body signals and personal heart-rate zones.</p>
 
-  <h2>Picking an AI provider</h2>
-  <p>Settings → AI → AI Provider. Apple Intelligence is the default on iOS 26 and runs on-device with no network round-trip. The on-device MLX LLM (Phi-3.5 Mini, Qwen 2.5, etc.) is a one-time download from the picker — tap the model card and the bytes come down once, then live offline. Cloud providers (Claude, OpenAI, custom endpoint) are bring-your-own-key; the key lives in the iOS Keychain and the prompt goes straight to the provider, not through any TrainInsight server.</p>
+  <h2>"No score yet", or readiness doesn't match how I feel</h2>
+  <p>Readiness needs last night's sleep, HRV or resting heart rate, so wear your Apple Watch to bed; your first score appears the next morning. Each part of the score is compared with your own normal and shows "learning your normal" until there are enough nights to compare against, so give it about a week (around seven nights). If a signal is missing, for example because your watch was off your wrist or out of battery, the others are re-weighted and Today says which one is absent.</p>
+  <p>Under the score, What's shaping it shows sleep, HRV, resting heart rate and training load, each against your 30-day normal. Tap the score, or How it works, to see how they're weighted and your last 30 days. A day's score only uses data from before that day, so today's workout doesn't change today's score. Readiness is general fitness guidance: if you feel unwell, listen to your body.</p>
 
-  <h2>The AI Coach says "I don't have access to your data"</h2>
-  <p>Some AI models may give a generic response even when recent health context is available. Check Health permissions and confirm that your recent data appears in the dashboard. If the response still ignores that data, try another provider in Settings → AI → AI Provider. Review AI guidance against the measurements shown in the app.</p>
+  <h2>Body signals say "learning your normal"</h2>
+  <p>Body signals compare last night's wrist temperature, breathing rate, resting heart rate, HRV and blood oxygen with your normal over 30 nights. Each signal appears after five nights with readings. Wrist temperature and blood oxygen need an Apple Watch model that records them; a signal with no reading last night is listed as missing, not guessed. The optional morning alert comes when two or more signals drift together. Turn it on in TrainInsight's Settings › Notifications, or from the Body signals sheet on Today. TrainInsight isn't a medical device and can't diagnose illness.</p>
 
-  <h2>Readiness score doesn't match how I feel</h2>
-  <p>Readiness is HRV-driven, with sleep duration / efficiency and recent training load as secondary inputs. If you're new to TrainInsight, give it a week — the baseline math needs at least 5–7 nights of sleep and HRV samples to stabilize. If your watch missed a night (off the wrist, low battery), the readiness for that day will be a coarse estimate. Tap the score to see which inputs were available.</p>
+  <h2>Coach isn't available</h2>
+  <p>Coach runs only on Apple Intelligence's on-device model. It needs a device that supports Apple Intelligence, iOS 26 or later, and Apple Intelligence turned on in Settings › Apple Intelligence &amp; Siri. If it's off, Coach explains how to turn it on. Just after you turn it on, the model may still be downloading; keep your device on Wi-Fi and charging, and Coach will be ready shortly. On devices that can't run Apple Intelligence, Coach is hidden. Everything else in TrainInsight works without it.</p>
 
-  <h2>Watch app data isn't syncing</h2>
-  <p>Pair the watch app from the iPhone Watch app, then open both apps once with Bluetooth on. The two share data through HealthKit, not through a direct TrainInsight sync — so any workout you start on the watch lands on the iPhone the same way Apple's Workout app does. If a watch session doesn't appear on the iPhone, force-close TrainInsight on both and reopen.</p>
+  <h2>Apple Watch</h2>
+  <p>The Watch app shows today's readiness, your plan and effort, and what's shaping the score. It reads Apple Health on the watch and uses the same calculation as the iPhone app. If it says "Allow Health access", open TrainInsight on your iPhone and connect Apple Health. If it says "No score yet", wear the watch to bed; your first score arrives the next morning. To add the Readiness or HRV complication, touch and hold your watch face, tap Edit and choose TrainInsight in a complication slot. The Watch app requires watchOS 10 or later.</p>
 
-  <h2>Stress score and the timeline chart</h2>
-  <p>Stress is a 0–100 score derived from how today's HRV and resting heart rate compare to your 14-day baseline. The Today timeline on the Stress tab buckets your HRV samples by hour and renders one bar per hour with sample data. Hours with no HRV reading show a faded grey ghost bar so the gaps read honestly rather than as zero stress.</p>
+  <h2>Widgets, controls and Live effort</h2>
+  <p>Add the Readiness widget to your Home Screen or Lock Screen, or the Last Night widget for your sleep. In Control Center, add the Readiness control (today's score; opens Today) or Tag Your Day (opens Your day). Widgets show the latest numbers TrainInsight saved; opening the app refreshes them.</p>
+  <p>Live effort starts after your first workout of the day, shows your effort against today's target on the Lock Screen and in the Dynamic Island, and ends at midnight. Turn it off in TrainInsight's Settings › Training. If it doesn't appear, check that Live Activities are allowed for TrainInsight in the Settings app.</p>
 
-  <h2>Siri shortcuts</h2>
-  <p>"What's my readiness with TrainInsight" / "Check my HRV with TrainInsight" / "How did I sleep with TrainInsight" / "What's my stress level with TrainInsight" / "Ask my coach with TrainInsight [question]" — all wired through App Intents. Open the Shortcuts app and search "TrainInsight" to see all of them with their voice phrases.</p>
+  <h2>Notifications</h2>
+  <p>Every notification is optional and scheduled on your device. In TrainInsight's Settings › Notifications you can turn on Morning readiness (at a time you choose), the Body signals alert and the Weekly report (Sundays at 6 PM). The wind-down reminder is on the Tonight card, which appears on Today in the evening. If a switch turns itself back off, notifications are off for TrainInsight; turn them on in Settings › Notifications › TrainInsight.</p>
+  <p>The body signals alert runs as a background refresh, so iOS decides exactly when, usually after you unlock your iPhone in the morning. Keep Background App Refresh on for TrainInsight. Today always shows the same result when you open the app.</p>
+
+  <h2>Siri</h2>
+  <p>Say any of these, or find them in the Shortcuts app under TrainInsight:</p>
+  <ul>
+    <li>"What's my readiness with TrainInsight" or "Get my readiness score with TrainInsight"</li>
+    <li>"What should I train today with TrainInsight" or "What's my plan today in TrainInsight"</li>
+    <li>"Tag my day in TrainInsight" (Siri asks which tag)</li>
+    <li>"How did I sleep with TrainInsight"</li>
+    <li>"Show my recent workouts with TrainInsight"</li>
+    <li>"Export my health data with TrainInsight"</li>
+  </ul>
+
+  <h2>Heart-rate zones</h2>
+  <p>Zones use your heart-rate reserve, the gap between your resting and maximum heart rate (the Karvonen method). By default TrainInsight estimates your maximum from the date of birth in Health; to use your own, choose Custom max in TrainInsight's Settings › Training › Heart rate zones. Without a date of birth or a custom max, it uses the highest heart rate seen in your workouts.</p>
+
+  <h2>TrainInsight Plus</h2>
+  <p>TrainInsight Plus is an optional one-time purchase. It adds 90-day and 1-year trends, what moves your readiness (how your tags relate to next-morning readiness), the PDF health report, 7 more themes and 20 more app icons. Readiness, today's plan, body signals, the sleep planner, heart-rate zones, the weekly report, widgets, Siri and Coach are included without it.</p>
+  <p>Buy it from the TrainInsight Plus card at the top of TrainInsight's Settings, or from any Plus feature. On a new device or after reinstalling, tap Restore Purchases on the same card while signed in with the Apple Account you bought it with. Plus supports Family Sharing. If a purchase is waiting for approval, for example with Ask to Buy, Plus unlocks as soon as it goes through.</p>
+
+  <h2>Themes and app icons</h2>
+  <p>In TrainInsight's Settings, tap Theme and app icon. Default, Paper and Midnight, and the Signals icons that follow your theme, are included; Plus adds the rest. Appearance can be Light, Dark or Automatic; Midnight is always dark.</p>
+
+  <h2>Exporting your data</h2>
+  <p>In TrainInsight's Settings, go to Health and data › Export data. Choose CSV (for spreadsheets) or JSON (structured data), or a PDF report with TrainInsight Plus, pick 30 days, 90 days or 1 year, and send the file wherever you like with the share sheet. Siri can export too ("Export my health data with TrainInsight"): it exports the last 30 days and, without Plus, makes a CSV if you ask for a PDF.</p>
 
   <h2>Anything else</h2>
-  <p>Email me at <a href="mailto:chen.he@icloud.com" class="text-accent dark:text-accent-dark hover:underline">chen.he@icloud.com</a>.</p>
+  <p>Email me at <a href="mailto:chen.he@icloud.com" class="text-accent dark:text-accent-dark hover:underline">chen.he@icloud.com</a>. A screenshot and your device and iOS version help.</p>
 
 </main>

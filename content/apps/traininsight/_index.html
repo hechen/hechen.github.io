@@ -1,6 +1,6 @@
 ---
 title: 'TrainInsight'
-description: 'HRV-driven readiness, sleep quality, training load, and an AI coach that actually reads your last 7 days of HealthKit data. iPhone + Apple Watch.'
+description: 'A morning readiness score, a plan for the day, body signals, a sleep planner and training trends from your Apple Health data, for iPhone, iPad and Apple Watch. Everything is calculated on your device.'
 ---
 
 <div class="gradient-bg">
@@ -10,22 +10,28 @@ description: 'HRV-driven readiness, sleep quality, training load, and an AI coac
       Apps
     </a>
 
-    <h1 class="text-4xl sm:text-6xl font-bold tracking-tight">TrainInsight</h1>
-    <p class="mt-4 text-xl sm:text-2xl text-slate-600 dark:text-slate-400 leading-relaxed">
+    <div class="flex items-start gap-5">
+      <img src="/assets/icons/traininsight.png?v=acfc6224e6db" alt="TrainInsight app icon" class="h-20 w-20 rounded-[24%] shadow-lg ring-1 ring-black/5" loading="lazy" decoding="async">
+      <div>
+        <h1 class="text-4xl sm:text-6xl font-bold tracking-tight">TrainInsight</h1>
+        <p class="mt-2 text-sm font-medium uppercase tracking-[0.16em] text-slate-400 dark:text-slate-500">iPhone · iPad · Apple Watch</p>
+      </div>
+    </div>
+    <p class="mt-6 text-xl sm:text-2xl text-slate-600 dark:text-slate-400 leading-relaxed">
       Understand your recovery. Plan your next session.
     </p>
 
     <p class="mt-6 text-lg leading-[1.7] text-slate-700 dark:text-slate-300">
-      An iPhone and Apple Watch app that turns your HRV, sleep, resting heart rate, and workouts into a daily readiness score, training-load picture, and stress timeline — paired with an AI coach that has the numbers in front of it before you ask.
+      TrainInsight reads the sleep, heart and workout data your Apple Watch already records in Apple Health and turns it into one answer each morning: how ready you are, compared with your own normal, and what to do with it. Today gives you the score and the plan, Training shows whether your week is working, and Trends shows how your body changes over months.
     </p>
 
-    <div class="mt-10 flex flex-wrap gap-3">
+    <div class="mt-10 flex flex-wrap items-center gap-3">
       <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-sm text-slate-700 dark:text-slate-300">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        iPhone · Apple Watch
+        Today · Training · Trends
       </span>
     </div>
-
+    <p class="mt-5 text-sm text-slate-500 dark:text-slate-400">Requires iOS 18 or iPadOS 18 or later. The Apple Watch app requires watchOS 10 or later.</p>
   </div>
 </div>
 
@@ -36,57 +42,99 @@ description: 'HRV-driven readiness, sleep quality, training load, and an AI coac
 
     <div>
       <div class="flex items-center gap-2 mb-2">
+        <svg class="w-5 h-5 feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 14l4-4"/><path d="M3.34 19a10 10 0 1117.32 0"/></svg>
+        <h3 class="font-semibold">Readiness every morning</h3>
+      </div>
+      <p class="text-slate-600 dark:text-slate-400">A 0–100 score from last night's sleep, HRV, resting heart rate and your recent training load, each compared with your own 30-day normal. Four bands — Primed, Ready, Easy and Recover — and Today shows what's shaping it.</p>
+    </div>
+
+    <div>
+      <div class="flex items-center gap-2 mb-2">
+        <svg class="w-5 h-5 feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        <h3 class="font-semibold">A plan for today</h3>
+      </div>
+      <p class="text-slate-600 dark:text-slate-400">The session that fits your readiness, with an effort target. After your first workout of the day, Live effort shows your effort against the target on the Lock Screen and in the Dynamic Island until midnight.</p>
+    </div>
+
+    <div>
+      <div class="flex items-center gap-2 mb-2">
+        <svg class="w-5 h-5 feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z"/></svg>
+        <h3 class="font-semibold">Body signals</h3>
+      </div>
+      <p class="text-slate-600 dark:text-slate-400">Last night's wrist temperature, breathing rate, resting heart rate, HRV and blood oxygen against your 30-night normal. An optional morning alert tells you when two or more drift together.</p>
+    </div>
+
+    <div>
+      <div class="flex items-center gap-2 mb-2">
         <svg class="w-5 h-5 feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-        <h3 class="font-semibold">Daily readiness score</h3>
+        <h3 class="font-semibold">Tonight's sleep plan</h3>
       </div>
-      <p class="text-slate-600 dark:text-slate-400">A 0–100 number derived from HRV, sleep duration and efficiency, and recent training load — with the inputs you can tap to see what drove it.</p>
+      <p class="text-slate-600 dark:text-slate-400">In the evening, Today suggests a bedtime from your sleep need and recent sleep debt, alongside last night's sleep. An optional wind-down reminder nudges you toward it.</p>
     </div>
 
     <div>
       <div class="flex items-center gap-2 mb-2">
-        <svg class="w-5 h-5 feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6m0 8v6m-10-10h6m8 0h6"/></svg>
-        <h3 class="font-semibold">Stress timeline</h3>
+        <svg class="w-5 h-5 feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 16v-4M12 16V8M17 16v-7"/></svg>
+        <h3 class="font-semibold">Training that adds up</h3>
       </div>
-      <p class="text-slate-600 dark:text-slate-400">Hourly HRV-derived stress score across today, with faded ghost bars for hours that didn't sample so the gaps read honestly.</p>
-    </div>
-
-    <div>
-      <div class="flex items-center gap-2 mb-2">
-        <svg class="w-5 h-5 feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3"/></svg>
-        <h3 class="font-semibold">Sleep insights</h3>
-      </div>
-      <p class="text-slate-600 dark:text-slate-400">Quality, efficiency, stages, bedtime consistency, and weekly trends — plus a daylight footer tying outdoor light exposure back to circadian rhythm.</p>
+      <p class="text-slate-600 dark:text-slate-400">Plan your week, then see this week's load against it, your last 7 days against your 4-week normal, and an intensity mix in personal heart-rate zones set from your age or a max you choose.</p>
     </div>
 
     <div>
       <div class="flex items-center gap-2 mb-2">
         <svg class="w-5 h-5 feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 14l4-4 4 4 5-5"/></svg>
-        <h3 class="font-semibold">Training load</h3>
+        <h3 class="font-semibold">Trends and a weekly report</h3>
       </div>
-      <p class="text-slate-600 dark:text-slate-400">Compare recent training with your longer-term workload to help decide when to push and when to recover.</p>
+      <p class="text-slate-600 dark:text-slate-400">Readiness, sleep, HRV, resting heart rate, VO₂ max and daily load over 7 and 30 days, or 90 days and a year with Plus. A weekly report sums up your week, with a card you can share.</p>
+    </div>
+
+    <div>
+      <div class="flex items-center gap-2 mb-2">
+        <svg class="w-5 h-5 feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><circle cx="7" cy="7" r="1"/></svg>
+        <h3 class="font-semibold">What moves your readiness</h3>
+      </div>
+      <p class="text-slate-600 dark:text-slate-400">Tag your day — alcohol, a late meal, travel, stretching, or tags of your own. With Plus, once there are at least five tagged days, see how each tag relates to next-morning readiness. Associations, not proof.</p>
     </div>
 
     <div>
       <div class="flex items-center gap-2 mb-2">
         <svg class="w-5 h-5 feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
-        <h3 class="font-semibold">AI Coach</h3>
+        <h3 class="font-semibold">Coach, on your device</h3>
       </div>
-      <p class="text-slate-600 dark:text-slate-400">Ask anything about your recovery or training. Get guidance informed by your last seven days of sleep, activity, and recovery data.</p>
+      <p class="text-slate-600 dark:text-slate-400">Ask about today's readiness and training. Coach runs only on Apple Intelligence's on-device model, on supported devices with iOS 26 or later, so your questions and numbers never leave your device.</p>
     </div>
 
     <div>
       <div class="flex items-center gap-2 mb-2">
-        <svg class="w-5 h-5 feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        <h3 class="font-semibold">Apple Watch + Siri</h3>
+        <svg class="w-5 h-5 feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="12" height="18" rx="3"/><path d="M9 3V1m6 2V1M9 23v-2m6 2v-2"/></svg>
+        <h3 class="font-semibold">Apple Watch</h3>
       </div>
-      <p class="text-slate-600 dark:text-slate-400">Watch app for at-a-glance readiness; Siri Shortcuts for "what's my HRV", "how did I sleep", and "ask my coach [question]".</p>
+      <p class="text-slate-600 dark:text-slate-400">Today's score, plan and effort on your wrist, calculated on the watch from Apple Health, plus Readiness and HRV complications for your watch face.</p>
+    </div>
+
+    <div>
+      <div class="flex items-center gap-2 mb-2">
+        <svg class="w-5 h-5 feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+        <h3 class="font-semibold">Widgets, controls and Siri</h3>
+      </div>
+      <p class="text-slate-600 dark:text-slate-400">A Readiness widget for the Home Screen and Lock Screen, a Last Night sleep widget, Readiness and Tag Your Day controls for Control Center, and Siri for your score, today's plan, sleep, workouts and tags.</p>
     </div>
 
   </div>
 
+  <h2 class="text-2xl font-bold tracking-tight mt-16 mb-4">TrainInsight Plus</h2>
+  <p class="text-lg leading-[1.7] text-slate-700 dark:text-slate-300">
+    Readiness, today's plan, body signals, the sleep planner, heart-rate zones, the weekly report, widgets, Siri and Coach are all included. TrainInsight Plus is an optional one-time purchase that adds 90-day and 1-year trends, what moves your readiness, a PDF health report, 7 more themes and 20 more app icons.
+  </p>
+
   <h2 class="text-2xl font-bold tracking-tight mt-16 mb-4">Privacy first</h2>
   <p class="text-lg leading-[1.7] text-slate-700 dark:text-slate-300">
-    Everything stays on your device and in your private iCloud database. No analytics, no third-party SDKs, no tracking. The AI coach uses whichever provider you choose — Apple Intelligence and the on-device MLX models never make a network call; cloud providers (Claude, OpenAI, custom endpoint) are bring-your-own-key and talk to those services directly under their terms. The full story is on the <a href="privacy.html" class="text-accent dark:text-accent-dark hover:underline">privacy page</a>.
+    TrainInsight reads from Apple Health and calculates everything on your device. It never writes to Health. No account, no server, no analytics, no ads, no third-party SDKs, no tracking. Coach uses Apple Intelligence's on-device model, so your questions stay on your device too. The full story is on the <a href="privacy.html" class="text-accent dark:text-accent-dark hover:underline">privacy page</a>.
+  </p>
+
+  <h2 class="text-2xl font-bold tracking-tight mt-16 mb-4">Not medical advice</h2>
+  <p class="text-lg leading-[1.7] text-slate-700 dark:text-slate-300">
+    Readiness, plans, body signals and Coach are general fitness guidance, not medical advice. TrainInsight isn't a medical device and can't diagnose illness. If you feel unwell, listen to your body and talk to a doctor.
   </p>
 
   <div class="mt-16 flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-500 dark:text-slate-400 [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center">

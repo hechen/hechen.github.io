@@ -10,20 +10,59 @@ url: '/apps/traininsight/privacy.html'
       TrainInsight
     </a>
     <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Privacy</h1>
-    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 28 April 2026</p>
+    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 11 October 2026</p>
   </div>
 </div>
 
 <main class="max-w-2xl mx-auto px-6 sm:px-8 py-10 sm:py-16 text-lg leading-[1.7] text-slate-700 dark:text-slate-300">
-  <p><strong>Your health data lives on your device and in your private iCloud database.</strong> There is no TrainInsight server holding any of it. The readiness scores, training load, sleep insights, and AI summaries are all computed locally from the HealthKit numbers that are already on your iPhone.</p>
 
-  <p><strong>HealthKit.</strong> With your permission, TrainInsight reads your heart-rate variability, resting heart rate, sleep stages, workouts, body weight, VO₂ max, active energy, and time-in-daylight (iOS 17+). It does not write to HealthKit — every metric you see in the app is read-only, derived from samples Apple Health already has. HealthKit data never leaves the iOS HealthKit boundary; the app reads within it but doesn't copy that data into any separate cloud.</p>
+  <p><strong>Your health data stays on your device.</strong> TrainInsight reads from Apple Health and calculates everything on your iPhone, iPad or Apple Watch. There are no accounts, no servers, no ads, no analytics and no tracking, and nothing is uploaded. I don't collect any data from the app. This policy covers TrainInsight for iPhone, iPad and Apple Watch, including its widgets, controls and Live Activity.</p>
 
-  <p><strong>The AI Coach and Health Summary.</strong> When you ask the coach a question, or the dashboard generates the daily summary, your prompt plus a 7-day data block (sleep, HRV, RHR, readiness, training load, daylight) goes to whichever AI provider you've selected. By default that's Apple Intelligence on iOS 26+, which runs on-device. The on-device LLM (a downloaded local model) also stays on the device. If you've configured a cloud provider with your own API key — Claude, OpenAI, or a custom endpoint — the prompt and data block go to that provider directly under their privacy terms. TrainInsight proxies nothing; the cloud providers don't get your raw HealthKit samples, just the aggregate context block the app would otherwise have rendered to you.</p>
+  <h2>What TrainInsight reads from Apple Health</h2>
+  <p>With your permission, TrainInsight reads:</p>
+  <ul>
+    <li><strong>Sleep</strong>, for readiness, your sleep need and sleep debt, and the sleep planner.</li>
+    <li><strong>Heart rate, heart rate variability, resting heart rate and walking heart rate</strong>, for readiness, body signals and workout intensity.</li>
+    <li><strong>Workouts, active energy and steps</strong>, for training load and intensity.</li>
+    <li><strong>Wrist temperature, breathing rate and blood oxygen</strong>, for body signals.</li>
+    <li><strong>VO₂ max and your date of birth</strong>, for trends and personal heart-rate zones.</li>
+  </ul>
+  <p>You choose which of these to share, and you can change that at any time in the Health app (your profile › Apps › TrainInsight) or in Settings › Privacy &amp; Security › Health › TrainInsight. Anything you don't share simply stays empty in the app.</p>
 
-  <p><strong>The AI Request Log and AI Usage tracker</strong> in Settings show recent prompts, token totals, and estimated costs for debugging and budget awareness. They live on the device — the request log clears at app quit; the token/cost totals persist in local settings. Nothing in either is transmitted anywhere.</p>
+  <h2>What TrainInsight writes</h2>
+  <p>Nothing. TrainInsight never saves, changes or deletes anything in Apple Health.</p>
 
-  <p>No analytics. No third-party SDKs. No tracking pixels. No advertising. The app contains nothing that would let me, or anyone else, observe how you use it.</p>
+  <h2>How your data is used</h2>
+  <p>Your Health data is used only to show you your own readiness, today's plan, body signals, sleep plan, training and trends, and every number is calculated on your device. It is never used for advertising or marketing, never sold and never shared with anyone. TrainInsight doesn't use iCloud or any other cloud service.</p>
 
-  <p>Email me with questions: <a href="mailto:chen.he@icloud.com" class="text-accent dark:text-accent-dark hover:underline">chen.he@icloud.com</a>.</p>
+  <h2>Coach and Apple Intelligence</h2>
+  <p>Coach answers questions about today's readiness and training with Apple Intelligence's on-device model, on devices that support Apple Intelligence and run iOS 26 or later. When you ask a question, TrainInsight gives the model a short summary of your numbers: readiness and what moved it, recent sleep, HRV, resting heart rate and training load, today's plan, heart-rate zones and today's tags. Your questions, that summary and the answers stay on your device. Coach doesn't use cloud AI providers, API keys or downloaded models, and conversations aren't saved after you close Coach. Apple's privacy terms for Apple Intelligence apply.</p>
+
+  <h2>Apple Watch, widgets, controls and Live Activity</h2>
+  <p>The Apple Watch app reads Health on the watch and calculates readiness there; its complications show a summary saved on the watch. On iPhone and iPad, the widgets, Control Center controls and the Live effort Live Activity show a summary of your latest numbers (such as today's readiness, plan and effort, and last night's sleep and HRV) saved in a shared container on your device that only TrainInsight and its extensions can read. Lock Screen widgets and the Live Activity can show this while your device is locked; your device's widget and Live Activity settings control that.</p>
+
+  <h2>Your tags, plans and settings</h2>
+  <p>Your day tags, your week plan, sleep planner and heart-rate zone settings, your theme and your other settings are stored only on your device. TrainInsight doesn't sync or upload them; like any app's data, they're part of your device backup if you make one. Deleting TrainInsight deletes them. Your Health data stays in Health.</p>
+
+  <h2>Notifications</h2>
+  <p>Notifications are optional and scheduled on your device: the morning readiness reminder, the body signals alert, the wind-down reminder and the Sunday weekly report. The body signals alert is worked out in the background on your device from last night's readings. TrainInsight doesn't use a push-notification server. You can turn each one off in TrainInsight's Settings, and control permission and Lock Screen previews in the Settings app.</p>
+
+  <h2>Purchases</h2>
+  <p>TrainInsight Plus is an optional one-time purchase through the App Store. Apple processes the payment; TrainInsight only learns from StoreKit whether Plus is unlocked, and remembers that on your device. I never receive your payment details or Apple Account information.</p>
+
+  <h2>Exporting and sharing</h2>
+  <p>You can export your data as CSV or JSON, or as a PDF report with TrainInsight Plus, from Settings › Health and data › Export data, or with Siri. The file is created on your device and goes only where you send it with the share sheet; the same is true of the weekly report card. Once you share a file, whoever receives it handles it under their own terms.</p>
+
+  <h2>Advertising, analytics and diagnostics</h2>
+  <p>No advertising, no analytics, no third-party SDKs and no tracking. TrainInsight makes no network requests of its own; the App Store handles purchases. If you turn on Share With App Developers in Settings › Privacy &amp; Security › Analytics &amp; Improvements, Apple may share crash reports with me under its terms.</p>
+
+  <h2>Not medical advice</h2>
+  <p>Readiness, plans, body signals and Coach are general fitness guidance, not medical advice. TrainInsight isn't a medical device and can't diagnose illness. If you feel unwell, listen to your body and talk to a doctor.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If TrainInsight changes how it handles your data, I'll update this page and the date above.</p>
+
+  <h2>Contact</h2>
+  <p>Email me with questions about privacy: <a href="mailto:chen.he@icloud.com" class="text-accent dark:text-accent-dark hover:underline">chen.he@icloud.com</a>.</p>
+
 </main>
