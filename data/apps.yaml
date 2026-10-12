@@ -108,6 +108,15 @@
   privacy: /apps/traininsight/privacy.html
   support: /apps/traininsight/support.html
   summary: Readiness signals and training analytics built around Apple Watch data.
+- name: Puffaloo
+  appStoreId: '6821776370'
+  eyebrow: Puzzle game
+  platforms: iPhone · iPad
+  icon: /assets/icons/puffaloo.png?v=de4ac6a7d9f1
+  url: /apps/puffaloo/
+  privacy: /apps/puffaloo/privacy.html
+  support: /apps/puffaloo/support.html
+  summary: Swap hand-drawn pals, make special pals for bigger combos, and play 36 handcrafted match-3 levels with no ads and no tracking.
 - name: Market Mood
   appStoreId: '6761278234'
   eyebrow: Market pulse
