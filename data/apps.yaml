@@ -53,12 +53,12 @@
   privacy: /apps/keeps/privacy.html
   support: /apps/keeps/support.html
   summary: Keep belongings, apps and subscriptions together, track what each item costs per use, and share illustrated everyday-object stickers in Messages.
-- name: Closet
+- name: Wearfolio
   appStoreId: '6758357191'
   eyebrow: Wardrobe & outfits
   platforms: iPhone · iPad · Mac
   icon: /assets/icons/closet.png?v=f3444de55c1c
-  url: https://closet-app.heavyriver.chatgpt.site/
+  url: /apps/closet/
   privacy: /apps/closet/privacy.html
   support: /apps/closet/support.html
   summary: See what you own, build outfits, track every wear, and make more of your wardrobe with private iCloud sync and optional AI assistance.
