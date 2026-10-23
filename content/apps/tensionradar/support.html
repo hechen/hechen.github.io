@@ -5,31 +5,27 @@ url: '/apps/tensionradar/support.html'
 
 <div class="gradient-bg">
   <div class="max-w-2xl mx-auto px-6 sm:px-8 pt-12 sm:pt-20 pb-6">
-    <a href="../" class="inline-flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark transition-colors mb-8">
+    <a href="/apps/tensionradar/" class="inline-flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 hover:text-accent dark:hover:text-accent-dark transition-colors mb-8">
       <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       TensionRadar
     </a>
     <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Support</h1>
-    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 28 September 2026</p>
+    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 22 October 2026</p>
   </div>
 </div>
 
 <main class="max-w-2xl mx-auto px-6 sm:px-8 py-10 sm:py-16 text-lg leading-[1.7] text-slate-700 dark:text-slate-300">
 
-  <h2>Granting Health access</h2>
-  <p>The first launch asks for Health permissions. If you skipped or denied one, open the Health app → Sharing → Apps → TensionRadar and turn on Heart Rate Variability, Heart Rate, Resting Heart Rate, Respiratory Rate and Beat-to-Beat Measurements. The only thing TensionRadar writes is Mindful Minutes for finished breathing sessions, so the read toggles decide what the radar can show.</p>
-
-  <h2>The radar says "No heart data yet"</h2>
-  <p>HRV comes from Apple Watch. Wear the watch regularly and check Health for HRV readings. Apple controls when measurements are taken; they are not continuous and there is no guaranteed interval. TensionRadar can display readings after Health makes them available.</p>
-
-  <h2>Why does the score use a "typical adult" baseline?</h2>
-  <p>TensionRadar learns your personal baseline from your own daily HRV. Until it has at least five days of readings it scores against population defaults and says so under "Why this reading". The baseline window (7, 14, 30 or 60 days) is in Settings → Baseline.</p>
-
-  <h2>The character looks Overloaded but I feel fine</h2>
-  <p>HRV drops for many reasons that are not stress: a late coffee, alcohol, a hard workout, the start of a cold, or a short night. Tap the reading to see the drivers, and log a journal check-in with the context tags. After a few entries the Journal shows which habits move your HRV so the score becomes easier to read.</p>
+  <p><strong>Version scope:</strong> The scoring, retained-reading and alert guidance below describes 1.2.1, submitted for review. The US App Store still lists 1.1.0 as of October 22; older versions may differ. See <a href="/apps/tensionradar/how-it-works.html">How TensionRadar works</a> for the exact formula, defaults and limitations.</p>
+  <h2>Granting Health access</h2><p>In Health → Sharing → Apps → TensionRadar, review HRV, heart rate, resting heart rate, respiratory rate, beat-to-beat measurements and workout access. Supported systems may also provide RMSSD readings. Workout history helps exclude exercise and recovery. Mindful Minutes writing is optional for finished breathing sessions; workout-sharing permission supports live Watch sessions, whose workout is discarded.</p>
+  <h2>Why does it say “Last reading”?</h2><p>The most recent accepted result stays visible with its original measurement age when current evidence expires or is unsuitable. It is historical, not a claim about how you feel now. It cannot bypass current alert checks. Without an accepted score, the app can show raw HRV; with no measurement it shows a first-reading state. Older builds may instead show “No Current Reading.”</p>
+  <h2>Does Refresh take a new measurement?</h2><p>No. It asks for available Health data. Watch sampling, Health availability and background delivery determine when new readings arrive. Compare measurement timestamps in Health and TensionRadar. A more recent heart-rate measurement does not update an older HRV timestamp.</p>
+  <h2>How much history is needed?</h2><p>A new score needs at least five distinct days of suitable measurements in the matching time-of-day window, separately for SDNN or RMSSD. The default baseline window is 30 days; choose 7, 14, 30 or 60 in Settings. Today is excluded. Population fallback values do not qualify for a new score in 1.2.1.</p>
+  <h2>The character looks Overloaded but I feel fine</h2><p>The label is a score band, not a diagnosis or a measurement of your emotions. Check the statistic, timestamp and “Why This Reading” explanation. Journal check-ins record how you actually feel. Low HRV has many possible influences; a difference or association does not establish a cause. See the methodology’s limitations before interpreting a change.</p>
+  <h2>Movement and workouts</h2><p>Activity comes from sampled Health metadata and workout records, not continuous movement tracking or heart rate alone. Workouts and the following ten minutes are excluded from a new resting interpretation. Missing metadata is not proof of rest. The last accepted result can remain visible while waiting for new evidence. Guided-breathing history is not comprehensively filtered from the baseline in this candidate.</p>
 
   <h2>Coherence breathing has no score</h2>
-  <p>Coherence needs live heart data. Choose Apple Watch as the measurement source before you begin; the TensionRadar watch app then samples your heart rate during the session and the score appears after the first minute. Without a source, Breathe still works as a paced exercise and is saved to Health as Mindful Minutes.</p>
+  <p>Coherence needs live heart data. Choose Apple Watch as the measurement source before you begin; the TensionRadar watch app then samples your heart rate during the session and an estimate becomes available when enough usable data arrives. Without a source, Breathe still works as a paced exercise and is saved to Health as Mindful Minutes.</p>
 
   <h2>Adding complications</h2>
   <p>Long-press your watch face, tap Edit, swipe to Complications, pick a slot and choose TensionRadar. Five kinds are available on compatible faces and slots: Tension Radar (your character with the stress ring), HRV (your latest number against your typical range), Stress Score (0–100), Heart Rate (with resting heart rate) and HRV · 7 Days (a weekly bar chart for large rectangular slots). The same set is available on the iPhone Lock Screen.</p>
@@ -38,23 +34,16 @@ url: '/apps/tensionradar/support.html'
   <p>TensionRadar requests a widget and complication refresh when it receives a new reading. Apple controls the final refresh timing. Open TensionRadar on your phone and watch to check the latest available data and request a refresh; updates can still be delayed by system scheduling or connectivity.</p>
   <p>Compare the measurement time in Apple Health with the time shown in TensionRadar. If Health has no newer reading, a widget refresh cannot create one. Health data can also be unavailable while the phone is locked. After installing an update, launch TensionRadar on both your iPhone and Apple Watch once and confirm Health access.</p>
 
-  <h2>In testing: calendar widgets and freshness improvements</h2>
-  <p>The upcoming update adds a medium Mood Calendar widget for the last seven days and a large widget for the current month. Both use your selected character and daily HRV averages; they do not display journal mood check-ins. Empty days mean no available readings. Tap either widget to open Trends, which also gets clearer averages and redesigned charts.</p>
-  <p>The same update improves background reads and recovery when Health data becomes accessible again. Widget measurement ages continue advancing, and expired readings stop contributing to a current score while remaining visible as dated history. Background work is opportunistic: it does not guarantee an immediate or hourly update. These changes are still being tested and are not yet publicly available.</p>
+  <h2>Calendar widgets in the submitted update</h2><p>Version 1.2.1 includes daily-HRV calendar widgets and trend views. The character summarizes daily HRV relative to usual days; it does not show Journal mood check-ins. Days without data remain empty. Availability is pending App Review.</p>
 
   <h2>Changing the app icon</h2>
   <p>Settings → App icon lets you choose the Nimbus radar icon or a character icon (character icons other than Nimbus need the Character Pack). Turn on Match my character and the Home Screen icon changes whenever you pick a different character. iOS shows a short confirmation each time the icon changes.</p>
 
-  <h2>Alerts</h2>
-  <p>Two optional alerts exist: a morning summary once a day, and a "tension rising" alert at most every three hours when a fresh reading lands in the Tense or Overloaded band. Both require eligible readings and notification permission; a morning summary is not guaranteed every day. Delivery may be affected by Focus and system notification settings. Turn either alert off in Settings → Alerts, where you can also check permission and send a test notification.</p>
-
-  <h2>In testing: alert diagnostics and Watch-local delivery</h2>
-  <p>The TestFlight update adds Settings → Alerts → Alert policy and diagnostics. It records the latest 50 alert decisions on your device, including why a reading did not produce an alert. It also shows notification presentation settings and the last background-read attempt. A notification accepted by the system is not proof it was seen.</p>
-  <p>iPhone remains the default source of tension alerts. To test Watch-local alerts, update and open TensionRadar on both devices, allow Watch notifications, choose Apple Watch under Notify from, and save. Morning summaries remain on iPhone. Switching back waits for the Watch to acknowledge the change; keep the Watch app open while switching. An offline Watch does not automatically transfer responsibility to the phone.</p>
-  <p>The test update offers score thresholds, alert hours, and one-, two-, or three-hour intervals. A new Overloaded reading can bypass the cooldown 30 minutes after a Tense alert if escalation is enabled. Readings at least two hours old and insufficient-confidence estimates remain ineligible. These changes are in testing, not the public release; Apple still controls sampling and background execution.</p>
+  <h2>Alerts in 1.2.1</h2><p>HRV alerts require a fresh eligible reading and a preceding same-statistic reading that confirms the threshold. A separate sustained resting-heart-rate rule also exists. Historical display results cannot trigger current alerts. Default spacing is 15 minutes; choices are 0, 15, 30 or 60 minutes. Threshold choices are 60, 70 or 80. Zero spacing does not remove confirmation, activity or duplicate checks. Morning summaries use a separate opportunistic path and are not guaranteed each day.</p>
+  <p>Settings → Alerts provides alert hours, delivery-device selection and local diagnostics. iPhone is the default; Watch-local tension alerts require explicit selection and acknowledgment. Morning summaries stay on iPhone. Permission, Focus, Health access and system scheduling can affect delivery. A scheduled notification is not proof that it was displayed or seen. The <a href="/apps/tensionradar/how-it-works.html#alerts">methodology page</a> gives the exact freshness, confirmation and escalation rules.</p>
 
   <h2>Changing the character</h2>
-  <p>Settings → Your character. Nimbus is the default character. The optional Character Pack adds Bloop, Mochi, and Sprout with matching app icons. Each character has all five moods, and your choice syncs to the watch app when the devices can communicate. Widgets and complications reflect it when the system refreshes them.</p>
+  <p>Settings → Your character. Nimbus is the default character. The optional Character Pack adds more designs with matching app icons. Each character has five expressions representing score categories, and your choice syncs to the watch app when the devices can communicate. Widgets and complications reflect it when the system refreshes them.</p>
 
   <h2>Restoring the Character Pack</h2>
   <p>The purchase is tied to your Apple Account and shared through Family Sharing. On a new device, open Settings → Purchases → Restore Purchases.</p>

@@ -13,14 +13,15 @@ comments: false
       <a class="inline-block py-2 underline underline-offset-4" href="/apps/tensionradar/support.html">Support</a>
     </nav>
     <h1>TensionRadar privacy policy.</h1>
-    <p class="text-sm">Effective date: 22 September 2026 (updated for the Character Pack)</p>
+    <p>Version 1.2.1 is submitted for review. References to its new reading behavior describe that candidate, not a confirmed public release. <a href="/apps/tensionradar/how-it-works.html">Read the versioned methodology.</a></p>
+    <p class="text-sm">Updated: 22 October 2026 — including the submitted 1.2.1 update</p>
     <p class="text-sm">This policy describes TensionRadar for iPhone and Apple Watch.</p>
-    <p class="text-lg">TensionRadar is developed by Chen. It reads heart data from Apple Health on your device and keeps everything it derives on your device. TensionRadar does not operate a server, has no account system, and never uploads your health data anywhere.</p>
+    <p class="text-lg">TensionRadar is developed by Chen. It reads heart data from Apple Health and processes it locally on your devices. TensionRadar does not operate a health-data server or have an account system. Local snapshots can be shared with your paired Watch as described below.</p>
   </header>
 
   <section id="health" class="space-y-4" aria-labelledby="health-title">
     <h2 id="health-title">Apple Health data TensionRadar reads</h2>
-    <p>With your permission, TensionRadar reads heart rate variability (SDNN), heart rate, resting heart rate, respiratory rate and beat-to-beat heartbeat series from Apple Health. Apple Watch records this data; TensionRadar only reads it. It uses the readings to compute a personal HRV baseline, a stress score, trends, hourly patterns and insights, all on your device.</p>
+    <p>With your permission, TensionRadar reads heart rate variability (SDNN and, on supported systems, RMSSD), heart rate, resting heart rate, respiratory rate, beat-to-beat heartbeat series and recorded workouts from Apple Health. These are available records in Apple Health; their source and availability can vary. Workout records help exclude exercise and recovery from resting interpretations. It uses the readings to compute a personal HRV baseline, a stress score, trends, hourly patterns and insights, all on your device.</p>
     <p>TensionRadar asks Apple Health to notify it when new heart-rate variability, heart-rate or resting-heart-rate samples arrive so the radar and its alerts stay current. You can revoke any of these permissions at any time in the Health app under Sharing → Apps → TensionRadar.</p>
   </section>
 
@@ -37,12 +38,12 @@ comments: false
 
   <section id="journal" class="space-y-4" aria-labelledby="journal-title">
     <h2 id="journal-title">Journal and settings</h2>
-    <p>Mood check-ins, context tags, notes and the heart readings captured with them are stored in a local database on your device. Your chosen character pack, alert preferences and baseline settings are stored in a shared container that only TensionRadar, its widget and its Apple Watch app can read. Deleting the app removes all of this data.</p>
+    <p>Mood check-ins, context tags, notes and the heart readings captured with them are stored in a local database on your device. Your chosen character pack, alert preferences, baseline and reading snapshots are stored locally in app-group storage for TensionRadar and its extensions. Selected settings and snapshots are sent to the paired Watch through Apple’s Watch Connectivity. Removing the iPhone app does not delete records already saved in Apple Health, copies on another device or system backups; manage those separately.</p>
   </section>
 
   <section id="widgets" class="space-y-4" aria-labelledby="widgets-title">
     <h2 id="widgets-title">Widgets and Apple Watch</h2>
-    <p>The Home Screen and Lock Screen widgets, the Apple Watch complications and the Apple Watch app display a small local snapshot of your latest stress band, HRV, heart rate and resting heart rate from that shared container. Widgets can show this information while the device is locked; Apple’s widget privacy settings control that.</p>
+    <p>The Home Screen and Lock Screen widgets, the Apple Watch complications and the Apple Watch app display a small local snapshot of your latest stress band, HRV, heart rate and resting heart rate using local snapshots and Watch Connectivity where applicable. In the submitted 1.2.1 update, an accepted reading can remain visible as dated history after it stops qualifying as current. Widgets can show this information while the device is locked; Apple’s widget privacy settings control that.</p>
   </section>
 
   <section id="notifications" class="space-y-4" aria-labelledby="notifications-title">
@@ -57,7 +58,7 @@ comments: false
 
   <section id="analytics" class="space-y-4" aria-labelledby="analytics-title">
     <h2 id="analytics-title">Advertising, analytics and diagnostics</h2>
-    <p>TensionRadar includes no advertising, no third-party analytics and no cross-app tracking. It makes no network requests of its own. Apple may provide crash reports and TestFlight feedback under its terms and your Apple settings.</p>
+    <p>TensionRadar includes no advertising, no third-party analytics and no cross-app tracking. Core health analysis runs locally. Purchases and restores use Apple’s services. Opening a health-reference link takes you to an external site in your browser, where that provider’s privacy policy applies; TensionRadar does not attach health readings to those links. Local alert diagnostics retain recent decisions on device; sharing or emailing a report is your choice. Apple may provide crash reports and TestFlight feedback under its terms and your Apple settings.</p>
   </section>
 
   <section id="medical" class="space-y-4" aria-labelledby="medical-title">

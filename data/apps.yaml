@@ -98,7 +98,7 @@
   store: https://apps.apple.com/us/app/tensionradar/id6753273426
   privacy: /apps/tensionradar/privacy.html
   support: /apps/tensionradar/support.html
-  summary: Explore Apple Watch HRV readings with a character radar, a personal baseline, breathing sessions, daily trends and watch complications. Readings update as Health data becomes available.
+  summary: Explore available Apple Health HRV readings with a character radar, personal history, paced breathing, daily trends and watch complications. Readings describe physiological patterns, not a direct measurement of emotions.
 - name: TrainInsight
   appStoreId: '6759210309'
   url: /apps/traininsight/
