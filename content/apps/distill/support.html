@@ -10,31 +10,29 @@ url: '/apps/distill/support.html'
       Distill
     </a>
     <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Support</h1>
-    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 26 April 2026</p>
+    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 25 October 2026</p>
   </div>
 </div>
 
 <main class="max-w-2xl mx-auto px-6 sm:px-8 py-10 sm:py-16 text-lg leading-[1.7] text-slate-700 dark:text-slate-300">
+  <h2 class="text-2xl font-semibold mt-2 mb-3">Saving an article</h2>
+  <p>Share a link to Distill from Safari or any app, or tap + on Today and paste it. Distill keeps a clean copy you can read offline. If a page can't be reached at the time, Distill tries again when you open the article.</p>
 
-  <h2>Adding a feed</h2>
-  <p>+ button → paste the feed URL. If the URL is a regular site (not a feed), Distill probes for <code>&lt;link rel="alternate" type="application/rss+xml"&gt;</code> in the page head and tries to find the feed automatically. About 80% of sites publish discoverable feeds; the rest you'll have to dig out manually.</p>
+  <h2 class="text-2xl font-semibold mt-10 mb-3">Adding a source</h2>
+  <p>Library › Sources › Add a Source, then paste a site or feed address. Distill finds the feed for most sites on its own. Sources that send only a summary can fetch the full article from the site: turn on <em>Load full articles</em> in Settings › Reading for all sources, or set a single source to Always or Never in Edit Source.</p>
 
-  <h2>Importing from another reader</h2>
-  <p>Settings → Feeds → Import OPML. Most readers (Reeder, NetNewsWire, Feedly's export) generate a compatible OPML file. Subscriptions, folders, and read/unread state come along.</p>
+  <h2 class="text-2xl font-semibold mt-10 mb-3">Importing and exporting</h2>
+  <p>Settings › Library › Import reads the export file from Pocket, Instapaper or Omnivore. Sources import and export as OPML from Library › Sources; your notebook exports as Markdown from the Notebook tab. There is no lock-in.</p>
 
-  <h2>Exporting your feed list</h2>
-  <p>Settings → Feeds → Export OPML. Save the file anywhere — Files, AirDrop, email — and you can move to any other reader without losing your subscriptions. There's no lock-in.</p>
+  <h2 class="text-2xl font-semibold mt-10 mb-3">Reading</h2>
+  <p>Tap the page's edges or swipe to turn; the Aa button sets the typeface, size, line spacing, margins, page colour and page turn. Select text to highlight it or add a note; touch and hold a highlight to share it as a card. Reaching the last page marks the article finished; Undo is in the bar.</p>
 
-  <h2>How the Hot Links score works</h2>
-  <p>For each link an article references, Distill counts how many other articles in your subscribed feeds also reference it within the last few days. More cross-references in your feed network = higher Hot Links score. The score is local; it does not consider what other Distill users are reading because the app has no idea what other users are reading.</p>
+  <h2 class="text-2xl font-semibold mt-10 mb-3">Ask</h2>
+  <p>Ask answers only from the article in front of you and quotes the passages it used. It runs on your device with Apple Intelligence where available; in Settings › Ask you can use Claude or OpenAI with your own API key instead. If an answer can't be matched to the article it isn't shown — try asking in another way.</p>
 
-  <h2>Cleared cache, articles still show up</h2>
-  <p>Clearing the cache only removes the on-device article body cache. Article metadata (titles, dates, links) re-fetches from the source feed on next refresh. To get rid of an article permanently, archive or unsubscribe from the feed it came from.</p>
+  <h2 class="text-2xl font-semibold mt-10 mb-3">iCloud sync</h2>
+  <p>Your library syncs across iPhone and iPad through your own iCloud account. First sync after a fresh install can take a minute; keep Distill open on Today. Reading preferences (typeface, margins, the full-articles default) are per device.</p>
 
-  <h2>Watch app didn't load my feeds</h2>
-  <p>The watch app pulls from CloudKit, which can lag a minute or two on first sync after a fresh install. Open the iPhone app once, leave it on the feed list for ~30 seconds, then re-open the Watch app.</p>
-
-  <h2>Anything else</h2>
-  <p>Email me at <a href="mailto:chen.he@icloud.com" class="text-accent dark:text-accent-dark hover:underline">chen.he@icloud.com</a>.</p>
-
+  <h2 class="text-2xl font-semibold mt-10 mb-3">Anything else</h2>
+  <p>Email me at <a href="mailto:chen.dev@icloud.com" class="text-accent dark:text-accent-dark hover:underline">chen.dev@icloud.com</a>.</p>
 </main>
