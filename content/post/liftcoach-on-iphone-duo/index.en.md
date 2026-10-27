@@ -2,17 +2,20 @@
 title: 'LiftCoach on iPhone Duo'
 slug: 'liftcoach-on-iphone-duo'
 date: 2026-09-25T16:30:00-07:00
+lastmod: 2026-10-26T22:57:00-07:00
 draft: false
 description: 'A first look at LiftCoach on iPhone Duo: two pages when it opens, a seated mode that turns the folded top half into a screen for the bench, controls in the side bar, and a Live Activity that fits the new island.'
 categories: ['apps']
 tags: ['LiftCoach', 'iOS', 'iPhone Duo']
 ---
 
-iPhone Duo arrives next month, and I've spent the past few weeks getting LiftCoach ready for it.
-
 {{< note >}}
-These screens come from the iPhone Duo simulator in Xcode 27.1. iPhone Duo support is still in development and is planned for a LiftCoach update when the device launches.
+**Update — October 26, 2026:** [LiftCoach 1.1.2 is on the US App Store](https://apps.apple.com/us/app/liftcoach/id6812929269). It restores full-display workout layouts and layouts that follow the fold on iPhone Duo, including seated-mode rest timers. The screens below are the original Xcode 27.1 simulator captures from this September 25 preview.
 {{< /note >}}
+
+## Original preview — September 25, 2026
+
+iPhone Duo arrives next month, and I've spent the past few weeks getting LiftCoach ready for it.
 
 ## Built for how you hold it
 
@@ -56,10 +59,10 @@ During a workout, LiftCoach's Live Activity keeps your elapsed time or rest coun
 
 {{< image-pair size="small" a="/post/liftcoach-on-iphone-duo/live-activity-wide.jpg" a-alt="LiftCoach's Live Activity as a vertical capsule above the clock, showing the lifting icon and 1:01." b="/post/liftcoach-on-iphone-duo/live-activity-tall.jpg" b-alt="LiftCoach's Live Activity as a pill beside the clock, showing the lifting icon and 2:15." caption="The Live Activity in the side strip, and beside the clock." >}}
 
-## What's next
+## Next steps at the time of the preview
 
 There's still a month before launch. Next up are larger text sizes in the two-page layouts, VoiceOver across both pages, and testing on the device itself.
 
-LiftCoach is [on the App Store](https://apps.apple.com/app/id6812929269) for iPhone, iPad, and Apple Watch today. iPhone Duo support will arrive in an update.
+**October 26 update:** iPhone Duo support is now available in [LiftCoach 1.1.2](https://apps.apple.com/us/app/liftcoach/id6812929269).
 
 [Explore LiftCoach](/apps/liftcoach/).

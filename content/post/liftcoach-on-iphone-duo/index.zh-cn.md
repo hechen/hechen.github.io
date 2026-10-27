@@ -2,17 +2,20 @@
 title: 'LiftCoach 适配 iPhone Duo'
 slug: 'liftcoach-on-iphone-duo'
 date: 2026-09-25T16:30:00-07:00
+lastmod: 2026-10-26T22:57:00-07:00
 draft: false
 description: '抢先看 LiftCoach 在 iPhone Duo 上的样子：展开后分成两页，半折后上半部分变成训练凳旁的一块屏幕，控件放进侧边栏，实时活动也适配了新的灵动岛。'
 categories: ['apps']
 tags: ['LiftCoach', 'iOS', 'iPhone Duo']
 ---
 
-iPhone Duo 下个月发布，过去几周我一直在让 LiftCoach 为它做好准备。
-
 {{< note >}}
-以下画面来自 Xcode 27.1 中的 iPhone Duo 模拟器。iPhone Duo 适配仍在开发中，计划在设备发布时随 LiftCoach 更新一同推出。
+**2026 年 10 月 26 日更新**：[LiftCoach 1.1.2 已在美国区 App Store 上架](https://apps.apple.com/us/app/liftcoach/id6812929269)。这个版本恢复了 iPhone Duo 上铺满屏幕、随折叠姿势调整的训练布局，包括立式模式的组间倒计时。下文保留 9 月 25 日预览时的 Xcode 27.1 模拟器截图。
 {{< /note >}}
+
+## 原始预览：2026 年 9 月 25 日
+
+iPhone Duo 下个月发布，过去几周我一直在让 LiftCoach 为它做好准备。
 
 ## 按你拿手机的方式来设计
 
@@ -56,10 +59,10 @@ iPhone Duo 不只是一块屏幕。合上时，它是一部屏幕比其他 iPhon
 
 {{< image-pair size="small" a="/post/liftcoach-on-iphone-duo/live-activity-wide.jpg" a-alt="时钟上方竖直胶囊形状的 LiftCoach 实时活动，显示举重图标和 1:01。" b="/post/liftcoach-on-iphone-duo/live-activity-tall.jpg" b-alt="时钟旁边药丸形状的 LiftCoach 实时活动，显示举重图标和 2:15。" caption="侧边竖栏里和时钟旁边的实时活动。" >}}
 
-## 接下来
+## 预览时的后续计划
 
 离发布还有一个月。接下来要做的是：两页布局下的大字体、跨两页的旁白（VoiceOver）支持，以及在真机上测试。
 
-LiftCoach 现已[上架 App Store](https://apps.apple.com/app/id6812929269)，支持 iPhone、iPad 和 Apple Watch。iPhone Duo 适配将通过更新推出。
+**10 月 26 日更新**：iPhone Duo 适配现已随 [LiftCoach 1.1.2](https://apps.apple.com/us/app/liftcoach/id6812929269) 上架。
 
 [了解 LiftCoach](/apps/liftcoach/)。
