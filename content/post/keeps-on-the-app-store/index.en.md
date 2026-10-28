@@ -29,6 +29,6 @@ Keeps is free to download and lets you keep **up to 30 items**, counting belongi
 
 **Keeps Pro** is an optional one-time unlock for unlimited items and bulk imports from Apple purchase history, Amazon, receipts, and CSV. If you bought the earlier paid version of Keeps, Pro is included.
 
-Try the separate demo collection, or start with a few things you use often. Keep a backup with your photos and use history, and optionally enable daily or weekly backups when you open the app. There is no Keeps account, advertising, or third-party analytics.
+Try the separate demo collection, or start with a few things you use often. Keep a backup with your photos and use history, and optionally enable daily or weekly backups when you open the app. There is no Keeps account or advertising. Since the RevenueCat rollout for Keeps 1.6.2, Pro purchase records and purchase-screen interactions are processed for verification and analytics. Your collection, imported purchase history, photos, and notes are not sent to RevenueCat. See the [current privacy policy](/apps/keeps/privacy.html#purchases-analytics) for SDK rollout and Apple server-notification details.
 
 [Explore Keeps](/apps/keeps/), [follow the getting-started guide](/apps/keeps/guide.html), or [visit its website](https://getkeepsapp.com/) to try the matching themes.
