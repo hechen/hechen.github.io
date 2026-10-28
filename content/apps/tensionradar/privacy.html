@@ -14,8 +14,8 @@ comments: false
     </nav>
     <h1>TensionRadar privacy policy.</h1>
     <p>Version 1.2.1 is available on the US App Store. References to its reading behavior describe that version. <a href="/apps/tensionradar/how-it-works.html">Read the versioned methodology.</a></p>
-    <p class="text-sm">Updated: 22 October 2026 — including the 1.2.1 update</p>
-    <p class="text-sm">This policy describes TensionRadar for iPhone and Apple Watch.</p>
+    <p class="text-sm">Updated: 28 October 2026 — purchase reporting in the 1.3.0 beta</p>
+    <p class="text-sm">This policy describes TensionRadar for iPhone and Apple Watch. The RevenueCat section below applies to the 1.3.0 beta and later builds that include purchase reporting. Public version 1.2.1 does not include RevenueCat.</p>
     <p class="text-lg">TensionRadar is developed by Chen. It reads heart data from Apple Health and processes it locally on your devices. TensionRadar does not operate a health-data server or have an account system. Local snapshots can be shared with your paired Watch as described below.</p>
   </header>
 
@@ -53,12 +53,15 @@ comments: false
 
   <section id="purchases" class="space-y-4" aria-labelledby="purchases-title">
     <h2 id="purchases-title">In-app purchase</h2>
-    <p>The optional Character Pack is sold through Apple's App Store. Apple processes the payment under its own terms; TensionRadar only learns from StoreKit whether the pack is unlocked, and stores that on your device and in the shared container its widget and watch app read. The developer never receives your payment details or Apple Account information.</p>
+    <p>The optional Character Pack is sold through Apple’s App Store. Apple processes payment, and TensionRadar uses verified StoreKit transactions to decide whether the pack is unlocked. Ownership is stored locally and shared with the app’s widgets and paired Watch. Purchase reporting cannot revoke access granted by StoreKit. The developer does not receive your payment-card details or Apple Account credentials.</p>
+    <h3>RevenueCat purchase reporting in the 1.3.0 beta</h3>
+    <p>The iPhone app uses RevenueCat to report purchase records with an anonymous customer identifier. It does not provide contact details, advertising identifiers, Health measurements, HRV or stress scores, journal entries, context tags or notes to RevenueCat. Purchase records are processed by RevenueCat outside your device; health calculations and journal storage remain local. No RevenueCat SDK is included in the Watch app or widgets.</p>
+    <p>TensionRadar does not use this reporting for cross-app advertising or identify customers through an app account. See <a href="https://www.revenuecat.com/privacy/">RevenueCat’s privacy policy</a> for its handling of purchase records and service requests. Contact the developer below for purchase-reporting privacy questions.</p>
   </section>
 
   <section id="analytics" class="space-y-4" aria-labelledby="analytics-title">
     <h2 id="analytics-title">Advertising, analytics and diagnostics</h2>
-    <p>TensionRadar includes no advertising, no third-party analytics and no cross-app tracking. Core health analysis runs locally. Purchases and restores use Apple’s services. Opening a health-reference link takes you to an external site in your browser, where that provider’s privacy policy applies; TensionRadar does not attach health readings to those links. Local alert diagnostics retain recent decisions on device; sharing or emailing a report is your choice. Apple may provide crash reports and TestFlight feedback under its terms and your Apple settings.</p>
+    <p>TensionRadar includes no advertising or cross-app tracking. Core health analysis runs locally. Public version 1.2.1 has no third-party analytics. The 1.3.0 beta adds RevenueCat purchase reporting as described above; it makes the network requests needed for that reporting. Purchases and restores continue to use Apple’s services. Opening a health-reference link takes you to an external site in your browser, where that provider’s privacy policy applies; TensionRadar does not attach health readings to those links. Local alert diagnostics retain recent decisions on device; sharing or emailing a report is your choice. Apple may provide crash reports and TestFlight feedback under its terms and your Apple settings.</p>
   </section>
 
   <section id="medical" class="space-y-4" aria-labelledby="medical-title">
