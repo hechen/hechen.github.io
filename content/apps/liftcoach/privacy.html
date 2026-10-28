@@ -10,7 +10,7 @@ url: '/apps/liftcoach/privacy.html'
       LiftCoach
     </a>
     <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">Privacy</h1>
-    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 9 October 2026</p>
+    <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">Last updated: 28 October 2026</p>
   </div>
 </div>
 
@@ -20,7 +20,7 @@ url: '/apps/liftcoach/privacy.html'
   <p>Training data is stored on your device and syncs through Apple's private iCloud storage when iCloud is available. iCloud sync is included with LiftCoach. AI features use the provider you choose. Apple Intelligence runs locally on supported devices; optional cloud AI sends requests directly to the provider you select.</p>
 
   <h2>What data is collected</h2>
-  <p>LiftCoach has no developer-operated analytics or training-data server, no advertising, and no tracking. Workouts, exercises, templates, programs, and measurements entered in LiftCoach are stored locally and, when iCloud sync is active, in your private iCloud account. Apple controls that storage; we never see it. Weight-unit preferences can coordinate through iCloud so existing weights keep their meaning across devices. Communication with your paired Apple Watch works independently of iCloud sync.</p>
+  <p>LiftCoach has no developer-operated training-data server, no advertising, and no cross-app tracking. Purchase reporting in beta and updated releases is described below. Workouts, exercises, templates, programs, and measurements entered in LiftCoach are stored locally and, when iCloud sync is active, in your private iCloud account. Apple controls that storage; we never see it. Weight-unit preferences can coordinate through iCloud so existing weights keep their meaning across devices. Communication with your paired Apple Watch works independently of iCloud sync.</p>
   <p>If you choose a cloud AI provider, the text you submit is sent directly to that provider. Your LiftCoach and Apple Health training history is attached only when you separately enable Share Training History. This consent also applies to cloud features that analyze a specific workout or exercise, including recaps, workout naming, and plateau analysis. Those features send the figures needed for the requested analysis. Text you type yourself is still sent when you submit it to a cloud provider. Submitted prompts and conversation content, fitness history, and health measurements may be processed or retained by your selected provider for the requested AI functionality. Because requests use your API key, the provider can associate that content with your provider account. Retention and other processing are governed by that provider’s terms and your account settings. LiftCoach does not use this information for advertising or tracking.</p>
 
   <h2>HealthKit data</h2>
@@ -41,6 +41,8 @@ url: '/apps/liftcoach/privacy.html'
 
   <h2>Purchases</h2>
   <p>Apple processes the optional LiftCoach Pro lifetime purchase through the App Store. LiftCoach verifies Apple’s transaction information and caches purchase ownership on the device. Restore Purchases retrieves eligible ownership through Apple. Family Sharing is enabled for LiftCoach Pro. iCloud sync is included and uses your existing iCloud storage. Apple handles billing and payment details; the developer never receives them.</p>
+
+  <p>Beta and updated releases use RevenueCat to process App Store purchase history with an anonymous app identifier for purchase verification and purchase analytics. StoreKit remains the authority for purchase completion, restoration, Family Sharing, and access; reporting errors do not remove a verified StoreKit entitlement. LiftCoach does not send RevenueCat your name, email address, workouts, exercise history, body measurements, Apple Health data, notes, AI prompts, or API keys, and does not use purchase reporting for advertising or cross-app tracking. RevenueCat’s <a href="https://www.revenuecat.com/privacy">privacy policy</a> describes its processing and retention. Purchase history held by RevenueCat is separate from your local workout database and iCloud backups; contact the developer about purchase-reporting data requests.</p>
 
   <h2>Third-party services</h2>
   <p>LiftCoach uses Apple services including the App Store, iCloud, HealthKit, StoreKit, and Apple Intelligence. Optional cloud AI connects directly to OpenAI, Anthropic, or xAI, depending on your selection. Exercise form demo images are loaded on demand from the open-source free-exercise-db project hosted on GitHub (raw.githubusercontent.com); GitHub sees your IP address and which image was requested, but no account or workout data.</p>
