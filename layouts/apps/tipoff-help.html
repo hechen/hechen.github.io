@@ -1,0 +1,14 @@
+{{ define "main" }}
+<article lang="en">
+  <header class="article-head frame">
+    <p class="eyebrow">Tipoff Calendar</p>
+    <h1>{{ if strings.HasSuffix .RelPermalink "privacy.html" }}Privacy policy{{ else }}Support{{ end }}</h1>
+  </header>
+  <div class="frame"><hr class="article-rule"></div>
+  <div class="article-grid frame">
+    <div class="article-body">
+      {{ .Content }}
+    </div>
+  </div>
+</article>
+{{ end }}
