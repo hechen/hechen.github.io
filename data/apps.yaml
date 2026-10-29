@@ -99,6 +99,15 @@
   privacy: /apps/tensionradar/privacy.html
   support: /apps/tensionradar/support.html
   summary: Explore available Apple Health HRV readings with a character radar, personal history, paced breathing, daily trends and watch complications. Readings describe physiological patterns, not a direct measurement of emotions.
+- name: Lull
+  appStoreId: '6828154533'
+  eyebrow: Sleep tracking
+  platforms: iPhone · Apple Watch
+  icon: /assets/icons/lull.png
+  url: /apps/lull/
+  privacy: /apps/lull/privacy.html
+  support: /apps/lull/support.html
+  summary: Track your sleep and understand it. A smart alarm that wakes you in light sleep, snoring and sleep-talk clips, a morning report and long-term trends. No subscription, no ads.
 - name: TrainInsight
   appStoreId: '6759210309'
   url: /apps/traininsight/
