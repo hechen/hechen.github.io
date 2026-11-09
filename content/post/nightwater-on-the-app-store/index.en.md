@@ -2,6 +2,7 @@
 title: 'Nightwater: hear what happened overnight'
 slug: 'nightwater-on-the-app-store'
 date: 2026-11-06T23:00:00-08:00
+lastmod: 2026-11-08T23:00:00-08:00
 draft: false
 description: 'Nightwater is out for iPhone. Replay clips of possible snoring or sleep talk, and use an Apple Watch if you want a wrist-tap alarm.'
 categories: ['apps']
@@ -15,3 +16,11 @@ To record, start a night and leave your unlocked iPhone on the nightstand with N
 The iPhone can also ring at a fixed time. With an Apple Watch, you can set a wake window: the watch looks for movement or a rise in heart rate and can tap your wrist before your latest wake time. If it doesn’t pick up those cues, the alarm waits until that time.
 
 To see how a night is laid out before recording one, tap **See a sample morning** on the Tonight screen. It opens a labelled example with a report, clips and trends. [The Nightwater page](https://hechen.app/apps/nightwater/) explains how to set up recording and the alarm.
+
+## November 8 update · Nightwater 1.1.0
+
+When you end a recording on your iPhone, you can open the morning report right away. Sleep stages and heart rate fill in as Apple Health makes them available. If a report comes only from Apple Health and Nightwater has no reliable start time, it shows time to fall asleep as unavailable.
+
+In Settings, you can turn on a notification for when the report is ready and choose the earliest time it can arrive. You can still open the report as soon as it’s ready.
+
+[Get Nightwater 1.1.0 on the US App Store](https://apps.apple.com/us/app/nightwater-snore-recorder/id6828154533?platform=iphone)
