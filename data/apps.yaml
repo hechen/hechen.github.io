@@ -49,6 +49,7 @@
   platforms: iPhone · iPad · Mac
   icon: /assets/icons/keeps-2.0.png
   url: https://getkeepsapp.com/
+  localOverview: /apps/keeps/
   store: https://apps.apple.com/app/id6811795155
   privacy: /apps/keeps/privacy.html
   support: /apps/keeps/support.html
